@@ -316,7 +316,6 @@ video{width:100%;height:100%;object-fit:cover;display:block;background:#22304C}
 .rev__ph--empty .rev__cnt{align-self:start;justify-self:end;grid-area:1/1;position:static;margin:12px}
 .rev__ph--empty .rev__play{grid-area:1/1;position:static;align-self:center;justify-self:center}
 
-@media(max-width:1200px){}
 
 .nav__par{position:relative;display:block}
 .nav__par>a{border-bottom:0}
@@ -328,7 +327,8 @@ video{width:100%;height:100%;object-fit:cover;display:block;background:#22304C}
 .nav__tail{display:block;border-bottom:1px solid var(--line)}
 .nav__par:last-child .nav__tail{border-bottom:0}
 
-h1,h2,h3,.logo,.pc__n,.rev__n,.hw b,.bl b,.gr b,.ct__v,.tc h3,.dt,.pn,.btn,.tel,.how__more b,.info b,.wm{font-weight:800;letter-spacing:-.02em}
+/* снято: одно правило делало ExtraBold заголовки, таблицу, кнопки и лейблы,
+   из-за чего вес шёл обратно важности. Веса заданы в дизайн-системе ниже. */
 
 .logo{display:flex;align-items:center;gap:11px}
 .mk{width:29px;height:25px;flex:none}
@@ -409,7 +409,7 @@ p{line-height:1.62}
 h1,h2,h3,h4,.pc__n,.rev__n,.hin h2,.cover h1{text-wrap:balance}
 p,.wlead,.pc__d,.rev__d,.hw p,.bl p,.gr p,.info p{text-wrap:pretty}
 body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-  font-variant-numeric:tabular-nums;text-rendering:optimizeLegibility}
+  font-variant-numeric:normal}
 .dt,.sn,.nn,.pill,.cpill,.szbig,.sz,.tel{font-variant-numeric:tabular-nums}
 /* — 08 движение: одна кривая, две длительности — */
 :root{--e:cubic-bezier(.32,.72,0,1);--t1:.2s;--t2:.42s}
@@ -485,3 +485,493 @@ html,body{overflow-x:hidden}
 /* ── подписи на фото читаемы ── */
 .rev__b{padding:16px 18px 18px}
 .rev__d{opacity:.9}
+
+/* ==========================================================================
+   Что закреплено в договоре — тёмная панель внутри «Как мы работаем»
+   ========================================================================== */
+.assur{
+  --as-line:rgba(255,255,255,.115);
+  background:
+    radial-gradient(120% 140% at 88% -10%, rgba(224,96,60,.20) 0%, rgba(224,96,60,0) 55%),
+    linear-gradient(168deg,#26314B 0%,#1B2436 62%,#171E2D 100%);
+  color:#fff;
+  border-radius:clamp(22px,2.4vw,32px);
+  padding:clamp(26px,3.6vw,54px);
+  margin:0 0 clamp(56px,7vw,96px);
+  box-shadow:0 1px 2px rgba(23,30,45,.16),0 12px 26px -12px rgba(23,30,45,.34),0 34px 66px -28px rgba(23,30,45,.44);
+}
+.assur__h{max-width:62ch;margin-bottom:clamp(24px,2.8vw,38px)}
+.assur__h h3{
+  margin:0;font-size:clamp(22px,2.5vw,32px);font-weight:500;
+  line-height:1.12;letter-spacing:-.028em;color:#fff;
+}
+.assur__h p{margin:10px 0 0;font-size:15px;line-height:1.6;color:rgba(255,255,255,.62)}
+.assur__row{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:clamp(14px,1.5vw,20px)}
+
+.as{
+  display:flex;flex-direction:column;
+  background:rgba(255,255,255,.055);
+  border:1px solid var(--as-line);
+  border-radius:clamp(16px,1.6vw,22px);
+  padding:clamp(22px,2.2vw,28px);
+  transition:background .2s var(--e),border-color .2s var(--e),transform .2s var(--e);
+}
+.as:hover{background:rgba(255,255,255,.082);border-color:rgba(224,96,60,.42);transform:translateY(-2px)}
+.as__i{
+  display:grid;place-items:center;width:42px;height:42px;flex:none;
+  border-radius:13px;margin-bottom:16px;
+  background:rgba(224,96,60,.16);color:#F0906F;
+  border:1px solid rgba(224,96,60,.26);
+}
+.as__i svg{width:21px;height:21px;display:block}
+.as__l{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;
+  color:#E68A66;
+}
+.as b{display:block;margin-top:9px;font-size:17px;font-weight:500;line-height:1.28;letter-spacing:-.012em;color:#fff}
+.as p{margin:9px 0 0;font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.63)}
+.as__ul{
+  list-style:none;margin:16px 0 0;padding:15px 0 0;
+  border-top:1px solid var(--as-line);
+  display:grid;gap:8px;
+}
+.as__ul li{
+  position:relative;padding-left:21px;
+  font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.78);
+}
+.as__ul li::before{
+  content:"";position:absolute;left:0;top:.44em;width:11px;height:7px;
+  border-left:1.7px solid #E0603C;border-bottom:1.7px solid #E0603C;
+  transform:rotate(-45deg);border-radius:1px;
+}
+@media(max-width:640px){
+  .assur__row{grid-template-columns:1fr}
+}
+
+/* ==========================================================================
+   Композиция: сетки без «сирот» и вертикальный ритм
+   ========================================================================== */
+/* 6 карточек в трёх колонках дают два ровных ряда вместо 4+2 */
+.how,.build,.grt{grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.5vw,20px)}
+@media(max-width:1020px){.how,.build,.grt{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.how,.build,.grt{grid-template-columns:1fr}}
+
+/* карточки каталога крупнее, ряд не рассыпается на мелочь.
+   Селектор с #vcat — иначе правило проигрывает слою #vcat выше по файлу */
+#vcat .cgrid{grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:clamp(14px,1.5vw,20px)}
+@media(max-width:760px){#vcat .cgrid{grid-template-columns:1fr}}
+
+/* заголовки секций: тот же слой #vcat держал их мелкими */
+#vcat .chead h2{font-size:clamp(28px,3.4vw,44px);font-weight:500;letter-spacing:-.038em;line-height:1.04}
+#vcat .chead{margin-bottom:clamp(24px,3vw,38px)}
+#vcat .cover h1{font-size:clamp(32px,4.6vw,60px);font-weight:500;line-height:1.02;letter-spacing:-.042em}
+
+/* ритм секций каталога: сверху воздуха меньше, чем снизу */
+#vcat .csec{padding-block:0 clamp(64px,8vw,110px)}
+
+/* убираем двойные отступы: у секции уже есть padding-bottom */
+.how{margin-bottom:clamp(30px,3.6vw,48px)}
+.grt{margin-bottom:0}
+.assur{margin-bottom:0}
+.how__more{margin-bottom:0}
+
+/* содержимое карточек прижимается к верху, подпись — к низу */
+.hw,.bl,.gr{display:flex;flex-direction:column}
+.hw p,.bl p,.gr p{margin-bottom:0}
+.hw__t{margin-top:auto;padding-top:14px}
+.bl ul{margin-top:auto;padding-top:14px}
+
+/* ==========================================================================
+   Футер
+   ========================================================================== */
+.ft{
+  --ft-line:rgba(255,255,255,.12);
+  background:linear-gradient(178deg,#232E46 0%,#1A2233 68%,#161D2B 100%);
+  color:#fff;
+  margin-top:clamp(20px,3vw,40px);
+  padding-block:clamp(44px,5.5vw,76px) clamp(26px,3vw,38px);
+}
+.ft__top{
+  display:grid;grid-template-columns:minmax(260px,1.05fr) 2.6fr;
+  gap:clamp(30px,4vw,64px);
+  padding-bottom:clamp(30px,3.6vw,48px);
+  border-bottom:1px solid var(--ft-line);
+}
+.ft__logo{display:inline-flex;align-items:center;gap:9px;font-size:16px;font-weight:500;color:#fff}
+.ft__logo .mk{width:34px;height:30px;flex:none;color:#fff}
+.ft__logo i{font-style:normal;color:#E68A66}
+.ft__brand p{margin:16px 0 0;max-width:38ch;font-size:14px;line-height:1.6;color:rgba(255,255,255,.6)}
+.ft__tel{display:inline-block;margin-top:20px;font-size:21px;font-weight:500;letter-spacing:-.01em;color:#fff}
+.ft__tel:hover{color:#E68A66}
+.ft__note{display:block;margin-top:5px;font-size:13px;color:rgba(255,255,255,.5)}
+
+.ft__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,2.4vw,34px)}
+.ft__ct{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;
+  color:#E68A66;margin-bottom:14px;
+}
+.ft__col ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.ft__col a{font-size:14px;line-height:1.45;color:rgba(255,255,255,.72)}
+.ft__col a:hover{color:#fff}
+.ft__col--addr p{margin:0;font-size:14px;line-height:1.5;color:rgba(255,255,255,.72)}
+.ft__hours{margin-top:10px!important;color:rgba(255,255,255,.5)!important}
+.ft__link{display:inline-block;margin-top:14px;font-size:14px;color:#E68A66;border-bottom:1px solid rgba(230,138,102,.4);padding-bottom:1px}
+.ft__link:hover{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+
+.ft__bot{
+  display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;
+  justify-content:space-between;padding-top:clamp(18px,2vw,26px);
+  font-size:13px;color:rgba(255,255,255,.45);
+}
+.ft__fine{max-width:64ch;line-height:1.5}
+
+@media(max-width:1020px){
+  .ft__top{grid-template-columns:1fr}
+  .ft__cols{grid-template-columns:repeat(2,1fr);gap:28px}
+}
+@media(max-width:560px){
+  .ft__cols{grid-template-columns:1fr}
+  .ft__bot{flex-direction:column}
+}
+
+/* ==========================================================================
+   ДИЗАЙН-СИСТЕМА: тёплая палитра, лестница теней, шкала радиусов, состояния
+   Блок идёт последним и намеренно перекрывает ранние слои.
+   ========================================================================== */
+:root{
+  /* поверхности */
+  --bg:#F4EEE6;
+  --surface:#FBF7F1;
+  --card:#FFFFFF;
+
+  /* текст: тёплый тёмный вместо холодного синего */
+  --ink:#26221E;
+  --dim:#6E655A;
+  --line:#E7DED0;
+  --line-2:#DBCFBC;
+
+  /* акцент: тёмный для текста и кнопок, яркий только для декора */
+  --clay:#B8482A;
+  --clay-hov:#9E3B21;
+  --clay-lit:#E0603C;
+  --clay-tint:#FAEFE9;
+  --ok:#277A48;
+
+  /* тёмные блоки */
+  --deep:#23201C;
+  --deep-2:#2E2A25;
+  --on-deep:#F1E9DD;
+  --dim-deep:#B3A897;
+  --scrim:26 33 28;
+
+  /* лестница теней: тёплые, многослойные */
+  --sh-0:0 1px 2px rgba(60,45,30,.05);
+  --sh-1:0 1px 2px rgba(60,45,30,.05),0 3px 8px -2px rgba(60,45,30,.06);
+  --sh-2:0 1px 2px rgba(60,45,30,.05),0 6px 14px -4px rgba(60,45,30,.07),0 16px 32px -12px rgba(60,45,30,.09);
+  --sh-3:0 1px 2px rgba(60,45,30,.06),0 10px 22px -6px rgba(60,45,30,.09),0 28px 56px -20px rgba(60,45,30,.14);
+  --sh-4:0 2px 4px rgba(60,45,30,.06),0 18px 36px -10px rgba(60,45,30,.12),0 48px 90px -32px rgba(60,45,30,.22);
+  --sh-clay:0 1px 2px rgba(126,44,20,.22),0 6px 16px -6px rgba(126,44,20,.30);
+  --sh-clay-hov:0 1px 2px rgba(126,44,20,.26),0 10px 24px -8px rgba(126,44,20,.36);
+  --lip:inset 0 1px 0 rgba(255,255,255,.65);
+
+  /* шкала радиусов */
+  --r-xs:6px;--r-sm:10px;--r-md:14px;--r-lg:20px;--r-xl:28px;--r-pill:999px;
+}
+
+/* ── глубина вместо рамок ───────────────────────────────────────────────── */
+.pc,.rev,.obj,.hw,.bl,.gr,.info,.kc{
+  background:var(--card);border:1px solid transparent;box-shadow:var(--sh-1),var(--lip)}
+.pc:hover,.rev:hover,.obj:hover,.how__more:hover{box-shadow:var(--sh-2),var(--lip);border-color:transparent}
+.cgrid .pc:hover,.revs .rev:hover{border-color:transparent}
+.how__more{border-color:transparent;box-shadow:var(--sh-1),var(--lip)}
+.hdr{box-shadow:var(--sh-1),var(--lip)}
+.nav__sub{box-shadow:var(--sh-3)}
+.panel{box-shadow:var(--sh-1),var(--lip)}
+.rvw__box{box-shadow:var(--sh-4)}
+.btn--c{box-shadow:var(--sh-clay)}
+.btn--c:hover{background:var(--clay-hov);box-shadow:var(--sh-clay-hov)}
+.rev__play,.play{box-shadow:0 2px 8px rgba(30,22,14,.28)}
+.mag::before{box-shadow:none}
+.stats,.cts{box-shadow:var(--sh-1),var(--lip)}
+
+/* ── радиусы: шапка перестаёт быть таблеткой ────────────────────────────── */
+.hdr{border-radius:var(--r-xl)!important}
+.nav__sub{border-radius:var(--r-xl)!important}
+.pc,.rev,.kc,.hw,.bl,.gr,.info,.obj,.tc{border-radius:var(--r-lg)!important}
+.visit,.cts,.doc,.panel,.stats{border-radius:var(--r-xl)!important}
+.ch,.ask,.magnet,.ok,.ser__soon,.obj-empty,.pnote{border-radius:var(--r-md)}
+.f input,.th{border-radius:var(--r-sm)}
+.nav__sub a:hover{border-radius:var(--r-md)}
+
+/* ── фокус: убираем скругление, оно ломало и анимировало форму кнопок ───── */
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
+  outline:2px solid var(--clay);outline-offset:3px;border-radius:revert}
+.f input:focus,.f input:focus-visible{
+  outline:none;border-color:var(--clay);box-shadow:0 0 0 3px rgb(184 72 42 / .18)}
+.f input::placeholder{color:var(--dim);opacity:1}
+
+/* ── отклик на нажатие: его не было вообще ──────────────────────────────── */
+.btn:active,.pc:active,.rev:active,.obj:active,.th:active,.pcard:active,.sz:active{
+  transform:translateY(1px) scale(.99);transition-duration:.06s!important}
+.btn--c:active{background:var(--clay-hov);box-shadow:var(--sh-clay)}
+.btn--l:active,.btn--w:active{background:var(--surface)}
+
+/* ── убираем линии, которые ничего не разделяют ─────────────────────────── */
+.dh{border-bottom:0}
+.dt thead th{border-bottom:1px solid var(--line);color:var(--dim)}
+.dt tr.s--o td{border-top:0}
+.dfoot{border-top:0;background:var(--surface)}
+.sr,.dr{border-bottom:1px solid var(--line)}
+.obj-empty,.ser__soon,.rev__ph--empty,.pc--wait{
+  border:0!important;background:var(--surface)!important;
+  box-shadow:inset 0 1px 3px rgba(60,45,30,.05)!important}
+.pv__top{border-bottom:0;box-shadow:var(--sh-0);position:relative;z-index:2}
+.pv__bot{border-top:0;box-shadow:0 -1px 2px rgba(60,45,30,.05);position:relative;z-index:2}
+.ch--w,.ch--t{border-left:0}
+.ch{background:var(--surface);border:1px solid transparent;box-shadow:var(--sh-0)}
+.ch:hover{background:var(--card);box-shadow:var(--sh-1),var(--lip);transform:translateY(-1px);border-color:transparent}
+
+/* ── контраст текста ────────────────────────────────────────────────────── */
+.nav a:hover{color:var(--ink)}
+.dcnt em{opacity:1;color:var(--dim)}
+.dr b.new i,.dt td.new i{opacity:1;color:var(--ok)}
+.rev__d{opacity:1;color:rgb(255 255 255 / .88)}
+.dt tbody tr:hover td{background:#F7F2EA}
+.nav__sub .n{color:var(--dim)}
+.cu{color:var(--clay)}.cn{color:var(--ok)}.cm{color:var(--dim)}
+.hw__n{background:var(--clay-tint);color:var(--clay)}
+
+/* яркая терракота остаётся только там, где это крупный декор */
+.rev__play::before,.play::before{border-left-color:var(--clay-lit)}
+.bl li::before,.sr li::before{border-color:var(--clay-lit)}
+
+/* ── тёмные блоки в тон новой палитре ───────────────────────────────────── */
+.assur{
+  background:
+    radial-gradient(120% 140% at 88% -10%, rgba(224,96,60,.20) 0%, rgba(224,96,60,0) 55%),
+    linear-gradient(168deg,#2E2A25 0%,#262220 62%,#1F1C19 100%);
+  box-shadow:0 1px 2px rgba(35,32,28,.16),0 12px 26px -12px rgba(35,32,28,.34),0 34px 66px -28px rgba(35,32,28,.44);
+}
+.ft{background:linear-gradient(178deg,#2B2721 0%,#232019 68%,#1E1B16 100%)}
+.lb{background:rgb(var(--scrim) / .94)}
+.rvw{background:rgb(var(--scrim) / .95)}
+
+/* ==========================================================================
+   ТИПОГРАФИКА: одна гарнитура, восемь ступеней кегля, три веса
+   ========================================================================== */
+:root{
+  --fs-caps:12px;
+  --fs-xs:13px;
+  --fs-sm:15px;
+  --fs-md:17px;
+  --fs-lg:20px;
+  --fs-h3:24px;
+  --fs-h2:clamp(28px,1.5rem + 1.7vw,42px);
+  --fs-h1:clamp(36px,1.9rem + 3.4vw,62px);
+
+  --lh-h1:1.04;--lh-h:1.16;--lh-ui:1.35;--lh-tx:1.55;
+  --ls-h1:-.03em;--ls-h2:-.022em;--ls-h3:-.012em;--ls-tx:0;--ls-caps:.08em;
+
+  --font:"Manrope","Helvetica Neue",-apple-system,system-ui,"Segoe UI",Roboto,Arial,sans-serif;
+}
+body{
+  font-family:var(--font);
+  font-size:var(--fs-md);
+  line-height:var(--lh-tx);
+  letter-spacing:var(--ls-tx);
+  font-weight:400;
+}
+h1,h2,h3,h4{font-weight:600;color:var(--ink);margin:0}
+h1{font-size:var(--fs-h1);line-height:var(--lh-h1);letter-spacing:var(--ls-h1)}
+h2{font-size:var(--fs-h2);line-height:var(--lh-h);letter-spacing:var(--ls-h2)}
+h3{font-size:var(--fs-h3);line-height:var(--lh-h);letter-spacing:var(--ls-h3)}
+h4{font-size:var(--fs-lg);line-height:var(--lh-h);letter-spacing:var(--ls-h3)}
+
+/* заголовки секций: перебиваем и слой #vcat, и дефолт браузера на подстраницах */
+#vcat .chead h2,.chead h2,.head h2,.khead h2,.visit h2,.hin h2,.shell>h2{
+  font-size:var(--fs-h2);font-weight:600;line-height:var(--lh-h);letter-spacing:var(--ls-h2)}
+#vcat .cover h1,.cover h1{
+  font-size:var(--fs-h1);font-weight:600;line-height:var(--lh-h1);letter-spacing:var(--ls-h1);max-width:22ch}
+.ser__h h3,.revs__h h3,.assur__h h3,.tc h3{
+  font-size:var(--fs-h3);font-weight:600;letter-spacing:var(--ls-h3);line-height:var(--lh-h)}
+
+/* заголовки карточек — один вес и один кегль во всех сетках */
+#vcat .pc__n,.pc__n,.rev__n,.hw b,.bl b,.gr b,.ct__v,.how__more b,.info b,.as b{
+  font-size:var(--fs-lg);font-weight:600;letter-spacing:var(--ls-h3);line-height:var(--lh-ui)}
+#vcat .pc__d,.pc__d,.rev__d,.hw p,.bl p,.gr p,.ct__s,.info p,.wlead,.sub{
+  font-size:var(--fs-sm);font-weight:400;letter-spacing:var(--ls-tx);line-height:var(--lh-tx)}
+
+/* капитель: 12/600/.08em — кириллица перестаёт рассыпаться */
+.gr__l,.bl__l,.ct__l,.ser__h .lab,.sizes__lab,.eyebrow,.ttl,.as__l,.dblk h5,.dt tr.s td,.ft__ct{
+  font-size:var(--fs-caps);letter-spacing:var(--ls-caps);text-transform:uppercase;
+  font-weight:600;line-height:var(--lh-ui)}
+
+/* мелкий текст и служебное */
+.crumbs,.agree,.leg,.knote,.rev__hint,.ft__bot{font-size:var(--fs-xs);line-height:var(--lh-ui)}
+.cbadge,.cpill,.rev__cnt,.vtag,.counter,#vcat .cbadge,#vcat .cpill{
+  font-size:var(--fs-xs);font-weight:500;letter-spacing:0;line-height:1;padding:7px 13px}
+.btn,.tel,.wm,.logo,.sz,.nav a,.how__more .go{font-weight:500;letter-spacing:var(--ls-tx)}
+.dt,.pn{font-weight:400;letter-spacing:var(--ls-tx)}
+.dt thead th{font-weight:500}
+.stats b{font-weight:600;letter-spacing:var(--ls-h3)}
+
+/* табличные цифры — только там, где колонки должны совпасть */
+.dt,.stats,.tel,.sz,.sn,.nn,.dsum,.sr,.dr,.cpill{font-variant-numeric:tabular-nums}
+
+/* заголовок и подпись перестают разъезжаться по краям экрана */
+.revs__h,.ser__h{display:block}
+.revs__h h3,.ser__h h3{margin:0}
+.revs__h span,.ser__h .cnt{display:block;margin:6px 0 0;font-size:var(--fs-sm);color:var(--dim)}
+.ser__h .lab{display:block;margin-bottom:6px}
+
+/* ==========================================================================
+   Первый экран
+   ========================================================================== */
+#vcat .cover{border-radius:var(--r-xl);box-shadow:var(--sh-2)}
+/* тёплое затемнение: слева под текстом плотнее, справа фото открыто */
+#vcat .cover::after{
+  background:
+    linear-gradient(100deg, rgba(28,24,20,.78) 0%, rgba(28,24,20,.55) 26%, rgba(28,24,20,.12) 55%, rgba(28,24,20,0) 74%),
+    linear-gradient(180deg, rgba(28,24,20,.34) 0%, rgba(28,24,20,0) 32%, rgba(28,24,20,.52) 100%);
+}
+#vcat .cover__in{align-items:flex-start;flex-direction:column;justify-content:flex-end;gap:26px}
+#vcat .cover h1{color:#fff;text-shadow:0 1px 30px rgba(20,16,12,.28)}
+#vcat .cover .sub,#vcat .cover p{color:rgba(255,255,255,.82)}
+#vcat .cta{gap:12px}
+.btn--w{background:#fff;color:var(--ink);box-shadow:var(--sh-2)}
+.btn--w:hover{background:#fff;box-shadow:var(--sh-3);transform:translateY(-1px)}
+.btn--gh{border:1px solid rgba(255,255,255,.5);color:#fff;background:rgba(255,255,255,.06);backdrop-filter:blur(6px)}
+.btn--gh:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.75)}
+
+/* лента чисел: ближе к обложке, разделители внутренние */
+.stats{gap:0;background:var(--card);overflow:hidden;margin:clamp(16px,2vw,24px) 0 clamp(48px,6vw,84px)}
+.stats>div+div{box-shadow:inset 1px 0 0 var(--line)}
+.stats b{color:var(--ink)}
+.stats span{color:var(--dim);font-size:var(--fs-xs)}
+@media(max-width:760px){.stats>div+div{box-shadow:inset 0 1px 0 var(--line)}}
+
+/* ==========================================================================
+   Серии каталога: размерный ряд как самостоятельный модуль,
+   чтобы серии без фотографий не выглядели незаконченными
+   ========================================================================== */
+.ser{margin-bottom:clamp(28px,3.4vw,44px)}
+.ser__h{margin-bottom:16px}
+.ser__h h3{color:var(--ink)}
+.sizes{
+  background:var(--surface);border-radius:var(--r-lg);
+  padding:clamp(16px,1.8vw,22px);margin-top:clamp(14px,1.6vw,20px);
+  display:flex;flex-wrap:wrap;gap:8px;box-shadow:inset 0 0 0 1px var(--line);
+}
+.sizes__lab{width:100%;margin-bottom:10px;color:var(--dim)}
+.sz{
+  background:var(--card);border:0;box-shadow:var(--sh-0);
+  border-radius:var(--r-pill);padding:9px 16px;min-width:74px;text-align:center;
+  font-size:var(--fs-sm);font-weight:500;color:var(--ink);
+}
+.ser__soon{border:0;background:var(--surface);box-shadow:inset 0 1px 3px rgba(60,45,30,.05)}
+.ser__soon b{font-weight:600;font-size:var(--fs-sm)}
+
+/* ==========================================================================
+   Ритм между последней секцией и футером
+   ========================================================================== */
+#vcat #contacts{padding-bottom:clamp(40px,5vw,72px)}
+.ft{margin-top:0}
+
+/* ==========================================================================
+   Страница проекта
+   ========================================================================== */
+/* заголовок в узкой колонке не должен жить по шкале героя */
+.panel h1{font-size:clamp(24px,2.1vw,32px);line-height:1.1;letter-spacing:-.022em;font-weight:600}
+.panel .sub{font-size:var(--fs-sm)!important;color:var(--dim);margin-top:10px}
+.panel{padding:clamp(20px,2vw,26px)}
+.ch,.ask,.magnet,.ok{border-radius:var(--r-md)}
+.ch span{font-weight:500;font-size:var(--fs-sm)}
+.ch small{font-size:var(--fs-xs);color:var(--dim)}
+
+/* лупа на планировке снова читается как лупа */
+.mag{background:rgba(255,255,255,.92);box-shadow:var(--sh-1)}
+.mag::before{box-shadow:none;border-color:var(--ink)}
+
+/* таблица спецификации: обычный вес, воздух вместо линеек */
+.dt td,.dt th{font-weight:400}
+.dt tbody tr:hover td{background:#F7F2EA}
+.dsum{gap:0;background:var(--card)}
+.dsum div+div{box-shadow:inset 1px 0 0 var(--line)}
+
+/* ==========================================================================
+   Исправления найденных поломок
+   ========================================================================== */
+/* .obj — это контейнер-сетка, но групповые правила выше сделали его карточкой:
+   белый фон, рамка, радиус 28 и подъём всей сетки при наведении. Возвращаем сетку. */
+.obj{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:clamp(14px,1.5vw,20px);
+  background:transparent!important;border:0!important;
+  box-shadow:none!important;border-radius:0!important;overflow:visible;
+}
+.obj:hover{transform:none;box-shadow:none!important}
+.ob{
+  background:var(--card);border:0;border-radius:var(--r-lg);
+  padding:clamp(20px,2vw,26px);box-shadow:var(--sh-1),var(--lip);
+}
+.ob b{font-size:var(--fs-lg);font-weight:600;letter-spacing:var(--ls-h3)}
+.ob p{font-size:var(--fs-sm);color:var(--dim);margin-top:8px}
+
+/* просмотрщик планировок: JS кладёт сюда <img>, а подложка была написана под <svg> */
+.pv__wrap img,.pv__wrap svg{background:#fff;border-radius:var(--r-sm);box-shadow:var(--sh-4)}
+
+/* зоны нажатия: были 15–35px при норме 44 */
+.nav a{min-height:0;padding-block:11px}
+.pv__z button{width:40px;height:40px}
+.lb__x,.pv__x,.fx{padding:8px 12px;font-size:24px;border-radius:var(--r-sm)}
+.lb__x:hover,.pv__x:hover,.fx:hover{background:rgba(128,110,90,.14)}
+.agree{gap:11px;align-items:center}
+.agree input{width:20px;height:20px;margin-top:0}
+
+/* шапка на узких экранах: прежнее правило было перекрыто и не работало */
+@media(max-width:900px){
+  .hdr{padding:12px 18px;gap:14px;margin-top:10px;border-radius:var(--r-lg)!important}
+}
+
+/* ==========================================================================
+   Финальная подгонка композиции
+   ========================================================================== */
+/* .grt используется дважды с разным числом карточек:
+   4 шага в «Выезде инженера» и 6 блоков в «Гарантиях» */
+.grt{grid-template-columns:repeat(4,1fr)}
+#garant .grt{grid-template-columns:repeat(3,1fr)}
+@media(max-width:1020px){.grt,#garant .grt{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.grt,#garant .grt{grid-template-columns:1fr}}
+
+/* ряды карточек были на жёстком треке 274px и оставляли до 900px мёртвой зоны */
+.revs__row,.obj-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(14px,1.5vw,20px);justify-content:stretch;max-width:none}
+.revs__row:has(>:last-child:nth-child(1)){grid-template-columns:minmax(0,340px)}
+.revs__row:has(>:last-child:nth-child(2)){grid-template-columns:repeat(2,minmax(0,1fr));max-width:720px}
+.revs__row:has(>:last-child:nth-child(3)){grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1020px){.revs__row,.obj-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.revs__row,.obj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){
+  .revs__row,.obj-grid,.revs__row:has(>:last-child:nth-child(1)),
+  .revs__row:has(>:last-child:nth-child(2)),.revs__row:has(>:last-child:nth-child(3)){
+    grid-template-columns:1fr;max-width:380px;margin-inline:auto}
+}
+
+/* 242px пустого фона перед футером складывались из трёх забытых отступов */
+.cts,.visit{margin-bottom:0}
+.ft{margin-top:0}
+
+/* заголовок карточки: 20px в колонке 328px снова ломал строки на две */
+:root{--fs-card:17px}
+#vcat .pc__n,.pc__n,.rev__n,.hw b,.bl b,.gr b,.ct__v,.how__more b,.info b,.as b,.ob b{
+  font-size:var(--fs-card);font-weight:600;letter-spacing:-.014em;line-height:1.3}
+
+/* низ карточек «Гарантий» был рваным: до 75px разной пустоты */
+.gr{position:relative}
+.gr p{margin-bottom:0}
+.gr::after{content:"";display:block;margin-top:auto;padding-top:18px;
+  border-bottom:1px solid var(--line);width:34px}
+
+/* последний фирменный hex мимо токенов */
+.as__ul li::before{border-color:var(--clay-lit)}
