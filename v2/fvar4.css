@@ -1,0 +1,78 @@
+/* ── подвал: склейка третьего и восьмого — значки и кирпичная черта ── */
+.w4{--navy:#1E2A44;--ink2:#141C2E;--clay:#C2461F;--clay-l:#E0603C;
+    --dim:#5A6478;--line:#E6E8ED;--soft:#F5F6F8}
+
+.y__in{max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,72px) clamp(20px,3vw,40px)}
+.y__lg{display:flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-md);font-weight:700}
+.y__lg svg{width:26px;height:23px;flex:none}
+.y__lg i{font-style:normal;color:var(--clay-l)}
+.y__k{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;opacity:.5}
+.y__tel{font-size:clamp(22px,2.4vw,28px);font-weight:700;letter-spacing:-.025em;text-decoration:none;display:inline-block}
+.y__sm{font-size:var(--fs-xs);line-height:1.55;opacity:.78;margin-top:var(--sp-8)}
+.y__ln{display:block;font-size:var(--fs-xs);text-decoration:none;opacity:.86;margin-top:var(--sp-8)}
+.y__ln:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+.y__req{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--sp-16) var(--sp-32);margin:0}
+.y__req div{display:grid;gap:3px}
+.y__req dt{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;opacity:.42}
+.y__req dd{margin:0;font-size:11px;line-height:1.5;opacity:.9;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.01em}
+.y__bot{display:flex;flex-wrap:wrap;gap:var(--sp-12) var(--sp-28);align-items:baseline;font-size:11px;opacity:.6}
+.y__bot a{text-decoration:none;opacity:.9}
+.y__bot a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+.y__bot .end{margin-left:auto}
+.y__rule{height:1px;background:currentColor;opacity:.14;margin:clamp(28px,3vw,44px) 0}
+.ydark{background:var(--navy);color:#fff}
+.ydark a{color:#fff}
+
+.yc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-16);
+  margin-top:clamp(28px,3vw,40px)}
+.yc__i{position:relative;padding:clamp(24px,2.8vw,34px);border-radius:20px;
+  background:rgb(255 255 255/.06);border:1px solid rgb(255 255 255/.1)}
+.yc__i .y__k{margin-bottom:var(--sp-12)}
+.yc__ic{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;
+  background:var(--clay);color:#fff;margin-bottom:var(--sp-20);flex:none}
+.yc__ic svg{width:22px;height:22px;display:block}
+
+/* 01 значок + черта сверху */
+.y1 .yc__i{border-top:3px solid var(--clay-l);border-radius:0 0 20px 20px}
+/* 02 значок в кружке */
+.y2 .yc__ic{border-radius:999px}
+.y2 .yc__i{border-top:3px solid var(--clay-l);border-radius:0 0 20px 20px}
+/* 03 черта снизу */
+.y3 .yc__i{border-bottom:3px solid var(--clay-l);border-radius:20px 20px 0 0}
+/* 04 значок в строку с подписью */
+.y4 .yc__i{border-top:3px solid var(--clay-l);border-radius:0 0 20px 20px}
+.y4 .yc__h{display:flex;align-items:center;gap:var(--sp-12);margin-bottom:var(--sp-16)}
+.y4 .yc__ic{margin-bottom:0;width:38px;height:38px;border-radius:11px}
+.y4 .yc__h .y__k{margin-bottom:0}
+/* 05 контурные значки */
+.y5 .yc__ic{background:none;border:1.5px solid var(--clay-l);color:var(--clay-l)}
+.y5 .yc__i{border-top:3px solid var(--clay-l);border-radius:0 0 20px 20px}
+/* 06 черта только у первой */
+.y6 .yc__i{border-radius:20px}
+.y6 .yc__i:first-child{border-top:3px solid var(--clay-l);border-radius:0 0 20px 20px;
+  background:rgb(224 96 60/.12);border-color:rgb(224 96 60/.28)}
+/* 07 крупные значки без плашки */
+.y7 .yc__ic{background:none;width:40px;height:40px;color:var(--clay-l);margin-bottom:var(--sp-16)}
+.y7 .yc__ic svg{width:36px;height:36px}
+.y7 .yc__i{border-radius:22px}
+/* 08 одна черта на весь ряд */
+.y8 .yc{position:relative;padding-top:var(--sp-24)}
+.y8 .yc::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--clay-l)}
+.y8 .yc__i{border-radius:0 0 20px 20px}
+/* 09 светлые карточки на тёмном */
+.y9 .yc__i{background:#fff;color:var(--navy);border:0;border-top:3px solid var(--clay);
+  border-radius:0 0 20px 20px}
+.y9 .yc__i a{color:var(--navy)}
+.y9 .yc__i .y__k{opacity:.55}
+.y9 .yc__i .y__sm{opacity:.7}
+/* 10 значок в углу */
+.y10 .yc__i{border-top:3px solid var(--clay-l);border-radius:0 0 20px 20px;padding-right:76px}
+.y10 .yc__ic{position:absolute;right:var(--sp-20);top:var(--sp-20);margin:0;width:38px;height:38px;border-radius:11px}
+
+@media(max-width:900px){
+  .yc{grid-template-columns:1fr}
+  .y8 .yc::before{display:none}
+  .y8 .yc__i{border-top:3px solid var(--clay-l)}
+  .y__bot .end{margin-left:0;flex-basis:100%}
+}
