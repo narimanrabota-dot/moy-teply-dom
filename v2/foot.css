@@ -32,8 +32,8 @@
 .ft__req{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--sp-16) var(--sp-32);margin:var(--sp-16) 0 0}
 .ft__req div{display:grid;gap:3px}
 .ft__req dt{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;opacity:.42}
-.ft__req dd{margin:0;font-size:11px;line-height:1.5;opacity:.9;
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.01em}
+.ft__req dd{margin:0;font-size:var(--fs-xs);line-height:1.5;opacity:.92;
+  letter-spacing:-.005em;font-variant-numeric:tabular-nums}
 .ft__bot{display:flex;flex-wrap:wrap;gap:var(--sp-12) var(--sp-28);align-items:baseline;font-size:11px;opacity:.6}
 .ft__bot a{text-decoration:none;opacity:.9}
 .ft__bot a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
