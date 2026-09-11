@@ -73,3 +73,8 @@
   .ladder .hdoc{width:100%;margin:0 0 var(--sp-16) !important}
   .spread{grid-template-columns:1fr}
 }
+
+/* крупные номера пунктов — выбранный вариант */
+.hn--big{font-size:var(--fs-lg);letter-spacing:-.02em;line-height:1;margin-bottom:var(--sp-4)}
+.h .tail{margin-top:clamp(48px,6vw,80px)}
+.h .h__h{margin-top:var(--sp-24)}
