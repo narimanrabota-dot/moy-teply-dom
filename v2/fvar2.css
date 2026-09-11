@@ -1,0 +1,138 @@
+/* ── подвал, второй заход: больше воздуха, крупнее набор ── */
+.w2{--navy:#1E2A44;--ink2:#141C2E;--clay:#C2461F;--clay-l:#E0603C;
+    --dim:#5A6478;--line:#E6E8ED;--soft:#F5F6F8}
+
+.q__in{max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,72px) clamp(20px,3vw,40px)}
+.q__lg{display:flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-md);font-weight:700}
+.q__lg svg{width:26px;height:23px;flex:none}
+.q__lg i{font-style:normal;color:var(--clay-l)}
+.q__k{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;opacity:.55}
+.q__nav{display:grid;gap:var(--sp-12);margin-top:var(--sp-20)}
+.q__nav a{font-size:var(--fs-sm);text-decoration:none;line-height:1.3}
+.q__nav a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.q__tel{font-size:clamp(24px,2.6vw,32px);font-weight:700;letter-spacing:-.025em;text-decoration:none;display:inline-block}
+.q__addr{margin-top:var(--sp-16);font-size:var(--fs-xs);line-height:1.6;opacity:.78}
+.q__req{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--sp-16) var(--sp-32);margin:0}
+.q__req div{display:grid;gap:3px}
+.q__req dt{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;opacity:.42}
+.q__req dd{margin:0;font-size:11px;line-height:1.5;opacity:.9;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.01em}
+.q__bot{display:flex;flex-wrap:wrap;gap:var(--sp-12) var(--sp-28);align-items:baseline;font-size:11px;opacity:.6}
+.q__bot a{text-decoration:none;opacity:.9}
+.q__bot a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+.q__bot .end{margin-left:auto}
+.dark{background:var(--navy);color:#fff}
+.dark a{color:#fff}
+.light{background:#fff;color:var(--navy)}
+.light a{color:var(--navy)}
+.light .q__k{opacity:.5}
+.rule{height:1px;background:currentColor;opacity:.14;margin:clamp(28px,3vw,44px) 0}
+
+/* 01 карточка-призыв наезжает сверху */
+.q1{position:relative;padding-top:60px;background:var(--navy);color:#fff}
+.q1__cta{position:absolute;left:50%;top:-56px;transform:translateX(-50%);
+  width:min(1000px,calc(100% - 40px));display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-24);
+  padding:clamp(24px,3vw,36px) clamp(24px,3vw,40px);background:#fff;color:var(--navy);
+  border-radius:var(--r-shell);box-shadow:0 24px 60px -20px rgb(20 28 46/.45)}
+.q1__cta b{font-size:clamp(20px,2.2vw,26px);font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.q1__cta p{margin:var(--sp-4) 0 0;font-size:var(--fs-xs);color:var(--dim);max-width:46ch}
+.q1__btn{margin-left:auto;padding:var(--sp-16) var(--sp-28);border:0;border-radius:999px;
+  background:var(--clay);color:#fff;font:inherit;font-size:var(--fs-sm);font-weight:600;cursor:pointer}
+.q1__grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:clamp(28px,4vw,56px)}
+
+/* 02 фото слева на всю высоту */
+.q2{display:grid;grid-template-columns:38% 1fr;background:var(--navy);color:#fff}
+.q2__ph{position:relative;min-height:340px;overflow:hidden;background-image:url(../img/glavnoe-foto-stambul.webp);background-size:cover;background-position:center}
+.q2__ph img{display:none}
+.q2__ph::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgb(30 42 68/.10),rgb(30 42 68/.55) 62%,rgb(30 42 68/.96))}
+.q2__b{padding:clamp(36px,4vw,64px) clamp(24px,3vw,48px)}
+.q2__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,3vw,48px);margin-top:clamp(28px,3vw,40px)}
+
+/* 03 швейцарская сетка */
+.q3{background:#fff;color:var(--navy);border-top:2px solid var(--navy)}
+.q3__grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--sp-24)}
+.q3__a{grid-column:span 4}
+.q3__b{grid-column:span 3}
+.q3__c{grid-column:span 5}
+.q3__t{font-size:clamp(28px,3.4vw,42px);font-weight:700;letter-spacing:-.035em;line-height:1.05;max-width:18ch}
+.q3 .q__req{margin-top:clamp(32px,4vw,52px);padding-top:var(--sp-20);border-top:1px solid var(--line)}
+
+/* 04 вордмарк-разделитель */
+.q4{background:var(--navy);color:#fff}
+.q4__word{display:flex;align-items:center;gap:clamp(16px,2vw,32px);margin:clamp(32px,4vw,52px) 0}
+.q4__word span{flex:none;font-size:clamp(22px,3.4vw,44px);font-weight:700;letter-spacing:-.04em;
+  white-space:nowrap;line-height:1}
+.q4__word i{font-style:normal;color:var(--clay-l)}
+.q4__word::before,.q4__word::after{content:"";flex:1;height:1px;background:rgb(255 255 255/.2)}
+.q4__grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(24px,3vw,48px)}
+
+/* 05 градиент и линия крыши */
+.q5{position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(160deg,#243css 0%,#1E2A44 40%,#141C2E 100%)}
+.q5{background:linear-gradient(160deg,#24314F 0%,#1E2A44 45%,#131A2B 100%)}
+.q5__roof{position:absolute;right:-6%;bottom:-14%;width:min(560px,60%);opacity:.07;pointer-events:none}
+.q5__roof svg{width:100%;height:auto;display:block}
+.q5__grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:clamp(28px,4vw,56px);position:relative}
+
+/* 06 телефон как заголовок */
+.q6{background:var(--ink2);color:#fff}
+.q6__big{display:inline-block;font-size:clamp(38px,7vw,86px);font-weight:700;
+  letter-spacing:-.045em;line-height:.95;text-decoration:none;color:#fff}
+.q6__row{display:flex;flex-wrap:wrap;gap:var(--sp-24) clamp(32px,5vw,72px);
+  align-items:flex-end;margin-top:clamp(28px,3vw,44px)}
+.q6__row > div{min-width:180px}
+
+/* 07 две трети / треть встык */
+.q7{display:grid;grid-template-columns:1.6fr 1fr}
+.q7__l{background:var(--navy);color:#fff;padding:clamp(36px,4vw,64px) clamp(24px,3vw,48px)}
+.q7__r{background:var(--soft);color:var(--navy);padding:clamp(36px,4vw,64px) clamp(24px,3vw,40px)}
+.q7__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,3vw,48px);margin-top:clamp(28px,3vw,40px)}
+.q7__r .q__req{grid-template-columns:1fr}
+.q7__r .q__bot{margin-top:var(--sp-24)}
+
+/* 08 контурный, как чертёж */
+.q8{background:#fff;color:var(--navy)}
+.q8__box{border:1px solid var(--navy);border-radius:var(--r-inner)}
+.q8__top{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:0}
+.q8__top > div{padding:clamp(24px,3vw,36px);border-right:1px solid var(--line)}
+.q8__top > div:last-child{border-right:0}
+.q8__req{padding:clamp(24px,3vw,36px);border-top:1px solid var(--navy)}
+.q8__req .q__req dd{color:var(--clay)}
+.q8 .q__bot{padding:var(--sp-16) clamp(24px,3vw,36px);border-top:1px solid var(--line)}
+
+/* 09 три карточки на тёмном */
+.q9{background:var(--navy);color:#fff}
+.q9__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-16);
+  margin-top:clamp(28px,3vw,40px)}
+.q9__c{padding:clamp(22px,2.6vw,32px);background:rgb(255 255 255/.06);border-radius:var(--r-inner);
+  border:1px solid rgb(255 255 255/.1)}
+.q9__c .q__k{margin-bottom:var(--sp-12)}
+.q9__c a{display:block;font-size:var(--fs-xs);text-decoration:none;margin-top:var(--sp-8);opacity:.88}
+.q9__req{margin-top:clamp(28px,3vw,40px);padding-top:var(--sp-24);border-top:1px solid rgb(255 255 255/.14)}
+
+/* 10 асимметричный */
+.q10{background:var(--navy);color:#fff}
+.q10__top{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(32px,5vw,80px);align-items:start}
+.q10__tel{font-size:clamp(30px,4vw,52px);font-weight:700;letter-spacing:-.035em;
+  text-decoration:none;color:#fff;display:inline-block;margin-top:var(--sp-20)}
+.q10__nav{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-12) var(--sp-24)}
+.q10__nav a{font-size:var(--fs-xs);text-decoration:none;opacity:.85}
+.q10__line{display:flex;flex-wrap:wrap;gap:var(--sp-8) var(--sp-16);margin-top:clamp(32px,4vw,52px);
+  padding-top:var(--sp-20);border-top:1px solid rgb(255 255 255/.14);
+  font-size:11px;opacity:.62;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.q10__line span:not(:last-child)::after{content:" ·";opacity:.5}
+
+@media(max-width:960px){
+  .q1__grid,.q4__grid,.q5__grid,.q8__top,.q9__grid{grid-template-columns:1fr}
+  .q2,.q7,.q10__top{grid-template-columns:1fr}
+  .q2__ph{min-height:200px}
+  .q2__grid,.q7__grid{grid-template-columns:1fr}
+  .q3__a,.q3__b,.q3__c{grid-column:span 12}
+  .q1{padding-top:120px}
+  .q1__cta{top:-88px;flex-direction:column;align-items:flex-start}
+  .q1__btn{margin-left:0}
+  .q8__top > div{border-right:0;border-bottom:1px solid var(--line)}
+  .q__bot .end{margin-left:0;flex-basis:100%}
+  .q6__row{gap:var(--sp-20)}
+}
