@@ -1,0 +1,137 @@
+/* ── страница «Почему с нами выгодно и безопасно» ──
+   Фирменные цвета: navy #1E2A44, кирпичный #E0603C / #C2461F */
+.d{--navy:#1E2A44;--clay:#C2461F;--clay-l:#E0603C;--dim:#4A5568;--line:#E3E6EC;--soft:#F3F4F7;--warm:#FBE9E2}
+.d__lead{margin:var(--sp-16) 0 0;max-width:66ch;font-size:var(--fs-md);color:var(--dim);line-height:1.5}
+
+/* скачать договор — общий для всех вариантов */
+.dget{
+  display:inline-flex;align-items:center;gap:var(--sp-16);margin-top:var(--sp-24);
+  padding:var(--sp-12) var(--sp-20) var(--sp-12) var(--sp-12);
+  border:1px solid var(--line);border-radius:var(--r-inner);background:#fff;
+  color:var(--navy);text-decoration:none;
+  transition:border-color .2s var(--e),box-shadow .2s var(--e);
+}
+.dget:hover{border-color:var(--clay);box-shadow:0 2px 12px rgb(30 42 68/.1)}
+.dget__ph{width:64px;height:44px;flex:none;border-radius:8px;overflow:hidden;background:var(--soft)}
+.dget__ph img{width:100%;height:100%;object-fit:cover;display:block}
+.dget b{display:block;font-size:var(--fs-xs);font-weight:600;line-height:1.25}
+.dget i{font-style:normal;font-size:11px;color:var(--dim)}
+.dget__x{margin-left:var(--sp-12);color:var(--clay);font-size:var(--fs-sm)}
+
+/* 01 лист КП: два столбца с кружками */
+.p1{columns:2;column-gap:clamp(32px,4vw,56px);margin-top:var(--sp-24)}
+.p1__i{break-inside:avoid;display:grid;grid-template-columns:auto 1fr;gap:var(--sp-12);margin:0 0 var(--sp-24)}
+.p1__n{display:grid;place-items:center;width:28px;height:28px;border:1.5px solid var(--navy);
+  border-radius:999px;font-size:12px;font-weight:700}
+.p1__t{display:block;margin-bottom:var(--sp-4);font-size:var(--fs-sm);font-weight:700;line-height:1.25}
+.p1__d{margin:0;font-size:var(--fs-xs);color:var(--dim);line-height:1.5}
+.pt{display:inline-block;margin-left:var(--sp-8);padding:1px var(--sp-8);border-radius:999px;
+  background:var(--soft);color:var(--dim);font-size:11px;font-weight:600;white-space:nowrap}
+
+/* 02 карточки 2×3 */
+.p2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-16);margin-top:var(--sp-24)}
+.p2__i{padding:var(--sp-24);background:#fff;border-radius:var(--r-inner);box-shadow:var(--edge)}
+.p2__n{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;
+  background:var(--warm);color:var(--clay);font-size:var(--fs-md);font-weight:700}
+.p2__i b{display:block;margin:var(--sp-16) 0 var(--sp-8);font-size:var(--fs-md);font-weight:600;line-height:1.2}
+.p2__i p{margin:0;font-size:var(--fs-xs);color:var(--dim);line-height:1.5}
+
+/* 03 таблица «пункт → что это значит» */
+.p3{width:100%;margin-top:var(--sp-24);border-collapse:collapse}
+.p3 th{padding:var(--sp-12) var(--sp-16);background:var(--navy);color:#fff;text-align:left;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.p3 td{padding:var(--sp-16);border-bottom:1px solid var(--line);vertical-align:top;
+  font-size:var(--fs-xs);line-height:1.5}
+.p3 td:first-child{width:34%;font-weight:600}
+.p3 td:last-child{color:var(--dim)}
+.p3 tr:nth-child(even) td{background:#F8F9FB}
+
+/* 04 полоса платежей */
+.p4{margin-top:var(--sp-24);padding:var(--sp-28);background:#fff;border-radius:var(--r-shell);box-shadow:var(--edge)}
+.p4__bar{display:flex;gap:var(--sp-4);margin-top:var(--sp-20)}
+.p4__s{flex:var(--w) 1 0;display:grid;gap:2px;min-width:0;padding:var(--sp-12);
+  border-radius:var(--r-tight);background:var(--soft);border-top:3px solid var(--clay-l)}
+.p4__s b{font-size:var(--fs-md);font-weight:700}
+.p4__s i{font-style:normal;font-size:11px;color:var(--dim);line-height:1.3}
+.p4__rest{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:var(--sp-16);margin-top:var(--sp-28)}
+.p4__r{padding-left:var(--sp-16);border-left:3px solid var(--warm)}
+.p4__r b{display:block;font-size:var(--fs-sm);font-weight:600;line-height:1.25}
+.p4__r p{margin:var(--sp-4) 0 0;font-size:var(--fs-xs);color:var(--dim);line-height:1.5}
+
+/* 05 аккордеон с цитатой пункта */
+.p5{display:grid;gap:var(--sp-8);margin-top:var(--sp-24)}
+.p5__i{background:#fff;border-radius:var(--r-inner);box-shadow:var(--edge);overflow:hidden}
+.p5__h{display:flex;align-items:center;gap:var(--sp-12);width:100%;padding:var(--sp-16) var(--sp-20);
+  border:0;background:none;font:inherit;text-align:left;cursor:pointer;color:var(--navy)}
+.p5__h b{font-size:var(--fs-sm);font-weight:600}
+.p5__x{margin-left:auto;color:var(--clay);font-size:var(--fs-md);line-height:1}
+.p5__c{padding:0 var(--sp-20) var(--sp-20) 64px}
+.p5__c p{margin:0;font-size:var(--fs-xs);color:var(--dim);line-height:1.5}
+.p5__q{margin-top:var(--sp-12);padding:var(--sp-12) var(--sp-16);border-left:3px solid var(--clay-l);
+  background:var(--soft);font-size:11px;color:var(--dim);line-height:1.5;font-style:italic}
+
+/* 06 сплит: документ слева */
+.p6{display:grid;grid-template-columns:300px 1fr;gap:clamp(24px,4vw,56px);
+  align-items:start;margin-top:var(--sp-24)}
+.p6__doc{border-radius:var(--r-inner);overflow:hidden;box-shadow:var(--edge),var(--sh-2)}
+.p6__doc img{width:100%;display:block}
+.p6__l{display:grid;gap:var(--sp-20)}
+.p6__i{display:grid;grid-template-columns:auto 1fr;gap:var(--sp-16)}
+.p6__n{font-size:var(--fs-lg);font-weight:700;color:var(--clay);line-height:1;font-variant-numeric:tabular-nums}
+.p6__i b{display:block;margin-bottom:var(--sp-4);font-size:var(--fs-sm);font-weight:600;line-height:1.25}
+.p6__i p{margin:0;font-size:var(--fs-xs);color:var(--dim);line-height:1.5}
+
+/* 07 крупные числа */
+.p7{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-16);margin-top:var(--sp-24)}
+.p7__i{padding:var(--sp-24);background:var(--navy);border-radius:var(--r-inner);color:#fff}
+.p7__i:nth-child(even){background:#fff;color:var(--navy);box-shadow:var(--edge)}
+.p7__v{font-size:clamp(30px,4vw,42px);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--clay-l)}
+.p7__i b{display:block;margin:var(--sp-12) 0 var(--sp-8);font-size:var(--fs-sm);font-weight:600;line-height:1.25}
+.p7__i p{margin:0;font-size:var(--fs-xs);line-height:1.5;opacity:.82}
+
+/* 08 вопрос-ответ */
+.p8{display:grid;gap:var(--sp-16);margin-top:var(--sp-24)}
+.p8__i{padding:var(--sp-24);background:#fff;border-radius:var(--r-inner);box-shadow:var(--edge)}
+.p8__q{margin:0;font-size:var(--fs-md);font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.p8__a{margin:var(--sp-12) 0 0;font-size:var(--fs-xs);color:var(--dim);line-height:1.55}
+.p8__p{display:inline-block;margin-top:var(--sp-12);padding:2px var(--sp-8);border-radius:999px;
+  background:var(--warm);color:var(--clay);font-size:11px;font-weight:700}
+
+/* 09 две колонки */
+.p9{margin-top:var(--sp-24);background:#fff;border-radius:var(--r-shell);box-shadow:var(--edge);overflow:hidden}
+.p9__h,.p9__r{display:grid;grid-template-columns:1fr 1fr}
+.p9__h span{padding:var(--sp-12) var(--sp-20);background:var(--navy);color:#fff;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.p9__h span:first-child{background:var(--clay)}
+.p9__r{border-bottom:1px solid var(--line)}
+.p9__r:last-child{border-bottom:0}
+.p9__r > span{padding:var(--sp-16) var(--sp-20);font-size:var(--fs-xs);line-height:1.5}
+.p9__r > span:first-child{font-weight:600;border-right:1px solid var(--line)}
+.p9__r > span:last-child{color:var(--dim)}
+
+/* 10 как поля договора */
+.p10{margin-top:var(--sp-24);padding:clamp(28px,4vw,52px);background:#fff;
+  border-radius:var(--r-shell);box-shadow:var(--edge)}
+.p10__k{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.16em}
+.p10__t{margin:var(--sp-8) 0 var(--sp-28);font-size:clamp(24px,3vw,32px);font-weight:700;letter-spacing:-.02em}
+.p10__i{display:grid;grid-template-columns:64px 1fr;gap:var(--sp-16);
+  padding:var(--sp-20) 0;border-bottom:1px solid var(--line)}
+.p10__i:last-child{border-bottom:0}
+.p10__p{font-size:11px;font-weight:700;color:var(--clay);letter-spacing:.04em;padding-top:2px}
+.p10__i b{display:block;margin-bottom:var(--sp-4);font-size:var(--fs-sm);font-weight:700;line-height:1.25}
+.p10__i p{margin:0;font-size:var(--fs-xs);color:var(--dim);line-height:1.55}
+
+@media(max-width:900px){
+  .p1{columns:1}
+  .p2,.p7{grid-template-columns:1fr}
+  .p6{grid-template-columns:1fr}
+  .p6__doc{max-width:320px}
+  .p4__bar{flex-direction:column}
+  .p4__s{flex:none}
+  .p9__h{display:none}
+  .p9__r{grid-template-columns:1fr}
+  .p9__r > span:first-child{border-right:0;border-bottom:1px solid var(--line)}
+  .p3 td:first-child{width:auto}
+  .p10__i{grid-template-columns:1fr;gap:var(--sp-4)}
+}

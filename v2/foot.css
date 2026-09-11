@@ -1,0 +1,51 @@
+/* ── подвал с реквизитами ─────────────────────────── */
+.ft{
+  margin-top:clamp(56px,7vw,96px);
+  background:#1E2A44;color:#fff;
+}
+.ft__in{
+  max-width:1240px;margin:0 auto;
+  padding:clamp(32px,4vw,56px) clamp(16px,3vw,32px) clamp(24px,3vw,32px);
+  display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(24px,4vw,56px);
+}
+.ft__lg{display:flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-md);font-weight:700}
+.ft__lg svg{width:26px;height:23px;flex:none}
+.ft__lg i{font-style:normal;color:#E0603C}
+.ft__about{margin:var(--sp-16) 0 0;font-size:var(--fs-xs);line-height:1.6;color:rgb(255 255 255/.72);max-width:44ch}
+.ft__k{
+  font-size:11px;font-weight:700;color:rgb(255 255 255/.5);
+  text-transform:uppercase;letter-spacing:.14em;margin-bottom:var(--sp-12);
+}
+.ft__nav{display:grid;gap:var(--sp-8)}
+.ft__nav a{font-size:var(--fs-xs);color:rgb(255 255 255/.82);text-decoration:none;line-height:1.4}
+.ft__nav a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.ft__c{display:grid;gap:var(--sp-8);font-size:var(--fs-xs);line-height:1.5;color:rgb(255 255 255/.82)}
+.ft__c a{color:#fff;text-decoration:none}
+.ft__c a:hover{text-decoration:underline;text-underline-offset:3px}
+.ft__tel{font-size:var(--fs-md);font-weight:700;color:#fff !important}
+
+.ft__req{
+  max-width:1240px;margin:0 auto;
+  padding:var(--sp-20) clamp(16px,3vw,32px) clamp(28px,4vw,44px);
+  border-top:1px solid rgb(255 255 255/.14);
+}
+.ft__req dl{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:var(--sp-12) var(--sp-32);margin:0;
+}
+.ft__req div{display:grid;gap:2px}
+.ft__req dt{font-size:10px;font-weight:700;color:rgb(255 255 255/.45);text-transform:uppercase;letter-spacing:.12em}
+.ft__req dd{margin:0;font-size:var(--fs-xs);color:rgb(255 255 255/.88);line-height:1.45}
+.ft__bot{
+  display:flex;flex-wrap:wrap;gap:var(--sp-12) var(--sp-24);align-items:baseline;
+  margin-top:var(--sp-24);padding-top:var(--sp-16);border-top:1px solid rgb(255 255 255/.14);
+  font-size:11px;color:rgb(255 255 255/.55);
+}
+.ft__bot a{color:rgb(255 255 255/.8);text-decoration:none}
+.ft__bot a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.ft__bot span:last-child{margin-left:auto}
+
+@media(max-width:860px){
+  .ft__in{grid-template-columns:1fr;gap:var(--sp-32)}
+  .ft__bot span:last-child{margin-left:0;flex-basis:100%}
+}
