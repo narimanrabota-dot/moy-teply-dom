@@ -1,5 +1,5 @@
 /* ── Вариант А · «Редакция» ───────────────────────────────────
-   Golos Text, мягкий прямоугольник, воздух вместо линий.
+   Onest, мягкий прямоугольник, воздух вместо линий.
    Спокойная и тихая: шапка не спорит с фотографиями под ней.  */
 
 :root{
@@ -7,9 +7,9 @@
   --r-inner:12px;
 }
 body{
-  font-family:"Golos Text",-apple-system,system-ui,"Segoe UI",Roboto,Arial,sans-serif;
+  font-family:"Onest",-apple-system,system-ui,"Segoe UI",Roboto,Arial,sans-serif;
 }
-.wm{letter-spacing:-.015em}          /* у Golos умолчания плотнее, чем у SF */
+.wm{letter-spacing:-.015em}          /* у Onest умолчания плотнее, чем у SF */
 
 .hdr.is-stuck{
   background:rgb(255 255 255/.86);
