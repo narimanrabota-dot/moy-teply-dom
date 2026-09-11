@@ -1,0 +1,41 @@
+/* ── Вариант Б · «Капсула» ────────────────────────────────────
+   Manrope, шапка-капсула, кнопка вложена концентрично.
+   Тёплая и человеческая: телефон с часами, кнопка обещает срок. */
+
+:root{
+  --r-shell:999px;
+  --r-inner:999px;
+  --hdr-h:76px;
+}
+body{
+  font-family:"Manrope",-apple-system,system-ui,"Segoe UI",Roboto,Arial,sans-serif;
+}
+.wm{letter-spacing:-.03em}           /* Manrope просторнее по умолчанию */
+.nav a{letter-spacing:-.005em}
+
+/* у капсулы боковые паддинги больше: круглый край съедает воздух */
+.hdr{padding:12px 14px 12px 30px}
+.hdr.is-stuck{padding-block:9px}
+
+.hdr,.mnav{background:linear-gradient(180deg,#FFFDFA 0%,#FDF8F1 100%)}
+.hdr.is-stuck{
+  background:rgb(255 252 247/.86);
+  backdrop-filter:saturate(1.5) blur(14px);
+  -webkit-backdrop-filter:saturate(1.5) blur(14px);
+}
+
+/* кнопка в две строки — выравниваем её оптический центр по строке меню */
+.btn--2{padding:8px 26px 9px}
+.burg{border-radius:50%}
+
+/* в капсуле подчёркивание лучше читается точкой, а не чертой */
+.nav a::after{
+  left:50%;right:auto;bottom:9px;
+  width:5px;height:5px;border-radius:50%;
+  transform:translateX(-50%) scale(0);transform-origin:center;
+}
+.nav a:hover::after{transform:translateX(-50%) scale(1);opacity:.35}
+.nav a[aria-current]::after{transform:translateX(-50%) scale(1);opacity:1}
+@media(prefers-reduced-motion:reduce){
+  .nav a::after{transform:translateX(-50%) scale(1)!important}
+}

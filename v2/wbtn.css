@@ -1,0 +1,81 @@
+/* десять версий широкой кнопки с видео */
+.w{
+  --clay:#C2461F; --navy:#1E2A44; --dim:#5A6478; --line:#E3E6EC;
+  display:flex;align-items:center;gap:var(--sp-12);width:100%;
+  margin-top:var(--sp-12);padding:var(--sp-12) var(--sp-16);
+  border:0;border-radius:var(--r-inner);background:none;
+  color:var(--navy);text-decoration:none;text-align:left;cursor:pointer;
+  font:inherit;transition:background .2s var(--e),border-color .2s var(--e),box-shadow .2s var(--e);
+}
+.w b{display:block;font-size:var(--fs-xs);font-weight:600;line-height:1.25}
+.w i{font-style:normal;font-size:11px;color:var(--dim)}
+.w__x{margin-left:auto;color:var(--clay);font-size:var(--fs-sm);flex:none}
+.w__p{display:grid;place-items:center;width:32px;height:32px;flex:none;border-radius:999px;background:var(--clay)}
+.w__p::after{content:"";border:6px solid transparent;border-left:9px solid #fff;margin-left:4px}
+
+/* 01 — как в варианте 3: белая с рамкой */
+.w--1{border:1px solid var(--line);background:#fff}
+.w--1:hover{border-color:var(--clay);box-shadow:0 2px 10px rgb(30 42 68/.08)}
+
+/* 02 — оранжевая заливка */
+.w--2{background:var(--clay);color:#fff}
+.w--2 i{color:rgb(255 255 255/.8)}
+.w--2 .w__x{color:#fff}
+.w--2 .w__p{background:rgb(255 255 255/.22)}
+.w--2:hover{background:#AE4526}
+
+/* 03 — тёмно-синяя, под полосы этапа */
+.w--3{background:var(--navy);color:#fff}
+.w--3 i{color:rgb(255 255 255/.72)}
+.w--3 .w__x{color:#E0603C}
+.w--3:hover{background:#162034}
+
+/* 04 — светло-серая плашка без рамки */
+.w--4{background:#F3F4F7}
+.w--4:hover{background:#E9EBF0}
+
+/* 05 — кадр вместо значка */
+.w--5{border:1px solid var(--line);background:#fff}
+.w--5:hover{border-color:var(--clay)}
+.w__ph{position:relative;width:64px;height:44px;flex:none;border-radius:8px;overflow:hidden;background:#DDE1E8}
+.w__ph img{width:100%;height:100%;object-fit:cover;display:block}
+.w__ph::after{
+  content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:0;height:0;border:5px solid transparent;border-left:8px solid #fff;
+  filter:drop-shadow(0 1px 3px rgb(0 0 0/.5));margin-left:3px;
+}
+
+/* 06 — контурная оранжевая */
+.w--6{border:1.5px solid var(--clay);background:transparent;color:var(--clay)}
+.w--6 i{color:#9A5540}
+.w--6 .w__p{background:var(--clay)}
+.w--6:hover{background:#FBE9E2}
+
+/* 07 — без плашки, только строка */
+.w--7{padding:var(--sp-8) 0;border-radius:0}
+.w--7 .w__p{width:24px;height:24px}
+.w--7 .w__p::after{border-width:4px;border-left-width:7px;margin-left:3px}
+.w--7 b{color:var(--clay)}
+.w--7:hover b{text-decoration:underline;text-underline-offset:3px}
+
+/* 08 — левая полоса-акцент */
+.w--8{background:#F7F8FA;border-left:3px solid var(--clay);border-radius:0 var(--r-inner) var(--r-inner) 0}
+.w--8:hover{background:#F1F3F6}
+
+/* 09 — с чипом справа */
+.w--9{border:1px solid var(--line);background:#fff}
+.w--9:hover{border-color:var(--clay)}
+.w__chip{
+  margin-left:auto;flex:none;padding:3px var(--sp-8);border-radius:999px;
+  background:#FBE9E2;color:var(--clay);font-size:11px;font-weight:700;white-space:nowrap;
+}
+
+/* 10 — разделённая на две зоны */
+.w--10{border:1px solid var(--line);background:#fff;padding-right:0}
+.w--10:hover{border-color:var(--clay)}
+.w__meta{
+  margin-left:auto;flex:none;align-self:stretch;display:grid;align-content:center;gap:2px;
+  padding:var(--sp-8) var(--sp-16);border-left:1px solid var(--line);text-align:center;
+}
+.w__meta b{font-size:var(--fs-xs);font-weight:700;color:var(--clay)}
+.w__meta i{font-size:10px;color:var(--dim)}

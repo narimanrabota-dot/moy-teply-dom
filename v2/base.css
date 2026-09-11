@@ -1,0 +1,486 @@
+:root{
+  /* ── Нейтрали ───────────────────────────────────────────────
+     Один ряд с ровными ступенями светлоты, тон уведён в тёплую
+     сторону (h 50) — к кирпичному, а не в холодный синий.
+     Раньше здесь было пять несистемных серых: F8F9FB, E4E7EC,
+     E4E9EF, E7EBF1, C6CBD4 — каждый подобран отдельно и на глаз. */
+  --n-0:oklch(99.3% .003 50);
+  --n-1:oklch(97.6% .004 50);
+  --n-2:oklch(95.2% .006 50);
+  --n-3:oklch(91.6% .008 50);
+  --n-4:oklch(86.5% .010 50);
+  --n-5:oklch(78.0% .012 50);
+  --n-6:oklch(66.0% .014 50);
+  --n-7:oklch(52.0% .016 50);
+  --n-8:oklch(38.0% .018 50);
+
+  /* Поверхности */
+  --bg:var(--n-1);
+  --card:#FFFFFF;
+  --line:var(--n-3);
+  --ph:var(--n-4);             /* фон под изображением, пока оно грузится */
+
+  /* Текст. Оставлены как были: 13,2:1 и 5,2:1, роли разведены. */
+  --ink:#22304C;
+  --dim:#616D85;
+
+  /* Кирпичный разведён по ролям: декор / заливка / текст */
+  --clay:#E0603C;              /* только заливки и черты (норма 3:1) */
+  --clay-btn:#C24A28;          /* фон кнопки — 4,9:1 с белым */
+  --clay-btn-h:#AE4526;        /* hover — 5,7:1 */
+  --clay-txt:#B84625;          /* кирпичный текстом — 5,3:1 */
+
+  /* ── Тени: два слоя, ambient + key, один источник света ──────
+     Было четыре системы по 4–5 слоёв на одной странице. Тень
+     теперь только у того, что действительно всплывает над листом;
+     обычная плашка держится кромкой и сменой фона. */
+  --sh-cool:34 48 76;
+  --edge:0 0 0 1px rgb(var(--sh-cool)/.08);
+  --sh-1:
+    0 1px 2px -1px rgb(var(--sh-cool)/.10),
+    0 6px 16px -8px rgb(var(--sh-cool)/.16);
+  --sh-2:
+    0 2px 4px -2px rgb(var(--sh-cool)/.12),
+    0 12px 28px -10px rgb(var(--sh-cool)/.22);
+  --sh-3:
+    0 4px 8px -4px rgb(var(--sh-cool)/.14),
+    0 24px 56px -16px rgb(var(--sh-cool)/.28);
+
+  /* ── Типографика ────────────────────────────────────────────
+     База 17, шаг 1,2, семь ступеней. Раньше ряд ломался наверху:
+     23→33 давало ×1,44, и ступени под заголовок секции не было —
+     из-за этого заголовки пришлось вытягивать капслоком. */
+  --fs-xs:14px;                /* подписи */
+  --fs-sm:17px;                /* базовый текст, меню, телефон, кнопка */
+  --fs-md:20px;                /* логотип, лид */
+  --fs-lg:24px;
+  --fs-xl:29px;                /* заголовок секции — та самая ступень */
+  --fs-2xl:35px;
+  --fs-display:clamp(35px,5.4vw,60px);
+
+  /* Роли — через шкалу, а не своими числами */
+  --fs-wm:var(--fs-md);
+  --fs-tel:var(--fs-sm);
+  --fs-btn:var(--fs-sm);
+  --fs-nav:var(--fs-sm);
+
+  /* ── Отступы ────────────────────────────────────────────────
+     Имя равно значению, поэтому «магическое число» в коде сразу
+     видно. Ступени 20, 28 и 40 добавлены явно: раньше они были
+     рассыпаны по файлам как случайные px. */
+  --sp-4:4px;    --sp-8:8px;    --sp-12:12px;  --sp-16:16px;
+  --sp-20:20px;  --sp-24:24px;  --sp-28:28px;  --sp-32:32px;
+  --sp-40:40px;  --sp-48:48px;  --sp-64:64px;  --sp-96:96px;
+  --sp-128:128px;
+  --tap:44px;                  /* минимальная цель касания */
+
+  /* Форма — переопределяется темой */
+  --r-shell:20px;
+  --r-inner:12px;
+  --r-tight:8px;
+
+  --e:cubic-bezier(.32,.72,0,1);
+  /* Запасное значение: настоящую высоту залипшей шапки меряет header.js
+     и кладёт сюда же. Жёсткое число здесь нужно только на первый кадр
+     и на случай, если скрипт не выполнился. */
+  --hdr-stick:148px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-size:var(--fs-sm);line-height:1.5;font-weight:400;
+}
+a{text-decoration:none;color:inherit}
+img,svg{display:block;max-width:100%}
+[id]{scroll-margin-top:calc(var(--hdr-stick) + var(--sp-24))}
+.shell{max-width:1280px;margin:0 auto;padding-inline:clamp(16px,3.4vw,44px)}
+
+/* маячок для определения «страница прокручена»: 1px, не влияет на раскладку */
+.sentinel{display:block;height:1px;margin-bottom:-1px}
+
+/* ── ссылка «к содержимому» ──────────────────────────── */
+.skip{position:absolute;left:-9999px;top:0}
+.skip:focus{
+  left:16px;top:16px;z-index:100;
+  background:var(--card);padding:var(--sp-12) var(--sp-20);border-radius:var(--r-inner);
+  box-shadow:var(--sh-3);font-weight:500;
+}
+
+/* ── шапка ───────────────────────────────────────────── */
+.hdr{
+  display:flex;align-items:center;
+  gap:var(--sp-24);
+  min-width:0;
+  background:var(--card);
+  border-radius:var(--r-shell);
+  /* 20px по вертикали — ровно +10% к прежней высоте 76→84.
+     Ступени 16 и 24 дают −0% и +21%, поэтому здесь точное значение. */
+  padding:var(--sp-20) var(--sp-24) var(--sp-20) var(--sp-32);
+  margin-top:var(--sp-16);
+  box-shadow:var(--sh-1);
+  position:relative;z-index:1;
+  transition:box-shadow .28s var(--e),padding .28s var(--e),background-color .28s var(--e);
+}
+/* ── липнет обёртка, а не сама шапка ─────────────────
+   sticky работает только внутри своего родителя. Раньше
+   position:sticky стоял на .hdr, а её .shell был высотой ровно
+   со шапку — то есть контейнер уходил за экран вместе с ней,
+   и шапка не закреплялась вовсе. Липнет обёртка: её родитель —
+   body, а он длиной во всю страницу. */
+.shell--hdr{position:sticky;top:var(--sp-16);z-index:50}
+.hdr.is-stuck{
+  padding-block:var(--sp-16);
+  box-shadow:var(--sh-2);
+}
+
+/* логотип */
+.logo{display:flex;align-items:center;gap:var(--sp-8);flex:none}
+/* viewBox обрезан по краске: знак больше не провисает и не даёт пустоту слева */
+.mk{width:21px;height:22px;flex:none;color:var(--ink);transition:transform .28s var(--e)}
+.mk .bar{fill:var(--clay)}
+.hdr.is-stuck .mk{transform:scale(.94)}
+.wm{
+  font-size:var(--fs-wm);font-weight:600;
+  letter-spacing:-.02em;word-spacing:-.02em;
+  white-space:nowrap;line-height:1.2;
+}
+.wm i{font-style:normal;color:var(--clay-txt)}
+
+/* меню — один вес, разделитель убран, воздух вместо линии */
+.nav{display:flex;align-items:center;gap:var(--sp-16);min-width:0;font-size:var(--fs-nav)}
+.nav a{
+  position:relative;display:inline-flex;align-items:center;
+  min-height:var(--tap);padding-bottom:0;
+  color:var(--dim);font-weight:500;white-space:nowrap;
+  transition:color .2s var(--e);
+}
+.nav a:hover{color:var(--ink)}          /* hover темнее, а не бледнее */
+.nav a::after{
+  content:"";position:absolute;left:2px;right:2px;bottom:12px;
+  height:1.5px;border-radius:1px;background:var(--clay);
+  transform:scaleX(0);transform-origin:left center;opacity:0;
+  transition:transform .26s var(--e),opacity .2s var(--e);
+}
+.nav a:hover::after{transform:scaleX(1);opacity:.3}
+.nav a[aria-current]{color:var(--ink)}   /* вес не меняем: меню не должно съезжать */
+.nav a[aria-current]::after{transform:scaleX(1);opacity:1}
+
+/* правый блок */
+/* ── выпадающий раздел ───────────────────────────────
+   Открывается по наведению и по фокусу с клавиатуры.
+   visibility переключается мгновенно на открытие и с задержкой на закрытие,
+   иначе фокус не может войти в ещё скрытую панель. */
+.nav__item{position:relative;display:inline-flex;align-items:center}
+/* мост под пунктом: курсор не теряет панель в зазоре */
+.nav__item::after{content:"";position:absolute;left:-16px;right:-16px;top:100%;height:var(--sp-20)}
+.chev{
+  display:inline-block;width:5px;height:5px;margin-left:8px;
+  border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:translateY(-2px) rotate(45deg);transition:transform .2s var(--e);
+}
+.nav__item:hover .chev,.nav__item:focus-within .chev{transform:translateY(1px) rotate(-135deg)}
+
+.nav__sub{
+  position:absolute;top:calc(100% + var(--sp-20));left:-16px;z-index:60;
+  min-width:304px;padding:var(--sp-8);
+  background:var(--card);border-radius:var(--r-shell);box-shadow:var(--sh-3);
+  display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity .2s var(--e),transform .2s var(--e),visibility 0s linear .2s;
+}
+.nav__item:hover .nav__sub,.nav__item:focus-within .nav__sub{
+  opacity:1;visibility:visible;transform:none;
+  transition:opacity .2s var(--e),transform .2s var(--e),visibility 0s linear 0s;
+}
+.nav__sub a{
+  display:flex;align-items:center;min-height:var(--tap);
+  padding:var(--sp-12) var(--sp-16);border-radius:var(--r-inner);
+  font-size:var(--fs-xs);font-weight:400;white-space:nowrap;color:var(--ink);
+}
+.nav__sub a::after{display:none}      /* подчёркивание из .nav a здесь не нужно */
+.nav__sub a:hover{background:var(--bg);color:var(--ink)}
+
+.end{margin-left:auto;display:flex;align-items:center;gap:var(--sp-16);flex:none;padding-left:var(--sp-16)}
+.tel{
+  font-size:var(--fs-tel);font-weight:600;white-space:nowrap;
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;
+  letter-spacing:.005em;transition:color .2s var(--e);
+}
+.tel:hover{color:var(--clay-txt)}
+.tel--2{display:grid;line-height:1.15;text-align:right}
+.tel--2 b{font-weight:600;font-size:var(--fs-tel)}
+.tel--2 span{font-size:var(--fs-xs);font-weight:400;color:var(--dim);letter-spacing:0}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-8);
+  min-height:var(--tap);padding:0 var(--sp-24);border-radius:var(--r-inner);
+  font-size:var(--fs-btn);font-weight:500;line-height:1.2;font-family:inherit;
+  border:1px solid transparent;white-space:nowrap;cursor:pointer;
+  transition:background-color .2s var(--e),box-shadow .2s var(--e),
+             transform .12s var(--e),color .2s var(--e);
+}
+.btn--c{
+  background:var(--clay-btn);color:#fff;
+  /* два слоя вместо четырёх: внутренние блики были декором,
+     кнопку держит цвет, а не имитация объёма */
+  box-shadow:
+    0 1px 2px -1px rgb(120 48 24/.24),
+    0 6px 14px -6px rgb(120 48 24/.28);
+}
+.btn--c:hover{background:var(--clay-btn-h)}
+.btn--c:active{
+  transform:translateY(1px);
+  box-shadow:inset 0 1px 2px rgb(90 34 16/.28),0 1px 1px rgb(120 48 24/.16);
+}
+/* вторичное действие: рамка тонкая, но видимая — без неё кнопка читалась как текст */
+.btn--l{
+  background:var(--card);color:var(--ink);
+  border-color:rgb(34 48 76/.22);
+  box-shadow:0 1px 2px rgb(34 48 76/.05);
+}
+.btn--l:hover{border-color:rgb(34 48 76/.38);color:var(--clay-txt)}
+.btn--l:active{transform:translateY(1px);box-shadow:none}
+.btn--2{display:grid;gap:0;align-content:center;text-align:center;padding:var(--sp-8) var(--sp-32)}
+.btn--2 b{font-weight:500;font-size:var(--fs-btn);line-height:1.25}
+.btn--2 span{font-size:var(--fs-xs);opacity:.78;line-height:1.25}
+
+/* кнопка-звонок, появляется вместо телефона на узких */
+.icb{
+  display:none;width:44px;height:44px;border-radius:50%;place-items:center;
+  background:var(--clay-btn);color:#fff;flex:none;
+  transition:background-color .2s var(--e),transform .12s var(--e);
+}
+.icb:hover{background:var(--clay-btn-h)}
+.icb:active{transform:scale(.94)}
+.icb svg{width:19px;height:19px}
+
+/* бургер */
+.burg{
+  display:none;width:44px;height:44px;flex:none;margin-left:auto;
+  border:1px solid rgb(34 48 76/.10);border-radius:var(--r-inner);
+  background:var(--card);cursor:pointer;padding:0;place-items:center;font:inherit;
+  transition:background-color .2s var(--e),border-color .2s var(--e),transform .12s var(--e);
+}
+.burg:hover{border-color:rgb(34 48 76/.18)}
+.burg:active{transform:scale(.95)}
+.burg i{display:block;width:19px;height:2px;background:var(--ink);border-radius:1px;position:relative}
+.burg i::before,.burg i::after{
+  content:"";position:absolute;left:0;width:19px;height:2px;background:var(--ink);border-radius:1px;
+  transition:transform .3s var(--e),top .3s var(--e);
+}
+.burg i::before{top:-6px}
+.burg i::after{top:6px}
+.burg i{transition:background-color .16s var(--e)}
+.burg[aria-expanded="true"]{position:relative;z-index:70}
+.burg[aria-expanded="true"] i{background:transparent}
+.burg[aria-expanded="true"] i::before{top:0;transform:rotate(45deg)}
+.burg[aria-expanded="true"] i::after{top:0;transform:rotate(-45deg)}
+
+/* ── мобильное меню: оверлей во вьюпорте, не в потоке ── */
+.mnav{
+  position:fixed;inset:0;z-index:60;
+  display:flex;flex-direction:column;gap:2px;
+  padding:96px clamp(16px,4vw,28px) 28px;
+  background:var(--card);
+  overflow-y:auto;overscroll-behavior:contain;
+  transform:translateY(-100%);visibility:hidden;
+  /* visibility переключается мгновенно при открытии и с задержкой при закрытии:
+     иначе в момент открытия меню ещё скрыто и focus() по нему не проходит */
+  transition:transform .32s var(--e),visibility 0s linear .32s;
+}
+.mnav.on{transform:none;visibility:visible;transition:transform .32s var(--e),visibility 0s linear 0s}
+.mnav a{
+  display:flex;align-items:center;min-height:var(--sp-48);
+  padding:var(--sp-12) var(--sp-16);border-radius:var(--r-inner);
+  font-size:var(--fs-md);font-weight:500;
+}
+.mnav a:active{background:var(--bg)}
+/* специфичность выше, чем у `.mnav a`, иначе отступ слева не применится */
+.mnav a.mnav__sub{
+  align-items:flex-start;
+  padding:var(--sp-12) var(--sp-16) var(--sp-12) var(--sp-32);
+  font-size:var(--fs-sm);font-weight:400;line-height:1.4;
+  min-height:44px;color:var(--dim);
+}
+.mnav a.mnav a[aria-current]{color:var(--ink);background:var(--bg);box-shadow:inset 2px 0 0 var(--clay)}
+.mnav__sep{height:1px;background:var(--line);margin:var(--sp-16) var(--sp-16)}
+.mnav .tel--2{text-align:left;padding:var(--sp-12) var(--sp-16);min-height:var(--sp-48);justify-content:center}
+.mnav .tel--2 b{font-size:var(--fs-lg)}
+.mnav .btn{margin-top:var(--sp-12);width:100%;min-height:var(--sp-48)}
+
+
+/* ── двухэтажная шапка: контакты сверху, навигация снизу ──
+   Значки — скруглённые квадраты 44px, метка стоит справа от группы,
+   поэтому видно, что три значка это «написать», а сердце — «избранное». */
+.hdr--inv{display:block;padding:0}
+/* overflow:hidden здесь нельзя — он обрезает выпадающую панель «Как строим» */
+.up{
+  display:flex;align-items:center;gap:var(--sp-12);
+  padding:var(--sp-8) var(--sp-24) var(--sp-8) var(--sp-32);
+  border-bottom:1px solid var(--line);
+}
+.dn{display:flex;align-items:center;gap:var(--sp-24);
+  padding:var(--sp-12) var(--sp-24) var(--sp-12) var(--sp-32)}
+.dn .nav{margin-right:auto}
+.sp{margin-left:auto}
+.hdr--inv.is-stuck{padding:0}
+.hdr--inv.is-stuck .up{padding-block:3px}
+.hdr--inv.is-stuck .dn{padding-block:var(--sp-8)}
+
+.up .tel{font-size:var(--fs-tel);font-weight:600;white-space:nowrap}
+.dv{width:1px;height:24px;background:var(--line);flex:none;margin-inline:4px}
+
+.gr{display:inline-flex;align-items:center;gap:5px}
+.mk2{font-size:var(--fs-xs);color:var(--dim);white-space:nowrap;margin-left:var(--sp-8);line-height:1}
+
+.ic{
+  width:var(--tap);height:var(--tap);border-radius:var(--r-inner);
+  display:grid;place-items:center;flex:none;position:relative;
+  background:transparent;color:var(--ink);
+  box-shadow:inset 0 0 0 1px rgb(34 48 76/.45);
+  transition:background .18s var(--e),color .18s var(--e),box-shadow .18s var(--e);
+}
+.ic svg{width:24px;height:24px}
+.ic:hover{background:var(--bg)}
+.ic--tg:hover{background:#E3F1FA;color:#229ED9}
+.ic--max:hover{background:#EFE9FB;color:#7A4FD1}
+.ic--wa:hover{background:#E4F5E9;color:#25A24A}
+.ic--heart:hover{color:var(--clay-btn)}
+.cnt{
+  position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;border-radius:var(--r-tight);
+  background:var(--clay-btn);color:#fff;font-size:10.5px;font-weight:600;
+  display:grid;place-items:center;padding:0 4px;box-shadow:0 0 0 2px var(--card);
+}
+.cnt[hidden]{display:none}   /* иначе display:grid перебивает [hidden] */
+
+/* контакты в мобильном меню */
+.mnav a.mnav__ic{gap:12px;padding:8px var(--sp-16);min-height:56px}
+.mnav a.mnav__ic .ic{width:40px;height:40px;box-shadow:inset 0 0 0 1px rgb(34 48 76/.30)}
+.mnav a.mnav__ic .ic svg{width:var(--sp-20);height:var(--sp-20)}
+
+
+/* ── форма «Заказать звонок» ─────────────────────────── */
+.ov{
+  position:fixed;inset:0;z-index:80;
+  background:rgb(20 28 45/.45);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+}
+.ov[hidden]{display:none}
+.mdl{
+  position:relative;background:var(--card);border-radius:var(--r-shell);
+  box-shadow:var(--sh-3);padding:28px;width:400px;max-width:100%;
+}
+.x{
+  position:absolute;top:var(--sp-12);right:var(--sp-12);width:var(--sp-40);height:var(--sp-40);
+  border:0;background:transparent;font:inherit;font-size:24px;line-height:1;
+  color:var(--dim);cursor:pointer;border-radius:var(--r-tight);
+}
+.x:hover{background:var(--bg);color:var(--ink)}
+
+.cb{display:flex;flex-direction:column;gap:var(--sp-16)}
+.cb__t{font-size:var(--fs-lg);font-weight:600;letter-spacing:-.02em;display:block}
+.cb__p{margin:var(--sp-8) 0 0;font-size:var(--fs-sm);color:var(--dim);line-height:1.45}
+.fld{display:block}
+.fld__l{display:block;font-size:var(--fs-xs);color:var(--dim);margin-bottom:6px}
+.fld__i{
+  width:100%;height:var(--sp-48);padding:0 var(--sp-16);font:inherit;font-size:var(--fs-md);
+  border-radius:var(--r-inner);border:1px solid rgb(34 48 76/.22);
+  background:var(--card);color:var(--ink);font-variant-numeric:tabular-nums;
+  transition:border-color .18s var(--e),box-shadow .18s var(--e);
+}
+.fld__i:focus{outline:0;border-color:var(--clay-btn);box-shadow:0 0 0 3px rgb(194 74 40/.16)}
+.fld__i.is-bad{border-color:var(--clay-btn)}
+.fld__e{display:block;margin-top:var(--sp-8);font-size:var(--fs-xs);color:var(--clay-txt)}
+.fld__e[hidden]{display:none}   /* display:block перебивал бы [hidden] */
+.chk{
+  display:flex;gap:var(--sp-12);align-items:flex-start;
+  font-size:var(--fs-xs);color:var(--dim);line-height:1.4;cursor:pointer;
+}
+.chk input{width:18px;height:18px;margin:0;flex:none;accent-color:var(--clay-btn)}
+.chk a{color:var(--clay-txt);text-decoration:underline}
+.cb__go{width:100%;min-height:var(--sp-48)}
+
+@media(max-width:520px){
+  .ov{padding:0;align-items:flex-end}
+  .mdl{width:100%;border-radius:var(--r-shell) var(--r-shell) 0 0;padding:24px 20px 28px}
+}
+
+/* ── состояния фокуса ────────────────────────────────── */
+:where(a,button):focus-visible{
+  outline:2px solid var(--clay-btn);outline-offset:3px;border-radius:8px;
+}
+.btn:focus-visible{outline:0;box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--clay-btn)}
+
+/* ── пустое тело ─────────────────────────────────────── */
+.blank{min-height:60vh;display:grid;place-items:center;text-align:center;padding:96px 0}
+.blank p{color:var(--dim);margin:0}
+
+/* ── пороги: считаны по реальной ширине содержимого ──── */
+@media(max-width:1240px){          /* поджимаем, а не расширяем: базовые отступы
+                                      уже минимальные из шкалы */
+  .hdr{gap:var(--sp-16)}
+  .nav{gap:var(--sp-12)}
+  .end{gap:var(--sp-12);padding-left:var(--sp-12)}
+}
+@media(max-width:1240px){          /* телефон уходит первым.
+                                      Порог выверен замером: ниже него меню
+                                      начинает поджиматься и наезжать на телефон. */
+  .tel{display:none}
+}
+@media(max-width:1080px){          /* было 1040 — кнопка вылезала из карточки */
+  .nav,.end{display:none}
+  .up{display:none}               /* контакты уходят в мобильное меню */
+  .dn{padding:var(--sp-12) var(--sp-16) var(--sp-12) var(--sp-24);gap:var(--sp-12)}
+  .dn .btn{display:none}
+  .burg{display:grid}
+  .icb{display:grid;margin-left:auto}
+  .icb + .burg{margin-left:0}
+  .hdr{padding:var(--sp-12) var(--sp-16) var(--sp-12) var(--sp-24);gap:var(--sp-12)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
+  .hdr,.mk,.btn,.burg,.icb{transition-duration:.01ms!important}
+  .btn:active,.icb:active,.burg:active{transform:none!important}
+  .nav a::after{transition:opacity .15s linear!important;transform:scaleX(1)!important}
+  .nav a:hover::after{opacity:.3}
+  .mnav{transition-duration:.01ms!important}
+}
+
+/* ── видимый фокус ───────────────────────────────────
+   Было три правила на восемьдесят пять интерактивных элементов:
+   идущий с клавиатуры терял курсор на карточках, превью и отзывах.
+   Одно правило на всё, кольцо в акцентном цвете с зазором. */
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
+  outline:2px solid var(--clay-btn);
+  outline-offset:2px;
+  border-radius:var(--r-tight);
+}
+/* внутри тёмных окон кольцо белое — кирпичное там не читается */
+.rvw :focus-visible,.ov :focus-visible{outline-color:#fff}
+
+/* ── цели касания ────────────────────────────────────
+   Ссылки-строки были 20–24 px по высоте при норме 24 и планке 44.
+   Область нажатия растим псевдоэлементом, чтобы не менять рисунок. */
+.tel,.logo,.back,.ct__v,.kmap__more{position:relative}
+.tel::before,.logo::before,.back::before,
+a.ct__v::before,.kmap__more::before{
+  content:"";position:absolute;left:0;right:0;top:50%;
+  height:var(--tap);transform:translateY(-50%);
+}
+
+/* ── состояния формы ─────────────────────────────────
+   Отправка, ошибка и подтверждение. Раньше после нажатия
+   «Жду звонка» визуально не происходило ничего. */
+.cb__go[disabled]{opacity:.62;cursor:progress}
+.cb__err{
+  margin:0;padding:var(--sp-12) var(--sp-16);
+  background:rgb(184 70 37/.08);border-radius:var(--r-tight);
+  color:var(--clay-txt);font-size:var(--fs-xs);line-height:1.4;
+}
+.cb__ok{display:grid;gap:var(--sp-12);justify-items:start;padding:var(--sp-8) 0}
+.cb__ok b{font-size:var(--fs-lg);font-weight:600;letter-spacing:-.015em}
+.cb__ok p{margin:0;color:var(--dim);line-height:1.45}

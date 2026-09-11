@@ -1,2 +1,29 @@
+# служебное
 .DS_Store
-__pycache__/
+.claude/
+*.bak
+
+# черновики и эксперименты v2 — на сайт не идут
+v2/b.html
+v2/bg*.html
+v2/c.html
+v2/card.html
+v2/choose.html
+v2/dd*.html
+v2/final*.html
+v2/form.html
+v2/hero*.html
+v2/menu*.html
+v2/msg*.html
+v2/proekty.html
+
+# витрины вариантов, которые смотрели по ходу работы
+v2/karta-varianty.html
+v2/stroim-varianty.html
+v2/video-varianty.html
+v2/knopka-varianty.html
+v2/skleyka-varianty.html
+v2/variant-*.html
+v2/vvar-*.html
+v2/wbtn-*.html
+v2/cbtn-*.html
