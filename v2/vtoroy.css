@@ -1,53 +1,47 @@
-/* Второй экран: карусель приглашений.
-   Карточка слева поверх снимка, крупная белая стрелка справа. */
+/* Первый экран — карусель. Слайд 1 прежний, дальше приглашения.
+   Рамка, высота и паспарту остаются от .ob__f. */
 
-.v2s{margin-top:clamp(20px,2.4vw,32px)}
-.v2s__box{position:relative;border-radius:var(--r-shell);overflow:hidden;background:#101726;
-  min-height:clamp(440px,52vw,600px)}
+.ob__f[data-hero]{display:grid}
+.hsl{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .45s var(--e)}
+.hsl.is-on{opacity:1;visibility:visible}
+.hsl .ob__img{transform:scale(1.04);transition:transform .9s var(--e)}
+.hsl.is-on .ob__img{transform:scale(1)}
 
-.v2sl{position:absolute;inset:0;display:grid;align-items:center;
-  padding:clamp(18px,3vw,48px);
-  opacity:0;visibility:hidden;transition:opacity .45s var(--e)}
-.v2sl.is-on{opacity:1;visibility:visible}
-.v2sl__img{position:absolute;inset:0;background-size:cover;background-position:center 56%;
-  transform:scale(1.04);transition:transform .8s var(--e)}
-.v2sl.is-on .v2sl__img{transform:scale(1)}
-.v2sl__img::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgb(16 23 38/.92),rgb(16 23 38/.6) 48%,rgb(16 23 38/.14))}
-
-.v2c{position:relative;width:min(640px,100%);justify-self:start;
+/* карточка приглашения внутри кадра */
+.v2c{width:min(640px,100%);
   background:rgb(16 23 38/.84);backdrop-filter:blur(12px);
   border:1px solid rgb(255 255 255/.14);border-radius:var(--r-inner);
-  padding:clamp(24px,3vw,42px);display:grid;gap:var(--sp-16);color:#fff}
+  padding:clamp(22px,2.8vw,38px);display:grid;gap:var(--sp-16);color:#fff}
 .v2c__k{font-size:var(--fs-xs);font-weight:700;letter-spacing:.14em;color:#FFB59C}
 .v2c__t{margin:0;font-size:clamp(26px,3.6vw,44px);font-weight:600;letter-spacing:-.032em;line-height:1.05}
 .v2c__d{margin:0;font-size:var(--fs-md);line-height:1.45;opacity:.88;max-width:48ch}
 .v2c__b{display:inline-flex;align-items:center;justify-content:center;justify-self:start;
   min-height:var(--tap);padding:0 var(--sp-28);border-radius:999px;
-  background:var(--clay-btn);color:#fff;font-weight:600;font-size:var(--fs-btn);
-  border:0;cursor:pointer;text-decoration:none;
-  transition:background .2s var(--e),transform .12s var(--e)}
+  background:var(--clay-btn);color:#fff;font:inherit;font-weight:600;font-size:var(--fs-btn);
+  border:0;cursor:pointer;transition:background .2s var(--e),transform .12s var(--e)}
 .v2c__b:hover{background:var(--clay-btn-h)}
 .v2c__b:active{transform:translateY(1px)}
-.v2c__a{font-size:var(--fs-xs);opacity:.62;line-height:1.5}
+.v2c__a{margin:0;font-size:var(--fs-xs);opacity:.62;line-height:1.5}
 
 /* крупная белая стрелка */
-.v2n{position:absolute;right:clamp(18px,2.4vw,36px);top:50%;transform:translateY(-50%);
-  z-index:2;display:grid;place-items:center;width:76px;height:76px;border-radius:999px;
+.v2n{position:absolute;right:clamp(24px,2.6vw,40px);top:50%;transform:translateY(-50%);
+  z-index:3;display:grid;place-items:center;width:76px;height:76px;border-radius:999px;
   background:#fff;color:#101726;border:0;cursor:pointer;box-shadow:var(--sh-2);
   transition:transform .2s var(--e),box-shadow .2s var(--e)}
 .v2n svg{width:30px;height:30px;stroke:currentColor;stroke-width:2.2;fill:none;
   stroke-linecap:round;stroke-linejoin:round}
 .v2n:hover{transform:translateY(-50%) scale(1.06);box-shadow:var(--sh-3)}
 .v2n:active{transform:translateY(-50%) scale(.98)}
-.v2n:focus-visible{outline:0;box-shadow:0 0 0 3px rgb(16 23 38/.4),var(--sh-2)}
+.v2n:focus-visible{outline:0;box-shadow:0 0 0 3px rgb(16 23 38/.45),var(--sh-2)}
 
-@media(max-width:760px){
-  /* снимок сверху, карточка снизу: фото должно остаться видимым */
-  .v2s__box{min-height:600px}
-  .v2sl{align-items:end;padding:var(--sp-12)}
-  .v2sl__img{background-position:center 42%}
-  .v2sl__img::after{background:linear-gradient(0deg,rgb(16 23 38/.92),rgb(16 23 38/.5) 46%,rgb(16 23 38/.12))}
+/* чтобы длинный заголовок первого слайда не уезжал под стрелку */
+@media(min-width:901px){
+  .hsl .ob__c{padding-right:clamp(120px,10vw,148px)}
+}
+
+@media(max-width:900px){
+  /* прежний первый слайд оставляем как был: по центру */
+  .hsl:not(:first-child) .ob__c{align-content:end}
   .v2c{width:100%;padding:var(--sp-20);gap:var(--sp-12)}
   .v2c__t{font-size:clamp(22px,6.2vw,28px)}
   .v2c__d{font-size:var(--fs-sm)}
@@ -56,5 +50,5 @@
   .v2n:hover,.v2n:active{transform:none}
 }
 @media(prefers-reduced-motion:reduce){
-  .v2sl,.v2sl__img{transition:none}
+  .hsl,.hsl .ob__img{transition:none}
 }

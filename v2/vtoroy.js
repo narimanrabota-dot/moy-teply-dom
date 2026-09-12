@@ -1,10 +1,8 @@
-/* Карусель второго экрана. Без зависимостей.
-   Стрелка листает по кругу; при наведении на блок автопрокрутки нет —
-   её здесь вообще нет, листает только человек. */
+/* Карусель первого экрана. Листает только человек: стрелкой или свайпом. */
 (function () {
-  var box = document.querySelector('[data-v2s]');
+  var box = document.querySelector('[data-hero]');
   if (!box) return;
-  var slides = box.querySelectorAll('.v2sl');
+  var slides = box.querySelectorAll('.hsl');
   var next = box.querySelector('.v2n');
   if (slides.length < 2 || !next) return;
 
@@ -15,11 +13,11 @@
     i = (n + slides.length) % slides.length;
     slides[i].classList.add('is-on');
     slides[i].removeAttribute('aria-hidden');
-    next.setAttribute('aria-label', 'Следующий экран, ' + (i + 2 > slides.length ? 1 : i + 2) + ' из ' + slides.length);
+    next.setAttribute('aria-label',
+      'Следующий экран, ' + ((i + 2 > slides.length) ? 1 : i + 2) + ' из ' + slides.length);
   }
   next.addEventListener('click', function () { show(i + 1); });
 
-  /* свайп на телефоне */
   var x0 = null;
   box.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
   box.addEventListener('touchend', function (e) {
