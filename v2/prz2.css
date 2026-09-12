@@ -13,7 +13,7 @@
 .pl__img{position:absolute;inset:0;background-size:cover;background-position:center 58%}
 .sh-l::after,.sh-b::after,.sh-c::after{content:"";position:absolute;inset:0}
 .sh-l::after{background:linear-gradient(90deg,rgb(16 23 38/.92),rgb(16 23 38/.55) 50%,rgb(16 23 38/.1))}
-.sh-b::after{background:linear-gradient(0deg,rgb(16 23 38/.95),rgb(16 23 38/.45) 46%,rgb(16 23 38/.08))}
+.sh-b::after{background:linear-gradient(0deg,rgb(16 23 38/.96),rgb(16 23 38/.72) 34%,rgb(16 23 38/.3) 62%,rgb(16 23 38/.06))}
 .sh-c::after{background:linear-gradient(0deg,rgb(16 23 38/.8),rgb(16 23 38/.62))}
 
 .pl__c{position:relative;padding:clamp(26px,4vw,64px);display:grid;gap:var(--sp-20)}
@@ -103,7 +103,7 @@
 
 /* 10 — плакат + полоса времени */
 .v10{min-height:clamp(420px,50vw,560px);display:grid;align-items:end}
-.v10__bar{position:relative;display:flex;flex-wrap:wrap;gap:var(--sp-8);
+.v10__bar{position:relative;background:linear-gradient(0deg,rgb(16 23 38/.96),rgb(16 23 38/.72));display:flex;flex-wrap:wrap;gap:var(--sp-8);
   padding:var(--sp-16) clamp(26px,4vw,64px) clamp(26px,4vw,64px)}
 .v10__s{padding:var(--sp-12) var(--sp-20);border-radius:999px;background:rgb(255 255 255/.1);
   border:1px solid rgb(255 255 255/.22);font-size:var(--fs-xs);font-weight:600;
