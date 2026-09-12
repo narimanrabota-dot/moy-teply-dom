@@ -1,0 +1,115 @@
+/* ── первый экран: четыре семейства по десять ──
+   Общая типографика, тонкие линии, капсулы-метки, много воздуха. */
+.f{--navy:#1E2A44;--ink2:#101726;--clay:#C2461F;--clay-l:#E0603C;
+   --dim:#5A6478;--line:#E6E8ED;--warm:#F7F5F2}
+.fd{margin-top:var(--sp-24);border-radius:var(--r-shell);overflow:hidden;
+  box-shadow:var(--edge),var(--sh-1);background:#fff}
+
+/* типографика */
+.t{margin:0;font-weight:700;letter-spacing:-.042em;line-height:1.0;text-wrap:balance}
+.t--xl{font-size:clamp(38px,6vw,76px)}
+.t--l{font-size:clamp(32px,4.6vw,58px)}
+.t--m{font-size:clamp(28px,3.8vw,46px)}
+.ac{color:var(--clay-l)}
+.eyebrow{display:block;font-size:11px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;opacity:.62;margin-bottom:var(--sp-16)}
+.sub{margin:var(--sp-20) 0 0;font-size:var(--fs-sm);line-height:1.55;max-width:44ch;opacity:.78}
+.hair{width:56px;height:2px;background:var(--clay-l);border-radius:2px}
+.hair--w{width:100%;height:1px;background:currentColor;opacity:.18}
+.cta{display:inline-block;margin-top:clamp(24px,3vw,36px);padding:var(--sp-16) var(--sp-32);
+  border:0;border-radius:999px;background:var(--clay);color:#fff;font:inherit;
+  font-size:var(--fs-sm);font-weight:600;cursor:pointer;transition:background .2s var(--e)}
+.cta:hover{background:#AE4526}
+.cta--w{background:#fff;color:var(--navy)}
+.cta--o{background:none;border:1.5px solid currentColor}
+.caps{display:flex;flex-wrap:wrap;gap:var(--sp-8);margin-top:clamp(20px,2.6vw,30px)}
+.caps span{padding:7px 14px;border-radius:999px;border:1px solid currentColor;
+  font-size:11px;font-weight:600;opacity:.82}
+.nums{display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,48px)}
+.nums b{display:block;font-size:clamp(19px,2vw,25px);font-weight:700;letter-spacing:-.025em}
+.nums span{font-size:11px;opacity:.66}
+.vcap{position:absolute;right:clamp(14px,2vw,26px);bottom:clamp(20px,3vw,34px);
+  writing-mode:vertical-rl;font-size:11px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;opacity:.6}
+.pcap{margin-top:var(--sp-12);font-size:11px;letter-spacing:.02em;opacity:.6}
+
+.img{background-size:cover;background-position:center}
+.frame{position:relative;overflow:hidden}
+
+/* ── A. афиша: фото во весь экран, текст внизу ── */
+.A{position:relative;min-height:clamp(420px,62vh,620px);display:grid;align-items:end;color:#fff}
+.A__bg{position:absolute;inset:0}
+.A__bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,rgb(16 23 38/.94),rgb(16 23 38/.32) 46%,rgb(16 23 38/.06))}
+.A__in{position:relative;padding:clamp(30px,4.6vw,64px);width:100%}
+.A--d2 .A__bg::after{background:
+  linear-gradient(0deg,rgb(16 23 38/.94),rgb(16 23 38/.2) 52%,transparent),
+  linear-gradient(90deg,rgb(16 23 38/.7),transparent 58%)}
+.A--c .A__in{text-align:center}
+.A__row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--sp-24)}
+.A__row .cta{margin-left:auto}
+.A__cols{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(24px,4vw,56px);align-items:end}
+.A__narrow{max-width:min(560px,62%)}
+
+/* ── B. тёмная полоса поверх фото ── */
+.B{position:relative;min-height:clamp(440px,64vh,640px);color:#fff}
+.B__bg{position:absolute;inset:0}
+.B__col{position:absolute;left:0;top:0;bottom:0;width:min(46%,540px);
+  background:rgb(16 23 38/.92);display:grid;align-content:center;
+  padding:clamp(28px,3.6vw,56px)}
+.B--n .B__col{width:min(40%,460px)}
+.B--w .B__col{width:min(54%,640px)}
+.B--e .B__col{align-content:end}
+.B--card .B__col{left:clamp(18px,2.4vw,34px);top:clamp(18px,2.4vw,34px);
+  bottom:clamp(18px,2.4vw,34px);border-radius:22px}
+.B--glass .B__col{background:rgb(16 23 38/.55);backdrop-filter:blur(14px);
+  border-right:1px solid rgb(255 255 255/.14)}
+.B--inset .B__col{top:clamp(36px,6vw,84px);bottom:clamp(36px,6vw,84px);
+  border-radius:0 22px 22px 0}
+.B--clay .B__col{background:rgb(194 70 31/.94)}
+.B__accent{position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--clay-l)}
+.B--two .B__col{left:10px}
+.B__top{position:absolute;left:0;right:0;top:0;height:3px;background:var(--clay-l)}
+
+/* ── C. сплит: текст слева на светлом ── */
+.C{display:grid;grid-template-columns:1fr 1fr;align-items:center;background:#fff;color:var(--navy)}
+.C--warm{background:var(--warm)}
+.C--line > .C__t{border-right:1px solid var(--line)}
+.C__t{padding:clamp(32px,4.6vw,72px)}
+.C__t--in{padding-left:clamp(48px,7vw,120px)}
+.C__ph{align-self:stretch;min-height:380px}
+.C__ph--r{margin:clamp(18px,2.6vw,34px);border-radius:26px;align-self:center;
+  aspect-ratio:4/5;min-height:0}
+.C__ph--out{align-self:stretch;margin:clamp(-16px,-2vw,-10px) 0}
+.C__ph--pad{margin:clamp(16px,2.2vw,28px);border-radius:20px;align-self:stretch}
+.C__strip{grid-column:1/-1;padding:var(--sp-20) clamp(32px,4.6vw,72px);
+  border-top:1px solid var(--line)}
+
+/* ── D. сплит: фото слева ── */
+.D{display:grid;grid-template-columns:.85fr 1.15fr;align-items:center;background:#fff;color:var(--navy)}
+.D--45{grid-template-columns:.8fr 1.2fr}
+.D--60{grid-template-columns:1.15fr .85fr}
+.D__ph{align-self:stretch;min-height:380px;position:relative}
+.D__ph--r{border-radius:0 28px 28px 0}
+.D__ph--out{margin-left:clamp(-28px,-3vw,-16px)}
+.D__t{padding:clamp(32px,4.6vw,72px)}
+.D__t--in{padding-right:clamp(48px,7vw,110px)}
+.D__t--dark{background:var(--navy);color:#fff;align-self:stretch;
+  display:grid;align-content:center}
+.D__badge{position:absolute;left:clamp(16px,2vw,24px);bottom:clamp(16px,2vw,24px);
+  padding:8px 14px;border-radius:999px;background:rgb(255 255 255/.94);
+  font-size:11px;font-weight:600;color:var(--navy)}
+.D__strip{grid-column:1/-1;padding:var(--sp-20) clamp(32px,4.6vw,72px);
+  border-top:1px solid var(--line)}
+
+@media(max-width:900px){
+  .C,.D,.D--45,.D--60{grid-template-columns:1fr}
+  .C__ph,.D__ph{min-height:230px;aspect-ratio:auto;margin:0;border-radius:0}
+  .C--line > .C__t{border-right:0}
+  .B__col,.B--n .B__col,.B--w .B__col{position:static;width:auto}
+  .B--card .B__col,.B--inset .B__col{border-radius:0}
+  .A__cols{grid-template-columns:1fr}
+  .A__row .cta{margin-left:0}
+  .A__narrow{max-width:none}
+  .vcap{display:none}
+}
