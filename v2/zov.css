@@ -1,0 +1,81 @@
+/* Зов: приехать в офис / приехать на объект.
+   Десять композиций, один регистр. Опирается на prz2.css. */
+
+.z2s{margin-top:var(--sp-64)}
+.z2s__lbl{display:flex;align-items:baseline;gap:var(--sp-12);margin-bottom:var(--sp-16);
+  font-size:var(--fs-xs);color:var(--dim)}
+.z2s__lbl b{font-size:var(--fs-md);font-weight:600;color:var(--ink);letter-spacing:-.015em}
+.z2s__lbl i{font-style:normal;font-weight:600;color:var(--clay-txt);font-variant-numeric:tabular-nums}
+
+/* L1 — фон, текст внизу слева */
+.L1{min-height:clamp(430px,52vw,580px);display:grid;align-items:end}
+.L1 .pl__c{max-width:880px}
+
+/* L2 — карточка поверх фото */
+.L2{min-height:clamp(440px,52vw,580px);display:grid;align-items:center;
+  padding:clamp(20px,3vw,48px)}
+.L2__card{position:relative;max-width:640px;background:rgb(16 23 38/.82);
+  backdrop-filter:blur(10px);border:1px solid rgb(255 255 255/.14);
+  border-radius:var(--r-inner);padding:clamp(24px,3vw,40px);display:grid;gap:var(--sp-16)}
+
+/* L3 — диптих: два фото, текст снизу */
+.L3__ph{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.L3__ph span{aspect-ratio:16/10;background-size:cover;background-position:center}
+.L3__b{padding:clamp(24px,3.2vw,48px);display:grid;gap:var(--sp-16)}
+
+/* L4 — половина фото */
+.L4{display:grid;grid-template-columns:1fr 1fr;min-height:clamp(400px,46vw,540px)}
+.L4__t{padding:clamp(26px,3.4vw,56px);display:grid;align-content:center;gap:var(--sp-18);gap:var(--sp-20)}
+.L4__p{background-size:cover;background-position:center}
+
+/* L5 — по центру */
+.L5{min-height:clamp(430px,50vw,560px);display:grid;place-items:center;text-align:center}
+.L5 .pl__c{justify-items:center;max-width:780px}
+.L5 .lead{max-width:46ch}
+.L5 .btns{justify-content:center}
+
+/* L6 — крупная цифра слева */
+.L6{min-height:clamp(420px,50vw,560px);display:grid;align-items:center}
+.L6__g{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3.4vw,56px);align-items:center}
+.L6__n{font-size:clamp(64px,10vw,150px);font-weight:600;line-height:.84;letter-spacing:-.05em;
+  color:#FFB59C;font-variant-numeric:tabular-nums;white-space:nowrap}
+.L6__n small{display:block;font-size:var(--fs-xs);font-weight:700;letter-spacing:.12em;
+  color:#fff;opacity:.7;margin-top:var(--sp-12);white-space:normal;max-width:14ch}
+
+/* L7 — фото сверху, полоса снизу */
+.L7__ph{height:clamp(280px,34vw,430px);background-size:cover;background-position:center 58%}
+.L7__b{padding:clamp(22px,3vw,44px);display:grid;grid-template-columns:1fr auto;gap:var(--sp-24);align-items:center}
+.L7__meta{display:flex;flex-wrap:wrap;gap:var(--sp-28);margin-top:var(--sp-16)}
+.L7__meta div b{display:block;font-size:11px;letter-spacing:.1em;opacity:.55;text-transform:uppercase}
+.L7__meta div span{display:block;margin-top:4px;font-size:var(--fs-sm);font-weight:500}
+
+/* L8 — цитата с кавычкой */
+.L8{min-height:clamp(430px,50vw,560px);display:grid;align-items:end}
+.L8__q{position:relative;padding-left:clamp(44px,5vw,72px)}
+.L8__q::before{content:"“";position:absolute;left:-6px;top:-.22em;
+  font-size:clamp(96px,12vw,170px);line-height:1;color:#FFB59C;opacity:.55;font-weight:700}
+
+/* L9 — тёмный блок с полоской из трёх фото */
+.L9{padding:clamp(26px,3.4vw,52px);display:grid;gap:var(--sp-28)}
+.L9__row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-12)}
+.L9__row span{aspect-ratio:4/3;border-radius:var(--r-inner);background-size:cover;background-position:center;
+  border:1px solid rgb(255 255 255/.12)}
+
+/* L10 — текст справа */
+.L10{min-height:clamp(430px,50vw,580px);display:grid;align-items:center;justify-items:end}
+.L10 .pl__c{max-width:660px;text-align:right;justify-items:end}
+.L10 .lead{margin-left:auto}
+.L10 .btns{justify-content:flex-end}
+.sh-r::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(270deg,rgb(16 23 38/.94),rgb(16 23 38/.6) 48%,rgb(16 23 38/.12))}
+
+@media(max-width:900px){
+  .L3__ph,.L4,.L6__g,.L9__row{grid-template-columns:1fr}
+  .L4{min-height:0}
+  .L4__p{min-height:240px;order:-1}
+  .L7__b{grid-template-columns:1fr}
+  .L10{justify-items:stretch}
+  .L10 .pl__c{text-align:left;justify-items:start;max-width:none}
+  .L10 .btns{justify-content:flex-start}
+  .L6__n{font-size:clamp(56px,20vw,100px)}
+}
