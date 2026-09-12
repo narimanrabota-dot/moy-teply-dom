@@ -1,0 +1,147 @@
+/* Десять призывов приехать к нам.
+   Один смысл, десять форм: от строгой карточки до плаката. */
+
+.pz{margin-top:var(--sp-64)}
+.pz__lbl{display:flex;align-items:baseline;gap:var(--sp-12);margin-bottom:var(--sp-16);
+  font-size:var(--fs-xs);color:var(--dim)}
+.pz__lbl b{font-size:var(--fs-md);font-weight:600;color:var(--ink);letter-spacing:-.015em}
+.pz__lbl i{font-style:normal;font-weight:600;color:var(--clay-txt);font-variant-numeric:tabular-nums}
+.pz .b{font-weight:600}
+
+/* ── 01. Тихая карточка ────────────────────────────── */
+.p1{display:grid;grid-template-columns:1fr auto;gap:clamp(20px,3vw,48px);align-items:center;
+  background:var(--card);border-radius:var(--r-shell);box-shadow:var(--edge);
+  padding:clamp(24px,3vw,44px)}
+.p1__t{margin:0;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.028em;line-height:1.12;max-width:20ch}
+.p1__d{margin:var(--sp-12) 0 0;color:var(--dim);max-width:50ch;font-size:var(--fs-sm)}
+.p1__i{display:flex;flex-wrap:wrap;gap:var(--sp-24);margin-top:var(--sp-20)}
+.p1__i div b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.p1__i div span{display:block;margin-top:3px;font-size:var(--fs-sm);font-weight:500}
+.pbtn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap);
+  padding:0 var(--sp-28);border-radius:999px;background:var(--clay-btn);color:#fff;
+  font-weight:600;font-size:var(--fs-btn);border:0;cursor:pointer;white-space:nowrap}
+.pbtn--g{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.pbtn--w{background:#fff;color:#101726}
+.pbtn--o{background:rgb(255 255 255/.14);color:#fff;border:1px solid rgb(255 255 255/.3)}
+
+/* ── 02. Записка ───────────────────────────────────── */
+.p2{max-width:720px;margin-inline:auto;background:#FFFDF7;border-radius:2px;
+  box-shadow:var(--edge),var(--sh-2);padding:clamp(28px,3.6vw,52px);
+  border-left:4px solid var(--clay);position:relative}
+.p2::after{content:"";position:absolute;right:0;bottom:0;border-width:0 26px 26px 0;
+  border-style:solid;border-color:transparent var(--bg) transparent transparent;
+  filter:drop-shadow(-2px -2px 2px rgb(0 0 0/.06))}
+.p2__t{margin:0;font-size:clamp(22px,2.6vw,30px);font-weight:600;letter-spacing:-.02em;line-height:1.25}
+.p2 p{margin:var(--sp-16) 0 0;font-size:var(--fs-md);line-height:1.6}
+.p2__sig{margin-top:var(--sp-28);padding-top:var(--sp-16);border-top:1px dashed var(--n-4);
+  display:flex;flex-wrap:wrap;gap:var(--sp-16);align-items:center;justify-content:space-between}
+.p2__sig span{font-size:var(--fs-xs);color:var(--dim)}
+
+/* ── 03. Дорога ────────────────────────────────────── */
+.p3{background:var(--card);border-radius:var(--r-shell);box-shadow:var(--edge);
+  padding:clamp(24px,3vw,40px)}
+.p3__t{margin:0;font-size:var(--fs-2xl);font-weight:600;letter-spacing:-.025em;line-height:1.1}
+.p3__line{position:relative;margin:var(--sp-40) 0 var(--sp-32);height:2px;background:var(--n-3)}
+.p3__pt{position:absolute;top:50%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:var(--sp-8)}
+.p3__pt i{width:12px;height:12px;border-radius:999px;background:var(--n-4);font-style:normal}
+.p3__pt.on i{width:18px;height:18px;background:var(--clay);box-shadow:0 0 0 5px rgb(224 96 60/.18)}
+.p3__pt b{position:absolute;top:22px;white-space:nowrap;font-size:var(--fs-xs);font-weight:600}
+.p3__pt span{position:absolute;top:-30px;white-space:nowrap;font-size:11px;color:var(--dim)}
+.p3__row{display:flex;flex-wrap:wrap;gap:var(--sp-16);align-items:center;margin-top:var(--sp-48)}
+
+/* ── 04. Три места ─────────────────────────────────── */
+.p4{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-16)}
+.p4__c{position:relative;border-radius:var(--r-shell);overflow:hidden;min-height:330px;
+  display:grid;align-items:end;background:#101726}
+.p4__c i{position:absolute;inset:0;background-size:cover;background-position:center;font-style:normal}
+.p4__c i::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,rgb(16 23 38/.9),rgb(16 23 38/.25) 60%,transparent)}
+.p4__b{position:relative;padding:var(--sp-24);color:#fff}
+.p4__b b{display:block;font-size:var(--fs-lg);font-weight:600;letter-spacing:-.02em}
+.p4__b span{display:block;margin-top:var(--sp-8);font-size:var(--fs-xs);opacity:.84;line-height:1.5}
+.p4__b em{display:inline-block;margin-top:var(--sp-16);font-style:normal;font-size:var(--fs-xs);
+  font-weight:600;border-bottom:1px solid rgb(255 255 255/.5);padding-bottom:2px}
+
+/* ── 05. Расписание ────────────────────────────────── */
+.p5{background:var(--card);border-radius:var(--r-shell);box-shadow:var(--edge);overflow:hidden}
+.p5__h{padding:clamp(22px,2.6vw,34px);border-bottom:1px solid var(--line)}
+.p5__h h3{margin:0;font-size:var(--fs-xl);font-weight:600;letter-spacing:-.02em}
+.p5__h p{margin:var(--sp-8) 0 0;color:var(--dim);font-size:var(--fs-sm)}
+.p5__g{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+.p5__d{background:var(--card);padding:var(--sp-20)}
+.p5__d b{display:block;font-size:var(--fs-sm);font-weight:600}
+.p5__d span{display:block;font-size:var(--fs-xs);color:var(--dim);margin-top:2px}
+.p5__sl{display:grid;gap:6px;margin-top:var(--sp-12)}
+.p5__sl u{text-decoration:none;padding:var(--sp-8);border-radius:var(--r-tight);border:1px solid var(--line);
+  text-align:center;font-size:var(--fs-xs);font-weight:600;font-variant-numeric:tabular-nums}
+.p5__sl u.busy{border-style:dashed;color:var(--n-5);font-weight:400;text-decoration:line-through}
+.p5__sl u.free:hover{border-color:var(--clay);background:#FDF1ED;color:#B84625}
+.p5__f{padding:clamp(18px,2.4vw,28px);display:flex;flex-wrap:wrap;gap:var(--sp-16);
+  align-items:center;justify-content:space-between;background:var(--n-1)}
+
+/* ── 06. Час по минутам ────────────────────────────── */
+.p6{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(20px,3vw,44px);align-items:center}
+.p6__ph{border-radius:var(--r-shell);background-size:cover;background-position:center;min-height:400px}
+.p6__t{margin:0;font-size:var(--fs-2xl);font-weight:600;letter-spacing:-.025em;line-height:1.1}
+.p6__d{margin:var(--sp-12) 0 var(--sp-24);color:var(--dim)}
+.p6__l{list-style:none;margin:0;padding:0;display:grid}
+.p6__l li{display:grid;grid-template-columns:74px 1fr;gap:var(--sp-16);
+  padding:var(--sp-16) 0;border-top:1px solid var(--line)}
+.p6__l li b{font-size:var(--fs-xs);font-weight:700;color:var(--clay-txt);font-variant-numeric:tabular-nums;
+  padding-top:2px}
+.p6__l li span{font-size:var(--fs-sm);line-height:1.45}
+.p6__l li em{display:block;font-style:normal;font-size:var(--fs-xs);color:var(--dim);margin-top:3px}
+
+/* ── 07. От человека ───────────────────────────────── */
+.p7{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,3vw,40px);align-items:center;
+  background:var(--card);border-radius:var(--r-shell);box-shadow:var(--edge),var(--sh-1);
+  padding:clamp(22px,2.8vw,38px)}
+.p7__av{width:clamp(96px,11vw,140px);aspect-ratio:1;border-radius:999px;
+  background-size:cover;background-position:center 22%;box-shadow:var(--edge)}
+.p7__q{margin:0;font-size:clamp(19px,2.1vw,26px);font-weight:500;letter-spacing:-.018em;line-height:1.35}
+.p7__n{margin:var(--sp-16) 0 0;font-size:var(--fs-xs);color:var(--dim)}
+.p7__n b{display:block;font-size:var(--fs-sm);color:var(--ink);font-weight:600}
+
+/* ── 08. Тёмная лента ──────────────────────────────── */
+.p8{background:#101726;border-radius:var(--r-shell);padding:clamp(28px,4vw,64px);color:#fff;
+  display:grid;justify-items:center;text-align:center;gap:var(--sp-20)}
+.p8__t{margin:0;font-size:clamp(28px,4.4vw,52px);font-weight:600;letter-spacing:-.035em;line-height:1.05;max-width:16ch}
+.p8__t em{font-style:normal;color:#FFB59C}
+.p8__d{margin:0;max-width:46ch;opacity:.8;font-size:var(--fs-sm)}
+.p8__r{display:flex;flex-wrap:wrap;gap:var(--sp-12);justify-content:center}
+.p8__a{font-size:var(--fs-xs);opacity:.6}
+
+/* ── 09. Против экрана ─────────────────────────────── */
+.p9{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-16);align-items:stretch}
+.p9__c{padding:clamp(22px,2.8vw,36px);border-radius:var(--r-shell);display:grid;align-content:start;gap:var(--sp-12)}
+.p9__c--a{background:var(--n-2);color:var(--dim)}
+.p9__c--b{background:var(--card);box-shadow:var(--edge),var(--sh-1);border-top:3px solid var(--clay)}
+.p9__k{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.p9__c--b .p9__k{color:var(--clay-txt)}
+.p9__h{margin:0;font-size:var(--fs-xl);font-weight:600;letter-spacing:-.022em;line-height:1.15;color:var(--ink)}
+.p9__c--a .p9__h{color:var(--n-7)}
+.p9__l{margin:0;padding:0;list-style:none;display:grid;gap:var(--sp-8);font-size:var(--fs-sm);line-height:1.45}
+.p9__l li{padding-left:var(--sp-20);position:relative}
+.p9__l li::before{content:"·";position:absolute;left:6px;font-weight:700}
+.p9__c--b .p9__l li::before{content:"✓";color:#2E9E66;font-size:13px;left:0}
+
+/* ── 10. Плакат со снимком ─────────────────────────── */
+.p10{position:relative;border-radius:var(--r-shell);overflow:hidden;min-height:clamp(420px,50vw,560px);
+  display:grid;align-items:center;background:#101726}
+.p10__img{position:absolute;inset:0;background-size:cover;background-position:center 60%}
+.p10__img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgb(16 23 38/.9),rgb(16 23 38/.5) 52%,rgb(16 23 38/.12))}
+.p10__c{position:relative;padding:clamp(24px,4vw,64px);color:#fff;max-width:720px;display:grid;gap:var(--sp-20)}
+.p10__k{font-size:var(--fs-xs);font-weight:700;letter-spacing:.14em;color:#FFB59C}
+.p10__t{margin:0;font-size:clamp(28px,4vw,46px);font-weight:600;letter-spacing:-.032em;line-height:1.06}
+.p10__d{margin:0;opacity:.88;line-height:1.5;max-width:46ch}
+.p10__r{display:flex;flex-wrap:wrap;gap:var(--sp-12);align-items:center}
+
+@media(max-width:900px){
+  .p1,.p6,.p7,.p9{grid-template-columns:1fr}
+  .p4{grid-template-columns:1fr}
+  .p5__g{grid-template-columns:1fr 1fr}
+  .p6__ph{min-height:240px}
+  .p7__av{width:96px}
+  .p3__line{margin-bottom:var(--sp-48)}
+}
