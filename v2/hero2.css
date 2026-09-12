@@ -1,0 +1,82 @@
+/* ── первый экран: тридцать вариантов ── */
+.hw{--navy:#1E2A44;--ink2:#141C2E;--clay:#C2461F;--clay-l:#E0603C;--dim:#5A6478;--line:#E6E8ED}
+.hw__demo{margin-top:var(--sp-24);border-radius:var(--r-shell);overflow:hidden;
+  box-shadow:var(--edge),var(--sh-1);background:var(--bg)}
+.bg{position:absolute;inset:0;display:block;background-size:cover;background-position:center}
+.on{position:relative}
+.pad{padding:clamp(32px,5vw,68px)}
+.wht{color:#fff}
+.nav-y{background:#1E2A44;color:#fff}
+.cl-y{background:#C2461F;color:#fff}
+.ph{display:block;width:100%;height:100%;object-fit:cover}
+.rnd{border-radius:24px;overflow:hidden}
+.rnd-l{border-radius:32px;overflow:hidden}
+
+/* базовые скелеты */
+.full{position:relative;min-height:clamp(400px,60vh,600px);display:grid}
+.full--c{align-items:center}
+.full--e{align-items:end}
+.full--s{align-items:start}
+.mx{max-width:820px}
+.mx--s{max-width:560px}
+.split{display:grid;align-items:center}
+.split--55{grid-template-columns:1fr 1fr}
+.split--64{grid-template-columns:1.5fr 1fr}
+.split--46{grid-template-columns:1fr 1.5fr}
+.stretch{align-self:stretch;min-height:340px}
+
+/* затемнения */
+.sh-l::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(20 28 46/.88),rgb(20 28 46/.45) 58%,rgb(20 28 46/.15))}
+.sh-r::after{content:"";position:absolute;inset:0;background:linear-gradient(270deg,rgb(20 28 46/.88),rgb(20 28 46/.45) 58%,rgb(20 28 46/.15))}
+.sh-b::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgb(20 28 46/.92),rgb(20 28 46/.3) 55%,rgb(20 28 46/.08))}
+.sh-t::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(20 28 46/.85),rgb(20 28 46/.25) 55%,rgb(20 28 46/.6))}
+.sh-a::after{content:"";position:absolute;inset:0;background:rgb(20 28 46/.6)}
+.sh-d::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgb(20 28 46/.92) 38%,rgb(20 28 46/.18))}
+
+/* плашки поверх фото */
+.plate{background:rgb(20 28 46/.82);border-radius:20px;padding:clamp(24px,3.4vw,44px)}
+.plate--w{background:rgb(255 255 255/.94);color:#1E2A44}
+.stripe{position:absolute;left:0;top:0;bottom:0;width:min(46%,520px);background:rgb(20 28 46/.9);
+  display:grid;align-items:center;padding:clamp(28px,4vw,56px)}
+.frame{padding:clamp(12px,1.6vw,20px);background:#fff}
+.frame__in{position:relative;min-height:clamp(360px,54vh,540px);display:grid;align-items:end;border-radius:16px;overflow:hidden}
+
+/* фото-сетки */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-12)}
+.g3 > *{aspect-ratio:3/4;border-radius:16px;overflow:hidden}
+.g22{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-12)}
+.g22 > *{aspect-ratio:1;border-radius:16px;overflow:hidden}
+.gbig{display:grid;grid-template-columns:1.6fr 1fr;gap:var(--sp-12)}
+.gbig > *{border-radius:18px;overflow:hidden}
+.gbig__col{display:grid;gap:var(--sp-12);border-radius:0}
+.gbig__col > *{border-radius:18px;overflow:hidden;aspect-ratio:4/3}
+.strip{display:flex;gap:var(--sp-12);overflow:hidden}
+.strip > *{flex:0 0 32%;aspect-ratio:3/4;border-radius:16px;overflow:hidden}
+
+/* типографские приёмы */
+.huge{font-size:clamp(38px,7.2vw,86px);font-weight:700;letter-spacing:-.05em;line-height:.96}
+.ul-clay{box-shadow:inset 0 -.16em 0 rgb(224 96 60/.55)}
+.accent{color:#E0603C}
+.thin-ph{height:clamp(140px,20vh,200px)}
+.dots{display:flex;gap:6px;margin-top:var(--sp-20)}
+.dots i{width:8px;height:8px;border-radius:999px;background:rgb(255 255 255/.4)}
+.dots i:first-child{background:#fff;width:22px}
+.roofbg{position:absolute;right:-4%;bottom:-18%;width:min(460px,52%);opacity:.06}
+.roofbg svg{width:100%;height:auto;display:block}
+.diag{clip-path:polygon(0 0,100% 0,84% 100%,0 100%)}
+.circ{border-radius:999px;overflow:hidden;aspect-ratio:1}
+.shiftup{margin-top:clamp(-64px,-5vw,-32px)}
+
+@media(max-width:900px){
+  .split--55,.split--64,.split--46{grid-template-columns:1fr}
+  .stripe{position:static;width:auto}
+  .g3,.g22,.gbig{grid-template-columns:1fr}
+  .gbig__col{grid-template-columns:1fr 1fr}
+  .strip > *{flex:0 0 60%}
+  .diag{clip-path:none}
+  .shiftup{margin-top:0}
+}
+
+/* блоки-кадры: минимальная высота, чтобы фон было видно */
+.stretch,.rnd,.rnd-l,.circ,.thin-ph{background-size:cover;background-position:center}
+.g3 > *,.g22 > *,.gbig > *,.gbig__col > *,.strip > *{background-size:cover;background-position:center}
