@@ -1,0 +1,111 @@
+/* Визуализация трёх лестниц.
+   Страница внутренняя: noindex, из меню не линкуется. */
+
+.lp{padding:var(--sp-32) 0 var(--sp-96)}
+.lp__k{font-size:var(--fs-xs);font-weight:600;letter-spacing:.12em;color:var(--clay-txt)}
+.lp__t{margin:var(--sp-12) 0 0;font-size:clamp(30px,4.2vw,52px);font-weight:600;
+  letter-spacing:-.035em;line-height:1.02;max-width:20ch}
+.lp__d{margin:var(--sp-20) 0 0;max-width:66ch;font-size:var(--fs-md);line-height:1.5;color:var(--dim)}
+
+.sec2{margin-top:clamp(56px,7vw,104px)}
+.sec2__n{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:999px;
+  background:var(--clay);color:#fff;font-size:var(--fs-xs);font-weight:700}
+.sec2__t{margin:var(--sp-16) 0 0;font-size:var(--fs-2xl);font-weight:600;letter-spacing:-.028em;line-height:1.08}
+.sec2__s{margin:var(--sp-8) 0 0;color:var(--dim);max-width:64ch}
+
+/* ── Лестница: общий каркас ────────────────────────
+   Каждая колонка = карточка + «нога» до общего пола.
+   Высота карточки свободная, поэтому текст не режется,
+   а ступенчатость даёт отступ сверху. */
+.st{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:var(--sp-8);
+  align-items:stretch;margin-top:clamp(32px,4vw,56px)}
+.st__c{display:grid;grid-template-rows:auto 1fr;padding-top:calc(var(--off,0) * 44px)}
+.st__leg{min-height:24px;background:var(--n-2);border-radius:0 0 var(--r-tight) var(--r-tight)}
+.st__s{position:relative;display:grid;align-content:start;gap:var(--sp-8);
+  padding:var(--sp-20) var(--sp-16);border-radius:var(--r-inner) var(--r-inner) 0 0;
+  background:var(--card);box-shadow:var(--edge)}
+.st__s::after{content:"";position:absolute;left:0;right:0;top:0;height:4px;
+  border-radius:4px 4px 0 0;background:var(--n-4)}
+.st__n{font-size:11px;font-weight:700;letter-spacing:.09em;color:var(--n-6);line-height:1.3}
+.st__h{font-size:var(--fs-md);font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.st__p{margin:0;font-size:var(--fs-xs);line-height:1.5;color:var(--dim)}
+.st__q{margin:0;font-size:var(--fs-xs);line-height:1.45;font-style:italic;color:var(--ink);
+  padding-left:var(--sp-12);border-left:2px solid var(--n-3)}
+
+/* состояния «есть / частично / нет» */
+.st__tag{justify-self:start;margin-top:var(--sp-8);padding:3px var(--sp-8);border-radius:999px;
+  font-size:11px;font-weight:600;line-height:1.35}
+.is-ok{background:#E6F4EC;color:#1F7A4D}
+.is-half{background:#FDF0DC;color:#96601A}
+.is-no{background:#FBE3DC;color:#B03A1B}
+.st__c.ok .st__s::after{background:#2E9E66}
+.st__c.ok .st__leg{background:#DDEFE5}
+.st__c.half .st__s::after{background:#E2A33D}
+.st__c.half .st__leg{background:#F7E9D3}
+.st__c.no .st__s::after{background:var(--clay)}
+.st__c.no .st__leg{background:#F5DED6}
+.st__c.no .st__s{background:repeating-linear-gradient(135deg,var(--n-1),var(--n-1) 8px,var(--n-2) 8px,var(--n-2) 16px)}
+
+/* пол под лестницей */
+.st__floor{height:3px;background:var(--n-3);border-radius:999px;margin-top:2px}
+
+/* ── Ценностная: одна высокая ступень ──────────────── */
+.vl{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-24);align-items:end;
+  margin-top:var(--sp-40)}
+.vl__b{border-radius:var(--r-shell);padding:clamp(20px,2.4vw,32px);background:var(--card);box-shadow:var(--edge)}
+.vl__cap{font-size:var(--fs-xs);font-weight:600;letter-spacing:.08em;color:var(--dim)}
+.vl__steps{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;align-items:end;
+  height:230px;margin-top:var(--sp-16)}
+.vl__x{border-radius:var(--r-tight) var(--r-tight) 0 0;background:var(--n-3);
+  display:grid;align-content:end;padding:var(--sp-8);font-size:11px;color:var(--n-8);text-align:center}
+.vl__x:nth-child(1){height:22%}
+.vl__x:nth-child(2){height:45%}
+.vl__x:nth-child(3){height:72%}
+.vl__x:nth-child(4){height:100%}
+.vl__gap{display:grid;align-items:end;height:230px;margin-top:var(--sp-16);
+  grid-template-columns:1fr 3fr;gap:6px}
+.vl__low{height:8%;border-radius:var(--r-tight) var(--r-tight) 0 0;background:var(--n-3)}
+.vl__high{height:100%;border-radius:var(--r-tight) var(--r-tight) 0 0;background:var(--clay);
+  color:#fff;display:grid;align-content:center;justify-items:center;gap:4px;text-align:center;padding:var(--sp-12)}
+.vl__high b{font-size:var(--fs-lg);font-weight:600;letter-spacing:-.02em}
+.vl__high i{font-style:normal;font-size:var(--fs-xs);opacity:.9}
+.vl__note{margin:var(--sp-16) 0 0;font-size:var(--fs-xs);color:var(--dim);line-height:1.5}
+
+/* ── Карта: ступень × страница ─────────────────────── */
+.mp{margin-top:var(--sp-40);overflow-x:auto}
+.mp table{border-collapse:collapse;width:100%;min-width:820px;background:var(--card);
+  border-radius:var(--r-inner);overflow:hidden;box-shadow:var(--edge)}
+.mp th,.mp td{text-align:left;padding:var(--sp-16);border-bottom:1px solid var(--line);
+  font-size:var(--fs-xs);line-height:1.5;vertical-align:top}
+.mp th{background:var(--n-1);font-weight:600;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--dim)}
+.mp td b{display:block;font-size:var(--fs-sm);font-weight:600;margin-bottom:2px}
+.mp tr:last-child td{border-bottom:0}
+.mp .dot{display:inline-block;width:8px;height:8px;border-radius:999px;margin-right:6px;vertical-align:1px}
+.mp .dot--ok{background:#2E9E66}
+.mp .dot--half{background:#E2A33D}
+.mp .dot--no{background:var(--clay)}
+
+/* ── Итог ──────────────────────────────────────────── */
+.fin2{margin-top:clamp(56px,7vw,96px);background:#101726;color:#fff;
+  border-radius:var(--r-shell);padding:clamp(24px,3.2vw,48px)}
+.fin2 h2{margin:0;font-size:var(--fs-2xl);font-weight:600;letter-spacing:-.025em;line-height:1.1}
+.fin2 p{margin:var(--sp-16) 0 0;max-width:64ch;opacity:.86;line-height:1.55}
+.fin2__g{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-16);margin-top:var(--sp-32)}
+.fin2__i{padding:var(--sp-20);border-radius:var(--r-inner);background:rgb(255 255 255/.06);
+  border:1px solid rgb(255 255 255/.1)}
+.fin2__i b{display:block;font-size:var(--fs-md);font-weight:600;letter-spacing:-.015em}
+.fin2__i span{display:block;margin-top:var(--sp-8);font-size:var(--fs-xs);opacity:.8;line-height:1.5}
+
+.leg{display:flex;flex-wrap:wrap;gap:var(--sp-16);margin-top:var(--sp-20);
+  font-size:var(--fs-xs);color:var(--dim)}
+.leg span{display:inline-flex;align-items:center;gap:6px}
+.leg i{width:10px;height:10px;border-radius:999px;font-style:normal}
+
+@media(max-width:1000px){
+  .st{grid-auto-flow:row;gap:var(--sp-12)}
+  .st__c{padding-top:0!important;grid-template-rows:auto}
+  .st__leg{display:none}
+  .st__s{border-radius:var(--r-inner)}
+  .vl,.fin2__g{grid-template-columns:1fr}
+}
