@@ -5,7 +5,7 @@
   var box = document.getElementById('kmap');
   if (!box) return;
 
-  var LAT = 55.628, LNG = 37.439;   /* ул. Адмирала Корнилова, Коммунарка */
+  var LAT = 55.628, LNG = 37.439;   /* ул. Адмирала Корнилова, 66, строение 20 — координаты по улице, уточнить точку */
   var SRC = 'https://yandex.ru/map-widget/v1/?ll=' + LNG + '%2C' + LAT +
             '&z=16&pt=' + LNG + ',' + LAT + ',pm2rdm';
 
