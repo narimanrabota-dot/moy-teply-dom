@@ -6,7 +6,7 @@
 .ob__f{
   position:relative;padding:12px;background:#fff;
   border-radius:var(--r-shell);box-shadow:var(--edge),var(--sh-1);
-  height:clamp(414px,71svh,713px);
+  height:clamp(646px,96svh,1112px);
 }
 .ob__f--auto{height:auto}
 .ob__in{position:relative;height:100%;border-radius:var(--r-inner);overflow:hidden}
@@ -99,7 +99,7 @@
   gap:clamp(20px,3vw,44px);align-items:end}
 
 @media(max-width:900px){
-  .ob__f{height:clamp(322px,60svh,483px);padding:8px}
+  .ob__f{height:clamp(502px,86svh,754px);padding:8px}
   .osplit,.osplit--46,.osplit--64,.ogap,.ogrid3,.obelow{grid-template-columns:1fr}
   .ocard{max-width:none;position:static;margin-top:var(--sp-16)}
   .obig,.ocap--v{display:none}
