@@ -1,0 +1,40 @@
+/* Карточка на фото — десять вариантов с разными снимками.
+   База — .L2 из zov.css, здесь только позиции и мелкие отличия карточки. */
+
+.K{min-height:clamp(460px,54vw,620px);display:grid;padding:clamp(18px,3vw,48px)}
+.K--l{align-items:center;justify-items:start}
+.K--r{align-items:center;justify-items:end}
+.K--c{align-items:center;justify-items:center;text-align:center}
+.K--bl{align-items:end;justify-items:start}
+.K--tl{align-items:start;justify-items:start}
+
+.kc{position:relative;width:min(640px,100%);
+  background:rgb(16 23 38/.84);backdrop-filter:blur(12px);
+  border:1px solid rgb(255 255 255/.14);border-radius:var(--r-inner);
+  padding:clamp(24px,3vw,42px);display:grid;gap:var(--sp-16)}
+.kc--n{width:min(520px,100%)}
+.kc--w{width:min(760px,100%)}
+.kc--line::before{content:"";position:absolute;left:clamp(24px,3vw,42px);right:clamp(24px,3vw,42px);
+  top:0;height:3px;background:var(--clay);border-radius:0 0 3px 3px}
+.kc--solid{background:rgb(16 23 38/.94);backdrop-filter:none}
+.kc--light{background:rgb(255 255 255/.94);backdrop-filter:blur(12px);
+  border-color:rgb(16 23 38/.08);color:var(--ink)}
+.kc--light .kick{color:var(--clay-txt)}
+.kc--light .lead{opacity:1;color:var(--dim)}
+.kc--light .addr{opacity:1;color:var(--n-6)}
+.K--c .kc{justify-items:center}
+.K--c .kc .btns{justify-content:center}
+.K--c .kc .lead{margin-inline:auto}
+
+/* строка фактов внутри карточки */
+.kc__f{display:flex;flex-wrap:wrap;gap:var(--sp-20);padding-top:var(--sp-16);
+  border-top:1px solid rgb(255 255 255/.14)}
+.kc--light .kc__f{border-top-color:rgb(16 23 38/.1)}
+.kc__f div b{display:block;font-size:11px;letter-spacing:.09em;text-transform:uppercase;opacity:.55}
+.kc__f div span{display:block;margin-top:3px;font-size:var(--fs-sm);font-weight:500}
+
+@media(max-width:760px){
+  .K{justify-items:stretch!important;align-items:end}
+  .kc,.kc--n,.kc--w{width:100%}
+  .K--c{text-align:left}
+}
