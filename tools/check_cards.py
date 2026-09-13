@@ -69,6 +69,10 @@ def main():
 
         if section(html, 'inside') is not None or '<h2 class="sech">Внутри дома</h2>' in html:
             out.append('есть отдельный раздел «Внутри дома» — фото должны быть в одной галерее #look')
+        if 'class="prod__ph"' in html or 'class="prod__l"' in html:
+            out.append('верх карточки в старом формате (фото справа) — собрать: python3 tools/top_block.py --write')
+        if re.search(r'<section class="sec" id="look">\s*<h2', html):
+            out.append('у галереи не должно быть заголовка — фото идут сразу под верхом карточки')
 
         look = section(html, 'look')
         if look is None:
@@ -113,6 +117,20 @@ def main():
             for key, v in per.items():
                 if v != top:
                     problems[key].append(f'{asset}?v={v}, а у остальных карточек v={top}')
+
+    # цены сверяются с калькулятором, когда есть выгрузка tools/inc/prices.json
+    prices = os.path.join(ROOT, 'tools', 'inc', 'prices.json')
+    if os.path.exists(prices):
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import prices_sync
+        spec, errors = prices_sync.load(prices)
+        if errors:
+            problems.setdefault('tools/inc/prices.json', []).extend(errors)
+        else:
+            for slug, where, old, new in prices_sync.plan(spec)[1]:
+                problems.setdefault('proekt-' + slug, []).append(
+                    f'цена «{where}» {prices_sync.rub(old) if old else "—"}, а в калькуляторе {prices_sync.rub(new)} — '
+                    'обновить: python3 tools/prices_sync.py --write')
 
     bad = {k: v for k, v in problems.items() if v}
     print(f'Проверено карточек: {len(pages)}. Без замечаний: {len(pages) - len(bad)}. С замечаниями: {len(bad)}.')

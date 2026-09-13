@@ -242,6 +242,9 @@ img,svg{display:block;max-width:100%}
 }
 .btn--l:hover{border-color:rgb(34 48 76/.38);color:var(--clay-txt)}
 .btn--l:active{transform:translateY(1px);box-shadow:none}
+/* «Заказать звонок» в шапке — синяя: белая кнопка сливалась с белой шапкой */
+.hdr .btn--l[data-callback]{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 6px 14px -8px rgb(34 48 76/.6)}
+.hdr .btn--l[data-callback]:hover{background:#2E3E60;border-color:#2E3E60;color:#fff}
 .btn--2{display:grid;gap:0;align-content:center;text-align:center;padding:var(--sp-8) var(--sp-32)}
 .btn--2 b{font-weight:500;font-size:var(--fs-btn);line-height:1.25}
 .btn--2 span{font-size:var(--fs-xs);opacity:.78;line-height:1.25}

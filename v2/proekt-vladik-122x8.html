@@ -9,9 +9,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css?v=43">
+<link rel="stylesheet" href="base.css?v=44">
 <link rel="stylesheet" href="theme.css?v=41">
-<link rel="stylesheet" href="card.css?v=51">
+<link rel="stylesheet" href="card.css?v=59">
 <link rel="stylesheet" href="foot.css?v=3">
 </head>
 <body>
@@ -114,69 +114,28 @@
     <a class="back" href="./#catalog"><i>←</i>Вернуться в каталог</a>
 
     <section class="prod">
-      <div class="prod__l">
-        <h1 class="prod__t">Владивосток 12,2 × 8</h1>
-        <p class="prod__s">Готовый проект серии «Владивосток» · один этаж, терраса под общей кровлей</p>
-
-        <div class="price">
-          <span class="price__l">Стоимость дома</span>
-          <b class="price__v">от 2 424 925 ₽</b>
+      <div class="prod__head">
+        <div class="prod__ttl">
+          <h1 class="prod__t">Владивосток 12,2 × 8</h1>
+          <p class="prod__s">Готовый проект серии «Владивосток» · один этаж, терраса под общей кровлей</p>
         </div>
-
-        <ul class="specs">
-          <li class="spec"><b>97,6&nbsp;м²</b><span>С террасой 18,25&nbsp;м²</span></li>
-          <li class="spec"><b>79,35&nbsp;м²</b><span>Жилая площадь</span></li>
-          <li class="spec"><b>12,2 × 8 м</b><span>Габариты дома</span></li>
-        </ul>
-
-        <div class="cta">
-          <button type="button" class="cta__go" data-callback>
-            Получить презентацию
-            <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12m0 0 5-5m-5 5-5-5M5 20h14"/></svg></i>
-          </button>
+        <div class="prod__buy">
+          <p class="price"><span class="price__l">Стоимость дома</span><b class="price__v">от 3 614 900 ₽</b></p>
+          <button type="button" class="cta__go" data-callback>Получить презентацию<i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12m0 0 5-5m-5 5-5-5M5 20h14"/></svg></i></button>
         </div>
       </div>
-
-      <figure class="prod__ph">
-        <img src="../img/vladik-122x8-fasad-1.webp" width="960" height="1280"
-             alt="Каркасный дом «Владивосток 12,2 × 8» — фасад с террасой"
-             fetchpriority="high" decoding="async">
-      </figure>
-    </section>
-
-    <section class="sec" id="pakety">
-      <h2 class="sech">Комплектации и цены</h2>
-      <ul class="paks">
-        <li class="pak">
-          <b class="pak__n">Холодный контур</b>
-          <span class="pak__p">2 424 925 ₽</span>
-          <span class="pak__d">Каркас, кровля, фасад, окна и двери</span>
-        </li>
-        <li class="pak">
-          <b class="pak__n">Стандарт</b>
-          <span class="pak__p">2 821 675 ₽</span>
-          <span class="pak__d">Плюс утепление и черновая отделка</span>
-        </li>
-        <li class="pak pak--on">
-          <b class="pak__n">Комфорт</b>
-          <span class="pak__p">3 563 598 ₽</span>
-          <span class="pak__d">Плюс чистовая отделка и коммуникации</span>
-        </li>
-        <li class="pak">
-          <b class="pak__n">Премиум</b>
-          <span class="pak__p">6 432 100 ₽</span>
-          <span class="pak__d">Сечение 200×45, ЖБ-фундамент, полный цикл</span>
-        </li>
+      <ul class="specs">
+        <li class="spec"><span class="spec__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h13V9"/><path d="M9.5 19.5V14h5v5.5"/><path d="M2 21.5h20"/></svg></span><b class="spec__v">97,6<small class="spec__u">&nbsp;м²</small></b><span class="spec__l">С террасой 18,25&nbsp;м²</span></li>
+        <li class="spec"><span class="spec__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11V8.5A2.5 2.5 0 0 1 7.5 6h9A2.5 2.5 0 0 1 19 8.5V11"/><path d="M3 13.5a2 2 0 0 1 4 0V15h10v-1.5a2 2 0 0 1 4 0V18a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18z"/><path d="M6 19.5V21M18 19.5V21"/></svg></span><b class="spec__v">79,35<small class="spec__u">&nbsp;м²</small></b><span class="spec__l">Жилая площадь</span></li>
+        <li class="spec"><span class="spec__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16"/><path d="m6.5 4-2.5 2.5L6.5 9M17.5 4 20 6.5 17.5 9"/><rect x="4" y="12" width="16" height="8.5" rx="1.5"/></svg></span><b class="spec__v">12,2 × 8<small class="spec__u"> м</small></b><span class="spec__l">Габариты дома</span></li>
       </ul>
-      <p class="paks__note">Цена фиксируется в договоре до начала работ. Фундамент считается отдельно —
-         тип выбирает инженер после выезда на участок.</p>
     </section>
+
 
     <section class="sec" id="look">
-      <h2 class="sech">Внешний вид</h2>
       <div class="sld" data-sld id="gal-look" tabindex="0" role="group" aria-label="Фотографии дома снаружи">
         <div class="sld__main">
-          <img class="is-on" src="../img/vladik-122x8-fasad-1.webp" width="960" height="1280" alt="Фасад с террасой" decoding="async" loading="lazy">
+          <img class="is-on" src="../img/vladik-122x8-fasad-1.webp" width="960" height="1280" alt="Фасад с террасой" decoding="async" fetchpriority="high">
           <img src="../img/vladik-122x8-fasad-2.webp" width="960" height="1280" alt="Вид с участка" decoding="async" loading="lazy">
           <img src="../img/vladik-122x8-fasad-3.webp" width="960" height="1280" alt="Вид сбоку" decoding="async" loading="lazy">
           <img src="../img/vladik-122x8-fasad-4.webp" width="960" height="1280" alt="Торцевой фасад" decoding="async" loading="lazy">
@@ -195,139 +154,12 @@
     <section class="sec" id="plan">
       <h2 class="sech">Планировка</h2>
       <div class="pln pln--one" data-pln style="--ar:1.399"><div class="pln__c"><div class="pln__w"><div class="pln__in"><button type="button" class="pln__m" aria-label="Открыть «Планировка» на весь экран"><img class="is-on" src="../img/vladik-122x8-plan-1.webp" width="1100" height="786" alt="Планировка · Чертёж" decoding="async" loading="lazy"><img src="../img/vladik-122x8-plan-2.webp" width="1020" height="766" alt="Планировка · 3D-вид" decoding="async" loading="lazy"><span class="pln__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span></button><div class="pln__s"><button type="button" class="pln__t is-on" aria-pressed="true"><img src="../img/vladik-122x8-plan-1-th.webp" alt=""><span>Чертёж</span></button><button type="button" class="pln__t" aria-pressed="false"><img src="../img/vladik-122x8-plan-2-th.webp" alt=""><span>3D-вид</span></button></div></div></div></div></div>
-      <p class="plan__t">Показаны основные варианты. Состав комнат подбираем под вас —
-         перегородки внутри каркаса переносятся без изменения коробки.</p>
+      <p class="plan__t">Состав комнат подбираем под вас — перегородки внутри каркаса переносятся без изменения коробки.</p>
     </section>
 
     <section class="sec" id="inc">
-      <h2 class="sech">Включено в стоимость</h2>
-      <div class="acc" data-acc>
-        <div class="acc__i">
-          <button type="button" class="acc__h" aria-expanded="false" aria-controls="inc-0">
-            <span>Строительная площадка</span>
-            <span class="acc__ic" aria-hidden="true"></span>
-          </button>
-          <div class="acc__b" id="inc-0">
-            <div>
-              <ul class="spl">
-                <li><b>Выезд инженера на участок</b><span>Бурение, тип почвы, глубина промерзания, уровень грунтовых вод</span></li>
-                <li><b>Бытовка для бригады</b><span>Включено</span></li>
-                <li><b>Туалет на площадке</b><span>Включено</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="acc__i">
-          <button type="button" class="acc__h" aria-expanded="false" aria-controls="inc-1">
-            <span>Силовой каркас (камерной сушки)</span>
-            <span class="acc__ic" aria-hidden="true"></span>
-          </button>
-          <div class="acc__b" id="inc-1">
-            <div>
-              <ul class="spl">
-                <li><b>Материал</b><span>Доска камерной сушки, влажность 12–16%, строганая и калиброванная</span></li>
-                <li><b>Сечение стен</b><span>150×45 мм в «Комфорте», 200×45 мм в «Премиуме»</span></li>
-                <li><b>Шаг стоек</b><span>59 см</span></li>
-                <li><b>Обвязка</b><span>Пакет из трёх досок 140×45 мм</span></li>
-                <li><b>Крепёж</b><span>Оцинкованные гвозди 60/90/120 мм, усиливающие металлические уголки</span></li>
-                <li><b>Защита</b><span>Антисептик на весь каркас</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="acc__i">
-          <button type="button" class="acc__h" aria-expanded="false" aria-controls="inc-2">
-            <span>Крыша и кровля</span>
-            <span class="acc__ic" aria-hidden="true"></span>
-          </button>
-          <div class="acc__b" id="inc-2">
-            <div>
-              <ul class="spl">
-                <li><b>Кровельный материал</b><span>Металлочерепица 0,5 мм</span></li>
-                <li><b>Вентиляционный зазор</b><span>40×40 мм под покрытием</span></li>
-                <li><b>Конёк</b><span>Аэролента под коньком, конёк и ветрозащитные уголки в цвет покрытия</span></li>
-                <li><b>Другой цвет</b><span>Под заказ, 14 дней</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="acc__i">
-          <button type="button" class="acc__h" aria-expanded="false" aria-controls="inc-3">
-            <span>Отделка фасада</span>
-            <span class="acc__ic" aria-hidden="true"></span>
-          </button>
-          <div class="acc__b" id="inc-3">
-            <div>
-              <ul class="spl">
-                <li><b>Чистовой материал стен</b><span>Имитация бруса, класс А/В</span></li>
-                <li><b>Ветро-влагозащита</b><span><!-- ЗАПОЛНИТЬ -->Уточняется</span></li>
-                <li><b>Отлив фундамента</b><span><!-- ЗАПОЛНИТЬ -->Уточняется</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="acc__i">
-          <button type="button" class="acc__h" aria-expanded="false" aria-controls="inc-4">
-            <span>Окна и двери</span>
-            <span class="acc__ic" aria-hidden="true"></span>
-          </button>
-          <div class="acc__b" id="inc-4">
-            <div>
-              <ul class="spl">
-                <li><b>Окна</b><span>ПВХ с трёхкамерным зимним остеклением — во всех комплектациях</span></li>
-                <li><b>Входная дверь</b><span>Металлическая</span></li>
-                <li><b>Межкомнатные двери</b><span><!-- ЗАПОЛНИТЬ -->Уточняется</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="acc__i">
-          <button type="button" class="acc__h" aria-expanded="false" aria-controls="inc-5">
-            <span>Утепление и подготовка</span>
-            <span class="acc__ic" aria-hidden="true"></span>
-          </button>
-          <div class="acc__b" id="inc-5">
-            <div>
-              <ul class="spl">
-                <li><b>Утеплитель</b><span>Базальтовая вата Технониколь, плотность 25 или 35 кг/м³</span></li>
-                <li><b>Толщина</b><span>150 мм в «Комфорте», 200 мм в «Премиуме» — стены, пол и потолок</span></li>
-                <li><b>Снизу дома</b><span>Сетка от грызунов</span></li>
-                <li><b>Пароизоляция</b><span><!-- ЗАПОЛНИТЬ -->Уточняется</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="acc__i">
-          <button type="button" class="acc__h" aria-expanded="false" aria-controls="inc-6">
-            <span>Отделка внутри</span>
-            <span class="acc__ic" aria-hidden="true"></span>
-          </button>
-          <div class="acc__b" id="inc-6">
-            <div>
-              <ul class="spl">
-                <li><b>Стены и потолок</b><span><!-- ЗАПОЛНИТЬ -->Уточняется</span></li>
-                <li><b>Покрытие пола</b><span><!-- ЗАПОЛНИТЬ -->Уточняется</span></li>
-                <li><b>Санузел</b><span><!-- ЗАПОЛНИТЬ -->Уточняется</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="acc__i">
-          <button type="button" class="acc__h" aria-expanded="false" aria-controls="inc-7">
-            <span>Инженерные коммуникации</span>
-            <span class="acc__ic" aria-hidden="true"></span>
-          </button>
-          <div class="acc__b" id="inc-7">
-            <div>
-              <ul class="spl">
-                <li><b>Закладные</b><span>Отверстия под трубы предусмотрены</span></li>
-                <li><b>Сантехника</b><span><!-- ЗАПОЛНИТЬ -->Уточняется</span></li>
-                <li><b>Электрика</b><span><!-- ЗАПОЛНИТЬ -->Уточняется</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h2 class="sech">Цены и комплектации</h2>
+      <div class="inc" data-inc><div class="inc-t" tabindex="0" role="region" aria-label="Что входит в комплектации"><table><thead><tr><th scope="col" class="inc-c0"><span class="inc-cap">Что входит</span></th><th scope="col" class="inc-h"><span class="inc-n">Холодный контур</span><b class="inc-p">3 614 900 ₽</b></th><th scope="col" class="inc-h is-us"><span class="inc-n">Комфорт</span><b class="inc-p">4 103 400 ₽</b></th><th scope="col" class="inc-h"><span class="inc-n">Премиум</span><b class="inc-p">4 982 700 ₽</b></th></tr></thead><tbody><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-0-0 inc-0-1 inc-0-2 inc-0-3 inc-0-4 inc-0-5 inc-0-6 inc-0-7"><span>Фундамент</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-val">Винтовые сваи</span></td><td class="inc-cell is-us"><span class="inc-pill is-val">Винтовые сваи</span></td><td class="inc-cell"><span class="inc-pill is-val">ЖБУ</span></td></tr><tr class="inc-d" id="inc-0-0" hidden><th scope="row" class="inc-c0">Тип</th><td>Металлический свайно-винтовой</td><td class="is-us">Металлический свайно-винтовой</td><td>ЖБУ</td></tr><tr class="inc-d" id="inc-0-1" hidden><th scope="row" class="inc-c0">Сваи</th><td>Диаметр 89&nbsp;мм, длина 2,5&nbsp;м, винт 15&nbsp;см</td><td class="is-us">Диаметр 89&nbsp;мм, длина 2,5&nbsp;м, винт 15&nbsp;см</td><td>Диаметр 150&nbsp;мм, длина 3&nbsp;м, без винта</td></tr><tr class="inc-d" id="inc-0-2" hidden><th scope="row" class="inc-c0">Заполнение свай</th><td>Пескобетон М200</td><td class="is-us">Пескобетон М200</td><td>Цельный бетон</td></tr><tr class="inc-d" id="inc-0-3" hidden><th scope="row" class="inc-c0">Толщина лопасти</th><td>4&nbsp;мм</td><td class="is-us">4&nbsp;мм</td><td>—</td></tr><tr class="inc-d" id="inc-0-4" hidden><th scope="row" class="inc-c0">Защита</th><td>Антикоррозийное покрытие, рубероид на оголовке</td><td class="is-us">Антикоррозийное покрытие, рубероид на оголовке</td><td>Антикоррозийное покрытие и рубероид на оголовке</td></tr><tr class="inc-d" id="inc-0-5" hidden><th scope="row" class="inc-c0">Геотекстиль вокруг свай</th><td>—</td><td class="is-us">—</td><td>Есть</td></tr><tr class="inc-d" id="inc-0-6" hidden><th scope="row" class="inc-c0">Оголовок сваи</th><td>15&nbsp;см</td><td class="is-us">15&nbsp;см</td><td>15&nbsp;см</td></tr><tr class="inc-d" id="inc-0-7" hidden><th scope="row" class="inc-c0">Количество свай</th><td>По размеру дома, шаг 2&nbsp;м</td><td class="is-us">По размеру дома, шаг 2&nbsp;м</td><td>По размеру дома, шаг 2&nbsp;м</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-1-0 inc-1-1 inc-1-2 inc-1-3 inc-1-4 inc-1-5 inc-1-6 inc-1-7"><span>Каркас</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-val">145×45&nbsp;мм</span></td><td class="inc-cell is-us"><span class="inc-pill is-val">145×45&nbsp;мм</span></td><td class="inc-cell"><span class="inc-pill is-val">200×45&nbsp;мм</span></td></tr><tr class="inc-d" id="inc-1-0" hidden><th scope="row" class="inc-c0">Доска</th><td>Сухая, камерной сушки</td><td class="is-us">Сухая, камерной сушки</td><td>Сухая, камерной сушки</td></tr><tr class="inc-d" id="inc-1-1" hidden><th scope="row" class="inc-c0">Стены</th><td>145×45&nbsp;мм</td><td class="is-us">145×45&nbsp;мм</td><td>200×45&nbsp;мм</td></tr><tr class="inc-d" id="inc-1-2" hidden><th scope="row" class="inc-c0">Кровля и пол</th><td>145×45&nbsp;мм</td><td class="is-us">145×45&nbsp;мм</td><td>195×45&nbsp;мм</td></tr><tr class="inc-d" id="inc-1-3" hidden><th scope="row" class="inc-c0">Обвязка</th><td>Пакет из трёх досок 145×45&nbsp;мм (145×135&nbsp;мм)</td><td class="is-us">Пакет из трёх досок 145×45&nbsp;мм (145×135&nbsp;мм)</td><td>Пакет из трёх досок 145×45&nbsp;мм (145×135&nbsp;мм)</td></tr><tr class="inc-d" id="inc-1-4" hidden><th scope="row" class="inc-c0">Шаг стоек</th><td>59&nbsp;см</td><td class="is-us">59&nbsp;см</td><td>59&nbsp;см</td></tr><tr class="inc-d" id="inc-1-5" hidden><th scope="row" class="inc-c0">Крепёж</th><td>Оцинкованные гвозди 60/90/120&nbsp;мм, усиливающие металлические уголки</td><td class="is-us">Оцинкованные гвозди 60/90/120&nbsp;мм, усиливающие металлические уголки</td><td>Оцинкованные гвозди 60/90/120&nbsp;мм, усиливающие металлические уголки</td></tr><tr class="inc-d" id="inc-1-6" hidden><th scope="row" class="inc-c0">Антисептик</th><td>Основание и подшивка пола</td><td class="is-us">Основание и подшивка пола</td><td>Основание и подшивка пола</td></tr><tr class="inc-d" id="inc-1-7" hidden><th scope="row" class="inc-c0">Высота стен</th><td>По краям 250&nbsp;см, в центре 400&nbsp;см</td><td class="is-us">По краям 250&nbsp;см, в центре 400&nbsp;см</td><td>По краям 270&nbsp;см, в центре 420&nbsp;см</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-2-0 inc-2-1 inc-2-2 inc-2-3 inc-2-4 inc-2-5 inc-2-6 inc-2-7"><span>Кровля</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell is-us"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell"><span class="inc-pill is-val">С водостоком</span></td></tr><tr class="inc-d" id="inc-2-0" hidden><th scope="row" class="inc-c0">Форма</th><td>Два ската, потолок под конёк</td><td class="is-us">Два ската, потолок под конёк</td><td>Два ската, потолок под конёк</td></tr><tr class="inc-d" id="inc-2-1" hidden><th scope="row" class="inc-c0">Покрытие</th><td>Металлочерепица 0,5&nbsp;мм с антикоррозийным покрытием</td><td class="is-us">Металлочерепица 0,5&nbsp;мм с антикоррозийным покрытием</td><td>Металлочерепица 0,5&nbsp;мм с антикоррозийным покрытием</td></tr><tr class="inc-d" id="inc-2-2" hidden><th scope="row" class="inc-c0">Цвет</th><td>RAL&nbsp;7024 или RAL&nbsp;8017, другой — под заказ, 14 дней после полной оплаты</td><td class="is-us">RAL&nbsp;7024 или RAL&nbsp;8017, другой — под заказ, 14 дней после полной оплаты</td><td>RAL&nbsp;7024 или RAL&nbsp;8017, другой — под заказ, 14 дней после полной оплаты</td></tr><tr class="inc-d" id="inc-2-3" hidden><th scope="row" class="inc-c0">Ветрозащита и гидроизоляция</th><td>Технониколь АМ Альфа, плотность 150</td><td class="is-us">Технониколь АМ Альфа, плотность 150</td><td>Технониколь АМ Альфа, плотность 150</td></tr><tr class="inc-d" id="inc-2-4" hidden><th scope="row" class="inc-c0">Вентиляционный зазор</th><td>Контробрешётка 40×40&nbsp;мм</td><td class="is-us">Контробрешётка 40×40&nbsp;мм</td><td>Контробрешётка 40×40&nbsp;мм</td></tr><tr class="inc-d" id="inc-2-5" hidden><th scope="row" class="inc-c0">Детали</th><td>Конёк и ветровые уголки из металла в цвет кровли, аэролента, прорезиненные саморезы</td><td class="is-us">Конёк и ветровые уголки из металла в цвет кровли, аэролента, прорезиненные саморезы</td><td>Конёк и ветровые уголки из металла в цвет кровли, аэролента, прорезиненные саморезы</td></tr><tr class="inc-d" id="inc-2-6" hidden><th scope="row" class="inc-c0">Размеры</th><td>Высота 150&nbsp;см, вынос 50&nbsp;см, вынос подшит имитацией бруса АБ</td><td class="is-us">Высота 150&nbsp;см, вынос 50&nbsp;см, вынос подшит имитацией бруса АБ</td><td>Высота 150&nbsp;см, вынос 50&nbsp;см, вынос подшит имитацией бруса АБ</td></tr><tr class="inc-d" id="inc-2-7" hidden><th scope="row" class="inc-c0">Снегозадержатели и водосток</th><td>—</td><td class="is-us">—</td><td>Есть</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-3-0 inc-3-1 inc-3-2 inc-3-3 inc-3-4"><span>Фасад</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell is-us"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td></tr><tr class="inc-d" id="inc-3-0" hidden><th scope="row" class="inc-c0">Отделка</th><td>Имитация бруса АБ класса</td><td class="is-us">Имитация бруса АБ класса</td><td>Имитация бруса АБ класса</td></tr><tr class="inc-d" id="inc-3-1" hidden><th scope="row" class="inc-c0">Ветрозащита стен и пола</th><td>Izobox премиум, Технониколь</td><td class="is-us">Izobox премиум, Технониколь</td><td>Izobox премиум, Технониколь</td></tr><tr class="inc-d" id="inc-3-2" hidden><th scope="row" class="inc-c0">Вентиляционный зазор</th><td>Контробрешётка 40×40&nbsp;мм</td><td class="is-us">Контробрешётка 40×40&nbsp;мм</td><td>Контробрешётка 40×40&nbsp;мм</td></tr><tr class="inc-d" id="inc-3-3" hidden><th scope="row" class="inc-c0">Стыки и углы</th><td>Шлифованная рейка 40×10&nbsp;мм и уголок 40×40&nbsp;мм</td><td class="is-us">Шлифованная рейка 40×10&nbsp;мм и уголок 40×40&nbsp;мм</td><td>Шлифованная рейка 40×10&nbsp;мм и уголок 40×40&nbsp;мм</td></tr><tr class="inc-d" id="inc-3-4" hidden><th scope="row" class="inc-c0">Монтаж отделки</th><td>На оцинкованные гвозди</td><td class="is-us">На оцинкованные гвозди</td><td>На оцинкованные гвозди</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-4-0 inc-4-1 inc-4-2 inc-4-3 inc-4-4"><span>Утепление</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-no">Нет</span></td><td class="inc-cell is-us"><span class="inc-pill is-val">150&nbsp;мм</span></td><td class="inc-cell"><span class="inc-pill is-val">200&nbsp;мм</span></td></tr><tr class="inc-d" id="inc-4-0" hidden><th scope="row" class="inc-c0">Утеплитель</th><td>—</td><td class="is-us">Базальтовые плиты высшего класса, Технониколь</td><td>Базальтовые плиты высшего класса, Технониколь</td></tr><tr class="inc-d" id="inc-4-1" hidden><th scope="row" class="inc-c0">Стены, пол и потолок</th><td>—</td><td class="is-us">150&nbsp;мм</td><td>200&nbsp;мм</td></tr><tr class="inc-d" id="inc-4-2" hidden><th scope="row" class="inc-c0">Плотность</th><td>—</td><td class="is-us">25&nbsp;кг/м³</td><td>35&nbsp;кг/м³</td></tr><tr class="inc-d" id="inc-4-3" hidden><th scope="row" class="inc-c0">Пароизоляция</th><td>—</td><td class="is-us">Плёнка 200&nbsp;микрон</td><td>Плёнка 200&nbsp;микрон</td></tr><tr class="inc-d" id="inc-4-4" hidden><th scope="row" class="inc-c0">Проклейка плёнок</th><td>Монтажный скотч Технониколь Альфа или аналог</td><td class="is-us">Монтажный скотч Технониколь Альфа или аналог</td><td>Монтажный скотч Технониколь Альфа или аналог</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-5-0 inc-5-1 inc-5-2 inc-5-3 inc-5-4 inc-5-5 inc-5-6"><span>Окна и входная дверь</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell is-us"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td></tr><tr class="inc-d" id="inc-5-0" hidden><th scope="row" class="inc-c0">Окна</th><td>ПВХ, профиль 70&nbsp;мм, три стекла — зимнее остекление</td><td class="is-us">ПВХ, профиль 70&nbsp;мм, три стекла — зимнее остекление</td><td>ПВХ, профиль 70&nbsp;мм, три стекла — зимнее остекление</td></tr><tr class="inc-d" id="inc-5-1" hidden><th scope="row" class="inc-c0">Монтаж окон</th><td>Демисезонная монтажная пена</td><td class="is-us">Демисезонная монтажная пена</td><td>Демисезонная монтажная пена</td></tr><tr class="inc-d" id="inc-5-2" hidden><th scope="row" class="inc-c0">Наличники окон</th><td>Снаружи рейка 60×10&nbsp;мм</td><td class="is-us">Снаружи рейка 60×10&nbsp;мм, внутри уголок 40×40&nbsp;мм</td><td>Снаружи рейка 60×10&nbsp;мм, внутри уголок 40×40&nbsp;мм</td></tr><tr class="inc-d" id="inc-5-3" hidden><th scope="row" class="inc-c0">Входная дверь</th><td>Металлическая, «Триумф» класса «Премиум РФ» или аналог, 205×90&nbsp;см</td><td class="is-us">Металлическая, «Триумф» класса «Премиум РФ» или аналог, 205×90&nbsp;см</td><td>Металлическая, «Триумф» класса «Премиум РФ» или аналог, 205×90&nbsp;см</td></tr><tr class="inc-d" id="inc-5-4" hidden><th scope="row" class="inc-c0">Полотно двери</th><td>Металл 1,2&nbsp;мм, толщина 70&nbsp;мм, утеплено пенополистиролом, 2 замка</td><td class="is-us">Металл 1,2&nbsp;мм, толщина 70&nbsp;мм, утеплено пенополистиролом, 2 замка</td><td>Металл 1,2&nbsp;мм, толщина 70&nbsp;мм, утеплено пенополистиролом, 2 замка</td></tr><tr class="inc-d" id="inc-5-5" hidden><th scope="row" class="inc-c0">Отделка двери</th><td>Внутри МДФ 6&nbsp;мм «сандал», снаружи «антик тёмное серебро»</td><td class="is-us">Внутри МДФ 6&nbsp;мм «сандал», снаружи «антик тёмное серебро»</td><td>Внутри МДФ 6&nbsp;мм «сандал», снаружи «антик тёмное серебро»</td></tr><tr class="inc-d" id="inc-5-6" hidden><th scope="row" class="inc-c0">Наличники двери</th><td>Снаружи заводские металлические, внутри уголок 40×40&nbsp;мм</td><td class="is-us">Снаружи заводские металлические, внутри уголок 40×40&nbsp;мм</td><td>Снаружи заводские металлические, внутри уголок 40×40&nbsp;мм</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-6-0 inc-6-1 inc-6-2 inc-6-3 inc-6-4 inc-6-5"><span>Полы</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-no">Нет</span></td><td class="inc-cell is-us"><span class="inc-pill is-val">ЦСП 15&nbsp;мм</span></td><td class="inc-cell"><span class="inc-pill is-val">Доска 140×35&nbsp;мм</span></td></tr><tr class="inc-d" id="inc-6-0" hidden><th scope="row" class="inc-c0">Чистовой пол</th><td>—</td><td class="is-us">ЦСП-плита 15&nbsp;мм</td><td>Шпунтованная доска 140×35&nbsp;мм</td></tr><tr class="inc-d" id="inc-6-1" hidden><th scope="row" class="inc-c0">Черновой пол</th><td>—</td><td class="is-us">Доска 90×20&nbsp;мм, шаг 10&nbsp;см</td><td>Доска 90×20&nbsp;мм, шаг 10&nbsp;см</td></tr><tr class="inc-d" id="inc-6-2" hidden><th scope="row" class="inc-c0">Пол в санузле</th><td>—</td><td class="is-us">ЦСП-плита 15&nbsp;мм</td><td>ЦСП-плита 15&nbsp;мм</td></tr><tr class="inc-d" id="inc-6-3" hidden><th scope="row" class="inc-c0">Плинтусы</th><td>—</td><td class="is-us">Деревянные</td><td>Деревянные</td></tr><tr class="inc-d" id="inc-6-4" hidden><th scope="row" class="inc-c0">Подшивка снизу</th><td>Доска 90×20&nbsp;мм, шаг 10&nbsp;см</td><td class="is-us">Доска 90×20&nbsp;мм, шаг 10&nbsp;см</td><td>Доска 90×20&nbsp;мм, шаг 10&nbsp;см</td></tr><tr class="inc-d" id="inc-6-5" hidden><th scope="row" class="inc-c0">Усиление и защита</th><td>Поперечное усиление пола, сетка от грызунов</td><td class="is-us">Поперечное усиление пола, сетка от грызунов</td><td>Поперечное усиление пола, сетка от грызунов</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-7-0 inc-7-1 inc-7-2 inc-7-3"><span>Отделка внутри</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-no">Нет</span></td><td class="inc-cell is-us"><span class="inc-pill is-val">Вагонка</span></td><td class="inc-cell"><span class="inc-pill is-val">Вагонка</span></td></tr><tr class="inc-d" id="inc-7-0" hidden><th scope="row" class="inc-c0">Стены и потолок</th><td>—</td><td class="is-us">Вагонка премиум, АБ класс</td><td>Вагонка премиум, АБ класс</td></tr><tr class="inc-d" id="inc-7-1" hidden><th scope="row" class="inc-c0">Перегородки</th><td>Каркас 95×45&nbsp;мм</td><td class="is-us">Каркас 95×45&nbsp;мм, вагонка премиум АБ</td><td>Каркас 95×45&nbsp;мм, вагонка премиум АБ</td></tr><tr class="inc-d" id="inc-7-2" hidden><th scope="row" class="inc-c0">Санузел</th><td>—</td><td class="is-us">Вагонка БС класса</td><td>Влагостойкий гипсокартон</td></tr><tr class="inc-d" id="inc-7-3" hidden><th scope="row" class="inc-c0">Межкомнатные двери</th><td>—</td><td class="is-us">Филенчатые 190×80&nbsp;см, наличники из рейки и уголка</td><td>Филенчатые 190×80&nbsp;см, наличники из рейки и уголка</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-8-0 inc-8-1 inc-8-2 inc-8-3"><span>Терраса</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell is-us"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td></tr><tr class="inc-d" id="inc-8-0" hidden><th scope="row" class="inc-c0">Пол</th><td>Террасная доска из лиственницы 140×35&nbsp;мм</td><td class="is-us">Террасная доска из лиственницы 140×35&nbsp;мм</td><td>Террасная доска из лиственницы 140×35&nbsp;мм</td></tr><tr class="inc-d" id="inc-8-1" hidden><th scope="row" class="inc-c0">Перила и стойки</th><td>Шлифованная доска</td><td class="is-us">Шлифованная доска</td><td>Шлифованная доска</td></tr><tr class="inc-d" id="inc-8-2" hidden><th scope="row" class="inc-c0">Потолок</th><td>Зашит имитацией бруса АБ</td><td class="is-us">Зашит имитацией бруса АБ</td><td>Зашит имитацией бруса АБ</td></tr><tr class="inc-d" id="inc-8-3" hidden><th scope="row" class="inc-c0">Ступени</th><td>Есть, 2&nbsp;м</td><td class="is-us">Есть, 2&nbsp;м</td><td>Есть, 3&nbsp;м</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-9-0 inc-9-1 inc-9-2 inc-9-3 inc-9-4"><span>Инженерные системы</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-no">Нет</span></td><td class="inc-cell is-us"><span class="inc-pill is-no">Нет</span></td><td class="inc-cell"><span class="inc-pill is-val">Вытяжка в санузле</span></td></tr><tr class="inc-d" id="inc-9-0" hidden><th scope="row" class="inc-c0">Закладные отверстия под трубы</th><td>Есть</td><td class="is-us">Есть</td><td>Есть</td></tr><tr class="inc-d" id="inc-9-1" hidden><th scope="row" class="inc-c0">Вытяжка в санузле</th><td>—</td><td class="is-us">—</td><td>Настенная</td></tr><tr class="inc-d" id="inc-9-2" hidden><th scope="row" class="inc-c0">Электрика</th><td>—</td><td class="is-us">—</td><td>—</td></tr><tr class="inc-d" id="inc-9-3" hidden><th scope="row" class="inc-c0">Водопровод, канализация, сантехника</th><td>—</td><td class="is-us">—</td><td>—</td></tr><tr class="inc-d" id="inc-9-4" hidden><th scope="row" class="inc-c0">Отопление и тёплый пол</th><td>—</td><td class="is-us">—</td><td>—</td></tr></tbody></table></div><div class="inc-f"><p class="inc-note">Цена фиксируется в договоре до начала работ. В цену входят все работы по сборке дома, погрузка, разгрузка и доставка до 100&nbsp;км.</p><button type="button" class="inc-all" aria-expanded="false">Раскрыть всё</button></div></div>
     </section>
 
     <section class="sec" id="exc">
@@ -335,45 +167,78 @@
       <div class="acc" data-acc>
         <div class="acc__i">
           <button type="button" class="acc__h" aria-expanded="false" aria-controls="exc-0">
-            <span>Свайно-винтовой фундамент</span>
+            <span>Электрика</span>
             <span class="acc__ic" aria-hidden="true"></span>
           </button>
           <div class="acc__b" id="exc-0">
             <div>
-              <p>Свая 89 мм, длина 2,5 м, засыпка пескобетоном М200. Тип фундамента выбирает инженер после выезда на участок.</p>
+              <p>Разводка, розетки, выключатели, светильники и щиток не входят ни в одну комплектацию.</p>
             </div>
           </div>
         </div>
         <div class="acc__i">
           <button type="button" class="acc__h" aria-expanded="false" aria-controls="exc-1">
-            <span>Железобетонный фундамент</span>
+            <span>Водопровод и сантехника</span>
             <span class="acc__ic" aria-hidden="true"></span>
           </button>
           <div class="acc__b" id="exc-1">
             <div>
-              <p>ЖБУ — входит в «Премиум», в остальных комплектациях считается отдельно.</p>
+              <p>Трубы, канализация, бойлер, унитаз, раковина, душ и смесители не входят. Закладные отверстия под трубы в доме есть.</p>
             </div>
           </div>
         </div>
         <div class="acc__i">
           <button type="button" class="acc__h" aria-expanded="false" aria-controls="exc-2">
-            <span>Покраска фасада на производстве</span>
+            <span>Отопление</span>
             <span class="acc__ic" aria-hidden="true"></span>
           </button>
           <div class="acc__b" id="exc-2">
             <div>
-              <p><!-- ЗАПОЛНИТЬ -->Уточняется.</p>
+              <p>Радиаторы и тёплый пол не входят.</p>
             </div>
           </div>
         </div>
         <div class="acc__i">
           <button type="button" class="acc__h" aria-expanded="false" aria-controls="exc-3">
-            <span>Ламинация окон</span>
+            <span>Вентиляция</span>
             <span class="acc__ic" aria-hidden="true"></span>
           </button>
           <div class="acc__b" id="exc-3">
             <div>
-              <p><!-- ЗАПОЛНИТЬ -->Уточняется.</p>
+              <p>Приточные клапаны и вытяжка на кухне не входят. Вытяжка в санузле есть только в «Премиуме».</p>
+            </div>
+          </div>
+        </div>
+        <div class="acc__i">
+          <button type="button" class="acc__h" aria-expanded="false" aria-controls="exc-4">
+            <span>Покраска</span>
+            <span class="acc__ic" aria-hidden="true"></span>
+          </button>
+          <div class="acc__b" id="exc-4">
+            <div>
+              <p>Дом не красится ни снаружи, ни внутри.</p>
+            </div>
+          </div>
+        </div>
+        <div class="acc__i">
+          <button type="button" class="acc__h" aria-expanded="false" aria-controls="exc-5">
+            <span>Зашивка цоколя</span>
+            <span class="acc__ic" aria-hidden="true"></span>
+          </button>
+          <div class="acc__b" id="exc-5">
+            <div>
+              <p>Не входит ни в одну комплектацию.</p>
+            </div>
+          </div>
+        </div>
+        <div class="acc__i">
+          <button type="button" class="acc__h" aria-expanded="false" aria-controls="exc-6">
+            <span>Доставка дальше 100&nbsp;км</span>
+            <span class="acc__ic" aria-hidden="true"></span>
+          </button>
+          <div class="acc__b" id="exc-6">
+            <div>
+              <p>До 100&nbsp;км доставка бесплатная, дальше оплачивается отдельно.</p>
             </div>
           </div>
         </div>
@@ -382,8 +247,7 @@
 
     <section class="tail">
       <b>Нравится проект?</b>
-      <p>Пришлём презентацию с планировками, комплектацией и ценой — или перезвоним
-         и ответим на вопросы по этому дому.</p>
+      <p>Пришлём презентацию с планировками, комплектацией и ценой — или перезвоним и ответим на вопросы по этому дому.</p>
       <button type="button" class="btn btn--l" data-callback>Заказать звонок</button>
     </section>
 
@@ -458,6 +322,6 @@
 
 <script src="form.js?v=40"></script>
 <script src="header.js?v=44"></script>
-<script src="card.js?v=3"></script>
+<script src="card.js?v=7"></script>
 </body>
 </html>

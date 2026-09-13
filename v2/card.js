@@ -83,7 +83,7 @@
   var blocks = [].slice.call(document.querySelectorAll('[data-pln]'));
   if (!blocks.length) return;
 
-  var box, title, segC, segV, pic, shut, back = null;
+  var box, title, segC, segV, pic, side, shut, back = null;
   var st = { cards: [], c: 0, v: 0 };
 
   function el(tag, cls, text) {
@@ -140,7 +140,13 @@
     var stage = el('div', 'plx__stage');
     pic = el('img');
     stage.appendChild(pic);
-    box.appendChild(bar); box.appendChild(stage);
+    /* описание плана справа от картинки — если у планировки оно есть */
+    side = el('div', 'plx__side');
+    side.hidden = true;
+    side.tabIndex = 0;
+    side.setAttribute('role', 'region');
+    side.setAttribute('aria-label', 'Описание плана');
+    box.appendChild(bar); box.appendChild(stage); box.appendChild(side);
     document.body.appendChild(box);
 
     shut.addEventListener('click', close);
@@ -178,6 +184,11 @@
     seg(segV, v.map(function (x, i) { return names[i] || (i ? '3D-вид' : 'Чертёж'); }), st.v, function (i) { st.v = i; draw(); });
     pic.src = v[st.v].src;
     pic.alt = v[st.v].alt;
+    var n = card.getAttribute('data-n');
+    var txt = n && document.querySelector('.pld__p[data-pane="' + n + '"] .pld__txt');
+    box.classList.toggle('plx--side', !!txt);
+    side.hidden = !txt;
+    if (txt) { side.innerHTML = txt.innerHTML; side.scrollTop = 0; }
   }
 
   function open(cards, c, v, trigger) {
@@ -195,4 +206,104 @@
     document.documentElement.style.overflow = '';
     if (back) back.focus();
   }
+}());
+
+/* ── описание планировок ────────────────────────────
+   Кнопка «Описание плана» открывает панель справа: план и полный разбор,
+   внутри переключаются планировки.
+   Разметку собирает tools/plan_block.py из описания модели. */
+(function () {
+  var d = document.getElementById('pld');
+  if (d && d.showModal) {
+    var seg = [].slice.call(d.querySelectorAll('.pld__seg button'));
+    var panes = [].slice.call(d.querySelectorAll('.pld__p'));
+    var body = d.querySelector('.pld__b');
+    var back = null;
+
+    function show(n) {
+      seg.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-n') === n ? 'true' : 'false'); });
+      panes.forEach(function (p) { p.hidden = p.getAttribute('data-pane') !== n; });
+      body.scrollTop = 0;
+    }
+
+    document.querySelectorAll('[data-pld]').forEach(function (b) {
+      b.addEventListener('click', function () { back = b; show(b.getAttribute('data-pld')); d.showModal(); });
+    });
+    seg.forEach(function (b) { b.addEventListener('click', function () { show(b.getAttribute('data-n')); }); });
+    d.querySelector('[data-close]').addEventListener('click', function () { d.close(); });
+    /* нажатие на затемнение слева от панели закрывает её */
+    d.addEventListener('click', function (e) { if (e.target === d && e.clientX < d.getBoundingClientRect().left) d.close(); });
+    d.addEventListener('close', function () { if (back) back.focus({ preventScroll: true }); });
+
+    /* план в панели: «Чертёж / 3D-вид»; нажатие — на весь экран с тем же видом */
+    d.querySelectorAll('.pld__fig').forEach(function (f) {
+      var imgs = [].slice.call(f.querySelectorAll('.pld__m img'));
+      var vs = [].slice.call(f.querySelectorAll('.pld__v button'));
+      var k = 0;
+      vs.forEach(function (b, i) {
+        b.addEventListener('click', function () {
+          k = i;
+          imgs.forEach(function (im, j) { im.classList.toggle('is-on', j === i); });
+          vs.forEach(function (x, j) { x.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+        });
+      });
+      f.querySelector('.pld__m').addEventListener('click', function () {
+        var card = document.querySelector('.pln__c[data-n="' + f.getAttribute('data-n') + '"]');
+        if (!card) return;
+        back = null;   /* фокус остаётся в окне просмотра, а не у кнопки под ним */
+        d.close();
+        var tiles = card.querySelectorAll('.pln__t');
+        if (tiles[k]) tiles[k].click();
+        card.querySelector('.pln__m').click();
+      });
+    });
+  }
+}());
+
+/* ── включено в стоимость ───────────────────────────
+   Нажатие на раздел раскрывает подробности, кнопка — все разделы сразу.
+   Разметку собирает tools/inc_block.py. */
+(function () {
+  document.querySelectorAll('[data-inc]').forEach(function (box) {
+    var tgs = [].slice.call(box.querySelectorAll('button.inc-tg'));
+    var all = box.querySelector('.inc-all');
+    function set(b, open) {
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      b.getAttribute('aria-controls').split(' ').forEach(function (id) {
+        var r = document.getElementById(id);
+        if (r) r.hidden = !open;
+      });
+    }
+    tgs.forEach(function (b) {
+      b.addEventListener('click', function () { set(b, b.getAttribute('aria-expanded') !== 'true'); });
+    });
+    if (all) all.addEventListener('click', function () {
+      var open = all.getAttribute('aria-expanded') !== 'true';
+      tgs.forEach(function (b) { set(b, open); });
+      all.setAttribute('aria-expanded', open ? 'true' : 'false');
+      all.textContent = open ? 'Свернуть всё' : 'Раскрыть всё';
+    });
+
+    /* телефон и планшет: одна комплектация за раз — переключатель над таблицей */
+    var heads = [].slice.call(box.querySelectorAll('thead th.inc-h'));
+    if (heads.length < 2) return;
+    var sw = document.createElement('div');
+    sw.className = 'inc-sw';
+    sw.setAttribute('role', 'group');
+    sw.setAttribute('aria-label', 'Комплектация');
+    function pick(i) {
+      box.setAttribute('data-pick', String(i));
+      [].forEach.call(sw.children, function (b, k) { b.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+    }
+    heads.forEach(function (h, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = h.querySelector('.inc-n').textContent;
+      b.addEventListener('click', function () { pick(i); });
+      sw.appendChild(b);
+    });
+    box.insertBefore(sw, box.firstChild);
+    var us = heads.map(function (h) { return h.classList.contains('is-us'); }).indexOf(true);
+    pick(us < 0 ? 0 : us);
+  });
 }());
