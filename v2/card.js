@@ -75,3 +75,124 @@
   });
 
 }());
+
+/* ── планировки: чертёж и 3D рядом, по нажатию — на весь экран ──
+   Разметка: [data-pln] > .pln__c > .pln__m (кадры) + .pln__t (плитки вида).
+   Окно просмотра одно на страницу и собирается при первом открытии. */
+(function () {
+  var blocks = [].slice.call(document.querySelectorAll('[data-pln]'));
+  if (!blocks.length) return;
+
+  var box, title, segC, segV, pic, shut, back = null;
+  var st = { cards: [], c: 0, v: 0 };
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function views(card) {
+    return [].slice.call(card.querySelectorAll('.pln__m img')).map(function (im) {
+      return { src: im.currentSrc || im.src, alt: im.getAttribute('alt') || '' };
+    });
+  }
+
+  function label(card, i) {
+    var h = card.querySelector('.pln__h');
+    return h ? h.textContent.split(' · ')[0] : 'Вариант ' + (i + 1);
+  }
+
+  blocks.forEach(function (block) {
+    var cards = [].slice.call(block.querySelectorAll('.pln__c'));
+    cards.forEach(function (card, ci) {
+      var imgs  = [].slice.call(card.querySelectorAll('.pln__m img'));
+      var tiles = [].slice.call(card.querySelectorAll('.pln__t'));
+      card._v = 0;
+      function show(k) {
+        card._v = k;
+        imgs.forEach(function (im, i) { im.classList.toggle('is-on', i === k); });
+        tiles.forEach(function (t, i) {
+          t.classList.toggle('is-on', i === k);
+          t.setAttribute('aria-pressed', i === k ? 'true' : 'false');
+        });
+      }
+      tiles.forEach(function (t, i) { t.addEventListener('click', function () { show(i); }); });
+      card.querySelector('.pln__m').addEventListener('click', function () { open(cards, ci, card._v, this); });
+      show(0);
+    });
+  });
+
+  function build() {
+    box = el('div', 'plx');
+    box.hidden = true;
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Планировка на весь экран');
+    var bar = el('div', 'plx__bar');
+    title = el('b', 'plx__t');
+    segC = el('div', 'plx__seg');
+    segV = el('div', 'plx__seg');
+    shut = el('button', 'plx__x', 'Закрыть');
+    shut.type = 'button';
+    bar.appendChild(title); bar.appendChild(segC); bar.appendChild(segV); bar.appendChild(shut);
+    var stage = el('div', 'plx__stage');
+    pic = el('img');
+    stage.appendChild(pic);
+    box.appendChild(bar); box.appendChild(stage);
+    document.body.appendChild(box);
+
+    shut.addEventListener('click', close);
+    box.addEventListener('click', function (e) { if (e.target === box) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (box.hidden) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key !== 'Tab') return;
+      var f = [].slice.call(box.querySelectorAll('button')).filter(function (b) { return b.offsetParent; });
+      var i = f.indexOf(document.activeElement);
+      if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+    });
+  }
+
+  function seg(host, labels, active, pick) {
+    host.textContent = '';
+    host.hidden = labels.length < 2;
+    labels.forEach(function (text, i) {
+      var b = el('button', i === active ? 'is-on' : '', text);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', i === active ? 'true' : 'false');
+      b.addEventListener('click', function () { pick(i); });
+      host.appendChild(b);
+    });
+  }
+
+  function draw() {
+    var card = st.cards[st.c], v = views(card);
+    if (st.v >= v.length) st.v = 0;
+    var h = card.querySelector('.pln__h');
+    title.textContent = h ? h.textContent : 'Планировка';
+    seg(segC, st.cards.map(label), st.c, function (i) { st.c = i; draw(); });
+    var names = [].slice.call(card.querySelectorAll('.pln__t span')).map(function (s) { return s.textContent; });
+    seg(segV, v.map(function (x, i) { return names[i] || (i ? '3D-вид' : 'Чертёж'); }), st.v, function (i) { st.v = i; draw(); });
+    pic.src = v[st.v].src;
+    pic.alt = v[st.v].alt;
+  }
+
+  function open(cards, c, v, trigger) {
+    if (!box) build();
+    st = { cards: cards, c: c, v: v };
+    back = trigger;
+    draw();
+    box.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    shut.focus();
+  }
+
+  function close() {
+    box.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (back) back.focus();
+  }
+}());
