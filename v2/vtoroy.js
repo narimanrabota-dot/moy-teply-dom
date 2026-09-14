@@ -13,6 +13,9 @@
     i = (n + slides.length) % slides.length;
     slides[i].classList.add('is-on');
     slides[i].removeAttribute('aria-hidden');
+    box.querySelectorAll('video').forEach(function (v) { v.pause(); });
+    var v = slides[i].querySelector('video');
+    if (v) { v.play().catch(function () {}); }
     next.setAttribute('aria-label',
       'Следующий экран, ' + ((i + 2 > slides.length) ? 1 : i + 2) + ' из ' + slides.length);
   }
