@@ -484,6 +484,7 @@ a.ct__v::before,.kmap__more::before{
   background:rgb(184 70 37/.08);border-radius:var(--r-tight);
   color:var(--clay-txt);font-size:var(--fs-xs);line-height:1.4;
 }
+.cb__err a{color:inherit;font-weight:600;text-decoration:underline;white-space:nowrap}
 .cb__ok{display:grid;gap:var(--sp-12);justify-items:start;padding:var(--sp-8) 0}
 .cb__ok b{font-size:var(--fs-lg);font-weight:600;letter-spacing:-.015em}
 .cb__ok p{margin:0;color:var(--dim);line-height:1.45}

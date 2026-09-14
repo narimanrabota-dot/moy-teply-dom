@@ -284,6 +284,24 @@
       all.textContent = open ? 'Свернуть всё' : 'Раскрыть всё';
     });
 
+    /* доп. опции: галочка — метки опции темнеют, «Итого с выбранными» = цена дома + отмеченные опции */
+    var opts = [].slice.call(box.querySelectorAll('tr.inc-opt input[type="checkbox"]'));
+    var sums = [].slice.call(box.querySelectorAll('[data-base]'));
+    function rub(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽'; }
+    function recount() {
+      var add = sums.map(function () { return 0; });
+      opts.forEach(function (c) {
+        var row = c.closest('tr');
+        row.classList.toggle('is-on', c.checked);
+        if (!c.checked) return;
+        [].forEach.call(row.querySelectorAll('td[data-v]'), function (td) { add[+td.getAttribute('data-col')] += +td.getAttribute('data-v'); });
+      });
+      sums.forEach(function (b) { b.textContent = rub(+b.getAttribute('data-base') + add[+b.getAttribute('data-col')]); });
+    }
+    opts.forEach(function (c) { c.addEventListener('change', recount); });
+    box.addEventListener('inc:prices', recount);   // calc-live.js обновил цены из калькулятора
+    if (opts.length) recount();   // браузер мог восстановить галочки после перезагрузки
+
     /* телефон и планшет: одна комплектация за раз — переключатель над таблицей */
     var heads = [].slice.call(box.querySelectorAll('thead th.inc-h'));
     if (heads.length < 2) return;
@@ -307,3 +325,4 @@
     pick(us < 0 ? 0 : us);
   });
 }());
+/* Заголовок окна заявки под нажатую кнопку ставит form.js — он же отправляет заявку. */

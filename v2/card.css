@@ -222,6 +222,32 @@
   .tail b,.tail p{grid-column:1}
   .tail .btn{grid-column:2;grid-row:1/span 2}
 }
+/* «Нравится проект?» с доводами о сроках (вариант 8б): один столбец, галочки, две кнопки */
+.tail.tail--dl{display:block}
+.tail.tail--dl .tail-dl__q{display:block}
+.tail.tail--dl .tail-dl__sub{margin:var(--sp-24) 0 0;max-width:none;font-size:var(--fs-md);font-weight:600;line-height:1.25;color:var(--ink)}
+.tail-dl__list{margin:var(--sp-16) 0 0;padding:0;list-style:none;display:grid;gap:var(--sp-16)}
+.tail-dl__list li{position:relative;padding-left:var(--sp-32);font-size:var(--fs-sm);line-height:1.45;color:var(--dim)}
+.tail-dl__list li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:999px;
+  background:#E1F1E7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.8 10.3 8.8 13l5.4-6' fill='none' stroke='%231D6A3E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
+.tail.tail--dl .tail-dl__list b{font-size:inherit;font-weight:600;letter-spacing:0;line-height:inherit;color:var(--ink)}
+.tail.tail--dl .tail-dl__offer{margin:var(--sp-32) 0 0;font-size:var(--fs-sm);line-height:1.5}
+.tail-dl__btns{display:flex;flex-wrap:wrap;gap:var(--sp-12);margin-top:var(--sp-16)}
+/* вторая кнопка светлая, главной остаётся синяя «Заказать звонок» */
+.tail.tail--dl .tail-dl__alt{background:var(--card);border-color:rgb(34 48 76/.22);color:var(--ink);box-shadow:0 1px 2px rgb(34 48 76/.05)}
+.tail.tail--dl .tail-dl__alt:hover{background:var(--card);border-color:rgb(34 48 76/.38);color:var(--clay-txt)}
+@media(max-width:560px){ .tail-dl__btns .btn{flex:1 1 100%} }
+/* «Как мы гарантируем соблюдение сроков» на страницах «Как строим»: пункты договора, а не дни */
+.srok{display:grid;justify-items:start;gap:var(--sp-12);max-width:68ch;margin-top:var(--sp-24);padding:var(--sp-24);
+  border-radius:var(--r-inner);background:var(--card);box-shadow:var(--edge)}
+.srok__t{font-size:var(--fs-md);font-weight:600;line-height:1.25}
+.srok__p{margin:0;font-size:var(--fs-sm);line-height:1.5;color:var(--dim)}
+.srok__l{margin:0;padding:0;list-style:none;display:grid;gap:var(--sp-8)}
+.srok__l li{display:flex;align-items:baseline;gap:var(--sp-12);font-size:var(--fs-sm);line-height:1.45}
+.srok__n{flex:none;min-width:64px;padding:var(--sp-4) var(--sp-8);border-radius:var(--r-tight);background:var(--n-1);
+  font-size:var(--fs-xs);font-weight:600;text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.srok__a{font-size:var(--fs-xs);font-weight:500;color:var(--clay-txt)}
+.way .srok + .revs__row{margin-top:var(--sp-24)}
 
 /* ── узкие экраны ────────────────────────────────────
    Эталон на телефоне складывает то же самое в столбец. */
@@ -802,5 +828,34 @@ button.inc-tg:hover{color:var(--clay-txt)}
 .tail .btn--l{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:var(--sh-1)}
 .tail .btn--l:hover{background:#2E3E60;border-color:#2E3E60;color:#fff}
 
+/* ── доп. опции — последний раздел таблицы цен ───────
+   Собирает tools/inc_block.py (витрина variant-dop-31). По умолчанию свёрнут;
+   галочка красит метки опции, «Итого с выбранными» пересчитывает card.js. */
+.inc-pill.is-add{background:var(--card);box-shadow:inset 0 0 0 1.5px var(--n-4);color:var(--ink);font-variant-numeric:tabular-nums;
+  transition:background-color .2s var(--e),color .2s var(--e),box-shadow .2s var(--e)}
+.inc-t tr.is-on .inc-pill.is-add{background:var(--ink);box-shadow:none;color:#fff}
+.inc-t tr.inc-opt>*{vertical-align:middle}
+.inc-ol{position:relative;display:flex;align-items:center;gap:var(--sp-16);min-height:var(--tap);cursor:pointer}
+span.inc-ol{cursor:default}
+.inc-ol input{position:absolute;width:1px;height:1px;margin:0;opacity:0}
+.inc-ob{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:var(--r-tight);background:var(--card);
+  box-shadow:inset 0 0 0 1.5px var(--n-5);transition:background-color .2s var(--e),box-shadow .2s var(--e)}
+.inc-ob::after{content:"";width:11px;height:6px;border-left:2px solid #fff;border-bottom:2px solid #fff;rotate:-45deg;translate:0 -2px;opacity:0}
+.inc-ob.is-na{visibility:hidden}
+label.inc-ol:hover .inc-ob{box-shadow:inset 0 0 0 1.5px var(--n-7)}
+.inc-ol input:checked+.inc-ob{background:var(--ink);box-shadow:none}
+.inc-ol input:checked+.inc-ob::after{opacity:1}
+.inc-ol input:focus-visible+.inc-ob{outline:2px solid var(--clay-btn);outline-offset:2px}
+.inc-ot{display:grid;gap:var(--sp-4)}
+.inc-ot>span{font-weight:500;color:var(--ink)}
+.inc-ot small{font-size:var(--fs-xs);font-weight:400;line-height:1.4;color:var(--dim)}
+.inc-t tr.inc-sum>*{padding-top:var(--sp-16);padding-bottom:var(--sp-16);border-bottom:0;background:var(--n-1);vertical-align:middle}
+.inc-t tr.inc-sum>.is-us{background:#FBEDE6}
+.inc-t tr.inc-sum .inc-ot>span{font-weight:600}
+.inc-t tr.inc-sum b{font-size:var(--fs-md);font-weight:600;letter-spacing:-.01em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.inc-t tbody tr.inc-sum>:first-child{border-bottom-left-radius:var(--r-shell)}
+.inc-t tbody tr.inc-sum>:last-child{border-bottom-right-radius:var(--r-shell)}
+@media(max-width:520px){.inc[data-pick] .inc-t tr.inc-sum b{font-size:var(--fs-sm)}}
+
 /* без анимаций, если так просит система */
-@media(prefers-reduced-motion:reduce){.sld__main img,.sld__th button,.sld__a,.pln__t,.pln__t img,.inc-tg svg,.cta__go,.back i{transition:none}}
+@media(prefers-reduced-motion:reduce){.sld__main img,.sld__th button,.sld__a,.pln__t,.pln__t img,.inc-tg svg,.cta__go,.back i,.inc-ob,.inc-pill.is-add{transition:none}}

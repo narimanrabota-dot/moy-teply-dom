@@ -30,6 +30,7 @@ INDEX = os.path.join(V2, 'index.html')
 PACKAGES = ['Холодный контур', 'Комфорт', 'Премиум']
 TOP_KEYS = {'version', 'generated_at', 'calculator_commit', 'currency', 'source', 'models'}
 MODEL_KEYS = {'title', 'packages'}
+OPTION_KEYS = ('elec', 'pipes', 'vent', 'paintIn', 'paintOut', 'plinth')
 JUMP = 0.10
 ASK = ('По запросу', 'Цена по запросу')
 
@@ -91,9 +92,22 @@ def load(src):
         if not isinstance(m, dict):
             errors.append(f'{where}: должен быть объект')
             continue
-        extra = set(m) - MODEL_KEYS
+        extra = set(m) - MODEL_KEYS - {'options', 'delivery_km'}
         if extra:
             errors.append(f'{where}: лишние поля ' + ', '.join(sorted(extra)))
+        # доп. опции: три цены в рублях по комплектациям, null — опции в этой комплектации нет
+        o = m.get('options')
+        if o is not None:
+            if not isinstance(o, dict) or set(o) - set(OPTION_KEYS):
+                errors.append(f'{where}: в "options" только {", ".join(OPTION_KEYS)}')
+            else:
+                for k, v in o.items():
+                    if not (isinstance(v, list) and len(v) == 3 and all(
+                            x is None or (isinstance(x, int) and not isinstance(x, bool) and 0 < x < 50_000_000) for x in v)):
+                        errors.append(f'{where} → опция {k}: три цены в рублях или null')
+        dk = m.get('delivery_km')
+        if dk is not None and not (isinstance(dk, int) and not isinstance(dk, bool) and 0 < dk < 100_000):
+            errors.append(f'{where}: "delivery_km" — целое число рублей за км')
         p = m.get('packages')
         if not isinstance(p, dict) or list(p) != PACKAGES:
             errors.append(f'{where}: "packages" — ровно «{"», «".join(PACKAGES)}» в этом порядке')

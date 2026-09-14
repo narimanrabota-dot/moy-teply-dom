@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Цены и комплектации в карточке: таблица трёх комплектаций, «Не включено» и «Нравится проект?».
+"""Цены и комплектации в карточке: таблица трёх комплектаций с доп. опциями и «Нравится проект?».
 
     python3 tools/inc_block.py                              # показать, какие карточки изменятся
     python3 tools/inc_block.py --write                      # записать во все карточки
@@ -8,7 +8,9 @@
 В карточке с тремя комплектациями:
   – «Цены и комплектации» (#inc, после планировок): таблица с цветными метками, цены в тёмной
     шапке, под таблицей условие о цене и «Раскрыть всё». Отдельного блока цен (#pakety) нет;
-  – «Не включено в стоимость» (#exc) — из списка "excluded", чтобы он не спорил с таблицей;
+  – последний раздел таблицы — «Дополнительные опции» (витрина variant-dop-31): по умолчанию свёрнут,
+    у опций галочки, строка «Итого с выбранными» — цена дома плюс отмеченные опции, без доставки
+    (считает card.js). Отдельного блока «Не включено в стоимость» (#exc) нет — скрипт его убирает;
   – в конце карточки блок «Нравится проект?» с кнопкой звонка — во всех карточках.
 
 Что входит — tools/inc/komplektacii.json (источник — смета компании, см. поле "source"):
@@ -17,12 +19,15 @@
      "sections": [{"title": "Каркас",
                    "summary": ["145×45 мм", "145×45 мм", "200×45 мм"],
                    "items": [["Шаг стоек", "59 см"], ["Стены", ["145×45 мм", "145×45 мм", "200×45 мм"]]]}],
-     "excluded": [["Электрика", "Разводка, розетки … не входят ни в одну комплектацию."]]}
+     "options": [["elec", "Электрика", "что входит"]],
+     "delivery": ["Доставка дальше 100 км", "До 100 км — бесплатно"]}
 summary — метка в строке раздела: «входит», «—» (не входит), «отдельно» или короткое значение.
 items — подробности: одно значение на все комплектации или список по каждой;
 «—» — не входит, «?» — данных пока нет (на сайте «уточняется»). Данные не придумывать.
-Названия и цены — из старого блока цен (#pakety), а если его уже нет — из шапки таблицы.
-Если в карточке цен ещё не было («Милан»), названия и цены берутся из tools/inc/prices.json (выгрузка калькулятора).
+options — ключ опции калькулятора, название и что входит.
+
+Цены комплектаций, цены опций и доставки за км — из tools/inc/prices.json (выгрузка калькулятора,
+tools/prices_export.py). Нет модели в prices.json — цены комплектаций из шапки таблицы, опции «уточняется».
 """
 import argparse, glob, io, json, os, re, shutil, sys, tempfile, time
 from html import unescape
@@ -30,10 +35,12 @@ from html import unescape
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 V2 = os.path.join(ROOT, 'v2')
 SPEC = os.path.join(ROOT, 'tools', 'inc', 'komplektacii.json')
+PRICES = os.path.join(ROOT, 'tools', 'inc', 'prices.json')
 NO, TBD = '—', '?'
+OPT_KEYS = ('elec', 'pipes', 'vent', 'paintIn', 'paintOut', 'plinth')
 CHEV = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
         'stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>')
-FINAL = re.compile(r'<section class="(?:tail|fin[^"]*)">.*?</section>', re.S)
+FINAL = re.compile(r'<section class="(?:tail[^"]*|fin[^"]*)">.*?</section>', re.S)
 UNITS = re.compile(r'(\d) (кг/м³|микрон|мм|см|км|м²|м³|м)(?![а-яё])', re.I)
 
 
@@ -41,6 +48,10 @@ def text(s):
     """Экранировать для HTML; число не отрывается от единицы на переносе: «15 см» → «15&nbsp;см»."""
     s = s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
     return UNITS.sub(r'\1&nbsp;\2', s.replace('RAL ', 'RAL&nbsp;'))
+
+
+def rub(n):
+    return '{:,}'.format(n).replace(',', ' ') + ' ₽'
 
 
 def sect(html, sid):
@@ -63,9 +74,19 @@ def check(spec):
         for label, v in s.get('items') or []:
             if isinstance(v, list) and len(v) != n:
                 errors.append(f'«{t}» → «{label}»: значений {len(v)}, а комплектаций {n}')
-    for item in spec.get('excluded') or []:
-        if not (isinstance(item, list) and len(item) == 2 and all(isinstance(x, str) and x.strip() for x in item)):
-            errors.append(f'в "excluded" каждый пункт — пара ["название", "пояснение"]: {item!r}')
+    keys = []
+    for item in spec.get('options') or []:
+        if not (isinstance(item, list) and len(item) == 3 and all(isinstance(x, str) and x.strip() for x in item)):
+            errors.append(f'в "options" каждый пункт — ["ключ", "название", "что входит"]: {item!r}')
+        elif item[0] not in OPT_KEYS:
+            errors.append(f'в "options" неизвестный ключ «{item[0]}», можно: {", ".join(OPT_KEYS)}')
+        else:
+            keys.append(item[0])
+    if len(keys) != len(set(keys)):
+        errors.append('в "options" ключи повторяются')
+    d = spec.get('delivery')
+    if d is not None and not (isinstance(d, list) and len(d) == 2 and all(isinstance(x, str) and x.strip() for x in d)):
+        errors.append('"delivery" — ["название", "пояснение"]')
     return errors
 
 
@@ -101,10 +122,11 @@ def value(v):
     return text(v)
 
 
-def build(spec, paks, note):
+def build(spec, paks, note, calc=None):
     names = [n for n, _ in paks]
     us = names.index(spec['highlight']) if spec.get('highlight') in names else -1
     note = text(spec['note']) if spec.get('note') else note
+    calc = calc or {}
 
     def cls(i, base=''):
         c = (base + (' is-us' if i == us else '')).strip()
@@ -127,6 +149,44 @@ def build(spec, paks, note):
             vv = v if isinstance(v, list) else [v] * len(paks)
             rows.append(f'<tr class="inc-d" id="inc-{k}-{m}" hidden><th scope="row" class="inc-c0">{text(label)}</th>'
                         + ''.join(f'<td{cls(i)}>{value(x)}</td>' for i, x in enumerate(vv)) + '</tr>')
+
+    # «Дополнительные опции»: свёрнутый раздел, галочки и «Итого с выбранными» (считает card.js)
+    opts = spec.get('options') or []
+    if opts:
+        prices = calc.get('options') or {}
+        ids = [f'inc-o-{k}' for k in range(len(opts))] + ['inc-o-dl', 'inc-o-sum']
+        rows.append(f'<tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" '
+                    f'aria-controls="{" ".join(ids)}"><span>Дополнительные опции</span>{CHEV}</button></th>'
+                    + ''.join(f'<td{cls(i, "inc-cell")}><span class="inc-pill is-add">+ Можно добавить</span></td>' for i in range(len(paks)))
+                    + '</tr>')
+        for k, (key, title, desc) in enumerate(opts):
+            vals = prices.get(key)
+            label = f'<span class="inc-ot"><span>{text(title)}</span><small>{text(desc)}</small></span>'
+            if vals and any(vals):
+                th = f'<label class="inc-ol"><input type="checkbox"><span class="inc-ob" aria-hidden="true"></span>{label}</label>'
+            else:
+                th = f'<span class="inc-ol"><span class="inc-ob is-na" aria-hidden="true"></span>{label}</span>'
+            cells = []
+            for i in range(len(paks)):
+                v = vals[i] if vals else TBD
+                if v == TBD:
+                    cells.append(f'<td{cls(i)}><span class="inc-tbd">уточняется</span></td>')
+                elif v is None:
+                    cells.append(f'<td{cls(i)}>—</td>')
+                else:
+                    cells.append(f'<td{cls(i)} data-col="{i}" data-v="{v}"><span class="inc-pill is-add">+{rub(v)}</span></td>')
+            rows.append(f'<tr class="inc-d inc-opt" id="inc-o-{k}" data-opt="{key}" hidden><th scope="row" class="inc-c0">{th}</th>{"".join(cells)}</tr>')
+        dl_title, dl_desc = spec.get('delivery') or ['Доставка дальше 100 км', 'До 100 км — бесплатно']
+        dk = calc.get('delivery_km')
+        dl = f'<span class="inc-pill is-add" data-km>{rub(dk)[:-2]} ₽ за&nbsp;км</span>' if dk else '<span class="inc-tbd">уточняется</span>'
+        rows.append(f'<tr class="inc-d inc-opt" id="inc-o-dl" hidden><th scope="row" class="inc-c0"><span class="inc-ol">'
+                    f'<span class="inc-ob is-na" aria-hidden="true"></span><span class="inc-ot"><span>{text(dl_title)}</span>'
+                    f'<small>{text(dl_desc)}</small></span></span></th>' + ''.join(f'<td{cls(i)}>{dl}</td>' for i in range(len(paks))) + '</tr>')
+        bases = [int(re.sub(r'\D', '', unescape(p)) or 0) for _, p in paks]
+        rows.append('<tr class="inc-d inc-sum" id="inc-o-sum" hidden aria-live="polite"><th scope="row" class="inc-c0"><span class="inc-ot">'
+                    '<span>Итого с выбранными</span><small>без доставки</small></span></th>'
+                    + ''.join(f'<td{cls(i)}><b data-base="{b}" data-col="{i}">{rub(b)}</b></td>' for i, b in enumerate(bases)) + '</tr>')
+
     foot = ('<div class="inc-f">' + (f'<p class="inc-note">{note}</p>' if note else '')
             + '<button type="button" class="inc-all" aria-expanded="false">Раскрыть всё</button></div>')
     return ('<section class="sec" id="inc">\n      <h2 class="sech">Цены и комплектации</h2>\n      <div class="inc" data-inc>'
@@ -134,35 +194,25 @@ def build(spec, paks, note):
             f'<table><thead><tr>{head}</tr></thead><tbody>{"".join(rows)}</tbody></table></div>{foot}</div>\n    </section>')
 
 
-def excluded(items):
-    """«Не включено в стоимость»: раскрывающийся список, как раньше, но из той же сметы, что и таблица."""
-    parts = []
-    for k, (title, desc) in enumerate(items):
-        parts.append(
-            '        <div class="acc__i">\n'
-            f'          <button type="button" class="acc__h" aria-expanded="false" aria-controls="exc-{k}">\n'
-            f'            <span>{text(title)}</span>\n'
-            '            <span class="acc__ic" aria-hidden="true"></span>\n'
-            '          </button>\n'
-            f'          <div class="acc__b" id="exc-{k}">\n'
-            '            <div>\n'
-            f'              <p>{text(desc)}</p>\n'
-            '            </div>\n'
-            '          </div>\n'
-            '        </div>\n')
-    return ('<section class="sec" id="exc">\n      <h2 class="sech">Не включено в стоимость</h2>\n'
-            '      <div class="acc" data-acc>\n' + ''.join(parts) + '      </div>\n    </section>')
-
-
-def final(lead):
-    return ('<section class="tail">\n      <b>Нравится проект?</b>\n      <p>' + lead + '</p>\n'
-            '      <button type="button" class="btn btn--l" data-callback>Заказать звонок</button>\n    </section>')
-
-
-def lead_of(html):
-    m = (re.search(r'<section class="tail">\s*<b>.*?</b>\s*<p>(.*?)</p>', html, re.S)
-         or re.search(r'<section class="fin[^"]*">\s*<div class="fin__l">.*?</h2><p>(.*?)</p>', html, re.S))
-    return ' '.join(m.group(1).split()) if m else None
+def final():
+    # «Нравится проект?» с доводами о сроках — вариант 8б, выбор владельца 14.09.2026.
+    # Сверено с договором (п. 5.1, 7.2): не писать «без задержек», «всегда в срок», «даты начала и окончания».
+    return ('<section class="tail tail--dl">\n'
+            '      <b class="tail-dl__q">Нравится проект?</b>\n'
+            '      <p class="tail-dl__sub">Как мы гарантируем соблюдение сроков</p>\n'
+            '      <ul class="tail-dl__list">\n'
+            '        <li><b>Строители живут на&nbsp;участке или рядом</b>&nbsp;— время уходит на&nbsp;ваш дом, а&nbsp;не&nbsp;на&nbsp;дорогу.</li>\n'
+            '        <li><b>Срок записан в&nbsp;договоре</b>: до&nbsp;60&nbsp;дней с&nbsp;поставки материалов (п.&nbsp;5.1).</li>\n'
+            '        <li><b>Просрочим по&nbsp;своей вине&nbsp;— платим</b> 0,3&nbsp;% цены договора в&nbsp;день, всего до&nbsp;10&nbsp;% (п.&nbsp;7.2).</li>\n'
+            '        <li><b>Бригада назначена заранее</b> и&nbsp;встречает машины с&nbsp;материалами.</li>\n'
+            '        <li><b>Приезжайте на&nbsp;стройку</b> и&nbsp;спросите хозяев, всё&nbsp;ли идёт в&nbsp;срок.</li>\n'
+            '      </ul>\n'
+            '      <p class="tail-dl__offer">Перезвоним и&nbsp;ответим на&nbsp;вопросы по&nbsp;этому дому.</p>\n'
+            '      <div class="tail-dl__btns">\n'
+            '        <button type="button" class="btn btn--l" data-callback>Заказать звонок</button>\n'
+            '        <button type="button" class="btn btn--l tail-dl__alt" data-callback data-cb-title="Приехать на стройку"'
+            ' data-cb-text="Оставьте номер — перезвоним и договоримся, когда приехать.">Приехать на стройку</button>\n'
+            '      </div>\n    </section>')
 
 
 def main():
@@ -179,30 +229,32 @@ def main():
             print('  ✗', x)
         return 1
 
-    # цены калькулятора — для карточек, где цен ещё не было («Милан»)
-    prices = {}
-    if os.path.exists(os.path.join(ROOT, 'tools', 'inc', 'prices.json')):
+    # выгрузка калькулятора: цены комплектаций, опций и доставки
+    models = {}
+    if os.path.exists(PRICES):
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import prices_sync
-        calc, errors = prices_sync.load(os.path.join(ROOT, 'tools', 'inc', 'prices.json'))
+        calc, errors = prices_sync.load(PRICES)
         if errors:
             print('ОСТАНОВЛЕНО, tools/inc/prices.json не прошёл проверку:')
             for x in errors:
                 print('  ✗', x)
             return 1
-        prices = {k: [(n, prices_sync.rub(p)) for n, p in m['packages'].items()] for k, m in calc['models'].items()}
+        models = calc['models']
 
     pages = [os.path.join(V2, p + '.html') for p in args.pages] or sorted(glob.glob(os.path.join(V2, 'proekt-*.html')))
     todo, backup = [], None
     for page in pages:
         key = os.path.basename(page)[:-5]
+        slug = key[len('proekt-'):]
         if not os.path.exists(page):
             print(f'  ✗ нет карточки v2/{key}.html')
             continue
         html = io.open(page, encoding='utf-8').read()
         paks, note = packages_of(html)
-        if not paks and key[len('proekt-'):] in prices:
-            paks = prices[key[len('proekt-'):]]
+        calc = models.get(slug)
+        if calc:
+            paks = [(n, rub(p)) for n, p in calc['packages'].items()]
         names = [n for n, _ in paks]
         if paks and names != spec['packages']:
             print(f'  – {key}: пропущена, в карточке другие комплектации: {", ".join(names)}')
@@ -213,16 +265,17 @@ def main():
             if not inc:
                 print(f'  – {key}: пропущена, нет секции #inc')
                 continue
-            new = new[:inc.start()] + build(spec, paks, note) + new[inc.end():]
-            old = re.search(r'\n[ \t]*<section class="sec" id="pakety">.*?</section>', new, re.S)
-            if old:
-                new = new[:old.start()] + new[old.end():]
-            exc = sect(new, 'exc')
-            if spec.get('excluded') and exc:
-                new = new[:exc.start()] + excluded(spec['excluded']) + new[exc.end():]
-        fin, lead = FINAL.search(new), lead_of(new)
-        if fin and lead:
-            new = new[:fin.start()] + final(lead) + new[fin.end():]
+            block = build(spec, paks, note, calc)
+            if calc:   # по имени модели calc-live.js находит размеры дома для цен онлайн
+                block = block.replace('<div class="inc" data-inc>', f'<div class="inc" data-inc data-model="{slug}">', 1)
+            new = new[:inc.start()] + block + new[inc.end():]
+            for sid in ('pakety', 'exc'):   # отдельного блока цен и «Не включено» больше нет
+                old = re.search(r'\n[ \t]*<section class="sec" id="%s">.*?</section>' % sid, new, re.S)
+                if old:
+                    new = new[:old.start()] + new[old.end():]
+        fin = FINAL.search(new)
+        if fin:
+            new = new[:fin.start()] + final() + new[fin.end():]
         if new == html:
             print(f'  = {key}: уже совпадает')
             continue

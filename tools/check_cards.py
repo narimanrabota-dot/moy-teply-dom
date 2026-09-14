@@ -74,6 +74,16 @@ def main():
         if re.search(r'<section class="sec" id="look">\s*<h2', html):
             out.append('у галереи не должно быть заголовка — фото идут сразу под верхом карточки')
 
+        if section(html, 'exc') is not None:
+            out.append('блока «Не включено в стоимость» (#exc) быть не должно — его заменил раздел доп. опций: python3 tools/inc_block.py --write')
+        inc = section(html, 'inc')
+        if inc is not None and 'class="inc-n"' in inc:
+            if 'class="inc-d inc-opt' not in inc:
+                out.append('в таблице цен нет раздела «Дополнительные опции» — собрать: python3 tools/inc_block.py --write')
+            for dup in ('Электрика', 'Водопровод, канализация, сантехника'):
+                if f'<th scope="row" class="inc-c0">{dup}</th>' in inc:
+                    out.append(f'в таблице дубль «{dup}» — это уже есть в доп. опциях')
+
         look = section(html, 'look')
         if look is None:
             out.append('нет галереи фото #look')
