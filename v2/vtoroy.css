@@ -65,10 +65,10 @@
 
 /* ── Слайды «все доводы на одном экране»: сроки, цена, тепло (выбор владельца 14.09.2026,
    витрины shapki-sroki #s08, shapki-cena-vse #s02, shapki-holodno-vse #s01). Стоят первыми. ── */
-/* новые слайды первыми (сроки, цена, тепло, гарантия): прежние сдвинулись на четыре места — кадрирование их фото прежнее */
-.ob__f[data-hero]:has(.hsl--args) .hsl:nth-of-type(5) .ob__img{background-position:center 20%}
-.ob__f[data-hero]:has(.hsl--args) .hsl:nth-of-type(6) .ob__img{background-position:center 22%}
-.ob__f[data-hero]:has(.hsl--args) .hsl:nth-of-type(9) .ob__img{background-position:center 25%}
+/* новые слайды первыми (сроки, цена, тепло, гарантия, брак): прежние сдвинулись на пять мест — кадрирование их фото прежнее */
+.ob__f[data-hero]:has(.hsl--args) .hsl:nth-of-type(6) .ob__img{background-position:center 20%}
+.ob__f[data-hero]:has(.hsl--args) .hsl:nth-of-type(7) .ob__img{background-position:center 22%}
+.ob__f[data-hero]:has(.hsl--args) .hsl:nth-of-type(10) .ob__img{background-position:center 25%}
 /* затемнение слева сильнее обычного: текста больше, он должен читаться на любом фото */
 .hsl--args > .ob__img::after{content:"";position:absolute;inset:0;
   background:linear-gradient(90deg,rgb(14 20 34/.92) 0%,rgb(14 20 34/.86) 48%,rgb(14 20 34/.5) 62%,rgb(14 20 34/0) 78%)}
@@ -134,8 +134,8 @@
   .ob__f[data-hero]:has(.hsl--args){height:clamp(640px,96svh,760px)}
   /* сверху место под круглую стрелку: текст никогда не заходит под неё */
   .ob__f[data-hero] .hsl--args .ob__c{align-content:end;padding-top:76px}
-  /* прежний первый экран (теперь пятый) — по центру, как был */
-  .ob__f[data-hero]:has(.hsl--args) .hsl:nth-of-type(5) .ob__c{align-content:center}
+  /* прежний первый экран (теперь шестой) — по центру, как был */
+  .ob__f[data-hero]:has(.hsl--args) .hsl:nth-of-type(6) .ob__c{align-content:center}
   .hsl--args > .ob__img::after,.hsl--warm > .ob__img::after{background:rgb(14 20 34/.12)}
   /* фото — полосой сверху, чтобы дом было видно целиком; ниже тёмный фон слайда */
   .hsl--args{background:#141C2E}
@@ -230,4 +230,19 @@
   .v2a__path li{padding-bottom:2px}
   .v2a__path span{font-size:13px}
   .v2a__law{margin-top:6px;font-size:12px}
+}
+
+/* ── Слайд «Брак»: вариант 2 «Путь стройки» с заголовком варианта 1 (выбор владельца 14.09.2026, витрина slayd-brak-10.html #b02).
+   Шаги — тот же .v2a__path, что у гарантии. П. 6.1 и 7.6 — из договора; «проект от 90 страниц» и «инженер на ключевых этапах» — со слов владельца ── */
+/* сетка чертежа на тёмной стороне слайда */
+.hsl--grid .ob__c::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgb(255 255 255/.06) 1px,transparent 1px),linear-gradient(90deg,rgb(255 255 255/.06) 1px,transparent 1px);
+  background-size:32px 32px;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 38%,transparent 60%);mask-image:linear-gradient(90deg,#000 0%,#000 38%,transparent 60%)}
+.hsl--grid .v2a{z-index:1}
+@media(max-width:900px){
+  .hsl--grid .ob__c::before{-webkit-mask-image:linear-gradient(180deg,transparent 46%,#000 62%);mask-image:linear-gradient(180deg,transparent 46%,#000 62%)}
+}
+@media(max-width:900px) and (orientation:landscape) and (max-height:500px){
+  .hsl--grid .ob__c::before{-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 50%,transparent 74%);mask-image:linear-gradient(90deg,#000 0%,#000 50%,transparent 74%)}
 }
