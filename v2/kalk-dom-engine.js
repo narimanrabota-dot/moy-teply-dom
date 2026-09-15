@@ -1,4 +1,4 @@
-/* Калькулятор дома: движок большого калькулятора (Kalkulyator/index.html, коммит 10b60f4) и разделы калькулятора. Собирает tools/kalk_dom.py 15.09.2026 19:56 — руками не править · отпечаток 98ede20db2c2 */
+/* Калькулятор дома: движок большого калькулятора (Kalkulyator/index.html, коммит 10b60f4) и разделы калькулятора. Собирает tools/kalk_dom.py 15.09.2026 23:52 — руками не править · отпечаток 9d9c0dab6968 */
 var MTD_ENGINE = (function () {
 let outline, partitions = [], windows, doors, terraces, saunas, wcs = [], ridge = null; const CELL_M = 0.5; const shoelace = () => 0;
 const TIERS = [

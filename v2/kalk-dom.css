@@ -1,6 +1,7 @@
 /* Калькулятор дома — окно кнопки «Калькулятор» на всех страницах (v2/kalk-dom.js, вариант 05б, выбор пользователя 15.09.2026).
    Размер — как у бюджетного калькулятора: карточка 560 px. Открывается поверх сайта справа, без подложки и затемнения.
-   Контуры 2 px и тень — чтобы калькулятор не сливался со страницей (просьба пользователя 15.09.2026).
+   Вид — вариант 20 «Оранжевый ореол» (выбор пользователя 15.09.2026): тёмная рамка, оранжевый ореол, линии и поля темнее —
+   чтобы калькулятор не сливался со страницей.
    Оформление — шкалы сайта. Классы: knp- окно, kn- калькулятор. */
 
 /* окно */
@@ -12,16 +13,16 @@
 .knp-x:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
 
 /* карточка */
-.kn{--kn-edge:var(--n-4);--kn-soft:var(--n-3);max-width:560px;margin:0 auto}
+.kn{--kn-frame:var(--ink);--kn-edge:var(--n-5);--kn-field:var(--n-6);--kn-soft:var(--n-4);max-width:560px;margin:0 auto}
 .kn [hidden]{display:none!important}
-.kn-card{position:relative;min-width:0;padding:var(--sp-24);border:2px solid var(--kn-edge);border-radius:var(--r-shell);background:var(--card);box-shadow:var(--sh-3)}
-.kn-top{margin-bottom:var(--sp-16);padding:var(--sp-4) var(--sp-48) var(--sp-12) 0;border-bottom:2px solid var(--kn-edge)}
+.kn-card{position:relative;min-width:0;padding:var(--sp-24);border:2px solid var(--kn-frame);border-radius:var(--r-shell);background:var(--card);box-shadow:0 0 0 6px rgb(224 96 60/.4),var(--sh-3)}
+.kn-top{margin-bottom:var(--sp-16);padding:var(--sp-4) var(--sp-48) var(--sp-12) 0;border-bottom:2px solid var(--kn-frame)}
 .kn-h{margin:0;font-size:var(--fs-md);font-weight:600;line-height:1.25;letter-spacing:-.01em;text-wrap:balance}
 
 /* поля */
 .kn-fld{display:grid;gap:var(--sp-8);min-width:0;margin-bottom:var(--sp-12)}
 .kn-lbl{font-size:var(--fs-xs);font-weight:500}
-.kn-in,.kn-sel{width:100%;min-width:0;height:var(--tap);margin:0;padding:0 var(--sp-12);border:0;border-radius:var(--r-inner);background-color:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-edge);font:inherit;font-size:var(--fs-sm);font-weight:500;color:var(--ink);outline:0;transition:box-shadow .2s var(--e),background-color .2s var(--e)}
+.kn-in,.kn-sel{width:100%;min-width:0;height:var(--tap);margin:0;padding:0 var(--sp-12);border:0;border-radius:var(--r-inner);background-color:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-field);font:inherit;font-size:var(--fs-sm);font-weight:500;color:var(--ink);outline:0;transition:box-shadow .2s var(--e),background-color .2s var(--e)}
 .kn-in{font-variant-numeric:tabular-nums}
 .kn-in:focus,.kn-sel:focus{background-color:var(--card);box-shadow:inset 0 0 0 2px var(--ink)}
 .kn-sel{appearance:none;-webkit-appearance:none;padding-right:var(--sp-32);text-overflow:ellipsis;cursor:pointer;
@@ -87,7 +88,7 @@ label.kn-row{cursor:pointer}
 .kn-help{margin:0 0 var(--sp-8);padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 1px var(--kn-soft);font-size:var(--fs-xs);line-height:1.5;color:var(--dim)}
 
 /* выбор из двух */
-.kn-pills{display:inline-flex;flex-wrap:wrap;gap:var(--sp-4);padding:var(--sp-4);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-edge)}
+.kn-pills{display:inline-flex;flex-wrap:wrap;gap:var(--sp-4);padding:var(--sp-4);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-field)}
 .kn-pills button{min-height:36px;margin:0;padding:0 var(--sp-12);border:0;border-radius:var(--r-tight);background:none;font:inherit;font-size:var(--fs-xs);font-weight:500;color:var(--dim);cursor:pointer;transition:background-color .2s var(--e),color .2s var(--e),box-shadow .2s var(--e)}
 .kn-pills button[aria-pressed="true"]{background:var(--card);color:var(--ink);font-weight:600;box-shadow:var(--edge),var(--sh-1)}
 .kn-pills button:disabled{cursor:default;opacity:.5}
@@ -102,7 +103,7 @@ label.kn-row{cursor:pointer}
 .kn-step output{min-width:24px;font-size:var(--fs-xs);font-weight:600;text-align:center;font-variant-numeric:tabular-nums}
 .kn-extra{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-8) var(--sp-12);padding:0 0 var(--sp-8)}
 .kn-dist{display:inline-flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-xs);color:var(--dim)}
-.kn-dist input{width:88px;height:36px;margin:0;padding:0 var(--sp-12);border:0;border-radius:var(--r-tight);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-edge);font:inherit;font-size:var(--fs-xs);color:var(--ink);text-align:right;outline:0}
+.kn-dist input{width:88px;height:36px;margin:0;padding:0 var(--sp-12);border:0;border-radius:var(--r-tight);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-field);font:inherit;font-size:var(--fs-xs);color:var(--ink);text-align:right;outline:0}
 .kn-dist input:focus{background:var(--card);box-shadow:inset 0 0 0 2px var(--ink)}
 .kn-sub{display:inline-flex;align-items:center;gap:var(--sp-8);min-height:36px;font-size:var(--fs-xs);cursor:pointer}
 .kn-sub input{width:18px;height:18px;margin:0;accent-color:var(--ink)}
@@ -114,12 +115,12 @@ label.kn-row{cursor:pointer}
 .kn-go,.kn-alt{display:flex;align-items:center;justify-content:center;width:100%;min-height:var(--sp-48);margin:var(--sp-16) 0 0;padding:var(--sp-8) var(--sp-16);border-radius:var(--r-inner);font:inherit;font-size:var(--fs-sm);font-weight:600;line-height:1.25;text-align:center;cursor:pointer;transition:background-color .2s var(--e),border-color .2s var(--e),color .2s var(--e)}
 .kn-go{border:0;background:var(--ink);box-shadow:var(--sh-1);color:#fff}
 .kn-go:hover{background:#2E3E60}
-.kn-alt{border:2px solid var(--kn-edge);background:var(--card);color:var(--ink)}
-.kn-alt:hover{border-color:var(--n-5);color:var(--clay-txt)}
+.kn-alt{border:2px solid var(--kn-field);background:var(--card);color:var(--ink)}
+.kn-alt:hover{border-color:var(--ink);color:var(--clay-txt)}
 .kn-reset{display:block;min-height:var(--tap);margin:var(--sp-4) auto 0;padding:0 var(--sp-12);border:0;background:none;font:inherit;font-size:var(--fs-xs);font-weight:500;color:var(--clay-txt);cursor:pointer}
 .kn-reset:hover{color:var(--clay-btn-h)}
 .kn-go:focus-visible,.kn-alt:focus-visible,.kn-reset:focus-visible,.kn-q:focus-visible,.kn-step button:focus-visible,.kn-sub input:focus-visible,.kn-dist input:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
-.kn-res{margin-top:var(--sp-12);padding:var(--sp-16);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-edge)}
+.kn-res{margin-top:var(--sp-12);padding:var(--sp-16);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-field)}
 .kn-res__k{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .kn-res__v{display:block;margin-top:var(--sp-4);font-size:var(--fs-xl);font-weight:600;line-height:1.15;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .kn-res__n{margin:var(--sp-12) 0 0;font-size:var(--fs-xs);line-height:1.45;color:var(--dim);text-wrap:pretty}
