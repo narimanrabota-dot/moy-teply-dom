@@ -141,11 +141,11 @@ def ui_data(src, over, url, key, js):
         if not for_comfort(A[k]):
             raise RuntimeError('опция ' + k + ' не для «Комфорта»')
 
-    def sel(param, keys, mode, base_label=None, label=None):
+    def sel(param, keys, mode, base_label=None, label=None, names=None):
         opts = []
         for k in keys:
             need(k)
-            opts.append({'key': k, 'name': (spec(k, param) if mode == 'spec' else None) or A[k]['label']})
+            opts.append({'key': k, 'name': (names or {}).get(k) or (spec(k, param) if mode == 'spec' else None) or A[k]['label']})
         return {'type': 'select', 'label': label or param, 'base': base_label or base(param), 'opts': opts}
 
     def pills(k, param, base_label=None):
@@ -165,18 +165,34 @@ def ui_data(src, over, url, key, js):
         if not m:
             raise RuntimeError('в калькуляторе не найдена строка ' + cid)
         paint[k] = {'type': 'paint', 'key': k, 'name': m.group(2)}
+    # строка покраски — вариант 01-3 (выбор пользователя 16.09.2026): короткая подпись и где красят;
+    # полное название калькулятора остаётся в name и уходит в заявку
+    paint['paintOut'].update({'short': 'Покраска снаружи', 'where': 'дом и терраса'})
+    paint['paintIn'].update({'short': 'Покраска внутри', 'where': 'стены и потолок'})
 
-    def tiles(r, cap, base_tile, opts, paint_key=None):
+    def tiles(r, cap, base_tile, opts, paint_key=None, pic='look'):
         """Выбор плитками с образцами (эскиз 13-5, выбор пользователя 16.09.2026): cap — подпись на кнопке,
         у варианта — короткая подпись и образец (классы kn-swt--… в kalk-dom.css); полное название уходит в заявку."""
         if [o['key'] for o in r['opts']] != list(opts):
             raise RuntimeError('у плиток «' + r['label'] + '» варианты не совпадают с выбором')
-        r.update({'view': 'tiles', 'cap': cap, 'baseShort': base_tile[0], 'baseLook': base_tile[1]})
+        r.update({'view': 'tiles', 'cap': cap, 'baseShort': base_tile[0],
+                  'baseIcon' if pic == 'icon' else 'baseLook': base_tile[1]})
         for o in r['opts']:
-            o['short'], o['look'] = opts[o['key']]
+            o['short'], o[pic] = opts[o['key']]
         if paint_key:
             r['paint'] = paint_key          # с этой покраской образец на кнопке темнее
         return r
+
+    def systems(cap, items):
+        """Инженерные системы — плитки со значками (вариант 01, выбор пользователя 16.09.2026):
+        каждая включается сама по себе, значок рисует kalk-dom.js (ICON), подпись короче названия калькулятора."""
+        opts = []
+        for k, short, icon in items:
+            need(k)
+            opts.append({'key': k, 'name': A[k]['label'], 'short': short, 'icon': icon})
+        return {'type': 'sys', 'cap': cap, 'label': 'Инженерные системы', 'opts': opts}
+
+    FRAME_BASE = re.sub(r'^(\d+)\D+(\d+).*', r'\1×\2 мм', base('Сечение каркаса стен'))   # «150х45мм» → «150×45 мм»
 
     groups = [
         ('Отделка снаружи', [tiles(sel('Отделка стен снаружи', ['cladOutV', 'cheapExtImBS', 'cheapExtVagBS', 'extSide', 'extSoft'], 'spec'),
@@ -189,33 +205,44 @@ def ui_data(src, over, url, key, js):
                                   'Материал', ('Вагонка АБ', 'vag'),
                                   {'cladInI': ('Имитация бруса АБ', 'imit'), 'cheapInVagBS': ('Вагонка БС', 'vag bs')}, 'paintIn'),
                             paint['paintIn']]),
-        ('Пол в жилой части', [tiles(sel('Чистовой пол в жилой части', ['laminate', 'shpFloor', 'quickDeck'], 'spec'),
-                                     'Покрытие', ('ОСБ-плита 18 мм', 'osb'),
-                                     {'laminate': ('Ламинат', 'lam'), 'shpFloor': ('Шпунтованная доска', 'board'),
-                                      'quickDeck': ('Quick Deck под дерево', 'deck')}),
-                               row('cheapOsbWc')]),
-        ('Крыша и кровля', [sel('Тип крыши', ['roof', 'roofT', 'roof2'], 'label'), pills('ridge150', 'Высота крыши (конька)'),
-                            row('snow'), row('gutter')]),
-        ('Каркас и высоты', [sel('Сечение каркаса стен', ['frameFR', 'frame'], 'label',
-                                 re.sub(r'(\d)мм', r'\1 мм', base('Сечение каркаса стен')), 'Сечение каркаса'),
-                             pills('walls270', 'Высота стен внутри по краям дома'),
-                             pills('cheapFlatCeil', 'Тип потолка', base('Тип потолка').replace('конек', 'конёк')),
-                             sel('Тип влажности доски', ['cheapNatWood'], 'spec')]),
-        ('Инженерные системы', [row('elec'), row('pipes'), row('vent')]),
+        # владелец 16.09.2026: ЦСП-плита — в цене в жилой части, ОСБ-плита её дешевле; отдельного пола в санузле нет.
+        # В таблице комплектаций калькулятора ЦСП стоит в строке «Чистовой пол в С/У» — владельцу сказано
+        ('Пол в жилой части', [tiles(sel('Чистовой пол в жилой части', ['cheapOsbWc', 'laminate', 'shpFloor', 'quickDeck'], 'spec',
+                                        'ЦСП-плита, 18 мм'),
+                                     'Покрытие', ('ЦСП-плита 18 мм', 'csp'),
+                                     {'cheapOsbWc': ('ОСБ-плита 18 мм', 'osb'), 'laminate': ('Ламинат', 'lam'),
+                                      'shpFloor': ('Шпунтованная доска', 'board'),
+                                      'quickDeck': ('Quick Deck под дерево', 'deck')})]),
+        # каркас и утеплитель всегда одной толщины (владелец 16.09.2026): 200 мм — это и каркас, и утепление.
+        # Плитки сразу, значки рисует kalk-dom.js (вариант 02, выбор пользователя 16.09.2026);
+        # потолок и влажность доски из калькулятора на сайте убраны — остаются как в «Комфорте»
+        ('Каркас и высоты', [tiles(sel('Сечение каркаса стен', ['frameFR', 'frame'], 'label',
+                                       FRAME_BASE, 'Каркас и утепление',
+                                       {'frameFR': 'Пол и кровля 200 мм', 'frame': 'Весь дом 200 мм'}),
+                                   'Каркас и утепление', (FRAME_BASE, 'fr150'),
+                                   {'frameFR': ('Пол и кровля 200 мм', 'frFR'), 'frame': ('Весь дом 200 мм', 'frAll')}, None, 'icon'),
+                             tiles(sel('Высота стен внутри по краям дома', ['walls270'], 'spec'),
+                                   'Высота стен по краям', (base('Высота стен внутри по краям дома'), 'w250'),
+                                   {'walls270': ('270 см', 'w270')}, None, 'icon')], 'Каркас и утепление'),
+        # инженерные системы — плитками со значками (вариант 01, выбор пользователя 16.09.2026)
+        ('Инженерные системы', [systems('Что подключить', [('elec', 'Электрика', 'bolt'),
+                                                           ('pipes', 'Разводка труб', 'pipe'),
+                                                           ('vent', 'Вентиляция', 'fan')])]),
     ]
-    # разделов «Окна и двери», «Фундамент и цоколь» и «На участке» нет (выбор пользователя 16.09.2026):
+    # разделов «Окна и двери», «Крыша и кровля», «Фундамент и цоколь» и «На участке» нет (выбор пользователя 16.09.2026):
     # их пункты не выбираются и остаются как в «Комфорте»
-    removed = ['win', 'cheapNoWin', 'winLam', 'cheapNoDoor', 'pilesZB', 'pilesV108', 'cheapNoFound', 'plinth',
-               'generator', 'toilet', 'carry', 'bytovkaE']
+    removed = ['win', 'cheapNoWin', 'winLam', 'cheapNoDoor', 'roof', 'roofT', 'roof2', 'ridge150', 'snow', 'gutter',
+               'pilesZB', 'pilesV108', 'cheapNoFound', 'plinth', 'generator', 'toilet', 'carry', 'bytovkaE',
+               'cheapFlatCeil', 'cheapNatWood']   # потолок и влажность доски убраны 16.09.2026
     for k in removed:
         need(k)
-    for t, _ in groups:
-        if t not in titles:
-            raise RuntimeError('в калькуляторе нет раздела «' + t + '»')
+    for g in groups:                                   # третьим элементом — название раздела для сайта, если оно другое
+        if g[0] not in titles:
+            raise RuntimeError('в калькуляторе нет раздела «' + g[0] + '»')
     used = set()
-    for _, rows in groups:
-        for r in rows:
-            if r['type'] == 'select':
+    for g in groups:
+        for r in g[1]:
+            if r['type'] in ('select', 'sys'):
                 used.update(o['key'] for o in r['opts'])
             elif r.get('key') and r['key'] not in ('paintIn', 'paintOut'):
                 used.add(r['key'])
@@ -225,7 +252,7 @@ def ui_data(src, over, url, key, js):
 
     kompl = json.load(io.open(os.path.join(ROOT, 'tools', 'inc', 'komplektacii.json'), encoding='utf-8'))
     UI = {'cloud': {'url': url, 'key': key},
-          'groups': [{'title': t, 'rows': rows} for t, rows in groups],
+          'groups': [{'title': g[2] if len(g) > 2 else g[0], 'rows': g[1]} for g in groups],
           'keys': {k: 1 for k in sorted(used)},
           'texts': {'over': 'Больше 200 м² не строим — уменьшите площадь.', 'empty': 'Укажите общую площадь дома с террасой',
                     'ask': 'уточняется', 'naPaintOut': 'сайдинг и хауберг не красят',
@@ -285,7 +312,7 @@ def main():
 
     print(f'Движок: коммит калькулятора {commit} · ставки облака: {len(over)} полей · «{tier["name"]}» {tier["rate"]} ₽/м² · '
           f'дом 100 м² = {total100:,} ₽'.replace(',', ' '))
-    print(f'Разделов {len(groups)} · строк {sum(len(r) for _, r in groups)} · файл {len((head + body).encode()) // 1024} КБ · '
+    print(f'Разделов {len(groups)} · строк {sum(len(g[1]) for g in groups)} · файл {len((head + body).encode()) // 1024} КБ · '
           + ('файлы калькулятора изменились' if changed else 'файлы калькулятора не менялись'))
     todo = [p for p, html, m in plan if not m or int(m.group(1)) != v]
     print(f'Страниц сайта: {len(pages)} · кнопка kalk-knopka.js?v={v} · менять страниц: {len(todo)}')

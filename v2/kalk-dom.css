@@ -2,7 +2,7 @@
    Размер — как у бюджетного калькулятора: карточка 560 px. Открывается поверх сайта справа, без подложки и затемнения.
    Вид — вариант 20 «Оранжевый ореол» (выбор пользователя 15.09.2026): тёмная рамка, оранжевый ореол, линии и поля темнее —
    чтобы калькулятор не сливался со страницей.
-   Отделка и пол — плитки с образцами (эскиз 13-5, выбор пользователя 16.09.2026).
+   Отделка и пол — плитки с образцами (эскиз 13-5, выбор пользователя 16.09.2026), видны сразу, как только открыт раздел.
    Оформление — шкалы сайта. Классы: knp- окно, kn- калькулятор. */
 
 /* окно */
@@ -94,54 +94,90 @@ label.kn-row{cursor:pointer}
 .kn-pills button:disabled{cursor:default;opacity:.5}
 .kn-pills button:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
 
-/* плитки с образцами — отделка и пол: кнопка с выбранным вариантом, по нажатию под ней плитки всех вариантов */
-.kn-mat{display:grid;gap:var(--sp-8);padding:var(--sp-8) 0}
-.kn-mt{display:flex;align-items:center;gap:var(--sp-12);width:100%;min-height:56px;margin:0;padding:var(--sp-8) var(--sp-12);border:0;border-radius:var(--r-inner);background:var(--card);box-shadow:inset 0 0 0 2px var(--kn-field);font:inherit;color:inherit;text-align:left;cursor:pointer;transition:box-shadow .2s var(--e)}
-.kn-mt:hover,.kn-mt[aria-expanded="true"]{box-shadow:inset 0 0 0 2px var(--ink)}
-.kn-mt>.kn-swt{flex:none;width:44px;height:32px}
-.kn-mt__t{display:grid;flex:1;min-width:0}
-.kn-mt__c{font-size:12px;font-weight:600;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
-.kn-mt__n{font-size:var(--fs-xs);font-weight:600;line-height:1.35}
-.kn-mt__p,.kn-tl__p{font-size:var(--fs-xs);font-weight:600;line-height:1.35;white-space:nowrap;font-variant-numeric:tabular-nums}
-.kn-mt__p{flex:none}
-.kn-mt__p.is-base,.kn-tl__p.is-base{padding:2px var(--sp-8);border-radius:999px;background:var(--n-2);font-weight:500}
-.kn-mt[aria-expanded="true"] .kn-chev{transform:translateY(2px) rotate(225deg)}
-.kn-tls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-8);padding:var(--sp-8);border-radius:var(--r-inner);background:var(--card);box-shadow:var(--edge),var(--sh-2)}
-.kn-tls[data-n="3"],.kn-tls[data-n="6"]{grid-template-columns:repeat(3,minmax(0,1fr))}
+/* плитки с образцами — отделка и пол: видны сразу, как только открыт раздел; выбранная — с галочкой */
+.kn-mat{display:grid;gap:var(--sp-8);padding:var(--sp-12) 0}
+.kn-mat__c{font-size:12px;font-weight:600;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.kn-tls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-8)}
+.kn-tls[data-n="3"],.kn-tls[data-n="5"],.kn-tls[data-n="6"]{grid-template-columns:repeat(3,minmax(0,1fr))}
 .kn-tl{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp-4);min-width:0;margin:0;padding:var(--sp-8);border:0;border-radius:var(--r-inner);background:var(--card);box-shadow:inset 0 0 0 2px var(--kn-soft);font:inherit;color:inherit;text-align:left;cursor:pointer;transition:box-shadow .2s var(--e),background-color .2s var(--e)}
 .kn-tl:hover{box-shadow:inset 0 0 0 2px var(--kn-field)}
 .kn-tl[aria-pressed="true"]{background:var(--n-1);box-shadow:inset 0 0 0 2px var(--ink)}
 .kn-tl[aria-pressed="true"]::after{content:"";position:absolute;top:var(--sp-12);right:var(--sp-12);width:20px;height:20px;border-radius:50%;box-shadow:0 0 0 2px var(--card);
   background:var(--ink) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='8'><path d='M1 4l3 3 5-6' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/10px 8px no-repeat}
 .kn-tl:disabled{cursor:default;opacity:.5}
+.kn-tl:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
 .kn-tl>.kn-swt{align-self:stretch;height:40px}
 .kn-tl__n{font-size:var(--fs-xs);font-weight:500;line-height:1.3}
-.kn-tl__p{margin-top:auto}
-.kn-mt:focus-visible,.kn-tl:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+.kn-tl__p{margin-top:auto;font-size:var(--fs-xs);font-weight:600;line-height:1.35;white-space:nowrap;font-variant-numeric:tabular-nums}
+.kn-tl__p.is-base{padding:2px var(--sp-8);border-radius:999px;background:var(--n-2);font-weight:500}
 
-/* образцы: дерево (с сучками у класса БС), сайдинг, хауберг; для пола — ОСБ, ламинат, шпунтованная доска, Quick Deck */
-.kn-swt{display:block;height:44px;border-radius:var(--r-tight);box-shadow:inset 0 0 0 1px rgb(0 0 0/.08)}
-.kn-swt--imit{background:repeating-linear-gradient(180deg,#E2C197 0 9px,var(--wood) 9px 14px,var(--wood-d) 14px 16px,var(--wood-g) 16px 17px)}
-.kn-swt--vag{background:repeating-linear-gradient(180deg,var(--wood) 0 9px,var(--wood-g) 9px 10px)}
-.kn-swt--bs{background-image:radial-gradient(circle at 22% 35%,var(--knot) 0 2.5px,transparent 3.5px),radial-gradient(circle at 68% 70%,var(--knot) 0 2px,transparent 3px),radial-gradient(circle at 86% 20%,var(--knot) 0 1.8px,transparent 2.8px),var(--bgw)}
-.kn-swt--imit.kn-swt--bs{--bgw:repeating-linear-gradient(180deg,#E2C197 0 9px,var(--wood) 9px 14px,var(--wood-d) 14px 16px,var(--wood-g) 16px 17px)}
-.kn-swt--vag.kn-swt--bs{--bgw:repeating-linear-gradient(180deg,var(--wood) 0 9px,var(--wood-g) 9px 10px)}
-.kn-swt--side{background:repeating-linear-gradient(180deg,#F1F3F5 0 8px,#E6EAEE 8px 11px,#C3CAD2 11px 12px)}
-.kn-swt--soft{background:radial-gradient(circle at 50% 100%,#8A5B45 0 6px,#5E3D2E 6px 7px,transparent 7.5px) 0 0/14px 10px,radial-gradient(circle at 50% 100%,#8A5B45 0 6px,#5E3D2E 6px 7px,transparent 7.5px) 7px 5px/14px 10px,#8A5B45}
-.kn-swt--osb{background:radial-gradient(9px 2.4px at 18% 22%,#AE834F 80%,transparent),radial-gradient(2.6px 8px at 62% 30%,#C09460 80%,transparent),
-  radial-gradient(8px 2.2px at 78% 74%,#EAD3A8 80%,transparent),radial-gradient(7px 2.6px at 34% 70%,#BC905A 80%,transparent),
-  radial-gradient(2.4px 6px at 10% 62%,#E6CB9B 80%,transparent),radial-gradient(6px 2px at 52% 50%,#A67B48 80%,transparent),
-  radial-gradient(2.2px 7px at 90% 24%,#B78B56 80%,transparent),#D8B886;background-size:38px 26px}
-.kn-swt--lam{background:conic-gradient(from 270deg at 1px 12px,rgb(110 80 50/.45) 0 25%,transparent 0) 0 0/58px 24px,conic-gradient(from 180deg at 1px 12px,rgb(110 80 50/.45) 0 25%,transparent 0) 29px 0/58px 24px,repeating-linear-gradient(180deg,#DBC29C 0 11px,rgb(110 80 50/.35) 11px 12px,#D0B48C 12px 23px,rgb(110 80 50/.35) 23px 24px)}
-.kn-swt--board{background:repeating-linear-gradient(180deg,transparent 0 4px,rgb(110 65 30/.14) 4px 5px,transparent 5px 10px,rgb(110 65 30/.1) 10px 11px,transparent 11px 16px),repeating-linear-gradient(180deg,#C8915B 0 15px,#7A4F2C 15px 16px,#BD8651 16px 31px,#7A4F2C 31px 32px)}
-.kn-swt--deck{background:repeating-linear-gradient(180deg,rgb(255 255 255/.12) 0 1px,transparent 1px 3px),repeating-linear-gradient(180deg,#8F7661 0 13px,#4F4034 13px 14px,#877059 14px 27px,#4F4034 27px 28px)}
+/* плитки инженерных систем: вместо образца — значок (вариант 01, выбор пользователя 16.09.2026) */
+.kn-ico{display:grid;place-items:center;align-self:stretch;height:40px;border-radius:var(--r-tight);background:var(--n-1);color:var(--dim);transition:background-color .2s var(--e),color .2s var(--e)}
+.kn-ico svg{width:24px;height:24px}
+.kn-tl[aria-pressed="true"]>.kn-ico{background:rgb(224 96 60/.12);color:var(--clay-txt)}
+.kn-mat>.kn-note{margin:0}
+
+/* образцы материалов: доска с бликом по верху и тенью в шве, продольная текстура дерева, сверху мелкое зерно */
+.kn{--kn-grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/><feColorMatrix type='saturate' values='0'/></filter><rect width='80' height='80' filter='url(%23g)'/></svg>");
+  --wd-imit:repeating-linear-gradient(180deg,rgb(255 255 255/.20) 0 2px,transparent 2px 13px,rgb(86 56 27/.30) 13px 15px,rgb(255 255 255/.10) 15px 17px),
+    repeating-linear-gradient(180deg,transparent 0 3px,rgb(140 95 50/.10) 3px 4px,transparent 4px 8px,rgb(140 95 50/.07) 8px 9px,transparent 9px 17px),
+    repeating-linear-gradient(180deg,#E7CBA3 0 4px,var(--wood) 4px 11px,#CBA275 11px 15px,var(--wood-g) 15px 17px);
+  --wd-vag:repeating-linear-gradient(180deg,rgb(255 255 255/.18) 0 1.5px,transparent 1.5px 8px,rgb(86 56 27/.32) 8px 10px),
+    repeating-linear-gradient(180deg,transparent 0 2px,rgb(140 95 50/.09) 2px 3px,transparent 3px 6px,rgb(140 95 50/.06) 6px 7px,transparent 7px 10px),
+    repeating-linear-gradient(180deg,#E3C297 0 3px,var(--wood) 3px 7px,#C59C6E 7px 10px)}
+.kn-swt{position:relative;display:block;height:44px;overflow:hidden;border-radius:var(--r-tight);box-shadow:inset 0 0 0 1px rgb(0 0 0/.10)}
+.kn-swt::after{content:"";position:absolute;inset:0;background:var(--kn-grain) 0 0/80px 80px;mix-blend-mode:overlay;opacity:.4;pointer-events:none}
+.kn-swt--imit{background-image:var(--wd-imit)}
+.kn-swt--vag{background-image:var(--wd-vag)}
+.kn-swt--bs{background-image:radial-gradient(circle at 22% 34%,#4C2F17 0 1.5px,var(--knot) 1.5px 2.4px,rgb(110 74 44/.5) 2.4px 3.4px,transparent 3.8px),
+  radial-gradient(circle at 67% 70%,#4C2F17 0 1.1px,var(--knot) 1.1px 2px,rgb(110 74 44/.45) 2px 2.9px,transparent 3.3px),
+  radial-gradient(circle at 86% 20%,#5A3A20 0 1px,rgb(110 74 44/.5) 1px 2.1px,transparent 2.5px),var(--bgw)}
+.kn-swt--imit.kn-swt--bs{--bgw:var(--wd-imit)}
+.kn-swt--vag.kn-swt--bs{--bgw:var(--wd-vag)}
+.kn-swt--side{background:linear-gradient(100deg,rgb(255 255 255/.55) 0 14%,rgb(255 255 255/.12) 30%,transparent 52%),
+  repeating-linear-gradient(180deg,#FAFBFC 0 1px,#EDF0F3 1px 7px,#DDE2E8 7px 9px,#C3CAD2 9px 10px)}
+.kn-swt--soft{background:radial-gradient(circle at 50% 100%,rgb(38 22 14/.28) 0 6.6px,transparent 7.3px) 0 1.5px/14px 10px,
+  radial-gradient(circle at 50% 100%,#96654C 0 6px,#6B4433 6px 6.9px,transparent 7.4px) 0 0/14px 10px,
+  radial-gradient(circle at 50% 100%,rgb(38 22 14/.28) 0 6.6px,transparent 7.3px) 7px 6.5px/14px 10px,
+  radial-gradient(circle at 50% 100%,#8A5B45 0 6px,#5E3D2E 6px 6.9px,transparent 7.4px) 7px 5px/14px 10px,#7A5340}
+.kn-swt--osb{background:radial-gradient(11px 2.6px at 14% 18%,#AC8049 78%,transparent),radial-gradient(3px 9px at 39% 30%,#C6995F 78%,transparent),
+  radial-gradient(9px 2.4px at 66% 14%,#E9D2A4 78%,transparent),radial-gradient(2.6px 7px at 86% 26%,#B2854F 78%,transparent),
+  radial-gradient(10px 2.8px at 26% 56%,#BE9058 78%,transparent),radial-gradient(3.2px 8px at 55% 62%,#A87C46 78%,transparent),
+  radial-gradient(8px 2.4px at 78% 54%,#E3C795 78%,transparent),radial-gradient(9px 2.6px at 44% 86%,#B58A53 78%,transparent),
+  radial-gradient(2.8px 7px at 12% 82%,#D8B67F 78%,transparent),radial-gradient(7px 2.2px at 90% 84%,#C79C63 78%,transparent),
+  #D9BA8A;background-size:96px 44px}
+.kn-swt--csp{background:radial-gradient(10px 2.4px at 16% 20%,#A6AAA6 78%,transparent),radial-gradient(2.8px 8px at 40% 32%,#B7BBB7 78%,transparent),
+  radial-gradient(8px 2.2px at 68% 16%,#D3D6D2 78%,transparent),radial-gradient(2.4px 6px at 88% 28%,#ABAFAB 78%,transparent),
+  radial-gradient(9px 2.6px at 28% 58%,#B0B4B0 78%,transparent),radial-gradient(3px 7px at 57% 64%,#9DA19D 78%,transparent),
+  radial-gradient(7px 2.2px at 80% 56%,#CED1CD 78%,transparent),radial-gradient(8px 2.4px at 46% 88%,#A9ADA9 78%,transparent),
+  radial-gradient(2.6px 6px at 14% 84%,#C4C7C3 78%,transparent),#BFC3BF;background-size:96px 44px}
+.kn-swt--lam{background:linear-gradient(100deg,rgb(255 255 255/.38) 0 18%,transparent 44%),
+  conic-gradient(from 270deg at 1px 12px,rgb(110 80 50/.45) 0 25%,transparent 0) 0 0/58px 24px,
+  conic-gradient(from 180deg at 1px 12px,rgb(110 80 50/.45) 0 25%,transparent 0) 29px 0/58px 24px,
+  repeating-linear-gradient(180deg,transparent 0 3px,rgb(120 85 45/.08) 3px 4px,transparent 4px 8px,rgb(120 85 45/.06) 8px 9px,transparent 9px 12px),
+  repeating-linear-gradient(180deg,#DFC7A2 0 11px,rgb(110 80 50/.35) 11px 12px,#D2B68E 12px 23px,rgb(110 80 50/.35) 23px 24px)}
+.kn-swt--board{background:repeating-linear-gradient(180deg,rgb(255 255 255/.16) 0 1.5px,transparent 1.5px 14px,rgb(80 48 22/.35) 14px 16px),
+  repeating-linear-gradient(180deg,transparent 0 4px,rgb(110 65 30/.13) 4px 5px,transparent 5px 10px,rgb(110 65 30/.1) 10px 11px,transparent 11px 16px),
+  repeating-linear-gradient(180deg,#CD9761 0 16px,#C28C56 16px 32px)}
+.kn-swt--deck{background:repeating-linear-gradient(180deg,rgb(255 255 255/.09) 0 1px,transparent 1px 3px),
+  repeating-linear-gradient(180deg,rgb(255 255 255/.14) 0 1px,transparent 1px 12px,rgb(30 23 17/.45) 12px 14px),
+  repeating-linear-gradient(180deg,#8F7661 0 14px,#83705B 14px 28px)}
 .kn-swt.is-paint{box-shadow:inset 0 0 0 999px var(--kn-paint)}
 
-/* электрика: внешняя разводка под строкой */
-.kn-extra{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-8) var(--sp-12);padding:0 0 var(--sp-8)}
-.kn-sub{display:inline-flex;align-items:center;gap:var(--sp-8);min-height:36px;font-size:var(--fs-xs);cursor:pointer}
-.kn-sub input{width:18px;height:18px;margin:0;accent-color:var(--ink)}
-.kn-subp{color:var(--dim);font-variant-numeric:tabular-nums}
+/* покраска — строка в рамке со значком валика (вариант 01-3, выбор пользователя 16.09.2026);
+   включена — строка тёмная, значок и переключатель кирпичные; материал не красят — строки нет совсем */
+.kn-pnt{padding:var(--sp-12) 0}
+.kn-pn{gap:var(--sp-12);padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);box-shadow:inset 0 0 0 2px var(--kn-soft);transition:background-color .2s var(--e),box-shadow .2s var(--e),color .2s var(--e)}
+.kn-pn .kn-ic{flex:none;width:24px;height:24px;color:var(--dim);transition:color .2s var(--e)}
+.kn-pv{font-size:var(--fs-xs);font-weight:600;line-height:1.35;white-space:nowrap;font-variant-numeric:tabular-nums}
+.kn-pv:empty{display:none}
+.kn-it.is-on .kn-pn{background:var(--ink);box-shadow:inset 0 0 0 2px var(--ink);color:#fff}
+.kn-it.is-on .kn-pn .kn-ic{color:var(--clay)}
+.kn-it.is-on .kn-pn .kn-rn{font-weight:600}
+.kn-it.is-on .kn-pn .kn-rp{color:rgb(255 255 255/.72);font-weight:400}
+.kn-it.is-on .kn-pn .kn-sw i{background:var(--clay)}
+.kn-it.is-on .kn-pn .kn-sw input:focus-visible+i{outline-color:#fff}
+.kn-pna{margin:0;padding:var(--sp-8) 0;font-size:var(--fs-xs);line-height:1.35;color:var(--dim)}
 
 /* итог: сумма видна сразу, смета по строкам — после заявки */
 .kn-optsum{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-12);padding-top:var(--sp-12);font-size:var(--fs-xs);color:var(--dim)}
@@ -153,7 +189,7 @@ label.kn-row{cursor:pointer}
 .kn-alt:hover{border-color:var(--ink);color:var(--clay-txt)}
 .kn-reset{display:block;min-height:var(--tap);margin:var(--sp-4) auto 0;padding:0 var(--sp-12);border:0;background:none;font:inherit;font-size:var(--fs-xs);font-weight:500;color:var(--clay-txt);cursor:pointer}
 .kn-reset:hover{color:var(--clay-btn-h)}
-.kn-go:focus-visible,.kn-alt:focus-visible,.kn-reset:focus-visible,.kn-q:focus-visible,.kn-sub input:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+.kn-go:focus-visible,.kn-alt:focus-visible,.kn-reset:focus-visible,.kn-q:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
 .kn-res{margin-top:var(--sp-12);padding:var(--sp-16);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-field)}
 .kn-res__k{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .kn-res__v{display:block;margin-top:var(--sp-4);font-size:var(--fs-xl);font-weight:600;line-height:1.15;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
@@ -177,11 +213,11 @@ label.kn-row{cursor:pointer}
   .kn-gn{font-size:var(--fs-sm);white-space:normal}
   .kn-ell{display:none}
   .kn-gb{padding-left:var(--sp-8)}
-  .kn-rn,.kn-mt__n{font-size:var(--fs-sm)}
+  .kn-rn{font-size:var(--fs-sm)}
   .kn-row--sel{grid-template-columns:minmax(0,1fr)}
   .kn-row--sel .kn-pills{justify-self:start}
   .kn-row--sel .kn-sel{font-size:var(--fs-sm)}
-  .kn-tls[data-n="6"]{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kn-tls[data-n="5"],.kn-tls[data-n="6"]{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(prefers-reduced-motion:reduce){.knp *,.knp *::before,.knp *::after{transition:none!important}}
 @media print{.knp,.knp-ov{display:none!important}}

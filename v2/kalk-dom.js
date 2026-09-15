@@ -3,7 +3,8 @@
    Площадь — одно поле, дом вместе с террасой; полей террасы, перегородок и доставки нет (выбор пользователя 16.09.2026):
    вся площадь считается домом, перегородок нет, доставка — в пределах 100 км, где она бесплатна.
    Отделка снаружи, отделка внутри и пол выбираются плитками с образцами (эскиз 13-5, выбор пользователя 16.09.2026);
-   разделов «Окна и двери», «Фундамент и цоколь» и «На участке» нет — эти пункты остаются как в «Комфорте».
+   плитки видны сразу, как только открыт раздел. Разделов «Окна и двери», «Крыша и кровля», «Фундамент и цоколь»
+   и «На участке» нет — эти пункты остаются как в «Комфорте».
    Считает движок большого калькулятора: kalk-dom-engine.js (MTD_ENGINE и разделы KN_UI) собирает tools/kalk_dom.py.
    Итог виден сразу, смета по строкам — после заявки (выбор пользователя 15.09.2026): строки расчёта уходят
    в заявку — form.js берёт их через KNP.context(), если кнопка заявки стоит внутри калькулятора.
@@ -94,14 +95,14 @@
      помнится в браузере и одно на весь сайт: открыл калькулятор на другой странице — там тот же дом */
   var KEY = 'mtd_kn_state_v1';
   function defaults() {
-    return { l: '100', on: {}, elecExt: false, paintIn: false, paintOut: false };
+    return { l: '100', on: {}, paintIn: false, paintOut: false };
   }
   function norm(s) {
     var d = defaults();
     s = s && typeof s === 'object' ? s : {};
     var l = s.l == null ? d.l : String(s.l);
     if (s.terrace && pNum(s.t) > 0) l = String(Math.round((pNum(l) + pNum(s.t)) * 10) / 10).replace('.', ',');   // выбор до 16.09: дом и терраса — одной площадью
-    var out = { l: l, on: {}, elecExt: !!s.elecExt, paintIn: !!s.paintIn, paintOut: !!s.paintOut };
+    var out = { l: l, on: {}, paintIn: !!s.paintIn, paintOut: !!s.paintOut };
     var seen = {};
     Object.keys(s.on || {}).forEach(function (k) {
       if (!s.on[k] || !A[k] || !UI.keys[k]) return;                 // пункты убранных разделов не сохраняются
@@ -119,7 +120,7 @@
   function engineState(s) {
     var on = {};
     Object.keys(s.on).forEach(function (k) { if (unitOf(k) !== null) on[k] = true; });
-    return { l: pNum(s.l), t: 0, part: 0, km: 100, on: on, qty: {}, dist: {}, elecExt: s.elecExt, paintIn: s.paintIn, paintOut: s.paintOut };
+    return { l: pNum(s.l), t: 0, part: 0, km: 100, on: on, qty: {}, dist: {}, elecExt: false, paintIn: s.paintIn, paintOut: s.paintOut };
   }
 
   /* ── разметка разделов: собирается один раз, дальше меняются только значения ── */
@@ -127,23 +128,42 @@
   function switchHtml(label) {
     return '<span class="kn-sw"><input type="checkbox" data-t aria-label="' + esc(label) + '"><i aria-hidden="true"></i></span>';
   }
-  /* образец: look «imit bs» — классы kn-swt--imit kn-swt--bs; с покраской образец темнее */
-  function swatchCls(look, paint) {
-    return 'kn-swt' + String(look || '').split(' ').map(function (x) { return x ? ' kn-swt--' + x : ''; }).join('') + (paint ? ' is-paint' : '');
+  /* значки инженерных систем и валик у строки покраски */
+  var SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+  var ICON = {
+    bolt: SVG + '<path d="M13 3 5 13h6l-1 8 8-10h-6l1-8z"/></svg>',
+    pipe: SVG + '<rect x="3" y="5.5" width="5" height="4" rx="1"/><path d="M8 7.5h6a3 3 0 0 1 3 3v2"/>' +
+      '<path d="M15 17.5c0 1.4.9 2.5 2 2.5s2-1.1 2-2.5c0-1.2-2-3.5-2-3.5s-2 2.3-2 3.5z"/></svg>',
+    fan: SVG + '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="1.4"/>' +
+      '<path d="M12 10.6c1.4-2.9 3.9-3.4 4.9-2.4 1 1-.5 3.4-3.4 3.9"/><path d="M12 13.4c-1.4 2.9-3.9 3.4-4.9 2.4-1-1 .5-3.4 3.4-3.9"/></svg>',
+    fr150: SVG + '<path d="M3.5 11 12 4.5l8.5 6.5"/><path d="M6 11v9"/><path d="M18 11v9"/><path d="M6 20h12"/></svg>',
+    frFR: SVG + '<path d="M6 11v9"/><path d="M18 11v9"/><path d="M3.5 11 12 4.5l8.5 6.5" stroke-width="3.4"/><path d="M6 20h12" stroke-width="3.4"/></svg>',
+    frAll: SVG + '<path d="M3.5 11 12 4.5l8.5 6.5" stroke-width="3.4"/><path d="M6 11v9" stroke-width="3.4"/>' +
+      '<path d="M18 11v9" stroke-width="3.4"/><path d="M6 20h12" stroke-width="3.4"/></svg>',
+    w250: SVG + '<path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M6 10.5V20h12v-9.5"/><path d="M9 19.5V15"/>' +
+      '<path d="M7.8 16.2 9 15l1.2 1.2"/><path d="M10.2 18.3 9 19.5l-1.2-1.2"/></svg>',
+    w270: SVG + '<path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M6 10.5V20h12v-9.5"/><path d="M9 19.5v-7"/>' +
+      '<path d="M7.8 13.7 9 12.5l1.2 1.2"/><path d="M10.2 18.3 9 19.5l-1.2-1.2"/></svg>'
+  };
+  /* значок валика у строки покраски */
+  function roller() {
+    return '<svg class="kn-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<rect x="3" y="4" width="13" height="5" rx="1"/><path d="M16 6.5h3v4h-7v3"/><rect x="10" y="13.5" width="4" height="6.5" rx="1"/></svg>';
+  }
+  /* образец: look «imit bs» — классы kn-swt--imit kn-swt--bs */
+  function swatchCls(look) {
+    return 'kn-swt' + String(look || '').split(' ').map(function (x) { return x ? ' kn-swt--' + x : ''; }).join('');
   }
   function rowHtml(r, id) {
     if (r.view === 'tiles') {
-      var tiles = [{ key: '', short: r.baseShort, look: r.baseLook }].concat(r.opts);
+      var tiles = [{ key: '', short: r.baseShort, look: r.baseLook, icon: r.baseIcon }].concat(r.opts);
       return '<div class="kn-mat" data-row="' + id + '">' +
-        '<button type="button" class="kn-mt" aria-expanded="false" aria-controls="kn-tl-' + id + '">' +
-          '<i class="' + swatchCls(r.baseLook) + '" aria-hidden="true"></i>' +
-          '<span class="kn-mt__t"><span class="kn-mt__c">' + esc(r.cap) + '</span><span class="kn-mt__n"></span></span>' +
-          '<span class="kn-mt__p"></span><span class="kn-chev" aria-hidden="true"></span>' +
-        '</button>' +
-        '<div class="kn-tls" id="kn-tl-' + id + '" role="group" aria-label="' + esc(r.label) + '" data-n="' + tiles.length + '" hidden>' +
+        '<span class="kn-mat__c" aria-hidden="true">' + esc(r.cap) + '</span>' +
+        '<div class="kn-tls" role="group" aria-label="' + esc(r.label) + '" data-n="' + tiles.length + '">' +
           tiles.map(function (o) {
             return '<button type="button" class="kn-tl" data-tile="' + o.key + '" aria-pressed="false">' +
-              '<i class="' + swatchCls(o.look) + '" aria-hidden="true"></i><span class="kn-tl__n">' + esc(o.short) + '</span><span class="kn-tl__p"></span></button>';
+              (o.icon ? '<span class="kn-ico">' + ICON[o.icon] + '</span>' : '<i class="' + swatchCls(o.look) + '" aria-hidden="true"></i>') +
+              '<span class="kn-tl__n">' + esc(o.short) + '</span><span class="kn-tl__p"></span></button>';
           }).join('') +
         '</div></div>';
     }
@@ -162,7 +182,24 @@
           '<button type="button" data-pill="1" aria-pressed="false">' + esc(r.name) + '</button>' +
         '</span><span class="kn-rp"></span></div>';
     }
-    var k = r.key, paint = r.type === 'paint', noteT = paint ? '' : noteOf(k), helpT = paint ? '' : helpOf(k);
+    if (r.type === 'sys') {                                         // инженерные системы — плитки со значками
+      return '<div class="kn-mat" data-row="' + id + '">' +
+        '<span class="kn-mat__c" aria-hidden="true">' + esc(r.cap) + '</span>' +
+        '<div class="kn-tls" role="group" aria-label="' + esc(r.label) + '" data-n="' + r.opts.length + '">' +
+          r.opts.map(function (o) {
+            return '<button type="button" class="kn-tl" data-sys="' + o.key + '" aria-pressed="false">' +
+              '<span class="kn-ico">' + ICON[o.icon] + '</span>' +
+              '<span class="kn-tl__n">' + esc(o.short) + '</span><span class="kn-tl__p"></span></button>';
+          }).join('') + '</div><p class="kn-note" hidden></p></div>';
+    }
+    if (r.type === 'paint') {                                       // покраска — строка в рамке со значком валика
+      return '<div class="kn-it kn-pnt" data-row="' + id + '">' +
+        '<label class="kn-row kn-pn">' + roller() +
+          '<span class="kn-rt"><span class="kn-rn">' + esc(r.short || r.name) + '</span><span class="kn-rp"></span></span>' +
+          '<b class="kn-pv"></b>' + switchHtml(r.name) +
+        '</label><p class="kn-pna" hidden></p></div>';
+    }
+    var k = r.key, noteT = noteOf(k), helpT = helpOf(k);
     return '<div class="kn-it" data-row="' + id + '">' +
       '<label class="kn-row">' +
         '<span class="kn-rt"><span class="kn-rn">' + esc(r.name) +
@@ -171,7 +208,6 @@
         '<span class="kn-ask" hidden>' + esc(UI.texts.ask) + '</span>' + switchHtml(r.name) +
       '</label>' +
       (helpT ? '<p class="kn-help" hidden>' + esc(helpT) + '</p>' : '') +
-      (k === 'elec' ? '<div class="kn-extra" hidden><label class="kn-sub"><input type="checkbox" data-x>' + esc(A.elec.sub) + '<span class="kn-subp"></span></label></div>' : '') +
     '</div>';
   }
   function groupHtml(g, gi) {
@@ -188,7 +224,18 @@
 
   /* ── отрисовка ── */
   var wantErr = false, ctx = null;
-  function naPaint(k, s) { return k === 'paintOut' && !!(s.on.extSide || s.on.extSoft); }   // сайдинг и хауберг не красят
+  /* сайдинг и хауберг не красят: подпись берём из плиток, чтобы она совпадала с выбранным материалом */
+  var NOPAINT = {};
+  UI.groups.forEach(function (g) {
+    g.rows.forEach(function (r) {
+      if (r.view === 'tiles') r.opts.forEach(function (o) { if (o.key === 'extSide' || o.key === 'extSoft') NOPAINT[o.key] = o.short; });
+    });
+  });
+  function naPaint(k, s) {
+    if (k !== 'paintOut') return '';
+    var key = s.on.extSide ? 'extSide' : s.on.extSoft ? 'extSoft' : '';
+    return key ? (NOPAINT[key] || 'этот материал') + ' не красят' : '';
+  }
   function render() {
     var s = engineState(st);
     var over = pNum(st.l) > 200.01;
@@ -207,15 +254,10 @@
       g.rows.forEach(function (r, ri) {
         var row = el.querySelector('[data-row="' + gi + '-' + ri + '"]');
 
-        if (r.view === 'tiles') {                                   // кнопка с выбранным вариантом и плитки всех вариантов
+        if (r.view === 'tiles') {                                   // плитки всех вариантов, выбранная — с галочкой
           var tc = null;
           r.opts.forEach(function (o) { if (s.on[o.key]) tc = o; });
-          var ta = tc ? amountOf(tc.key) : 0, mt = row.querySelector('.kn-mt'), tsw = mt.querySelector('.kn-swt'), tp = mt.querySelector('.kn-mt__p');
-          var tcls = swatchCls(tc ? tc.look : r.baseLook, !!r.paint && !!st[r.paint] && !naPaint(r.paint, s));
-          if (tsw.className !== tcls) tsw.className = tcls;
-          put(mt.querySelector('.kn-mt__n'), tc ? tc.short : r.baseShort);
-          put(tp, !tc ? 'в цене' : ok ? signed(ta) : unitOf(tc.key));
-          tp.classList.toggle('is-base', !tc);
+          var ta = tc ? amountOf(tc.key) : 0;
           [].forEach.call(row.querySelectorAll('[data-tile]'), function (b, i) {
             var o = i ? r.opts[i - 1] : null, u = o ? unitOf(o.key) : '', p = b.querySelector('.kn-tl__p');
             b.setAttribute('aria-pressed', String(o === tc));
@@ -229,6 +271,25 @@
             if (ok) { sum += ta; parts.push([r.label + ': ' + tc.name, ta, '']); }
           } else texts.push(r.baseShort);
           row.classList.toggle('is-on', !!tc);
+          return;
+        }
+
+        if (r.type === 'sys') {                                     // плитки-переключатели: каждая сама по себе
+          [].forEach.call(row.querySelectorAll('[data-sys]'), function (b, i) {
+            var o = r.opts[i], sOn = !!s.on[o.key], u = unitOf(o.key), a = u === null ? 0 : amountOf(o.key);
+            b.setAttribute('aria-pressed', String(sOn));
+            b.disabled = u === null;
+            put(b.querySelector('.kn-tl__p'), u === null ? UI.texts.ask : ok ? signed(a) : u);
+            if (sOn) {
+              cnt++;
+              texts.push(o.short);
+              if (ok) { sum += a; parts.push([o.name, a, '']); }
+            }
+          });
+          var nt = row.querySelector('.kn-note');
+          nt.hidden = !s.on.vent;
+          put(nt, noteOf('vent'));
+          row.classList.toggle('is-on', cnt > 0);
           return;
         }
 
@@ -272,21 +333,26 @@
         }
 
         var k = r.key, paint = r.type === 'paint', u3 = unitOf(k), ask = u3 === null;
-        var na = naPaint(k, s) ? UI.texts.naPaintOut : '';
+        var na = paint ? naPaint(k, s) : '';
         var on3 = !ask && !na && (paint ? !!st[k] : !!s.on[k]);
         var a3 = ask || na ? 0 : amountOf(k);
+        if (paint) {                                                // покраску, которой нет, не показываем совсем
+          var pna = row.querySelector('.kn-pna');
+          row.querySelector('.kn-row').hidden = !!na;
+          pna.hidden = !na;
+          put(pna, na);
+          put(row.querySelector('.kn-rp'), u3.replace('+', '') + (r.where ? ', ' + r.where : ''));
+          put(row.querySelector('.kn-pv'), ok ? signed(a3) : '');
+          row.querySelector('[data-t]').checked = on3;
+          row.classList.toggle('is-on', on3);
+          if (on3) { cnt++; texts.push('покраска'); if (ok) { sum += a3; parts.push([r.name, a3, '']); } }
+          return;
+        }
         var rp = ask ? '' : na ? na : u3 === 'бесплатно' ? u3 : ok ? u3 + ' · ' + signed(a3) : u3;
         put(row.querySelector('.kn-rp'), rp);
         var t = row.querySelector('[data-t]');
         t.checked = on3; t.disabled = !!na; t.parentNode.hidden = ask;
         row.querySelector('.kn-ask').hidden = !ask;
-        [].forEach.call(row.querySelectorAll('.kn-extra'), function (x) { x.hidden = !on3; });
-        var x = row.querySelector('[data-x]');
-        if (x) {
-          x.checked = !!st.elecExt;
-          var diff = A.elec.permExt - (A.elec.perm || 0);
-          put(row.querySelector('.kn-subp'), ' ' + (diff < 0 ? '−' : '+') + num(diff) + NB + '₽/м²');
-        }
         row.classList.toggle('is-on', on3);
         row.classList.toggle('is-off', ask || !!na);
         if (on3) {
@@ -297,7 +363,7 @@
       });
       el.classList.toggle('is-on', cnt > 0);
       put(el.querySelector('.kn-cnt'), String(cnt));
-      put(el.querySelector('.kn-ell'), texts.join(', ') || 'не выбрано');
+      put(el.querySelector('.kn-ell'), texts.filter(function (t, i) { return i === 0 || t !== texts[i - 1]; }).join(', ') || 'не выбрано');
       put(el.querySelector('.kn-gs'), !ok ? '—' : cnt && sum ? signed(sum) : '0' + NB + '₽');
     });
 
@@ -340,13 +406,6 @@
 
   inL.addEventListener('input', function () { st.l = inL.value; wantErr = false; change(); });
 
-  /* плитки открываются и закрываются кнопкой; после выбора и Esc фокус возвращается на кнопку — иначе он пропадёт вместе с плитками */
-  function tilesOpen(mt, open, focus) {
-    mt.setAttribute('aria-expanded', String(open));
-    $(mt.getAttribute('aria-controls')).hidden = !open;
-    if (focus) mt.focus({ preventScroll: true });
-  }
-
   box.addEventListener('click', function (e) {
     var q = e.target.closest('.kn-q');
     if (q) {
@@ -359,7 +418,6 @@
     var gh = e.target.closest('.kn-gh');
     if (gh) {                                                       // как в бюджетном: открыт один раздел
       var willOpen = gh.getAttribute('aria-expanded') !== 'true';
-      [].forEach.call(box.querySelectorAll('.kn-mt[aria-expanded="true"]'), function (b) { tilesOpen(b, false); });
       [].forEach.call(box.querySelectorAll('.kn-gh'), function (b) {
         b.setAttribute('aria-expanded', 'false');
         $(b.getAttribute('aria-controls')).hidden = true;
@@ -367,14 +425,18 @@
       if (willOpen) { gh.setAttribute('aria-expanded', 'true'); $(gh.getAttribute('aria-controls')).hidden = false; }
       return;
     }
-    var mt = e.target.closest('.kn-mt');
-    if (mt) { tilesOpen(mt, mt.getAttribute('aria-expanded') !== 'true'); return; }
     var tile = e.target.closest('[data-tile]');
     if (tile) {
-      var tileRow = tile.closest('[data-row]'), tr = ROWS[tileRow.getAttribute('data-row')], tk = tile.getAttribute('data-tile');
+      var tr = ROWS[tile.closest('[data-row]').getAttribute('data-row')], tk = tile.getAttribute('data-tile');
       tr.opts.forEach(function (o) { delete st.on[o.key]; });
       if (tk) st.on[tk] = true;
-      tilesOpen(tileRow.querySelector('.kn-mt'), false, true);
+      change();
+      return;
+    }
+    var sys = e.target.closest('[data-sys]');
+    if (sys) {
+      var sk = sys.getAttribute('data-sys');
+      if (st.on[sk]) delete st.on[sk]; else st.on[sk] = true;
       change();
       return;
     }
@@ -396,8 +458,6 @@
       if (r.type === 'paint') st[r.key] = e.target.checked;
       else if (e.target.checked) st.on[r.key] = true;
       else delete st.on[r.key];
-    } else if (e.target.hasAttribute('data-x')) {
-      st.elecExt = e.target.checked;
     } else return;
     change();
   });
@@ -411,7 +471,7 @@
     $('kn-res').scrollIntoView({ behavior: calm() ? 'auto' : 'smooth', block: 'start' });
   });
   $('kn-reset').addEventListener('click', function () {
-    st.on = {}; st.elecExt = false; st.paintIn = false; st.paintOut = false;
+    st.on = {}; st.paintIn = false; st.paintOut = false;
     change();
   });
 
@@ -441,13 +501,7 @@
     if (P.hidden) return;
     var cb = document.getElementById('callback');
     if (cb && !cb.hidden) return;                                  // поверх открыто окно заявки — клавиши его
-    if (e.key === 'Escape') {
-      e.preventDefault();
-      var mt = box.querySelector('.kn-mt[aria-expanded="true"]');
-      if (mt) { tilesOpen(mt, false, true); return; }               // сначала закрываются плитки, потом окно
-      close();
-      return;
-    }
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
     if (e.key !== 'Tab') return;
     var f = [].filter.call(P.querySelectorAll('button, input, select, a[href]'), function (el) {
       return !el.disabled && el.tabIndex >= 0 && el.getClientRects().length > 0;
