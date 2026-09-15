@@ -202,7 +202,7 @@ def ui_data(src, over, url, key, js):
     UI = {'cloud': {'url': url, 'key': key},
           'groups': [{'title': t, 'rows': rows} for t, rows in groups],
           'keys': {k: 1 for k in sorted(used)},
-          'texts': {'over': 'Больше 200 м² не строим — уменьшите дом или террасу.', 'empty': 'Укажите площадь дома',
+          'texts': {'over': 'Больше 200 м² не строим — уменьшите площадь.', 'empty': 'Укажите общую площадь дома с террасой',
                     'ask': 'уточняется', 'naPaintOut': 'сайдинг и хауберг не красят', 'naWinLam': 'окон нет — ламинировать нечего',
                     'note': kompl['note'].split('. ')[0].rstrip('.') + '.'}}
     return UI, dump['tier'], dump['total100'], groups

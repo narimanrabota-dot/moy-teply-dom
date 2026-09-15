@@ -28,13 +28,12 @@
 .kn-sel{appearance:none;-webkit-appearance:none;padding-right:var(--sp-32);text-overflow:ellipsis;cursor:pointer;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23616D85' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
   background-repeat:no-repeat;background-position:right var(--sp-12) center}
-.kn-hint{margin:0;font-size:var(--fs-xs);line-height:1.4;color:var(--dim);text-wrap:pretty}
-.kn-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--sp-12)}
-.kn-line{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-12);min-height:var(--tap);margin-bottom:var(--sp-8);font-size:var(--fs-xs);font-weight:500;cursor:pointer}
+/* одно поле площади: единица внутри поля справа, больше 200 м² — кирпичная рамка */
+.kn-wrap{position:relative}
+.kn-in--unit{padding-right:44px}
+.kn-unit{position:absolute;top:50%;right:var(--sp-12);transform:translateY(-50%);font-size:var(--fs-xs);color:var(--dim);pointer-events:none}
+.kn-in.is-bad{box-shadow:inset 0 0 0 2px var(--clay-btn)}
 .kn-err{margin:0 0 var(--sp-12);padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-2);font-size:var(--fs-xs);color:var(--clay-txt)}
-.kn-sum{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-12);margin-bottom:var(--sp-12);padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-2);font-size:var(--fs-xs);color:var(--dim)}
-.kn-sum b{font-size:var(--fs-sm);font-weight:600;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
-.kn-rules{margin:0}
 .kn-cap{margin:var(--sp-24) 0 0;padding-bottom:var(--sp-8);border-bottom:2px solid var(--kn-edge);font-size:12px;font-weight:600;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 
 /* переключатель */
@@ -139,8 +138,6 @@ label.kn-row{cursor:pointer}
   .knp{padding:var(--sp-12) var(--sp-12) var(--sp-32)}
   .knp-x{top:var(--sp-8);right:var(--sp-8)}
   .kn-card{padding:var(--sp-16)}
-  .kn-two{grid-template-columns:minmax(0,1fr)}
-  .kn-line{font-size:var(--fs-sm)}
   .kn-gh{grid-template-columns:24px minmax(0,1fr) auto 12px}
   .kn-gn{font-size:var(--fs-sm);white-space:normal}
   .kn-ell{display:none}

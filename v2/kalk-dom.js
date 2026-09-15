@@ -1,5 +1,7 @@
 /* Калькулятор дома — окно кнопки «Калькулятор» на всех страницах сайта (вариант 05б, выбор пользователя 15.09.2026).
    Порядок — как у бюджетного калькулятора, оформление — шкалы сайта, пункты и цены — большого калькулятора.
+   Площадь — одно поле, дом вместе с террасой; полей террасы, перегородок и доставки нет (выбор пользователя 16.09.2026):
+   вся площадь считается домом, перегородок нет, доставка — в пределах 100 км, где она бесплатна.
    Считает движок большого калькулятора: kalk-dom-engine.js (MTD_ENGINE и разделы KN_UI) собирает tools/kalk_dom.py.
    Итог виден сразу, смета по строкам — после заявки (выбор пользователя 15.09.2026): строки расчёта уходят
    в заявку — form.js берёт их через KNP.context(), если кнопка заявки стоит внутри калькулятора.
@@ -31,20 +33,10 @@
     '<div class="knp" id="knp" role="dialog" aria-modal="true" aria-labelledby="kn-h" data-cb-context="kalk" hidden><div class="kn"><section class="kn-card">' +
       '<button type="button" class="knp-x" id="knp-x" aria-label="Закрыть калькулятор">×</button>' +
       '<div class="kn-top"><h2 class="kn-h" id="kn-h">Калькулятор дома</h2></div>' +
-      '<div class="kn-fld"><label class="kn-lbl" for="kn-l">Площадь дома, м²</label>' +
-        '<input class="kn-in" id="kn-l" type="text" inputmode="decimal" autocomplete="off" placeholder="100"></div>' +
-      '<label class="kn-line" for="kn-terr"><span>Терраса</span><span class="kn-sw"><input type="checkbox" id="kn-terr"><i aria-hidden="true"></i></span></label>' +
-      '<div class="kn-fld" id="kn-t-box" hidden><label class="kn-lbl" for="kn-t">Площадь террасы, м²</label>' +
-        '<input class="kn-in" id="kn-t" type="text" inputmode="decimal" autocomplete="off" placeholder="0"><p class="kn-hint">пол, крыша, перила</p></div>' +
+      '<div class="kn-fld"><label class="kn-lbl" for="kn-l">Общая площадь дома с террасой, м²</label>' +
+        '<div class="kn-wrap"><input class="kn-in kn-in--unit" id="kn-l" type="text" inputmode="decimal" autocomplete="off" placeholder="100">' +
+        '<span class="kn-unit" aria-hidden="true">м²</span></div></div>' +
       '<p class="kn-err" id="kn-err" role="alert" hidden></p>' +
-      '<div class="kn-sum"><span id="kn-sum-t">Укажите площадь дома</span><b id="kn-sum-v">—</b></div>' +
-      '<div class="kn-two">' +
-        '<div class="kn-fld"><label class="kn-lbl" for="kn-p">Перегородки, м</label>' +
-          '<input class="kn-in" id="kn-p" type="text" inputmode="decimal" autocomplete="off" placeholder="0"><p class="kn-hint">каркас и отделка ×2</p></div>' +
-        '<div class="kn-fld"><label class="kn-lbl" for="kn-km">Доставка, км</label>' +
-          '<input class="kn-in" id="kn-km" type="text" inputmode="numeric" autocomplete="off" placeholder="100"></div>' +
-      '</div>' +
-      '<p class="kn-hint kn-rules" id="kn-km-h"></p>' +
       '<h3 class="kn-cap">Дополнительно</h3>' +
       '<div id="kn-groups"></div>' +
       '<div class="kn-optsum"><span>Доп-опции</span><b id="kn-optsum">—</b></div>' +
@@ -97,18 +89,18 @@
     return cell(E.addon(k));
   }
 
-  /* ── состояние: { l, terrace, t, part, km — строками из полей; on: {ключ: true}; qty: {winLam}; dist: {carry}; elecExt, paintIn, paintOut } ──
+  /* ── состояние: { l — общая площадь дома с террасой, строкой из поля; on: {ключ: true}; qty: {winLam}; dist: {carry}; elecExt, paintIn, paintOut } ──
      помнится в браузере и одно на весь сайт: открыл калькулятор на другой странице — там тот же дом */
   var KEY = 'mtd_kn_state_v1';
   function defaults() {
-    return { l: '100', terrace: false, t: '', part: '', km: '100', on: {}, qty: {}, dist: {}, elecExt: false, paintIn: false, paintOut: false };
+    return { l: '100', on: {}, qty: {}, dist: {}, elecExt: false, paintIn: false, paintOut: false };
   }
   function norm(s) {
     var d = defaults();
     s = s && typeof s === 'object' ? s : {};
-    var out = { l: s.l == null ? d.l : String(s.l), terrace: !!s.terrace, t: s.t == null ? '' : String(s.t),
-                part: s.part == null ? '' : String(s.part), km: s.km == null ? d.km : String(s.km),
-                on: {}, qty: {}, dist: {}, elecExt: !!s.elecExt, paintIn: !!s.paintIn, paintOut: !!s.paintOut };
+    var l = s.l == null ? d.l : String(s.l);
+    if (s.terrace && pNum(s.t) > 0) l = String(Math.round((pNum(l) + pNum(s.t)) * 10) / 10).replace('.', ',');   // выбор до 16.09: дом и терраса — одной площадью
+    var out = { l: l, on: {}, qty: {}, dist: {}, elecExt: !!s.elecExt, paintIn: !!s.paintIn, paintOut: !!s.paintOut };
     var seen = {};
     Object.keys(s.on || {}).forEach(function (k) {
       if (!s.on[k] || !A[k] || !UI.keys[k] || k === 'winLam') return;
@@ -131,14 +123,12 @@
     var on = {};
     Object.keys(s.on).forEach(function (k) { if (unitOf(k) !== null) on[k] = true; });
     if (s.qty.winLam && !on.cheapNoWin) on.winLam = true;             // окон нет — ламинировать нечего
-    return { l: pNum(s.l), t: s.terrace ? pNum(s.t) : 0,
-             part: String(s.part).trim() === '' ? 0 : Math.min(200, Math.max(0, pNum(s.part))),
-             km: pNum(s.km) || 100, on: on, qty: { winLam: on.winLam ? s.qty.winLam : 0 }, dist: { carry: s.dist.carry || 0 },
+    return { l: pNum(s.l), t: 0, part: 0, km: 100, on: on, qty: { winLam: on.winLam ? s.qty.winLam : 0 }, dist: { carry: s.dist.carry || 0 },
              elecExt: s.elecExt, paintIn: s.paintIn, paintOut: s.paintOut };
   }
 
   /* ── разметка разделов: собирается один раз, дальше меняются только значения ── */
-  var box = $('kn-groups'), ROWS = {};
+  var box = $('kn-groups'), ROWS = {}, inL = $('kn-l');
   function switchHtml(label) {
     return '<span class="kn-sw"><input type="checkbox" data-t aria-label="' + esc(label) + '"><i aria-hidden="true"></i></span>';
   }
@@ -194,18 +184,15 @@
   var wantErr = false, ctx = null;
   function render() {
     var s = engineState(st);
-    var over = pNum(st.l) > 200.01 || (st.terrace && pNum(st.t) > 200.01);
+    var over = pNum(st.l) > 200.01;
     var state = over ? 'over' : s.l > 0 ? 'ok' : 'empty', ok = state === 'ok';
     E.setState(s);
 
-    $('kn-t-box').hidden = !st.terrace;
     var msg = state === 'over' ? UI.texts.over : wantErr && state === 'empty' ? UI.texts.empty : '';
     var err = $('kn-err');
     err.hidden = !msg;
     put(err, msg);
-    var area = E.area();
-    put($('kn-sum-t'), !ok ? UI.texts.empty : s.t > 0.05 ? 'Дом ' + m2(s.l) + ' м² + терраса ' + m2(s.t) + ' м²' : 'Площадь дома');
-    put($('kn-sum-v'), ok ? m2(area) + ' м²' : '—');
+    inL.classList.toggle('is-bad', !!msg);
 
     var parts = [];
     UI.groups.forEach(function (g, gi) {
@@ -309,7 +296,7 @@
 
     $('kn-res').hidden = !ok;
     if (!ok) { ctx = null; return; }
-    var total = E.total(), dc = E.delivery(), dcell = dc > 0 ? cell(dc) : 0;
+    var total = E.total();
     var gifts = E.giftsActive(), gsum = gifts.reduce(function (x, g) { return x + (g.value || 0); }, 0);
     put($('kn-total'), rub(total));
     put($('kn-note'), 'Цена дома — по комплектации «' + E.tier().name + '», ' + num(E.tier().rate) + NB + '₽ за м². ' + UI.texts.note);
@@ -317,22 +304,19 @@
     $('kn-gifts').innerHTML = gifts.map(function (g) {
       return '<li><span>' + esc(g.name) + '</span><b>' + esc(rub(g.value || 0)) + '</b></li>';
     }).join('');
-    ctx = { l: s.l, t: s.t, part: s.part, km: Math.round(Math.min(500, Math.max(100, s.km))), house: total - optSum - dcell,
-            total: total, parts: parts, dcell: dcell, gifts: gsum };
+    ctx = { l: s.l, house: total - optSum, total: total, parts: parts, gifts: gsum };
   }
 
   /* что уходит в заявку: смета по строкам — менеджеру, человеку на экране только итог */
   function context() {
     if (!ctx) return null;
     var cut = function (v, n) { return v.length > n ? v.slice(0, n - 1) + '…' : v; };
-    var lines = ['Дом ' + m2(ctx.l + ctx.t) + ' м² ' + rub(ctx.house)].concat(ctx.parts.map(function (p) {
+    var lines = ['Дом с террасой ' + m2(ctx.l) + ' м² ' + rub(ctx.house)].concat(ctx.parts.map(function (p) {
       return p[0] + ' ' + (p[2] || signed(p[1]));
     }));
-    if (ctx.dcell) lines.push('Доставка ' + ctx.km + ' км ' + signed(ctx.dcell));
     if (lines.length > 15) lines = lines.slice(0, 14).concat(['и ещё ' + (lines.length - 14) + ' ' + plural(lines.length - 14, 'строка', 'строки', 'строк')]);
     return {
-      house: cut('Калькулятор: дом ' + m2(ctx.l) + ' м²' + (ctx.t > 0.05 ? ' + терраса ' + m2(ctx.t) + ' м²' : '') +
-                 (ctx.part ? ', перегородки ' + m2(ctx.part) + ' м' : ''), 80),
+      house: cut('Калькулятор: дом с террасой ' + m2(ctx.l) + ' м²', 80),
       price: rub(ctx.total),
       options: lines.map(function (v) { return cut(v, 80); }),
       totals: [cut('«' + E.tier().name + '» ' + rub(ctx.total) + ' · подарки ' + rub(ctx.gifts), 80)]
@@ -341,25 +325,10 @@
 
   /* ── ввод ── */
   function change() { save(); render(); }
-  var inL = $('kn-l'), inT = $('kn-t'), inP = $('kn-p'), inK = $('kn-km'), sw = $('kn-terr');
-  function syncInputs() { inL.value = st.l; inT.value = st.t; inP.value = st.part; inK.value = st.km; sw.checked = st.terrace; }
+  function syncInputs() { inL.value = st.l; }
   syncInputs();
-  put($('kn-km-h'), E.deliveryText());
 
   inL.addEventListener('input', function () { st.l = inL.value; wantErr = false; change(); });
-  inT.addEventListener('input', function () { st.t = inT.value; change(); });
-  inP.addEventListener('input', function () { st.part = inP.value; change(); });
-  inK.addEventListener('input', function () { st.km = inK.value; change(); });
-  inK.addEventListener('blur', function () {                       // как в калькуляторе: от 100 до 500 км
-    inK.value = String(Math.min(500, Math.max(100, pNum(inK.value) || 100)));
-    st.km = inK.value;
-    change();
-  });
-  sw.addEventListener('change', function () {
-    st.terrace = sw.checked;
-    change();
-    if (sw.checked && !pNum(inT.value)) inT.focus();
-  });
 
   box.addEventListener('click', function (e) {
     var q = e.target.closest('.kn-q');
