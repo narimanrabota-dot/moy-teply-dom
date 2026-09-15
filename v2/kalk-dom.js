@@ -2,6 +2,8 @@
    Порядок — как у бюджетного калькулятора, оформление — шкалы сайта, пункты и цены — большого калькулятора.
    Площадь — одно поле, дом вместе с террасой; полей террасы, перегородок и доставки нет (выбор пользователя 16.09.2026):
    вся площадь считается домом, перегородок нет, доставка — в пределах 100 км, где она бесплатна.
+   Отделка снаружи, отделка внутри и пол выбираются плитками с образцами (эскиз 13-5, выбор пользователя 16.09.2026);
+   разделов «Окна и двери», «Фундамент и цоколь» и «На участке» нет — эти пункты остаются как в «Комфорте».
    Считает движок большого калькулятора: kalk-dom-engine.js (MTD_ENGINE и разделы KN_UI) собирает tools/kalk_dom.py.
    Итог виден сразу, смета по строкам — после заявки (выбор пользователя 15.09.2026): строки расчёта уходят
    в заявку — form.js берёт их через KNP.context(), если кнопка заявки стоит внутри калькулятора.
@@ -71,7 +73,6 @@
     if (k === 'paintOut') return '+' + num(E.FINISH.extRate) + NB + '₽/м²';
     var a = A[k], eff = a.ext ? a.permExt : a.perm;
     var sg = function (v, suf) { return (v < 0 ? '−' : '+') + num(v) + NB + suf; };
-    if (k === 'pilesZB') return 'в подарок';
     if (a.cheap && !(a.perExt || a.perInner || a.perFloor || a.perCount || a.perQty || a.flat || a.perm)) return null;
     if (a.flat != null) return a.flat === 0 ? 'бесплатно' : sg(a.flat, '₽');
     if (a.base != null) return '+' + num(a.base) + NB + '₽ · ' + num(a.perMeter) + NB + '₽/м';
@@ -89,42 +90,36 @@
     return cell(E.addon(k));
   }
 
-  /* ── состояние: { l — общая площадь дома с террасой, строкой из поля; on: {ключ: true}; qty: {winLam}; dist: {carry}; elecExt, paintIn, paintOut } ──
+  /* ── состояние: { l — общая площадь дома с террасой, строкой из поля; on: {ключ: true}; elecExt, paintIn, paintOut } ──
      помнится в браузере и одно на весь сайт: открыл калькулятор на другой странице — там тот же дом */
   var KEY = 'mtd_kn_state_v1';
   function defaults() {
-    return { l: '100', on: {}, qty: {}, dist: {}, elecExt: false, paintIn: false, paintOut: false };
+    return { l: '100', on: {}, elecExt: false, paintIn: false, paintOut: false };
   }
   function norm(s) {
     var d = defaults();
     s = s && typeof s === 'object' ? s : {};
     var l = s.l == null ? d.l : String(s.l);
     if (s.terrace && pNum(s.t) > 0) l = String(Math.round((pNum(l) + pNum(s.t)) * 10) / 10).replace('.', ',');   // выбор до 16.09: дом и терраса — одной площадью
-    var out = { l: l, on: {}, qty: {}, dist: {}, elecExt: !!s.elecExt, paintIn: !!s.paintIn, paintOut: !!s.paintOut };
+    var out = { l: l, on: {}, elecExt: !!s.elecExt, paintIn: !!s.paintIn, paintOut: !!s.paintOut };
     var seen = {};
     Object.keys(s.on || {}).forEach(function (k) {
-      if (!s.on[k] || !A[k] || !UI.keys[k] || k === 'winLam') return;
+      if (!s.on[k] || !A[k] || !UI.keys[k]) return;                 // пункты убранных разделов не сохраняются
       var g = A[k].group;
       if (g) { if (seen[g]) return; seen[g] = 1; }       // в радио-группе калькулятора включена только одна
       out.on[k] = true;
     });
-    var q = Math.max(0, Math.floor(+((s.qty || {}).winLam) || 0));
-    if (q) out.qty.winLam = q;
-    var m = Math.max(0, Math.floor(+((s.dist || {}).carry) || 0));
-    if (m) out.dist.carry = m;
     return out;
   }
   function load() { try { return norm(JSON.parse(localStorage.getItem(KEY) || 'null')); } catch (e) { return defaults(); } }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
   var st = load();
 
-  /* то же, что поля и тумблеры калькулятора: площадь, терраса, перегородки, доставка, ADDONS.on, количества */
+  /* то же, что поля и тумблеры калькулятора: площадь, терраса, перегородки, доставка, ADDONS.on */
   function engineState(s) {
     var on = {};
     Object.keys(s.on).forEach(function (k) { if (unitOf(k) !== null) on[k] = true; });
-    if (s.qty.winLam && !on.cheapNoWin) on.winLam = true;             // окон нет — ламинировать нечего
-    return { l: pNum(s.l), t: 0, part: 0, km: 100, on: on, qty: { winLam: on.winLam ? s.qty.winLam : 0 }, dist: { carry: s.dist.carry || 0 },
-             elecExt: s.elecExt, paintIn: s.paintIn, paintOut: s.paintOut };
+    return { l: pNum(s.l), t: 0, part: 0, km: 100, on: on, qty: {}, dist: {}, elecExt: s.elecExt, paintIn: s.paintIn, paintOut: s.paintOut };
   }
 
   /* ── разметка разделов: собирается один раз, дальше меняются только значения ── */
@@ -132,7 +127,26 @@
   function switchHtml(label) {
     return '<span class="kn-sw"><input type="checkbox" data-t aria-label="' + esc(label) + '"><i aria-hidden="true"></i></span>';
   }
+  /* образец: look «imit bs» — классы kn-swt--imit kn-swt--bs; с покраской образец темнее */
+  function swatchCls(look, paint) {
+    return 'kn-swt' + String(look || '').split(' ').map(function (x) { return x ? ' kn-swt--' + x : ''; }).join('') + (paint ? ' is-paint' : '');
+  }
   function rowHtml(r, id) {
+    if (r.view === 'tiles') {
+      var tiles = [{ key: '', short: r.baseShort, look: r.baseLook }].concat(r.opts);
+      return '<div class="kn-mat" data-row="' + id + '">' +
+        '<button type="button" class="kn-mt" aria-expanded="false" aria-controls="kn-tl-' + id + '">' +
+          '<i class="' + swatchCls(r.baseLook) + '" aria-hidden="true"></i>' +
+          '<span class="kn-mt__t"><span class="kn-mt__c">' + esc(r.cap) + '</span><span class="kn-mt__n"></span></span>' +
+          '<span class="kn-mt__p"></span><span class="kn-chev" aria-hidden="true"></span>' +
+        '</button>' +
+        '<div class="kn-tls" id="kn-tl-' + id + '" role="group" aria-label="' + esc(r.label) + '" data-n="' + tiles.length + '" hidden>' +
+          tiles.map(function (o) {
+            return '<button type="button" class="kn-tl" data-tile="' + o.key + '" aria-pressed="false">' +
+              '<i class="' + swatchCls(o.look) + '" aria-hidden="true"></i><span class="kn-tl__n">' + esc(o.short) + '</span><span class="kn-tl__p"></span></button>';
+          }).join('') +
+        '</div></div>';
+    }
     if (r.type === 'select') {
       return '<div class="kn-row kn-row--sel" data-row="' + id + '">' +
         '<label class="kn-rn" for="kn-s-' + id + '">' + esc(r.label) + '</label>' +
@@ -148,23 +162,15 @@
           '<button type="button" data-pill="1" aria-pressed="false">' + esc(r.name) + '</button>' +
         '</span><span class="kn-rp"></span></div>';
     }
-    if (r.type === 'piles') {
-      return '<div class="kn-row" data-row="' + id + '"><span class="kn-rn">' + esc(r.label) + '</span><b class="kn-piles"></b></div>';
-    }
     var k = r.key, paint = r.type === 'paint', noteT = paint ? '' : noteOf(k), helpT = paint ? '' : helpOf(k);
-    var ctrl = r.type === 'qty'
-      ? '<span class="kn-step"><button type="button" data-q="-1" aria-label="Меньше">−</button><output>0</output><button type="button" data-q="1" aria-label="Больше">+</button></span>'
-      : '<span class="kn-ask" hidden>' + esc(UI.texts.ask) + '</span>' + switchHtml(r.name);
-    var tag = r.type === 'qty' ? 'div' : 'label';
     return '<div class="kn-it" data-row="' + id + '">' +
-      '<' + tag + ' class="kn-row">' +
+      '<label class="kn-row">' +
         '<span class="kn-rt"><span class="kn-rn">' + esc(r.name) +
           (helpT ? '<button type="button" class="kn-q" aria-expanded="false" aria-label="Подробнее">?</button>' : '') + '</span>' +
           '<span class="kn-rp"></span>' + (noteT ? '<span class="kn-note">' + esc(noteT) + '</span>' : '') + '</span>' +
-        ctrl +
-      '</' + tag + '>' +
+        '<span class="kn-ask" hidden>' + esc(UI.texts.ask) + '</span>' + switchHtml(r.name) +
+      '</label>' +
       (helpT ? '<p class="kn-help" hidden>' + esc(helpT) + '</p>' : '') +
-      (r.type === 'dist' ? '<div class="kn-extra" hidden><label class="kn-dist">Дистанция проноса<input type="text" inputmode="numeric" data-d autocomplete="off" placeholder="0"><span>м</span></label></div>' : '') +
       (k === 'elec' ? '<div class="kn-extra" hidden><label class="kn-sub"><input type="checkbox" data-x>' + esc(A.elec.sub) + '<span class="kn-subp"></span></label></div>' : '') +
     '</div>';
   }
@@ -182,6 +188,7 @@
 
   /* ── отрисовка ── */
   var wantErr = false, ctx = null;
+  function naPaint(k, s) { return k === 'paintOut' && !!(s.on.extSide || s.on.extSoft); }   // сайдинг и хауберг не красят
   function render() {
     var s = engineState(st);
     var over = pNum(st.l) > 200.01;
@@ -200,6 +207,31 @@
       g.rows.forEach(function (r, ri) {
         var row = el.querySelector('[data-row="' + gi + '-' + ri + '"]');
 
+        if (r.view === 'tiles') {                                   // кнопка с выбранным вариантом и плитки всех вариантов
+          var tc = null;
+          r.opts.forEach(function (o) { if (s.on[o.key]) tc = o; });
+          var ta = tc ? amountOf(tc.key) : 0, mt = row.querySelector('.kn-mt'), tsw = mt.querySelector('.kn-swt'), tp = mt.querySelector('.kn-mt__p');
+          var tcls = swatchCls(tc ? tc.look : r.baseLook, !!r.paint && !!st[r.paint] && !naPaint(r.paint, s));
+          if (tsw.className !== tcls) tsw.className = tcls;
+          put(mt.querySelector('.kn-mt__n'), tc ? tc.short : r.baseShort);
+          put(tp, !tc ? 'в цене' : ok ? signed(ta) : unitOf(tc.key));
+          tp.classList.toggle('is-base', !tc);
+          [].forEach.call(row.querySelectorAll('[data-tile]'), function (b, i) {
+            var o = i ? r.opts[i - 1] : null, u = o ? unitOf(o.key) : '', p = b.querySelector('.kn-tl__p');
+            b.setAttribute('aria-pressed', String(o === tc));
+            b.disabled = u === null;
+            put(p, !o ? 'в цене' : u === null ? UI.texts.ask : ok ? signed(amountOf(o.key)) : u);
+            p.classList.toggle('is-base', !o);
+          });
+          if (tc) {
+            cnt++;
+            texts.push(tc.short);
+            if (ok) { sum += ta; parts.push([r.label + ': ' + tc.name, ta, '']); }
+          } else texts.push(r.baseShort);
+          row.classList.toggle('is-on', !!tc);
+          return;
+        }
+
         if (r.type === 'select') {
           var cur = null;
           r.opts.forEach(function (o) { if (s.on[o.key]) cur = o; });
@@ -214,11 +246,11 @@
           if (sel.value !== val) sel.value = val;
           var hint = 'в цене дома';
           if (cur) {
-            var amt = amountOf(cur.key), gift = cur.key === 'pilesZB';
-            hint = gift ? 'в подарок' : ok ? unitOf(cur.key) + ' · ' + signed(amt) : unitOf(cur.key);
+            var amt = amountOf(cur.key);
+            hint = ok ? unitOf(cur.key) + ' · ' + signed(amt) : unitOf(cur.key);
             cnt++;
             texts.push(cur.name);
-            if (ok) { sum += gift ? 0 : amt; parts.push([r.label + ': ' + cur.name, gift ? 0 : amt, gift ? 'в подарок' : '']); }
+            if (ok) { sum += amt; parts.push([r.label + ': ' + cur.name, amt, '']); }
           } else texts.push(r.base);
           put(row.querySelector('.kn-rp'), hint);
           row.classList.toggle('is-on', !!cur);
@@ -239,34 +271,16 @@
           return;
         }
 
-        if (r.type === 'piles') {
-          var p = E.piles();
-          put(row.querySelector('.kn-piles'), !ok || s.on.cheapNoFound ? '—'
-            : (p.terrace ? p.house + ' + ' + p.terrace + ' = ' : '') + p.total + ' ' + plural(p.total, 'свая', 'сваи', 'свай'));
-          return;
-        }
-
         var k = r.key, paint = r.type === 'paint', u3 = unitOf(k), ask = u3 === null;
-        var na = k === 'paintOut' && (s.on.extSide || s.on.extSoft) ? UI.texts.naPaintOut
-          : k === 'winLam' && s.on.cheapNoWin ? UI.texts.naWinLam : '';
-        var on3 = !ask && !na && (paint ? !!st[k] : r.type === 'qty' ? !!s.on.winLam : !!s.on[k]);
+        var na = naPaint(k, s) ? UI.texts.naPaintOut : '';
+        var on3 = !ask && !na && (paint ? !!st[k] : !!s.on[k]);
         var a3 = ask || na ? 0 : amountOf(k);
-        var rp = ask ? '' : na ? na : u3 === 'бесплатно' ? u3
-          : ok && (r.type !== 'qty' || on3) ? u3 + ' · ' + signed(a3) : u3;
+        var rp = ask ? '' : na ? na : u3 === 'бесплатно' ? u3 : ok ? u3 + ' · ' + signed(a3) : u3;
         put(row.querySelector('.kn-rp'), rp);
         var t = row.querySelector('[data-t]');
-        if (t) { t.checked = on3; t.disabled = !!na; t.parentNode.hidden = ask; }
-        var askEl = row.querySelector('.kn-ask');
-        if (askEl) askEl.hidden = !ask;
-        var out = row.querySelector('output');
-        if (out) {
-          put(out, String(on3 ? st.qty.winLam : 0));
-          row.querySelector('[data-q="-1"]').disabled = !on3;
-          row.querySelector('[data-q="1"]').disabled = !!na;
-        }
+        t.checked = on3; t.disabled = !!na; t.parentNode.hidden = ask;
+        row.querySelector('.kn-ask').hidden = !ask;
         [].forEach.call(row.querySelectorAll('.kn-extra'), function (x) { x.hidden = !on3; });
-        var d = row.querySelector('[data-d]');
-        if (d && document.activeElement !== d) d.value = st.dist.carry ? String(st.dist.carry) : '';
         var x = row.querySelector('[data-x]');
         if (x) {
           x.checked = !!st.elecExt;
@@ -278,11 +292,7 @@
         if (on3) {
           cnt++;
           texts.push(r.name);
-          if (ok) {
-            sum += a3;
-            var name = r.type === 'qty' ? r.name + ' × ' + st.qty.winLam : r.type === 'dist' && st.dist.carry ? r.name + ' · ' + st.dist.carry + ' м' : r.name;
-            parts.push([name, a3, u3 === 'бесплатно' ? u3 : '']);
-          }
+          if (ok) { sum += a3; parts.push([r.name, a3, u3 === 'бесплатно' ? u3 : '']); }
         }
       });
       el.classList.toggle('is-on', cnt > 0);
@@ -330,6 +340,13 @@
 
   inL.addEventListener('input', function () { st.l = inL.value; wantErr = false; change(); });
 
+  /* плитки открываются и закрываются кнопкой; после выбора и Esc фокус возвращается на кнопку — иначе он пропадёт вместе с плитками */
+  function tilesOpen(mt, open, focus) {
+    mt.setAttribute('aria-expanded', String(open));
+    $(mt.getAttribute('aria-controls')).hidden = !open;
+    if (focus) mt.focus({ preventScroll: true });
+  }
+
   box.addEventListener('click', function (e) {
     var q = e.target.closest('.kn-q');
     if (q) {
@@ -342,6 +359,7 @@
     var gh = e.target.closest('.kn-gh');
     if (gh) {                                                       // как в бюджетном: открыт один раздел
       var willOpen = gh.getAttribute('aria-expanded') !== 'true';
+      [].forEach.call(box.querySelectorAll('.kn-mt[aria-expanded="true"]'), function (b) { tilesOpen(b, false); });
       [].forEach.call(box.querySelectorAll('.kn-gh'), function (b) {
         b.setAttribute('aria-expanded', 'false');
         $(b.getAttribute('aria-controls')).hidden = true;
@@ -349,17 +367,21 @@
       if (willOpen) { gh.setAttribute('aria-expanded', 'true'); $(gh.getAttribute('aria-controls')).hidden = false; }
       return;
     }
+    var mt = e.target.closest('.kn-mt');
+    if (mt) { tilesOpen(mt, mt.getAttribute('aria-expanded') !== 'true'); return; }
+    var tile = e.target.closest('[data-tile]');
+    if (tile) {
+      var tileRow = tile.closest('[data-row]'), tr = ROWS[tileRow.getAttribute('data-row')], tk = tile.getAttribute('data-tile');
+      tr.opts.forEach(function (o) { delete st.on[o.key]; });
+      if (tk) st.on[tk] = true;
+      tilesOpen(tileRow.querySelector('.kn-mt'), false, true);
+      change();
+      return;
+    }
     var pill = e.target.closest('[data-pill]');
     if (pill) {
       var pr = ROWS[pill.closest('[data-row]').getAttribute('data-row')];
       if (pill.getAttribute('data-pill') === '1') st.on[pr.key] = true; else delete st.on[pr.key];
-      change();
-      return;
-    }
-    var step = e.target.closest('[data-q]');
-    if (step) {
-      var n = Math.max(0, (st.qty.winLam || 0) + Number(step.getAttribute('data-q')));
-      if (n) st.qty.winLam = n; else delete st.qty.winLam;
       change();
     }
   });
@@ -379,12 +401,6 @@
     } else return;
     change();
   });
-  box.addEventListener('input', function (e) {
-    if (!e.target.hasAttribute('data-d')) return;
-    var m = Math.max(0, Math.floor(pNum(e.target.value)));
-    if (m) st.dist.carry = m; else delete st.dist.carry;
-    change();
-  });
 
   var calm = function () { return window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches; };
   $('kn-calc').addEventListener('click', function () {
@@ -395,7 +411,7 @@
     $('kn-res').scrollIntoView({ behavior: calm() ? 'auto' : 'smooth', block: 'start' });
   });
   $('kn-reset').addEventListener('click', function () {
-    st.on = {}; st.qty = {}; st.dist = {}; st.elecExt = false; st.paintIn = false; st.paintOut = false;
+    st.on = {}; st.elecExt = false; st.paintIn = false; st.paintOut = false;
     change();
   });
 
@@ -425,7 +441,13 @@
     if (P.hidden) return;
     var cb = document.getElementById('callback');
     if (cb && !cb.hidden) return;                                  // поверх открыто окно заявки — клавиши его
-    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      var mt = box.querySelector('.kn-mt[aria-expanded="true"]');
+      if (mt) { tilesOpen(mt, false, true); return; }               // сначала закрываются плитки, потом окно
+      close();
+      return;
+    }
     if (e.key !== 'Tab') return;
     var f = [].filter.call(P.querySelectorAll('button, input, select, a[href]'), function (el) {
       return !el.disabled && el.tabIndex >= 0 && el.getClientRects().length > 0;

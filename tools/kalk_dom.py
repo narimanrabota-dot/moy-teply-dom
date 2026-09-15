@@ -166,12 +166,34 @@ def ui_data(src, over, url, key, js):
             raise RuntimeError('в калькуляторе не найдена строка ' + cid)
         paint[k] = {'type': 'paint', 'key': k, 'name': m.group(2)}
 
+    def tiles(r, cap, base_tile, opts, paint_key=None):
+        """Выбор плитками с образцами (эскиз 13-5, выбор пользователя 16.09.2026): cap — подпись на кнопке,
+        у варианта — короткая подпись и образец (классы kn-swt--… в kalk-dom.css); полное название уходит в заявку."""
+        if [o['key'] for o in r['opts']] != list(opts):
+            raise RuntimeError('у плиток «' + r['label'] + '» варианты не совпадают с выбором')
+        r.update({'view': 'tiles', 'cap': cap, 'baseShort': base_tile[0], 'baseLook': base_tile[1]})
+        for o in r['opts']:
+            o['short'], o['look'] = opts[o['key']]
+        if paint_key:
+            r['paint'] = paint_key          # с этой покраской образец на кнопке темнее
+        return r
+
     groups = [
-        ('Отделка снаружи', [sel('Отделка стен снаружи', ['cladOutV', 'cheapExtImBS', 'cheapExtVagBS', 'extSide', 'extSoft'], 'spec'),
+        ('Отделка снаружи', [tiles(sel('Отделка стен снаружи', ['cladOutV', 'cheapExtImBS', 'cheapExtVagBS', 'extSide', 'extSoft'], 'spec'),
+                                   'Материал', ('Имитация бруса АБ', 'imit'),
+                                   {'cladOutV': ('Вагонка АБ', 'vag'), 'cheapExtImBS': ('Имитация бруса БС', 'imit bs'),
+                                    'cheapExtVagBS': ('Вагонка БС', 'vag bs'), 'extSide': ('Сайдинг', 'side'), 'extSoft': ('Хауберг', 'soft')},
+                                   'paintOut'),
                              paint['paintOut']]),
-        ('Отделка внутри', [sel('Отделка стен и потолка внутри', ['cladInI', 'cheapInVagBS'], 'spec'), paint['paintIn']]),
-        ('Пол в жилой части', [sel('Чистовой пол в жилой части', ['laminate', 'shpFloor', 'quickDeck'], 'spec'), row('cheapOsbWc')]),
-        ('Окна и двери', [sel('Тип окон', ['win', 'cheapNoWin'], 'label'), row('winLam', 'qty'), row('cheapNoDoor')]),
+        ('Отделка внутри', [tiles(sel('Отделка стен и потолка внутри', ['cladInI', 'cheapInVagBS'], 'spec'),
+                                  'Материал', ('Вагонка АБ', 'vag'),
+                                  {'cladInI': ('Имитация бруса АБ', 'imit'), 'cheapInVagBS': ('Вагонка БС', 'vag bs')}, 'paintIn'),
+                            paint['paintIn']]),
+        ('Пол в жилой части', [tiles(sel('Чистовой пол в жилой части', ['laminate', 'shpFloor', 'quickDeck'], 'spec'),
+                                     'Покрытие', ('ОСБ-плита 18 мм', 'osb'),
+                                     {'laminate': ('Ламинат', 'lam'), 'shpFloor': ('Шпунтованная доска', 'board'),
+                                      'quickDeck': ('Quick Deck под дерево', 'deck')}),
+                               row('cheapOsbWc')]),
         ('Крыша и кровля', [sel('Тип крыши', ['roof', 'roofT', 'roof2'], 'label'), pills('ridge150', 'Высота крыши (конька)'),
                             row('snow'), row('gutter')]),
         ('Каркас и высоты', [sel('Сечение каркаса стен', ['frameFR', 'frame'], 'label',
@@ -179,11 +201,14 @@ def ui_data(src, over, url, key, js):
                              pills('walls270', 'Высота стен внутри по краям дома'),
                              pills('cheapFlatCeil', 'Тип потолка', base('Тип потолка').replace('конек', 'конёк')),
                              sel('Тип влажности доски', ['cheapNatWood'], 'spec')]),
-        ('Фундамент и цоколь', [sel('Тип фундамента', ['pilesZB', 'pilesV108', 'cheapNoFound'], 'spec'),
-                                {'type': 'piles', 'label': 'Количество свай'}, row('plinth')]),
         ('Инженерные системы', [row('elec'), row('pipes'), row('vent')]),
-        ('На участке', [row('generator'), row('toilet'), row('carry', 'dist'), row('bytovkaE')]),
     ]
+    # разделов «Окна и двери», «Фундамент и цоколь» и «На участке» нет (выбор пользователя 16.09.2026):
+    # их пункты не выбираются и остаются как в «Комфорте»
+    removed = ['win', 'cheapNoWin', 'winLam', 'cheapNoDoor', 'pilesZB', 'pilesV108', 'cheapNoFound', 'plinth',
+               'generator', 'toilet', 'carry', 'bytovkaE']
+    for k in removed:
+        need(k)
     for t, _ in groups:
         if t not in titles:
             raise RuntimeError('в калькуляторе нет раздела «' + t + '»')
@@ -194,16 +219,16 @@ def ui_data(src, over, url, key, js):
                 used.update(o['key'] for o in r['opts'])
             elif r.get('key') and r['key'] not in ('paintIn', 'paintOut'):
                 used.add(r['key'])
-    left = [k for k, a in A.items() if k not in used and for_comfort(a)]
+    left = [k for k, a in A.items() if k not in used and k not in removed and for_comfort(a)]
     if left:
-        raise RuntimeError('опции калькулятора не попали в разделы: ' + ', '.join(left) + ' — допишите их в groups')
+        raise RuntimeError('опции калькулятора не попали в разделы: ' + ', '.join(left) + ' — допишите их в groups или в removed')
 
     kompl = json.load(io.open(os.path.join(ROOT, 'tools', 'inc', 'komplektacii.json'), encoding='utf-8'))
     UI = {'cloud': {'url': url, 'key': key},
           'groups': [{'title': t, 'rows': rows} for t, rows in groups],
           'keys': {k: 1 for k in sorted(used)},
           'texts': {'over': 'Больше 200 м² не строим — уменьшите площадь.', 'empty': 'Укажите общую площадь дома с террасой',
-                    'ask': 'уточняется', 'naPaintOut': 'сайдинг и хауберг не красят', 'naWinLam': 'окон нет — ламинировать нечего',
+                    'ask': 'уточняется', 'naPaintOut': 'сайдинг и хауберг не красят',
                     'note': kompl['note'].split('. ')[0].rstrip('.') + '.'}}
     return UI, dump['tier'], dump['total100'], groups
 
