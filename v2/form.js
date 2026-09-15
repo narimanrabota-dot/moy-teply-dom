@@ -10,7 +10,7 @@
   var go   = form && form.querySelector('.cb__go');
   if (!tel || !err || !ok || !go) return;
   var goT  = go.textContent;
-  var last = null;
+  var last = null, from = null;   /* from — кнопка, которой открыли окно: у калькулятора дома свой расчёт */
 
   /* ── куда отправлять ───────────────────────────────
      ENDPOINT — адрес функции в Yandex Cloud: серверы в России, ключ amoCRM хранится там,
@@ -43,6 +43,7 @@
   /* ── открытие и закрытие ───────────────────────────── */
   function open(trigger) {
     last = trigger || document.activeElement;
+    from = trigger || null;
     if (form.dataset.state === 'done') reset();
     kind = label(trigger) || head0;
     if (head) head.textContent = kind;
@@ -59,8 +60,10 @@
     if (last && last.focus) last.focus();
   }
 
-  document.querySelectorAll('[data-callback]').forEach(function (b) {
-    b.addEventListener('click', function () { open(b); });
+  /* кнопки заявки ищем при нажатии, а не при загрузке: калькулятор дома дорисовывает свои кнопки позже */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-callback]');
+    if (b) open(b);
   });
   ov.querySelectorAll('[data-cb-close]').forEach(function (b) {
     b.addEventListener('click', close);
@@ -143,6 +146,12 @@
   /* ── что человек смотрел: дом, цена, отмеченные доп. опции (карточка проекта) ── */
   function text(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
   function context() {
+    /* заявка из калькулятора дома (kalk-dom.js): дом, итог и строки расчёта — из калькулятора, а не из карточки под ним */
+    var k = from && from.closest && from.closest('[data-cb-context="kalk"]');
+    if (k && window.KNP && typeof window.KNP.context === 'function') {
+      var kc = window.KNP.context();
+      if (kc) return kc;
+    }
     var c = { house: text(document.querySelector('.prod__t')), price: text(document.querySelector('.prod .price__v')) };
     var opts = [].map.call(document.querySelectorAll('tr.inc-opt input[type="checkbox"]:checked'), function (i) {
       return text(i.closest('tr').querySelector('.inc-ot > span'));
