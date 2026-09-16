@@ -27,7 +27,8 @@ items — подробности: одно значение на все комп
 options — ключ опции калькулятора, название и что входит.
 
 Цены комплектаций, цены опций и доставки за км — из tools/inc/prices.json (выгрузка калькулятора,
-tools/prices_export.py). Нет модели в prices.json — цены комплектаций из шапки таблицы, опции «уточняется».
+tools/prices_export.py). Нет модели в prices.json — цены комплектаций из шапки таблицы, опции «уточняется»;
+в шапке «уточняется» (цен ещё нет) — «уточняется» и в «Итого с выбранными», а не «0 ₽».
 """
 import argparse, glob, io, json, os, re, shutil, sys, tempfile, time
 from html import unescape
@@ -185,7 +186,8 @@ def build(spec, paks, note, calc=None):
         bases = [int(re.sub(r'\D', '', unescape(p)) or 0) for _, p in paks]
         rows.append('<tr class="inc-d inc-sum" id="inc-o-sum" hidden aria-live="polite"><th scope="row" class="inc-c0"><span class="inc-ot">'
                     '<span>Итого с выбранными</span><small>без доставки</small></span></th>'
-                    + ''.join(f'<td{cls(i)}><b data-base="{b}" data-col="{i}">{rub(b)}</b></td>' for i, b in enumerate(bases)) + '</tr>')
+                    + ''.join(f'<td{cls(i)}><b data-base="{b}" data-col="{i}">{rub(b)}</b></td>' if b
+                              else f'<td{cls(i)}><span class="inc-tbd">уточняется</span></td>' for i, b in enumerate(bases)) + '</tr>')
 
     foot = ('<div class="inc-f">' + (f'<p class="inc-note">{note}</p>' if note else '')
             + '<button type="button" class="inc-all" aria-expanded="false">Раскрыть всё</button></div>')
