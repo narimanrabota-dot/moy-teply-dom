@@ -1,0 +1,100 @@
+/* ═══ Разделы «Как строим»: плитки и тёмная полоса ══════════════
+   Выбор владельца 17.09.2026 (вариант 21 витрины «Электрика»):
+   этапы — плитками с фотографиями, всё, что считается отдельно, —
+   одной тёмной полосой под ними.
+   Общий файл для страниц stroim-elektrika, stroim-kommunikacii,
+   stroim-ventilyaciya, stroim-pokraska. */
+
+.pl-d{
+  font-size:var(--fs-md);color:var(--dim);
+  margin:var(--sp-16) 0 var(--sp-48);max-width:66ch;
+}
+
+/* ── плитки этапов ─────────────────────────────────── */
+.plt{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-16)}
+.plt--two{grid-template-columns:1fr 1fr}
+.plt__c{
+  background:var(--card);border-radius:var(--r-shell);
+  box-shadow:var(--edge),var(--sh-1);
+  overflow:hidden;display:flex;flex-direction:column;
+}
+.plt__c--wide{grid-column:span 2}
+.plt__c img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;background:var(--n-1)}
+.plt__c--wide img{aspect-ratio:21/9}
+.plt__c img.is-fit{object-fit:contain;padding:var(--sp-16)}
+.plt__b{padding:var(--sp-24);display:grid;gap:var(--sp-8);flex:1;align-content:start}
+.plt__hd{display:flex;align-items:center;gap:var(--sp-12)}
+.plt__n{
+  width:28px;height:28px;border-radius:50%;background:var(--n-2);
+  display:grid;place-items:center;font-size:12px;font-weight:700;flex:none;
+}
+.plt__b b{font-size:var(--fs-md);font-weight:600;letter-spacing:-.01em}
+.plt__b p{margin:0;font-size:var(--fs-xs);color:var(--dim)}
+
+/* метки «входит» / «отдельно» */
+.pl-p{
+  display:inline-flex;align-items:center;padding:var(--sp-4) var(--sp-12);
+  border-radius:99px;font-size:var(--fs-xs);font-weight:500;white-space:nowrap;
+}
+.pl-p--in{background:#E1F1E7;color:#1D6A3E}
+.pl-p--out{background:var(--n-2);color:var(--dim)}
+
+/* ── тёмная полоса ─────────────────────────────────── */
+.pl-band{
+  margin-top:var(--sp-16);padding:var(--sp-32) var(--sp-48);
+  background:var(--ink);color:#fff;border-radius:var(--r-shell);
+  display:grid;grid-template-columns:1fr auto auto;gap:var(--sp-32);align-items:center;
+}
+.pl-band--one{grid-template-columns:1fr auto}
+.pl-band h2{margin:0;font-size:var(--fs-xl);font-weight:600;letter-spacing:-.02em}
+.pl-band p{margin:var(--sp-8) 0 0;font-size:var(--fs-sm);color:rgb(255 255 255/.72);max-width:52ch}
+.pl-band ul{margin:var(--sp-12) 0 0;padding:0;list-style:none;max-width:52ch}
+.pl-band li{
+  position:relative;padding-left:var(--sp-24);margin-top:var(--sp-8);
+  font-size:var(--fs-sm);color:rgb(255 255 255/.82);
+}
+.pl-band li::before{
+  content:"";position:absolute;left:0;top:9px;width:8px;height:8px;
+  border-radius:50%;background:var(--clay);
+}
+.pl-o{display:flex;gap:var(--sp-16);align-items:center}
+.pl-o img{width:104px;height:78px;object-fit:cover;border-radius:var(--r-tight);flex:none;background:var(--n-8)}
+.pl-o b{display:block;font-size:var(--fs-sm);font-weight:600}
+.pl-o span{display:block;font-size:var(--fs-xs);color:rgb(255 255 255/.62);margin-top:2px}
+.pl-o i{
+  display:inline-block;font-style:normal;margin-top:var(--sp-8);font-size:12px;
+  letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#F3BBA8;
+}
+
+/* ── два варианта покрытия (покраска) ──────────────── */
+.pl-two{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-16)}
+.pl-v{background:var(--card);border-radius:var(--r-shell);box-shadow:var(--edge),var(--sh-1);padding:var(--sp-32)}
+.pl-v__t{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-16);flex-wrap:wrap}
+.pl-v__t b{font-size:var(--fs-lg);font-weight:600;letter-spacing:-.02em}
+.pl-v__t span{font-size:var(--fs-lg);font-weight:600;color:var(--clay-txt);white-space:nowrap}
+.pl-v__d{margin:var(--sp-8) 0 var(--sp-24);font-size:var(--fs-xs);color:var(--dim)}
+.pl-v ol{margin:0;padding:0;list-style:none;counter-reset:s}
+.pl-v li{
+  counter-increment:s;position:relative;padding:var(--sp-8) 0 var(--sp-8) var(--sp-32);
+  border-top:1px solid var(--n-2);font-size:var(--fs-sm);
+}
+.pl-v li::before{
+  content:counter(s);position:absolute;left:0;top:var(--sp-8);
+  width:20px;height:20px;border-radius:50%;background:var(--n-2);
+  display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--dim);
+}
+
+/* ── примечание под блоком ─────────────────────────── */
+.pl-note{font-size:var(--fs-xs);color:var(--dim);max-width:75ch;margin:var(--sp-24) 0 0}
+
+@media(max-width:1000px){
+  .plt{grid-template-columns:1fr 1fr}
+  .plt__c--wide{grid-column:span 2}
+}
+@media(max-width:760px){
+  .plt,.plt--two,.pl-two{grid-template-columns:1fr}
+  .plt__c--wide{grid-column:auto}
+  .plt__c--wide img{aspect-ratio:16/10}
+  .pl-band,.pl-band--one{grid-template-columns:1fr;padding:var(--sp-24);gap:var(--sp-24)}
+  .pl-v{padding:var(--sp-24)}
+}
