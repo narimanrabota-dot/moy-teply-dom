@@ -5,6 +5,21 @@ services:
     staticPublishPath: .
     buildCommand: ""
     routes:
+      - type: redirect
+        source: /v2/proekt-6h9.html
+        destination: /v2/index.html
+      - type: redirect
+        source: /v2/proekt-7h75.html
+        destination: /v2/index.html
+      - type: redirect
+        source: /v2/proekt-6h75.html
+        destination: /v2/index.html
+      - type: redirect
+        source: /v2/proekt-9h8.html
+        destination: /v2/index.html
+      - type: redirect
+        source: /v2/proekt-96h81.html
+        destination: /v2/index.html
       - type: rewrite
         source: /
         destination: /v2/index.html
