@@ -43,6 +43,8 @@ def main():
     for page in pages:
         key = os.path.basename(page)[:-5]
         html = io.open(page, encoding='utf-8').read()
+        if 'data-gone' in html[:400]:   # снятая карточка: только переадресация на каталог
+            continue
         out = problems[key]
         t = live_block.TITLE.search(html)
         title = t.group(1).replace('\u00a0', ' ').strip() if t else None

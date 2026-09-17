@@ -91,6 +91,8 @@ def cards():
     out = []
     for page in sorted(glob.glob(os.path.join(V2, 'proekt-*.html'))):
         html = io.open(page, encoding='utf-8').read()
+        if 'data-gone' in html[:400]:
+            continue
         t = TITLE.search(html)
         p = PREFIX.search(html)
         key = os.path.basename(page)[len('proekt-'):-len('.html')]
