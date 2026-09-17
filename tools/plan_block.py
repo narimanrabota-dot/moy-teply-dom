@@ -37,7 +37,7 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMG, V2 = os.path.join(ROOT, 'img'), os.path.join(ROOT, 'v2')
 LABELS = ['Чертёж', 'С мебелью', 'Размеры', '3D-вид', 'Схема с площадями']
-COUNT = {2: 'Две', 3: 'Три', 4: 'Четыре'}
+COUNT = {2: 'Две планировки', 3: 'Три планировки', 4: 'Четыре планировки', 5: 'Пять планировок', 6: 'Шесть планировок'}
 DESC_KEYS = ('name', 'area', 'short', 'who', 'not_for', 'why', 'cons')
 ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="{w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{p}</svg>'
 ZOOM = '<span class="pln__zoom" aria-hidden="true">' + ICON.format(w=2, p='<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>').replace(' aria-hidden="true"', '') + '</span>'
@@ -222,7 +222,7 @@ def build(spec):
     parts.append('</div>')
     if desc:
         parts.append(drawer(spec))
-    heading = 'Планировка' if n == 1 else (f'{COUNT[n]} планировки на выбор' if n in COUNT else 'Планировки на выбор')
+    heading = 'Планировка' if n == 1 else (f'{COUNT[n]} на выбор' if n in COUNT else 'Планировки на выбор')
     return heading, ''.join(parts)
 
 
