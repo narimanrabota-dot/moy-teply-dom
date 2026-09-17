@@ -1,0 +1,46 @@
+/* ── Вариант А · «Редакция» ───────────────────────────────────
+   Onest, мягкий прямоугольник, воздух вместо линий.
+   Спокойная и тихая: шапка не спорит с фотографиями под ней.  */
+
+:root{
+  --r-shell:20px;
+  --r-inner:12px;
+}
+body{
+  font-family:"Onest",-apple-system,system-ui,"Segoe UI",Roboto,Arial,sans-serif;
+}
+.wm{letter-spacing:-.015em}          /* у Onest умолчания плотнее, чем у SF */
+
+.hdr.is-stuck{
+  background:rgb(255 255 255/.86);
+  backdrop-filter:saturate(1.5) blur(14px);
+  -webkit-backdrop-filter:saturate(1.5) blur(14px);
+}
+
+/* ── фото под шапкой ─────────────────────────────────
+   Паспарту: снимок в белом поле одинаковой толщины со всех сторон.
+   Скругление снимка = внешнее минус ширина поля (20 − 12 = 8),
+   иначе углы не совпадают. */
+.hero{margin-top:var(--sp-24)}
+.hero__ph{
+  margin:0;position:relative;line-height:0;
+  height:clamp(414px,71svh,713px);
+  padding:12px;
+  background:#fff;
+  border-radius:var(--r-shell);
+  box-shadow:var(--edge),var(--sh-1);
+}
+.hero__ph img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  /* снимок вертикальнее полосы, в которую он ложится: по центру кадр
+     срезает конёк, поэтому окно сдвинуто к верху — крыша целиком,
+     а обрезается передний план со снегом */
+  object-position:50% 30%;
+  border-radius:var(--r-tight);background:var(--ph);
+}
+
+@media(max-width:900px){
+  .hero{margin-top:var(--sp-16)}
+  .hero__ph{height:clamp(322px,60svh,483px);padding:8px}
+  .hero__ph img{border-radius:var(--r-inner)}
+}
