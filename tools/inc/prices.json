@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-09-17T20:20:47+0300",
+  "generated_at": "2026-09-17T20:33:59+0300",
   "calculator_commit": "10b60f4",
   "currency": "RUB",
   "source": "калькулятор Kalkulyator/index.html, ставки: облако",
@@ -1055,8 +1055,8 @@
         ],
         "paintIn": [
           null,
-          513100,
-          567800
+          511700,
+          566200
         ],
         "paintOut": [
           279400,
