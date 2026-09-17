@@ -8,6 +8,9 @@
 import glob, hashlib, io, os, re, sys
 from PIL import Image
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import live_block
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMG, V2 = os.path.join(ROOT, 'img'), os.path.join(ROOT, 'v2')
 TEMPLATE_ALTS = ['Чертёж с размерами', 'Планировка в объёме']
@@ -27,7 +30,7 @@ def section(html, sid):
 
 
 def model_of(name):
-    m = re.match(r'(.+?)-(?:plan|fasad|interer)-', name)
+    m = re.match(r'(.+?)-(?:plan|fasad|interer|zhivoe)-', name)
     return m.group(1) if m else None
 
 
@@ -41,6 +44,8 @@ def main():
         key = os.path.basename(page)[:-5]
         html = io.open(page, encoding='utf-8').read()
         out = problems[key]
+        t = live_block.TITLE.search(html)
+        title = t.group(1).replace('\u00a0', ' ').strip() if t else None
 
         for asset in versions:
             found = re.findall(re.escape(asset) + r'\?v=(\d+)', html)
@@ -105,7 +110,23 @@ def main():
                 if 'in' in kinds and 'out' in kinds[kinds.index('in'):]:
                     out.append('фото изнутри стоят не в конце галереи')
 
-        for name in sorted(set(re.findall(r'(?:src|poster)="\.\./img/([^"?]+)', html))):
+        live = re.search(r'<section class="live"[^>]*>(.*?)</section>', html, re.S)
+        folder = live_block.photos_for(title) if title else []
+        if live:
+            if not re.search(r'<section class="sec" id="look">.*?</section>\s*<section class="live"', html, re.S):
+                out.append('полоса живых фото должна стоять сразу после галереи #look')
+            shots = re.findall(r'href="\.\./img/([^"?]+)', live.group(1))
+            count = re.search(r'<small>(\d+)', live.group(1))
+            if not shots:
+                out.append('в полосе живых фото нет фото')
+            elif not count or int(count.group(1)) != len(shots):
+                out.append('в полосе живых фото подпись о числе снимков не совпадает с фото')
+            if os.path.isdir(live_block.SRC) and len(folder) != len(shots):
+                out.append(f'живых фото в папке {len(folder)}, в карточке {len(shots)} — собрать: python3 tools/live_block.py --write')
+        elif folder:
+            out.append(f'в папке «Живые фото/{title}» есть фото, а полосы нет — собрать: python3 tools/live_block.py --write')
+
+        for name in sorted(set(re.findall(r'(?:src|poster)="\.\./img/([^"?]+)', html)) | set(re.findall(r'<a href="\.\./img/([^"?]+)"', html))):
             path = os.path.join(IMG, name)
             if not os.path.exists(path):
                 out.append(f'нет файла img/{name}')

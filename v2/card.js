@@ -325,4 +325,101 @@
     pick(us < 0 ? 0 : us);
   });
 }());
+/* ── живые фото ─────────────────────────────────────
+   Полоса между галереей и планировками открывает фото на весь экран:
+   стрелки, свайп, Esc. Разметку собирает tools/live_block.py. */
+(function () {
+  var bands = [].slice.call(document.querySelectorAll('[data-live]'));
+  if (!bands.length) return;
+
+  var box, pic, cnt, prev, next, shut, back = null, list = [], i = 0, x0 = null;
+  var L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+  var R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function build() {
+    box = el('div', 'plx plx--live');
+    box.hidden = true;
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Живые фото построенного дома');
+    var bar = el('div', 'plx__bar');
+    cnt = el('span', 'plx__n');
+    shut = el('button', 'plx__x', 'Закрыть');
+    shut.type = 'button';
+    bar.appendChild(el('b', 'plx__t', 'Живые фото построенного дома'));
+    bar.appendChild(cnt);
+    bar.appendChild(shut);
+    var stage = el('div', 'plx__stage');
+    pic = el('img');
+    prev = el('button', 'plx__a plx__a--p');
+    next = el('button', 'plx__a plx__a--n');
+    prev.type = next.type = 'button';
+    prev.setAttribute('aria-label', 'Предыдущее фото');
+    next.setAttribute('aria-label', 'Следующее фото');
+    prev.innerHTML = L;
+    next.innerHTML = R;
+    stage.appendChild(pic); stage.appendChild(prev); stage.appendChild(next);
+    box.appendChild(bar); box.appendChild(stage);
+    document.body.appendChild(box);
+
+    shut.addEventListener('click', close);
+    prev.addEventListener('click', function () { show(i - 1); });
+    next.addEventListener('click', function () { show(i + 1); });
+    box.addEventListener('click', function (e) { if (e.target === box || e.target === stage) close(); });
+    stage.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+    });
+    document.addEventListener('keydown', function (e) {
+      if (box.hidden) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key === 'ArrowLeft') { show(i - 1); return; }
+      if (e.key === 'ArrowRight') { show(i + 1); return; }
+      if (e.key !== 'Tab') return;
+      var f = [].slice.call(box.querySelectorAll('button')).filter(function (b) { return b.offsetParent; });
+      var k = f.indexOf(document.activeElement);
+      if (e.shiftKey && k <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && k === f.length - 1) { e.preventDefault(); f[0].focus(); }
+    });
+  }
+
+  function show(n) {
+    i = (n + list.length) % list.length;
+    pic.src = list[i].src;
+    pic.alt = list[i].alt;
+    cnt.textContent = (i + 1) + ' / ' + list.length;
+    prev.hidden = next.hidden = list.length < 2;
+  }
+
+  function open(band) {
+    list = [].slice.call(band.parentNode.querySelectorAll('.live__all a')).map(function (a) {
+      return { src: a.getAttribute('href'), alt: a.textContent };
+    });
+    if (!list.length) return;
+    if (!box) build();
+    back = band;
+    show(0);
+    box.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    shut.focus();
+  }
+
+  function close() {
+    box.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (back) back.focus();
+  }
+
+  bands.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
+}());
 /* Заголовок окна заявки под нажатую кнопку ставит form.js — он же отправляет заявку. */

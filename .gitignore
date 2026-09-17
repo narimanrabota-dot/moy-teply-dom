@@ -30,3 +30,6 @@ v2/variant-*.html
 v2/vvar-*.html
 v2/wbtn-*.html
 v2/cbtn-*.html
+
+# живые фото: оригиналы кладёт владелец, на сайт идут webp из tools/live_block.py
+Живые фото/
