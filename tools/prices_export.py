@@ -25,12 +25,16 @@ null — опции нет в этой комплектации.
 
 Калькулятор только читается: в его папке стоит автокоммит с пушем, туда ничего не пишем.
 Стамбул в калькуляторе называется stambul-6h75, а на сайте карточка proekt-6h75 — приставка снимается.
+
+Дома сайта, которых нет в «Готовых КП» калькулятора, лежат в tools/inc/extra_models.json (площадь дома, терраса,
+перегородки по чертежу): они добавляются в тот же движок и считаются по тем же ставкам, что и готовые КП.
 """
 import argparse, io, json, os, re, subprocess, sys, tempfile, time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CALC = '/Users/narimansary/Desktop/Kalkulyator'
 LIVE = os.path.join(ROOT, 'v2', 'calc-live.json')
+EXTRA = os.path.join(ROOT, 'tools', 'inc', 'extra_models.json')
 PACKAGES = ['Холодный контур', 'Комфорт', 'Премиум']
 OPTIONS = ['elec', 'pipes', 'vent', 'paintIn', 'paintOut', 'plinth']
 # ставки, которые нужны формулам сайта (id из вкладки «Цены» калькулятора)
@@ -118,7 +122,19 @@ def cloud(src):
     return {k: v for k, v in data.items() if not k.startswith('_link_')}
 
 
-def engine(src, overrides):
+def extra_models():
+    """Дома сайта, которых нет в «Готовых КП» калькулятора: [{s, f, z, l, t, p}]."""
+    if not os.path.exists(EXTRA):
+        return []
+    out = []
+    for m in json.load(io.open(EXTRA, encoding='utf-8')).get('models', []):
+        if not all(k in m for k in ('s', 'f', 'z', 'l', 't', 'p')):
+            raise RuntimeError(f'в extra_models.json у «{m.get("s")}» нет одного из полей s, f, z, l, t, p')
+        out.append({k: m[k] for k in ('s', 'f', 'z', 'l', 't', 'p')})
+    return out
+
+
+def engine(src, overrides, extra=()):
     parts = []
     for a, b in CUTS:
         if src.count(a) != 1:
@@ -130,7 +146,12 @@ def engine(src, overrides):
         parts.append(src[i:j])
     # const $ = id => document.getElementById(id) мешает JavaScriptCore и расчёту не нужен
     parts[3] = re.sub(r'^[ \t]*const \$\s*=.*$', '', parts[3], flags=re.M)
-    js = STUBS + '\n'.join(parts) + RUN.replace('__OVERRIDES__', json.dumps(overrides)).replace('__RATE_IDS__', json.dumps(RATE_IDS))
+    add = ''
+    if extra:
+        # дома сайта считаются тем же движком, если в калькуляторе их ещё нет
+        add = ('\nconst __extra = ' + json.dumps(list(extra), ensure_ascii=False) + ';\n'
+               'for (const __m of __extra) if (!SITE_MODELS.some(x => x.s === __m.s)) SITE_MODELS.push(__m);\n')
+    js = STUBS + '\n'.join(parts) + add + RUN.replace('__OVERRIDES__', json.dumps(overrides)).replace('__RATE_IDS__', json.dumps(RATE_IDS))
     with tempfile.NamedTemporaryFile('w', suffix='.js', encoding='utf-8', delete=False) as f:
         f.write(js)
     try:
@@ -161,7 +182,8 @@ def main():
     try:
         src = io.open(page, encoding='utf-8').read()
         overrides = {} if args.offline else cloud(src)
-        res = engine(src, overrides)
+        extra = extra_models()
+        res = engine(src, overrides, extra)
     except (OSError, RuntimeError, ValueError) as e:
         print('ОСТАНОВЛЕНО:', e)
         if not args.offline:
@@ -194,6 +216,8 @@ def main():
           + (f' · минимальная цена дома {rub(res["houseMin"])}' if res['houseMin'] else ''))
     for s in skipped:
         print('  –', s)
+    if extra:
+        print('Дома сайта, которых нет в «Готовых КП» (tools/inc/extra_models.json): ' + ', '.join(slug_of(m['s']) for m in extra))
     print(f'\n  {"Модель":<16}' + ''.join(f'{n:>18}' for n in PACKAGES) + f'{"электрика":>14}{"доставка":>12}')
     for slug, m in models.items():
         print(f'  {slug:<16}' + ''.join(f'{rub(v):>18}' for v in m['packages'].values())

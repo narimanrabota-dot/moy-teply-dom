@@ -32,7 +32,7 @@ TOP_KEYS = {'version', 'generated_at', 'calculator_commit', 'currency', 'source'
 MODEL_KEYS = {'title', 'packages'}
 OPTION_KEYS = ('elec', 'pipes', 'vent', 'paintIn', 'paintOut', 'plinth')
 JUMP = 0.10
-ASK = ('По запросу', 'Цена по запросу')
+ASK = ('По запросу', 'Цена по запросу', 'уточняется', 'Цена уточняется')   # цены ещё не было — ставится из калькулятора
 
 INC = re.compile(r'<section class="sec" id="inc">.*?</section>', re.S)
 INC_H = re.compile(r'(<span class="inc-n">)([^<]*)(</span><b class="inc-p">)([^<]*)(</b>)')
