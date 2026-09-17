@@ -45,7 +45,9 @@ DOC = ICON.format(w=1.9, p='<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13
 CLOSE = ICON.format(w=1.9, p='<path d="M6 6l12 12M18 6 6 18"/>')
 SECTION = re.compile(
     r'(<section class="sec" id="plan">\s*<h2 class="sech">)(.*?)(</h2>\s*)'
-    r'((?:<p class="pln__lead">.*?</p>)?<div class="pln[ "][^>]*data-pln.*?(?=\s*<p class="plan__t"|\s*</section>)'
+    # заглушка «планировку пришлём» — забираем её целиком, вместе с кнопкой и закрывающим </div>
+    r'(<div class="pln pln--wait"[^>]*>.*?</button>\s*</div>'
+    r'|(?:<p class="pln__lead">.*?</p>)?<div class="pln[ "][^>]*data-pln.*?(?=\s*<p class="plan__t"|\s*</section>)'
     r'|<div class="sld sld--plan"[^>]*>.*?<div class="sld__th">.*?</div>\s*</div>)', re.S)
 
 
