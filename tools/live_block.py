@@ -61,7 +61,14 @@ def folders(title):
     return [os.path.join(SRC, d) for d in names]
 
 
-def photos_for(title):
+def photos_for(title, prefix=None):
+    """Фото дома. Если две карточки с одним названием — папка по приставке картинок
+    («Живые фото/stambul-75h6-2») перебивает папку по названию дома."""
+    own = os.path.join(SRC, prefix) if prefix else None
+    if own and os.path.isdir(own):
+        files = sources(own)
+        if files:
+            return files
     for folder in folders(title):
         files = sources(folder)
         if files:
@@ -141,6 +148,7 @@ def main():
     write = '--write' in sys.argv
     items = cards()
     names = {norm(t): t for _, t, _, _ in items}
+    names.update({norm(p): p for _, _, p, _ in items})
     if write:
         for _, title, _, _ in items:
             if not folders(title):
@@ -152,7 +160,7 @@ def main():
 
     changed = 0
     for page, title, prefix, html in items:
-        files = photos_for(title)
+        files = photos_for(title, prefix)
         shots = []
         for n, path in enumerate(files, 1):
             try:

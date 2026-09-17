@@ -113,7 +113,8 @@ def main():
                     out.append('фото изнутри стоят не в конце галереи')
 
         live = re.search(r'<section class="live"[^>]*>(.*?)</section>', html, re.S)
-        folder = live_block.photos_for(title) if title else []
+        live_prefix = live_block.PREFIX.search(html)
+        folder = live_block.photos_for(title, live_prefix.group(1) if live_prefix else None) if title else []
         if live:
             if not re.search(r'<section class="sec" id="look">.*?</section>\s*<section class="live"', html, re.S):
                 out.append('полоса живых фото должна стоять сразу после галереи #look')
