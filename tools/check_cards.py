@@ -54,6 +54,8 @@ def main():
         plan = section(html, 'plan')
         if plan is None:
             out.append('нет секции планировок #plan')
+        elif 'data-pln-wait' in plan:
+            pass   # планировку владелец ещё не прислал: в карточке кнопка «Получить планировку»
         else:
             if 'sld--plan' in plan:
                 out.append('планировки в старом формате (слайдер sld--plan)')

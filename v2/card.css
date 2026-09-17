@@ -638,6 +638,9 @@ a.ct__v:hover{color:var(--clay-txt)}
    [data-pln] > .pln__c: кадр-кнопка .pln__m и плитки вида .pln__t.
    Узкая карточка — плитки под кадром, широкая — колонкой справа. */
 .pln{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:var(--sp-16)}
+/* планировку ещё не прислали: строка и кнопка «Получить планировку» */
+.pln.pln--wait{grid-template-columns:none;justify-items:start;gap:var(--sp-16)}
+.pln--wait .plan__t{margin:0}
 .pln--one{max-width:820px}
 .pln--three{grid-template-columns:1fr}
 @media(min-width:900px){.pln--three{grid-template-columns:repeat(3,minmax(0,1fr))}}
