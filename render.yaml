@@ -9,9 +9,6 @@ services:
         source: /v2/proekt-6h9.html
         destination: /v2/index.html
       - type: redirect
-        source: /v2/proekt-7h75.html
-        destination: /v2/index.html
-      - type: redirect
         source: /v2/proekt-6h75.html
         destination: /v2/index.html
       - type: redirect
