@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Каталог серий — 10 черновых вариантов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1d1a17; --n-7:#4a443e; --n-5:#7b736b; --n-3:#c9c2ba; --n-1:#efece7;
+  --paper:#fbfaf8; --white:#fff; --brick:#c3502a; --blue:#1f3a5f;
+  --sh-1:0 2px 10px rgba(29,26,23,.08); --sh-2:0 12px 32px rgba(29,26,23,.14);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.5 Onest,system-ui,sans-serif}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.var a,.var .c,.var .c__ph,.var .ph-w,.var .txt,.var .c__b,.var .c__n,.var .c__go{display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+.top{padding:48px 0 24px}
+.top h1{font-size:34px;line-height:1.15;margin:0 0 12px;font-weight:600}
+.top p{margin:0;color:var(--n-7);max-width:70ch}
+.top b{color:var(--brick)}
+.var{padding:48px 0;border-top:1px solid var(--n-1)}
+.var__h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 24px}
+.var__n{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;padding:0 10px;border-radius:999px;background:var(--brick);color:#fff;font-weight:600;font-size:17px}
+.var__t{font-size:24px;font-weight:600;margin:0}
+.var__d{color:var(--n-5);font-size:14px;margin:0;flex:1 1 100%}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--n-5);margin:0 0 8px}
+.h2{font-size:32px;font-weight:600;margin:0 0 24px}
+a{color:inherit;text-decoration:none}
+.soon{position:absolute;top:12px;left:12px;background:rgba(29,26,23,.78);color:#fff;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;z-index:2}
+.ph{background:linear-gradient(135deg,#e7e2db,#d8d2ca);display:flex;align-items:center;justify-content:center;color:var(--n-5);font-size:14px;height:100%}
+
+/* 1 — как на примере */
+.v1 .g{display:grid;grid-template-columns:1fr 1fr;gap:40px 32px}
+.v1 .c__ph{position:relative;aspect-ratio:16/10;border-radius:4px;overflow:hidden}
+.v1 .c__b{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-top:16px}
+.v1 .c__n{font-size:29px;font-weight:500;letter-spacing:.01em}
+.v1 .c__go{color:var(--n-7);font-size:17px}
+
+/* 2 — три в ряд */
+.v2 .g{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.v2 .c{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:var(--sh-1)}
+.v2 .c__ph{position:relative;aspect-ratio:4/3}
+.v2 .c__b{padding:16px;text-align:center}
+.v2 .c__n{font-size:20px;font-weight:600}
+
+/* 3 — название на фото */
+.v3 .g{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.v3 .c{position:relative;aspect-ratio:16/10;border-radius:16px;overflow:hidden}
+.v3 .c::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.62),rgba(0,0,0,.05) 55%)}
+.v3 .c__n{position:absolute;left:24px;bottom:20px;z-index:2;color:#fff;font-size:29px;font-weight:600}
+.v3 .c__go{position:absolute;right:24px;bottom:24px;z-index:2;color:#fff;font-size:15px;opacity:.9}
+
+/* 4 — лента с прокруткой */
+.v4 .g{display:flex;gap:20px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory}
+.v4 .c{flex:0 0 320px;scroll-snap-align:start}
+.v4 .c__ph{position:relative;aspect-ratio:3/4;border-radius:20px;overflow:hidden}
+.v4 .c__n{margin-top:12px;font-size:20px;font-weight:600}
+
+/* 5 — шахматка */
+.v5 .row{display:grid;grid-template-columns:1.25fr 1fr;align-items:stretch;gap:0;margin-bottom:16px;background:var(--white);border-radius:16px;overflow:hidden;box-shadow:var(--sh-1)}
+.v5 .row:nth-child(even) .ph-w{order:2}
+.v5 .ph-w{position:relative;aspect-ratio:16/9}
+.v5 .txt{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:32px}
+.v5 .c__n{font-size:29px;font-weight:600}
+.v5 .c__go{color:var(--brick);font-size:17px}
+
+/* 6 — мозаика */
+.v6 .g{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:190px;gap:16px}
+.v6 .c{position:relative;border-radius:14px;overflow:hidden}
+.v6 .c:nth-child(1){grid-column:span 2;grid-row:span 2}
+.v6 .c:nth-child(2){grid-column:span 2}
+.v6 .c::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 60%)}
+.v6 .c__n{position:absolute;left:18px;bottom:14px;z-index:2;color:#fff;font-size:22px;font-weight:600}
+
+/* 7 — широкие полосы */
+.v7 .c{position:relative;display:block;aspect-ratio:21/6;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.v7 .c::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.6),rgba(0,0,0,.05) 60%)}
+.v7 .c__n{position:absolute;left:32px;top:50%;transform:translateY(-50%);z-index:2;color:#fff;font-size:34px;font-weight:600;letter-spacing:.02em}
+.v7 .c__go{position:absolute;right:28px;top:50%;transform:translateY(-50%);z-index:2;color:#fff;font-size:15px}
+
+/* 8 — плотная сетка */
+.v8 .g{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-radius:14px;overflow:hidden}
+.v8 .c{position:relative;aspect-ratio:1/1}
+.v8 .c__n{position:absolute;left:0;bottom:0;z-index:2;background:rgba(255,255,255,.93);padding:10px 16px;font-size:17px;font-weight:600;border-radius:0 12px 0 0}
+
+/* 9 — воздух и центр */
+.v9 .g{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 32px}
+.v9 .c__ph{position:relative;aspect-ratio:1/1;border-radius:999px;overflow:hidden;box-shadow:var(--sh-1)}
+.v9 .c__b{text-align:center;margin-top:16px}
+.v9 .c__n{font-size:24px;font-weight:600}
+.v9 .c__go{display:block;margin-top:4px;color:var(--n-5);font-size:14px}
+
+/* 10 — обложки во всю ширину */
+.v10 .c{position:relative;display:block;aspect-ratio:16/7;overflow:hidden;margin-bottom:8px}
+.v10 .c::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.28)}
+.v10 .c__n{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;color:#fff;font-size:44px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+@media (max-width:860px){
+  .v1 .g,.v3 .g,.v2 .g,.v9 .g{grid-template-columns:1fr}
+  .v5 .row{grid-template-columns:1fr}
+  .v5 .row:nth-child(even) .ph-w{order:0}
+  .v6 .g{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
+  .v8 .g{grid-template-columns:repeat(2,1fr)}
+  .v7 .c{aspect-ratio:16/9}
+  .v7 .c__n{font-size:24px;left:20px}
+  .v10 .c__n{font-size:26px}
+  .top h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap top">
+  <h1>Каталог серий на главной — 10 черновых вариантов</h1>
+  <p>Блок встанет <b>над каталогом</b>, каталог с плитками останется ниже. Под фото — только название серии, «Смотреть» ведёт на отдельную страницу серии. «Сочи» — с пометкой «скоро». Посмотрите и напишите номер варианта, который нравится.</p>
+</div>
+
+<!-- 1 -->
+<section class="var v1"><div class="wrap">
+  <div class="var__h"><span class="var__n">1</span><h2 class="var__t">Как на присланном примере</h2>
+    <p class="var__d">Две крупные карточки в ряд, фото без рамки, под ним название и «Смотреть →» по краям.</p></div>
+  <p class="eyebrow">Каталог проектов</p>
+  <p class="h2">Выберите серию</p>
+  <div class="g">
+    <a class="c"><span class="c__ph"><img src="../img/stambul-9h8-fasad-1.webp" alt=""></span><span class="c__b"><span class="c__n">Стамбул</span><span class="c__go">Смотреть →</span></span></a>
+    <a class="c"><span class="c__ph"><img src="../img/siena-155x85-2-fasad-1.webp" alt=""></span><span class="c__b"><span class="c__n">Сиена</span><span class="c__go">Смотреть →</span></span></a>
+    <a class="c"><span class="c__ph"><img src="../img/vladik-10x8-fasad-2.webp" alt=""></span><span class="c__b"><span class="c__n">Владивосток</span><span class="c__go">Смотреть →</span></span></a>
+    <a class="c"><span class="c__ph"><img src="../img/parma-10x8-fasad-1.webp" alt=""></span><span class="c__b"><span class="c__n">Парма</span><span class="c__go">Смотреть →</span></span></a>
+    <a class="c"><span class="c__ph"><span class="soon">Скоро</span><span class="ph">Сочи — фото готовим</span></span><span class="c__b"><span class="c__n">Сочи</span><span class="c__go">Скоро</span></span></a>
+  </div>
+</div></section>
+
+<!-- 2 -->
+<section class="var v2"><div class="wrap">
+  <div class="var__h"><span class="var__n">2</span><h2 class="var__t">Три в ряд, карточки с тенью</h2>
+    <p class="var__d">Компактнее: все пять серий видно почти сразу, название по центру на белой подложке.</p></div>
+  <p class="h2">Выберите серию</p>
+  <div class="g">
+    <a class="c"><span class="c__ph"><img src="../img/stambul-9h8-fasad-1.webp" alt=""></span><span class="c__b"><span class="c__n">Стамбул</span></span></a>
+    <a class="c"><span class="c__ph"><img src="../img/siena-155x85-2-fasad-1.webp" alt=""></span><span class="c__b"><span class="c__n">Сиена</span></span></a>
+    <a class="c"><span class="c__ph"><img src="../img/vladik-10x8-fasad-2.webp" alt=""></span><span class="c__b"><span class="c__n">Владивосток</span></span></a>
+    <a class="c"><span class="c__ph"><img src="../img/parma-10x8-fasad-1.webp" alt=""></span><span class="c__b"><span class="c__n">Парма</span></span></a>
+    <a class="c"><span class="c__ph"><span class="soon">Скоро</span><span class="ph">Сочи</span></span><span class="c__b"><span class="c__n">Сочи</span></span></a>
+  </div>
+</div></section>
+
+<!-- 3 -->
+<section class="var v3"><div class="wrap">
+  <div class="var__h"><span class="var__n">3</span><h2 class="var__t">Название прямо на фото</h2>
+    <p class="var__d">Фото крупнее, текст поверх снимка на мягком затемнении — выглядит дороже.</p></div>
+  <p class="h2">Выберите серию</p>
+  <div class="g">
+    <a class="c"><img src="../img/stambul-9h8-fasad-1.webp" alt=""><span class="c__n">Стамбул</span><span class="c__go">Смотреть →</span></a>
+    <a class="c"><img src="../img/siena-155x85-2-fasad-1.webp" alt=""><span class="c__n">Сиена</span><span class="c__go">Смотреть →</span></a>
+    <a class="c"><img src="../img/vladik-10x8-fasad-2.webp" alt=""><span class="c__n">Владивосток</span><span class="c__go">Смотреть →</span></a>
+    <a class="c"><img src="../img/parma-10x8-fasad-1.webp" alt=""><span class="c__n">Парма</span><span class="c__go">Смотреть →</span></a>
+    <a class="c"><span class="soon">Скоро</span><span class="ph">Сочи</span><span class="c__n">Сочи</span></a>
+  </div>
+</div></section>
+
+<!-- 4 -->
+<section class="var v4"><div class="wrap">
+  <div class="var__h"><span class="var__n">4</span><h2 class="var__t">Лента с прокруткой вбок</h2>
+    <p class="var__d">Вертикальные обложки, листаются пальцем. Занимает мало высоты на главной.</p></div>
+  <p class="h2">Выберите серию</p>
+  <div class="g">
+    <a class="c"><span class="c__ph"><img src="../img/stambul-9h8-fasad-1.webp" alt=""></span><span class="c__n">Стамбул</span></a>
+    <a class="c"><span class="c__ph"><img src="../img/siena-155x85-2-fasad-1.webp" alt=""></span><span class="c__n">Сиена</span></a>
+    <a class="c"><span class="c__ph"><img src="../img/vladik-10x8-fasad-2.webp" alt=""></span><span class="c__n">Владивосток</span></a>
+    <a class="c"><span class="c__ph"><img src="../img/parma-10x8-fasad-1.webp" alt=""></span><span class="c__n">Парма</span></a>
+    <a class="c"><span class="c__ph"><span class="soon">Скоро</span><span class="ph">Сочи</span></span><span class="c__n">Сочи</span></a>
+  </div>
+</div></section>
+
+<!-- 5 -->
+<section class="var v5"><div class="wrap">
+  <div class="var__h"><span class="var__n">5</span><h2 class="var__t">Шахматка: фото и белое поле</h2>
+    <p class="var__d">Каждая серия — широкой строкой, фото и текст меняются сторонами.</p></div>
+  <p class="h2">Выберите серию</p>
+  <a class="row"><span class="ph-w"><img src="../img/stambul-9h8-fasad-1.webp" alt=""></span><span class="txt"><span class="c__n">Стамбул</span><span class="c__go">Смотреть →</span></span></a>
+  <a class="row"><span class="ph-w"><img src="../img/siena-155x85-2-fasad-1.webp" alt=""></span><span class="txt"><span class="c__n">Сиена</span><span class="c__go">Смотреть →</span></span></a>
+  <a class="row"><span class="ph-w"><img src="../img/vladik-10x8-fasad-2.webp" alt=""></span><span class="txt"><span class="c__n">Владивосток</span><span class="c__go">Смотреть →</span></span></a>
+  <a class="row"><span class="ph-w"><img src="../img/parma-10x8-fasad-1.webp" alt=""></span><span class="txt"><span class="c__n">Парма</span><span class="c__go">Смотреть →</span></span></a>
+  <a class="row"><span class="ph-w"><span class="soon">Скоро</span><span class="ph">Сочи</span></span><span class="txt"><span class="c__n">Сочи</span><span class="c__go">Готовим проекты</span></span></a>
+</div></section>
+
+<!-- 6 -->
+<section class="var v6"><div class="wrap">
+  <div class="var__h"><span class="var__n">6</span><h2 class="var__t">Мозаика: главная серия крупнее</h2>
+    <p class="var__d">Стамбул большим квадратом, остальные — меньшими плитками рядом.</p></div>
+  <p class="h2">Выберите серию</p>
+  <div class="g">
+    <a class="c"><img src="../img/stambul-9h8-fasad-1.webp" alt=""><span class="c__n">Стамбул</span></a>
+    <a class="c"><img src="../img/siena-155x85-2-fasad-1.webp" alt=""><span class="c__n">Сиена</span></a>
+    <a class="c"><img src="../img/vladik-10x8-fasad-2.webp" alt=""><span class="c__n">Владивосток</span></a>
+    <a class="c"><img src="../img/parma-10x8-fasad-1.webp" alt=""><span class="c__n">Парма</span></a>
+    <a class="c"><span class="soon">Скоро</span><span class="ph">Сочи</span><span class="c__n">Сочи</span></a>
+  </div>
+</div></section>
+
+<!-- 7 -->
+<section class="var v7"><div class="wrap">
+  <div class="var__h"><span class="var__n">7</span><h2 class="var__t">Широкие полосы во всю ширину блока</h2>
+    <p class="var__d">Пять невысоких полос одна под другой, крупное название слева.</p></div>
+  <p class="h2">Выберите серию</p>
+  <a class="c"><img src="../img/stambul-9h8-fasad-1.webp" alt=""><span class="c__n">Стамбул</span><span class="c__go">Смотреть →</span></a>
+  <a class="c"><img src="../img/siena-155x85-2-fasad-1.webp" alt=""><span class="c__n">Сиена</span><span class="c__go">Смотреть →</span></a>
+  <a class="c"><img src="../img/vladik-10x8-fasad-2.webp" alt=""><span class="c__n">Владивосток</span><span class="c__go">Смотреть →</span></a>
+  <a class="c"><img src="../img/parma-10x8-fasad-1.webp" alt=""><span class="c__n">Парма</span><span class="c__go">Смотреть →</span></a>
+  <a class="c"><span class="ph">Сочи</span><span class="c__n">Сочи</span><span class="c__go">Скоро</span></a>
+</div></section>
+
+<!-- 8 -->
+<section class="var v8"><div class="wrap">
+  <div class="var__h"><span class="var__n">8</span><h2 class="var__t">Плотная сетка квадратов</h2>
+    <p class="var__d">Без зазоров, название на белом уголке. Строго и современно.</p></div>
+  <p class="h2">Выберите серию</p>
+  <div class="g">
+    <a class="c"><img src="../img/stambul-9h8-fasad-1.webp" alt=""><span class="c__n">Стамбул</span></a>
+    <a class="c"><img src="../img/siena-155x85-2-fasad-1.webp" alt=""><span class="c__n">Сиена</span></a>
+    <a class="c"><img src="../img/vladik-10x8-fasad-2.webp" alt=""><span class="c__n">Владивосток</span></a>
+    <a class="c"><img src="../img/parma-10x8-fasad-1.webp" alt=""><span class="c__n">Парма</span></a>
+    <a class="c"><span class="soon">Скоро</span><span class="ph">Сочи</span><span class="c__n">Сочи</span></a>
+  </div>
+</div></section>
+
+<!-- 9 -->
+<section class="var v9"><div class="wrap">
+  <div class="var__h"><span class="var__n">9</span><h2 class="var__t">Круглые обложки, много воздуха</h2>
+    <p class="var__d">Спокойный вариант: круглое фото и название по центру под ним.</p></div>
+  <p class="h2">Выберите серию</p>
+  <div class="g">
+    <a class="c"><span class="c__ph"><img src="../img/stambul-9h8-fasad-1.webp" alt=""></span><span class="c__b"><span class="c__n">Стамбул</span><span class="c__go">Смотреть</span></span></a>
+    <a class="c"><span class="c__ph"><img src="../img/siena-155x85-2-fasad-1.webp" alt=""></span><span class="c__b"><span class="c__n">Сиена</span><span class="c__go">Смотреть</span></span></a>
+    <a class="c"><span class="c__ph"><img src="../img/vladik-10x8-fasad-2.webp" alt=""></span><span class="c__b"><span class="c__n">Владивосток</span><span class="c__go">Смотреть</span></span></a>
+    <a class="c"><span class="c__ph"><img src="../img/parma-10x8-fasad-1.webp" alt=""></span><span class="c__b"><span class="c__n">Парма</span><span class="c__go">Смотреть</span></span></a>
+    <a class="c"><span class="c__ph"><span class="ph">Сочи</span></span><span class="c__b"><span class="c__n">Сочи</span><span class="c__go">Скоро</span></span></a>
+  </div>
+</div></section>
+
+<!-- 10 -->
+<section class="var v10">
+  <div class="wrap">
+    <div class="var__h"><span class="var__n">10</span><h2 class="var__t">Обложки во всю ширину экрана</h2>
+      <p class="var__d">Самый крупный вариант: фото на всю ширину, название по центру. Листается как афиши.</p></div>
+    <p class="h2">Выберите серию</p>
+  </div>
+  <a class="c"><img src="../img/stambul-9h8-fasad-1.webp" alt=""><span class="c__n">Стамбул</span></a>
+  <a class="c"><img src="../img/siena-155x85-2-fasad-1.webp" alt=""><span class="c__n">Сиена</span></a>
+  <a class="c"><img src="../img/vladik-10x8-fasad-2.webp" alt=""><span class="c__n">Владивосток</span></a>
+  <a class="c"><img src="../img/parma-10x8-fasad-1.webp" alt=""><span class="c__n">Парма</span></a>
+  <a class="c"><span class="ph">Сочи — скоро</span><span class="c__n">Сочи</span></a>
+</section>
+
+<div class="wrap" style="padding:48px 0 96px">
+  <p style="color:var(--n-5)">Напишите номер варианта — соберу его на главной и сделаю страницы серий.</p>
+</div>
+
+</body>
+</html>
