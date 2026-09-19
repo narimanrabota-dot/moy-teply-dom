@@ -1,0 +1,40 @@
+/* Каталог серий: блок «Выберите серию» на главной и страницы серий.
+   Вариант 2 (выбор владельца 19.09.2026): три карточки в ряд, фото 4:3,
+   под фото — название серии по центру на белой подложке. */
+
+.srs{padding-bottom:0}
+.srs__t{
+  margin:0;font-size:var(--fs-xl);font-weight:600;letter-spacing:-.02em;line-height:1.1;
+}
+.srs__g{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-24);
+  margin-top:var(--sp-32);
+}
+.srs__c{
+  display:block;background:var(--card);border-radius:var(--r-shell);overflow:hidden;
+  box-shadow:var(--edge);color:inherit;text-decoration:none;
+  transition:box-shadow .24s var(--e),transform .24s var(--e);
+}
+a.srs__c:hover{box-shadow:var(--edge),var(--sh-1);transform:translateY(-2px)}
+a.srs__c:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+.srs__ph{position:relative;display:block;aspect-ratio:4/3;background:var(--ph);line-height:0}
+.srs__ph img{width:100%;height:100%;object-fit:cover}
+.srs__b{display:block;padding:var(--sp-16);text-align:center}
+.srs__n{display:block;font-size:var(--fs-md);font-weight:600;line-height:1.2}
+.srs__c--soon{cursor:default}
+.srs__e{
+  display:flex;align-items:center;justify-content:center;height:100%;
+  background:var(--n-2);color:var(--dim);font-size:var(--fs-xs);line-height:1.3;
+}
+.srs__soon{
+  position:absolute;left:var(--sp-12);top:var(--sp-12);z-index:2;
+  padding:var(--sp-4) var(--sp-8);border-radius:var(--r-tight);
+  background:rgb(34 48 76/.68);color:#fff;font-size:var(--fs-xs);line-height:1.2;letter-spacing:.06em;text-transform:uppercase;
+}
+
+@media (max-width:900px){
+  .srs__g{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-16)}
+}
+@media (max-width:520px){
+  .srs__g{grid-template-columns:1fr}
+}
