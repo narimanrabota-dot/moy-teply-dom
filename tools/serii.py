@@ -118,6 +118,9 @@ def page_shell(index_html):
 
 
 def series_page(head, tail, name, tiles, slug):
+    # SEO-теги главной (canonical, открытый граф, микроразметка) в страницу серии
+    # не переносим — иначе у неё будет адрес главной. Их заново поставит tools/seo.py.
+    head = re.sub(r'<!-- seo:start.*?<!-- seo:end -->\s*\n?', '', head, flags=re.S)
     head = re.sub(r'<title>.*?</title>',
                   f'<title>{name} — каркасные дома серии · Мой тёплый дом</title>', head, count=1, flags=re.S)
     head = re.sub(r'<meta name="description" content="[^"]*">',
@@ -187,6 +190,8 @@ def main():
     for p, html in pages.items():
         open(p, "w", encoding="utf-8").write(html)
     print(f"Записано. Резервная копия: {d}")
+    print("Дальше обязательно: python3 tools/seo.py --write "
+          "— вернуть на страницы серий canonical, открытый граф и микроразметку.")
 
 
 if __name__ == "__main__":

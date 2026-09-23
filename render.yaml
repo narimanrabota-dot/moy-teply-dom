@@ -3,7 +3,11 @@ services:
     name: moy-teply-dom
     runtime: static
     staticPublishPath: .
-    buildCommand: ""
+    # Служебное в выкладку не идёт: файлы остаются в git, а из опубликованной
+    # копии их убирает сборка. Правилом routes этого не сделать — Render не
+    # применяет правила к адресу, по которому лежит файл
+    # (docs/redirects-rewrites, «Rule matching and ordering»).
+    buildCommand: rm -rf tools docs znanie CLAUDE.md SPRAVKA.md README.md
     routes:
       - type: redirect
         source: /v2/proekt-6h9.html
@@ -14,3 +18,240 @@ services:
       - type: rewrite
         source: /
         destination: /v2/index.html
+      - type: rewrite
+        source: /dogovor.html
+        destination: /v2/dogovor.html
+      - type: rewrite
+        source: /index.html
+        destination: /v2/index.html
+      - type: rewrite
+        source: /kak-zakazat.html
+        destination: /v2/kak-zakazat.html
+      - type: rewrite
+        source: /komanda.html
+        destination: /v2/komanda.html
+      - type: rewrite
+        source: /politika.html
+        destination: /v2/politika.html
+      - type: rewrite
+        source: /proekt-115h7.html
+        destination: /v2/proekt-115h7.html
+      - type: rewrite
+        source: /proekt-11h7.html
+        destination: /v2/proekt-11h7.html
+      - type: rewrite
+        source: /proekt-11h8.html
+        destination: /v2/proekt-11h8.html
+      - type: rewrite
+        source: /proekt-12h8.html
+        destination: /v2/proekt-12h8.html
+      - type: rewrite
+        source: /proekt-75h6-2.html
+        destination: /v2/proekt-75h6-2.html
+      - type: rewrite
+        source: /proekt-75h6.html
+        destination: /v2/proekt-75h6.html
+      - type: rewrite
+        source: /proekt-7h75.html
+        destination: /v2/proekt-7h75.html
+      - type: rewrite
+        source: /proekt-95h8.html
+        destination: /v2/proekt-95h8.html
+      - type: rewrite
+        source: /proekt-96h81.html
+        destination: /v2/proekt-96h81.html
+      - type: rewrite
+        source: /proekt-9h7.html
+        destination: /v2/proekt-9h7.html
+      - type: rewrite
+        source: /proekt-9h8.html
+        destination: /v2/proekt-9h8.html
+      - type: rewrite
+        source: /proekt-parma-10x8.html
+        destination: /v2/proekt-parma-10x8.html
+      - type: rewrite
+        source: /proekt-siena-125x82.html
+        destination: /v2/proekt-siena-125x82.html
+      - type: rewrite
+        source: /proekt-siena-12x82.html
+        destination: /v2/proekt-siena-12x82.html
+      - type: rewrite
+        source: /proekt-siena-13x85-2.html
+        destination: /v2/proekt-siena-13x85-2.html
+      - type: rewrite
+        source: /proekt-siena-144x7-2.html
+        destination: /v2/proekt-siena-144x7-2.html
+      - type: rewrite
+        source: /proekt-siena-144x7.html
+        destination: /v2/proekt-siena-144x7.html
+      - type: rewrite
+        source: /proekt-siena-155x85-2.html
+        destination: /v2/proekt-siena-155x85-2.html
+      - type: rewrite
+        source: /proekt-sochi-105x9.html
+        destination: /v2/proekt-sochi-105x9.html
+      - type: rewrite
+        source: /proekt-sochi-9x75.html
+        destination: /v2/proekt-sochi-9x75.html
+      - type: rewrite
+        source: /proekt-vladik-10x8.html
+        destination: /v2/proekt-vladik-10x8.html
+      - type: rewrite
+        source: /proekt-vladik-115x8-2.html
+        destination: /v2/proekt-vladik-115x8-2.html
+      - type: rewrite
+        source: /proekt-vladik-115x8-3.html
+        destination: /v2/proekt-vladik-115x8-3.html
+      - type: rewrite
+        source: /proekt-vladik-12x7.html
+        destination: /v2/proekt-vladik-12x7.html
+      - type: rewrite
+        source: /seriya-parma.html
+        destination: /v2/seriya-parma.html
+      - type: rewrite
+        source: /seriya-siena.html
+        destination: /v2/seriya-siena.html
+      - type: rewrite
+        source: /seriya-sochi.html
+        destination: /v2/seriya-sochi.html
+      - type: rewrite
+        source: /seriya-stambul.html
+        destination: /v2/seriya-stambul.html
+      - type: rewrite
+        source: /seriya-vladivostok.html
+        destination: /v2/seriya-vladivostok.html
+      - type: rewrite
+        source: /smeta-primer.html
+        destination: /v2/smeta-primer.html
+      - type: rewrite
+        source: /soglashenie.html
+        destination: /v2/soglashenie.html
+      - type: rewrite
+        source: /stroim-bytovki.html
+        destination: /v2/stroim-bytovki.html
+      - type: rewrite
+        source: /stroim-dostavka.html
+        destination: /v2/stroim-dostavka.html
+      - type: rewrite
+        source: /stroim-elektrika.html
+        destination: /v2/stroim-elektrika.html
+      - type: rewrite
+        source: /stroim-hranenie.html
+        destination: /v2/stroim-hranenie.html
+      - type: rewrite
+        source: /stroim-kommunikacii.html
+        destination: /v2/stroim-kommunikacii.html
+      - type: rewrite
+        source: /stroim-krovlya.html
+        destination: /v2/stroim-krovlya.html
+      - type: rewrite
+        source: /stroim-materialy.html
+        destination: /v2/stroim-materialy.html
+      - type: rewrite
+        source: /stroim-obvyazka.html
+        destination: /v2/stroim-obvyazka.html
+      - type: rewrite
+        source: /stroim-pokraska.html
+        destination: /v2/stroim-pokraska.html
+      - type: rewrite
+        source: /stroim-proekt.html
+        destination: /v2/stroim-proekt.html
+      - type: rewrite
+        source: /stroim-ventilyaciya.html
+        destination: /v2/stroim-ventilyaciya.html
+      - type: rewrite
+        source: /stroim-vyezd-inzhenera.html
+        destination: /v2/stroim-vyezd-inzhenera.html
+      - type: rewrite
+        source: /base.css
+        destination: /v2/base.css
+      - type: rewrite
+        source: /calc-live.js
+        destination: /v2/calc-live.js
+      - type: rewrite
+        source: /calc-live.json
+        destination: /v2/calc-live.json
+      - type: rewrite
+        source: /card.css
+        destination: /v2/card.css
+      - type: rewrite
+        source: /card.js
+        destination: /v2/card.js
+      - type: rewrite
+        source: /catalog.js
+        destination: /v2/catalog.js
+      - type: rewrite
+        source: /cbtn.css
+        destination: /v2/cbtn.css
+      - type: rewrite
+        source: /dog3.css
+        destination: /v2/dog3.css
+      - type: rewrite
+        source: /dogovor-obrazec.pdf
+        destination: /v2/dogovor-obrazec.pdf
+      - type: rewrite
+        source: /foot.css
+        destination: /v2/foot.css
+      - type: rewrite
+        source: /form.js
+        destination: /v2/form.js
+      - type: rewrite
+        source: /header.js
+        destination: /v2/header.js
+      - type: rewrite
+        source: /kalk-dom-engine.js
+        destination: /v2/kalk-dom-engine.js
+      - type: rewrite
+        source: /kalk-dom.css
+        destination: /v2/kalk-dom.css
+      - type: rewrite
+        source: /kalk-dom.js
+        destination: /v2/kalk-dom.js
+      - type: rewrite
+        source: /kalk-knopka.js
+        destination: /v2/kalk-knopka.js
+      - type: rewrite
+        source: /komanda.css
+        destination: /v2/komanda.css
+      - type: rewrite
+        source: /map.js
+        destination: /v2/map.js
+      - type: rewrite
+        source: /ob.css
+        destination: /v2/ob.css
+      - type: rewrite
+        source: /pol.css
+        destination: /v2/pol.css
+      - type: rewrite
+        source: /revs.js
+        destination: /v2/revs.js
+      - type: rewrite
+        source: /serii.css
+        destination: /v2/serii.css
+      - type: rewrite
+        source: /sheet.css
+        destination: /v2/sheet.css
+      - type: rewrite
+        source: /smeta.css
+        destination: /v2/smeta.css
+      - type: rewrite
+        source: /stroim-plitki.css
+        destination: /v2/stroim-plitki.css
+      - type: rewrite
+        source: /theme.css
+        destination: /v2/theme.css
+      - type: rewrite
+        source: /vtoroy.css
+        destination: /v2/vtoroy.css
+      - type: rewrite
+        source: /vtoroy.js
+        destination: /v2/vtoroy.js
+      - type: rewrite
+        source: /vygody.css
+        destination: /v2/vygody.css
+      - type: rewrite
+        source: /vygody.js
+        destination: /v2/vygody.js
+      - type: rewrite
+        source: /*
+        destination: /v2/404.html

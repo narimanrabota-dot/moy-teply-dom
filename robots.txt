@@ -1,0 +1,19 @@
+# Мой тёплый дом — что поисковикам можно обходить.
+# Страницы сайта открыты по коротким адресам: / , /proekt-9h8.html , /stroim-krovlya.html.
+# Их же можно открыть и по длинным /v2/… — это одни и те же страницы,
+# поэтому длинные адреса закрыты, чтобы не считались дублями.
+
+User-agent: *
+Allow: /
+Disallow: /v2/
+
+# Служебное. Из выкладки это убирает buildCommand в render.yaml,
+# но запрет оставляем на случай, если где-то встретится ссылка.
+Disallow: /tools/
+Disallow: /docs/
+Disallow: /znanie/
+Disallow: /CLAUDE.md
+Disallow: /SPRAVKA.md
+Disallow: /README.md
+
+Sitemap: https://moy-teply-dom.onrender.com/sitemap.xml
