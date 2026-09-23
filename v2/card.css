@@ -293,6 +293,8 @@
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-24);
   margin-top:clamp(28px,3.6vw,48px);
 }
+/* «Похожие проекты» — ссылка на страницу серии под плитками */
+.rel__all{margin:var(--sp-24) 0 0;font-size:var(--fs-sm)}
 .pcard{
   display:grid;grid-template-rows:auto 1fr;
   background:var(--card);border-radius:var(--r-shell);overflow:hidden;
@@ -307,6 +309,17 @@
   padding:var(--sp-4) var(--sp-8);border-radius:var(--r-tight);
   background:rgb(34 48 76/.68);color:#fff;font-size:var(--fs-xs);line-height:1.2;
   -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+/* «Хит продаж» — вариант 08 витрины hit-plashka-100:
+   кирпичная плашка в левом верхнем углу снимка, правый край срезан
+   наискось. Значок площади стоит внизу слева и с ней не спорит. */
+.pcard__hit{
+  position:absolute;top:var(--sp-12);left:var(--sp-12);z-index:2;
+  padding:var(--sp-4) var(--sp-16) var(--sp-4) var(--sp-8);
+  border-radius:var(--r-tight) 0 0 var(--r-tight);
+  clip-path:polygon(0 0,100% 0,calc(100% - 9px) 100%,0 100%);
+  background:var(--clay-btn);color:#fff;
+  font-size:var(--fs-xs);font-weight:600;line-height:1.3;white-space:nowrap;
 }
 .pcard__b{display:grid;align-content:start;gap:var(--sp-8);padding:var(--sp-24)}
 .pcard__n{font-size:var(--fs-lg);font-weight:600;letter-spacing:-.015em;line-height:1.15}
