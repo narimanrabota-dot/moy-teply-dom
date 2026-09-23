@@ -65,7 +65,7 @@
 
 /* значки характеристик: иконка и крупная цифра в строку, подпись под ними */
 .specs{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-12);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--sp-12);
   margin:var(--sp-32) 0 0;padding:0;list-style:none;
 }
 .spec{
@@ -84,7 +84,7 @@
 
 @media(max-width:700px){
   .prod__buy{width:100%;padding:var(--sp-16)}
-  .specs{gap:var(--sp-8);margin-top:var(--sp-24)}
+  .specs{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-8);margin-top:var(--sp-24)}
   .spec{grid-template-columns:minmax(0,1fr);align-content:start;padding:var(--sp-12)}
   .spec__ic{width:44px;height:44px}
   .spec__ic svg{width:24px;height:24px}
