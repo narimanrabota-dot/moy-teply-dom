@@ -97,7 +97,7 @@
         put(td.querySelector('.inc-pill'), '+' + rub(v));
       });
     });
-    [].forEach.call(box.querySelectorAll('[data-km]'), function (el) { put(el, rub(res.deliveryKm).slice(0, -2) + ' ₽ за км'); });
+    [].forEach.call(box.querySelectorAll('[data-km]'), function (el) { put(el, rub(res.deliveryKm).slice(0, -2) + ' ₽ за\u00a0км'); });
     [].forEach.call(box.querySelectorAll('[data-base]'), function (b) { b.setAttribute('data-base', res.packages[+b.getAttribute('data-col')]); });
     box.dispatchEvent(new CustomEvent('inc:prices'));   // card.js пересчитает «Итого с выбранными»
   }
