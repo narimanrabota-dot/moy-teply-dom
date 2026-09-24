@@ -1003,3 +1003,32 @@ label.inc-ol:hover .inc-ob{box-shadow:inset 0 0 0 1.5px var(--n-7)}
 .revs__row:has(> :only-child){grid-template-columns:minmax(0,280px)}
 /* на сенсорных экранах наведения нет — стрелки галереи видны всегда */
 @media(hover:none){.sld__a{opacity:1}}
+
+/* ── верх с видео: белая панель, слева значки 2 × 2, справа видео 16 : 9 ──
+   Выбор владельца 24.09.2026 (витрина v2/test-video-top.html?n=25). Разметку ставит tools/top_block.py,
+   когда у модели есть video/<модель>-video.mp4; окно на весь экран — card.js (.plx--vid). */
+.pan{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--sp-16);margin-top:var(--sp-32);
+  padding:var(--sp-16);background:var(--card);border-radius:var(--r-shell);box-shadow:var(--sh-1)}
+.pan .specs{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:1fr 1fr;gap:var(--sp-16);margin:0}
+.pan .spec{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--sp-8);
+  padding:var(--sp-16);text-align:center;background:var(--n-1);border-radius:var(--r-tight);box-shadow:none}
+.pan .spec__ic{background:var(--card)}
+.pvid{position:relative;display:block;width:100%;aspect-ratio:16/9;align-self:stretch;padding:0;border:0;overflow:hidden;
+  border-radius:var(--r-tight);background:var(--ink) center/cover;cursor:zoom-in;font:inherit;color:inherit}
+.pvid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .25s var(--e)}
+.pvid:hover video{transform:scale(1.02)}
+.pvid:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+.pvid__b{position:absolute;left:var(--sp-12);bottom:var(--sp-12);padding:var(--sp-8) var(--sp-12);border-radius:999px;
+  background:rgb(var(--sh-cool)/.72);color:#fff;font-size:var(--fs-xs);font-weight:600;line-height:1.2}
+.pvid__fs{position:absolute;right:var(--sp-12);bottom:var(--sp-12);display:grid;place-items:center;width:var(--tap);height:var(--tap);
+  border-radius:50%;background:var(--card);color:var(--ink);box-shadow:var(--sh-1)}
+.pvid__fs svg{width:20px;height:20px}
+@media(max-width:1199px){.pan .spec__v{font-size:var(--fs-lg)}.pan .spec{padding:var(--sp-12)}}
+/* уже 900 px — без иконок, цифры мельче: значки ниже видео; уже 700 px — видео под значками */
+@media(max-width:899px){.pan{gap:var(--sp-12);padding:var(--sp-12)}.pan .specs{gap:var(--sp-8)}
+  .pan .spec{gap:var(--sp-4)}.pan .spec__ic{display:none}.pan .spec__v{font-size:var(--fs-md);white-space:nowrap}}
+@media(max-width:699px){.pan{grid-template-columns:minmax(0,1fr);margin-top:var(--sp-24)}.pan .specs{grid-template-rows:auto}}
+@media(prefers-reduced-motion:reduce){.pvid video{transition:none}.pvid:hover video{transform:none}}
+.plx--vid .plx__stage{display:grid;place-items:center;background:none}
+.plx--vid .plx__x{margin-left:auto}
+.plx--vid video{max-width:100%;max-height:100%;border-radius:var(--r-inner);background:var(--ink)}

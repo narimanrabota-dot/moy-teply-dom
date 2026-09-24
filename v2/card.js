@@ -429,3 +429,85 @@
   bands.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
 }());
 /* Заголовок окна заявки под нажатую кнопку ставит form.js — он же отправляет заявку. */
+/* ── видео в верху карточки ─────────────────────────
+   Мини-ролик без звука играет, пока виден, — после загрузки страницы, и не играет,
+   если просят меньше движения или экономят трафик. Нажатие — окно на весь экран со звуком.
+   Разметку ставит tools/top_block.py. */
+(function () {
+  var tile = document.querySelector('.pvid');
+  if (!tile) return;
+  var mini = tile.querySelector('video');
+  var calm = matchMedia('(prefers-reduced-motion: reduce)').matches ||
+             (navigator.connection && navigator.connection.saveData);
+  var seen = false;
+
+  if (!calm && 'IntersectionObserver' in window) {
+    addEventListener('load', function () {
+      mini.preload = 'auto';
+      new IntersectionObserver(function (e) {
+        seen = e[0].isIntersecting;
+        if (seen) { var p = mini.play(); if (p) p.catch(function () {}); } else mini.pause();
+      }, { threshold: .25 }).observe(tile);
+    });
+  }
+
+  var box, film, shut;
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+  function build() {
+    box = el('div', 'plx plx--vid');
+    box.hidden = true;
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Видео у дома');
+    var bar = el('div', 'plx__bar');
+    shut = el('button', 'plx__x', 'Закрыть');
+    shut.type = 'button';
+    bar.appendChild(el('b', 'plx__t', 'Видео у дома'));
+    bar.appendChild(shut);
+    var stage = el('div', 'plx__stage');
+    film = el('video');
+    film.controls = true;
+    film.playsInline = true;
+    film.preload = 'none';
+    stage.appendChild(film);
+    box.appendChild(bar); box.appendChild(stage);
+    document.body.appendChild(box);
+    shut.addEventListener('click', close);
+    box.addEventListener('click', function (e) { if (e.target === box || e.target === stage) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (box.hidden) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key !== 'Tab') return;
+      var f = [shut, film];
+      var k = f.indexOf(document.activeElement);
+      if (e.shiftKey && k <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && k === f.length - 1) { e.preventDefault(); f[0].focus(); }
+    });
+  }
+  function open() {
+    if (!box) build();
+    if (film.getAttribute('src') !== tile.getAttribute('data-pvid')) film.src = tile.getAttribute('data-pvid');
+    film.poster = mini.poster;
+    mini.pause();
+    box.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    film.muted = false;
+    film.currentTime = 0;
+    var p = film.play();
+    if (p) p.catch(function () {});
+    shut.focus();
+  }
+  function close() {
+    film.pause();
+    box.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (seen && !calm) { var p = mini.play(); if (p) p.catch(function () {}); }
+    tile.focus();
+  }
+  tile.addEventListener('click', open);
+}());
