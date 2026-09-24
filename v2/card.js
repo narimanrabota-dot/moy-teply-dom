@@ -430,7 +430,7 @@
 }());
 /* Заголовок окна заявки под нажатую кнопку ставит form.js — он же отправляет заявку. */
 /* ── видео в верху карточки ─────────────────────────
-   Мини-ролик без звука играет, пока виден, — после загрузки страницы, и не играет,
+   Мини-ролик без звука играет сразу и пока виден, и не играет,
    если просят меньше движения или экономят трафик. Нажатие — окно на весь экран со звуком.
    Разметку ставит tools/top_block.py. */
 (function () {
@@ -441,14 +441,13 @@
              (navigator.connection && navigator.connection.saveData);
   var seen = false;
 
-  if (!calm && 'IntersectionObserver' in window) {
-    addEventListener('load', function () {
-      mini.preload = 'auto';
-      new IntersectionObserver(function (e) {
-        seen = e[0].isIntersecting;
-        if (seen) { var p = mini.play(); if (p) p.catch(function () {}); } else mini.pause();
-      }, { threshold: .25 }).observe(tile);
-    });
+  /* ролик стоит с autoplay и стартует сразу; здесь — пауза, когда не виден, и стоп для «меньше движения» */
+  if (calm) { mini.removeAttribute('autoplay'); mini.pause(); mini.currentTime = 0; }
+  else if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) {
+      seen = e[0].isIntersecting;
+      if (seen) { var p = mini.play(); if (p) p.catch(function () {}); } else mini.pause();
+    }, { threshold: .25 }).observe(tile);
   }
 
   var box, film, shut;
