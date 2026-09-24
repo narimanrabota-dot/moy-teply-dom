@@ -5,7 +5,8 @@
 .ft__lg{display:flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-md);font-weight:700}
 .ft__lg svg{width:26px;height:23px;flex:none}
 .ft__lg i{font-style:normal;color:#E0603C}
-.ft__k{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;opacity:.5}
+/* подписи прописными — 12 px по шкале; прозрачность .6 даёт контраст 5 : 1 на тёмно-синем (было .5 — 3,9 : 1) */
+.ft__k{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;opacity:.6}
 
 /* ряд карточек под одной чертой */
 .ftc{
@@ -18,8 +19,8 @@
   background:rgb(255 255 255/.06);border:1px solid rgb(255 255 255/.1);border-top:0;
 }
 .ftc__ic{
-  display:grid;place-items:center;width:44px;height:44px;border-radius:13px;
-  background:#C2461F;color:#fff;margin-bottom:var(--sp-20);
+  display:grid;place-items:center;width:44px;height:44px;border-radius:var(--r-inner);
+  background:#C2461F;color:#fff;margin-bottom:var(--sp-16);
 }
 .ftc__ic svg{width:22px;height:22px;display:block}
 .ftc__i .ft__k{margin-bottom:var(--sp-12)}
@@ -30,18 +31,25 @@
 
 .ft__rule{height:1px;background:currentColor;opacity:.14;margin:clamp(28px,3vw,44px) 0}
 .ft__req{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--sp-16) var(--sp-32);margin:var(--sp-16) 0 0}
-.ft__req div{display:grid;gap:3px}
-.ft__req dt{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;opacity:.42}
+.ft__req div{display:grid;gap:var(--sp-4)}
+.ft__req dt{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;opacity:.6}
 .ft__req dd{margin:0;font-size:var(--fs-xs);line-height:1.5;opacity:.92;
   letter-spacing:-.005em;font-variant-numeric:tabular-nums}
-.ft__bot{display:flex;flex-wrap:wrap;gap:var(--sp-12) var(--sp-28);align-items:baseline;font-size:11px;opacity:.6}
+.ft__bot{display:flex;flex-wrap:wrap;gap:var(--sp-12) var(--sp-32);align-items:baseline;font-size:var(--fs-xs);opacity:.7}
 .ft__bot a{text-decoration:none;opacity:.9}
 .ft__bot a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
 .ft__bot .end{margin-left:auto}
+/* .end в шапке прячется на узких экранах (base.css) — копирайт подвала этим правилом пропадал */
+.ft__bot .end{display:inline;padding-left:0}
+/* цели касания: строки-ссылки ниже 44 px — растим область нажатия, рисунок прежний */
+.ft__ln,.ft__bot a{position:relative}
+.ft__ln::before,.ft__bot a::before{content:"";position:absolute;left:0;right:0;top:50%;height:var(--tap,44px);transform:translateY(-50%)}
 
 @media(max-width:900px){
   .ftc{grid-template-columns:1fr;padding-top:0}
   .ftc::before{display:none}
   .ftc__i{border-top:3px solid #E0603C}
   .ft__bot .end{margin-left:0;flex-basis:100%}
+  /* кнопка «Калькулятор» висит в правом нижнем углу — последняя строка подвала не уходит под неё */
+  .ft__in{padding-bottom:var(--sp-96)}
 }

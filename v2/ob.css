@@ -31,10 +31,10 @@
 .oh--m{font-size:clamp(26px,3.4vw,42px)}
 .oac{color:var(--clay-l)}
 .osub{margin:var(--sp-16) 0 0;font-size:var(--fs-sm);line-height:1.55;max-width:44ch;opacity:.82}
-.oeye{display:block;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+.oeye{display:block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   opacity:.7;margin-bottom:var(--sp-16)}
 .ohair{width:56px;height:2px;background:var(--clay-l);border-radius:2px;margin-bottom:var(--sp-20)}
-.ocap{position:absolute;font-size:11px;font-weight:600;letter-spacing:.14em;
+.ocap{position:absolute;font-size:12px;font-weight:600;letter-spacing:.14em;
   text-transform:uppercase;opacity:.7}
 .ocap--tr{right:clamp(20px,3vw,34px);top:clamp(20px,3vw,34px)}
 .ocap--bl{left:clamp(24px,3.4vw,48px);bottom:clamp(20px,3vw,30px)}

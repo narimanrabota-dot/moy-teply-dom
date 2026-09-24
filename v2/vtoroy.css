@@ -12,7 +12,7 @@
   background:rgb(16 23 38/.84);backdrop-filter:blur(12px);
   border:1px solid rgb(255 255 255/.14);border-radius:var(--r-inner);
   padding:clamp(22px,2.8vw,38px);display:grid;gap:var(--sp-16);color:#fff}
-.v2c__k{font-size:var(--fs-xs);font-weight:700;letter-spacing:.14em;color:#FFB59C}
+.v2c__k{font-size:12px;font-weight:600;letter-spacing:.14em;color:#FFB59C}
 .v2c__t{margin:0;font-size:clamp(26px,3.6vw,44px);font-weight:600;letter-spacing:-.032em;line-height:1.05}
 .v2c__d{margin:0;font-size:var(--fs-md);line-height:1.45;opacity:.88;max-width:48ch}
 .v2c__b{display:inline-flex;align-items:center;justify-content:center;justify-self:start;
@@ -45,6 +45,8 @@
   .v2c{width:100%;padding:var(--sp-20);gap:var(--sp-12)}
   .v2c__t{font-size:clamp(22px,6.2vw,28px)}
   .v2c__d{font-size:var(--fs-sm)}
+  /* кнопка во всю ширину карточки: «Приехать и посмотреть» не рвётся на две строки */
+  .v2c__b{justify-self:stretch;padding:0 var(--sp-16);white-space:nowrap}
   .v2n{width:52px;height:52px;right:var(--sp-16);top:var(--sp-16);transform:none}
   .v2n svg{width:20px;height:20px}
   .v2n:hover,.v2n:active{transform:none}

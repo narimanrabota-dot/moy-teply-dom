@@ -105,3 +105,36 @@
   addEventListener('scroll', measure, { passive: true });
   if ('ResizeObserver' in window) new ResizeObserver(measure).observe(hdr);
 })();
+
+/* ── типографика: предлоги и союзы не висят в конце строки ──
+   «Снято осенью у / готового дома», «Починковский м. / о.» — короткое
+   слово приклеиваем неразрывным пробелом к следующему, а тире — к
+   предыдущему. Только текст на экране: разметку, скрипты, поля ввода
+   и подписи к SEO не трогаем. */
+(function () {
+  var SHORT = /(^|[\s(«„"])(а|без|в|во|да|для|до|за|и|из|к|ко|ли|на|над|не|ни|но|о|об|от|по|под|при|про|с|со|у|я)\s+(?=[^\s—–-])/gi;
+  var DASH = /(\S)\s+([—–]\s)/g;
+  /* число не отрывается от единицы: «26 дней», «2 года», «100 ₽» */
+  var NUM = /(\d)\s+(?=[а-яёА-ЯЁ₽%])/g;
+  var SKIP = /^(SCRIPT|STYLE|TEXTAREA|INPUT|SELECT|OPTION|CODE|PRE|NOSCRIPT|TITLE|SVG)$/;
+  function fix(root) {
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        for (var p = n.parentNode; p && p !== root.parentNode; p = p.parentNode) {
+          if (p.nodeType === 1 && (SKIP.test(p.nodeName.toUpperCase()) || p.isContentEditable)) return NodeFilter.FILTER_REJECT;
+        }
+        return /\s/.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+      }
+    });
+    var n, list = [];
+    while ((n = w.nextNode())) list.push(n);
+    list.forEach(function (t) {
+      /* дважды: у двух коротких слов подряд («и в доме») второе иначе пропускается */
+      var v = t.nodeValue.replace(SHORT, '$1$2\u00a0').replace(SHORT, '$1$2\u00a0').replace(DASH, '$1\u00a0$2').replace(NUM, '$1\u00a0');
+      if (v !== t.nodeValue) t.nodeValue = v;
+    });
+  }
+  function run() { fix(document.body); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
+})();
