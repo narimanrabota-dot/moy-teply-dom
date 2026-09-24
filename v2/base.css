@@ -444,6 +444,8 @@ img,svg{display:block;max-width:100%}
   .icb{display:grid;margin-left:auto}
   .icb + .burg{margin-left:0}
   .hdr{padding:var(--sp-12) var(--sp-16) var(--sp-12) var(--sp-24);gap:var(--sp-12)}
+  /* у двухэтажной шапки отступы у строки .dn — без этого они удваивались: логотип уезжал вправо, бургер вылезал за край */
+  .hdr--inv,.hdr--inv.is-stuck{padding:0}
 }
 
 @media(prefers-reduced-motion:reduce){

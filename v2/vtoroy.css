@@ -71,10 +71,10 @@
 .ob__f[data-hero]:has(.hsl--args) .hsl:nth-of-type(10) .ob__img{background-position:center 25%}
 /* затемнение слева сильнее обычного: текста больше, он должен читаться на любом фото */
 .hsl--args > .ob__img::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgb(14 20 34/.92) 0%,rgb(14 20 34/.86) 48%,rgb(14 20 34/.5) 62%,rgb(14 20 34/0) 78%)}
+  background:linear-gradient(90deg,rgb(14 20 34/.92) 0%,rgb(14 20 34/.919) 6%,rgb(14 20 34/.917) 12%,rgb(14 20 34/.913) 18%,rgb(14 20 34/.907) 24%,rgb(14 20 34/.899) 30%,rgb(14 20 34/.889) 36%,rgb(14 20 34/.876) 42%,rgb(14 20 34/.86) 48%,rgb(14 20 34/.754) 54%,rgb(14 20 34/.561) 60%,rgb(14 20 34/.359) 66%,rgb(14 20 34/.119) 72%,rgb(14 20 34/0) 78%)}
 .hsl--warm > .ob__img::after{
-  background:radial-gradient(50% 70% at 16% 60%,rgb(255 146 84/.16),transparent 70%),
-    linear-gradient(90deg,rgb(8 16 32/.93) 0%,rgb(8 16 32/.87) 48%,rgb(8 16 32/.5) 62%,rgb(8 16 32/0) 78%)}
+  background:radial-gradient(50% 70% at 16% 60%,rgb(255 146 84/.16) 0%,rgb(255 146 84/.151) 10%,rgb(255 146 84/.128) 20%,rgb(255 146 84/.097) 30%,rgb(255 146 84/.063) 40%,rgb(255 146 84/.032) 50%,rgb(255 146 84/.009) 60%,rgb(255 146 84/0) 70%),
+    linear-gradient(90deg,rgb(8 16 32/.93) 0%,rgb(8 16 32/.929) 6%,rgb(8 16 32/.927) 12%,rgb(8 16 32/.923) 18%,rgb(8 16 32/.917) 24%,rgb(8 16 32/.909) 30%,rgb(8 16 32/.899) 36%,rgb(8 16 32/.886) 42%,rgb(8 16 32/.87) 48%,rgb(8 16 32/.761) 54%,rgb(8 16 32/.562) 60%,rgb(8 16 32/.358) 66%,rgb(8 16 32/.118) 72%,rgb(8 16 32/0) 78%)}
 .hsl--args .ob__c{padding-top:clamp(24px,5svh,48px);padding-bottom:clamp(24px,5svh,48px)}
 /* размеры привязаны к высоте экрана, чтобы всё помещалось в рамку от 494 до 851 px */
 .v2a{position:relative;display:grid;justify-items:start;width:min(600px,58%);color:#fff}
@@ -136,14 +136,15 @@
   .ob__f[data-hero] .hsl--args .ob__c{align-content:end;padding-top:76px}
   /* прежний первый экран (теперь шестой) — по центру, как был */
   .ob__f[data-hero]:has(.hsl--args) .hsl:nth-of-type(6) .ob__c{align-content:center}
-  .hsl--args > .ob__img::after,.hsl--warm > .ob__img::after{background:rgb(14 20 34/.12)}
+  /* низ фото плавно тает в фон слайда — без шва на границе фото */
+  .hsl--args > .ob__img::after,.hsl--warm > .ob__img::after{background:linear-gradient(180deg,rgb(14 20 34/.12) 0%,rgb(14 20 34/.12) 50%,rgb(14 20 34/.145) 55%,rgb(14 20 34/.212) 60%,rgb(14 20 34/.31) 65%,rgb(14 20 34/.43) 70%,rgb(14 20 34/.56) 75%,rgb(14 20 34/.69) 80%,rgb(14 20 34/.81) 85%,rgb(14 20 34/.908) 90%,rgb(14 20 34/.975) 95%,rgb(14 20 34/1) 100%)}
   /* фото — полосой сверху, чтобы дом было видно целиком; ниже тёмный фон слайда */
-  .hsl--args{background:#141C2E}
+  .hsl--args{background:rgb(14 20 34)}
   .hsl--args > .ob__img{bottom:auto;height:46%}
   .v2a{width:100%;isolation:isolate}
   .v2a::before{content:"";position:absolute;z-index:-1;top:-96px;
     left:calc(-1 * clamp(24px,3.4vw,48px));right:calc(-1 * clamp(24px,3.4vw,48px));bottom:calc(-1 * clamp(24px,5svh,48px));
-    background:linear-gradient(0deg,rgb(14 20 34/.94) 0,rgb(14 20 34/.9) calc(100% - 96px),rgb(14 20 34/0) 100%)}
+    background:linear-gradient(180deg,rgb(14 20 34/0) 0px,rgb(14 20 34/.04) 12px,rgb(14 20 34/.147) 24px,rgb(14 20 34/.297) 36px,rgb(14 20 34/.47) 48px,rgb(14 20 34/.643) 60px,rgb(14 20 34/.793) 72px,rgb(14 20 34/.9) 84px,rgb(14 20 34/.94) 96px)}
   .v2a__h{font-size:clamp(28px,8vw,36px)}
   .v2a__ticks li{font-size:var(--fs-sm)}
   .v2a__rows li{font-size:var(--fs-xs)}
@@ -156,8 +157,8 @@
   .ob__f[data-hero]:has(.hsl--args){height:max(400px,calc(100svh - 24px))}
   .hsl--args{background:none}
   .hsl--args > .ob__img{bottom:0;height:auto}
-  .hsl--args > .ob__img::after{background:linear-gradient(90deg,rgb(14 20 34/.94) 0%,rgb(14 20 34/.9) 60%,rgb(14 20 34/.45) 80%,rgb(14 20 34/0) 94%)}
-  .hsl--warm > .ob__img::after{background:linear-gradient(90deg,rgb(8 16 32/.94) 0%,rgb(8 16 32/.9) 60%,rgb(8 16 32/.45) 80%,rgb(8 16 32/0) 94%)}
+  .hsl--args > .ob__img::after{background:linear-gradient(90deg,rgb(14 20 34/.94) 0%,rgb(14 20 34/.939) 7.8%,rgb(14 20 34/.938) 15.7%,rgb(14 20 34/.935) 23.5%,rgb(14 20 34/.931) 31.3%,rgb(14 20 34/.925) 39.2%,rgb(14 20 34/.917) 47%,rgb(14 20 34/.907) 54.8%,rgb(14 20 34/.883) 62.7%,rgb(14 20 34/.725) 70.5%,rgb(14 20 34/.496) 78.3%,rgb(14 20 34/.213) 86.2%,rgb(14 20 34/0) 94%)}
+  .hsl--warm > .ob__img::after{background:linear-gradient(90deg,rgb(8 16 32/.94) 0%,rgb(8 16 32/.939) 7.8%,rgb(8 16 32/.938) 15.7%,rgb(8 16 32/.935) 23.5%,rgb(8 16 32/.931) 31.3%,rgb(8 16 32/.925) 39.2%,rgb(8 16 32/.917) 47%,rgb(8 16 32/.907) 54.8%,rgb(8 16 32/.883) 62.7%,rgb(8 16 32/.725) 70.5%,rgb(8 16 32/.496) 78.3%,rgb(8 16 32/.213) 86.2%,rgb(8 16 32/0) 94%)}
   .ob__f[data-hero] .hsl--args .ob__c{align-content:center;padding:var(--sp-16) 84px var(--sp-16) var(--sp-24)}
   .v2a{width:min(560px,74%);isolation:auto}
   .v2a::before,.v2a__bar{display:none}
