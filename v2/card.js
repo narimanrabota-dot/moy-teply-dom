@@ -545,7 +545,7 @@
     box.hidden = true;
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-modal', 'true');
-    box.setAttribute('aria-label', 'Живые видео построенного дома');
+    box.setAttribute('aria-label', zv.querySelector('.zv__h').textContent);
     var bar = el('div', 'plx__bar');
     title = el('b', 'plx__t');
     shut = el('button', 'plx__x', 'Закрыть');
@@ -566,7 +566,7 @@
     if (!box) build();
     last = c;
     var i = cards.indexOf(c) + 1;
-    title.textContent = 'Живые видео построенного дома · ' + i + ' из ' + cards.length;
+    title.textContent = zv.querySelector('.zv__h').textContent + ' · ' + i + ' из ' + cards.length;
     var f = el('iframe');
     var ar = (c.getAttribute('data-zv-ar') || '16/9').split('/');
     f.style.setProperty('--ar', ar[0] / ar[1]);
