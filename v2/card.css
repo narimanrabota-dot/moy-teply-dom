@@ -1032,3 +1032,36 @@ label.inc-ol:hover .inc-ob{box-shadow:inset 0 0 0 1.5px var(--n-7)}
 .plx--vid .plx__stage{display:grid;place-items:center;background:none}
 .plx--vid .plx__x{margin-left:auto}
 .plx--vid video{max-width:100%;max-height:100%;border-radius:var(--r-inner);background:var(--ink)}
+
+/* Живые видео — лента после «Живых фото» (tools/video_block.py, выбор владельца 24.09.2026:
+   v2/zhivye-video-vybor.html). Ролики с Rutube, окно на весь экран — card.js (.plx--zv). */
+.zv{margin-top:var(--sp-24)}
+@media(min-width:900px){.zv{margin-top:var(--sp-32)}}
+.zv__hd{display:flex;align-items:flex-end;gap:var(--sp-16);margin-bottom:var(--sp-16)}
+.zv__ti{display:grid;gap:var(--sp-4);flex:1;min-width:0}
+.zv__h{margin:0;font-size:var(--fs-md);font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.zv__s{margin:0;font-size:var(--fs-xs);color:var(--dim)}
+.zv__arr{display:flex;gap:var(--sp-8)}
+.zv__arr button{display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid var(--n-4);border-radius:50%;background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.zv__arr button:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.zv__arr svg{width:18px;height:18px}
+.zv__list{display:flex;gap:var(--sp-16);overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;scrollbar-width:none;padding:var(--sp-4) var(--sp-4) var(--sp-12);margin:calc(-1*var(--sp-4)) calc(-1*var(--sp-4)) 0}
+.zv__list::-webkit-scrollbar{display:none}
+.zv__c{flex:0 0 168px;scroll-snap-align:start;display:block;padding:6px;border:0;border-radius:var(--r-inner);background:#fff;box-shadow:var(--edge),var(--sh-1);font:inherit;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.zv__c:hover{transform:translateY(-2px);box-shadow:var(--edge),var(--sh-2)}
+.zv__c:focus-visible,.zv__arr button:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+.zv__t{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;border-radius:6px;background:var(--ph)}
+.zv__t img{display:block;width:100%;height:100%;object-fit:cover}
+.zv__p{position:absolute;inset:0;margin:auto;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:rgb(255 255 255/.25);border:1px solid rgb(255 255 255/.55);color:#fff;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:background .2s,color .2s,transform .2s}
+.zv__p svg{width:18px;height:18px;margin-left:3px}
+.zv__c:hover .zv__p{background:#fff;color:var(--ink);transform:scale(1.06)}
+.zv__d{position:absolute;left:8px;bottom:8px;padding:4px 10px;border-radius:999px;background:rgb(20 24 36/.45);color:#fff;font-size:12px;font-weight:500;font-variant-numeric:tabular-nums;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.zv__seg{display:flex;gap:var(--sp-4);margin-top:var(--sp-4)}
+.zv__seg i{flex:1;height:2px;border-radius:2px;background:var(--n-3);transition:background .2s}
+.zv__seg i.is-on{background:var(--ink)}
+.zv:not(.zv--more) .zv__arr,.zv:not(.zv--more) .zv__seg{display:none}
+@media(max-width:599px){.zv__c{flex-basis:148px}.zv__p{width:40px;height:40px}.zv__p svg{width:15px;height:15px}.zv__arr{display:none!important}}
+@media(prefers-reduced-motion:reduce){.zv__c,.zv__p,.zv__arr button,.zv__seg i{transition:none}.zv__list{scroll-behavior:auto}}
+.plx--zv .plx__stage{display:grid;place-items:center;background:none}
+.plx--zv .plx__x{margin-left:auto}
+.plx--zv iframe{width:min(100%,calc((100dvh - 120px)*var(--ar,1.7778)));aspect-ratio:var(--ar,16/9);max-height:100%;border:0;border-radius:var(--r-inner);background:var(--ink)}

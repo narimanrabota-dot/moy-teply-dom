@@ -511,3 +511,80 @@
   }
   tile.addEventListener('click', open);
 }());
+
+/* Живые видео — лента (tools/video_block.py): стрелки, полоса-чёрточки, окно с плеером Rutube. */
+(function () {
+  var zv = document.querySelector('[data-zv]');
+  if (!zv) return;
+  var list = zv.querySelector('.zv__list'), cards = [].slice.call(list.children);
+  var segs = zv.querySelectorAll('.zv__seg i');
+  function step() { return cards[0].offsetWidth + 16; }
+  function upd() {
+    var more = list.scrollWidth > list.clientWidth + 2;
+    zv.classList.toggle('zv--more', more);
+    var max = list.scrollWidth - list.clientWidth;
+    var i = list.scrollLeft >= max - 2 ? cards.length - 1 : Math.min(cards.length - 1, Math.round(list.scrollLeft / step()));
+    for (var k = 0; k < segs.length; k++) segs[k].classList.toggle('is-on', k === i);
+  }
+  [].forEach.call(zv.querySelectorAll('.zv__arr button'), function (b) {
+    b.addEventListener('click', function () { list.scrollBy({ left: +b.getAttribute('data-d') * step() }); });
+  });
+  list.addEventListener('scroll', upd, { passive: true });
+  addEventListener('resize', upd);
+  upd();
+
+  var box, stage, title, shut, last;
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+  function build() {
+    box = el('div', 'plx plx--zv');
+    box.hidden = true;
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Живые видео построенного дома');
+    var bar = el('div', 'plx__bar');
+    title = el('b', 'plx__t');
+    shut = el('button', 'plx__x', 'Закрыть');
+    shut.type = 'button';
+    bar.appendChild(title); bar.appendChild(shut);
+    stage = el('div', 'plx__stage');
+    box.appendChild(bar); box.appendChild(stage);
+    document.body.appendChild(box);
+    shut.addEventListener('click', close);
+    box.addEventListener('click', function (e) { if (e.target === box || e.target === stage) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (box.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'Tab') { e.preventDefault(); (document.activeElement === shut ? stage.firstChild : shut).focus(); }
+    });
+  }
+  function open(c) {
+    if (!box) build();
+    last = c;
+    var i = cards.indexOf(c) + 1;
+    title.textContent = 'Живые видео построенного дома · ' + i + ' из ' + cards.length;
+    var f = el('iframe');
+    var ar = (c.getAttribute('data-zv-ar') || '16/9').split('/');
+    f.style.setProperty('--ar', ar[0] / ar[1]);
+    f.src = c.getAttribute('data-zv-src') + '&autoplay=1';
+    f.title = 'Видео ' + i;
+    f.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+    f.setAttribute('allowfullscreen', '');
+    stage.textContent = '';
+    stage.appendChild(f);
+    box.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    shut.focus();
+  }
+  function close() {
+    stage.textContent = '';
+    box.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (last) last.focus();
+  }
+  cards.forEach(function (c) { c.addEventListener('click', function () { open(c); }); });
+}());
