@@ -312,8 +312,6 @@
 /* первая секция страниц серий, подборок и каталога: не межблочные 64–96 px от шапки, а 24 — как крошки у карточки */
 main > .sec:first-child{margin-top:var(--sp-24)}
 main > .sec:first-child > .shell > .back:first-child{margin-top:0}
-/* серия из одного дома — плитка не теряется в пустой сетке на три колонки */
-.pgrid:has(> :only-child){grid-template-columns:minmax(0,560px)}
 .cat__t{margin:0;font-size:var(--fs-display);font-weight:600;letter-spacing:-.025em;line-height:1.02}
 .cat__s{margin:var(--sp-16) 0 0;color:var(--dim);max-width:68ch}
 .pgrid{
