@@ -314,6 +314,18 @@ img,svg{display:block;max-width:100%}
 }
 /* было «.mnav a.mnav a[aria-current]» — опечатка, текущая страница в меню не выделялась */
 .mnav a[aria-current]{color:var(--ink);background:var(--bg);box-shadow:inset 2px 0 0 var(--clay)}
+/* раздел меню с подпунктами — кнопка, подпункты раскрываются по нажатию (header.js) */
+.mnav__tg{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--sp-12);width:100%;
+  min-height:var(--sp-48);padding:var(--sp-12) var(--sp-16);border:0;border-radius:var(--r-inner);
+  background:none;font:inherit;font-size:var(--fs-md);font-weight:500;color:var(--ink);text-align:left;cursor:pointer;
+}
+.mnav__tg:active{background:var(--bg)}
+.mnav__tg svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  color:var(--dim);transition:transform .2s var(--e)}
+.mnav__tg[aria-expanded="true"] svg{transform:rotate(180deg)}
+.mnav__grp{display:flex;flex-direction:column;gap:2px}
+.mnav__grp[hidden]{display:none}
 .mnav__sep{height:1px;background:var(--line);margin:var(--sp-16) var(--sp-16)}
 /* grid, а не flex от .mnav a: номер и «позвонить» склеивались в одну строку и уезжали от левого края */
 .mnav .tel--2{display:grid;gap:var(--sp-4);text-align:left;padding:var(--sp-12) var(--sp-16);min-height:var(--sp-48);justify-content:start;align-content:center}

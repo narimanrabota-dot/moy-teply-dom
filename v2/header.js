@@ -155,3 +155,46 @@
     a.removeAttribute('aria-current');
   });
 })();
+
+/* ── мобильное меню: разделы свёрнуты, подпункты — по нажатию ──
+   Выбор владельца 24.09.2026: «Как строим» и «Как заказать» не раскрыты
+   сразу, а открываются нажатием на раздел. Раздел становится кнопкой;
+   если его собственной страницы нет среди подпунктов, она встаёт первой.
+   Все разделы свёрнуты, даже раздел текущей страницы. */
+(function () {
+  var mnav = document.getElementById('mnav');
+  if (!mnav) return;
+  var kids = [].slice.call(mnav.children);
+  kids.forEach(function (a, i) {
+    if (a.tagName !== 'A' || a.classList.contains('mnav__sub') || !a.nextElementSibling ||
+        !a.nextElementSibling.classList.contains('mnav__sub')) return;
+    var grp = document.createElement('div');
+    grp.className = 'mnav__grp';
+    grp.id = 'mnav-g' + i;
+    var subs = [];
+    for (var n = a.nextElementSibling; n && n.classList.contains('mnav__sub'); n = n.nextElementSibling) subs.push(n);
+    var href = a.getAttribute('href');
+    if (!subs.some(function (s) { return s.getAttribute('href') === href; })) {
+      var own = a.cloneNode(true);
+      own.className = 'mnav__sub';
+      grp.appendChild(own);
+    }
+    subs.forEach(function (s) { grp.appendChild(s); });
+    var on = false;   /* владелец: всегда свёрнуты, открываются только нажатием */
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'mnav__tg';
+    b.setAttribute('aria-controls', grp.id);
+    b.setAttribute('aria-expanded', on ? 'true' : 'false');
+    b.innerHTML = '<span></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+    b.firstChild.textContent = a.textContent;
+    grp.hidden = !on;
+    b.addEventListener('click', function () {
+      var open = b.getAttribute('aria-expanded') !== 'true';
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      grp.hidden = !open;
+    });
+    a.replaceWith(b);
+    b.after(grp);
+  });
+})();
