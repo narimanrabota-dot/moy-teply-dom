@@ -485,22 +485,17 @@
     <loc>https://moy-teply-dom.onrender.com/v2/doma-60-100-m2.html</loc>
     <lastmod>2026-09-24</lastmod>
     <priority>0.6</priority>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h7-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-9x75-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h8-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-11h7-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-95h8-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-96h81-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-115h7-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-11h8-fasad-5-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-96h81-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-12h8-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-12x82-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-144x7-2-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-105x9-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-10x8-fasad-2-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-2-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/parma-10x8-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-125x82-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-12x7-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-144x7-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-105x9-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-13x85-2-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-3-fasad-1-th.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/doma-do-2-mln.html</loc>
@@ -514,13 +509,24 @@
     <loc>https://moy-teply-dom.onrender.com/v2/doma-do-60-m2.html</loc>
     <lastmod>2026-09-24</lastmod>
     <priority>0.6</priority>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-75h6-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-75h6-2-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-75h6-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-7h75-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h7-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h8-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-11h7-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-95h8-fasad-1-th.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://moy-teply-dom.onrender.com/v2/doma-ot-100-m2.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-12h8-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-12x7-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-12x82-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-144x7-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-144x7-2-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/parma-10x8-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-125x82-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-3-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-13x85-2-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-155x85-2-fasad-1-th.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/doma-ot-3-mln.html</loc>
