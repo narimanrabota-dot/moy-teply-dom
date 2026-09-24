@@ -647,22 +647,22 @@
     <loc>https://moy-teply-dom.onrender.com/v2/otzyvy.html</loc>
     <lastmod>2026-09-24</lastmod>
     <priority>0.6</priority>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/obekt-10-cover.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/obekt-9-cover.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/obekt-8-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-obekt-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/obekt-3-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/obekt-5-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/obekt-6-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/obekt-7-cover.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-8-cover-v2.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/obekt-8-cover.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/obekt-9-cover.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/obekt-10-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-1-cover.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-6-cover.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-7-cover.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-5-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-3-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-4-cover.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-5-cover.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-6-cover.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-7-cover.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-8-cover-v2.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/videootzyv-2-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/videootzyv-3-cover.webp</image:loc></image:image>
   </url>
@@ -742,10 +742,6 @@
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-75h6-2-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-75h6-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-7h75-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h7-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h8-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-95h8-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-11h7-fasad-1-th.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stati-dop-rashody.html</loc>
