@@ -314,23 +314,49 @@ img,svg{display:block;max-width:100%}
 }
 /* было «.mnav a.mnav a[aria-current]» — опечатка, текущая страница в меню не выделялась */
 .mnav a[aria-current]{color:var(--ink);background:var(--bg);box-shadow:inset 2px 0 0 var(--clay)}
-/* раздел меню с подпунктами — кнопка, подпункты раскрываются по нажатию (header.js) */
-.mnav__tg{
-  display:flex;align-items:center;justify-content:space-between;gap:var(--sp-12);width:100%;
-  min-height:var(--sp-48);padding:var(--sp-12) var(--sp-16);border:0;border-radius:var(--r-inner);
-  background:none;font:inherit;font-size:var(--fs-md);font-weight:500;color:var(--ink);text-align:left;cursor:pointer;
+/* ── мобильное меню: вид как у настроек iPhone ──────────
+   Тёплый фон, пункты — в белых карточках с волосяными линиями между
+   строками; стрелка › у ссылок, ⌄ у разделов с подпунктами (их
+   раскрывает header.js). Телефон и мессенджеры — отдельная карточка,
+   «Заказать звонок» прижата к низу экрана. Отступ 16 — как у шапки. */
+.mnav{background:var(--bg);gap:var(--sp-16);padding:96px var(--sp-16) var(--sp-16)}
+.mnav__card{display:flex;flex-direction:column;flex:none;background:var(--card);border-radius:var(--r-shell);box-shadow:var(--edge);overflow:hidden}
+.mnav__card > a,.mnav__tg,.mnav__grp > a{position:relative}
+.mnav__card > * + *::before,.mnav__grp > a::before{
+  content:"";position:absolute;left:var(--sp-16);right:0;top:0;height:1px;background:var(--line);
 }
-.mnav__tg:active{background:var(--bg)}
-.mnav__tg svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
-  color:var(--dim);transition:transform .2s var(--e)}
+.mnav__grp > a::before{left:var(--sp-32)}
+.mnav__card > a,.mnav__tg{
+  display:flex;align-items:center;gap:var(--sp-12);width:100%;min-height:52px;
+  padding:0 var(--sp-16);border:0;border-radius:0;background:none;
+  font:inherit;font-size:var(--fs-sm);font-weight:500;line-height:1.3;color:var(--ink);text-align:left;cursor:pointer;
+  transition:background-color .2s var(--e);
+}
+.mnav__card > a:active,.mnav__tg:active,.mnav__grp > a:active{background:var(--n-1)}
+/* стрелка › у обычных ссылок */
+.mnav__card--nav > a::after,.mnav__card--talk > a.mnav__ic::after{
+  content:"";flex:none;margin-left:auto;width:7px;height:7px;
+  border-top:2px solid var(--n-5);border-right:2px solid var(--n-5);border-radius:1px;transform:rotate(45deg);
+}
+.mnav__tg{justify-content:space-between}
+.mnav__tg svg{width:20px;height:20px;flex:none;fill:none;stroke:var(--n-6);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  margin-right:-4px;transition:transform .2s var(--e)}
+.mnav__tg[aria-expanded="true"]{color:var(--clay-txt)}
 .mnav__tg[aria-expanded="true"] svg{transform:rotate(180deg)}
-.mnav__grp{display:flex;flex-direction:column;gap:2px}
+.mnav__grp{position:relative;display:flex;flex-direction:column;background:var(--n-0)}
 .mnav__grp[hidden]{display:none}
-.mnav__sep{height:1px;background:var(--line);margin:var(--sp-16) var(--sp-16)}
-/* grid, а не flex от .mnav a: номер и «позвонить» склеивались в одну строку и уезжали от левого края */
-.mnav .tel--2{display:grid;gap:var(--sp-4);text-align:left;padding:var(--sp-12) var(--sp-16);min-height:var(--sp-48);justify-content:start;align-content:center}
-.mnav .tel--2 b{font-size:var(--fs-lg)}
-.mnav .btn{margin-top:var(--sp-12);width:100%;min-height:var(--sp-48)}
+.mnav a.mnav__sub{
+  align-items:center;min-height:48px;padding:var(--sp-8) var(--sp-16) var(--sp-8) var(--sp-32);border-radius:0;
+  font-size:var(--fs-sm);font-weight:400;line-height:1.35;color:var(--dim);
+}
+/* текущая страница — кирпичным словом, без плашки */
+.mnav a[aria-current]{color:var(--clay-txt);background:none;box-shadow:none;font-weight:600}
+/* телефон — первой строкой второй карточки */
+.mnav__card .tel--2{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-12);min-height:56px;padding:0 var(--sp-16);text-align:left}
+.mnav__card .tel--2 b{font-size:var(--fs-md);font-weight:600;letter-spacing:.01em;font-variant-numeric:tabular-nums;align-self:center}
+.mnav__card .tel--2 span{font-size:var(--fs-xs);color:var(--clay-txt);font-weight:500;align-self:center}
+.mnav__sep{display:none}
+.mnav .btn{position:sticky;bottom:0;flex:none;margin-top:auto;width:100%;min-height:52px;border-radius:var(--r-inner);box-shadow:var(--sh-2)}
 
 
 /* ── двухэтажная шапка: контакты сверху, навигация снизу ──
@@ -378,9 +404,13 @@ img,svg{display:block;max-width:100%}
 .cnt[hidden]{display:none}   /* иначе display:grid перебивает [hidden] */
 
 /* контакты в мобильном меню */
-.mnav a.mnav__ic{gap:12px;padding:8px var(--sp-16);min-height:56px}
-.mnav a.mnav__ic .ic{width:40px;height:40px;box-shadow:inset 0 0 0 1px rgb(34 48 76/.30)}
-.mnav a.mnav__ic .ic svg{width:var(--sp-20);height:var(--sp-20)}
+.mnav a.mnav__ic{gap:var(--sp-12);padding:0 var(--sp-16);min-height:56px}
+/* значки мессенджеров — в их цвете на светлой подложке, как в «Контактах» iPhone */
+.mnav a.mnav__ic .ic{width:32px;height:32px;border-radius:var(--r-tight);box-shadow:none}
+.mnav a.mnav__ic .ic svg{width:18px;height:18px}
+.mnav .ic--tg{background:#E3F1FA;color:#1C87BA}
+.mnav .ic--max{background:#EFE9FB;color:#6A3FC4}
+.mnav .ic--wa{background:#E4F5E9;color:#1E8A3E}
 
 
 /* ── форма «Заказать звонок» ─────────────────────────── */

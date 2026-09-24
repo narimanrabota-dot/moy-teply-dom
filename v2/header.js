@@ -197,4 +197,21 @@
     a.replaceWith(b);
     b.after(grp);
   });
+
+  /* Раскладка как в настройках iPhone: разделы — одна белая карточка,
+     телефон и мессенджеры — вторая, «Заказать звонок» прижата к низу. */
+  function card(cls) { var d = document.createElement('div'); d.className = 'mnav__card ' + cls; return d; }
+  var nav = card('mnav__card--nav'), talk = card('mnav__card--talk');
+  var sep = mnav.querySelector('.mnav__sep');
+  var tel = mnav.querySelector('.tel--2');
+  var btn = mnav.querySelector('.btn');
+  [].slice.call(mnav.children).forEach(function (el) {
+    if (el === sep || el === tel || el === btn) return;
+    if (el.classList.contains('mnav__ic')) talk.appendChild(el);
+    else nav.appendChild(el);
+  });
+  if (tel) talk.insertBefore(tel, talk.firstChild);
+  if (sep) sep.remove();
+  mnav.insertBefore(nav, mnav.firstChild);
+  if (talk.children.length) nav.after(talk);
 })();
