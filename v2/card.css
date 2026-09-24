@@ -472,6 +472,8 @@ main > .sec:first-child > .shell > .back:first-child{margin-top:0}
   box-shadow:var(--sh-3);
 }
 .rvw__box video{width:100%;height:100%;object-fit:contain;display:block;background:#0E1526}
+/* display:block перебивал [hidden]: пустой свой плеер оставался на месте, а ролик Рутуба уезжал под него за край окна */
+.rvw__box video[hidden]{display:none}
 .rvw__err{
   position:absolute;inset:0;display:none;place-content:center;justify-items:center;gap:var(--sp-8);
   padding:var(--sp-32);color:#fff;text-align:center;font-size:var(--fs-sm);
