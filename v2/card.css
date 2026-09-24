@@ -596,6 +596,24 @@ a.ct__v:hover{color:var(--clay-txt)}
    Двадцать пять карточек подряд читались как шесть одинаковых
    мыслей. Полоса липнет под шапкой и фильтрует сетку на месте;
    без JS видны все серии сразу — так же, как было. */
+/* Кнопки-ссылки (подборки, серии, «смотрите также») — вид как у фильтра каталога
+   (.serbar__b), но это обычные ссылки и не липнут к шапке. Решение владельца 24.09.2026:
+   минимум текста наверху страниц — вместо строк «Подборки: … · …» компактные кнопки. */
+.chips{display:flex;flex-wrap:wrap;gap:var(--sp-8);margin:var(--sp-24) 0 0}
+.chips a{
+  display:inline-flex;align-items:center;min-height:var(--tap);padding:0 var(--sp-16);
+  border-radius:var(--r-inner);background:var(--card);box-shadow:var(--edge);
+  color:var(--ink);font-size:var(--fs-xs);font-weight:500;line-height:1.2;text-decoration:none;
+  transition:background-color .2s var(--e),color .2s var(--e);
+}
+.chips a:hover{background:var(--n-2)}
+/* Поясняющий текст для поиска — внизу страницы, под плитками, мелко и спокойно */
+.seo-note{margin-top:var(--sp-64);max-width:75ch;color:var(--dim);font-size:var(--fs-xs);line-height:1.6}
+.seo-note p{margin:0 0 var(--sp-12)}
+.seo-note h2{margin:0 0 var(--sp-12);font-size:var(--fs-sm);font-weight:600;color:var(--ink)}
+/* на телефоне кнопки — одной строкой с прокруткой вбок, а не столбиком в пять рядов */
+@media(max-width:900px){.chips{flex-wrap:nowrap;gap:var(--sp-4);overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * clamp(16px,3.4vw,44px));padding:var(--sp-4) clamp(16px,3.4vw,44px)}.chips::-webkit-scrollbar{display:none}.chips a{flex:none;padding:0 var(--sp-12)}.seo-note{margin-top:var(--sp-48)}}
+
 .serbar{
   /* Липнет ровно под шапкой: высоту шапки меряет header.js, потому что
      она меняется при прокрутке. Полупрозрачности здесь быть не должно —
