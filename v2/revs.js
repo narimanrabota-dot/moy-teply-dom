@@ -87,4 +87,13 @@
     if (ev.key === 'ArrowLeft'  && list.length > 1) step(-1);
     if (ev.key === 'ArrowRight' && list.length > 1) step(1);
   });
+  /* свайп пальцем — как в галерее карточек */
+  var x0 = null;
+  w.addEventListener('touchstart', function (ev) { x0 = ev.touches[0].clientX; }, { passive: true });
+  w.addEventListener('touchend', function (ev) {
+    if (x0 === null || list.length < 2) { x0 = null; return; }
+    var dx = ev.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    x0 = null;
+  }, { passive: true });
 }());

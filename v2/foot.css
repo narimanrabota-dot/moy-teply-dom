@@ -1,7 +1,10 @@
 /* ── подвал: карточки со значками и кирпичной чертой во всю ширину ── */
-.ft{background:#1E2A44;color:#fff;margin-top:clamp(56px,7vw,96px)}
+.ft{background:#1E2A44;color:#fff;margin-top:var(--sp-64)}
+@media(min-width:900px){.ft{margin-top:var(--sp-96)}}
 .ft a{color:#fff}
-.ft__in{max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,72px) clamp(20px,3vw,40px)}
+/* поля как у .shell — подвал стоит на общей левой линии со страницей */
+.ft__in{max-width:1280px;margin:0 auto;padding:var(--sp-48) clamp(16px,3.4vw,44px)}
+@media(min-width:900px){.ft__in{padding-block:var(--sp-64)}}
 .ft__lg{display:flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-md);font-weight:700}
 .ft__lg svg{width:26px;height:23px;flex:none}
 .ft__lg i{font-style:normal;color:#E0603C}
@@ -15,7 +18,7 @@
 }
 .ftc::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:#E0603C}
 .ftc__i{
-  padding:clamp(24px,2.8vw,34px);border-radius:0 0 20px 20px;
+  padding:var(--sp-24);border-radius:0 0 20px 20px;
   background:rgb(255 255 255/.06);border:1px solid rgb(255 255 255/.1);border-top:0;
 }
 .ftc__ic{
@@ -24,7 +27,7 @@
 }
 .ftc__ic svg{width:22px;height:22px;display:block}
 .ftc__i .ft__k{margin-bottom:var(--sp-12)}
-.ft__tel{font-size:clamp(22px,2.4vw,28px);font-weight:700;letter-spacing:-.025em;text-decoration:none;display:inline-block}
+.ft__tel{position:relative;font-size:var(--fs-lg);font-weight:700;letter-spacing:-.025em;text-decoration:none;display:inline-block}
 .ft__sm{font-size:var(--fs-xs);line-height:1.55;opacity:.78;margin-top:var(--sp-8)}
 .ft__ln{display:block;font-size:var(--fs-xs);text-decoration:none;opacity:.86;margin-top:var(--sp-8)}
 .ft__ln:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
@@ -43,8 +46,9 @@
 .ft__bot .end{display:inline;padding-left:0}
 /* цели касания: строки-ссылки ниже 44 px — растим область нажатия, рисунок прежний */
 .ft__ln,.ft__bot a{position:relative}
-.ft__ln::before,.ft__bot a::before{content:"";position:absolute;left:0;right:0;top:50%;height:var(--tap,44px);transform:translateY(-50%)}
+.ft__ln::before,.ft__bot a::before,.ft__tel::before{content:"";position:absolute;left:0;right:0;top:50%;height:var(--tap,44px);transform:translateY(-50%)}
 
+@media(min-width:900px){.ft__tel{font-size:var(--fs-xl)}.ftc__i{padding:var(--sp-32)}}
 @media(max-width:900px){
   .ftc{grid-template-columns:1fr;padding-top:0}
   .ftc::before{display:none}

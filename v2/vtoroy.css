@@ -30,9 +30,9 @@
   transition:transform .2s var(--e),box-shadow .2s var(--e)}
 .v2n svg{width:30px;height:30px;stroke:currentColor;stroke-width:2.2;fill:none;
   stroke-linecap:round;stroke-linejoin:round}
-.v2n:hover{transform:translateY(-50%) scale(1.06);box-shadow:var(--sh-3)}
+.v2n:hover{transform:translateY(-50%) scale(1.06);box-shadow:var(--sh-2)}
 .v2n:active{transform:translateY(-50%) scale(.98)}
-.v2n:focus-visible{outline:0;box-shadow:0 0 0 3px rgb(16 23 38/.45),var(--sh-2)}
+.v2n:focus-visible{outline:2px solid #fff;outline-offset:3px;box-shadow:var(--sh-2)}
 
 /* чтобы длинный заголовок первого слайда не уезжал под стрелку */
 @media(min-width:901px){
@@ -113,7 +113,7 @@
 .v2a__nums span{font-size:var(--fs-xs);line-height:1.35}
 .v2a__cta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-12) var(--sp-32);margin-top:clamp(16px,3svh,32px)}
 .v2a__cta .obtn{margin-top:0}
-.v2a__link{font-size:var(--fs-sm);font-weight:500;color:#fff;text-decoration:underline;text-decoration-color:rgb(255 255 255/.5);
+.v2a__link{display:inline-flex;align-items:center;min-height:var(--tap);font-size:var(--fs-sm);font-weight:500;color:#fff;text-decoration:underline;text-decoration-color:rgb(255 255 255/.5);
   text-decoration-thickness:1px;text-underline-offset:6px}
 .v2a__link:hover{text-decoration-color:#fff}
 .v2a__link:focus-visible{outline:2px solid #fff;outline-offset:4px;border-radius:4px}
@@ -249,3 +249,11 @@
 @media(max-width:900px) and (orientation:landscape) and (max-height:500px){
   .hsl--grid .ob__c::before{-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 50%,transparent 74%);mask-image:linear-gradient(90deg,#000 0%,#000 50%,transparent 74%)}
 }
+
+/* слайды с фото во весь кадр (6–11): на телефоне текст внизу — затемнение снизу вверх, иначе светлое дерево и стены съедали текст */
+@media(max-width:900px){
+  .ob__f[data-hero] .ob__sh-l > .ob__img::after{background:linear-gradient(180deg,rgb(16 23 38/.12) 0%,rgb(16 23 38/.12) 8.3%,rgb(16 23 38/.12) 16.7%,rgb(16 23 38/.12) 25%,rgb(16 23 38/.13) 33.3%,rgb(16 23 38/.233) 41.7%,rgb(16 23 38/.406) 50%,rgb(16 23 38/.604) 58.3%,rgb(16 23 38/.78) 66.7%,rgb(16 23 38/.887) 75%,rgb(16 23 38/.908) 83.3%,rgb(16 23 38/.917) 91.7%,rgb(16 23 38/.92) 100%)}
+  .ob__f[data-hero] .hsl .oh br{display:none}
+}
+/* акцентное слово на всех слайдах одного цвета — персиковое, как на слайдах 1–5 */
+.ob__f[data-hero] .oac{color:#F2A27D}

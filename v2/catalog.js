@@ -23,8 +23,10 @@
   function toTop() {
     var s = sers.filter(function (x) { return !x.hidden; })[0];
     if (!s) return;
-    var y = s.getBoundingClientRect().top + window.pageYOffset
-      - bar.getBoundingClientRect().bottom - 16;
+    /* низ полосы считаем по месту, где она стоит прилипшей: после скрытия серий
+       каталог короче и полосу утягивает вверх вместе с ним — замер её прямо сейчас врёт */
+    var stick = (parseFloat(getComputedStyle(bar).top) || 0) + bar.offsetHeight;
+    var y = s.getBoundingClientRect().top + window.pageYOffset - stick - 24;
     if (window.pageYOffset > y) {
       var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({ top: y, behavior: calm ? 'auto' : 'smooth' });

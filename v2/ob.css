@@ -14,7 +14,7 @@
 .ob__sh > .ob__img::after{content:"";position:absolute;inset:0;
   background:linear-gradient(0deg,rgb(16 23 38/.9) 0%,rgb(16 23 38/.834) 10%,rgb(16 23 38/.674) 20%,rgb(16 23 38/.478) 30%,rgb(16 23 38/.304) 40%,rgb(16 23 38/.208) 50%,rgb(16 23 38/.15) 60%,rgb(16 23 38/.098) 70%,rgb(16 23 38/.057) 80%,rgb(16 23 38/.03) 90%,rgb(16 23 38/.02) 100%)}
 .ob__sh-l > .ob__img::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgb(16 23 38/.88) 0%,rgb(16 23 38/.843) 10%,rgb(16 23 38/.748) 20%,rgb(16 23 38/.621) 30%,rgb(16 23 38/.488) 40%,rgb(16 23 38/.374) 50%,rgb(16 23 38/.293) 60%,rgb(16 23 38/.211) 70%,rgb(16 23 38/.136) 80%,rgb(16 23 38/.081) 90%,rgb(16 23 38/.06) 100%)}
+  background:linear-gradient(90deg,rgb(16 23 38/.88) 0%,rgb(16 23 38/.878) 8.3%,rgb(16 23 38/.871) 16.7%,rgb(16 23 38/.861) 25%,rgb(16 23 38/.846) 33.3%,rgb(16 23 38/.777) 41.7%,rgb(16 23 38/.569) 50%,rgb(16 23 38/.357) 58.3%,rgb(16 23 38/.251) 66.7%,rgb(16 23 38/.17) 75%,rgb(16 23 38/.103) 83.3%,rgb(16 23 38/.057) 91.7%,rgb(16 23 38/.04) 100%)}
 .ob__sh-2 > .ob__img::after{content:"";position:absolute;inset:0;background:
   linear-gradient(0deg,rgb(16 23 38/.92) 0%,rgb(16 23 38/.849) 10%,rgb(16 23 38/.676) 20%,rgb(16 23 38/.46) 30%,rgb(16 23 38/.258) 40%,rgb(16 23 38/.131) 50%,rgb(16 23 38/.087) 60%,rgb(16 23 38/.052) 70%,rgb(16 23 38/.024) 80%,rgb(16 23 38/.006) 90%,rgb(16 23 38/0) 100%),
   linear-gradient(90deg,rgb(16 23 38/.6) 0%,rgb(16 23 38/.567) 8%,rgb(16 23 38/.481) 16%,rgb(16 23 38/.364) 24%,rgb(16 23 38/.236) 32%,rgb(16 23 38/.119) 40%,rgb(16 23 38/.033) 48%,rgb(16 23 38/0) 56%)}
@@ -41,7 +41,8 @@
 .ocap--v{right:clamp(16px,2vw,26px);bottom:clamp(24px,3vw,40px);writing-mode:vertical-rl}
 .obtn{display:inline-block;margin-top:clamp(20px,2.6vw,32px);padding:var(--sp-16) var(--sp-32);
   border:0;border-radius:999px;background:#fff;color:var(--navy);font:inherit;
-  font-size:var(--fs-sm);font-weight:600;cursor:pointer}
+  font-size:var(--fs-sm);font-weight:600;cursor:pointer;transition:background-color .2s var(--e)}
+.obtn:hover{background:var(--n-2,#F1EEEA)}
 .obtn--clay{background:var(--clay);color:#fff}
 .obtn--o{background:none;border:1.5px solid currentColor;color:inherit}
 .ocaps{display:flex;flex-wrap:wrap;gap:var(--sp-8);margin-top:clamp(18px,2.2vw,26px)}

@@ -20,6 +20,12 @@
         t.setAttribute('aria-current', k === i ? 'true' : 'false');
       });
       if (cap) cap.textContent = imgs[i].getAttribute('alt') || '';
+      /* выбранное превью всегда в полосе: при листании оно уходило за край */
+      var t = thumbs[i], th = t && t.parentNode;
+      if (th && th.scrollWidth > th.clientWidth) {
+        var l = t.offsetLeft - th.offsetLeft - (th.clientWidth - t.offsetWidth) / 2;
+        th.scrollTo({ left: Math.max(0, l), behavior: 'smooth' });
+      }
     }
 
     thumbs.forEach(function (t, k) {

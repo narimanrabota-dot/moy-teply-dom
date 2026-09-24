@@ -70,7 +70,7 @@
     if (!isOpen()) return;
     if (e.key === 'Escape') { close(); return; }
     if (e.key !== 'Tab') return;
-    var f = [burg].concat([].slice.call(mnav.querySelectorAll('a')));
+    var f = [burg].concat([].slice.call(mnav.querySelectorAll('a[href],button')));
     var i = f.indexOf(document.activeElement);
     if (e.shiftKey && i <= 0)           { e.preventDefault(); f[f.length - 1].focus(); }
     else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
@@ -116,6 +116,11 @@
   var DASH = /(\S)\s+([—–]\s)/g;
   /* число не отрывается от единицы: «26 дней», «2 года», «100 ₽» */
   var NUM = /(\d)\s+(?=[а-яёА-ЯЁ₽%])/g;
+  /* размер «9,6 × 8,1» и «терраса 18,3 м²» не рвутся посередине */
+  var MUL = /\s+×\s+/g;
+  /* разделитель «·» не начинает строку */
+  var DOT = /\s+·\s+/g;
+  var LBL = /(терраса|дом|площадь|общая)\s+(?=\d)/gi;
   var SKIP = /^(SCRIPT|STYLE|TEXTAREA|INPUT|SELECT|OPTION|CODE|PRE|NOSCRIPT|TITLE|SVG)$/;
   function fix(root) {
     var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
@@ -130,11 +135,23 @@
     while ((n = w.nextNode())) list.push(n);
     list.forEach(function (t) {
       /* дважды: у двух коротких слов подряд («и в доме») второе иначе пропускается */
-      var v = t.nodeValue.replace(SHORT, '$1$2\u00a0').replace(SHORT, '$1$2\u00a0').replace(DASH, '$1\u00a0$2').replace(NUM, '$1\u00a0');
+      var v = t.nodeValue.replace(SHORT, '$1$2\u00a0').replace(SHORT, '$1$2\u00a0').replace(DASH, '$1\u00a0$2').replace(NUM, '$1\u00a0').replace(MUL, '\u00a0×\u00a0').replace(DOT, '\u00a0· ').replace(LBL, '$1\u00a0');
       if (v !== t.nodeValue) t.nodeValue = v;
     });
   }
   function run() { fix(document.body); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
   else run();
+})();
+
+/* ── пункты меню-якоря ведут на главную, если блока на этой странице нет ──
+   Шапка одна на все страницы: «Наши работы» (#built), «Отзывы», «Контакты»
+   на каталоге, подборках и «Отзывах» вели в пустоту. */
+(function () {
+  [].forEach.call(document.querySelectorAll('.nav a[href^="#"], .mnav a[href^="#"], .ft a[href^="#"]'), function (a) {
+    var id = a.getAttribute('href').slice(1);
+    if (!id || document.getElementById(id)) return;
+    a.setAttribute('href', './#' + id);
+    a.removeAttribute('aria-current');
+  });
 })();

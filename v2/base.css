@@ -121,7 +121,7 @@ img,svg{display:block;max-width:100%}
   margin-top:var(--sp-16);
   box-shadow:var(--sh-1);
   position:relative;z-index:1;
-  transition:box-shadow .28s var(--e),padding .28s var(--e),background-color .28s var(--e);
+  transition:box-shadow .25s var(--e),padding .25s var(--e),background-color .25s var(--e);
 }
 /* ── липнет обёртка, а не сама шапка ─────────────────
    sticky работает только внутри своего родителя. Раньше
@@ -138,7 +138,7 @@ img,svg{display:block;max-width:100%}
 /* логотип */
 .logo{display:flex;align-items:center;gap:var(--sp-8);flex:none}
 /* viewBox обрезан по краске: знак больше не провисает и не даёт пустоту слева */
-.mk{width:21px;height:22px;flex:none;color:var(--ink);transition:transform .28s var(--e)}
+.mk{width:21px;height:22px;flex:none;color:var(--ink);transition:transform .25s var(--e)}
 .mk .bar{fill:var(--clay)}
 .hdr.is-stuck .mk{transform:scale(.94)}
 .wm{
@@ -274,12 +274,14 @@ img,svg{display:block;max-width:100%}
 .burg i{display:block;width:19px;height:2px;background:var(--ink);border-radius:1px;position:relative}
 .burg i::before,.burg i::after{
   content:"";position:absolute;left:0;width:19px;height:2px;background:var(--ink);border-radius:1px;
-  transition:transform .3s var(--e),top .3s var(--e);
+  transition:transform .25s var(--e),top .25s var(--e);
 }
 .burg i::before{top:-6px}
 .burg i::after{top:6px}
 .burg i{transition:background-color .16s var(--e)}
 .burg[aria-expanded="true"]{position:relative;z-index:70}
+/* меню (z 60) лежит вне шапки (z 50) и закрывало крестик — пока меню открыто, шапка выше него */
+.shell--hdr:has(.burg[aria-expanded="true"]),body:has(.mnav.on) .shell--hdr{z-index:65}
 .burg[aria-expanded="true"] i{background:transparent}
 .burg[aria-expanded="true"] i::before{top:0;transform:rotate(45deg)}
 .burg[aria-expanded="true"] i::after{top:0;transform:rotate(-45deg)}
@@ -294,9 +296,9 @@ img,svg{display:block;max-width:100%}
   transform:translateY(-100%);visibility:hidden;
   /* visibility переключается мгновенно при открытии и с задержкой при закрытии:
      иначе в момент открытия меню ещё скрыто и focus() по нему не проходит */
-  transition:transform .32s var(--e),visibility 0s linear .32s;
+  transition:transform .25s var(--e),visibility 0s linear .25s;
 }
-.mnav.on{transform:none;visibility:visible;transition:transform .32s var(--e),visibility 0s linear 0s}
+.mnav.on{transform:none;visibility:visible;transition:transform .25s var(--e),visibility 0s linear 0s}
 .mnav a{
   display:flex;align-items:center;min-height:var(--sp-48);
   padding:var(--sp-12) var(--sp-16);border-radius:var(--r-inner);
@@ -310,9 +312,11 @@ img,svg{display:block;max-width:100%}
   font-size:var(--fs-sm);font-weight:400;line-height:1.4;
   min-height:44px;color:var(--dim);
 }
-.mnav a.mnav a[aria-current]{color:var(--ink);background:var(--bg);box-shadow:inset 2px 0 0 var(--clay)}
+/* было «.mnav a.mnav a[aria-current]» — опечатка, текущая страница в меню не выделялась */
+.mnav a[aria-current]{color:var(--ink);background:var(--bg);box-shadow:inset 2px 0 0 var(--clay)}
 .mnav__sep{height:1px;background:var(--line);margin:var(--sp-16) var(--sp-16)}
-.mnav .tel--2{text-align:left;padding:var(--sp-12) var(--sp-16);min-height:var(--sp-48);justify-content:center}
+/* grid, а не flex от .mnav a: номер и «позвонить» склеивались в одну строку и уезжали от левого края */
+.mnav .tel--2{display:grid;gap:var(--sp-4);text-align:left;padding:var(--sp-12) var(--sp-16);min-height:var(--sp-48);justify-content:start;align-content:center}
 .mnav .tel--2 b{font-size:var(--fs-lg)}
 .mnav .btn{margin-top:var(--sp-12);width:100%;min-height:var(--sp-48)}
 
@@ -376,10 +380,10 @@ img,svg{display:block;max-width:100%}
 .ov[hidden]{display:none}
 .mdl{
   position:relative;background:var(--card);border-radius:var(--r-shell);
-  box-shadow:var(--sh-3);padding:28px;width:400px;max-width:100%;
+  box-shadow:var(--sh-2);padding:28px;width:400px;max-width:100%;
 }
 .x{
-  position:absolute;top:var(--sp-12);right:var(--sp-12);width:var(--sp-40);height:var(--sp-40);
+  position:absolute;top:var(--sp-8);right:var(--sp-8);width:var(--tap);height:var(--tap);
   border:0;background:transparent;font:inherit;font-size:24px;line-height:1;
   color:var(--dim);cursor:pointer;border-radius:var(--r-tight);
 }
@@ -433,7 +437,7 @@ img,svg{display:block;max-width:100%}
 @media(max-width:1240px){          /* телефон уходит первым.
                                       Порог выверен замером: ниже него меню
                                       начинает поджиматься и наезжать на телефон. */
-  .tel{display:none}
+  .hdr:not(.hdr--inv) .tel{display:none}   /* в двухэтажной шапке телефон стоит в верхней строке и виден до 1080 px */
 }
 @media(max-width:1080px){          /* было 1040 — кнопка вылезала из карточки */
   .nav,.end{display:none}
@@ -468,7 +472,8 @@ img,svg{display:block;max-width:100%}
   border-radius:var(--r-tight);
 }
 /* внутри тёмных окон кольцо белое — кирпичное там не читается */
-.rvw :focus-visible,.ov :focus-visible{outline-color:#fff}
+/* окно заявки белое — там остаётся кирпичное кольцо (белое на белом не было видно) */
+.rvw :focus-visible{outline-color:#fff}
 
 /* ── цели касания ────────────────────────────────────
    Ссылки-строки были 20–24 px по высоте при норме 24 и планке 44.

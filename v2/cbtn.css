@@ -21,14 +21,14 @@
 /* текст */
 .c__b{display:grid;align-content:center;gap:2px;min-width:0;padding:var(--sp-12) var(--sp-16)}
 .c__b b{font-size:var(--fs-xs);font-weight:600;line-height:1.25}
-.c__b i{font-style:normal;font-size:11px;color:var(--dim);line-height:1.4}
+.c__b i{font-style:normal;font-size:12px;color:var(--dim);line-height:1.4}
 /* правая зона */
 .c__m{
   margin-left:auto;flex:none;display:grid;align-content:center;gap:2px;
   padding:var(--sp-8) var(--sp-16);border-left:1px solid var(--line);text-align:center;
 }
 .c__m b{font-size:var(--fs-xs);font-weight:700;color:var(--clay);white-space:nowrap}
-.c__m i{font-style:normal;font-size:10px;color:var(--dim);white-space:nowrap}
+.c__m i{font-style:normal;font-size:12px;color:var(--dim);white-space:nowrap}
 
 /* 01 — кадр 64×44 в отступе, зона за линией */
 .c--1{align-items:center;padding:var(--sp-8) 0 var(--sp-8) var(--sp-12)}

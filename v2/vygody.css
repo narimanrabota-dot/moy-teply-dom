@@ -2,7 +2,7 @@
    Выбор владельца — шаблон 06 «Плавные выноски» из витрины preimushchestva-teksty-12.html: фото дома в круге,
    по пять выгод слева и справа, плавные линии от выгод к дому (рисует vygody.js). Тексты и порядок утверждены владельцем. */
 .vy{display:grid;justify-items:center;text-align:center;color:var(--ink)}
-.vy-h{max-width:30ch;margin:0;font-size:var(--fs-2xl);font-weight:600;letter-spacing:-.025em;line-height:1.08;text-wrap:balance}
+.vy-h{max-width:30ch;margin:0;font-size:var(--fs-xl);font-weight:600;letter-spacing:-.025em;line-height:1.08;text-wrap:balance}
 .vy-acc{color:var(--clay-txt)}
 .vy-i{width:24px;height:24px;flex:none}
 .vy-wrap{--D:300px;position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;column-gap:var(--sp-40);
@@ -30,7 +30,6 @@
 
 @media(max-width:1120px){
   .vy-wrap{--D:230px;column-gap:var(--sp-24)}
-  .vy-tx b{font-size:15px}
 }
 /* телефон и планшет стоя: фото сверху, выгоды списком, без линий */
 @media(max-width:900px){

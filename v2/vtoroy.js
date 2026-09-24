@@ -59,9 +59,11 @@
     return document.hidden || !seen || (cb && !cb.hidden) ||
       (kb && box.contains(document.activeElement));
   }
+  /* «уменьшить движение» в системе — сами не листаем, только стрелкой и свайпом */
+  var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   function plan() {
     clearTimeout(timer);
-    if (!paused()) timer = setTimeout(function () { show(i + 1); }, STEP);
+    if (!calm && !paused()) timer = setTimeout(function () { show(i + 1); }, STEP);
   }
 
   document.addEventListener('visibilitychange', plan);
