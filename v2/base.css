@@ -479,9 +479,9 @@ img,svg{display:block;max-width:100%}
 @media(max-width:1240px){          /* телефон уходит первым.
                                       Порог выверен замером: ниже него меню
                                       начинает поджиматься и наезжать на телефон. */
-  .hdr:not(.hdr--inv) .tel{display:none}   /* в двухэтажной шапке телефон стоит в верхней строке и виден до 1080 px */
+  .hdr:not(.hdr--inv) .tel{display:none}   /* в двухэтажной шапке телефон стоит в верхней строке и виден до 1140 px */
 }
-@media(max-width:1080px){          /* было 1040 — кнопка вылезала из карточки */
+@media(max-width:1140px){          /* было 1080: меню из шести разделов (24.09.2026) не помещается уже при 1114 px */
   .nav,.end{display:none}
   .up{display:none}               /* контакты уходят в мобильное меню */
   .dn{padding:var(--sp-12) var(--sp-16) var(--sp-12) var(--sp-24);gap:var(--sp-12)}
@@ -540,3 +540,66 @@ a.ct__v::before,.kmap__more::before{
 .cb__ok{display:grid;gap:var(--sp-12);justify-items:start;padding:var(--sp-8) 0}
 .cb__ok b{font-size:var(--fs-lg);font-weight:600;letter-spacing:-.015em}
 .cb__ok p{margin:0;color:var(--dim);line-height:1.45}
+
+/* ── меню со значками — вариант 03 витрины menu-razdely-varianty (24.09.2026) ──
+   Разметку собирает tools/menu.py. Пункт: кирпичный значок 36, название 17,
+   пояснение 14. Группа (серии, подборки, инженерия) — строка ссылок,
+   на телефоне — кнопки по 44 px. */
+.nav .nav__sub--ic{min-width:376px;max-width:400px;padding:var(--sp-8);box-shadow:var(--sh-2)}
+.nav .nav__sub .nav__it{
+  display:flex;align-items:center;gap:var(--sp-12);min-height:56px;
+  padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);
+  font-size:var(--fs-sm);font-weight:400;color:var(--ink);white-space:normal;
+  transition:background-color .2s var(--e);
+}
+.nav__ic{
+  flex:none;display:grid;place-items:center;width:36px;height:36px;
+  border-radius:var(--r-inner);background:var(--bg);color:var(--clay-txt);
+  transition:background-color .2s var(--e);
+}
+.nav__ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nav__tx{display:flex;flex-direction:column;min-width:0}
+.nav__tx b{font-size:var(--fs-sm);font-weight:500;line-height:1.3;color:var(--ink)}
+.nav__tx small{font-size:var(--fs-xs);line-height:1.4;color:var(--dim)}
+.nav .nav__sub a.nav__it:hover,.nav .nav__sub a.nav__it[aria-current]{background:var(--bg)}
+.nav .nav__sub a.nav__it:hover .nav__ic,.nav .nav__sub a.nav__it[aria-current] .nav__ic{background:var(--card)}
+.nav .nav__sub a.nav__it[aria-current] b{color:var(--clay-txt)}
+.nav .nav__tx small a{
+  display:inline;min-height:0;padding:0;border-radius:0;
+  font-size:inherit;font-weight:400;color:var(--ink);white-space:nowrap;
+  text-decoration:underline;text-decoration-color:var(--n-4);text-underline-offset:3px;
+  transition:color .2s var(--e),text-decoration-color .2s var(--e);
+}
+.nav .nav__tx small a::after{display:none}
+/* область нажатия 26 px, строка не сдвигается */
+.nav .nav__tx small a{padding-block:var(--sp-4);margin-block:calc(-1 * var(--sp-4))}
+/* строка группы не ссылка — без руки и подсветки */
+.nav .nav__sub .nav__it--grp{cursor:default}
+.nav .nav__tx small a:hover{background:none;color:var(--clay-txt);text-decoration-color:currentColor}
+.nav .nav__tx small a[aria-current]{color:var(--clay-txt);font-weight:500}
+
+/* телефон */
+.mnav .mnav__sub.mnav__it{
+  position:relative;display:flex;align-items:center;gap:var(--sp-12);min-height:64px;
+  padding:var(--sp-12) var(--sp-16);border-radius:0;color:var(--ink);font-size:var(--fs-sm);font-weight:400;
+}
+.mnav__grp > .mnav__it::before{content:"";position:absolute;left:64px;right:0;top:0;height:1px;background:var(--line)}
+.mnav__grp > .mnav__it:first-child::before{display:none}
+.mnav .mnav__sub.mnav__it--grp{align-items:flex-start}
+.mnav .mnav__it[aria-current] b{color:var(--clay-txt);font-weight:600}
+.mnav .mnav__it[aria-current]{background:none;box-shadow:none}
+.mnav .mnav__it .nav__ic{background:var(--n-2)}
+.mnav__chips{display:flex;flex-wrap:wrap;gap:var(--sp-8);margin-top:var(--sp-8)}
+.mnav .mnav__chips a{
+  display:inline-flex;align-items:center;min-height:var(--tap);padding:0 var(--sp-12);
+  border-radius:999px;background:var(--card);box-shadow:var(--edge);
+  font-size:var(--fs-xs);font-weight:500;color:var(--ink);
+  transition:box-shadow .2s var(--e),color .2s var(--e);
+}
+.mnav .mnav__chips a:active{background:var(--bg)}
+.mnav .mnav__chips a[aria-current]{color:var(--clay-txt);box-shadow:inset 0 0 0 1.5px var(--clay)}
+
+/* на узком ноутбуке стрелки у разделов прячем — иначе меню упирается в кнопку */
+@media(max-width:1240px){.nav .chev{display:none}}
+/* два последних раздела открываются к правому краю — не вылезают за экран */
+.nav__item:nth-last-child(-n+2) .nav__sub{left:auto;right:-16px}

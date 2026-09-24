@@ -31,7 +31,7 @@
   if (!burg || !mnav) return;
 
   var savedY = 0;
-  var compact = window.matchMedia('(max-width:1080px)');
+  var compact = window.matchMedia('(max-width:1140px)');
 
   function isOpen() { return mnav.classList.contains('on'); }
 
@@ -215,3 +215,12 @@
   mnav.insertBefore(nav, mnav.firstChild);
   if (talk.children.length) nav.after(talk);
 })();
+
+/* ── «Калькулятор» из меню открывает окно калькулятора на этой же странице ──
+   Адрес ./?kalk остаётся запасным: без скрипта он откроет главную с калькулятором. */
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href$="?kalk"]');
+  if (!a || !window.KNB || e.metaKey || e.ctrlKey || e.shiftKey) return;
+  e.preventDefault();
+  window.KNB.button.click();
+});

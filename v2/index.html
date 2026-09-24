@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="../img/dom-render-terrasa-leto-1600.webp" fetchpriority="high">
-<link rel="stylesheet" href="base.css?v=50">
+<link rel="stylesheet" href="base.css?v=51">
 <link rel="stylesheet" href="theme.css?v=41">
 <link rel="stylesheet" href="card.css?v=69">
 <link rel="stylesheet" href="ob.css?v=9">
@@ -62,37 +62,60 @@
       <span class="wm">Мой тёплый <i>дом</i></span>
     </a>
     <nav class="nav" aria-label="Основное меню">
-      <a href="#catalog">Каталог</a>
-      <a href="#built">Наши работы</a>
-      <a href="#reviews">Отзывы</a>
       <span class="nav__item">
-        <a href="stroim-vyezd-inzhenera.html" aria-haspopup="true">Как строим<i class="chev" aria-hidden="true"></i></a>
-        <span class="nav__sub">
-          <a href="stroim-vyezd-inzhenera.html">Выезд инженера</a>
-          <a href="stroim-bytovki.html">Где живут наши рабочие</a>
-          <a href="stroim-materialy.html">Какие материалы мы используем</a>
-          <a href="stroim-proekt.html">Конструктивный проект</a>
-          <a href="stroim-obvyazka.html">Как мы делаем обвязку пола</a>
-          <a href="stroim-krovlya.html">Как мы строим кровлю</a>
-          <a href="stroim-krovlya.html#vvetr">Ветрозащита и гидроизоляция</a>
-          <a href="stroim-hranenie.html">Как храним материалы на участке</a>
-          <a href="stroim-dostavka.html">Как доставляем материалы</a>
-          <a href="stroim-elektrika.html">Электрика в доме</a>
-          <a href="stroim-kommunikacii.html">Коммуникации в доме</a>
-          <a href="stroim-ventilyaciya.html">Вентиляция</a>
-          <a href="stroim-pokraska.html">Заводская покраска дерева</a>
-          <a href="komanda.html">Наша команда</a>
+        <a href="katalog.html" aria-haspopup="true">Проекты<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="katalog.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></span><span class="nav__tx"><b>Все проекты</b><small>24 проекта в 5 сериях</small></span></a>
+          <span class="nav__it nav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span><span class="nav__tx"><b>Серии</b><small><a href="seriya-stambul.html">Стамбул</a> · <a href="seriya-siena.html">Сиена</a> · <a href="seriya-vladivostok.html">Владивосток</a> · <a href="seriya-parma.html">Парма</a> · <a href="seriya-sochi.html">Сочи</a></small></span></span>
+          <a class="nav__it" href="planirovki.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h8M11 3v13M15 12h6"/></svg></span><span class="nav__tx"><b>Планировки</b><small>40 вариантов с чертежами</small></span></a>
+          <span class="nav__it nav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 8v6l-4-2v-4z"/></svg></span><span class="nav__tx"><b>Подборки</b><small><a href="doma-s-parnoy.html">С баней внутри</a> · <a href="doma-do-60-m2.html">До 60 кв. м</a> · <a href="doma-60-100-m2.html">До 100 кв. м</a> · <a href="doma-ot-100-m2.html">От 100 кв. м</a> · <a href="doma-do-2-mln.html">До 2 млн ₽</a> · <a href="doma-2-3-mln.html">От 2 до 3 млн ₽</a> · <a href="doma-ot-3-mln.html">От 3 млн ₽</a> · <a href="doma-s-2-spalnyami.html">С 2 спальнями</a> · <a href="doma-s-3-spalnyami.html">С 3 спальнями</a></small></span></span>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="komplektacii.html" aria-haspopup="true">Цены<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="komplektacii.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg></span><span class="nav__tx"><b>Что входит в цену</b><small>Холодный контур, Комфорт, Премиум</small></span></a>
+          <a class="nav__it" href="smeta-primer.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span><span class="nav__tx"><b>Пример сметы</b><small>каждая позиция отдельно</small></span></a>
+          <a class="nav__it" href="./?kalk"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></svg></span><span class="nav__tx"><b>Калькулятор</b><small>цена сразу, без телефона</small></span></a>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="stroim-proekt.html" aria-haspopup="true">Как строим<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="stroim-proekt.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4h11l5 5v11z"/><path d="M8 16l3-3 2 2 3-4"/></svg></span><span class="nav__tx"><b>Конструктивный проект</b><small>нагрузки, узлы, сечения стоек</small></span></a>
+          <a class="nav__it" href="stroim-materialy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="5" rx="1"/><rect x="3" y="13" width="18" height="5" rx="1"/></svg></span><span class="nav__tx"><b>Материалы</b><small>доска камерной сушки 12–16 %</small></span></a>
+          <a class="nav__it" href="stroim-obvyazka.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18M5 18V9h14v9M10 9v9M14 9v9"/></svg></span><span class="nav__tx"><b>Обвязка пола</b><small>пакет из трёх досок 145 × 45</small></span></a>
+          <a class="nav__it" href="stroim-krovlya.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13l10-8 10 8"/><path d="M5 11v8h14v-8"/></svg></span><span class="nav__tx"><b>Кровля и ветрозащита</b><small>металлочерепица, вентзазор, мембраны</small></span></a>
+          <span class="nav__it nav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg></span><span class="nav__tx"><b>Инженерия в доме</b><small><a href="stroim-elektrika.html">Электрика</a> · <a href="stroim-kommunikacii.html">Коммуникации</a> · <a href="stroim-ventilyaciya.html">Вентиляция</a></small></span></span>
+          <a class="nav__it" href="stroim-pokraska.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4l6 6-8 8H6v-6z"/><path d="M11 7l6 6"/></svg></span><span class="nav__tx"><b>Заводская покраска</b><small>шлифовка, грунт, два слоя краски</small></span></a>
+          <span class="nav__it nav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></span><span class="nav__tx"><b>Доставка и хранение</b><small><a href="stroim-dostavka.html">Доставка</a> · <a href="stroim-hranenie.html">Хранение на участке</a></small></span></span>
+          <a class="nav__it" href="stroim-bytovki.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19V7M3 15h18v4M21 15v-3a3 3 0 00-3-3h-7v6"/><circle cx="7" cy="11" r="1.6"/></svg></span><span class="nav__tx"><b>Где живёт бригада</b><small>условия на объекте как есть</small></span></a>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="otzyvy.html" aria-haspopup="true">Работы и отзывы<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="#built"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span><span class="nav__tx"><b>Сданные дома</b><small>фото построенных домов</small></span></a>
+          <a class="nav__it" href="otzyvy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9v6l5-3z"/></svg></span><span class="nav__tx"><b>Отзывы</b><small>видео владельцев домов</small></span></a>
         </span>
       </span>
       <span class="nav__item">
         <a href="kak-zakazat.html" aria-haspopup="true">Как заказать<i class="chev" aria-hidden="true"></i></a>
-        <span class="nav__sub">
-          <a href="kak-zakazat.html">Этапы стройки</a>
-          <a href="dogovor.html">Договор</a>
-          <a href="smeta-primer.html">Пример сметы</a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="kak-zakazat.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h5v-5h5V9h6"/></svg></span><span class="nav__tx"><b>Этапы стройки</b><small>от знакомства до сдачи дома</small></span></a>
+          <a class="nav__it" href="stroim-vyezd-inzhenera.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 0116 0z"/><path d="M3 16h18M12 8V5"/></svg></span><span class="nav__tx"><b>Выезд инженера</b><small>бурение и промерзание грунта</small></span></a>
+          <a class="nav__it" href="dogovor.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span><span class="nav__tx"><b>Договор и гарантии</b><small>твёрдая цена, гарантия 2 года</small></span></a>
+          <a class="nav__it" href="voprosy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-1 .7-1.5 1.2-1.5 2.5M12 17h.01"/></svg></span><span class="nav__tx"><b>Частые вопросы</b><small>цена, сроки, гарантия</small></span></a>
         </span>
       </span>
-      <a href="#contacts">Контакты</a>
+      <span class="nav__item">
+        <a href="komanda.html" aria-haspopup="true">О нас<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="komanda.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0M16 4.5a3.5 3.5 0 010 7M21.5 20a6.5 6.5 0 00-4-6"/></svg></span><span class="nav__tx"><b>Команда</b><small>менеджеры, инженеры, прорабы</small></span></a>
+          <a class="nav__it" href="stati.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 5v16"/></svg></span><span class="nav__tx"><b>Статьи</b><small>16 статей о каркасных домах</small></span></a>
+          <a class="nav__it" href="#contacts"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span><span class="nav__tx"><b>Контакты</b><small>офис в Москве, как доехать</small></span></a>
+        </span>
+      </span>
     </nav>
       <button type="button" class="btn btn--l" data-callback>Заказать звонок</button>
       <a href="tel:+79782516469" class="icb" aria-label="Позвонить: +7 978 251‑64‑69"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 006.5 6.5l1.5-2 4 1.5v3a2 2 0 01-2.2 2A17 17 0 014.5 5.2 2 2 0 016.5 3z"/></svg></a>
@@ -103,28 +126,36 @@
 </div>
 
 <nav class="mnav" id="mnav" aria-label="Мобильное меню">
-      <a href="#catalog">Каталог</a>
-      <a href="#built">Наши работы</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="stroim-vyezd-inzhenera.html">Как строим</a>
-    <a class="mnav__sub" href="stroim-vyezd-inzhenera.html">Выезд инженера</a>
-    <a class="mnav__sub" href="stroim-bytovki.html">Где живут наши рабочие</a>
-    <a class="mnav__sub" href="stroim-materialy.html">Какие материалы мы используем</a>
-    <a class="mnav__sub" href="stroim-proekt.html">Конструктивный проект</a>
-    <a class="mnav__sub" href="stroim-obvyazka.html">Как мы делаем обвязку пола</a>
-    <a class="mnav__sub" href="stroim-krovlya.html">Как мы строим кровлю</a>
-    <a class="mnav__sub" href="stroim-krovlya.html#vvetr">Ветрозащита и гидроизоляция</a>
-    <a class="mnav__sub" href="stroim-hranenie.html">Как храним материалы на участке</a>
-    <a class="mnav__sub" href="stroim-dostavka.html">Как доставляем материалы</a>
-    <a class="mnav__sub" href="stroim-elektrika.html">Электрика в доме</a>
-    <a class="mnav__sub" href="stroim-kommunikacii.html">Коммуникации в доме</a>
-    <a class="mnav__sub" href="stroim-ventilyaciya.html">Вентиляция</a>
-    <a class="mnav__sub" href="stroim-pokraska.html">Заводская покраска дерева</a>
-    <a class="mnav__sub" href="komanda.html">Наша команда</a>
-      <a href="kak-zakazat.html">Как заказать</a>
-  <a class="mnav__sub" href="dogovor.html">Договор</a>
-  <a class="mnav__sub" href="smeta-primer.html">Пример сметы</a>
-      <a href="#contacts">Контакты</a>
+  <a href="katalog.html">Проекты</a>
+    <a class="mnav__sub mnav__it" href="katalog.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></span><span class="nav__tx"><b>Все проекты</b><small>24 проекта в 5 сериях</small></span></a>
+    <div class="mnav__sub mnav__it mnav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span><span class="nav__tx"><b>Серии</b><span class="mnav__chips"><a href="seriya-stambul.html">Стамбул</a><a href="seriya-siena.html">Сиена</a><a href="seriya-vladivostok.html">Владивосток</a><a href="seriya-parma.html">Парма</a><a href="seriya-sochi.html">Сочи</a></span></span></div>
+    <a class="mnav__sub mnav__it" href="planirovki.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h8M11 3v13M15 12h6"/></svg></span><span class="nav__tx"><b>Планировки</b><small>40 вариантов с чертежами</small></span></a>
+    <div class="mnav__sub mnav__it mnav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 8v6l-4-2v-4z"/></svg></span><span class="nav__tx"><b>Подборки</b><span class="mnav__chips"><a href="doma-s-parnoy.html">С баней внутри</a><a href="doma-do-60-m2.html">До 60 кв. м</a><a href="doma-60-100-m2.html">До 100 кв. м</a><a href="doma-ot-100-m2.html">От 100 кв. м</a><a href="doma-do-2-mln.html">До 2 млн ₽</a><a href="doma-2-3-mln.html">От 2 до 3 млн ₽</a><a href="doma-ot-3-mln.html">От 3 млн ₽</a><a href="doma-s-2-spalnyami.html">С 2 спальнями</a><a href="doma-s-3-spalnyami.html">С 3 спальнями</a></span></span></div>
+  <a href="komplektacii.html">Цены</a>
+    <a class="mnav__sub mnav__it" href="komplektacii.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg></span><span class="nav__tx"><b>Что входит в цену</b><small>Холодный контур, Комфорт, Премиум</small></span></a>
+    <a class="mnav__sub mnav__it" href="smeta-primer.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span><span class="nav__tx"><b>Пример сметы</b><small>каждая позиция отдельно</small></span></a>
+    <a class="mnav__sub mnav__it" href="./?kalk"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></svg></span><span class="nav__tx"><b>Калькулятор</b><small>цена сразу, без телефона</small></span></a>
+  <a href="stroim-proekt.html">Как строим</a>
+    <a class="mnav__sub mnav__it" href="stroim-proekt.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4h11l5 5v11z"/><path d="M8 16l3-3 2 2 3-4"/></svg></span><span class="nav__tx"><b>Конструктивный проект</b><small>нагрузки, узлы, сечения стоек</small></span></a>
+    <a class="mnav__sub mnav__it" href="stroim-materialy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="5" rx="1"/><rect x="3" y="13" width="18" height="5" rx="1"/></svg></span><span class="nav__tx"><b>Материалы</b><small>доска камерной сушки 12–16 %</small></span></a>
+    <a class="mnav__sub mnav__it" href="stroim-obvyazka.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18M5 18V9h14v9M10 9v9M14 9v9"/></svg></span><span class="nav__tx"><b>Обвязка пола</b><small>пакет из трёх досок 145 × 45</small></span></a>
+    <a class="mnav__sub mnav__it" href="stroim-krovlya.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13l10-8 10 8"/><path d="M5 11v8h14v-8"/></svg></span><span class="nav__tx"><b>Кровля и ветрозащита</b><small>металлочерепица, вентзазор, мембраны</small></span></a>
+    <div class="mnav__sub mnav__it mnav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg></span><span class="nav__tx"><b>Инженерия в доме</b><span class="mnav__chips"><a href="stroim-elektrika.html">Электрика</a><a href="stroim-kommunikacii.html">Коммуникации</a><a href="stroim-ventilyaciya.html">Вентиляция</a></span></span></div>
+    <a class="mnav__sub mnav__it" href="stroim-pokraska.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4l6 6-8 8H6v-6z"/><path d="M11 7l6 6"/></svg></span><span class="nav__tx"><b>Заводская покраска</b><small>шлифовка, грунт, два слоя краски</small></span></a>
+    <div class="mnav__sub mnav__it mnav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></span><span class="nav__tx"><b>Доставка и хранение</b><span class="mnav__chips"><a href="stroim-dostavka.html">Доставка</a><a href="stroim-hranenie.html">Хранение на участке</a></span></span></div>
+    <a class="mnav__sub mnav__it" href="stroim-bytovki.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19V7M3 15h18v4M21 15v-3a3 3 0 00-3-3h-7v6"/><circle cx="7" cy="11" r="1.6"/></svg></span><span class="nav__tx"><b>Где живёт бригада</b><small>условия на объекте как есть</small></span></a>
+  <a href="otzyvy.html">Работы и отзывы</a>
+    <a class="mnav__sub mnav__it" href="#built"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span><span class="nav__tx"><b>Сданные дома</b><small>фото построенных домов</small></span></a>
+    <a class="mnav__sub mnav__it" href="otzyvy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9v6l5-3z"/></svg></span><span class="nav__tx"><b>Отзывы</b><small>видео владельцев домов</small></span></a>
+  <a href="kak-zakazat.html">Как заказать</a>
+    <a class="mnav__sub mnav__it" href="kak-zakazat.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h5v-5h5V9h6"/></svg></span><span class="nav__tx"><b>Этапы стройки</b><small>от знакомства до сдачи дома</small></span></a>
+    <a class="mnav__sub mnav__it" href="stroim-vyezd-inzhenera.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 0116 0z"/><path d="M3 16h18M12 8V5"/></svg></span><span class="nav__tx"><b>Выезд инженера</b><small>бурение и промерзание грунта</small></span></a>
+    <a class="mnav__sub mnav__it" href="dogovor.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span><span class="nav__tx"><b>Договор и гарантии</b><small>твёрдая цена, гарантия 2 года</small></span></a>
+    <a class="mnav__sub mnav__it" href="voprosy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-1 .7-1.5 1.2-1.5 2.5M12 17h.01"/></svg></span><span class="nav__tx"><b>Частые вопросы</b><small>цена, сроки, гарантия</small></span></a>
+  <a href="komanda.html">О нас</a>
+    <a class="mnav__sub mnav__it" href="komanda.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0M16 4.5a3.5 3.5 0 010 7M21.5 20a6.5 6.5 0 00-4-6"/></svg></span><span class="nav__tx"><b>Команда</b><small>менеджеры, инженеры, прорабы</small></span></a>
+    <a class="mnav__sub mnav__it" href="stati.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 5v16"/></svg></span><span class="nav__tx"><b>Статьи</b><small>16 статей о каркасных домах</small></span></a>
+    <a class="mnav__sub mnav__it" href="#contacts"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span><span class="nav__tx"><b>Контакты</b><small>офис в Москве, как доехать</small></span></a>
   <span class="mnav__sep"></span>
   <a href="https://t.me/" class="mnav__ic"><span class="ic ic--tg"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.2 4.3 2.9 11.4c-.9.35-.87 1.65.05 1.95l4.55 1.45 1.75 5.3c.25.75 1.2.93 1.72.33l2.4-2.75 4.6 3.38c.63.46 1.53.12 1.7-.65l3.2-14.6c.2-.9-.7-1.66-1.67-1.28ZM9.1 14.2l8.5-5.3-6.9 6.3-.35 3.1-1.25-4.1Z"/></svg></span>Написать в Telegram</a>
   <a href="#max" class="mnav__ic"><span class="ic ic--max"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.2c0 4.05-3.8 7.35-8.5 7.35-.95 0-1.86-.14-2.7-.39L4.2 20.8l1.35-3.6A7.06 7.06 0 0 1 3.5 12.2c0-4.06 3.8-7.35 8.5-7.35s8.5 3.29 8.5 7.35Z"/><path d="M8.6 14.3V10l2.4 2.6 2.4-2.6v4.3" stroke-linecap="round"/></svg></span>Написать в MAX</a>
@@ -638,7 +669,7 @@
 <div class="rvw" id="rvw" role="dialog" aria-modal="true" aria-label="Просмотр"><button type="button" class="rvw__x" id="rvwX" aria-label="Закрыть">&times;</button><div class="rvw__box"><video id="rvwV" controls playsinline></video><div class="rvw__err" id="rvwE">Видео не загружено.<br>Положите файл рядом с сайтом:<code id="rvwP"></code></div></div><button type="button" class="rvw__nav rvw__nav--p" id="rvwPrev" aria-label="Предыдущее" hidden>←</button><button type="button" class="rvw__nav rvw__nav--n" id="rvwNext" aria-label="Следующее" hidden>→</button><div class="rvw__t" id="rvwT"></div></div>
 
 <script src="form.js?v=42"></script>
-<script src="header.js?v=48"></script>
+<script src="header.js?v=49"></script>
 <script src="kalk-knopka.js?v=15" defer></script>
 <script src="revs.js?v=3"></script>
 <script src="map.js?v=1"></script>
