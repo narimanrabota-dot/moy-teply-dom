@@ -435,6 +435,7 @@
   background:rgb(255 255 255/.14);color:#fff;font-size:20px;line-height:1;font-family:inherit;
   transition:background-color .2s var(--e);
 }
+.rvw__nav[hidden]{display:none}   /* display:grid выше перебивал hidden — стрелки были видны у одиночного ролика */
 .rvw__x:hover,.rvw__nav:hover{background:rgb(255 255 255/.28)}
 .rvw__x{top:clamp(12px,3vw,28px);right:clamp(12px,3vw,28px);font-size:26px}
 .rvw__nav{top:50%;translate:0 -50%}

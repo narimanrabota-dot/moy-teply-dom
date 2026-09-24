@@ -11,12 +11,24 @@
 
   var STEP = 10000;
   var i = 0;
+
+  /* Фон слайдов, кроме первого, лежит в data-bg и подставляется после загрузки
+     страницы: иначе телефон на первом экране тянет все фоны разом (1,5 МБ).
+     Перед показом слайда фон ставится сразу — на случай, если листают раньше. */
+  function paint(el) {
+    var ph = el && el.querySelector('[data-bg]');
+    if (ph) { ph.style.backgroundImage = 'url(' + ph.getAttribute('data-bg') + ')'; ph.removeAttribute('data-bg'); }
+  }
+  function paintAll() { slides.forEach ? slides.forEach(paint) : [].forEach.call(slides, paint); }
+  if (document.readyState === 'complete') setTimeout(paintAll, 300);
+  else window.addEventListener('load', function () { setTimeout(paintAll, 300); });
   var timer = null;
   next.setAttribute('aria-label', 'Следующий экран, 2 из ' + slides.length);
   function show(n) {
     slides[i].classList.remove('is-on');
     slides[i].setAttribute('aria-hidden', 'true');
     i = (n + slides.length) % slides.length;
+    paint(slides[i]);
     slides[i].classList.add('is-on');
     slides[i].removeAttribute('aria-hidden');
     box.querySelectorAll('video').forEach(function (v) { v.pause(); });
