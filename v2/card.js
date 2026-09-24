@@ -528,7 +528,8 @@
     b.addEventListener('click', function () { list.scrollBy({ left: +b.getAttribute('data-d') * step() }); });
   });
   list.addEventListener('scroll', upd, { passive: true });
-  addEventListener('resize', upd);
+  if (window.ResizeObserver) new ResizeObserver(upd).observe(list); else addEventListener('resize', upd);
+  zv._upd = upd;
   upd();
 
   var box, stage, title, shut, last;
@@ -585,4 +586,17 @@
     if (last) last.focus();
   }
   cards.forEach(function (c) { c.addEventListener('click', function () { open(c); }); });
+});
+
+/* «Процесс строительства» — свёрнутая полоса (tools/video_block.py): по нажатию раскрывается лента. */
+[].forEach.call(document.querySelectorAll('[data-zvb]'), function (w) {
+  var b = w.querySelector('.zvb__b'), c = w.querySelector('.zvb__c');
+  b.addEventListener('click', function () {
+    var on = b.getAttribute('aria-expanded') !== 'true';
+    b.setAttribute('aria-expanded', on ? 'true' : 'false');
+    c.hidden = !on;
+    w.classList.toggle('is-on', on);
+    var z = c.querySelector('[data-zv]');
+    if (on && z && z._upd) z._upd();
+  });
 });
