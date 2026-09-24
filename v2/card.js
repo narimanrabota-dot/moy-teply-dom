@@ -513,9 +513,7 @@
 }());
 
 /* Живые видео — лента (tools/video_block.py): стрелки, полоса-чёрточки, окно с плеером Rutube. */
-(function () {
-  var zv = document.querySelector('[data-zv]');
-  if (!zv) return;
+[].forEach.call(document.querySelectorAll('[data-zv]'), function (zv) {
   var list = zv.querySelector('.zv__list'), cards = [].slice.call(list.children);
   var segs = zv.querySelectorAll('.zv__seg i');
   function step() { return cards[0].offsetWidth + 16; }
@@ -587,4 +585,4 @@
     if (last) last.focus();
   }
   cards.forEach(function (c) { c.addEventListener('click', function () { open(c); }); });
-}());
+});
