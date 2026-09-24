@@ -806,4 +806,9 @@
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vyezd-inzhenera-cover.webp</image:loc></image:image>
   </url>
+  <url>
+    <loc>https://moy-teply-dom.onrender.com/v2/voprosy.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <priority>0.6</priority>
+  </url>
 </urlset>
