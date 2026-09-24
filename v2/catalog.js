@@ -17,8 +17,22 @@
     history.replaceState(null, '', f === 'all' ? '#catalog' : '#catalog=' + f);
   }
 
+  /* После фильтра страница становится короче. Если полоса уже прилипла,
+     прокрутка оставалась на месте — и человек оказывался в «Отзывах», а не
+     у выбранной серии. Поднимаем к первой видимой серии, под полосу. */
+  function toTop() {
+    var s = sers.filter(function (x) { return !x.hidden; })[0];
+    if (!s) return;
+    var y = s.getBoundingClientRect().top + window.pageYOffset
+      - bar.getBoundingClientRect().bottom - 16;
+    if (window.pageYOffset > y) {
+      var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: y, behavior: calm ? 'auto' : 'smooth' });
+    }
+  }
+
   btns.forEach(function (b) {
-    b.addEventListener('click', function () { apply(b.dataset.f); });
+    b.addEventListener('click', function () { apply(b.dataset.f); toTop(); });
   });
 
   var m = /#catalog=([a-z]+)/.exec(location.hash);
