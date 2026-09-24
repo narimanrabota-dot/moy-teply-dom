@@ -21,3 +21,7 @@
   margin-top:clamp(32px,4vw,48px);padding-top:var(--sp-16);
   border-top:1px solid var(--line);font-size:var(--fs-xs);color:var(--dim);
 }
+
+/* статьи (tools/stati.py): ссылки в тексте кирпичным — как во всём сайте */
+.pol .cat__s a,.pol .pol__lead a,.pol .pol__t a{color:var(--clay-txt);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.pol .cat__s a:hover,.pol .pol__lead a:hover,.pol .pol__t a:hover{color:var(--clay-btn-h)}

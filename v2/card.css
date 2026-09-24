@@ -9,6 +9,11 @@
 /* ── возврат в каталог ───────────────────────────────
    В эталоне 12px, акцентным цветом, за 36px до заголовка.
    Отступ сверху — как у главного снимка на главной. */
+/* Хлебные крошки над названием дома (tools/kroshki.py) — на месте прежней «← Вернуться в каталог» */
+.crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-4) var(--sp-8);margin-top:var(--sp-24);font-size:var(--fs-xs);font-weight:500;color:var(--dim)}
+.crumbs a{color:var(--clay-txt)}
+.crumbs a:hover{color:var(--clay-btn-h)}
+.crumbs span[aria-hidden]{color:var(--n-400,var(--dim))}
 .back{
   display:inline-flex;align-items:center;gap:var(--sp-8);
   margin-top:var(--sp-24);
