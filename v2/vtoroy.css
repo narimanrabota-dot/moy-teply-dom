@@ -297,9 +297,9 @@
 
 /* первый слайд — видео с семьёй (владелец 25.09.2026): ролик внутри фото слайда, повторяет его кадр;
    затемнение и размытие под текстом лежат поверх ролика */
-.hsl--v1 > .ob__img{background-size:cover;background-position:right 60%}
-.hsl--v1 > .ob__img > .ob__vid{object-position:right 60%;z-index:0}
-.hsl--v1 > .ob__img::before{z-index:1}
-.hsl--v1 > .ob__img::after{z-index:2}
-@media(max-width:900px){.hsl--v1 > .ob__img{background-position:82% 58%}.hsl--v1 > .ob__img > .ob__vid{object-position:82% 58%}}
-@media(prefers-reduced-motion:reduce){.hsl--v1 .ob__vid{display:none}}
+.hsl--v1 > .ob__img,.hsl--vs > .ob__img{background-size:cover;background-position:right 60%}
+.hsl--v1 > .ob__img > .ob__vid,.hsl--vs > .ob__img > .ob__vid{object-position:right 60%;z-index:0}
+.hsl--v1 > .ob__img::before,.hsl--vs > .ob__img::before{z-index:1}
+.hsl--v1 > .ob__img::after,.hsl--vs > .ob__img::after{z-index:2}
+@media(max-width:900px){.hsl--v1 > .ob__img,.hsl--vs > .ob__img{background-position:82% 58%}.hsl--v1 > .ob__img > .ob__vid,.hsl--vs > .ob__img > .ob__vid{object-position:82% 58%}}
+@media(prefers-reduced-motion:reduce){.hsl--v1 .ob__vid,.hsl--vs .ob__vid{display:none}}
