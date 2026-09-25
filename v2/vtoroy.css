@@ -268,3 +268,19 @@
   .hsl--args .v2a__law{display:none}
   .hsl--grid .v2a__path li > span{display:none}
 }
+
+/* первый слайд шапки: дом справа, текст на стекле, крутая диагональ
+   (выбор владельца 25.09.2026, витрина v2/test-shapka-mix.html?n=7) */
+@media(min-width:901px){
+  .hsl--glass > .ob__img::after{background:linear-gradient(135deg,rgb(14 20 34/.85) 0%,rgb(14 20 34/.55) 30%,rgb(14 20 34/0) 60%)}
+}
+/* уже 1200 px стекло закрыло бы дом — там только диагональ, чуть плотнее */
+@media(min-width:901px) and (max-width:1199px){
+  .hsl--glass > .ob__img::after{background:linear-gradient(120deg,rgb(14 20 34/.92) 0%,rgb(14 20 34/.75) 35%,rgb(14 20 34/0) 58%)}
+}
+@media(min-width:1200px){
+  .hsl--glass .v2a{position:relative;width:auto;max-width:640px;padding:var(--sp-32) var(--sp-32) var(--sp-32) 36px;border-radius:var(--r-shell);
+    background:rgb(14 20 34/.35);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 0 0 1px rgb(255 255 255/.12)}
+}
+/* телефон стоя: фото полосой сверху — показываем правую часть, где дом */
+@media(max-width:900px){.hsl--glass > .ob__img{background-position:82% 58%!important}}
