@@ -303,3 +303,19 @@
 .hsl--v1 > .ob__img::after,.hsl--vs > .ob__img::after{z-index:2}
 @media(max-width:900px){.hsl--v1 > .ob__img,.hsl--vs > .ob__img{background-position:82% 58%}.hsl--v1 > .ob__img > .ob__vid,.hsl--vs > .ob__img > .ob__vid{object-position:82% 58%}}
 @media(prefers-reduced-motion:reduce){.hsl--v1 .ob__vid,.hsl--vs .ob__vid{display:none}}
+
+/* шапка от 1200 px: высота по самому высокому стеклу слайдов 1–5, а не только по экрану —
+   стекло всегда целиком внутри слайда, сверху и снизу не меньше 24 px (ревью 26.09.2026) */
+@media(min-width:1200px){
+  .ob__f[data-hero]:has(.hsl--args){height:auto;min-height:clamp(494px,73svh,851px)}
+  .ob__f[data-hero] .hsl--args{display:grid}
+  .ob__f[data-hero] .hsl--args > .ob__c{position:relative;inset:auto;padding-top:var(--sp-24);padding-bottom:var(--sp-24)}
+  .hsl--args.hsl--g18 .ob__c > .v2a{max-width:640px}
+}
+@media(min-width:1200px) and (min-height:861px){
+  .ob__f[data-hero] .hsl--args > .ob__c{padding-top:var(--sp-32);padding-bottom:var(--sp-32)}
+}
+/* низкий экран: без строки о 5 годах по закону — как на телефоне */
+@media(min-width:1200px) and (max-height:800px){
+  .hsl--args.hsl--g18 .v2a__law{display:none}
+}
