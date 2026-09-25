@@ -269,18 +269,28 @@
   .hsl--grid .v2a__path li > span{display:none}
 }
 
-/* первый слайд шапки: дом справа, текст на стекле, крутая диагональ
-   (выбор владельца 25.09.2026, витрина v2/test-shapka-mix.html?n=7) */
+/* шапка — вариант 18 (выбор владельца 25.09.2026, витрина v2/test-shapka-mix.html?n=18), после двух ревью:
+   от 1200 px — размытый фон под текстом на всех слайдах; стекло под текстом — на слайдах 1–5 (.hsl--args),
+   диагональное затемнение — на 1, 2, 4, 5 (у «Тепла» и у слайдов 6–11 остаются свои затемнения, контраст ≥4,5 : 1).
+   Первый слайд (.hsl--zoom) — фото с домом справа, крупнее. До 1200 px — прежняя шапка. */
 @media(min-width:901px){
-  .hsl--glass > .ob__img::after{background:linear-gradient(135deg,rgb(14 20 34/.85) 0%,rgb(14 20 34/.55) 30%,rgb(14 20 34/0) 60%)}
-}
-/* уже 1200 px стекло закрыло бы дом — там только диагональ, чуть плотнее */
-@media(min-width:901px) and (max-width:1199px){
-  .hsl--glass > .ob__img::after{background:linear-gradient(120deg,rgb(14 20 34/.92) 0%,rgb(14 20 34/.75) 35%,rgb(14 20 34/0) 58%)}
+  .hsl--zoom > .ob__img{left:-15%;background-size:cover!important;background-repeat:no-repeat;background-position:right 64%!important}
 }
 @media(min-width:1200px){
-  .hsl--glass .v2a{position:relative;width:auto;max-width:640px;padding:var(--sp-32) var(--sp-32) var(--sp-32) 36px;border-radius:var(--r-shell);
-    background:rgb(14 20 34/.35);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 0 0 1px rgb(255 255 255/.12)}
+  .hsl--g18 > .ob__img{transform:none;transition:none}
+  .hsl--args.hsl--g18:not(.hsl--warm) > .ob__img::after{background:linear-gradient(115deg,rgb(14 20 34/.7) 0%,rgb(14 20 34/.45) 32%,rgb(14 20 34/0) 56%)}
+  .hsl--g18:not(.hsl--vid) > .ob__img::before{content:"";position:absolute;inset:0;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 36%,transparent 50%);mask-image:linear-gradient(90deg,#000 0%,#000 36%,transparent 50%)}
+  .hsl--zoom > .ob__img::before{-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 44%,transparent 57%);mask-image:linear-gradient(90deg,#000 0%,#000 44%,transparent 57%)}
+  .hsl--args.hsl--g18 .ob__c > .v2a{position:relative;width:auto;max-width:560px;padding:var(--sp-32);border-radius:var(--r-shell);
+    background:rgb(14 20 34/.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 0 0 1px rgb(255 255 255/.12)}
+  .hsl--zoom .ob__c > .v2a{max-width:640px}
 }
-/* телефон стоя: фото полосой сверху — показываем правую часть, где дом */
-@media(max-width:900px){.hsl--glass > .ob__img{background-position:82% 58%!important}}
+@media(min-width:1200px) and (max-height:860px){.hsl--args.hsl--g18 .ob__c > .v2a{padding:var(--sp-24)}}
+/* без размытия (старые браузеры, «меньше прозрачности») — стекло плотнее, текст читается */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  @media(min-width:1200px){.hsl--args.hsl--g18 .ob__c > .v2a{background:rgb(14 20 34/.8)}}
+}
+@media(min-width:1200px) and (prefers-reduced-transparency:reduce){.hsl--args.hsl--g18 .ob__c > .v2a{background:rgb(14 20 34/.8)}}
+/* телефон стоя: фото полосой сверху — у первого слайда показываем правую часть, где дом */
+@media(max-width:900px){.hsl--zoom > .ob__img{background-position:82% 58%!important}}
