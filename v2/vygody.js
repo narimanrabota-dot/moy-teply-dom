@@ -37,3 +37,26 @@
     wraps.forEach(function (w) { ro.observe(w); });
   }
 })();
+
+/* видео в круге: один раз при появлении круга на экране (видна половина), замирает на последнем кадре;
+   ушёл с экрана — сброс, при возвращении играет сначала. «Меньше движения» — сразу последний кадр. */
+(function () {
+  var v = document.querySelector('.vy-vid');
+  if (!v) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    v.poster = v.getAttribute('data-end'); v.removeAttribute('src'); v.load(); return;
+  }
+  if (!('IntersectionObserver' in window)) return;
+  var shown = false;
+  new IntersectionObserver(function (list) {
+    var e = list[list.length - 1];
+    if (e.isIntersecting && !shown) {
+      shown = true;
+      try { v.currentTime = 0; } catch (x) {}
+      var p = v.play(); if (p) p.catch(function () {});
+    } else if (!e.isIntersecting && shown) {
+      shown = false; v.pause();
+      try { v.currentTime = 0; } catch (x) {}
+    }
+  }, { threshold: 0.5 }).observe(v.parentNode);
+})();

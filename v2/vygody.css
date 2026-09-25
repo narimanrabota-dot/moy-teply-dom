@@ -45,3 +45,8 @@
   .vy-mid{grid-column:1 / -1}
 }
 @media(prefers-reduced-motion:reduce){.vy *{transition:none !important}}
+
+/* видео в круге (владелец 26.09.2026): играет один раз, когда круг видно наполовину, и замирает на рукопожатии;
+   ушёл с экрана и вернулся — с начала. «Меньше движения» — стоп-кадр рукопожатия. Логика — vygody.js */
+.vy-photo{position:relative;overflow:hidden}
+.vy-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%}
