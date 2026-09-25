@@ -1,5 +1,6 @@
-/* Карусель первого экрана. Листается сама каждые 10 секунд; человек листает
-   стрелкой или свайпом, и после этого у слайда снова полные 10 секунд.
+/* Карусель первого экрана. Листается сама каждые 6 секунд — столько длятся ролики шапки
+   (владелец 25.09.2026): слайд меняется, когда ролик доиграл. Человек листает стрелкой
+   или свайпом, и после этого у слайда снова полные 6 секунд.
    Наведение мыши не останавливает. Пауза — пока вкладка скрыта, шапка ушла
    с экрана, открыто окно заявки или по шапке ходят клавишей Tab. */
 (function () {
@@ -9,7 +10,7 @@
   var next = box.querySelector('.v2n');
   if (slides.length < 2 || !next) return;
 
-  var STEP = 10000;
+  var STEP = 6000;
   var i = 0;
 
   /* Фон слайдов, кроме первого, лежит в data-bg и подставляется после загрузки
@@ -33,7 +34,7 @@
     slides[i].removeAttribute('aria-hidden');
     box.querySelectorAll('video').forEach(function (v) { v.pause(); });
     var v = slides[i].querySelector('video');
-    if (v) { v.play().catch(function () {}); }
+    if (v) { v.currentTime = 0; v.play().catch(function () {}); }
     next.setAttribute('aria-label',
       'Следующий экран, ' + ((i + 2 > slides.length) ? 1 : i + 2) + ' из ' + slides.length);
     plan();
@@ -84,5 +85,8 @@
       if (now !== seen) { seen = now; plan(); }
     }, { threshold: [0, 0.25, 0.5, 0.75, 1] }).observe(box);
   }
+  /* ролик первого слайда стартует чуть позже страницы — отсчёт 6 секунд от его начала */
+  var v0 = slides[0].querySelector('video');
+  if (v0) v0.addEventListener('playing', function once() { v0.removeEventListener('playing', once); if (i === 0) plan(); });
   plan();
 })();
