@@ -294,3 +294,12 @@
 @media(min-width:1200px) and (prefers-reduced-transparency:reduce){.hsl--args.hsl--g18 .ob__c > .v2a{background:rgb(14 20 34/.8)}}
 /* телефон стоя: фото полосой сверху — у первого слайда показываем правую часть, где дом */
 @media(max-width:900px){.hsl--zoom > .ob__img{background-position:82% 58%!important}}
+
+/* первый слайд — видео с семьёй (владелец 25.09.2026): ролик внутри фото слайда, повторяет его кадр;
+   затемнение и размытие под текстом лежат поверх ролика */
+.hsl--v1 > .ob__img{background-size:cover;background-position:right 60%}
+.hsl--v1 > .ob__img > .ob__vid{object-position:right 60%;z-index:0}
+.hsl--v1 > .ob__img::before{z-index:1}
+.hsl--v1 > .ob__img::after{z-index:2}
+@media(max-width:900px){.hsl--v1 > .ob__img{background-position:82% 58%}.hsl--v1 > .ob__img > .ob__vid{object-position:82% 58%}}
+@media(prefers-reduced-motion:reduce){.hsl--v1 .ob__vid{display:none}}
