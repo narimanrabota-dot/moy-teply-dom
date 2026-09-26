@@ -171,3 +171,7 @@
 .st-f b{white-space:nowrap}
 /* ролики с объекта */
 .st-revs{margin-top:32px}
+/* шаг без картинки */
+.st-v--txt{padding-bottom:48px}
+.st-v--txt .st-vt{grid-column:2/-1;max-width:60ch}
+@media(max-width:760px){.st-v--txt{padding-bottom:32px}.st-v--txt .st-vt{grid-column:auto}}
