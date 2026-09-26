@@ -842,13 +842,16 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stroim-dostavka.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/dostavka-uchastok.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/dostavka-mashina.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/dostavka-kran.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/dostavka-razgruzka.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/dogovor-str-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/dostavka-rolik-1-cover.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/dostavka-rolik-2-cover.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/dostavka-rolik-3-cover.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stroim-elektrika.html</loc>
@@ -888,13 +891,15 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stroim-materialy.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/materialy-strogannaya.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/materialy-sechenie.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/materialy-shtabel.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/materialy-obvyazka.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/materialy-fasad.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/doska-dlya-karkasa-cover.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/materialy-chast-2-cover.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stroim-obvyazka.html</loc>
