@@ -511,7 +511,7 @@
   tile.addEventListener('click', open);
 }());
 
-/* Живые видео — лента (tools/video_block.py): стрелки, полоса-чёрточки, окно с плеером Rutube. */
+/* Живые видео — лента (tools/video_block.py): стрелки, полоса-чёрточки, окно с плеером (свой файл mp4 или старая ссылка). */
 [].forEach.call(document.querySelectorAll('[data-zv]'), function (zv) {
   var list = zv.querySelector('.zv__list'), cards = [].slice.call(list.children);
   var segs = zv.querySelectorAll('.zv__seg i');
@@ -565,13 +565,21 @@
     last = c;
     var i = cards.indexOf(c) + 1;
     title.textContent = zv.querySelector('.zv__h').textContent + ' · ' + i + ' из ' + cards.length;
-    var f = el('iframe');
+    var src = c.getAttribute('data-zv-src'), f;
     var ar = (c.getAttribute('data-zv-ar') || '16/9').split('/');
+    if (/\.mp4(\?|$)/.test(src)) {            /* свой файл на сайте */
+      f = el('video');
+      f.src = src; f.controls = true; f.autoplay = true; f.playsInline = true;
+      f.setAttribute('playsinline', '');
+      f.style.background = '#000';
+    } else {                                   /* внешний плеер (старые ссылки) */
+      f = el('iframe');
+      f.src = src + (src.indexOf('?') < 0 ? '?' : '&') + 'autoplay=1';
+      f.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+      f.setAttribute('allowfullscreen', '');
+    }
     f.style.setProperty('--ar', ar[0] / ar[1]);
-    f.src = c.getAttribute('data-zv-src') + '&autoplay=1';
     f.title = 'Видео ' + i;
-    f.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-    f.setAttribute('allowfullscreen', '');
     stage.textContent = '';
     stage.appendChild(f);
     box.hidden = false;
