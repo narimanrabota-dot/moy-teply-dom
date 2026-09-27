@@ -246,6 +246,8 @@ class App {
     for (const op of ops) {
       if (op.op === "site" && /^phone\.digits$/.test(op.key) && !/^7\d{10}$/.test(op.value)) errors.push("Телефон: 11 цифр, начиная с 7");
       if (op.op === "site" && op.key === "baseUrl" && !/^https:\/\/[a-z0-9.-]+\/$/.test(op.value)) errors.push("Адрес сайта вида https://домен.ru/");
+      if (op.op === "site" && op.key === "leadUrl" && op.value && !/^https:\/\/[a-z0-9.-]+(:\d+)?\/lead$/.test(op.value)) errors.push("Адрес приёма заявок вида https://сервер/lead");
+      if (op.op === "site" && /^(phone|messengers|leadUrl)/.test(op.key) && /['"\\<>]/.test(op.value)) errors.push("В контактах нельзя использовать кавычки и знаки < >");
       if (op.op === "hide") warnings.push("В меню сайта написано, сколько всего проектов (например, «24 проекта в 5 сериях») — это число не пересчитывается само. Попросите Claude поправить его в шапке.");
       if (op.op === "copy") warnings.push("Копия скрыта от посетителей и поиска, пока вы её не покажете. Размеры для расчёта цены — как у исходного дома: если размеры другие, задайте ручную цену.");
       if (op.op === "manualPrice" && op.values) {
@@ -414,7 +416,7 @@ class App {
     if (!String(reason || "").trim()) throw new UserError("Укажите причину изменения");
     for (const op of ops) {
       if (["rates", "ratesSet", "manualPrice", "import", "restorePage"].includes(op.op) && user.role !== "owner") throw new UserError("Цены меняет только Владелец");
-      if (op.op === "site" && op.key === "baseUrl" && user.role !== "owner") throw new UserError("Адрес сайта меняет только Владелец");
+      if (op.op === "site" && /^(baseUrl|leadUrl)$/.test(op.key) && user.role !== "owner") throw new UserError("Адрес сайта и приём заявок меняет только Владелец");
       if (op.file && !this.data.pages[op.file]) throw new UserError("Нет страницы " + op.file);
       if (op.file && !this.canEdit(user, op.file)) {
         const l = this.locks.get(op.file);

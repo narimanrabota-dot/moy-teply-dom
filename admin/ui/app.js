@@ -721,7 +721,9 @@
       var st = s.leads || {};
       $("#ig").innerHTML =
         "<div class='card'><h2 style='margin-top:0'>Заявки с сайта</h2>" +
-        "<p class='small'>Адрес приёма заявок: <code>" + esc(s.leadUrl || "/lead") + "</code></p>" +
+        (s.siteLeadUrl && s.siteLeadUrl === s.leadUrl ? "<div class='note ok small'>Форма заявок на сайте подключена к админке: <code>" + esc(s.siteLeadUrl) + "</code></div>"
+          : "<div class='note warn small'>Форма заявок на сайте " + (s.siteLeadUrl ? "отправляет заявки на другой адрес: <code>" + esc(s.siteLeadUrl) + "</code>" : "пока никуда не отправляет заявки") + "." +
+            (s.leadUrl && /^https:/.test(s.leadUrl) ? " <button class='btn sm' id='leadon'>Подключить форму к админке</button>" : " Адрес этого сервера не задан (PUBLIC_URL).") + "</div>") +
         "<div class='row'><span>Получено: <b>" + esc(st.received || 0) + "</b></span><span>Отправлено: <b>" + esc(st.sent || 0) + "</b></span><span>Не ушло: <b" + (st.failed ? " class='up'" : "") + ">" + esc(st.failed || 0) + "</b></span><span class='muted'>Отсеяно ботов: " + esc(st.bots || 0) + "</span></div>" +
         (st.lastError ? "<div class='note err small' style='margin-top:10px'>Последняя ошибка " + esc(when(st.lastError.at)) + ": " + esc(st.lastError.message) + ". Клиент при этом видел телефон, а заявка ждёт в его браузере и уйдёт при следующем заходе.</div>" : "") +
         "<p class='small muted'>Счётчики — с последнего запуска сервера. Если отправить не удалось, заявка не теряется: браузер клиента повторит отправку.</p></div>" +
@@ -735,6 +737,12 @@
         "</div>" +
         "<div class='card'><h2 style='margin-top:0'>Вебхуки (другие сервисы)</h2><p class='small muted'>Каждая заявка отправляется POST-запросом в формате JSON на указанные адреса. Можно подключить Telegram-бота, таблицу, другую CRM.</p><div id='hooks'></div><button class='btn sec sm' id='hadd'>Добавить вебхук</button></div>" +
         "<div class='bar'><span style='flex:1'></span><button class='btn' id='isave'>Сохранить интеграции</button></div>";
+      if ($("#leadon")) $("#leadon").addEventListener("click", function () {
+        askReason("Подключить форму заявок", "<p class='small muted'>Все заявки с сайта пойдут на этот сервер, а он передаст их в amoCRM и вебхуки. Сначала настройте amoCRM ниже и сохраните.</p>").then(function (d) {
+          if (!d) return;
+          api("POST", "/api/submit", { ops: [{ op: "site", key: "leadUrl", value: s.leadUrl }], title: "Форма заявок подключена к админке", reason: d.reason }).then(function () { toast("Готово. Форма на сайте обновится через 1–2 минуты."); viewIntegrations(); }).catch(fail);
+        });
+      });
       var hooks = (s.webhooks || []).map(function (h) { return { id: h.id, name: h.name, url: h.url, enabled: h.enabled, hasSecret: h.hasSecret }; });
       var pipes = null, users = [];
       function drawHooks() {

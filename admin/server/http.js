@@ -190,7 +190,7 @@ function createServer(app, opts = {}) {
   route("POST", /^\/api\/users\/([a-z0-9._-]+)$/, async ({ user, m, body }) => app.updateUser(user, m[1], body), { owner: true });
 
   // ---------- интеграции ----------
-  route("GET", /^\/api\/integrations$/, async () => Object.assign(app.integrationsPublic(), { leads: app.leads.stats, leadUrl: (opts.publicUrl || "") + "/lead" }), { owner: true });
+  route("GET", /^\/api\/integrations$/, async () => Object.assign(app.integrationsPublic(), { leads: app.leads.stats, leadUrl: opts.publicUrl ? opts.publicUrl + "/lead" : "", siteLeadUrl: app.data.site.leadUrl || "" }), { owner: true });
   route("POST", /^\/api\/integrations$/, async ({ user, body }) => app.saveIntegrations(user, body), { owner: true });
   route("POST", /^\/api\/integrations\/amo\/check$/, async ({ body }) => {
     const client = app.amoClient(body.token ? { subdomain: body.subdomain, token: body.token } : { subdomain: body.subdomain });
@@ -317,7 +317,7 @@ function normalizeOps(app, ops) {
       return { op: "head", file: op.file, title: content.fromPlain(String(op.plainTitle), "text"), description: String(op.description || "") };
     }
     if (op.op === "site" && typeof op.value === "string") {
-      const v = /^(messengers|baseUrl)/.test(op.key) ? op.value.trim() : content.fromPlain(op.value.trim(), "text");
+      const v = /^(messengers|baseUrl|leadUrl)/.test(op.key) ? op.value.trim() : content.fromPlain(op.value.trim(), "text");
       return { op: "site", key: op.key, value: v };
     }
     // операции, которые экран не должен присылать напрямую

@@ -9,7 +9,8 @@ const ROOT = path.join(__dirname, "..");
 // Шаблоны общих частей: { header, footer, callback } из папки templates.
 function loadTemplates(root = ROOT) {
   const t = (name) => fs.readFileSync(path.join(root, "templates", name + ".html"), "utf8");
-  return { header: t("header"), footer: t("footer"), callback: t("callback") };
+  const js = path.join(root, "templates", "form.js");
+  return { header: t("header"), footer: t("footer"), callback: t("callback"), formJs: fs.existsSync(js) ? fs.readFileSync(js, "utf8") : null };
 }
 
 // Границы общих частей в готовой странице.
@@ -50,6 +51,7 @@ function siteVars(site) {
     ogrn: site.company.ogrn,
     director: site.company.director,
     copyright: site.company.copyright,
+    leadUrl: site.leadUrl || "",
   };
 }
 
@@ -89,4 +91,9 @@ function renderCallback(T) {
   return T.callback;
 }
 
-module.exports = { REGIONS, locate, loadTemplates, renderHeader, renderFooter, renderCallback };
+// Скрипт формы заявки: телефон и адрес приёма заявок — из контактов.
+function renderFormJs(site, T) {
+  return T.formJs == null ? null : fill(T.formJs, siteVars(site));
+}
+
+module.exports = { REGIONS, locate, loadTemplates, renderHeader, renderFooter, renderCallback, renderFormJs };

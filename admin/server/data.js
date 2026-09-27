@@ -50,6 +50,7 @@ function diffFiles(before, after) {
   for (const name of ["header", "footer", "callback"]) {
     if (before.T[name] !== after.T[name]) files["templates/" + name + ".html"] = after.T[name];
   }
+  if (before.T.formJs !== after.T.formJs) files["templates/form.js"] = after.T.formJs;
   for (const file of new Set([...Object.keys(before.pages), ...Object.keys(after.pages)])) {
     if (JSON.stringify(before.pages[file]) !== JSON.stringify(after.pages[file])) {
       files["data/pages/" + file + ".json"] = after.pages[file] ? j(after.pages[file]) : null;
@@ -70,7 +71,7 @@ function setPath(obj, p, v) {
   else o[keys[keys.length - 1]] = v;
 }
 
-const SITE_PATHS = /^(phone\.(text|digits)|messengers\.(telegram|max|whatsapp)|office\.(address|hours)|company\.(name|innKpp|ogrn|director|copyright)|baseUrl)$/;
+const SITE_PATHS = /^(phone\.(text|digits)|messengers\.(telegram|max|whatsapp)|office\.(address|hours)|company\.(name|innKpp|ogrn|director|copyright)|baseUrl|leadUrl)$/;
 
 // Снимок страниц и sitemap для точного отката.
 function snapshot(data, files) {
@@ -362,6 +363,8 @@ function buildSite(data, calc, cfgIn = data.cfg) {
   if (manual.length) live.manual = manual; else delete live.manual;
   out["v2/calc-live.json"] = JSON.stringify(live) + "\n";
   if (data.sitemap) out["sitemap.xml"] = SM.render(data.sitemap, data.site.baseUrl);
+  const formJs = shell.renderFormJs(data.site, data.T);
+  if (formJs != null) out["v2/form.js"] = formJs;
   return out;
 }
 
