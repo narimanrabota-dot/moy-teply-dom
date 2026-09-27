@@ -1,0 +1,33 @@
+{
+ "current": [
+  {
+   "anchor": "<a href=\"kak-zakazat.html\" aria-haspopup=\"true\"",
+   "n": 0,
+   "value": "true"
+  },
+  {
+   "anchor": "<a class=\"nav__it\" href=\"kak-zakazat.html\"",
+   "n": 0,
+   "value": "page"
+  },
+  {
+   "anchor": "<a class=\"mnav__sub mnav__it\" href=\"kak-zakazat.html\"",
+   "n": 0,
+   "value": "page"
+  }
+ ],
+ "head": {
+  "title": "Этапы строительства каркасного дома — как заказать",
+  "description": "Как заказать дом: четыре формата знакомства до договора и восемнадцать шагов стройки — от выбора модели до передачи ключей, с графиком оплат."
+ },
+ "seo": {
+  "type": "article",
+  "image": {
+   "src": "img/dom-render-terrasa-leto.webp",
+   "w": 2000,
+   "h": 1342
+  },
+  "ld": []
+ },
+ "fields": []
+}

@@ -1,27 +1,30 @@
-// Сверка: пересобирает общие части каждой страницы и сравнивает с тем,
-// что лежит на сайте, байт в байт. Выход с ошибкой, если хоть одна страница отличается.
-// Запуск: node admin/build/check.js
+// Сверка: собирает каждую страницу из данных админки и сравнивает с сайтом байт в байт.
+// Выход с ошибкой, если хоть одна страница отличается.
+// Запуск: node admin/build/check.js [папка сайта]
 "use strict";
 const fs = require("fs");
 const path = require("path");
-const { applyShell } = require("./shell");
-const { applySeo } = require("./seo");
+const { build, store } = require("./page");
+const P = require("./prices");
 
 const ROOT = path.join(__dirname, "..");
-const SITE = path.join(ROOT, "..", "v2");
-const site = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "site.json"), "utf8"));
-const pages = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "pages.json"), "utf8"));
+const SITE = process.argv[2] || path.join(ROOT, "..", "v2");
+const st = store(ROOT);
+const cfg = JSON.parse(fs.readFileSync(path.join(SITE, "calc-live.json"), "utf8"));
+const ctx = { site: st.site(), prices: P.pricesFor(P.loadCalc(SITE), cfg, cfg.defaults) };
 
 let ok = 0;
 const bad = [];
-for (const [file, page] of Object.entries(pages)) {
+const list = st.pageList();
+for (const file of list) {
   const orig = fs.readFileSync(path.join(SITE, file), "utf8");
-  const built = applySeo(applyShell(orig, site, page), site, file, page);
+  let built;
+  try { built = build(ctx, file, st.page(file), st.skeleton(file)); } catch (e) { bad.push(file + " — " + e.message); continue; }
   if (built === orig) { ok++; continue; }
   let i = 0;
   while (built[i] === orig[i]) i++;
   bad.push(file + " — первое отличие: " + JSON.stringify(orig.slice(i, i + 60)) + " → " + JSON.stringify(built.slice(i, i + 60)));
 }
-console.log("совпало байт в байт: " + ok + " из " + Object.keys(pages).length);
+console.log("совпало байт в байт: " + ok + " из " + list.length);
 for (const b of bad) console.log("  ✗ " + b);
 process.exit(bad.length ? 1 : 0);

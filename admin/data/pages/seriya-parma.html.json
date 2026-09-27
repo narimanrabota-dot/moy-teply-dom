@@ -1,0 +1,171 @@
+{
+ "current": [
+  {
+   "anchor": "<a href=\"katalog.html\" aria-haspopup=\"true\"",
+   "n": 0,
+   "value": "true"
+  },
+  {
+   "anchor": "<a href=\"seriya-parma.html\"",
+   "n": 0,
+   "value": "page"
+  },
+  {
+   "anchor": "<a href=\"seriya-parma.html\"",
+   "n": 1,
+   "value": "page"
+  }
+ ],
+ "head": {
+  "title": "Каркасный дом «Парма» с террасой — проект и цена",
+  "description": "Серия «Парма»: один проект одноэтажного каркасного дома, площадь с террасой 103,3 м², цена от 3 822 100 ₽. Фото, планировка и цены. Строим в Москве и Московской области."
+ },
+ "seo": {
+  "type": "website",
+  "image": {
+   "src": "img/parma-10x8-fasad-1.webp",
+   "w": 1600,
+   "h": 1073
+  },
+  "ld": [
+   {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+     {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "{{base}}v2/"
+     },
+     {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Парма",
+      "item": "{{base}}v2/seriya-parma.html"
+     }
+    ]
+   },
+   {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "numberOfItems": 1,
+    "itemListElement": [
+     {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "{{base}}v2/proekt-parma-10x8.html",
+      "name": "Парма 10 × 8"
+     }
+    ]
+   }
+  ]
+ },
+ "fields": [
+  {
+   "text": "←",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "Все серии",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "Парма",
+   "label": "Заголовок",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Парма 10 × 8»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "103,3&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Парма 10 × 8",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 2–3 спальни · терраса 21,4&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "весь каталог",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "с баней внутри",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "до 60 кв. м",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "до 100 кв. м",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "от 100 кв. м",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "до 2 млн ₽",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "от 2 до 3 млн ₽",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "от 3 млн ₽",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "с 2 спальнями",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "с 3 спальнями",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "все планировки",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "что входит в цену",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "частые вопросы",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "статьи",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  }
+ ]
+}
