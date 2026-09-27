@@ -3,7 +3,8 @@
    цены пересчитываются по его формулам для размеров этого дома. Размеры домов и ставки
    по умолчанию — calc-live.json, его выгружает tools/prices_export.py.
    В HTML остаются цены последней выгрузки: если облако молчит или цена ушла больше
-   чем на 30 %, страница их не трогает. Формулы сверяет tools/check_live.py. */
+   чем на 30 %, страница их не трогает. Дома с ручной ценой из админки (manual) не пересчитываются.
+   Формулы сверяет сборщик админки (admin/build/prices.js). */
 (function (root) {
   var TIERS = ['tier:cold', 'tier:comfort', 'tier:premium'];
   var KEY = 'mtd_calc_rates_v1', TTL = 10 * 60 * 1000, JUMP = 0.3;
@@ -76,10 +77,13 @@
     }).catch(function () { clearTimeout(timer); return null; });
   }
 
+  /* дома с ручной ценой из админки (calc-live.json → manual): их цены не пересчитываем */
+  function manual(cfg, model) { return !!cfg.manual && cfg.manual.indexOf(model) >= 0; }
+
   function card(cfg, r) {
     var box = document.querySelector('[data-inc][data-model]');
     var g = box && cfg.models[box.getAttribute('data-model')];
-    if (!g) return;
+    if (!g || manual(cfg, box.getAttribute('data-model'))) return;
     var res = compute(g, r), heads = box.querySelectorAll('.inc-p');
     for (var i = 0; i < heads.length; i++) {
       if (!sane(num(heads[i].textContent), res.packages[i])) { console.warn('calc-live: цена ушла больше чем на 30 % — оставлены цены страницы'); return; }
@@ -104,9 +108,10 @@
 
   function tiles(cfg, r) {
     [].forEach.call(document.querySelectorAll('a.pcard[href^="proekt-"]'), function (a) {
-      var g = cfg.models[a.getAttribute('href').replace(/^proekt-/, '').replace(/\.html.*$/, '')];
+      var model = a.getAttribute('href').replace(/^proekt-/, '').replace(/\.html.*$/, '');
+      var g = cfg.models[model];
       var p = a.querySelector('.pcard__p');
-      if (!g || !p || !/^от/.test(p.textContent.trim())) return;
+      if (!g || !p || manual(cfg, model) || !/^от/.test(p.textContent.trim())) return;
       var v = compute(g, r).packages[0];
       if (sane(num(p.textContent), v)) put(p, 'от ' + rub(v));
     });
