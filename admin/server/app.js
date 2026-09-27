@@ -16,6 +16,11 @@ const sha = (s) => crypto.createHash("sha1").update(s).digest("hex");
 const nowIso = () => new Date().toISOString();
 const newId = () => Date.now().toString(36) + crypto.randomBytes(4).toString("hex");
 
+// Ошибки операций правки (нет поля, дом уже скрыт…) — это ответ человеку, а не сбой сервера.
+function applyOps(data, ops, ctx) {
+  try { return D.apply(data, ops, ctx); } catch (e) { throw new UserError(e.message); }
+}
+
 class UserError extends Error {
   constructor(message, extra) { super(message); this.user = true; Object.assign(this, extra || {}); }
 }
@@ -267,8 +272,8 @@ class App {
 
   // Предпросмотр: страница с применёнными правками (ничего не записывает).
   preview(ops, file) {
-    let next = ops && ops.length ? D.apply(this.data, ops, { calc: this.calc }).data : this.data;
-    const col = D.apply(next, [{ op: "collections" }], { calc: this.calc });
+    let next = ops && ops.length ? applyOps(this.data, ops, { calc: this.calc }).data : this.data;
+    const col = applyOps(next, [{ op: "collections" }], { calc: this.calc });
     if (col.inverse.length) next = col.data;
     const page = next.pages[file];
     if (!page) throw new UserError("Нет страницы " + file);
@@ -280,8 +285,8 @@ class App {
 
   // Сводка правки: какие страницы сайта изменятся.
   summary(ops) {
-    let { data: next } = D.apply(this.data, ops, { calc: this.calc });
-    const col = D.apply(next, [{ op: "collections" }], { calc: this.calc });
+    let { data: next } = applyOps(this.data, ops, { calc: this.calc });
+    const col = applyOps(next, [{ op: "collections" }], { calc: this.calc });
     if (col.inverse.length) next = col.data;
     const a = this.buildAll(this.data);
     const b = this.buildAll(next);
@@ -307,9 +312,9 @@ class App {
       if (dr.external.length && !force) {
         throw new UserError("Сайт изменён мимо админки: " + dr.external.map((f) => f.replace("v2/", "")).join(", ") + ". Сначала заберите эти правки в админку.", { code: "drift", files: dr.external });
       }
-      let { data: after, inverse } = D.apply(before, ops, { calc: this.calc });
+      let { data: after, inverse } = applyOps(before, ops, { calc: this.calc });
       // подборки по цене: дом сам переезжает между «до 2 млн / 2–3 / от 3 млн»
-      const col = D.apply(after, [{ op: "collections" }], { calc: this.calc });
+      const col = applyOps(after, [{ op: "collections" }], { calc: this.calc });
       if (col.inverse.length) { after = col.data; inverse = col.inverse.concat(inverse); }
       const moved = col.inverse.length ? col.inverse[0].collections : [];
       const v = this.validate(before, after, ops);
@@ -435,7 +440,7 @@ class App {
       }
     }
     // проверка до постановки в очередь: ошибки сразу видны автору
-    const { data: after } = D.apply(this.data, ops);
+    const { data: after } = applyOps(this.data, ops);
     const v = this.validate(this.data, after, ops);
     if (v.errors.length) throw new UserError(v.errors.join("\n"), { code: "invalid", errors: v.errors });
     const when = runAt ? new Date(runAt) : null;
@@ -526,7 +531,7 @@ class App {
     }
     if (!Object.keys(clean).length) throw new UserError("Нет изменений");
     if (runAt) return this.submit(user, { ops: [{ op: "rates", values: clean }], title: "Цены калькулятора", reason, runAt });
-    const v = this.validate(this.data, D.apply(this.data, [{ op: "rates", values: clean }]).data, [{ op: "rates", values: clean }]);
+    const v = this.validate(this.data, applyOps(this.data, [{ op: "rates", values: clean }]).data, [{ op: "rates", values: clean }]);
     if (v.errors.length) throw new UserError(v.errors.join("\n"));
     await this.cloud.update(clean);
     const entry = await this.publish({ ops: [{ op: "rates", values: clean }], title: "Цены калькулятора: " + Object.keys(clean).join(", "), reason, who: user.name, kind: "prices" });

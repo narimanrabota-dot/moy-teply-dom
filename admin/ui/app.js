@@ -30,7 +30,15 @@
   }
   function debounce(fn, ms) { var t; return function () { var a = arguments, s = this; clearTimeout(t); t = setTimeout(function () { fn.apply(s, a); }, ms); }; }
 
+  // число незавершённых запросов (window.__pending): по нему автотесты ждут, пока экран успокоится
+  window.__pending = 0;
   function api(method, path, body, raw) {
+    window.__pending++;
+    var settle = function (x) { window.__pending--; return x; };
+    var fail2 = function (e) { window.__pending--; throw e; };
+    return api0(method, path, body, raw).then(settle, fail2);
+  }
+  function api0(method, path, body, raw) {
     var headers = {};
     var tok = lsGet(TOKEN);
     if (tok) headers.Authorization = "Bearer " + tok;
@@ -161,7 +169,12 @@
       a.classList.toggle("on", k === r || (k !== "/" && r.indexOf(k) === 0) || (k === "/pages" && r.indexOf("/page/") === 0));
     });
   }
-  function main(html) { $("#view").innerHTML = html; window.scrollTo(0, 0); }
+  function main(html, file) {
+    var v = $("#view");
+    v.innerHTML = html;
+    if (file) v.setAttribute("data-file", file); else v.removeAttribute("data-file");
+    window.scrollTo(0, 0);
+  }
 
   // Строка вверху: кто в админке, я, статус сайта.
   function refreshStatus() {
@@ -289,7 +302,7 @@
         "<p class='small muted'>Одинаковые тексты на странице — одно поле: поправили здесь — поменялось во всех местах страницы. Оформление при этом не меняется.</p><div id='flds'></div></div>" +
         "<div class='bar'><span id='chg' class='muted'>Изменений нет</span><span style='flex:1'></span>" +
         "<button class='btn sec' id='pv'>Предпросмотр</button>" +
-        (readonly ? "" : isOwner() ? "<button class='btn sec' id='sch'>Запланировать…</button><button class='btn' id='pub'>Опубликовать</button>" : "<button class='btn' id='pub'>Отправить на проверку</button>") + "</div>");
+        (readonly ? "" : isOwner() ? "<button class='btn sec' id='sch'>Запланировать…</button><button class='btn' id='pub'>Опубликовать</button>" : "<button class='btn' id='pub'>Отправить на проверку</button>") + "</div>", file);
 
       $$("[data-house]").forEach(function (b) {
         b.addEventListener("click", function () {

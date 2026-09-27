@@ -25,23 +25,27 @@ function send(res, status, body, headers = {}) {
   res.end(buf);
 }
 
+// Тело запроса. Слишком большое — дочитываем впустую и отвечаем 413 (обрыв соединения браузер понял бы как «нет сети»).
 function readBody(req, limit) {
   return new Promise((resolve, reject) => {
     const chunks = [];
     let n = 0;
+    let over = false;
     req.on("data", (c) => {
       n += c.length;
-      if (n > limit) { reject(new UserError("Слишком большой запрос", { status: 413 })); req.destroy(); return; }
-      chunks.push(c);
+      if (n > limit) { over = true; chunks.length = 0; return; }
+      if (!over) chunks.push(c);
     });
-    req.on("end", () => resolve(Buffer.concat(chunks)));
+    req.on("end", () => (over ? reject(new UserError("Слишком большой запрос", { status: 413 })) : resolve(Buffer.concat(chunks))));
     req.on("error", reject);
   });
 }
 
+// Адрес посетителя. За прокси Render настоящий адрес — последний в X-Forwarded-For
+// (первые записи может подставить сам посетитель, чтобы обойти ограничение).
 function clientIp(req) {
-  const xf = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
-  return xf || req.socket.remoteAddress || "?";
+  const list = String(req.headers["x-forwarded-for"] || "").split(",").map((x) => x.trim()).filter(Boolean);
+  return list[list.length - 1] || req.socket.remoteAddress || "?";
 }
 
 // Группы страниц для списка в админке.

@@ -335,3 +335,4 @@ v2/kroshki-eskizy.html
 
 # админка: зависимости
 admin/node_modules/
+admin/test/results/
