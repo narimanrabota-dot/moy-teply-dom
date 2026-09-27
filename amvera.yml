@@ -1,0 +1,11 @@
+# Настройки Amvera: сборка по Dockerfile в корне этой ветки, приложение слушает порт 10000.
+meta:
+  environment: docker
+  toolchain:
+    name: docker
+    version: latest
+build:
+  dockerfile: Dockerfile
+  skip: false
+run:
+  containerPort: 10000
