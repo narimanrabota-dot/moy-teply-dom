@@ -68,6 +68,16 @@ class App {
     return fs.readFileSync(p, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
   }
   // исходные размеры домов (не файл сайта: его собирает админка) + размеры копий
+  // Журнал целиком с кэшем: перечитывается, только если файл изменился.
+  readJournal() {
+    const p = this.dataRepo.file("data/journal.jsonl");
+    if (!fs.existsSync(p)) return [];
+    const st = fs.statSync(p);
+    const key = st.size + ":" + st.mtimeMs;
+    if (!this._journal || this._journal.key !== key) this._journal = { key, list: this.readLines("data/journal.jsonl") };
+    return this._journal.list;
+  }
+
   liveCfg(data = this.data) {
     const cfg = D.clone(data.cfg);
     for (const [m, src] of Object.entries(data.models || {})) if (src && src.from && cfg.models[src.from]) cfg.models[m] = D.clone(cfg.models[src.from]);
@@ -146,6 +156,22 @@ class App {
     return { password };
   }
 
+  // Аварийный сброс пароля Владельца: настройка OWNER_RESET="логин:новый-пароль" на сервере.
+  // После входа настройку нужно удалить (иначе при каждом перезапуске пароль сбрасывается снова).
+  async emergencyReset(spec) {
+    const i = spec.indexOf(":");
+    const login = spec.slice(0, i).trim().toLowerCase();
+    const pass = spec.slice(i + 1);
+    const u = this.users[login];
+    if (!u || u.role !== "owner") throw new Error("OWNER_RESET: нет Владельца с логином " + login);
+    const problem = A.passwordProblem(pass);
+    if (problem) throw new Error("OWNER_RESET: " + problem);
+    if (A.checkPassword(u, pass)) return false;
+    await this.saveUsers((users) => { Object.assign(users[login], A.hashPassword(pass)); users[login].disabled = false; users[login].epoch = (users[login].epoch || 0) + 1; }, "Аварийный сброс пароля " + login, "Сервер");
+    await this.journal({ kind: "users", title: "Аварийный сброс пароля Владельца «" + u.name + "» (настройка сервера)", who: "Сервер" });
+    return true;
+  }
+
   async changePassword(user, oldPass, newPass) {
     if (!A.checkPassword(this.users[user.login], oldPass)) throw new UserError("Текущий пароль неверный");
     const problem = A.passwordProblem(newPass);
@@ -193,12 +219,12 @@ class App {
   }
 
   journalList({ limit = 50, before, kind, who, file } = {}) {
-    let list = this.readLines("data/journal.jsonl").reverse();
+    let list = this.readJournal().slice().reverse();
     if (kind) list = list.filter((e) => e.kind === kind);
     if (who) list = list.filter((e) => e.who === who || e.approvedBy === who);
     if (file) list = list.filter((e) => (e.files || []).includes(file));
     if (before) { const i = list.findIndex((e) => e.id === before); if (i >= 0) list = list.slice(i + 1); }
-    return list.slice(0, limit).map((e) => Object.assign({}, e, { siteHashes: undefined }));
+    return list.slice(0, limit).map((e) => Object.assign({}, e, { siteHashes: undefined, canRollback: !!(e.inverse || e.undo) }));
   }
 
   // ---------- проверка «сайт = данные» ----------
@@ -207,7 +233,7 @@ class App {
   // behind — на сайте старая версия админки (запись не дошла), её можно просто перезаписать.
   drift(data = this.data, built = this.buildAll(data)) {
     const known = new Map();
-    for (const e of this.readLines("data/journal.jsonl").slice(-200)) {
+    for (const e of this.readJournal().slice(-200)) {
       for (const [f, h] of Object.entries(e.siteHashes || {})) {
         if (!known.has(f)) known.set(f, new Set());
         known.get(f).add(h);
@@ -341,11 +367,14 @@ class App {
       const created = ops.filter((o) => o.op === "copy").map((o) => "proekt-" + o.slug + ".html");
       const entry = {
         id: newId(), at: nowIso(), kind, title: String(title || "Правка").slice(0, 200), reason: String(reason).slice(0, 500),
-        who, approvedBy: approvedBy || who, ops, inverse, files: [...new Set(ops.map((o) => o.file).filter(Boolean).concat(created))],
+        who, approvedBy: approvedBy || who, ops: lightOps(ops), inverse, files: [...new Set(ops.map((o) => o.file).filter(Boolean).concat(created))],
         siteFiles: Object.keys(siteFiles).map((f) => f.replace("v2/", "")), siteHashes,
       };
-      // 1) данные + запись журнала + убрать из очереди
+      // 1) данные + запись журнала + убрать из очереди.
+      // Тяжёлые данные для отката (копии страниц) — отдельным файлом, чтобы журнал оставался лёгким.
       const dataFiles = D.diffFiles(before, after);
+      const undoJson = JSON.stringify({ inverse });
+      if (undoJson.length > 8000) { dataFiles["data/undo/" + entry.id + ".json"] = undoJson; delete entry.inverse; entry.undo = true; }
       await this.dataRepo.commit(() => {
         const p = this.dataRepo.file("data/journal.jsonl");
         const old = fs.existsSync(p) ? fs.readFileSync(p, "utf8") : "";
@@ -504,7 +533,11 @@ class App {
   // Откат записи журнала: публикация обратных операций.
   async rollback(user, entryId, reason) {
     if (user.role !== "owner") throw new UserError("Откатывает только Владелец");
-    const e = this.readLines("data/journal.jsonl").find((x) => x.id === entryId);
+    const e = this.readJournal().find((x) => x.id === entryId);
+    if (e && e.undo) {
+      const p = this.dataRepo.file("data/undo/" + e.id + ".json");
+      if (fs.existsSync(p)) e.inverse = JSON.parse(fs.readFileSync(p, "utf8")).inverse;
+    }
     if (!e || !e.inverse) throw new UserError("Эту запись нельзя откатить");
     // цены калькулятора возвращаем и в облако
     const rateOp = e.inverse.find((o) => o.op === "ratesSet");
@@ -622,8 +655,12 @@ class App {
   // Загруженные, но ещё не опубликованные фото лежат в репозитории данных (uploads/).
   async stageUploads(user, files) {
     const out = {};
+    // фото с таким именем уже есть на сайте — не перезаписываем (его могут использовать другие страницы)
+    const existing = await this.mutex.run(() => require("./git").run(this.siteRepo.dir, ["ls-tree", "--name-only", "HEAD", "img/"]).catch(() => ""));
+    const have = new Set(existing.split("\n"));
     for (const [name, buf] of Object.entries(files)) {
       if (!/^[a-z0-9-]+(-960|-th)?\.webp$/.test(name)) throw new UserError("Недопустимое имя файла " + name);
+      if (have.has("img/" + name)) throw new UserError("Фото с именем " + name + " уже есть на сайте — выберите другое имя");
       out["uploads/" + name] = buf;
     }
     await this.mutex.run(() => this.dataRepo.commit(out, "Фото загружены: " + Object.keys(files).join(", "), user.name));
@@ -717,6 +754,10 @@ function conflicts(data, expect) {
     else if (x.model) { if (JSON.stringify(data.prices.manual[x.model] || null) !== JSON.stringify(x.value)) bad.push(x.what); }
   }
   return bad;
+}
+// Операции для журнала без тяжёлых частей (HTML страницы при заборе правок).
+function lightOps(ops) {
+  return ops.map((o) => (o.op === "import" ? { op: "import", file: o.file } : o));
 }
 function pickNumbers(rates, keys) {
   const out = {};

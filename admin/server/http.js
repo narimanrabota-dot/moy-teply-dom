@@ -158,7 +158,7 @@ function createServer(app, opts = {}) {
   route("POST", /^\/api\/queue\/([a-z0-9]+)\/withdraw$/, async ({ user, m }) => { await app.withdraw(user, m[1]); return { ok: true }; });
 
   // ---------- журнал ----------
-  route("GET", /^\/api\/journal$/, async ({ query }) => app.journalList({ limit: Math.min(+query.limit || 50, 200), before: query.before, kind: query.kind, who: query.who, file: query.file }).map((e) => Object.assign({}, e, { changes: e.ops ? describeOps(app, e.ops, e.inverse) : undefined, ops: undefined, inverse: undefined, canRollback: !!e.inverse })));
+  route("GET", /^\/api\/journal$/, async ({ query }) => app.journalList({ limit: Math.min(+query.limit || 50, 200), before: query.before, kind: query.kind, who: query.who, file: query.file }).map((e) => Object.assign({}, e, { changes: e.ops ? describeOps(app, e.ops, e.inverse) : undefined, ops: undefined, inverse: undefined })));
   route("POST", /^\/api\/rollback$/, async ({ user, body }) => app.rollback(user, body.id, body.reason), { owner: true });
 
   // ---------- сайт мимо админки ----------

@@ -11,6 +11,7 @@
 //   CALC_FAKE=1       тестовый режим: цены калькулятора имитируются, настоящие не трогаются
 //   PUBLIC_URL        адрес этого сервера (для приёма заявок), например https://moy-teply-dom-admin.onrender.com
 //   WORK_DIR          где держать копии репозиториев (по умолчанию /tmp/mtd-admin)
+//   OWNER_RESET       аварийно: «логин:новый-пароль» Владельца; после входа — удалить
 "use strict";
 const path = require("path");
 const { App } = require("./app");
@@ -42,6 +43,10 @@ async function main() {
     cloud: fake ? null : new CalcCloud({ url: env("CALC_URL"), key: env("CALC_KEY"), pin: env("CALC_PIN", "") }),
   });
   await app.start();
+  if (process.env.OWNER_RESET) {
+    const done = await app.emergencyReset(process.env.OWNER_RESET);
+    app.log(done ? "пароль Владельца сброшен по OWNER_RESET — удалите эту настройку" : "OWNER_RESET: пароль уже такой — удалите эту настройку");
+  }
   if (fake) app.cloud = new FakeCloud(app.data.rates || {});
   const port = +env("PORT", "10000");
   const server = createServer(app, { publicUrl: env("PUBLIC_URL", "") });
