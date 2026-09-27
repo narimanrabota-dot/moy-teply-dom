@@ -6,7 +6,11 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
-const tpl = (name) => fs.readFileSync(path.join(ROOT, "templates", name), "utf8");
+// Шаблоны общих частей: { header, footer, callback } из папки templates.
+function loadTemplates(root = ROOT) {
+  const t = (name) => fs.readFileSync(path.join(root, "templates", name + ".html"), "utf8");
+  return { header: t("header"), footer: t("footer"), callback: t("callback") };
+}
 
 // Границы общих частей в готовой странице.
 const REGIONS = {
@@ -64,37 +68,25 @@ function applyCurrent(html, marks) {
   return out;
 }
 
-function renderHeader(site, page) {
+function renderHeader(site, page, T) {
   const vars = Object.assign(siteVars(site), {
     logoHref: page.logoHref ?? "./",
     home: page.home ?? "./",
   });
-  return applyCurrent(fill(tpl("header.html"), vars), page.current);
+  return applyCurrent(fill(T.header, vars), page.current);
 }
 
-function renderFooter(site, page) {
+function renderFooter(site, page, T) {
   const vars = Object.assign(siteVars(site), { home: page.footerHome ?? "./" });
-  let html = fill(tpl("footer.html"), vars);
+  let html = fill(T.footer, vars);
   for (const href of page.footerHide || []) {
     html = html.replace(new RegExp('\\n *<a class="ft__ln" href="' + href.replace(/\./g, "\\.") + '">[^<]*</a>'), "");
   }
   return html;
 }
 
-function renderCallback() {
-  return tpl("callback.html");
+function renderCallback(T) {
+  return T.callback;
 }
 
-// Подставляет общие части в страницу. Остальное содержимое не трогается.
-function applyShell(html, site, page) {
-  const render = { header: () => renderHeader(site, page), footer: () => renderFooter(site, page), callback: renderCallback };
-  let out = html;
-  for (const name of Object.keys(REGIONS)) {
-    const loc = locate(out, name);
-    if (!loc) continue;
-    out = out.slice(0, loc.from) + render[name]() + out.slice(loc.to);
-  }
-  return out;
-}
-
-module.exports = { REGIONS, locate, applyShell, renderHeader, renderFooter, renderCallback };
+module.exports = { REGIONS, locate, loadTemplates, renderHeader, renderFooter, renderCallback };

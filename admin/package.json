@@ -1,0 +1,15 @@
+{
+  "name": "moy-teply-dom-admin",
+  "private": true,
+  "description": "Админ кабинет сайта «Мой тёплый дом»",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "check": "node build/check.js",
+    "test": "node test/run.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "sharp": "^0.34.0"
+  }
+}

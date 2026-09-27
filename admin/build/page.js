@@ -32,9 +32,9 @@ function split(html) {
 function build(ctx, file, page, skeleton) {
   let s = content.fill(skeleton, page.fields || []);
   const put = (mark, text) => { if (s.includes(mark)) s = s.split(mark).join(text); };
-  put(MARK.header, shell.renderHeader(ctx.site, page));
-  put(MARK.footer, shell.renderFooter(ctx.site, page));
-  put(MARK.callback, shell.renderCallback());
+  put(MARK.header, shell.renderHeader(ctx.site, page, ctx.T));
+  put(MARK.footer, shell.renderFooter(ctx.site, page, ctx.T));
+  put(MARK.callback, shell.renderCallback(ctx.T));
   if (page.head) put(MARK.head, seo.renderHead(page.head));
   if (page.seo) put(MARK.seo, seo.renderSeo(ctx.site, file, page.seo, page.head));
   const left = s.match(/⟦[^⟧]*⟧/);
@@ -49,6 +49,7 @@ function store(root) {
   return {
     root,
     site: () => readJson(dir("data", "site.json")),
+    templates: () => shell.loadTemplates(root),
     pageList: () => fs.readdirSync(dir("data", "pages")).filter((f) => f.endsWith(".json")).map((f) => f.slice(0, -5)).sort(),
     page: (file) => readJson(dir("data", "pages", file + ".json")),
     skeleton: (file) => fs.readFileSync(dir("skeletons", file), "utf8"),

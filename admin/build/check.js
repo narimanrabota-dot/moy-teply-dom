@@ -11,7 +11,7 @@ const ROOT = path.join(__dirname, "..");
 const SITE = process.argv[2] || path.join(ROOT, "..", "v2");
 const st = store(ROOT);
 const cfg = JSON.parse(fs.readFileSync(path.join(SITE, "calc-live.json"), "utf8"));
-const ctx = { site: st.site(), prices: P.pricesFor(P.loadCalc(SITE), cfg, cfg.defaults) };
+const ctx = { site: st.site(), T: st.templates(), prices: P.pricesFor(P.loadCalc(SITE), cfg, cfg.defaults) };
 
 let ok = 0;
 const bad = [];
