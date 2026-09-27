@@ -22,7 +22,8 @@ module.exports = {
         const sv = await st.owner("POST", "/api/integrations", body);
         if (body.webhooks[0] && body.webhooks[0].url.startsWith("http:") ? sv.status !== 400 : sv.status !== 200 && !/нужны адрес, ключ/.test(sv.json.error || "")) ctx.problem("сохранение интеграций: " + sv.status + " " + JSON.stringify(sv.json).slice(0, 150));
         // токен и секреты не хранятся открыто и не отдаются экрану
-        const raw = fs.readFileSync(st.app.dataRepo.file("data/integrations.json"), "utf8");
+        const f = st.app.dataRepo.file("data/integrations.json");
+        const raw = fs.existsSync(f) ? fs.readFileSync(f, "utf8") : ""; // настроек ещё нет, если первое сохранение было отклонено
         if (raw.includes("good-token")) ctx.problem("токен amoCRM хранится открытым текстом");
         const pub = await st.owner("GET", "/api/integrations");
         if (JSON.stringify(pub.json).includes("good-token") || JSON.stringify(pub.json).includes('"secret"')) ctx.problem("экрану отдан токен или секрет");
