@@ -54,10 +54,17 @@ function pageGroup(file) {
   return "Основные страницы";
 }
 
+// Имя страницы для списка: у домов — название дома (заголовок на странице), у остальных — заголовок.
+function pageName(p, file) {
+  const h1 = (p.fields || []).find((f) => f.label === "Название");
+  if (h1) return content.toPlain(h1.text);
+  return p.head ? content.toPlain(p.head.title).replace(/\s*[·|—]\s*Мой тёплый дом$/, "") : file;
+}
+
 // Фото на странице: базовые имена файлов из скелета.
 function pageImages(skeleton) {
   const set = new Map();
-  for (const m of skeleton.matchAll(/\.\.\/img\/([a-z0-9-]+?)(-960|-th|-3d-th|-3d)?\.webp/g)) {
+  for (const m of skeleton.matchAll(/\.\.\/img\/([a-z0-9-]+?)(-960|-th)?\.webp/g)) {
     if (!set.has(m[1])) set.set(m[1], true);
   }
   return [...set.keys()];
@@ -98,7 +105,7 @@ function createServer(app, opts = {}) {
 
   // ---------- страницы ----------
   route("GET", /^\/api\/pages$/, async () => Object.entries(app.data.pages).map(([file, p]) => ({
-    file, title: p.head ? content.toPlain(p.head.title) : file, group: pageGroup(file), fields: (p.fields || []).length,
+    file, title: pageName(p, file), seoTitle: p.head ? content.toPlain(p.head.title) : "", group: pageGroup(file), fields: (p.fields || []).length,
     lockedBy: app.locks.get(file) && Date.now() - app.locks.get(file).at < 30 * 60e3 ? app.locks.get(file).name : null,
   })).sort((a, b) => a.group.localeCompare(b.group) || a.title.localeCompare(b.title)));
 
@@ -313,7 +320,7 @@ function normalizeOps(app, ops) {
       return { op: "site", key: op.key, value: v };
     }
     // операции, которые экран не должен присылать напрямую
-    if (["import", "restorePage", "ratesSet"].includes(op.op)) throw new UserError("Недопустимая правка");
+    if (["import", "restorePage", "ratesSet", "skeleton"].includes(op.op)) throw new UserError("Недопустимая правка");
     return op;
   });
 }

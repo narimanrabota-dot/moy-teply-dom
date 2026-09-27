@@ -409,7 +409,10 @@ class App {
     const when = runAt ? new Date(runAt) : null;
     if (when && (isNaN(when) || when.getTime() < Date.now() - 60000)) throw new UserError("Время публикации — в будущем");
     if (user.role === "owner" && !when) {
-      const e = await this.publish({ ops, title, reason, who: user.name, uploadNames: uploads });
+      // ставки калькулятора сначала меняем в облаке — калькулятор менеджеров увидит их сразу
+      const rateOp = ops.find((o) => o.op === "rates");
+      if (rateOp) await this.cloud.update(rateOp.values);
+      const e = await this.publish({ ops, title, reason, who: user.name, uploadNames: uploads, kind: rateOp || ops.some((o) => o.op === "manualPrice") ? "prices" : "content" });
       return { published: true, entry: e, warnings: v.warnings };
     }
     const item = {

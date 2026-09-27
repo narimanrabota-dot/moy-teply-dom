@@ -8,6 +8,8 @@ const shell = require("../build/shell");
 const P = require("../build/prices");
 
 const clone = (o) => JSON.parse(JSON.stringify(o));
+const escRe = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const sha1 = (s) => require("crypto").createHash("sha1").update(s).digest("hex");
 
 // Ключи ставок, которые использует сайт (calc-live.json defaults).
 function load(dir) {
@@ -104,13 +106,35 @@ const OPS = {
   image(data, op) {
     const sk = data.skeletons[op.file];
     if (sk == null) throw new Error("Нет страницы " + op.file);
-    const re = new RegExp("(\\.\\./img/)" + op.from.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "(-960|-th|-3d|-3d-th)?(\\.webp)(\\?v=[0-9a-f]+)?", "g");
-    let n = 0;
-    data.skeletons[op.file] = sk.replace(re, (m, a, suf, ext) => { n++; return a + op.to + (suf || "") + ext; });
-    if (!n) throw new Error("Фото " + op.from + " не найдено на странице " + op.file);
     const page = data.pages[op.file];
-    if (page.seo && page.seo.image && page.seo.image.src === "img/" + op.from + ".webp") page.seo.image.src = "img/" + op.to + ".webp";
-    return { op: "image", file: op.file, from: op.to, to: op.from };
+    const before = { skeleton: sk, seoImage: page.seo ? clone(page.seo.image) : null };
+    const re = new RegExp("(\\.\\./img/)" + escRe(op.from) + "(-960|-th)?(\\.webp)(\\?v=[0-9a-f]+)?", "g");
+    let n = 0;
+    let next = sk.replace(re, (m, a, suf, ext) => { n++; return a + op.to + (suf || "") + ext; });
+    if (!n) throw new Error("Фото " + op.from + " не найдено на странице " + op.file);
+    // размеры нового фото: при другом соотношении сторон иначе исказится раскладка
+    if (op.w && op.h) {
+      const src = "../img/" + op.to + ".webp";
+      next = next.replace(/<img [^>]*>/g, (tag) => tag.includes('src="' + src + '"') ? tag.replace(/ width="\d+" height="\d+"/, ' width="' + op.w + '" height="' + op.h + '"') : tag)
+        .replace(new RegExp('(href="' + escRe(src) + '" data-w=")\\d+(" data-h=")\\d+"', "g"), "$1" + op.w + "$2" + op.h + '"');
+    }
+    data.skeletons[op.file] = next;
+    if (page.seo && page.seo.image && page.seo.image.src === "img/" + op.from + ".webp") {
+      page.seo.image.src = "img/" + op.to + ".webp";
+      if (op.w && op.h) { page.seo.image.w = op.w; page.seo.image.h = op.h; }
+    }
+    return { op: "skeleton", file: op.file, skeleton: before.skeleton, seoImage: before.seoImage, expect: sha1(next) };
+  },
+  // возврат разметки страницы (откат замены фото); если фото на странице меняли позже — стоп
+  skeleton(data, op) {
+    const cur = data.skeletons[op.file];
+    if (cur == null) throw new Error("Нет страницы " + op.file);
+    if (op.expect && sha1(cur) !== op.expect) throw new Error("Фото на странице " + op.file + " меняли позже — сначала откатите более поздние правки фото");
+    const page = data.pages[op.file];
+    const inv = { op: "skeleton", file: op.file, skeleton: cur, seoImage: page.seo ? clone(page.seo.image) : null, expect: sha1(op.skeleton) };
+    data.skeletons[op.file] = op.skeleton;
+    if (page.seo && op.seoImage) page.seo.image = clone(op.seoImage);
+    return inv;
   },
   // ручная цена дома: [холодный, комфорт, премиум] или null — считать калькулятором
   manualPrice(data, op) {

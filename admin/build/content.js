@@ -19,6 +19,10 @@ const LABELS = {
   "pln__nm": "План: название", "pln__h": "План: заголовок", "inc-n": "Комплектация", "live__t": "Живые фото",
 };
 
+// Общие подписи уступают конкретным («Название» важнее «Хлебных крошек»).
+const WEAK = { "Текст": 0, "Кнопка или ссылка": 1, "Хлебные крошки": 1, "Пункт списка": 2, "Абзац": 2, "Заголовок": 3 };
+function rank(label) { return label in WEAK ? WEAK[label] : 10; }
+
 function labelFor(stack) {
   for (let i = stack.length - 1; i >= 0; i--) {
     const cls = stack[i].cls;
@@ -43,6 +47,10 @@ function extract(html, fields = [], index = new Map()) {
     if (!index.has(key)) {
       index.set(key, fields.length);
       fields.push({ text: raw, label, kind });
+    } else {
+      // одинаковый текст в нескольких местах: подпись поля — по самому важному месту
+      const f = fields[index.get(key)];
+      if (rank(label) > rank(f.label)) f.label = label;
     }
     return SLOT(index.get(key));
   };
