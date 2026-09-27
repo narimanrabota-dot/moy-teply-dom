@@ -26,6 +26,7 @@ function copyDir(from, to, filter = () => true) {
 function makeOrigins(base) {
   const siteWork = path.join(base, "site-init");
   copyDir(path.join(SITE, "v2"), path.join(siteWork, "v2"), (p) => !/\.(pdf|mp4)$/.test(p));
+  fs.copyFileSync(path.join(SITE, "sitemap.xml"), path.join(siteWork, "sitemap.xml"));
   fs.mkdirSync(path.join(siteWork, "img"), { recursive: true });
   fs.writeFileSync(path.join(siteWork, "img", ".keep"), "");
   git(siteWork, "init", "-q", "-b", "main");

@@ -46,7 +46,8 @@ function renderSeo(site, file, seo, head) {
 
 // Заголовок и описание в <head> (они же — по умолчанию для соцсетей).
 function renderHead(head) {
-  return "<title>" + head.title + '</title>\n<meta name="description" content="' + esc(head.description) + '">\n';
+  return "<title>" + head.title + '</title>\n<meta name="description" content="' + esc(head.description) + '">\n' +
+    (head.noindex ? '<meta name="robots" content="noindex,follow">\n' : "");
 }
 
 function locateSeo(html) {

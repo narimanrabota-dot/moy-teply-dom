@@ -243,7 +243,7 @@
         var order = ["Дома", "Серии", "Подборки", "Основные страницы", "Как строим", "Статьи"];
         $("#pl").innerHTML = order.filter(function (g) { return groups[g]; }).map(function (g) {
           return "<div class='card'><h2 style='margin-top:0'>" + esc(g) + " <span class='muted small'>" + groups[g].length + "</span></h2><ul class='list'>" + groups[g].map(function (p) {
-            return "<li class='row between'><a href='#/page/" + encodeURIComponent(p.file) + "'>" + esc(p.title) + "</a><span class='small muted'>" + (p.lockedBy ? "<span class='pill warn'>правит " + esc(p.lockedBy) + "</span> " : "") + esc(p.file) + "</span></li>";
+            return "<li class='row between'><span><a href='#/page/" + encodeURIComponent(p.file) + "'>" + esc(p.title) + "</a>" + (p.hidden ? " <span class='pill warn'>скрыт</span>" : "") + (p.copyOf ? " <span class='pill'>копия</span>" : "") + "</span><span class='small muted'>" + (p.lockedBy ? "<span class='pill warn'>правит " + esc(p.lockedBy) + "</span> " : "") + esc(p.file) + "</span></li>";
           }).join("") + "</ul></div>";
         }).join("") || "<p class='muted'>Ничего не найдено</p>";
       }
@@ -276,6 +276,9 @@
 
       main("<div class='row between'><h1 style='margin:0'>" + esc(p.head ? p.head.title : file) + "</h1><a class='btn sec sm' target='_blank' rel='noopener' href='" + esc(p.siteUrl) + "'>Открыть на сайте ↗</a></div>" +
         "<p class='muted small'>" + esc(p.group) + " · " + esc(file) + "</p>" +
+        (p.hidden ? "<div class='note warn'><b>Дом скрыт:</b> его нет в каталоге, подборках и поиске, страница открывается только по прямой ссылке." + (p.copyOf ? " Это копия — заполните её и нажмите «Показать на сайте»." : "") + "</div>" : "") +
+        (p.model && !readonly ? "<div class='row' style='margin-bottom:14px'>" + (p.hidden ? "<button class='btn sec sm' data-house='show'>Показать на сайте</button>" : "<button class='btn sec sm' data-house='hide'>Скрыть дом с сайта</button>") +
+          "<button class='btn sec sm' data-house='copy'>Скопировать дом</button>" + (p.canDelete ? "<button class='btn danger sm' data-house='delete'>Удалить копию</button>" : "") + "</div>" : "") +
         (readonly ? "<div class='note warn'>Страницу сейчас правит <b>" + esc(lock.by) + "</b>. Можно только смотреть." + (isOwner() ? " <button class='btn sm' id='take'>Забрать страницу</button>" : "") + "</div>" : "") +
         (saved && !readonly && Object.keys(edits.fields).length ? "<div class='note info'>Восстановлен ваш черновик с прошлого раза. <button class='btn sec sm' id='dropdraft'>Удалить черновик</button></div>" : "") +
         (p.head ? "<div class='card'><h2 style='margin-top:0'>Для поисковиков</h2>" +
@@ -288,6 +291,36 @@
         "<button class='btn sec' id='pv'>Предпросмотр</button>" +
         (readonly ? "" : isOwner() ? "<button class='btn sec' id='sch'>Запланировать…</button><button class='btn' id='pub'>Опубликовать</button>" : "<button class='btn' id='pub'>Отправить на проверку</button>") + "</div>");
 
+      $$("[data-house]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var act = b.getAttribute("data-house");
+          if (act === "copy") {
+            dialog("<h2 style='margin-top:0'>Скопировать дом</h2><p class='small muted'>Появится новая страница с теми же текстами и фото. Она будет скрыта, пока вы её не заполните и не покажете.</p>" +
+              "<label class='f'><span>Адрес новой страницы (латиница): proekt-…html</span><input class='inp' name='slug' required placeholder='siena-144x7-3' autocapitalize='off' spellcheck='false'></label>", "Дальше", {
+              validate: function (d) { return /^[a-z0-9]+(-[a-z0-9]+)*$/.test(d.slug) ? null : "Только латиница, цифры и дефисы"; },
+            }).then(function (d) {
+              if (!d) return;
+              houseAction([{ op: "copy", from: file, slug: d.slug }], "Копия дома", "#/page/proekt-" + d.slug + ".html");
+            });
+            return;
+          }
+          var ops = act === "delete" ? [{ op: "deletePage", file: file, model: p.model }] : [{ op: act, file: file }];
+          houseAction(ops, { hide: "Дом скрыт", show: "Дом показан", "delete": "Копия удалена" }[act], act === "delete" ? "#/pages" : null);
+        });
+      });
+      function houseAction(list, title, go) {
+        api("POST", "/api/summary", { ops: list }).then(function (s) {
+          var extra = "<p class='small muted'>Изменятся страницы сайта: " + s.files.length + "</p>" + (s.warnings.length ? "<div class='note warn small'>" + s.warnings.map(esc).join("<br>") + "</div>" : "");
+          if (s.errors.length) return dialog("<div class='note err'>" + s.errors.map(esc).join("<br>") + "</div>", "Понятно", { noCancel: true });
+          return askReason(title, extra).then(function (d) {
+            if (!d) return;
+            return api("POST", "/api/submit", { ops: list, title: title, reason: d.reason }).then(function (r) {
+              toast(r.published ? "Готово. На сайте через 1–2 минуты." : "Отправлено на проверку");
+              if (r.published && go) location.hash = go; else render();
+            });
+          });
+        }).catch(fail);
+      }
       if ($("#take")) $("#take").addEventListener("click", function () { api("POST", "/api/lock", { file: file, take: true }).then(function () { render(); }).catch(fail); });
       if ($("#dropdraft")) $("#dropdraft").addEventListener("click", function () { lsSet(draftKey, null); render(); });
 

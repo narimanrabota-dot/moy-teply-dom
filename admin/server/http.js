@@ -105,7 +105,7 @@ function createServer(app, opts = {}) {
 
   // ---------- страницы ----------
   route("GET", /^\/api\/pages$/, async () => Object.entries(app.data.pages).map(([file, p]) => ({
-    file, title: pageName(p, file), seoTitle: p.head ? content.toPlain(p.head.title) : "", group: pageGroup(file), fields: (p.fields || []).length,
+    file, title: pageName(p, file), seoTitle: p.head ? content.toPlain(p.head.title) : "", group: pageGroup(file), fields: (p.fields || []).length, hidden: !!p.hidden, copyOf: p.copyOf || null,
     lockedBy: app.locks.get(file) && Date.now() - app.locks.get(file).at < 30 * 60e3 ? app.locks.get(file).name : null,
   })).sort((a, b) => a.group.localeCompare(b.group) || a.title.localeCompare(b.title)));
 
@@ -122,6 +122,7 @@ function createServer(app, opts = {}) {
       fields: (p.fields || []).map((f, i) => ({ i, label: f.label, kind: f.kind, text: content.toPlain(f.text) })),
       images: pageImages(app.data.skeletons[file]),
       model: (app.data.skeletons[file].match(/data-model="([^"]+)"/) || [])[1] || null,
+      hidden: !!p.hidden, copyOf: p.copyOf || null, canDelete: !!(p.copyOf && p.hidden && !p.shownOnce),
       lockedBy: app.locks.get(file) && app.locks.get(file).login !== undefined ? app.locks.get(file).name : null,
       siteUrl: app.data.site.baseUrl + "v2/" + (file === "index.html" ? "" : file),
     };
@@ -320,7 +321,7 @@ function normalizeOps(app, ops) {
       return { op: "site", key: op.key, value: v };
     }
     // операции, которые экран не должен присылать напрямую
-    if (["import", "restorePage", "ratesSet", "skeleton"].includes(op.op)) throw new UserError("Недопустимая правка");
+    if (["import", "restorePage", "ratesSet", "skeleton", "restoreState", "undelete"].includes(op.op)) throw new UserError("Недопустимая правка");
     return op;
   });
 }
@@ -346,6 +347,10 @@ function describeOps(app, ops, inverse) {
       case "rates": return { where: "Цены калькулятора", what: Object.keys(op.values).map((k) => (labels.RATES[k] || k) + ": " + op.values[k]).join("; ") };
       case "ratesSet": return { where: "Цены калькулятора", what: "приведены к калькулятору" };
       case "import": return { where: title, what: "Страница забрана с сайта" };
+      case "hide": return { where: title, what: "Дом скрыт с сайта (страница — только по прямой ссылке)" };
+      case "show": return { where: title, what: "Дом снова показан на сайте" };
+      case "copy": return { where: "Новый дом proekt-" + op.slug + ".html", what: "Копия дома «" + (app.data.pages[op.from] ? pageName(app.data.pages[op.from], op.from) : op.from) + "»" };
+      case "deletePage": return { where: title, what: "Копия удалена" };
       case "restorePage": return { where: title, what: "Страница восстановлена" };
       default: return { where: "", what: op.op };
     }

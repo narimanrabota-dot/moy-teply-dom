@@ -1,0 +1,1094 @@
+[
+ {
+  "path": "v2/",
+  "lastmod": "2026-09-26",
+  "priority": "1.0",
+  "images": [
+   "img/serii-stambul.webp",
+   "img/serii-siena.webp",
+   "img/serii-vladivostok.webp",
+   "img/serii-parma.webp",
+   "img/serii-sochi.webp",
+   "img/stambul-9h8-fasad-1-th.webp",
+   "img/stambul-7h75-fasad-1-th.webp",
+   "img/stambul-75h6-fasad-1-th.webp",
+   "img/stambul-75h6-2-fasad-1-th.webp",
+   "img/stambul-9h7-fasad-1-th.webp",
+   "img/stambul-95h8-fasad-1-th.webp",
+   "img/stambul-115h7-fasad-1-th.webp",
+   "img/stambul-11h7-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp",
+   "img/stambul-12h8-fasad-1-th.webp",
+   "img/stambul-11h8-fasad-5-th.webp",
+   "img/sochi-9x75-fasad-1-th.webp",
+   "img/sochi-105x9-fasad-1-th.webp",
+   "img/siena-155x85-2-fasad-1-th.webp",
+   "img/siena-144x7-fasad-1-th.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/siena-13x85-2-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp",
+   "img/siena-12x82-fasad-1-th.webp",
+   "img/vladik-12x7-fasad-1-th.webp",
+   "img/vladik-10x8-fasad-2-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp",
+   "img/vladik-115x8-2-fasad-1-th.webp",
+   "img/parma-10x8-fasad-1-th.webp",
+   "img/otzyv-klienta-8-cover-v2.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-parma-10x8.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/parma-10x8-fasad-1.webp",
+   "img/parma-10x8-fasad-2.webp",
+   "img/parma-10x8-fasad-3.webp",
+   "img/parma-10x8-fasad-4.webp",
+   "img/parma-10x8-fasad-5.webp",
+   "img/parma-10x8-fasad-6.webp",
+   "img/parma-10x8-interer-1.webp",
+   "img/parma-10x8-interer-2.webp",
+   "img/parma-10x8-plan-1.webp",
+   "img/parma-10x8-plan-1-3d.webp",
+   "img/parma-10x8-plan-2.webp",
+   "img/parma-10x8-plan-2-3d.webp",
+   "img/parma-10x8-plan-3.webp",
+   "img/parma-10x8-plan-3-3d.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/siena-144x7-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-siena-125x82.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/siena-125x82-fasad-1.webp",
+   "img/siena-125x82-fasad-2.webp",
+   "img/siena-125x82-fasad-3.webp",
+   "img/siena-125x82-fasad-4.webp",
+   "img/siena-125x82-plan-1.webp",
+   "img/siena-125x82-plan-1-3d.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/siena-144x7-fasad-1-th.webp",
+   "img/siena-12x82-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-siena-12x82.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/siena-12x82-fasad-1.webp",
+   "img/siena-12x82-fasad-2.webp",
+   "img/siena-12x82-fasad-3.webp",
+   "img/siena-12x82-fasad-4.webp",
+   "img/siena-12x82-interer-1.webp",
+   "img/siena-12x82-interer-2.webp",
+   "img/siena-12x82-plan-1.webp",
+   "img/siena-12x82-plan-1-3d.webp",
+   "img/siena-144x7-fasad-1-th.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-siena-13x85.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/siena-13x85-2-fasad-1.webp",
+   "img/siena-13x85-2-fasad-2.webp",
+   "img/siena-13x85-2-fasad-3.webp",
+   "img/siena-13x85-2-interer-1.webp",
+   "img/siena-13x85-2-interer-2.webp",
+   "img/siena-13x85-2-plan-1.webp",
+   "img/siena-13x85-2-plan-1-3d.webp",
+   "img/siena-125x82-fasad-1-th.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/siena-144x7-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-siena-144x7-2.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/siena-144x7-2-fasad-1.webp",
+   "img/siena-144x7-2-fasad-2.webp",
+   "img/siena-144x7-2-fasad-3.webp",
+   "img/siena-144x7-2-fasad-4.webp",
+   "img/siena-144x7-2-plan-1.webp",
+   "img/siena-144x7-2-plan-1-3d.webp",
+   "img/siena-144x7-2-plan-2.webp",
+   "img/siena-144x7-2-plan-2-3d.webp",
+   "img/siena-144x7-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp",
+   "img/siena-12x82-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-siena-144x7.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/siena-144x7-fasad-1.webp",
+   "img/siena-144x7-fasad-2.webp",
+   "img/siena-144x7-fasad-3.webp",
+   "img/siena-144x7-fasad-4.webp",
+   "img/siena-144x7-interer-1.webp",
+   "img/siena-144x7-plan-1.webp",
+   "img/siena-144x7-plan-1-3d.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/siena-12x82-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-siena-155x85.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/siena-155x85-2-fasad-1.webp",
+   "img/siena-155x85-2-fasad-2.webp",
+   "img/siena-155x85-2-fasad-3.webp",
+   "img/siena-155x85-2-fasad-4.webp",
+   "img/siena-155x85-2-plan-1.webp",
+   "img/siena-155x85-2-plan-1-3d.webp",
+   "img/siena-13x85-2-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp",
+   "img/siena-144x7-2-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-sochi-105x9.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/sochi-105x9-fasad-1.webp",
+   "img/sochi-105x9-fasad-2.webp",
+   "img/sochi-105x9-fasad-3.webp",
+   "img/sochi-105x9-fasad-4.webp",
+   "img/sochi-105x9-interer-1.webp",
+   "img/sochi-105x9-plan-1.webp",
+   "img/sochi-105x9-plan-1-3d.webp",
+   "img/sochi-105x9-plan-2.webp",
+   "img/sochi-105x9-plan-2-3d.webp",
+   "img/sochi-9x75-fasad-1-th.webp",
+   "img/vladik-10x8-fasad-2-th.webp",
+   "img/stambul-11h8-fasad-5-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-sochi-9x75.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/sochi-9x75-fasad-1.webp",
+   "img/sochi-9x75-fasad-2.webp",
+   "img/sochi-9x75-fasad-3.webp",
+   "img/sochi-9x75-fasad-4.webp",
+   "img/sochi-9x75-interer-1.webp",
+   "img/sochi-9x75-interer-2.webp",
+   "img/sochi-9x75-plan-1.webp",
+   "img/sochi-9x75-plan-1-3d.webp",
+   "img/sochi-9x75-plan-2.webp",
+   "img/sochi-9x75-plan-2-3d.webp",
+   "img/sochi-105x9-fasad-1-th.webp",
+   "img/stambul-9h8-fasad-1-th.webp",
+   "img/stambul-9h7-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-stambul-115x7.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/stambul-115h7-fasad-0.webp",
+   "img/stambul-115h7-fasad-1.webp",
+   "img/stambul-115h7-fasad-2.webp",
+   "img/stambul-115h7-fasad-3.webp",
+   "img/stambul-115h7-plan-1.webp",
+   "img/stambul-115h7-plan-1-3d.webp",
+   "img/stambul-115h7-plan-2.webp",
+   "img/stambul-115h7-plan-2-3d.webp",
+   "img/stambul-96h81-fasad-1-th.webp",
+   "img/stambul-11h8-fasad-5-th.webp",
+   "img/stambul-95h8-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-stambul-11x7.html",
+  "lastmod": "2026-09-25",
+  "priority": "0.9",
+  "images": [
+   "img/stambul-11h7-fasad-1.webp",
+   "img/stambul-11h7-fasad-2.webp",
+   "img/stambul-11h7-fasad-3.webp",
+   "img/stambul-11h7-fasad-4.webp",
+   "img/stambul-11h7-fasad-0.webp",
+   "img/stambul-11h7-plan-1.webp",
+   "img/stambul-11h7-plan-1-3d.webp",
+   "img/stambul-11h7-plan-2.webp",
+   "img/stambul-11h7-plan-2-3d.webp",
+   "img/stambul-95h8-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp",
+   "img/stambul-9h8-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-stambul-11x8.html",
+  "lastmod": "2026-09-25",
+  "priority": "0.9",
+  "images": [
+   "img/stambul-11h8-fasad-5.webp",
+   "img/stambul-11h8-fasad-6.webp",
+   "img/stambul-11h8-fasad-7.webp",
+   "img/stambul-11h8-fasad-8.webp",
+   "img/stambul-11h8-fasad-9.webp",
+   "img/stambul-11h8-fasad-0.webp",
+   "img/stambul-11h8-plan-5.webp",
+   "img/stambul-11h8-plan-5-3d.webp",
+   "img/stambul-11h8-plan-6.webp",
+   "img/stambul-11h8-plan-6-3d.webp",
+   "img/stambul-115h7-fasad-1-th.webp",
+   "img/stambul-12h8-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-stambul-121x81.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/stambul-12h8-fasad-4.webp",
+   "img/stambul-12h8-fasad-1.webp",
+   "img/stambul-12h8-fasad-2.webp",
+   "img/stambul-12h8-fasad-3.webp",
+   "img/stambul-12h8-plan-1.webp",
+   "img/stambul-12h8-plan-1-3d.webp",
+   "img/stambul-11h8-fasad-5-th.webp",
+   "img/stambul-115h7-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-stambul-75x6-2.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/stambul-75h6-2-fasad-0.webp",
+   "img/stambul-75h6-2-fasad-1.webp",
+   "img/stambul-75h6-2-fasad-2.webp",
+   "img/stambul-75h6-2-fasad-3.webp",
+   "img/stambul-75h6-2-fasad-4.webp",
+   "img/stambul-75h6-2-fasad-5.webp",
+   "img/stambul-75h6-2-plan-1.webp",
+   "img/stambul-75h6-2-plan-1-3d.webp",
+   "img/stambul-75h6-2-plan-2.webp",
+   "img/stambul-75h6-2-plan-2-3d.webp",
+   "img/stambul-75h6-fasad-1-th.webp",
+   "img/stambul-7h75-fasad-1-th.webp",
+   "img/stambul-9h7-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-stambul-75x6.html",
+  "lastmod": "2026-09-25",
+  "priority": "0.9",
+  "images": [
+   "img/stambul-75h6-fasad-1.webp",
+   "img/stambul-75h6-fasad-2.webp",
+   "img/stambul-75h6-fasad-3.webp",
+   "img/stambul-75h6-fasad-0.webp",
+   "img/stambul-75h6-plan-1.webp",
+   "img/stambul-75h6-plan-1-3d.webp",
+   "img/stambul-7h75-fasad-1-th.webp",
+   "img/stambul-75h6-2-fasad-1-th.webp",
+   "img/stambul-9h7-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-stambul-75x7.html",
+  "lastmod": "2026-09-25",
+  "priority": "0.9",
+  "images": [
+   "img/stambul-7h75-fasad-1.webp",
+   "img/stambul-7h75-fasad-2.webp",
+   "img/stambul-7h75-fasad-3.webp",
+   "img/stambul-7h75-fasad-4.webp",
+   "img/stambul-7h75-fasad-0.webp",
+   "img/stambul-7h75-plan-1.webp",
+   "img/stambul-7h75-plan-1-3d.webp",
+   "img/stambul-7h75-plan-2.webp",
+   "img/stambul-7h75-plan-2-3d.webp",
+   "img/stambul-75h6-fasad-1-th.webp",
+   "img/stambul-75h6-2-fasad-1-th.webp",
+   "img/stambul-9h7-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-stambul-96x81-2.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/stambul-95h8-fasad-1.webp",
+   "img/stambul-95h8-fasad-2.webp",
+   "img/stambul-95h8-fasad-3.webp",
+   "img/stambul-95h8-fasad-4.webp",
+   "img/stambul-95h8-plan-1.webp",
+   "img/stambul-95h8-plan-1-3d.webp",
+   "img/stambul-11h7-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp",
+   "img/stambul-9h8-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-stambul-96x81.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/stambul-96h81-fasad-1.webp",
+   "img/stambul-96h81-fasad-2.webp",
+   "img/stambul-96h81-fasad-3.webp",
+   "img/stambul-96h81-fasad-4.webp",
+   "img/stambul-96h81-fasad-0.webp",
+   "img/stambul-96h81-plan-1.webp",
+   "img/stambul-96h81-plan-2.webp",
+   "img/stambul-96h81-plan-2-3d.webp",
+   "img/stambul-95h8-fasad-1-th.webp",
+   "img/stambul-11h7-fasad-1-th.webp",
+   "img/stambul-9h8-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-stambul-9x7.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/stambul-9h7-fasad-1.webp",
+   "img/stambul-9h7-fasad-2.webp",
+   "img/stambul-9h7-fasad-3.webp",
+   "img/stambul-9h7-fasad-4.webp",
+   "img/stambul-9h7-fasad-5.webp",
+   "img/stambul-9h7-fasad-0.webp",
+   "img/stambul-9h7-plan-1.webp",
+   "img/stambul-9h7-plan-1-3d.webp",
+   "img/stambul-9h7-plan-3.webp",
+   "img/stambul-9h7-plan-4.webp",
+   "img/stambul-9h7-plan-4-3d.webp",
+   "img/stambul-9h7-plan-5.webp",
+   "img/stambul-9h7-plan-5-3d.webp",
+   "img/stambul-9h8-fasad-1-th.webp",
+   "img/stambul-11h7-fasad-1-th.webp",
+   "img/stambul-95h8-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-stambul-9x8.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.9",
+  "images": [
+   "img/stambul-9h8-fasad-1.webp",
+   "img/stambul-9h8-fasad-2.webp",
+   "img/stambul-9h8-fasad-3.webp",
+   "img/stambul-9h8-fasad-4.webp",
+   "img/stambul-9h8-plan-1.webp",
+   "img/stambul-9h8-plan-1-3d.webp",
+   "img/stambul-9h8-plan-2.webp",
+   "img/stambul-9h8-plan-2-3d.webp",
+   "img/stambul-11h7-fasad-1-th.webp",
+   "img/stambul-95h8-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-vladivostok-122x8.html",
+  "lastmod": "2026-09-25",
+  "priority": "0.9",
+  "images": [
+   "img/vladik-115x8-2-fasad-1.webp",
+   "img/vladik-115x8-2-fasad-2.webp",
+   "img/vladik-115x8-2-fasad-3.webp",
+   "img/vladik-115x8-2-fasad-4.webp",
+   "img/vladik-115x8-2-fasad-5.webp",
+   "img/vladik-115x8-2-plan-1.webp",
+   "img/vladik-115x8-2-plan-1-3d.webp",
+   "img/vladik-12x7-fasad-1-th.webp",
+   "img/vladik-10x8-fasad-2-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-vladivostok-12x8.html",
+  "lastmod": "2026-09-25",
+  "priority": "0.9",
+  "images": [
+   "img/vladik-10x8-fasad-2.webp",
+   "img/vladik-10x8-fasad-3.webp",
+   "img/vladik-10x8-fasad-4.webp",
+   "img/vladik-10x8-fasad-5.webp",
+   "img/vladik-10x8-interer-1.webp",
+   "img/vladik-10x8-plan-2.webp",
+   "img/vladik-10x8-plan-2-3d.webp",
+   "img/vladik-115x8-2-fasad-1-th.webp",
+   "img/vladik-12x7-fasad-1-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-vladivostok-135x8.html",
+  "lastmod": "2026-09-25",
+  "priority": "0.9",
+  "images": [
+   "img/vladik-115x8-3-fasad-1.webp",
+   "img/vladik-115x8-3-fasad-2.webp",
+   "img/vladik-115x8-3-fasad-3.webp",
+   "img/vladik-115x8-3-fasad-4.webp",
+   "img/vladik-115x8-3-fasad-5.webp",
+   "img/vladik-115x8-3-plan-1.webp",
+   "img/vladik-115x8-3-plan-1-3d.webp",
+   "img/vladik-115x8-3-plan-2.webp",
+   "img/vladik-12x7-fasad-1-th.webp",
+   "img/vladik-115x8-2-fasad-1-th.webp",
+   "img/vladik-10x8-fasad-2-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-vladivostok-14x69.html",
+  "lastmod": "2026-09-25",
+  "priority": "0.9",
+  "images": [
+   "img/vladik-12x7-fasad-1.webp",
+   "img/vladik-12x7-fasad-2.webp",
+   "img/vladik-12x7-fasad-3.webp",
+   "img/vladik-12x7-fasad-4.webp",
+   "img/vladik-12x7-plan-1.webp",
+   "img/vladik-12x7-plan-1-3d.webp",
+   "img/vladik-115x8-2-fasad-1-th.webp",
+   "img/vladik-10x8-fasad-2-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/seriya-parma.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.8",
+  "images": [
+   "img/parma-10x8-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/seriya-siena.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.8",
+  "images": [
+   "img/siena-155x85-2-fasad-1-th.webp",
+   "img/siena-144x7-fasad-1-th.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/siena-13x85-2-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp",
+   "img/siena-12x82-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/seriya-sochi.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.8",
+  "images": [
+   "img/sochi-9x75-fasad-1-th.webp",
+   "img/sochi-105x9-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/seriya-stambul.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.8",
+  "images": [
+   "img/stambul-9h8-fasad-1-th.webp",
+   "img/stambul-7h75-fasad-1-th.webp",
+   "img/stambul-75h6-fasad-1-th.webp",
+   "img/stambul-75h6-2-fasad-1-th.webp",
+   "img/stambul-9h7-fasad-1-th.webp",
+   "img/stambul-95h8-fasad-1-th.webp",
+   "img/stambul-115h7-fasad-1-th.webp",
+   "img/stambul-11h7-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp",
+   "img/stambul-12h8-fasad-1-th.webp",
+   "img/stambul-11h8-fasad-5-th.webp"
+  ]
+ },
+ {
+  "path": "v2/seriya-vladivostok.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.8",
+  "images": [
+   "img/vladik-12x7-fasad-1-th.webp",
+   "img/vladik-10x8-fasad-2-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp",
+   "img/vladik-115x8-2-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/dogovor.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": [
+   "img/dogovor-str-1.webp"
+  ]
+ },
+ {
+  "path": "v2/doma-2-3-mln.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-9h7-fasad-1-th.webp",
+   "img/sochi-9x75-fasad-1-th.webp",
+   "img/stambul-9h8-fasad-1-th.webp",
+   "img/stambul-11h7-fasad-1-th.webp",
+   "img/stambul-95h8-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/doma-60-100-m2.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-9h7-fasad-1-th.webp",
+   "img/sochi-9x75-fasad-1-th.webp",
+   "img/stambul-9h8-fasad-1-th.webp",
+   "img/stambul-11h7-fasad-1-th.webp",
+   "img/stambul-95h8-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp",
+   "img/stambul-115h7-fasad-1-th.webp",
+   "img/stambul-11h8-fasad-5-th.webp",
+   "img/sochi-105x9-fasad-1-th.webp",
+   "img/vladik-10x8-fasad-2-th.webp",
+   "img/vladik-115x8-2-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/doma-do-2-mln.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-75h6-2-fasad-1-th.webp",
+   "img/stambul-75h6-fasad-1-th.webp",
+   "img/stambul-7h75-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/doma-do-60-m2.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-75h6-2-fasad-1-th.webp",
+   "img/stambul-75h6-fasad-1-th.webp",
+   "img/stambul-7h75-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/doma-ot-100-m2.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-12h8-fasad-1-th.webp",
+   "img/vladik-12x7-fasad-1-th.webp",
+   "img/siena-12x82-fasad-1-th.webp",
+   "img/siena-144x7-fasad-1-th.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/parma-10x8-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp",
+   "img/siena-13x85-2-fasad-1-th.webp",
+   "img/siena-155x85-2-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/doma-ot-3-mln.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-115h7-fasad-1-th.webp",
+   "img/stambul-11h8-fasad-5-th.webp",
+   "img/sochi-105x9-fasad-1-th.webp",
+   "img/vladik-10x8-fasad-2-th.webp",
+   "img/vladik-115x8-2-fasad-1-th.webp",
+   "img/stambul-12h8-fasad-1-th.webp",
+   "img/vladik-12x7-fasad-1-th.webp",
+   "img/siena-12x82-fasad-1-th.webp",
+   "img/siena-144x7-fasad-1-th.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/parma-10x8-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp",
+   "img/siena-13x85-2-fasad-1-th.webp",
+   "img/siena-155x85-2-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/doma-s-2-spalnyami.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-9h8-fasad-1-th.webp",
+   "img/stambul-7h75-fasad-1-th.webp",
+   "img/stambul-9h7-fasad-1-th.webp",
+   "img/stambul-115h7-fasad-1-th.webp",
+   "img/stambul-11h7-fasad-1-th.webp",
+   "img/stambul-11h8-fasad-5-th.webp",
+   "img/sochi-9x75-fasad-1-th.webp",
+   "img/sochi-105x9-fasad-1-th.webp",
+   "img/siena-144x7-fasad-1-th.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/siena-13x85-2-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp",
+   "img/siena-12x82-fasad-1-th.webp",
+   "img/vladik-12x7-fasad-1-th.webp",
+   "img/vladik-10x8-fasad-2-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp",
+   "img/parma-10x8-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/doma-s-3-spalnyami.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-9h8-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp",
+   "img/sochi-9x75-fasad-1-th.webp",
+   "img/siena-155x85-2-fasad-1-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp",
+   "img/vladik-115x8-2-fasad-1-th.webp",
+   "img/parma-10x8-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/doma-s-parnoy.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-7h75-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp",
+   "img/sochi-105x9-fasad-1-th.webp",
+   "img/vladik-12x7-fasad-1-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/kak-zakazat.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/katalog.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-9h8-fasad-1-th.webp",
+   "img/stambul-7h75-fasad-1-th.webp",
+   "img/stambul-75h6-fasad-1-th.webp",
+   "img/stambul-75h6-2-fasad-1-th.webp",
+   "img/stambul-9h7-fasad-1-th.webp",
+   "img/stambul-95h8-fasad-1-th.webp",
+   "img/stambul-115h7-fasad-1-th.webp",
+   "img/stambul-11h7-fasad-1-th.webp",
+   "img/stambul-96h81-fasad-1-th.webp",
+   "img/stambul-12h8-fasad-1-th.webp",
+   "img/stambul-11h8-fasad-5-th.webp",
+   "img/sochi-9x75-fasad-1-th.webp",
+   "img/sochi-105x9-fasad-1-th.webp",
+   "img/siena-155x85-2-fasad-1-th.webp",
+   "img/siena-144x7-fasad-1-th.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/siena-13x85-2-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp",
+   "img/siena-12x82-fasad-1-th.webp",
+   "img/vladik-12x7-fasad-1-th.webp",
+   "img/vladik-10x8-fasad-2-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp",
+   "img/vladik-115x8-2-fasad-1-th.webp",
+   "img/parma-10x8-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/komanda.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": [
+   "img/komanda-1.webp",
+   "img/komanda-2.webp",
+   "img/komanda-3.webp",
+   "img/komanda-4.webp",
+   "img/komanda-5.webp",
+   "img/komanda-6.webp",
+   "img/komanda-7.webp"
+  ]
+ },
+ {
+  "path": "v2/komplektacii.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/otzyvy.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/milan-obekt-cover.webp",
+   "img/stambul-cover.webp",
+   "img/obekt-6-cover.webp",
+   "img/obekt-7-cover.webp",
+   "img/obekt-8-cover.webp",
+   "img/obekt-9-cover.webp",
+   "img/obekt-10-cover.webp",
+   "img/otzyv-klienta-1-cover.webp",
+   "img/otzyv-klienta-3-cover.webp",
+   "img/otzyv-klienta-4-cover.webp",
+   "img/otzyv-klienta-5-cover.webp",
+   "img/otzyv-klienta-6-cover.webp",
+   "img/otzyv-klienta-7-cover.webp",
+   "img/otzyv-klienta-8-cover-v2.webp",
+   "img/videootzyv-2-cover.webp",
+   "img/videootzyv-3-cover.webp"
+  ]
+ },
+ {
+  "path": "v2/planirovki.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-9h8-plan-1-th.webp",
+   "img/stambul-9h8-plan-2-th.webp",
+   "img/stambul-7h75-plan-1-th.webp",
+   "img/stambul-7h75-plan-2-th.webp",
+   "img/stambul-75h6-plan-1-th.webp",
+   "img/stambul-75h6-2-plan-1-th.webp",
+   "img/stambul-75h6-2-plan-2-th.webp",
+   "img/stambul-9h7-plan-1-th.webp",
+   "img/stambul-9h7-plan-3.webp",
+   "img/stambul-9h7-plan-4-th.webp",
+   "img/stambul-9h7-plan-5-th.webp",
+   "img/stambul-95h8-plan-1-th.webp",
+   "img/stambul-115h7-plan-1-th.webp",
+   "img/stambul-115h7-plan-2-th.webp",
+   "img/stambul-11h7-plan-1-th.webp",
+   "img/stambul-11h7-plan-2-th.webp",
+   "img/stambul-96h81-plan-1.webp",
+   "img/stambul-96h81-plan-2-th.webp",
+   "img/stambul-12h8-plan-1-th.webp",
+   "img/stambul-11h8-plan-5-th.webp",
+   "img/stambul-11h8-plan-6-th.webp",
+   "img/sochi-9x75-plan-1-th.webp",
+   "img/sochi-9x75-plan-2-th.webp",
+   "img/sochi-105x9-plan-1-th.webp",
+   "img/sochi-105x9-plan-2-th.webp",
+   "img/siena-155x85-2-plan-1-th.webp",
+   "img/siena-144x7-plan-1-th.webp",
+   "img/siena-144x7-2-plan-1-th.webp",
+   "img/siena-144x7-2-plan-2-th.webp",
+   "img/siena-13x85-2-plan-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/politika.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/smeta-primer.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/soglashenie.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati-dogovor.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati-dom-100-m2-cena.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/vladik-10x8-fasad-2-th.webp",
+   "img/vladik-115x8-2-fasad-1-th.webp",
+   "img/stambul-12h8-fasad-1-th.webp",
+   "img/vladik-12x7-fasad-1-th.webp",
+   "img/siena-12x82-fasad-1-th.webp",
+   "img/siena-144x7-fasad-1-th.webp",
+   "img/parma-10x8-fasad-1-th.webp",
+   "img/siena-144x7-2-fasad-1-th.webp",
+   "img/siena-125x82-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/stati-dom-do-60-m2.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-75h6-2-fasad-1-th.webp",
+   "img/stambul-75h6-fasad-1-th.webp",
+   "img/stambul-7h75-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/stati-dop-rashody.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati-dve-ili-tri-spalni.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-9h8-fasad-1-th.webp",
+   "img/sochi-9x75-fasad-1-th.webp",
+   "img/parma-10x8-fasad-1-th.webp",
+   "img/vladik-115x8-3-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/stati-garantiya.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati-geologiya.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati-gnil-plesen.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati-kak-ustroen.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati-karkasnye-doma-na-svayah.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-9h7-fasad-1-th.webp",
+   "img/stambul-9h8-fasad-1-th.webp",
+   "img/sochi-9x75-fasad-1-th.webp",
+   "img/parma-10x8-fasad-1-th.webp",
+   "img/vladik-10x8-fasad-2-th.webp",
+   "img/siena-12x82-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/stati-priemka.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati-skolko-stoit.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/stambul-75h6-2-fasad-1-th.webp",
+   "img/stambul-75h6-fasad-1-th.webp",
+   "img/stambul-7h75-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/stati-sroki.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati-teplo-zimoy.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati-uteplenie-150-ili-200.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati-ventilyaciya.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stati.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ },
+ {
+  "path": "v2/stroim-bytovki.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": [
+   "img/rolik-1-cover.webp",
+   "img/rolik-2-cover.webp"
+  ]
+ },
+ {
+  "path": "v2/stroim-dostavka.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/dostavka-uchastok.webp",
+   "img/dostavka-mashina.webp",
+   "img/dostavka-kran.webp",
+   "img/dostavka-razgruzka.webp",
+   "img/dogovor-str-1.webp",
+   "img/dostavka-rolik-1-cover.webp",
+   "img/dostavka-rolik-2-cover.webp",
+   "img/dostavka-rolik-3-cover.webp"
+  ]
+ },
+ {
+  "path": "v2/stroim-elektrika.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": [
+   "img/elektrika-kabel-komnata.webp",
+   "img/elektrika-uzo.webp",
+   "img/elektrika-vneshnyaya-razvodka.webp",
+   "img/elektrika-cveta-provoda.webp",
+   "img/elektrika-rozetka-chernaya.webp",
+   "img/elektrika-svetilnik.webp",
+   "img/elektrika-teplyy-pol.webp",
+   "img/elektrika-radiator.webp"
+  ]
+ },
+ {
+  "path": "v2/stroim-hranenie.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": [
+   "img/hranenie-materialov-cover.webp"
+  ]
+ },
+ {
+  "path": "v2/stroim-kommunikacii.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": [
+   "img/kommunikacii-zakladnye.webp",
+   "img/kommunikacii-razvodka.webp",
+   "img/kommunikacii-boyler.webp",
+   "img/kommunikacii-rakovina.webp",
+   "img/kommunikacii-poddon.webp",
+   "img/kommunikacii-sanuzel.webp"
+  ]
+ },
+ {
+  "path": "v2/stroim-krovlya.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": [
+   "img/vetrozaschita-i-gidroizolyaciya-cover.webp"
+  ]
+ },
+ {
+  "path": "v2/stroim-materialy.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/materialy-strogannaya.webp",
+   "img/materialy-sechenie.webp",
+   "img/materialy-shtabel.webp",
+   "img/doska-dlya-karkasa-cover.webp",
+   "img/materialy-chast-2-cover.webp"
+  ]
+ },
+ {
+  "path": "v2/stroim-obvyazka.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/obvyazka-pola-cover.webp"
+  ]
+ },
+ {
+  "path": "v2/stroim-pokraska.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/pokraska-okrashivanie.webp",
+   "img/pokraska-shlifovka.webp",
+   "img/pokraska-gruntovka.webp",
+   "img/pokraska-sushka.webp",
+   "img/pokraska-povtornaya-shlifovka.webp",
+   "img/pokraska-lazur.webp",
+   "img/pokraska-ukryvnaya.webp"
+  ]
+ },
+ {
+  "path": "v2/stroim-proekt.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": [
+   "img/proekt-list-02.webp",
+   "img/proekt-list-04.webp",
+   "img/proekt-list-14.webp",
+   "img/proekt-list-22.webp",
+   "img/proekt-list-25.webp",
+   "img/proekt-list-37.webp",
+   "img/proekt-uzel-svai.webp",
+   "img/proekt-uzel-b.webp",
+   "img/proekt-uzel-paket.webp",
+   "img/proekt-uzel-stena.webp",
+   "img/proekt-uzel-obvyazka.webp",
+   "img/proekt-uzel-krovlya.webp"
+  ]
+ },
+ {
+  "path": "v2/stroim-ventilyaciya.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": [
+   "img/ventilyaciya-pritok.webp",
+   "img/ventilyaciya-ottok.webp",
+   "img/ventilyaciya-reshetka.webp"
+  ]
+ },
+ {
+  "path": "v2/stroim-vyezd-inzhenera.html",
+  "lastmod": "2026-09-24",
+  "priority": "0.6",
+  "images": [
+   "img/vyezd-inzhenera-cover.webp"
+  ]
+ },
+ {
+  "path": "v2/voprosy.html",
+  "lastmod": "2026-09-26",
+  "priority": "0.6",
+  "images": []
+ }
+]

@@ -6,6 +6,8 @@ const path = require("path");
 const { build, split } = require("../build/page");
 const shell = require("../build/shell");
 const P = require("../build/prices");
+const SM = require("../build/sitemap");
+const L = require("../build/lists");
 
 const clone = (o) => JSON.parse(JSON.stringify(o));
 const escRe = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -29,6 +31,10 @@ function load(dir) {
     skeletons,
     prices: has("data", "prices.json") ? JSON.parse(rd("data", "prices.json")) : { manual: {} },
     rates: has("data", "rates.json") ? JSON.parse(rd("data", "rates.json")) : null,
+    sitemap: has("data", "sitemap.json") ? JSON.parse(rd("data", "sitemap.json")) : null,
+    models: has("data", "models.json") ? JSON.parse(rd("data", "models.json")) : {},
+    // размеры домов и облако калькулятора — исходник для v2/calc-live.json (сам файл сайта собирается)
+    cfg: JSON.parse(rd("data", "calc-base.json")),
   };
 }
 
@@ -39,6 +45,8 @@ function diffFiles(before, after) {
   if (JSON.stringify(before.site) !== JSON.stringify(after.site)) files["data/site.json"] = j(after.site, 2);
   if (JSON.stringify(before.prices) !== JSON.stringify(after.prices)) files["data/prices.json"] = j(after.prices, 2);
   if (JSON.stringify(before.rates) !== JSON.stringify(after.rates)) files["data/rates.json"] = j(after.rates, 2);
+  if (JSON.stringify(before.sitemap) !== JSON.stringify(after.sitemap)) files["data/sitemap.json"] = j(after.sitemap);
+  if (JSON.stringify(before.models) !== JSON.stringify(after.models)) files["data/models.json"] = j(after.models, 2);
   for (const name of ["header", "footer", "callback"]) {
     if (before.T[name] !== after.T[name]) files["templates/" + name + ".html"] = after.T[name];
   }
@@ -64,6 +72,35 @@ function setPath(obj, p, v) {
 
 const SITE_PATHS = /^(phone\.(text|digits)|messengers\.(telegram|max|whatsapp)|office\.(address|hours)|company\.(name|innKpp|ogrn|director|copyright)|baseUrl)$/;
 
+// Снимок страниц и sitemap для точного отката.
+function snapshot(data, files) {
+  const pages = {};
+  for (const f of new Set(files)) if (data.pages[f] || data.skeletons[f]) pages[f] = { page: clone(data.pages[f] || null), skeleton: data.skeletons[f] ?? null };
+  return { op: "restoreState", pages, sitemap: clone(data.sitemap) };
+}
+function stateHash(data, f) { return sha1(JSON.stringify(data.pages[f] || null) + "\u0000" + (data.skeletons[f] || "")); }
+function finishSnapshot(data, snap) {
+  snap.expect = {};
+  for (const f of Object.keys(snap.pages)) snap.expect[f] = stateHash(data, f);
+  snap.sitemapExpect = sha1(JSON.stringify(data.sitemap));
+  return snap;
+}
+
+function needHouse(data, file) {
+  const p = needPage(data, file);
+  if (!/^proekt-/.test(file) || !/data-model="/.test(data.skeletons[file] || "")) throw new Error(file + " — не страница дома");
+  return p;
+}
+function houseName(data, file) {
+  const f = (data.pages[file].fields || []).find((x) => x.label === "Название");
+  return f ? f.text.replace(/&nbsp;/g, "\u00a0").replace(/&amp;/g, "&") : file;
+}
+function newSitemapEntry(data, file) {
+  const today = new Date(Date.now() + 3 * 3600e3).toISOString().slice(0, 10);
+  const imgs = [...new Set([...(data.skeletons[file] || "").matchAll(/\.\.\/img\/([a-z0-9-]+?-fasad-\d+)\.webp/g)].map((m) => "img/" + m[1] + ".webp"))];
+  return { path: SM.pathOf(file), lastmod: today, priority: "0.9", images: imgs };
+}
+
 function needPage(data, file) {
   const p = data.pages[file];
   if (!p) throw new Error("Нет страницы " + file);
@@ -84,7 +121,7 @@ const OPS = {
   head(data, op) {
     const page = needPage(data, op.file);
     const before = clone(page.head);
-    page.head = { title: op.title, description: op.description };
+    page.head = Object.assign({}, page.head, { title: op.title, description: op.description });
     return { op: "head", file: op.file, title: before.title, description: before.description };
   },
   // поле SEO-блока: image.alt, ogTitle, ogDescription
@@ -136,6 +173,123 @@ const OPS = {
     if (page.seo && op.seoImage) page.seo.image = clone(op.seoImage);
     return inv;
   },
+  // скрыть дом: карточки со всех страниц-списков, из разметки schema.org и sitemap; страница — noindex.
+  // Страница остаётся доступной по прямой ссылке. Что убрано — сохраняется для «Показать снова».
+  hide(data, op) {
+    const page = needHouse(data, op.file);
+    if (page.hidden) throw new Error("Дом уже скрыт");
+    const url = "{{base}}v2/" + op.file;
+    const stash = { pages: {}, sitemap: null };
+    for (const [f, sk] of Object.entries(data.skeletons)) {
+      if (f === op.file) continue;
+      const r = L.removeCards(sk, op.file);
+      const ld = data.pages[f].seo && data.pages[f].seo.ld ? clone(data.pages[f].seo.ld) : null;
+      const n = ld ? L.removeFromLd(ld, url) : 0;
+      if (!r.n && !n) continue;
+      stash.pages[f] = { skeleton: sk, ld: data.pages[f].seo ? clone(data.pages[f].seo.ld) : null, expect: sha1(r.skeleton) };
+      data.skeletons[f] = r.skeleton;
+      if (n) data.pages[f].seo.ld = ld;
+    }
+    if (data.sitemap) {
+      const i = data.sitemap.findIndex((e) => e.path === SM.pathOf(op.file));
+      if (i >= 0) { stash.sitemap = { index: i, entry: data.sitemap[i] }; data.sitemap.splice(i, 1); }
+    }
+    page.hidden = true;
+    page.hiddenStash = stash;
+    page.head = Object.assign({}, page.head, { noindex: true });
+    return { op: "show", file: op.file };
+  },
+  // показать скрытый дом снова: вернуть карточки и записи туда, откуда их убрали
+  show(data, op) {
+    const page = needHouse(data, op.file);
+    if (!page.hidden) throw new Error("Дом не скрыт");
+    const snap = snapshot(data, [op.file, ...Object.keys((page.hiddenStash || {}).pages || {}), "katalog.html", ...Object.keys(data.pages).filter((f) => /^seriya-/.test(f))]);
+    const stash = page.hiddenStash || { pages: {} };
+    for (const [f, st] of Object.entries(stash.pages)) {
+      if (!data.skeletons[f]) continue;
+      if (sha1(data.skeletons[f]) !== st.expect) throw new Error("Страницу " + f + " меняли, пока дом был скрыт — верните дом через «Откатить» в журнале или попросите Claude");
+      data.skeletons[f] = st.skeleton;
+      if (st.ld && data.pages[f].seo) data.pages[f].seo.ld = clone(st.ld);
+    }
+    if (data.sitemap) {
+      const entry = stash.sitemap ? stash.sitemap.entry : newSitemapEntry(data, op.file);
+      const at = stash.sitemap ? Math.min(stash.sitemap.index, data.sitemap.length) : data.sitemap.length;
+      if (!data.sitemap.some((e) => e.path === entry.path)) data.sitemap.splice(at, 0, entry);
+    }
+    // копия, которую ещё не показывали: карточки в каталоге и на странице серии — рядом с исходным домом
+    if (page.copyOf && !page.shownOnce) {
+      const src = page.copyOf;
+      const series = (data.skeletons[src].match(/href="(seriya-[a-z]+\.html)"/) || [])[1];
+      for (const f of ["katalog.html", series].filter(Boolean)) {
+        if (!data.skeletons[f]) continue;
+        const sk = L.cloneCardAfter(data.skeletons[f], data.pages[f].fields, src, op.file);
+        if (sk) data.skeletons[f] = sk;
+        if (data.pages[f].seo) L.cloneInLd(data.pages[f].seo.ld, "{{base}}v2/" + src, "{{base}}v2/" + op.file, houseName(data, op.file));
+      }
+      page.shownOnce = true;
+    }
+    delete page.hidden;
+    delete page.hiddenStash;
+    const head = Object.assign({}, page.head);
+    delete head.noindex;
+    page.head = head;
+    return finishSnapshot(data, snap);
+  },
+  // точный возврат страниц и sitemap к снимку (откат показа дома); если их меняли позже — стоп
+  restoreState(data, op) {
+    const back = snapshot(data, Object.keys(op.pages));
+    for (const [f, st] of Object.entries(op.pages)) {
+      if (op.expect && stateHash(data, f) !== op.expect[f]) throw new Error("Страницу " + f + " меняли позже — сначала откатите более поздние правки");
+    }
+    if (op.sitemapExpect && sha1(JSON.stringify(data.sitemap)) !== op.sitemapExpect) throw new Error("Список страниц для поисковиков меняли позже — сначала откатите более поздние правки");
+    for (const [f, st] of Object.entries(op.pages)) {
+      if (st.page) { data.pages[f] = clone(st.page); data.skeletons[f] = st.skeleton; } else { delete data.pages[f]; delete data.skeletons[f]; }
+    }
+    data.sitemap = clone(op.sitemap);
+    return finishSnapshot(data, back);
+  },
+  // копия дома: новая страница (скрыта, пока её не заполнят), размеры для расчёта — как у исходного
+  copy(data, op) {
+    const src = needHouse(data, op.from);
+    if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(op.slug || "") || op.slug.length > 60) throw new Error("Адрес копии — латиница, цифры и дефисы");
+    const file = "proekt-" + op.slug + ".html";
+    if (data.pages[file] || data.skeletons[file]) throw new Error("Страница " + file + " уже есть");
+    const srcModel = (data.skeletons[op.from].match(/data-model="([^"]+)"/) || [])[1];
+    if (!srcModel) throw new Error("У дома " + op.from + " нет расчёта цены");
+    const model = op.slug;
+    if (data.models[model]) throw new Error("Дом " + model + " уже есть");
+    const rename = (t) => t.split(op.from).join(file);
+    data.skeletons[file] = rename(data.skeletons[op.from]).split('data-model="' + srcModel + '"').join('data-model="' + model + '"');
+    const page = clone(src);
+    delete page.hidden; delete page.hiddenStash; delete page.shownOnce;
+    page.head = Object.assign({}, page.head, { title: (op.title || page.head.title + " (копия)"), noindex: true });
+    if (page.seo) page.seo = JSON.parse(rename(JSON.stringify(page.seo)));
+    page.hidden = true;
+    page.copyOf = op.from;
+    data.pages[file] = page;
+    data.models[model] = { from: (data.models[srcModel] && data.models[srcModel].from) || srcModel };
+    if (data.prices.manual[srcModel]) data.prices.manual[model] = clone(data.prices.manual[srcModel]);
+    return { op: "deletePage", file, model };
+  },
+  // удалить страницу (только скрытую копию — отмена копирования)
+  deletePage(data, op) {
+    const page = data.pages[op.file];
+    if (!page) throw new Error("Нет страницы " + op.file);
+    if (!page.copyOf || !page.hidden || page.shownOnce) throw new Error("Удалить можно только скрытую копию, которую ещё не показывали");
+    const before = { page: clone(page), skeleton: data.skeletons[op.file], model: op.model && data.models[op.model] ? clone(data.models[op.model]) : null, manual: op.model ? data.prices.manual[op.model] || null : null };
+    delete data.pages[op.file];
+    delete data.skeletons[op.file];
+    if (op.model) { delete data.models[op.model]; delete data.prices.manual[op.model]; }
+    return { op: "undelete", file: op.file, model: op.model, before };
+  },
+  undelete(data, op) {
+    if (data.pages[op.file]) throw new Error("Страница " + op.file + " уже есть");
+    data.pages[op.file] = clone(op.before.page);
+    data.skeletons[op.file] = op.before.skeleton;
+    if (op.model && op.before.model) data.models[op.model] = clone(op.before.model);
+    if (op.model && op.before.manual) data.prices.manual[op.model] = clone(op.before.manual);
+    return { op: "deletePage", file: op.file, model: op.model };
+  },
   // ручная цена дома: [холодный, комфорт, премиум] или null — считать калькулятором
   manualPrice(data, op) {
     const before = data.prices.manual[op.model] || null;
@@ -177,6 +331,7 @@ function apply(data, ops) {
   const next = Object.assign({}, data, {
     site: clone(data.site), T: Object.assign({}, data.T), pages: clone(data.pages),
     skeletons: Object.assign({}, data.skeletons), prices: clone(data.prices), rates: clone(data.rates),
+    sitemap: clone(data.sitemap), models: clone(data.models || {}),
   });
   const inverse = [];
   for (const op of ops) {
@@ -189,7 +344,12 @@ function apply(data, ops) {
 
 // ---- сборка сайта ----
 // cfg — v2/calc-live.json (размеры домов), calc — формулы из v2/calc-live.js.
-function buildSite(data, calc, cfg) {
+function buildSite(data, calc, cfgIn = data.cfg) {
+  // размеры скопированных домов — как у исходного (data/models.json: новая модель → исходная)
+  const cfg = clone(cfgIn);
+  for (const [m, src] of Object.entries(data.models || {})) {
+    if (src && src.from && cfg.models[src.from]) cfg.models[m] = clone(cfg.models[src.from]);
+  }
   const rates = Object.assign({}, cfg.defaults);
   if (data.rates) for (const k of Object.keys(cfg.defaults)) if (typeof data.rates[k] === "number") rates[k] = data.rates[k];
   const ctx = { site: data.site, T: data.T, prices: P.pricesFor(calc, cfg, rates, data.prices.manual) };
@@ -201,6 +361,7 @@ function buildSite(data, calc, cfg) {
   const manual = Object.keys(data.prices.manual || {}).sort();
   if (manual.length) live.manual = manual; else delete live.manual;
   out["v2/calc-live.json"] = JSON.stringify(live) + "\n";
+  if (data.sitemap) out["sitemap.xml"] = SM.render(data.sitemap, data.site.baseUrl);
   return out;
 }
 

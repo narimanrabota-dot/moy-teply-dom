@@ -62,8 +62,13 @@ class App {
     if (!fs.existsSync(p)) return [];
     return fs.readFileSync(p, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
   }
-  liveCfg() { return JSON.parse(fs.readFileSync(this.siteRepo.file("v2/calc-live.json"), "utf8")); }
-  buildAll(data) { return D.buildSite(data, this.calc, this.liveCfg()); }
+  // исходные размеры домов (не файл сайта: его собирает админка) + размеры копий
+  liveCfg(data = this.data) {
+    const cfg = D.clone(data.cfg);
+    for (const [m, src] of Object.entries(data.models || {})) if (src && src.from && cfg.models[src.from]) cfg.models[m] = D.clone(cfg.models[src.from]);
+    return cfg;
+  }
+  buildAll(data) { return D.buildSite(data, this.calc, data.cfg); }
 
   // ---------- пользователи ----------
   userList() {
@@ -241,6 +246,8 @@ class App {
     for (const op of ops) {
       if (op.op === "site" && /^phone\.digits$/.test(op.key) && !/^7\d{10}$/.test(op.value)) errors.push("Телефон: 11 цифр, начиная с 7");
       if (op.op === "site" && op.key === "baseUrl" && !/^https:\/\/[a-z0-9.-]+\/$/.test(op.value)) errors.push("Адрес сайта вида https://домен.ru/");
+      if (op.op === "hide") warnings.push("В меню сайта написано, сколько всего проектов (например, «24 проекта в 5 сериях») — это число не пересчитывается само. Попросите Claude поправить его в шапке.");
+      if (op.op === "copy") warnings.push("Копия скрыта от посетителей и поиска, пока вы её не покажете. Размеры для расчёта цены — как у исходного дома: если размеры другие, задайте ручную цену.");
       if (op.op === "manualPrice" && op.values) {
         if (op.values.length !== 3 || op.values.some((v) => !(v > 0))) errors.push("Ручная цена: три цены больше нуля");
       }
@@ -261,7 +268,7 @@ class App {
     const next = ops && ops.length ? D.apply(this.data, ops).data : this.data;
     const page = next.pages[file];
     if (!page) throw new UserError("Нет страницы " + file);
-    const cfg = this.liveCfg();
+    const cfg = this.liveCfg(next);
     const rates = Object.assign({}, cfg.defaults, pickNumbers(next.rates, cfg.defaults));
     const ctx = { site: next.site, T: next.T, prices: P.pricesFor(this.calc, cfg, rates, next.prices.manual) };
     return build(ctx, file, page, next.skeletons[file]);
@@ -295,15 +302,27 @@ class App {
       const { data: after, inverse } = D.apply(before, ops);
       const v = this.validate(before, after, ops);
       if (v.errors.length) throw new UserError(v.errors.join("\n"), { code: "invalid", errors: v.errors });
-      const builtAfter = this.buildAll(after);
+      let builtAfter = this.buildAll(after);
+      // дата изменения в sitemap.xml у изменённых страниц — поисковики быстрее их переобойдут
+      if (after.sitemap) {
+        const today = new Date(Date.now() + 3 * 3600e3).toISOString().slice(0, 10);
+        let touched = false;
+        for (const e of after.sitemap) {
+          const rel = e.path === "v2/" ? "v2/index.html" : e.path;
+          if (builtAfter[rel] !== undefined && builtAfter[rel] !== builtBefore[rel] && e.lastmod !== today) { e.lastmod = today; touched = true; }
+        }
+        if (touched) builtAfter = this.buildAll(after);
+      }
       const siteFiles = {};
       for (const [f, c] of Object.entries(builtAfter)) if (c !== builtBefore[f] || dr.behind.includes(f)) siteFiles[f] = c;
+      for (const f of Object.keys(builtBefore)) if (!(f in builtAfter)) siteFiles[f] = null; // страницу удалили (отмена копии)
       for (const [f, c] of Object.entries(uploads || {})) siteFiles[f] = c;
       const siteHashes = {};
       for (const [f, c] of Object.entries(siteFiles)) if (typeof c === "string") siteHashes[f] = sha(c);
+      const created = ops.filter((o) => o.op === "copy").map((o) => "proekt-" + o.slug + ".html");
       const entry = {
         id: newId(), at: nowIso(), kind, title: String(title || "Правка").slice(0, 200), reason: String(reason).slice(0, 500),
-        who, approvedBy: approvedBy || who, ops, inverse, files: [...new Set(ops.map((o) => o.file).filter(Boolean))],
+        who, approvedBy: approvedBy || who, ops, inverse, files: [...new Set(ops.map((o) => o.file).filter(Boolean).concat(created))],
         siteFiles: Object.keys(siteFiles).map((f) => f.replace("v2/", "")), siteHashes,
       };
       // 1) данные + запись журнала + убрать из очереди
