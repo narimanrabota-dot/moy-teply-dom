@@ -2,12 +2,12 @@
 //
 //   ADMIN_SECRET      длинная случайная строка (подпись входа и шифрование ключа amoCRM)
 //   BOOTSTRAP_CODE    одноразовый код первого входа Владельца
-//   DATA_REPO_URL     https://<ключ GitHub>@github.com/<владелец>/moy-teply-dom-admin.git
-//   DATA_BRANCH       ветка с данными (по умолчанию data)
+//   DATA_REPO_URL     репозиторий данных (по умолчанию тот же, что SITE_REPO_URL)
+//   DATA_BRANCH       ветка с данными (по умолчанию admin-data)
 //   SITE_REPO_URL     https://<ключ GitHub>@github.com/<владелец>/moy-teply-dom.git
 //   SITE_BRANCH       ветка сайта, которую публикует Render (по умолчанию main)
-//   CALC_URL, CALC_KEY  облако калькулятора (Supabase) — адрес и публичный ключ
-//   CALC_PIN          админский PIN калькулятора
+//   CALC_URL, CALC_KEY  облако калькулятора (Supabase) — адрес и публичный ключ (по умолчанию — те, что на сайте)
+//   CALC_PIN          админский PIN калькулятора (без него ставки из админки не меняются, остальное работает)
 //   CALC_FAKE=1       тестовый режим: цены калькулятора имитируются, настоящие не трогаются
 //   PUBLIC_URL        адрес этого сервера (для приёма заявок), например https://moy-teply-dom-admin.onrender.com
 //   WORK_DIR          где держать копии репозиториев (по умолчанию /tmp/mtd-admin)
@@ -33,14 +33,14 @@ async function main() {
   const app = new App({
     secret: env("ADMIN_SECRET"),
     bootstrapCode: env("BOOTSTRAP_CODE", ""),
-    dataRepoUrl: env("DATA_REPO_URL"),
-    dataBranch: env("DATA_BRANCH", "data"),
+    dataRepoUrl: env("DATA_REPO_URL", process.env.SITE_REPO_URL),
+    dataBranch: env("DATA_BRANCH", "admin-data"),
     dataDir: path.join(work, "data"),
     siteRepoUrl: env("SITE_REPO_URL"),
     siteBranch: env("SITE_BRANCH", "main"),
     siteDir: path.join(work, "site"),
     siteSparse: env("SITE_SPARSE", "1") !== "0",
-    cloud: fake ? null : new CalcCloud({ url: env("CALC_URL"), key: env("CALC_KEY"), pin: env("CALC_PIN", "") }),
+    cloud: fake ? null : new CalcCloud({ url: env("CALC_URL", "https://lrykfhnohecxdiipweqi.supabase.co"), key: env("CALC_KEY", "sb_publishable_037PqHLp_UOoM1nfAaU2BQ_6RfwybIy"), pin: env("CALC_PIN", "") }),
   });
   await app.start();
   if (process.env.OWNER_RESET) {
