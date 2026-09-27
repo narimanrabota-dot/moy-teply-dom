@@ -8,7 +8,7 @@ module.exports = {
     const times = [];
     try {
       while (ctx.until()) {
-        const f = R.pick(T.pageList(st));
+        const f = R.pick(T.pageList(st).filter((x) => st.app.data.pages[x].fields.length));
         const n = Math.min(st.app.data.pages[f].fields.length, R.int(50, 600));
         const ops = [];
         for (let i = 0; i < n; i++) ops.push(T.randomFieldOp(st, R, { file: f }));

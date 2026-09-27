@@ -60,9 +60,9 @@ function locateSeo(html) {
 const unesc = (s) => s.replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
 
 function locateHead(html) {
-  const m = html.match(/<title>([^<]*)<\/title>\n<meta name="description" content="([^"]*)">\n/);
+  const m = html.match(/<title>([^<]*)<\/title>\n<meta name="description" content="([^"]*)">\n(<meta name="robots" content="noindex,follow">\n)?/);
   if (!m) return null;
-  return { from: m.index, to: m.index + m[0].length, title: m[1], description: unesc(m[2]) };
+  return { from: m.index, to: m.index + m[0].length, title: m[1], description: unesc(m[2]), noindex: !!m[3] };
 }
 
 function applySeo(html, site, file, page) {

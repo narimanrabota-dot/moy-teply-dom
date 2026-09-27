@@ -18,7 +18,7 @@ function split(html) {
   }
   const h = seo.locateHead(s);
   if (h) s = s.slice(0, h.from) + MARK.head + s.slice(h.to);
-  const head = h ? { title: h.title, description: h.description } : null;
+  const head = h ? Object.assign({ title: h.title, description: h.description }, h.noindex ? { noindex: true } : {}) : null;
   const l = seo.locateSeo(s);
   if (l) s = s.slice(0, l.from) + MARK.seo + s.slice(l.to);
   const a = s.indexOf('<main id="main">');

@@ -8,6 +8,7 @@ const shell = require("../build/shell");
 const P = require("../build/prices");
 const SM = require("../build/sitemap");
 const L = require("../build/lists");
+const { analyze } = require("../build/analyze");
 
 const clone = (o) => JSON.parse(JSON.stringify(o));
 const escRe = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -79,11 +80,13 @@ function snapshot(data, files) {
   for (const f of new Set(files)) if (data.pages[f] || data.skeletons[f]) pages[f] = { page: clone(data.pages[f] || null), skeleton: data.skeletons[f] ?? null };
   return { op: "restoreState", pages, sitemap: clone(data.sitemap) };
 }
+// sitemap без дат изменений: даты меняет каждая публикация, это не повод останавливать откат
+function sitemapHash(sm) { return sha1(JSON.stringify((sm || []).map((e) => [e.path, e.priority, e.images]))); }
 function stateHash(data, f) { return sha1(JSON.stringify(data.pages[f] || null) + "\u0000" + (data.skeletons[f] || "")); }
 function finishSnapshot(data, snap) {
   snap.expect = {};
   for (const f of Object.keys(snap.pages)) snap.expect[f] = stateHash(data, f);
-  snap.sitemapExpect = sha1(JSON.stringify(data.sitemap));
+  snap.sitemapExpect = sitemapHash(data.sitemap);
   return snap;
 }
 
@@ -242,11 +245,13 @@ const OPS = {
     for (const [f, st] of Object.entries(op.pages)) {
       if (op.expect && stateHash(data, f) !== op.expect[f]) throw new Error("Страницу " + f + " меняли позже — сначала откатите более поздние правки");
     }
-    if (op.sitemapExpect && sha1(JSON.stringify(data.sitemap)) !== op.sitemapExpect) throw new Error("Список страниц для поисковиков меняли позже — сначала откатите более поздние правки");
+    if (op.sitemapExpect && sitemapHash(data.sitemap) !== op.sitemapExpect) throw new Error("Список страниц для поисковиков меняли позже — сначала откатите более поздние правки");
     for (const [f, st] of Object.entries(op.pages)) {
       if (st.page) { data.pages[f] = clone(st.page); data.skeletons[f] = st.skeleton; } else { delete data.pages[f]; delete data.skeletons[f]; }
     }
-    data.sitemap = clone(op.sitemap);
+    // даты изменений (lastmod) не откатываем: они только помогают поисковикам
+    const dates = new Map((data.sitemap || []).map((e) => [e.path, e.lastmod]));
+    data.sitemap = op.sitemap ? clone(op.sitemap).map((e) => (dates.has(e.path) ? Object.assign(e, { lastmod: dates.get(e.path) }) : e)) : op.sitemap;
     return finishSnapshot(data, back);
   },
   // копия дома: новая страница (скрыта, пока её не заполнят), размеры для расчёта — как у исходного
@@ -328,11 +333,9 @@ const OPS = {
   // страница целиком из готового HTML (забрать правки, сделанные мимо админки)
   import(data, op) {
     const before = { page: clone(data.pages[op.file] || null), skeleton: data.skeletons[op.file] ?? null };
-    const s = split(op.html);
-    const page = Object.assign({}, data.pages[op.file] || {}, { fields: s.fields });
-    if (s.head) page.head = s.head;
-    data.pages[op.file] = page;
-    data.skeletons[op.file] = s.skeleton;
+    const a = analyze(op.html, op.file, data.site, data.T, data.pages[op.file]);
+    data.pages[op.file] = a.page;
+    data.skeletons[op.file] = a.skeleton;
     return { op: "restorePage", file: op.file, page: before.page, skeleton: before.skeleton };
   },
   restorePage(data, op) {

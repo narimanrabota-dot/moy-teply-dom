@@ -239,8 +239,14 @@
         '. Пока эти правки не забраны в админку, публиковать нельзя. <button class="btn sm">Забрать правки в админку</button>';
       $("#alerts").appendChild(box);
       $("button", box).addEventListener("click", function () {
-        this.disabled = true;
-        api("POST", "/api/drift/import", { files: d.external }).then(function () { toast("Правки с сайта забраны в админку"); viewHome(); }).catch(fail);
+        var b = this; b.disabled = true;
+        api("POST", "/api/drift/import", { files: d.external }).then(function () { toast("Правки с сайта забраны в админку"); viewHome(); }).catch(function (e) {
+          if (!e.data || e.data.code !== "shared") { fail(e); b.disabled = false; return; }
+          dialog("<h2 style='margin-top:0'>Правки в общих частях сайта</h2><p>" + esc(e.message) + "</p>", "Забрать и вернуть общие части", { danger: true }).then(function (ok) {
+            if (!ok) { b.disabled = false; return; }
+            api("POST", "/api/drift/import", { files: d.external, overwrite: true }).then(function () { toast("Готово"); viewHome(); }).catch(fail);
+          });
+        });
       });
     }).catch(function () {});
   }

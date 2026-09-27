@@ -332,7 +332,8 @@ class App {
         if (touched) builtAfter = this.buildAll(after);
       }
       const siteFiles = {};
-      for (const [f, c] of Object.entries(builtAfter)) if (c !== builtBefore[f] || dr.behind.includes(f)) siteFiles[f] = c;
+      // force (забрать правки / вернуть как в админке): файлы, изменённые мимо админки, тоже перезаписываются сборкой
+      for (const [f, c] of Object.entries(builtAfter)) if (c !== builtBefore[f] || dr.behind.includes(f) || (force && dr.external.includes(f))) siteFiles[f] = c;
       for (const f of Object.keys(builtBefore)) if (!(f in builtAfter)) siteFiles[f] = null; // страницу удалили (отмена копии)
       for (const [f, c] of Object.entries(uploads || {})) siteFiles[f] = c;
       const siteHashes = {};
@@ -396,7 +397,9 @@ class App {
   }
 
   // Забрать в админку правки, сделанные на сайте мимо неё.
-  async importDrift(who, files) {
+  // Правки в общих частях (шапка, меню, подвал, окно заявки) в одну страницу не забираются:
+  // их делает Claude в шаблонах админки. Такие файлы админка перечисляет; overwrite — вернуть их как в админке.
+  async importDrift(who, files, overwrite) {
     const ops = await this.mutex.run(async () => {
       await this.siteRepo.sync();
       const list = [];
@@ -409,6 +412,13 @@ class App {
       return list;
     });
     if (!ops.length) throw new UserError("Нечего забирать");
+    if (!overwrite) {
+      const { data: after } = applyOps(this.data, ops, { calc: this.calc });
+      const built = this.buildAll(after);
+      const shared = ops.filter((o) => built["v2/" + o.file] !== o.html).map((o) => o.file);
+      if (shared.length) throw new UserError("Правки в общих частях сайта (шапка, меню, подвал, окно заявки) на страницах: " + shared.join(", ") +
+        ". Такие правки Claude делает в шаблонах админки (admin/templates), иначе они исчезнут при следующей публикации. Можно вернуть эти страницы как в админке — остальные правки с них будут забраны.", { code: "shared", files: shared });
+    }
     return this.publish({ ops, title: "Правки с сайта забраны в админку: " + files.map((f) => f.slice(3)).join(", "), reason: "Сайт правили мимо админки", who, force: true, kind: "import" });
   }
 

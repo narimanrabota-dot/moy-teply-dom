@@ -167,7 +167,7 @@ function createServer(app, opts = {}) {
     app.lastDrift = Object.assign(app.drift(), { at: new Date().toISOString() });
     return app.lastDrift;
   }));
-  route("POST", /^\/api\/drift\/import$/, async ({ user, body }) => app.importDrift(user.name, body.files || []), { owner: true });
+  route("POST", /^\/api\/drift\/import$/, async ({ user, body }) => app.importDrift(user.name, body.files || [], !!body.overwrite), { owner: true });
   route("POST", /^\/api\/site\/retry$/, async ({ user }) => app.retrySite(user.name), { owner: true });
 
   // ---------- цены ----------

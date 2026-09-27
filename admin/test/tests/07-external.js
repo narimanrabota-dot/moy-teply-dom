@@ -28,16 +28,24 @@ module.exports = {
         if (!(r.status === 400 && r.json.code === "drift")) ctx.problem("публикация не остановилась при правке мимо админки: " + r.status + " " + JSON.stringify(r.json).slice(0, 150));
         const d = await st.owner("GET", "/api/drift");
         if (!d.json.external.includes("v2/" + f)) ctx.problem("не замечена правка мимо админки в " + f);
-        const imp = await st.owner("POST", "/api/drift/import", { files: d.json.external });
+        let imp = await st.owner("POST", "/api/drift/import", { files: d.json.external });
+        const shared = imp.status === 400 && imp.json.code === "shared";
+        if (shared) { // правка в общей части (шапка/подвал/окно заявки): админка сказала об этом, возвращаем как в админке
+          st.count("shared");
+          imp = await st.owner("POST", "/api/drift/import", { files: d.json.external, overwrite: true });
+        }
         if (imp.status !== 200) ctx.problem("не забрались правки: " + JSON.stringify(imp.json).slice(0, 200));
-        // правка Claude сохранилась и теперь есть в данных
-        if (!JSON.stringify(st.app.data.pages[f].fields).includes("правка Claude")) ctx.problem("правка Claude потерялась в " + f);
+        // правка Claude в тексте страницы сохранилась и теперь есть в данных
+        const now = fs.readFileSync(st.app.siteRepo.file("v2/" + f), "utf8");
+        if (!shared && !now.includes("правка Claude")) ctx.problem("правка Claude потерялась в " + f);
+        if (shared && now.includes("правка Claude") && !JSON.stringify(st.app.data.pages[f]).includes("правка Claude")) ctx.problem("общая часть не вернулась в " + f);
         const r2 = await st.owner("POST", "/api/submit", { ops: [T.randomFieldOp(st, R)], title: "снова", reason: "тест 07" });
         if (r2.status !== 200) ctx.problem("после забора правок публикация не идёт: " + JSON.stringify(r2.json).slice(0, 200));
         ctx.step();
         for (const p of T.invariants(st)) ctx.problem(p);
         ctx.checked();
       }
+      Object.assign(ctx.stats, st.stats);
     } finally { await T.close(st); }
   },
 };
