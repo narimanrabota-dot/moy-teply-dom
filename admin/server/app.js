@@ -346,6 +346,7 @@ class App {
       if (col.inverse.length) { after = col.data; inverse = col.inverse.concat(inverse); }
       const moved = col.inverse.length ? col.inverse[0].collections : [];
       const v = this.validate(before, after, ops);
+      for (const [f, p] of Object.entries(after.pages)) if (p.showWarning) { v.warnings.push(f + ": " + p.showWarning); delete p.showWarning; }
       if (moved.length) v.warnings.push("Изменился состав подборок по цене: " + moved.join(", ") + ". Проверьте тексты этих страниц — там может быть написано число домов.");
       if (v.errors.length) throw new UserError(v.errors.join("\n"), { code: "invalid", errors: v.errors });
       let builtAfter = this.buildAll(after);
@@ -371,6 +372,7 @@ class App {
         id: newId(), at: nowIso(), kind, title: String(title || "Правка").slice(0, 200), reason: String(reason).slice(0, 500),
         who, approvedBy: approvedBy || who, ops: lightOps(ops), inverse, files: [...new Set(ops.map((o) => o.file).filter(Boolean).concat(created))],
         siteFiles: Object.keys(siteFiles).map((f) => f.replace("v2/", "")), siteHashes,
+        warnings: v.warnings.length ? v.warnings : undefined,
       };
       // 1) данные + запись журнала + убрать из очереди.
       // Тяжёлые данные для отката (копии страниц) — отдельным файлом, чтобы журнал оставался лёгким.

@@ -54,6 +54,11 @@
       }, function () { throw new Error("Нет связи с сервером. Проверьте интернет и попробуйте ещё раз."); });
   }
   function fail(e) { toast(e.message || String(e), true); }
+  // предупреждения после публикации (например, что изменился состав подборок)
+  function afterPublish(r) {
+    var w = (r && r.entry && r.entry.warnings) || (r && r.warnings) || [];
+    if (w.length) dialog("<h2 style='margin-top:0'>Опубликовано, но обратите внимание</h2><div class='note warn small'>" + w.map(esc).join("<br>") + "</div>", "Понятно", { noCancel: true });
+  }
 
   // Диалог: содержимое → кнопки. Возвращает Promise с данными формы или null.
   function dialog(html, okText, opts) {
@@ -336,6 +341,7 @@
             return api("POST", "/api/submit", { ops: list, title: title, reason: d.reason }).then(function (r) {
               toast(r.published ? "Готово. На сайте через 1–2 минуты." : "Отправлено на проверку");
               if (r.published && go) location.hash = go; else render();
+              if (r.published) afterPublish(r);
             });
           });
         }).catch(fail);
@@ -467,6 +473,7 @@
               state.dirty = false;
               toast(r.published ? "Опубликовано. На сайте через 1–2 минуты." : r.item && r.item.status === "scheduled" ? "Запланировано" : "Отправлено на проверку");
               render();
+              if (r.published) afterPublish(r);
             });
           });
         }).catch(function (e) { fail(e); changed(); });

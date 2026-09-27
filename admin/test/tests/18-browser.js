@@ -20,7 +20,17 @@ module.exports = {
       await page.click("#lf button");
       await page.waitForSelector("#view h1");
       const routes = ["#/", "#/pages", "#/prices", "#/contacts", "#/journal", "#/integrations", "#/users", "#/profile", "#/help"];
-      const idle = () => page.waitForFunction(() => window.__pending === 0 && !document.querySelector("dialog"), null, { timeout: 45000 }).then(() => page.waitForTimeout(150));
+      // окно «Опубликовано, но обратите внимание» закрываем, как это сделал бы человек
+      const idle = async () => {
+        for (let i = 0; i < 3; i++) {
+          await page.waitForFunction(() => window.__pending === 0, null, { timeout: 45000 });
+          const ok = page.locator("dialog button[value=ok]:has-text('Понятно')");
+          if (await ok.count()) { st.count("warnings"); await ok.first().click(); continue; }
+          break;
+        }
+        await page.waitForFunction(() => window.__pending === 0 && !document.querySelector("dialog"), null, { timeout: 45000 });
+        await page.waitForTimeout(150);
+      };
       while (ctx.until()) {
         const act = R.int(0, 5);
         await idle().catch(() => {});
@@ -40,8 +50,7 @@ module.exports = {
               await page.click("#pub");
               await page.fill("dialog [name=reason]", "проверка в браузере");
               await page.click("dialog button[value=ok]");
-              await page.waitForFunction(() => !document.querySelector("dialog"), null, { timeout: 30000 });
-              await page.waitForTimeout(500);
+              await idle();
               st.count("published");
             }
           } else if (act === 2) {
@@ -54,7 +63,7 @@ module.exports = {
             await page.click("#psave");
             await page.fill("dialog [name=reason]", "цены из браузера");
             await page.click("dialog button[value=ok]");
-            await page.waitForFunction(() => !document.querySelector("dialog"), null, { timeout: 30000 });
+            await idle();
             st.count("prices");
           } else if (act === 3) {
             await page.goto(st.http.url + "/#/journal");
