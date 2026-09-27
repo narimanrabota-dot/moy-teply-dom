@@ -267,7 +267,9 @@ class App {
 
   // Предпросмотр: страница с применёнными правками (ничего не записывает).
   preview(ops, file) {
-    const next = ops && ops.length ? D.apply(this.data, ops).data : this.data;
+    let next = ops && ops.length ? D.apply(this.data, ops, { calc: this.calc }).data : this.data;
+    const col = D.apply(next, [{ op: "collections" }], { calc: this.calc });
+    if (col.inverse.length) next = col.data;
     const page = next.pages[file];
     if (!page) throw new UserError("Нет страницы " + file);
     const cfg = this.liveCfg(next);
@@ -278,11 +280,15 @@ class App {
 
   // Сводка правки: какие страницы сайта изменятся.
   summary(ops) {
-    const { data: next } = D.apply(this.data, ops);
+    let { data: next } = D.apply(this.data, ops, { calc: this.calc });
+    const col = D.apply(next, [{ op: "collections" }], { calc: this.calc });
+    if (col.inverse.length) next = col.data;
     const a = this.buildAll(this.data);
     const b = this.buildAll(next);
     const files = Object.keys(b).filter((f) => a[f] !== b[f]);
-    return Object.assign({ files }, this.validate(this.data, next, ops));
+    const v = this.validate(this.data, next, ops);
+    if (col.inverse.length) v.warnings.push("Изменится состав подборок по цене: " + col.inverse[0].collections.join(", ") + ". Проверьте тексты этих страниц — там может быть написано число домов.");
+    return Object.assign({ files }, v);
   }
 
   // ---------- публикация ----------
@@ -301,8 +307,13 @@ class App {
       if (dr.external.length && !force) {
         throw new UserError("Сайт изменён мимо админки: " + dr.external.map((f) => f.replace("v2/", "")).join(", ") + ". Сначала заберите эти правки в админку.", { code: "drift", files: dr.external });
       }
-      const { data: after, inverse } = D.apply(before, ops);
+      let { data: after, inverse } = D.apply(before, ops, { calc: this.calc });
+      // подборки по цене: дом сам переезжает между «до 2 млн / 2–3 / от 3 млн»
+      const col = D.apply(after, [{ op: "collections" }], { calc: this.calc });
+      if (col.inverse.length) { after = col.data; inverse = col.inverse.concat(inverse); }
+      const moved = col.inverse.length ? col.inverse[0].collections : [];
       const v = this.validate(before, after, ops);
+      if (moved.length) v.warnings.push("Изменился состав подборок по цене: " + moved.join(", ") + ". Проверьте тексты этих страниц — там может быть написано число домов.");
       if (v.errors.length) throw new UserError(v.errors.join("\n"), { code: "invalid", errors: v.errors });
       let builtAfter = this.buildAll(after);
       // дата изменения в sitemap.xml у изменённых страниц — поисковики быстрее их переобойдут

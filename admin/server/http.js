@@ -321,7 +321,7 @@ function normalizeOps(app, ops) {
       return { op: "site", key: op.key, value: v };
     }
     // операции, которые экран не должен присылать напрямую
-    if (["import", "restorePage", "ratesSet", "skeleton", "restoreState", "undelete"].includes(op.op)) throw new UserError("Недопустимая правка");
+    if (["import", "restorePage", "ratesSet", "skeleton", "restoreState", "undelete", "collections"].includes(op.op)) throw new UserError("Недопустимая правка");
     return op;
   });
 }
@@ -351,6 +351,7 @@ function describeOps(app, ops, inverse) {
       case "show": return { where: title, what: "Дом снова показан на сайте" };
       case "copy": return { where: "Новый дом proekt-" + op.slug + ".html", what: "Копия дома «" + (app.data.pages[op.from] ? pageName(app.data.pages[op.from], op.from) : op.from) + "»" };
       case "deletePage": return { where: title, what: "Копия удалена" };
+      case "restoreState": return { where: op.collections ? "Подборки по цене" : Object.keys(op.pages).join(", "), what: op.collections ? "состав подборок пересчитан" : "страницы возвращены" };
       case "restorePage": return { where: title, what: "Страница восстановлена" };
       default: return { where: "", what: op.op };
     }

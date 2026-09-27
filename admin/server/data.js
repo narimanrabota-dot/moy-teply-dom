@@ -291,6 +291,22 @@ const OPS = {
     if (op.model && op.before.manual) data.prices.manual[op.model] = clone(op.before.manual);
     return { op: "deletePage", file: op.file, model: op.model };
   },
+  // подборки по цене приводятся к правилам (запускается автоматически при каждой публикации)
+  collections(data, op, ctx) {
+    if (!ctx.calc) throw new Error("нет формул калькулятора");
+    const cfg = clone(data.cfg);
+    for (const [m, src] of Object.entries(data.models || {})) if (src && src.from && cfg.models[src.from]) cfg.models[m] = clone(cfg.models[src.from]);
+    const rates = Object.assign({}, cfg.defaults);
+    if (data.rates) for (const k of Object.keys(cfg.defaults)) if (typeof data.rates[k] === "number") rates[k] = data.rates[k];
+    const pr = P.pricesFor(ctx.calc, cfg, rates, data.prices.manual);
+    const priceOf = (f) => { const m = (data.skeletons[f].match(/data-model="([^"]+)"/) || [])[1]; return m && pr[m] ? pr[m].packages[0] : null; };
+    const snap = snapshot(data, L.PRICE_COLLECTIONS.map((c) => c.file));
+    const changed = L.syncPriceCollections(data, priceOf);
+    if (!changed.length) return null;
+    for (const f of Object.keys(snap.pages)) if (!changed.includes(f)) delete snap.pages[f];
+    snap.collections = changed;
+    return finishSnapshot(data, snap);
+  },
   // ручная цена дома: [холодный, комфорт, премиум] или null — считать калькулятором
   manualPrice(data, op) {
     const before = data.prices.manual[op.model] || null;
@@ -328,7 +344,7 @@ const OPS = {
 };
 
 // Применяет операции к копии данных. Возвращает новые данные и обратные операции (в обратном порядке).
-function apply(data, ops) {
+function apply(data, ops, ctx) {
   const next = Object.assign({}, data, {
     site: clone(data.site), T: Object.assign({}, data.T), pages: clone(data.pages),
     skeletons: Object.assign({}, data.skeletons), prices: clone(data.prices), rates: clone(data.rates),
@@ -338,7 +354,8 @@ function apply(data, ops) {
   for (const op of ops) {
     const fn = OPS[op.op];
     if (!fn) throw new Error("Неизвестная операция: " + op.op);
-    inverse.unshift(fn(next, op));
+    const inv = fn(next, op, ctx || {});
+    if (inv) inverse.unshift(inv);
   }
   return { data: next, inverse };
 }
