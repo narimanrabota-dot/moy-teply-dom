@@ -296,6 +296,10 @@ function createServer(app, opts = {}) {
       return send(res, 500, { error: "Ошибка на сервере: " + e.message });
     }
   });
+  // соединения держим дольше, чем прокси Render и браузер: иначе сервер закрывает соединение
+  // в тот момент, когда по нему уже идёт запрос, и браузер видит «нет сети»
+  server.keepAliveTimeout = 65000;
+  server.headersTimeout = 66000;
   return server;
 }
 

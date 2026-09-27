@@ -69,7 +69,7 @@ class Leads {
       const dealId = await p;
       if (lead.id) {
         this.done.set(lead.id, dealId);
-        if (this.done.size > 20000) this.done.delete(this.done.keys().next().value);
+        if (this.done.size > 200000) this.done.delete(this.done.keys().next().value);
       }
       this.stats.sent++;
       this.stats.lastAt = new Date().toISOString();

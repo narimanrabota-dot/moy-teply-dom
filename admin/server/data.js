@@ -88,7 +88,13 @@ function snapshot(data, files) {
 }
 // sitemap без дат изменений: даты меняет каждая публикация, это не повод останавливать откат
 function sitemapHash(sm) { return sha1(JSON.stringify((sm || []).map((e) => [e.path, e.priority, e.images, !!e.hidden]))); }
-function stateHash(data, f) { return sha1(JSON.stringify(data.pages[f] || null) + "\u0000" + (data.skeletons[f] || "")); }
+// Служебные пометки (порядок карточек для возврата скрытых домов) не считаются изменением страницы.
+function pageForHash(p) {
+  if (!p) return null;
+  const { cardOrder, ldOrder, ...rest } = p;
+  return rest;
+}
+function stateHash(data, f) { return sha1(JSON.stringify(pageForHash(data.pages[f])) + "\u0000" + (data.skeletons[f] || "")); }
 function finishSnapshot(data, snap) {
   snap.expect = {};
   for (const f of Object.keys(snap.pages)) snap.expect[f] = stateHash(data, f);
@@ -154,7 +160,7 @@ const OPS = {
     const sk = data.skeletons[op.file];
     if (sk == null) throw new Error("Нет страницы " + op.file);
     const page = data.pages[op.file];
-    const before = { skeleton: sk, seoImage: page.seo ? clone(page.seo.image) : null };
+    const before = { skeleton: sk, seoImage: page.seo ? clone(page.seo.image) : null, seoLd: page.seo ? clone(page.seo.ld) : null };
     const re = new RegExp("(\\.\\./img/)" + escRe(op.from) + "(-960|-th)?(\\.webp)(\\?v=[0-9a-f]+)?", "g");
     let n = 0;
     let next = sk.replace(re, (m, a, suf, ext) => { n++; return a + op.to + (suf || "") + ext; });
@@ -170,7 +176,9 @@ const OPS = {
       page.seo.image.src = "img/" + op.to + ".webp";
       if (op.w && op.h) { page.seo.image.w = op.w; page.seo.image.h = op.h; }
     }
-    return { op: "skeleton", file: op.file, skeleton: before.skeleton, seoImage: before.seoImage, expect: sha1(next) };
+    // фото в разметке schema.org (карточка товара для поисковиков)
+    if (page.seo && page.seo.ld) page.seo.ld = JSON.parse(JSON.stringify(page.seo.ld).split("img/" + op.from + ".webp").join("img/" + op.to + ".webp"));
+    return { op: "skeleton", file: op.file, skeleton: before.skeleton, seoImage: before.seoImage, seoLd: before.seoLd, expect: sha1(next) };
   },
   // возврат разметки страницы (откат замены фото); если фото на странице меняли позже — стоп
   skeleton(data, op) {
@@ -178,9 +186,10 @@ const OPS = {
     if (cur == null) throw new Error("Нет страницы " + op.file);
     if (op.expect && sha1(cur) !== op.expect) throw new Error("Фото на странице " + op.file + " меняли позже — сначала откатите более поздние правки фото");
     const page = data.pages[op.file];
-    const inv = { op: "skeleton", file: op.file, skeleton: cur, seoImage: page.seo ? clone(page.seo.image) : null, expect: sha1(op.skeleton) };
+    const inv = { op: "skeleton", file: op.file, skeleton: cur, seoImage: page.seo ? clone(page.seo.image) : null, seoLd: page.seo ? clone(page.seo.ld) : null, expect: sha1(op.skeleton) };
     data.skeletons[op.file] = op.skeleton;
     if (page.seo && op.seoImage) page.seo.image = clone(op.seoImage);
+    if (page.seo && op.seoLd) page.seo.ld = clone(op.seoLd);
     return inv;
   },
   // скрыть дом: карточки со всех страниц-списков, из разметки schema.org и sitemap; страница — noindex.
@@ -275,7 +284,12 @@ const OPS = {
     }
     if (op.sitemapExpect && sitemapHash(data.sitemap) !== op.sitemapExpect) throw new Error("Список страниц для поисковиков меняли позже — сначала откатите более поздние правки");
     for (const [f, st] of Object.entries(op.pages)) {
-      if (st.page) { data.pages[f] = clone(st.page); data.skeletons[f] = st.skeleton; } else { delete data.pages[f]; delete data.skeletons[f]; }
+      const keep = data.pages[f] ? { cardOrder: data.pages[f].cardOrder, ldOrder: data.pages[f].ldOrder } : {};
+      if (st.page) {
+        data.pages[f] = clone(st.page);
+        for (const [k, v] of Object.entries(keep)) if (v !== undefined) data.pages[f][k] = v;
+        data.skeletons[f] = st.skeleton;
+      } else { delete data.pages[f]; delete data.skeletons[f]; }
     }
     // даты изменений (lastmod) не откатываем: они только помогают поисковикам
     const dates = new Map((data.sitemap || []).map((e) => [e.path, e.lastmod]));
