@@ -18,5 +18,7 @@
     "ogrn": "1214300002070",
     "director": "Баннов А. В.",
     "copyright": "© 2026 ООО «СОЗВЕЗДИЕ»"
-  }
+  },
+  "baseUrl": "https://moy-teply-dom.onrender.com/",
+  "siteName": "Мой тёплый дом"
 }

@@ -5,6 +5,7 @@
 const fs = require("fs");
 const path = require("path");
 const { applyShell } = require("./shell");
+const { applySeo } = require("./seo");
 
 const ROOT = path.join(__dirname, "..");
 const SITE = path.join(ROOT, "..", "v2");
@@ -15,7 +16,7 @@ let ok = 0;
 const bad = [];
 for (const [file, page] of Object.entries(pages)) {
   const orig = fs.readFileSync(path.join(SITE, file), "utf8");
-  const built = applyShell(orig, site, page);
+  const built = applySeo(applyShell(orig, site, page), site, file, page);
   if (built === orig) { ok++; continue; }
   let i = 0;
   while (built[i] === orig[i]) i++;

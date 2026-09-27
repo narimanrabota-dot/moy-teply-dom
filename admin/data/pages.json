@@ -24,7 +24,20 @@
     "n": 0,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Договор на строительство каркасного дома — образец с пунктами",
+   "description": "Договор подряда с ООО «СОЗВЕЗДИЕ»: твёрдая цена, оплата по мере готовности, гарантия два года, неустойка за просрочку. Скачайте образец до встречи."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "doma-2-3-mln.html": {
   "current": [
@@ -44,7 +57,88 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасные дома 2–3 млн рублей — проекты",
+   "description": "Каркасные дома от 2 до 3 млн ₽: 6 проектов. Общая площадь с террасой от 63 до 77,8 м². Цена от 2 331 000 ₽. Фото, планировки и три комплектации."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-9h7-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 6,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-stambul-9x7.html",
+       "name": "Стамбул 9 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-sochi-9x75.html",
+       "name": "Сочи 9 × 7,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-stambul-9x8.html",
+       "name": "Стамбул 9 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 4,
+       "url": "{{base}}v2/proekt-stambul-11x7.html",
+       "name": "Стамбул 11 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 5,
+       "url": "{{base}}v2/proekt-stambul-96x81-2.html",
+       "name": "Стамбул 9,6 × 8,1 с террасой 20,2 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 6,
+       "url": "{{base}}v2/proekt-stambul-96x81.html",
+       "name": "Стамбул 9,6 × 8,1 с террасой 12 м²"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Каталог",
+       "item": "{{base}}v2/katalog.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Каркасные дома от 2 до 3 млн ₽",
+       "item": "{{base}}v2/doma-2-3-mln.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "doma-60-100-m2.html": {
   "current": [
@@ -64,7 +158,118 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасные дома до 100 кв. м — одноэтажные проекты и цены",
+   "description": "Каркасные дома до 100 кв. м: 11 проектов. Общая площадь с террасой от 63 до 99,9 м². Цена от 2 331 000 ₽. Фото, планировки и три комплектации."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-9h7-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 11,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-stambul-9x7.html",
+       "name": "Стамбул 9 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-sochi-9x75.html",
+       "name": "Сочи 9 × 7,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-stambul-9x8.html",
+       "name": "Стамбул 9 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 4,
+       "url": "{{base}}v2/proekt-stambul-11x7.html",
+       "name": "Стамбул 11 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 5,
+       "url": "{{base}}v2/proekt-stambul-96x81-2.html",
+       "name": "Стамбул 9,6 × 8,1 с террасой 20,2 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 6,
+       "url": "{{base}}v2/proekt-stambul-96x81.html",
+       "name": "Стамбул 9,6 × 8,1 с террасой 12 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 7,
+       "url": "{{base}}v2/proekt-stambul-115x7.html",
+       "name": "Стамбул 11,5 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 8,
+       "url": "{{base}}v2/proekt-stambul-11x8.html",
+       "name": "Стамбул 11 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 9,
+       "url": "{{base}}v2/proekt-sochi-105x9.html",
+       "name": "Сочи 10,5 × 9"
+      },
+      {
+       "@type": "ListItem",
+       "position": 10,
+       "url": "{{base}}v2/proekt-vladivostok-12x8.html",
+       "name": "Владивосток 12 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 11,
+       "url": "{{base}}v2/proekt-vladivostok-122x8.html",
+       "name": "Владивосток 12,2 × 8"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Каталог",
+       "item": "{{base}}v2/katalog.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Каркасные дома до 100 кв. м",
+       "item": "{{base}}v2/doma-60-100-m2.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "doma-do-2-mln.html": {
   "current": [
@@ -84,7 +289,70 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Недорогие каркасные дома до 2 млн ₽ под ключ — проекты",
+   "description": "Недорогие каркасные дома до 2 млн ₽: 3 проекта. Общая площадь с террасой от 40,5 до 48,2 м². Цена от 1 498 500 ₽. Фото, планировки и три комплектации."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-75h6-2-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 3,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-stambul-75x6-2.html",
+       "name": "Стамбул 7,5 × 6 с террасой 4,5 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-stambul-75x6.html",
+       "name": "Стамбул 7,5 × 6 с террасой 9 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-stambul-75x7.html",
+       "name": "Стамбул 7,5 × 7"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Каталог",
+       "item": "{{base}}v2/katalog.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Недорогие каркасные дома до 2 млн ₽",
+       "item": "{{base}}v2/doma-do-2-mln.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "doma-do-60-m2.html": {
   "current": [
@@ -104,7 +372,70 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасные дома до 60 кв. м — проекты и цены",
+   "description": "Каркасные дома до 60 кв. м: 3 проекта. Общая площадь с террасой от 40,5 до 48,2 м². Цена от 1 498 500 ₽. Фото, планировки и три комплектации."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-75h6-2-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 3,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-stambul-75x6-2.html",
+       "name": "Стамбул 7,5 × 6 с террасой 4,5 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-stambul-75x6.html",
+       "name": "Стамбул 7,5 × 6 с террасой 9 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-stambul-75x7.html",
+       "name": "Стамбул 7,5 × 7"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Каталог",
+       "item": "{{base}}v2/katalog.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Каркасные дома до 60 кв. м",
+       "item": "{{base}}v2/doma-do-60-m2.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "doma-ot-100-m2.html": {
   "current": [
@@ -124,7 +455,112 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасные дома от 100 кв. м — одноэтажные проекты и цены",
+   "description": "Каркасные дома от 100 кв. м: 10 проектов. Общая площадь с террасой от 100 до 136,9 м². Цена от 3 700 000 ₽. Фото, планировки и три комплектации."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-12h8-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 10,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-stambul-121x81.html",
+       "name": "Стамбул 12,1 × 8,1"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-vladivostok-14x69.html",
+       "name": "Владивосток 14 × 6,9"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-siena-12x82.html",
+       "name": "Сиена 12 × 8,2"
+      },
+      {
+       "@type": "ListItem",
+       "position": 4,
+       "url": "{{base}}v2/proekt-siena-144x7.html",
+       "name": "Сиена 14,4 × 7 с террасой 19,5 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 5,
+       "url": "{{base}}v2/proekt-siena-144x7-2.html",
+       "name": "Сиена 14,4 × 7 с террасой 23,3 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 6,
+       "url": "{{base}}v2/proekt-parma-10x8.html",
+       "name": "Парма 10 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 7,
+       "url": "{{base}}v2/proekt-siena-125x82.html",
+       "name": "Сиена 12,5 × 8,2"
+      },
+      {
+       "@type": "ListItem",
+       "position": 8,
+       "url": "{{base}}v2/proekt-vladivostok-135x8.html",
+       "name": "Владивосток 13,5 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 9,
+       "url": "{{base}}v2/proekt-siena-13x85.html",
+       "name": "Сиена 13 × 8,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 10,
+       "url": "{{base}}v2/proekt-siena-155x85.html",
+       "name": "Сиена 15,5 × 8,5"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Каталог",
+       "item": "{{base}}v2/katalog.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Каркасные дома от 100 кв. м",
+       "item": "{{base}}v2/doma-ot-100-m2.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "doma-ot-3-mln.html": {
   "current": [
@@ -144,7 +580,142 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасные дома от 3 млн рублей — проекты",
+   "description": "Каркасные дома от 3 млн ₽: 15 проектов. Общая площадь с террасой от 83,7 до 136,9 м². Цена от 3 096 900 ₽. Фото, планировки и три комплектации."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-115h7-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 15,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-stambul-115x7.html",
+       "name": "Стамбул 11,5 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-stambul-11x8.html",
+       "name": "Стамбул 11 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-sochi-105x9.html",
+       "name": "Сочи 10,5 × 9"
+      },
+      {
+       "@type": "ListItem",
+       "position": 4,
+       "url": "{{base}}v2/proekt-vladivostok-12x8.html",
+       "name": "Владивосток 12 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 5,
+       "url": "{{base}}v2/proekt-vladivostok-122x8.html",
+       "name": "Владивосток 12,2 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 6,
+       "url": "{{base}}v2/proekt-stambul-121x81.html",
+       "name": "Стамбул 12,1 × 8,1"
+      },
+      {
+       "@type": "ListItem",
+       "position": 7,
+       "url": "{{base}}v2/proekt-vladivostok-14x69.html",
+       "name": "Владивосток 14 × 6,9"
+      },
+      {
+       "@type": "ListItem",
+       "position": 8,
+       "url": "{{base}}v2/proekt-siena-12x82.html",
+       "name": "Сиена 12 × 8,2"
+      },
+      {
+       "@type": "ListItem",
+       "position": 9,
+       "url": "{{base}}v2/proekt-siena-144x7.html",
+       "name": "Сиена 14,4 × 7 с террасой 19,5 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 10,
+       "url": "{{base}}v2/proekt-siena-144x7-2.html",
+       "name": "Сиена 14,4 × 7 с террасой 23,3 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 11,
+       "url": "{{base}}v2/proekt-parma-10x8.html",
+       "name": "Парма 10 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 12,
+       "url": "{{base}}v2/proekt-siena-125x82.html",
+       "name": "Сиена 12,5 × 8,2"
+      },
+      {
+       "@type": "ListItem",
+       "position": 13,
+       "url": "{{base}}v2/proekt-vladivostok-135x8.html",
+       "name": "Владивосток 13,5 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 14,
+       "url": "{{base}}v2/proekt-siena-13x85.html",
+       "name": "Сиена 13 × 8,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 15,
+       "url": "{{base}}v2/proekt-siena-155x85.html",
+       "name": "Сиена 15,5 × 8,5"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Каталог",
+       "item": "{{base}}v2/katalog.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Каркасные дома от 3 млн ₽",
+       "item": "{{base}}v2/doma-ot-3-mln.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "doma-s-2-spalnyami.html": {
   "current": [
@@ -164,7 +735,154 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасные дома с 2 спальнями — проекты и цены",
+   "description": "Каркасные дома с 2 спальнями: 17 проектов. Общая площадь с террасой от 48,2 до 113,7 м². Цена от 1 783 400 ₽. Фото, планировки и три комплектации."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-9h8-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 17,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-stambul-9x8.html",
+       "name": "Стамбул 9 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-stambul-75x7.html",
+       "name": "Стамбул 7,5 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-stambul-9x7.html",
+       "name": "Стамбул 9 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 4,
+       "url": "{{base}}v2/proekt-stambul-115x7.html",
+       "name": "Стамбул 11,5 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 5,
+       "url": "{{base}}v2/proekt-stambul-11x7.html",
+       "name": "Стамбул 11 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 6,
+       "url": "{{base}}v2/proekt-stambul-11x8.html",
+       "name": "Стамбул 11 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 7,
+       "url": "{{base}}v2/proekt-sochi-9x75.html",
+       "name": "Сочи 9 × 7,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 8,
+       "url": "{{base}}v2/proekt-sochi-105x9.html",
+       "name": "Сочи 10,5 × 9"
+      },
+      {
+       "@type": "ListItem",
+       "position": 9,
+       "url": "{{base}}v2/proekt-siena-144x7.html",
+       "name": "Сиена 14,4 × 7 с террасой 19,5 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 10,
+       "url": "{{base}}v2/proekt-siena-144x7-2.html",
+       "name": "Сиена 14,4 × 7 с террасой 23,3 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 11,
+       "url": "{{base}}v2/proekt-siena-13x85.html",
+       "name": "Сиена 13 × 8,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 12,
+       "url": "{{base}}v2/proekt-siena-125x82.html",
+       "name": "Сиена 12,5 × 8,2"
+      },
+      {
+       "@type": "ListItem",
+       "position": 13,
+       "url": "{{base}}v2/proekt-siena-12x82.html",
+       "name": "Сиена 12 × 8,2"
+      },
+      {
+       "@type": "ListItem",
+       "position": 14,
+       "url": "{{base}}v2/proekt-vladivostok-14x69.html",
+       "name": "Владивосток 14 × 6,9"
+      },
+      {
+       "@type": "ListItem",
+       "position": 15,
+       "url": "{{base}}v2/proekt-vladivostok-12x8.html",
+       "name": "Владивосток 12 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 16,
+       "url": "{{base}}v2/proekt-vladivostok-135x8.html",
+       "name": "Владивосток 13,5 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 17,
+       "url": "{{base}}v2/proekt-parma-10x8.html",
+       "name": "Парма 10 × 8"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Каталог",
+       "item": "{{base}}v2/katalog.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Каркасные дома с 2 спальнями",
+       "item": "{{base}}v2/doma-s-2-spalnyami.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "doma-s-3-spalnyami.html": {
   "current": [
@@ -184,7 +902,94 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Одноэтажные каркасные дома с 3 спальнями — проекты и цены",
+   "description": "Одноэтажные каркасные дома с 3 спальнями: 7 проектов. Общая площадь с террасой от 67,5 до 136,9 м². Цена от 2 497 500 ₽. Фото, планировки и три комплектации."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-9h8-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 7,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-stambul-9x8.html",
+       "name": "Стамбул 9 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-stambul-96x81.html",
+       "name": "Стамбул 9,6 × 8,1 с террасой 12 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-sochi-9x75.html",
+       "name": "Сочи 9 × 7,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 4,
+       "url": "{{base}}v2/proekt-siena-155x85.html",
+       "name": "Сиена 15,5 × 8,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 5,
+       "url": "{{base}}v2/proekt-vladivostok-135x8.html",
+       "name": "Владивосток 13,5 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 6,
+       "url": "{{base}}v2/proekt-vladivostok-122x8.html",
+       "name": "Владивосток 12,2 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 7,
+       "url": "{{base}}v2/proekt-parma-10x8.html",
+       "name": "Парма 10 × 8"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Каталог",
+       "item": "{{base}}v2/katalog.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Одноэтажные каркасные дома с 3 спальнями",
+       "item": "{{base}}v2/doma-s-3-spalnyami.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "doma-s-parnoy.html": {
   "current": [
@@ -204,12 +1009,173 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасные дома с баней внутри — проекты с парной и сауной",
+   "description": "Каркасные дома с баней внутри: 5 проектов. Общая площадь с террасой от 48,2 до 110,3 м². Цена от 1 783 400 ₽. Фото, планировки и три комплектации."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-7h75-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 5,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-stambul-75x7.html",
+       "name": "Стамбул 7,5 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-stambul-96x81.html",
+       "name": "Стамбул 9,6 × 8,1 с террасой 12 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-sochi-105x9.html",
+       "name": "Сочи 10,5 × 9"
+      },
+      {
+       "@type": "ListItem",
+       "position": 4,
+       "url": "{{base}}v2/proekt-vladivostok-14x69.html",
+       "name": "Владивосток 14 × 6,9"
+      },
+      {
+       "@type": "ListItem",
+       "position": 5,
+       "url": "{{base}}v2/proekt-vladivostok-135x8.html",
+       "name": "Владивосток 13,5 × 8"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Каталог",
+       "item": "{{base}}v2/katalog.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Каркасные дома с баней внутри",
+       "item": "{{base}}v2/doma-s-parnoy.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "index.html": {
   "current": [],
   "home": "",
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасные дома под ключ в Подмосковье — проекты и цены",
+   "description": "Каркасные дома под ключ в Москве и Московской области: 24 проекта в пяти сериях, площадь от 40,5 до 136,9 м², цена от 1 498 500 ₽. Фото, планировки и три комплектации."
+  },
+  "seo": {
+   "type": "website",
+   "image": {
+    "src": "img/dom-render-terrasa-leto-1600.webp",
+    "w": 1600,
+    "h": 1074
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "GeneralContractor",
+     "@id": "{{base}}v2/#company",
+     "name": "Мой тёплый дом",
+     "url": "{{base}}v2/",
+     "image": "{{base}}img/dom-render-terrasa-leto-1600.webp",
+     "logo": "{{base}}img/icon-512.png",
+     "areaServed": [
+      {
+       "@type": "City",
+       "name": "Москва"
+      },
+      {
+       "@type": "AdministrativeArea",
+       "name": "Московская область"
+      }
+     ],
+     "legalName": "ООО «СОЗВЕЗДИЕ»",
+     "telephone": "+79782516469",
+     "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Москва",
+      "streetAddress": "ул. Адмирала Корнилова, 66, строение 20",
+      "addressCountry": "RU"
+     },
+     "openingHoursSpecification": [
+      {
+       "@type": "OpeningHoursSpecification",
+       "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+       ],
+       "opens": "11:00",
+       "closes": "18:00"
+      }
+     ],
+     "taxID": "4338010020",
+     "identifier": [
+      {
+       "@type": "PropertyValue",
+       "name": "ИНН",
+       "value": "4338010020"
+      },
+      {
+       "@type": "PropertyValue",
+       "name": "КПП",
+       "value": "525401001"
+      },
+      {
+       "@type": "PropertyValue",
+       "name": "ОГРН",
+       "value": "1214300002070"
+      }
+     ],
+     "priceRange": "от 1 498 500 ₽"
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "WebSite",
+     "name": "Мой тёплый дом",
+     "url": "{{base}}v2/",
+     "inLanguage": "ru",
+     "publisher": {
+      "@id": "{{base}}v2/#company"
+     }
+    }
+   ]
+  }
  },
  "kak-zakazat.html": {
   "current": [
@@ -228,7 +1194,20 @@
     "n": 0,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Этапы строительства каркасного дома — как заказать",
+   "description": "Как заказать дом: четыре формата знакомства до договора и восемнадцать шагов стройки — от выбора модели до передачи ключей, с графиком оплат."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "katalog.html": {
   "current": [
@@ -248,7 +1227,190 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Одноэтажные каркасные дома с террасой под ключ — 24 проекта",
+   "description": "Проекты одноэтажных каркасных домов с террасой в Московской области: 24 проекта в 5 сериях, общая площадь с террасой от 40,5 до 136,9 м², цена от 1 498 500 ₽. Подборки по площади, цене и числу спален."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-9h8-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 24,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-stambul-9x8.html",
+       "name": "Стамбул 9 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-stambul-75x7.html",
+       "name": "Стамбул 7,5 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-stambul-75x6.html",
+       "name": "Стамбул 7,5 × 6 с террасой 9 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 4,
+       "url": "{{base}}v2/proekt-stambul-75x6-2.html",
+       "name": "Стамбул 7,5 × 6 с террасой 4,5 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 5,
+       "url": "{{base}}v2/proekt-stambul-9x7.html",
+       "name": "Стамбул 9 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 6,
+       "url": "{{base}}v2/proekt-stambul-96x81-2.html",
+       "name": "Стамбул 9,6 × 8,1 с террасой 20,2 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 7,
+       "url": "{{base}}v2/proekt-stambul-115x7.html",
+       "name": "Стамбул 11,5 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 8,
+       "url": "{{base}}v2/proekt-stambul-11x7.html",
+       "name": "Стамбул 11 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 9,
+       "url": "{{base}}v2/proekt-stambul-96x81.html",
+       "name": "Стамбул 9,6 × 8,1 с террасой 12 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 10,
+       "url": "{{base}}v2/proekt-stambul-121x81.html",
+       "name": "Стамбул 12,1 × 8,1"
+      },
+      {
+       "@type": "ListItem",
+       "position": 11,
+       "url": "{{base}}v2/proekt-stambul-11x8.html",
+       "name": "Стамбул 11 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 12,
+       "url": "{{base}}v2/proekt-sochi-9x75.html",
+       "name": "Сочи 9 × 7,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 13,
+       "url": "{{base}}v2/proekt-sochi-105x9.html",
+       "name": "Сочи 10,5 × 9"
+      },
+      {
+       "@type": "ListItem",
+       "position": 14,
+       "url": "{{base}}v2/proekt-siena-155x85.html",
+       "name": "Сиена 15,5 × 8,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 15,
+       "url": "{{base}}v2/proekt-siena-144x7.html",
+       "name": "Сиена 14,4 × 7 с террасой 19,5 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 16,
+       "url": "{{base}}v2/proekt-siena-144x7-2.html",
+       "name": "Сиена 14,4 × 7 с террасой 23,3 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 17,
+       "url": "{{base}}v2/proekt-siena-13x85.html",
+       "name": "Сиена 13 × 8,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 18,
+       "url": "{{base}}v2/proekt-siena-125x82.html",
+       "name": "Сиена 12,5 × 8,2"
+      },
+      {
+       "@type": "ListItem",
+       "position": 19,
+       "url": "{{base}}v2/proekt-siena-12x82.html",
+       "name": "Сиена 12 × 8,2"
+      },
+      {
+       "@type": "ListItem",
+       "position": 20,
+       "url": "{{base}}v2/proekt-vladivostok-14x69.html",
+       "name": "Владивосток 14 × 6,9"
+      },
+      {
+       "@type": "ListItem",
+       "position": 21,
+       "url": "{{base}}v2/proekt-vladivostok-12x8.html",
+       "name": "Владивосток 12 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 22,
+       "url": "{{base}}v2/proekt-vladivostok-135x8.html",
+       "name": "Владивосток 13,5 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 23,
+       "url": "{{base}}v2/proekt-vladivostok-122x8.html",
+       "name": "Владивосток 12,2 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 24,
+       "url": "{{base}}v2/proekt-parma-10x8.html",
+       "name": "Парма 10 × 8"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Каталог одноэтажных каркасных домов с террасой",
+       "item": "{{base}}v2/katalog.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "komanda.html": {
   "current": [
@@ -267,7 +1429,21 @@
     "n": 0,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Наша команда — Мой тёплый дом",
+   "description": "Люди, которые строят ваш дом: менеджеры, инженеры, прорабы и бригадиры."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": [],
+   "ogTitle": "Наша команда"
+  }
  },
  "komplektacii.html": {
   "current": [
@@ -287,7 +1463,20 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Что входит в каркасный дом под ключ: 3 комплектации и цены",
+   "description": "«Холодный контур», «Комфорт», «Премиум»: что входит в каркасный дом под ключ — фундамент, каркас, утепление, полы, отделка и терраса. Цены от 1 498 500 ₽."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "otzyvy.html": {
   "current": [
@@ -307,7 +1496,20 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасный дом: отзывы реальных владельцев с фото и видео",
+   "description": "Отзывы владельцев каркасных домов «Мой тёплый дом»: 9 видеоотзывов и 7 сданных объектов — 21 ролик и 16 фото."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "planirovki.html": {
   "current": [
@@ -327,13 +1529,40 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Планировки каркасных домов — 40 вариантов с чертежами",
+   "description": "Планировки одноэтажных каркасных домов с террасой: 40 вариантов для 24 проектов, от 1 до 3 спален, чертежи с площадями комнат и 3D. Цена каждого дома — в карточке."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-75h6-plan-1.webp",
+    "w": 1600,
+    "h": 1361
+   },
+   "ld": []
+  }
  },
  "politika.html": {
   "current": [],
   "footerHide": [
    "soglashenie.html"
-  ]
+  ],
+  "head": {
+   "title": "Политика конфиденциальности — Мой тёплый дом",
+   "description": "Как ООО «СОЗВЕЗДИЕ» обрабатывает персональные данные, полученные через сайт: какие данные, зачем, сколько хранятся и как их удалить."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": [],
+   "ogTitle": "Политика конфиденциальности"
+  }
  },
  "proekt-parma-10x8.html": {
   "current": [
@@ -342,7 +1571,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 10 × 8 с террасой под ключ — Парма, 103,3 м² и цена",
+   "description": "Каркасный дом «Парма» 10 × 8 м: 103,3 м² — дом 81,9 м² и терраса 21,4 м². Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/parma-10x8-fasad-1.webp?v=2",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Фасад с террасой"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Парма 10 × 8",
+     "description": "Каркасный дом «Парма» 10 × 8 м: 103,3 м² — дом 81,9 м² и терраса 21,4 м². Строим в Москве и Московской области.",
+     "image": "{{base}}img/parma-10x8-fasad-1.webp?v=2",
+     "url": "{{base}}v2/proekt-parma-10x8.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3822100,
+      "highPrice": 5268300,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-parma-10x8.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Парма",
+       "item": "{{base}}v2/seriya-parma.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Парма 10 × 8",
+       "item": "{{base}}v2/proekt-parma-10x8.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-siena-125x82.html": {
   "current": [
@@ -351,7 +1641,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 12,5 × 8,2 с террасой под ключ — Сиена, 105,2 м²",
+   "description": "Каркасный дом «Сиена» 12,5 × 8,2 м: 105,2 м² — дом 82 м² и терраса 23,2 м². Зал 31,5 м², две спальни 14 и 11,7 м², прихожая 9,3 м². Фото, планировка и цены."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/siena-125x82-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Фасад с террасой"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Сиена 12,5 × 8,2",
+     "description": "Каркасный дом «Сиена» 12,5 × 8,2 м: 105,2 м² — дом 82 м² и терраса 23,2 м². Зал 31,5 м², две спальни 14 и 11,7 м², прихожая 9,3 м². Фото, планировка и цены.",
+     "image": "{{base}}img/siena-125x82-fasad-1.webp",
+     "url": "{{base}}v2/proekt-siena-125x82.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3892400,
+      "highPrice": 5365200,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-siena-125x82.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Сиена",
+       "item": "{{base}}v2/seriya-siena.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Сиена 12,5 × 8,2",
+       "item": "{{base}}v2/proekt-siena-125x82.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-siena-12x82.html": {
   "current": [
@@ -360,7 +1711,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 12 × 8,2 с террасой под ключ — Сиена, 101,1 м²",
+   "description": "Каркасный дом «Сиена» 12 × 8,2 м: 101,1 м² — дом 77,9 м² и терраса 23,2 м². Фото, планировка и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/siena-12x82-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Фасад с террасой"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Сиена 12 × 8,2",
+     "description": "Каркасный дом «Сиена» 12 × 8,2 м: 101,1 м² — дом 77,9 м² и терраса 23,2 м². Фото, планировка и цены. Строим в Москве и Московской области.",
+     "image": "{{base}}img/siena-12x82-fasad-1.webp",
+     "url": "{{base}}v2/proekt-siena-12x82.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3740700,
+      "highPrice": 5156100,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-siena-12x82.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Сиена",
+       "item": "{{base}}v2/seriya-siena.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Сиена 12 × 8,2",
+       "item": "{{base}}v2/proekt-siena-12x82.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-siena-13x85.html": {
   "current": [
@@ -369,7 +1781,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 13 × 8,5 с террасой под ключ — Сиена, 113,7 м²",
+   "description": "Каркасный дом «Сиена» 13 × 8,5 м: 113,7 м² — дом 88,4 м² и терраса 25,3 м². Зал 36,5 м², две спальни по 12 м², санузел с ванной. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/siena-13x85-2-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Дом с угла: терраса и ступени"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Сиена 13 × 8,5",
+     "description": "Каркасный дом «Сиена» 13 × 8,5 м: 113,7 м² — дом 88,4 м² и терраса 25,3 м². Зал 36,5 м², две спальни по 12 м², санузел с ванной. Строим в Москве и Московской области.",
+     "image": "{{base}}img/siena-13x85-2-fasad-1.webp",
+     "url": "{{base}}v2/proekt-siena-13x85.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 4206900,
+      "highPrice": 5798700,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-siena-13x85.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Сиена",
+       "item": "{{base}}v2/seriya-siena.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Сиена 13 × 8,5",
+       "item": "{{base}}v2/proekt-siena-13x85.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-siena-144x7-2.html": {
   "current": [
@@ -378,7 +1851,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 14,4 × 7 с террасой 23,3 м² — Сиена, 103,3 м², цена",
+   "description": "Каркасный дом «Сиена» 14,4 × 7 м: 103,3 м² — дом 80 м² и терраса 23,3 м². Фото, планировки и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/siena-144x7-2-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Фасад с террасой"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Сиена 14,4 × 7 с террасой 23,3 м²",
+     "description": "Каркасный дом «Сиена» 14,4 × 7 м: 103,3 м² — дом 80 м² и терраса 23,3 м². Фото, планировки и цены. Строим в Москве и Московской области.",
+     "image": "{{base}}img/siena-144x7-2-fasad-1.webp",
+     "url": "{{base}}v2/proekt-siena-144x7-2.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3822100,
+      "highPrice": 5268300,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-siena-144x7-2.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Сиена",
+       "item": "{{base}}v2/seriya-siena.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Сиена 14,4 × 7 с террасой 23,3 м²",
+       "item": "{{base}}v2/proekt-siena-144x7-2.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-siena-144x7.html": {
   "current": [
@@ -387,7 +1921,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 14,4 × 7 с террасой 19,5 м² — Сиена, 102,8 м², цена",
+   "description": "Каркасный дом «Сиена» 14,4 × 7 м: 102,8 м² — дом 83,3 м² и терраса 19,5 м². Две спальни 12,8 и 14 м², гардеробная, санузел с ванной и душем. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/siena-144x7-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Дом с угла: терраса под общей крышей"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Сиена 14,4 × 7 с террасой 19,5 м²",
+     "description": "Каркасный дом «Сиена» 14,4 × 7 м: 102,8 м² — дом 83,3 м² и терраса 19,5 м². Две спальни 12,8 и 14 м², гардеробная, санузел с ванной и душем. Строим в Москве и Московской области.",
+     "image": "{{base}}img/siena-144x7-fasad-1.webp",
+     "url": "{{base}}v2/proekt-siena-144x7.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3803600,
+      "highPrice": 5242800,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-siena-144x7.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Сиена",
+       "item": "{{base}}v2/seriya-siena.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Сиена 14,4 × 7 с террасой 19,5 м²",
+       "item": "{{base}}v2/proekt-siena-144x7.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-siena-155x85.html": {
   "current": [
@@ -396,7 +1991,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 15,5 × 8,5 с террасой под ключ — Сиена, 136,9 м²",
+   "description": "Каркасный дом «Сиена» 15,5 × 8,5 м: 136,9 м² — дом 110,5 м² и терраса 26,4 м². Три спальни, гардеробная, два санузла, зал 28,1 м². Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/siena-155x85-2-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Дом с угла: терраса под общей крышей"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Сиена 15,5 × 8,5",
+     "description": "Каркасный дом «Сиена» 15,5 × 8,5 м: 136,9 м² — дом 110,5 м² и терраса 26,4 м². Три спальни, гардеробная, два санузла, зал 28,1 м². Строим в Москве и Московской области.",
+     "image": "{{base}}img/siena-155x85-2-fasad-1.webp",
+     "url": "{{base}}v2/proekt-siena-155x85.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 5065300,
+      "highPrice": 6981900,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-siena-155x85.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Сиена",
+       "item": "{{base}}v2/seriya-siena.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Сиена 15,5 × 8,5",
+       "item": "{{base}}v2/proekt-siena-155x85.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-sochi-105x9.html": {
   "current": [
@@ -405,7 +2061,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 10,5 × 9 с террасой под ключ — Сочи, 94,5 м² и цена",
+   "description": "Каркасный дом «Сочи» 10,5 × 9 м: 94,5 м² — дом 84,5 м² и терраса 10 м². Фото, планировки и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/sochi-105x9-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Дом с террасой"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Сочи 10,5 × 9",
+     "description": "Каркасный дом «Сочи» 10,5 × 9 м: 94,5 м² — дом 84,5 м² и терраса 10 м². Фото, планировки и цены. Строим в Москве и Московской области.",
+     "image": "{{base}}img/sochi-105x9-fasad-1.webp",
+     "url": "{{base}}v2/proekt-sochi-105x9.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3496500,
+      "highPrice": 4819500,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-sochi-105x9.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Сочи",
+       "item": "{{base}}v2/seriya-sochi.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Сочи 10,5 × 9",
+       "item": "{{base}}v2/proekt-sochi-105x9.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-sochi-9x75.html": {
   "current": [
@@ -414,7 +2131,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 9 × 7,5 с террасой под ключ — Сочи, 67,5 м² и цена",
+   "description": "Каркасный дом «Сочи» 9 × 7,5 м: 67,5 м² — дом 61,5 м² и терраса 6 м². Две планировки — две спальни и отдельная кухня или три спальни и техпомещение. Фото, планировки и цены."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/sochi-9x75-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Дом с крыльцом и террасой"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Сочи 9 × 7,5",
+     "description": "Каркасный дом «Сочи» 9 × 7,5 м: 67,5 м² — дом 61,5 м² и терраса 6 м². Две планировки — две спальни и отдельная кухня или три спальни и техпомещение. Фото, планировки и цены.",
+     "image": "{{base}}img/sochi-9x75-fasad-1.webp",
+     "url": "{{base}}v2/proekt-sochi-9x75.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 2497500,
+      "highPrice": 3442500,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-sochi-9x75.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Сочи",
+       "item": "{{base}}v2/seriya-sochi.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Сочи 9 × 7,5",
+       "item": "{{base}}v2/proekt-sochi-9x75.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-stambul-115x7.html": {
   "current": [
@@ -423,7 +2201,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 11,5 × 7 с террасой под ключ — Стамбул, 83,7 м²",
+   "description": "Каркасный дом «Стамбул» 11,5 × 7 м: 83,7 м² — дом 63 м² и терраса 20,7 м². 2 спальни, кухня-гостиная 28,8 м², тамбур. Фото, планировка и комплектации."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/stambul-115h7-fasad-0.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Осенний дождь: семья пьёт чай на террасе"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Стамбул 11,5 × 7",
+     "description": "Каркасный дом «Стамбул» 11,5 × 7 м: 83,7 м² — дом 63 м² и терраса 20,7 м². 2 спальни, кухня-гостиная 28,8 м², тамбур. Фото, планировка и комплектации.",
+     "image": "{{base}}img/stambul-115h7-fasad-0.webp",
+     "url": "{{base}}v2/proekt-stambul-115x7.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3096900,
+      "highPrice": 4268700,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-stambul-115x7.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Стамбул 11,5 × 7",
+       "item": "{{base}}v2/proekt-stambul-115x7.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-stambul-11x7.html": {
   "current": [
@@ -432,7 +2271,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 11 × 7 с террасой под ключ — Стамбул, 77 м² и цена",
+   "description": "Каркасный дом «Стамбул» 11 × 7 м: 77 м² — дом 56 м² и терраса 21 м². Две спальни, кухня-гостиная 25,2 м², терраса под общей крышей. Фото, комплектации и цены."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/stambul-11h7-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Дом с угла: терраса под общей крышей"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Стамбул 11 × 7",
+     "description": "Каркасный дом «Стамбул» 11 × 7 м: 77 м² — дом 56 м² и терраса 21 м². Две спальни, кухня-гостиная 25,2 м², терраса под общей крышей. Фото, комплектации и цены.",
+     "image": "{{base}}img/stambul-11h7-fasad-1.webp",
+     "url": "{{base}}v2/proekt-stambul-11x7.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 2849000,
+      "highPrice": 3927000,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-stambul-11x7.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Стамбул 11 × 7",
+       "item": "{{base}}v2/proekt-stambul-11x7.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-stambul-11x8.html": {
   "current": [
@@ -441,7 +2341,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 11 × 8 с террасой под ключ — Стамбул, 89,8 м²",
+   "description": "Каркасный дом «Стамбул» 11 × 8 м: 89,8 м² — дом 64 м² и терраса 25,8 м². 2 спальни, кухня-гостиная 25,5 м², гардеробная. Фото, планировка, комплектация и цены."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/stambul-11h8-fasad-5.webp",
+    "w": 1600,
+    "h": 1195,
+    "alt": "Фасад и терраса под общей кровлей"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Стамбул 11 × 8",
+     "description": "Каркасный дом «Стамбул» 11 × 8 м: 89,8 м² — дом 64 м² и терраса 25,8 м². 2 спальни, кухня-гостиная 25,5 м², гардеробная. Фото, планировка, комплектация и цены.",
+     "image": "{{base}}img/stambul-11h8-fasad-5.webp",
+     "url": "{{base}}v2/proekt-stambul-11x8.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3322600,
+      "highPrice": 4579800,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-stambul-11x8.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Стамбул 11 × 8",
+       "item": "{{base}}v2/proekt-stambul-11x8.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-stambul-121x81.html": {
   "current": [
@@ -450,7 +2411,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 12,1 × 8,1 с террасой под ключ — Стамбул, 100 м²",
+   "description": "Каркасный дом «Стамбул» 12,1 × 8,1 м: 100 м² — дом 73,4 м² и терраса 26,6 м². Три комнаты, зал 22,9 м², терраса во всю ширину. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/stambul-12h8-fasad-4.webp",
+    "w": 1600,
+    "h": 893,
+    "alt": "Семья на террасе дома"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Стамбул 12,1 × 8,1",
+     "description": "Каркасный дом «Стамбул» 12,1 × 8,1 м: 100 м² — дом 73,4 м² и терраса 26,6 м². Три комнаты, зал 22,9 м², терраса во всю ширину. Строим в Москве и Московской области.",
+     "image": "{{base}}img/stambul-12h8-fasad-4.webp",
+     "url": "{{base}}v2/proekt-stambul-121x81.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3700000,
+      "highPrice": 5100000,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-stambul-121x81.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Стамбул 12,1 × 8,1",
+       "item": "{{base}}v2/proekt-stambul-121x81.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-stambul-75x6-2.html": {
   "current": [
@@ -459,7 +2481,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 7,5 × 6 с террасой 4,5 м² — Стамбул, 40,5 м², цена",
+   "description": "Каркасный дом «Стамбул» 7,5 × 6 м: 40,5 м² — дом 36 м² и терраса 4,5 м². Зал 15,9 м², спальня, санузел с душем или короткой ванной. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/stambul-75h6-2-fasad-0.webp",
+    "w": 1600,
+    "h": 893,
+    "alt": "Осень у дома: семья с собакой у террасы"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Стамбул 7,5 × 6 с террасой 4,5 м²",
+     "description": "Каркасный дом «Стамбул» 7,5 × 6 м: 40,5 м² — дом 36 м² и терраса 4,5 м². Зал 15,9 м², спальня, санузел с душем или короткой ванной. Строим в Москве и Московской области.",
+     "image": "{{base}}img/stambul-75h6-2-fasad-0.webp",
+     "url": "{{base}}v2/proekt-stambul-75x6-2.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 1498500,
+      "highPrice": 2065500,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-stambul-75x6-2.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Стамбул 7,5 × 6 с террасой 4,5 м²",
+       "item": "{{base}}v2/proekt-stambul-75x6-2.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-stambul-75x6.html": {
   "current": [
@@ -468,7 +2551,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 7,5 × 6 с террасой 9 м² под ключ — Стамбул, 45 м²",
+   "description": "Каркасный дом «Стамбул» 7,5 × 6 м: 45 м² — дом 36 м² и терраса 9 м². Зал 15,4 м², спальня 11 м², техпомещение. Фото, планировка и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/stambul-75h6-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Фасад с террасой во всю ширину"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Стамбул 7,5 × 6 с террасой 9 м²",
+     "description": "Каркасный дом «Стамбул» 7,5 × 6 м: 45 м² — дом 36 м² и терраса 9 м². Зал 15,4 м², спальня 11 м², техпомещение. Фото, планировка и цены. Строим в Москве и Московской области.",
+     "image": "{{base}}img/stambul-75h6-fasad-1.webp",
+     "url": "{{base}}v2/proekt-stambul-75x6.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 1665000,
+      "highPrice": 2295000,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-stambul-75x6.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Стамбул 7,5 × 6 с террасой 9 м²",
+       "item": "{{base}}v2/proekt-stambul-75x6.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-stambul-75x7.html": {
   "current": [
@@ -477,7 +2621,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 7,5 × 7 с террасой под ключ — Стамбул, 48,2 м²",
+   "description": "Каркасный дом «Стамбул» 7,5 × 7 м: 48,2 м² — дом 40 м² и терраса 8,2 м². Две спальни, кухня-гостиная 17,1 м². Фото, планировка и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/stambul-7h75-fasad-1.webp?v=2",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Дом с угла: терраса и вход"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Стамбул 7,5 × 7",
+     "description": "Каркасный дом «Стамбул» 7,5 × 7 м: 48,2 м² — дом 40 м² и терраса 8,2 м². Две спальни, кухня-гостиная 17,1 м². Фото, планировка и цены. Строим в Москве и Московской области.",
+     "image": "{{base}}img/stambul-7h75-fasad-1.webp?v=2",
+     "url": "{{base}}v2/proekt-stambul-75x7.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 1783400,
+      "highPrice": 2458200,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-stambul-75x7.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Стамбул 7,5 × 7",
+       "item": "{{base}}v2/proekt-stambul-75x7.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-stambul-96x81-2.html": {
   "current": [
@@ -486,7 +2691,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 9,6 × 8,1 с террасой 20,2 м² — Стамбул",
+   "description": "Каркасный дом «Стамбул» 9,6 × 8,1 м: 77,4 м² — дом 57,2 м² и терраса 20,2 м². Тамбур, две спальни, гардеробная. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/stambul-95h8-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Дом с угла: терраса под общей крышей"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Стамбул 9,6 × 8,1 с террасой 20,2 м²",
+     "description": "Каркасный дом «Стамбул» 9,6 × 8,1 м: 77,4 м² — дом 57,2 м² и терраса 20,2 м². Тамбур, две спальни, гардеробная. Строим в Москве и Московской области.",
+     "image": "{{base}}img/stambul-95h8-fasad-1.webp",
+     "url": "{{base}}v2/proekt-stambul-96x81-2.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 2863800,
+      "highPrice": 3947400,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-stambul-96x81-2.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Стамбул 9,6 × 8,1 с террасой 20,2 м²",
+       "item": "{{base}}v2/proekt-stambul-96x81-2.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-stambul-96x81.html": {
   "current": [
@@ -495,7 +2761,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 9,6 × 8,1 с террасой 12 м² — Стамбул, 77,8 м², цена",
+   "description": "Каркасный дом «Стамбул» 9,6 × 8,1 м: 77,8 м² — дом 65,8 м² и терраса 12 м². Три спальни, холл, постирочная. Фото, планировка и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/stambul-96h81-fasad-1.webp?v=2",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Дом с угла: терраса под общей крышей"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Стамбул 9,6 × 8,1 с террасой 12 м²",
+     "description": "Каркасный дом «Стамбул» 9,6 × 8,1 м: 77,8 м² — дом 65,8 м² и терраса 12 м². Три спальни, холл, постирочная. Фото, планировка и цены. Строим в Москве и Московской области.",
+     "image": "{{base}}img/stambul-96h81-fasad-1.webp?v=2",
+     "url": "{{base}}v2/proekt-stambul-96x81.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 2878600,
+      "highPrice": 3967800,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-stambul-96x81.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Стамбул 9,6 × 8,1 с террасой 12 м²",
+       "item": "{{base}}v2/proekt-stambul-96x81.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-stambul-9x7.html": {
   "current": [
@@ -504,7 +2831,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 9 × 7 с террасой под ключ — Стамбул, 63 м² и цена",
+   "description": "Каркасный дом «Стамбул» 9 × 7 м: 63 м² — дом 49 м² и терраса 14 м². 2 комнаты, кухня-гостиная 20,5 м², тамбур. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/stambul-9h7-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Фасад и терраса, вид с угла"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Стамбул 9 × 7",
+     "description": "Каркасный дом «Стамбул» 9 × 7 м: 63 м² — дом 49 м² и терраса 14 м². 2 комнаты, кухня-гостиная 20,5 м², тамбур. Строим в Москве и Московской области.",
+     "image": "{{base}}img/stambul-9h7-fasad-1.webp",
+     "url": "{{base}}v2/proekt-stambul-9x7.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 2331000,
+      "highPrice": 3213000,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-stambul-9x7.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Стамбул 9 × 7",
+       "item": "{{base}}v2/proekt-stambul-9x7.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-stambul-9x8.html": {
   "current": [
@@ -513,7 +2901,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 9 × 8 с террасой под ключ — Стамбул, 72 м² и цена",
+   "description": "Каркасный дом «Стамбул» 9 × 8 м: 72 м² — дом 56 м² и терраса 16 м². Две спальни по 9,4 м², кухня-гостиная 18,4 м², прихожая. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/stambul-9h8-fasad-1.webp?v=2",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Фасад с террасой и ступенями"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Стамбул 9 × 8",
+     "description": "Каркасный дом «Стамбул» 9 × 8 м: 72 м² — дом 56 м² и терраса 16 м². Две спальни по 9,4 м², кухня-гостиная 18,4 м², прихожая. Строим в Москве и Московской области.",
+     "image": "{{base}}img/stambul-9h8-fasad-1.webp?v=2",
+     "url": "{{base}}v2/proekt-stambul-9x8.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 2664000,
+      "highPrice": 3672000,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-stambul-9x8.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Стамбул 9 × 8",
+       "item": "{{base}}v2/proekt-stambul-9x8.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-vladivostok-122x8.html": {
   "current": [
@@ -522,7 +2971,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 12,2 × 8 с террасой под ключ — Владивосток, 99,9 м²",
+   "description": "Каркасный дом «Владивосток» 12,2 × 8 м: 99,9 м² — дом 80 м² и терраса 19,9 м². Фото, комплектации и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/vladik-115x8-2-fasad-1.webp?v=3",
+    "w": 1600,
+    "h": 1600,
+    "alt": "Дом с угла: терраса и ступени"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Владивосток 12,2 × 8",
+     "description": "Каркасный дом «Владивосток» 12,2 × 8 м: 99,9 м² — дом 80 м² и терраса 19,9 м². Фото, комплектации и цены. Строим в Москве и Московской области.",
+     "image": "{{base}}img/vladik-115x8-2-fasad-1.webp?v=3",
+     "url": "{{base}}v2/proekt-vladivostok-122x8.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3696300,
+      "highPrice": 5094900,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-vladivostok-122x8.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Владивосток",
+       "item": "{{base}}v2/seriya-vladivostok.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Владивосток 12,2 × 8",
+       "item": "{{base}}v2/proekt-vladivostok-122x8.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-vladivostok-12x8.html": {
   "current": [
@@ -531,7 +3041,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 12 × 8 с террасой под ключ — Владивосток, 98,7 м²",
+   "description": "Каркасный дом «Владивосток» 12 × 8 м: 98,7 м² — дом 80 м² и терраса 18,7 м². Фото, комплектации и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/vladik-10x8-fasad-2.webp?v=2",
+    "w": 1600,
+    "h": 1600,
+    "alt": "Фасад с террасой во всю ширину"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Владивосток 12 × 8",
+     "description": "Каркасный дом «Владивосток» 12 × 8 м: 98,7 м² — дом 80 м² и терраса 18,7 м². Фото, комплектации и цены. Строим в Москве и Московской области.",
+     "image": "{{base}}img/vladik-10x8-fasad-2.webp?v=2",
+     "url": "{{base}}v2/proekt-vladivostok-12x8.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3651900,
+      "highPrice": 5033700,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-vladivostok-12x8.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Владивосток",
+       "item": "{{base}}v2/seriya-vladivostok.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Владивосток 12 × 8",
+       "item": "{{base}}v2/proekt-vladivostok-12x8.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-vladivostok-135x8.html": {
   "current": [
@@ -540,7 +3111,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 13,5 × 8 с террасой — Владивосток, 110,3 м², цена",
+   "description": "Каркасный дом «Владивосток» 13,5 × 8 м: 110,3 м² — дом 92 м² и терраса 18,3 м². Фото, комплектации и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/vladik-115x8-3-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Дом с угла: терраса под общей крышей"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Владивосток 13,5 × 8",
+     "description": "Каркасный дом «Владивосток» 13,5 × 8 м: 110,3 м² — дом 92 м² и терраса 18,3 м². Фото, комплектации и цены. Строим в Москве и Московской области.",
+     "image": "{{base}}img/vladik-115x8-3-fasad-1.webp",
+     "url": "{{base}}v2/proekt-vladivostok-135x8.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 4081100,
+      "highPrice": 5625300,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-vladivostok-135x8.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Владивосток",
+       "item": "{{base}}v2/seriya-vladivostok.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Владивосток 13,5 × 8",
+       "item": "{{base}}v2/proekt-vladivostok-135x8.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "proekt-vladivostok-14x69.html": {
   "current": [
@@ -549,7 +3181,68 @@
     "n": 0,
     "value": "true"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом 14 × 6,9 с террасой — Владивосток, 100,1 м², цена",
+   "description": "Каркасный дом «Владивосток» 14 × 6,9 м: 100,1 м² — дом 82,8 м² и терраса 17,3 м². Зал 38 м², парная, две спальни. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "product",
+   "image": {
+    "src": "img/vladik-12x7-fasad-1.webp",
+    "w": 1600,
+    "h": 1073,
+    "alt": "Дом с угла: терраса и панорамные окна"
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "Product",
+     "name": "Владивосток 14 × 6,9",
+     "description": "Каркасный дом «Владивосток» 14 × 6,9 м: 100,1 м² — дом 82,8 м² и терраса 17,3 м². Зал 38 м², парная, две спальни. Строим в Москве и Московской области.",
+     "image": "{{base}}img/vladik-12x7-fasad-1.webp",
+     "url": "{{base}}v2/proekt-vladivostok-14x69.html",
+     "category": "Каркасные дома",
+     "brand": {
+      "@type": "Brand",
+      "name": "Мой тёплый дом"
+     },
+     "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "RUB",
+      "lowPrice": 3703700,
+      "highPrice": 5105100,
+      "offerCount": 3,
+      "availability": "https://schema.org/InStock",
+      "url": "{{base}}v2/proekt-vladivostok-14x69.html"
+     }
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Владивосток",
+       "item": "{{base}}v2/seriya-vladivostok.html"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Владивосток 14 × 6,9",
+       "item": "{{base}}v2/proekt-vladivostok-14x69.html"
+      }
+     ]
+    }
+   ]
+  }
  },
  "seriya-parma.html": {
   "current": [
@@ -568,7 +3261,52 @@
     "n": 1,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасный дом «Парма» с террасой — проект и цена",
+   "description": "Серия «Парма»: один проект одноэтажного каркасного дома, площадь с террасой 103,3 м², цена от 3 822 100 ₽. Фото, планировка и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "website",
+   "image": {
+    "src": "img/parma-10x8-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Парма",
+       "item": "{{base}}v2/seriya-parma.html"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 1,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-parma-10x8.html",
+       "name": "Парма 10 × 8"
+      }
+     ]
+    }
+   ]
+  }
  },
  "seriya-siena.html": {
   "current": [
@@ -587,7 +3325,82 @@
     "n": 1,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасные дома «Сиена» — 6 проектов с террасой и цены",
+   "description": "Серия «Сиена»: 6 проектов одноэтажных каркасных домов, площадь с террасой 101,1–136,9 м², цена от 3 740 700 ₽. Фото, планировки и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "website",
+   "image": {
+    "src": "img/siena-155x85-2-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Сиена",
+       "item": "{{base}}v2/seriya-siena.html"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 6,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-siena-155x85.html",
+       "name": "Сиена 15,5 × 8,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-siena-144x7.html",
+       "name": "Сиена 14,4 × 7 с террасой 19,5 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-siena-144x7-2.html",
+       "name": "Сиена 14,4 × 7 с террасой 23,3 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 4,
+       "url": "{{base}}v2/proekt-siena-13x85.html",
+       "name": "Сиена 13 × 8,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 5,
+       "url": "{{base}}v2/proekt-siena-125x82.html",
+       "name": "Сиена 12,5 × 8,2"
+      },
+      {
+       "@type": "ListItem",
+       "position": 6,
+       "url": "{{base}}v2/proekt-siena-12x82.html",
+       "name": "Сиена 12 × 8,2"
+      }
+     ]
+    }
+   ]
+  }
  },
  "seriya-sochi.html": {
   "current": [
@@ -606,7 +3419,58 @@
     "n": 1,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасные дома «Сочи» — 2 проекта с террасой и цены",
+   "description": "Серия «Сочи»: 2 проекта одноэтажных каркасных домов, площадь с террасой 67,5–94,5 м², цена от 2 497 500 ₽. Фото, планировки и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "website",
+   "image": {
+    "src": "img/sochi-9x75-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Сочи",
+       "item": "{{base}}v2/seriya-sochi.html"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 2,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-sochi-9x75.html",
+       "name": "Сочи 9 × 7,5"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-sochi-105x9.html",
+       "name": "Сочи 10,5 × 9"
+      }
+     ]
+    }
+   ]
+  }
  },
  "seriya-stambul.html": {
   "current": [
@@ -625,7 +3489,112 @@
     "n": 1,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасные дома «Стамбул» — 11 проектов с террасой и цены",
+   "description": "Серия «Стамбул»: 11 проектов одноэтажных каркасных домов, площадь с террасой 40,5–100 м², цена от 1 498 500 ₽. Фото, планировки и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "website",
+   "image": {
+    "src": "img/stambul-9h8-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Стамбул",
+       "item": "{{base}}v2/seriya-stambul.html"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 11,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-stambul-9x8.html",
+       "name": "Стамбул 9 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-stambul-75x7.html",
+       "name": "Стамбул 7,5 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-stambul-75x6.html",
+       "name": "Стамбул 7,5 × 6 с террасой 9 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 4,
+       "url": "{{base}}v2/proekt-stambul-75x6-2.html",
+       "name": "Стамбул 7,5 × 6 с террасой 4,5 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 5,
+       "url": "{{base}}v2/proekt-stambul-9x7.html",
+       "name": "Стамбул 9 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 6,
+       "url": "{{base}}v2/proekt-stambul-96x81-2.html",
+       "name": "Стамбул 9,6 × 8,1 с террасой 20,2 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 7,
+       "url": "{{base}}v2/proekt-stambul-115x7.html",
+       "name": "Стамбул 11,5 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 8,
+       "url": "{{base}}v2/proekt-stambul-11x7.html",
+       "name": "Стамбул 11 × 7"
+      },
+      {
+       "@type": "ListItem",
+       "position": 9,
+       "url": "{{base}}v2/proekt-stambul-96x81.html",
+       "name": "Стамбул 9,6 × 8,1 с террасой 12 м²"
+      },
+      {
+       "@type": "ListItem",
+       "position": 10,
+       "url": "{{base}}v2/proekt-stambul-121x81.html",
+       "name": "Стамбул 12,1 × 8,1"
+      },
+      {
+       "@type": "ListItem",
+       "position": 11,
+       "url": "{{base}}v2/proekt-stambul-11x8.html",
+       "name": "Стамбул 11 × 8"
+      }
+     ]
+    }
+   ]
+  }
  },
  "seriya-vladivostok.html": {
   "current": [
@@ -644,7 +3613,70 @@
     "n": 1,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Каркасные дома «Владивосток» — 4 проекта с террасой и цены",
+   "description": "Серия «Владивосток»: 4 проекта одноэтажных каркасных домов, площадь с террасой 98,7–110,3 м², цена от 3 651 900 ₽. Фото, планировки и цены. Строим в Москве и Московской области."
+  },
+  "seo": {
+   "type": "website",
+   "image": {
+    "src": "img/vladik-12x7-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": [
+    {
+     "@context": "https://schema.org",
+     "@type": "BreadcrumbList",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "{{base}}v2/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Владивосток",
+       "item": "{{base}}v2/seriya-vladivostok.html"
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@type": "ItemList",
+     "numberOfItems": 4,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "url": "{{base}}v2/proekt-vladivostok-14x69.html",
+       "name": "Владивосток 14 × 6,9"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "url": "{{base}}v2/proekt-vladivostok-12x8.html",
+       "name": "Владивосток 12 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "url": "{{base}}v2/proekt-vladivostok-135x8.html",
+       "name": "Владивосток 13,5 × 8"
+      },
+      {
+       "@type": "ListItem",
+       "position": 4,
+       "url": "{{base}}v2/proekt-vladivostok-122x8.html",
+       "name": "Владивосток 12,2 × 8"
+      }
+     ]
+    }
+   ]
+  }
  },
  "smeta-primer.html": {
   "current": [
@@ -663,10 +3695,37 @@
     "n": 0,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Пример сметы на каркасный дом под ключ",
+   "description": "Так выглядит смета, которую вы получаете до договора: каждая позиция отдельно — материал, марка, количество и стоимость. Ни одной строки «прочие работы»."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "soglashenie.html": {
-  "current": []
+  "current": [],
+  "head": {
+   "title": "Пользовательское соглашение — Мой тёплый дом",
+   "description": "Пользовательское соглашение сайта «Мой тёплый дом»: что такое этот сайт, почему цены не являются офертой, как можно использовать материалы и кто за что отвечает."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": [],
+   "ogTitle": "Пользовательское соглашение"
+  }
  },
  "stati-dogovor.html": {
   "current": [
@@ -676,7 +3735,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Договор на строительство дома: 10 пунктов, которые стоит прочесть",
+   "description": "Что проверить в договоре подряда на каркасный дом: цена и допработы, срок, подготовка участка, приёмка, гарантия и отказ — с номерами пунктов нашего договора."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stati-dom-100-m2-cena.html": {
   "current": [
@@ -686,7 +3758,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Сколько стоит одноэтажный каркасный дом 100 м² под ключ",
+   "description": "Девять одноэтажных домов около 100 м² с ценами трёх комплектаций: что входит в цену, что добавить для жизни и почему метр террасы стоит как метр дома."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/vladik-10x8-fasad-2.webp",
+    "w": 1600,
+    "h": 1600
+   },
+   "ld": []
+  }
  },
  "stati-dom-do-60-m2.html": {
   "current": [
@@ -696,7 +3781,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасный дом до 60 м² с террасой: три проекта и цены",
+   "description": "Три одноэтажных дома до 60 м² вместе с террасой: 40,5, 45 и 48,2 м². Какие комнаты в них помещаются, кому они подходят и сколько стоят с инженерией."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-75h6-2-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": []
+  }
  },
  "stati-dop-rashody.html": {
   "current": [
@@ -706,7 +3804,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Что не входит в цену каркасного дома: опции, доставка, участок",
+   "description": "Какие расходы добавляются к цене каркасного дома: электрика, трубы, вентиляция, покраска, цоколь, доставка дальше 100 км, подготовка участка — с ценами и пунктами договора."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stati-dve-ili-tri-spalni.html": {
   "current": [
@@ -716,7 +3827,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Две спальни или три: как выбрать планировку одноэтажного дома",
+   "description": "Четыре дома, где в тех же стенах есть планировка на две и на три спальни. Что забирает третья спальня, какие спальни получаются и сколько санузлов."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-9h8-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": []
+  }
  },
  "stati-garantiya.html": {
   "current": [
@@ -726,7 +3850,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Гарантия на каркасный дом: что покрыто и когда приедут",
+   "description": "Гарантия на каркасный дом по договору: два года, девять групп элементов, исключения, условия владельца и сроки ответа — 72 часа, 14 и 30 дней."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stati-geologiya.html": {
   "current": [
@@ -736,7 +3873,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Пробное бурение участка перед стройкой каркасного дома",
+   "description": "Зачем инженер бурит участок до стройки: грунт, промерзание, вода, место дома. Чем бурение отличается от геологии и что по договору проверяет сам заказчик."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stati-gnil-plesen.html": {
   "current": [
@@ -746,7 +3896,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Сгниёт ли каркасный дом: влага, вентзазор и антисептик",
+   "description": "Как каркасный дом защищён от гнили и плесени: сухая доска 12–16 %, антисептик, мембраны, вентзазоры 40 мм, сваи — и что должен сделать владелец по договору."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stati-kak-ustroen.html": {
   "current": [
@@ -756,7 +3919,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Как устроен каркасный дом: сваи, каркас, кровля — по смете",
+   "description": "Как устроен каркасный дом простыми словами: сваи, обвязка из трёх досок, стойки 145×45 мм через 59 см, двускатная кровля, фасад и отделка — по смете компании."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stati-karkasnye-doma-na-svayah.html": {
   "current": [
@@ -766,7 +3942,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасные дома на винтовых сваях под ключ в Подмосковье",
+   "description": "Каркасные дома на винтовых сваях 89 мм в «Холодном контуре» и «Комфорте», на железобетонных сваях 150 мм в «Премиуме». Что входит в фундамент и сколько стоит дом."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-9h7-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": []
+  }
  },
  "stati-priemka.html": {
   "current": [
@@ -776,7 +3965,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Приёмка каркасного дома: на что смотреть и как подписать акт",
+   "description": "Как принимать каркасный дом по этапам: что сверить со сметой в фундаменте, каркасе, кровле, фасаде, утеплении и отделке, как записать замечания и что будет после акта."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stati-skolko-stoit.html": {
   "current": [
@@ -786,7 +3988,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Сколько стоит каркасный дом под ключ в 2026 году — цены",
+   "description": "Цены 24 одноэтажных каркасных домов с террасой: от самого маленького до самого большого, цена метра в трёх комплектациях, опции и доставка."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/stambul-75h6-2-fasad-1.webp",
+    "w": 1600,
+    "h": 1073
+   },
+   "ld": []
+  }
  },
  "stati-sroki.html": {
   "current": [
@@ -796,7 +4011,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Сколько строится каркасный дом под ключ: срок по договору",
+   "description": "Срок стройки каркасного дома по договору — до 60 дней с поставки материалов. С какого дня он считается, что его сдвигает и что зависит от заказчика."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stati-teplo-zimoy.html": {
   "current": [
@@ -806,7 +4034,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Тепло ли в каркасном доме зимой: разбираем стену по слоям",
+   "description": "Из чего состоят стены, пол и кровля каркасного дома для жизни зимой: утеплитель 150 или 200 мм, пароизоляция, ветрозащита, окна с тремя стёклами."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stati-uteplenie-150-ili-200.html": {
   "current": [
@@ -816,7 +4057,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Утепление каркасного дома: 150 или 200 мм — что выбрать",
+   "description": "Утеплитель 150 мм в «Комфорте» и 200 мм в «Премиуме»: толщина, плотность, каркас под неё, что ещё меняется между комплектациями и сколько стоит разница."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stati-ventilyaciya.html": {
   "current": [
@@ -826,7 +4080,20 @@
     "value": "true"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Вентиляция в каркасном доме: клапаны, вытяжка и цена",
+   "description": "Как устроена вентиляция каркасного дома: приточные клапаны с фильтром в комнатах, вытяжка с обратным клапаном в ванной и на кухне, вентзазоры, цены для домов."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stati.html": {
   "current": [
@@ -846,7 +4113,20 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Статьи о каркасных домах: цены, планировки, гарантия",
+   "description": "Сколько стоит каркасный дом, две спальни или три, утепление, сваи, гарантия, договор и приёмка. Цифры — из каталога, сметы и договора компании."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stroim-bytovki.html": {
   "current": [
@@ -865,7 +4145,20 @@
     "n": 0,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Где живёт бригада во время стройки каркасного дома",
+   "description": "Условия, в которых живёт бригада на объекте — без прикрас, как есть."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stroim-dostavka.html": {
   "current": [
@@ -884,7 +4177,20 @@
     "n": 1,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Доставка материалов для каркасного дома манипулятором",
+   "description": "Материал приезжает манипулятором и снимается сразу на подготовленное место, а не сваливается на землю."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dostavka-kran.webp",
+    "w": 618,
+    "h": 464
+   },
+   "ld": []
+  }
  },
  "stroim-elektrika.html": {
   "current": [
@@ -903,7 +4209,21 @@
     "n": 1,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Электрика в каркасном доме — что входит в пакет",
+   "description": "Что входит в пакет электрики: точки света, розетки, кабель, автомат и УЗО."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/elektrika-kabel-komnata.webp",
+    "w": 970,
+    "h": 728,
+    "alt": "Кабель по стенам комнаты"
+   },
+   "ld": []
+  }
  },
  "stroim-hranenie.html": {
   "current": [
@@ -922,7 +4242,20 @@
     "n": 1,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Как храним доску камерной сушки на участке до монтажа",
+   "description": "Доска складируется на подкладках, под укрытием, с продувом — чтобы до монтажа дошла сухой."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stroim-kommunikacii.html": {
   "current": [
@@ -941,7 +4274,21 @@
     "n": 1,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Вода и канализация в каркасном доме — что входит",
+   "description": "Вода и канализация: закладные отверстия, разводка труб, бойлер и сантехника."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/kommunikacii-zakladnye.webp",
+    "w": 800,
+    "h": 600,
+    "alt": "Закладное отверстие и трубы в углу комнаты"
+   },
+   "ld": []
+  }
  },
  "stroim-krovlya.html": {
   "current": [
@@ -960,7 +4307,20 @@
     "n": 0,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Кровля каркасного дома: металлочерепица и вентзазор 40 мм",
+   "description": "Металлочерепица 0,5 мм, вентиляционный зазор 40×40 мм, аэролента под коньком. Плюс ветрозащита и гидроизоляция."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stroim-materialy.html": {
   "current": [
@@ -979,7 +4339,20 @@
     "n": 0,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Доска для каркаса камерной сушки — какие материалы берём",
+   "description": "Доска камерной сушки, строганая и калиброванная, влажность 12–16 процентов."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stroim-obvyazka.html": {
   "current": [
@@ -998,7 +4371,20 @@
     "n": 0,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Обвязка пола каркасного дома — как мы её делаем",
+   "description": "Основание дома — обвязка пакетом из трёх досок 145×45 мм."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "stroim-pokraska.html": {
   "current": [
@@ -1017,7 +4403,21 @@
     "n": 0,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Заводская покраска дерева для каркасного дома — этапы",
+   "description": "Как красим дерево на производстве: шлифовка, грунт, сушка и два слоя краски."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/pokraska-okrashivanie.webp",
+    "w": 1280,
+    "h": 960,
+    "alt": "Окрашенная доска на производстве"
+   },
+   "ld": []
+  }
  },
  "stroim-proekt.html": {
   "current": [
@@ -1036,7 +4436,21 @@
     "n": 0,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Конструктивный проект каркасного дома: расчёт нагрузок и узлы",
+   "description": "Расчёт снеговых и ветровых нагрузок, чертежи узлов, сечения и шаг стоек на каждый дом."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/proekt-list-02.webp",
+    "w": 1800,
+    "h": 1273,
+    "alt": "Визуализация дома из примера проекта"
+   },
+   "ld": []
+  }
  },
  "stroim-ventilyaciya.html": {
   "current": [
@@ -1055,7 +4469,21 @@
     "n": 1,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Вентиляция в каркасном доме — как мы её делаем",
+   "description": "Приточные клапаны в комнатах и вытяжной вентилятор в санузле и на кухне."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/ventilyaciya-pritok.webp",
+    "w": 1200,
+    "h": 675,
+    "alt": "Приточный клапан на стене комнаты"
+   },
+   "ld": []
+  }
  },
  "stroim-vyezd-inzhenera.html": {
   "current": [
@@ -1074,7 +4502,20 @@
     "n": 0,
     "value": "page"
    }
-  ]
+  ],
+  "head": {
+   "title": "Выезд инженера на участок: пробное бурение и промерзание грунта",
+   "description": "Инженер приезжает на участок до начала работ: пробное бурение, промерзание и грунтовые воды, привязка по генплану."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  },
  "voprosy.html": {
   "current": [
@@ -1094,6 +4535,19 @@
     "value": "page"
    }
   ],
-  "footerHome": ""
+  "footerHome": "",
+  "head": {
+   "title": "Каркасный дом: частые вопросы о цене, сроках и гарантии",
+   "description": "Что входит в цену каркасного дома, может ли она вырасти, сколько идёт стройка, что покрывает гарантия и как отказаться от договора — ответы с пунктами договора и сметы."
+  },
+  "seo": {
+   "type": "article",
+   "image": {
+    "src": "img/dom-render-terrasa-leto.webp",
+    "w": 2000,
+    "h": 1342
+   },
+   "ld": []
+  }
  }
 }
