@@ -27,8 +27,9 @@ function parse(xml, base) {
   return entries;
 }
 
+// Записи скрытых домов (hidden) остаются в данных на своём месте, но в файл не попадают.
 function render(entries, base) {
-  return HEAD + entries.map((e) =>
+  return HEAD + entries.filter((e) => !e.hidden).map((e) =>
     "  <url>\n    <loc>" + base + e.path + "</loc>\n    <lastmod>" + e.lastmod + "</lastmod>\n    <priority>" + e.priority + "</priority>\n" +
     e.images.map((i) => "    <image:image><image:loc>" + base + i + "</image:loc></image:image>\n").join("") + "  </url>\n").join("") + TAIL;
 }

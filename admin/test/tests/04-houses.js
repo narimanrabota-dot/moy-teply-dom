@@ -22,7 +22,7 @@ module.exports = {
         const r = await st.owner("POST", "/api/submit", { ops, title: act, reason: "тест 04" });
         ctx.step();
         st.count(act + (r.status === 200 ? "" : "_err"));
-        if (r.status !== 200 && !/меняли/.test(r.json.error || "")) ctx.problem(act + ": " + r.status + " " + JSON.stringify(r.json).slice(0, 200));
+        if (r.status !== 200) ctx.problem(act + ": " + r.status + " " + JSON.stringify(r.json).slice(0, 200));
         if (ctx.stats.n = (ctx.stats.n || 0) + 1, ctx.stats.n % 3 === 0) { for (const p of T.invariants(st)) ctx.problem(p); ctx.checked(); }
       }
       Object.assign(ctx.stats, st.stats);

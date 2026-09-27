@@ -255,6 +255,8 @@ class App {
   validate(before, after, ops) {
     const errors = [];
     const warnings = [];
+    // в операциях с текстом от человека (не в служебных — там скелеты страниц со своими метками)
+    if (/[⟦⟧]/.test(JSON.stringify(ops.filter((o) => ["field", "head", "seo", "site"].includes(o.op))))) errors.push("Недопустимые символы ⟦ ⟧ в тексте");
     const touched = new Set(ops.map((o) => o.file).filter(Boolean));
     for (const file of touched) {
       const p = after.pages[file];
@@ -268,8 +270,8 @@ class App {
         if (/[<>]/.test(op.text)) errors.push(file + ": в тексте нельзя использовать знаки < и >");
         if (/⟦|⟧/.test(op.text)) errors.push(file + ": недопустимые символы в тексте");
       }
-      // повтор SEO-заголовка на разных страницах
-      if (p.head) {
+      // повтор SEO-заголовка на разных страницах — если заголовок меняют этой правкой
+      if (p.head && ops.some((o) => (o.op === "head" || o.op === "import") && o.file === file)) {
         const same = Object.entries(after.pages).filter(([f, q]) => f !== file && q.head && q.head.title === p.head.title).map(([f]) => f);
         if (same.length) errors.push(file + ": такой же заголовок уже у " + same.join(", "));
       }
@@ -582,11 +584,14 @@ class App {
   }
 
   // Сверка облака с данными: цены поменяли в калькуляторе мимо админки?
+  // Сверяются только ставки, по которым считаются цены сайта (в облаке их больше — весь калькулятор).
+  siteRateKeys() { return Object.keys(this.data.cfg.defaults); }
+
   async checkCloud() {
     const cloud = await this.cloudRates();
     const known = this.data.rates || {};
     const diff = {};
-    for (const [k, v] of Object.entries(cloud)) if (known[k] !== v) diff[k] = { was: known[k], now: v };
+    for (const k of this.siteRateKeys()) if (typeof cloud[k] === "number" && known[k] !== cloud[k]) diff[k] = { was: known[k], now: cloud[k] };
     this.cloudDiff = diff;
     const keys = Object.keys(diff);
     if (keys.length && JSON.stringify(diff) !== JSON.stringify(this.lastCloudDiff || {})) {
@@ -599,11 +604,14 @@ class App {
 
   // Принять цены калькулятора на сайт (ночью автоматически или по кнопке).
   async syncCloudToSite(who = "Ночная пересборка") {
-    const cloud = await this.cloudRates();
+    const all = await this.cloudRates();
+    const cloud = {};
+    for (const k of this.siteRateKeys()) if (typeof all[k] === "number") cloud[k] = all[k];
     if (!Object.keys(cloud).length) throw new UserError("Калькулятор вернул пустые ставки — сайт не трогаю");
     if (Object.values(cloud).every((v) => v === 0)) throw new UserError("Калькулятор вернул нулевые ставки — сайт не трогаю");
-    if (JSON.stringify(cloud) === JSON.stringify(this.data.rates)) return null;
-    const e = await this.publish({ ops: [{ op: "ratesSet", values: cloud }], title: "Цены сайта приведены к калькулятору", reason: "Цены меняли в калькуляторе", who, kind: "prices" });
+    const next = Object.assign({}, this.data.rates, cloud);
+    if (JSON.stringify(next) === JSON.stringify(this.data.rates)) return null;
+    const e = await this.publish({ ops: [{ op: "ratesSet", values: next }], title: "Цены сайта приведены к калькулятору", reason: "Цены меняли в калькуляторе", who, kind: "prices" });
     this.lastCloudDiff = {};
     return e;
   }

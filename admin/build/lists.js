@@ -42,6 +42,70 @@ function cloneCardAfter(skeleton, fields, srcFile, newFile) {
   return s;
 }
 
+// Порядок карточек на странице: [{ key: "файл|номер", chain, anchor }]. Карточки, стоящие подряд, — одна «цепочка»
+// (один блок: сетка серии, подборки…). У первой карточки цепочки запоминается текст перед ней (anchor) —
+// по нему карточка вернётся в свой блок, даже если все карточки блока были скрыты.
+function cardOrder(skeleton) {
+  const seen = {};
+  const out = [];
+  let prevEnd = -1;
+  for (const m of skeleton.matchAll(/\n[ \t]*<a class="pcard[^"]*" href="([^"#]+)(?:#[^"]*)?"/g)) {
+    seen[m[1]] = (seen[m[1]] || 0) + 1;
+    const start = m.index;
+    const chainStart = prevEnd < 0 || skeleton.slice(prevEnd, start).trim() !== "";
+    const item = { key: m[1] + "|" + (seen[m[1]] - 1), chain: chainStart };
+    if (chainStart) item.anchor = skeleton.slice(Math.max(0, start - 160), start);
+    out.push(item);
+    prevEnd = skeleton.indexOf("</a>", start) + 4;
+  }
+  return out;
+}
+
+// Вернуть карточки дома на страницу по полному порядку master (запомнен при первом скрытии).
+// Возвращает новую страницу или null, если поставить некуда.
+function reinsertCards(current, saved, file, master) {
+  let out = current;
+  const cards = findCards(saved, file);
+  if (!cards.length) return current;
+  const order = master && master.length && typeof master[0] === "object" ? master : cardOrder(saved);
+  for (let k = 0; k < cards.length && out !== null; k++) {
+    const c = cards[k];
+    const html = saved.slice(c.from, c.to);
+    const i = order.findIndex((x) => x.key === file + "|" + k);
+    if (i < 0) { out = null; break; }
+    let s = i; while (s > 0 && !order[s].chain) s--;
+    let e = i; while (e + 1 < order.length && !order[e + 1].chain) e++;
+    const present = (x) => { const [href, n] = x.key.split("|"); return findCards(out, href)[+n] || null; };
+    let placed = false;
+    for (let j = i - 1; j >= s && !placed; j--) { const nb = present(order[j]); if (nb) { out = out.slice(0, nb.to) + html + out.slice(nb.to); placed = true; } }
+    for (let j = i + 1; j <= e && !placed; j++) { const nb = present(order[j]); if (nb) { out = out.slice(0, nb.from) + html + out.slice(nb.from); placed = true; } }
+    if (!placed) { // весь блок пуст — по тексту перед блоком
+      const a = order[s].anchor;
+      const at = a ? out.indexOf(a) : -1;
+      if (at >= 0 && out.indexOf(a, at + 1) < 0) { out = out.slice(0, at + a.length) + html + out.slice(at + a.length); placed = true; }
+    }
+    if (!placed) out = null;
+  }
+  return out;
+}
+
+function reinsertLd(currentLd, savedLd, url, master) {
+  for (let b = 0; b < (savedLd || []).length; b++) {
+    const sb = savedLd[b], cb = currentLd && currentLd[b];
+    if (!cb || sb["@type"] !== "ItemList" || cb["@type"] !== "ItemList") continue;
+    const i = sb.itemListElement.findIndex((it) => it.url === url);
+    if (i < 0 || cb.itemListElement.some((it) => it.url === url)) continue;
+    const order = master && master.length ? master : sb.itemListElement.map((it) => it.url);
+    const mi = order.indexOf(url);
+    let at = cb.itemListElement.length;
+    for (let k = mi - 1; k >= 0; k--) { const j = cb.itemListElement.findIndex((it) => it.url === order[k]); if (j >= 0) { at = j + 1; break; } }
+    if (at === cb.itemListElement.length) for (let k = mi + 1; k < order.length; k++) { const j = cb.itemListElement.findIndex((it) => it.url === order[k]); if (j >= 0) { at = j; break; } }
+    cb.itemListElement.splice(at, 0, JSON.parse(JSON.stringify(sb.itemListElement[i])));
+    cb.itemListElement.forEach((it, k) => { if ("position" in it) it.position = k + 1; });
+    if ("numberOfItems" in cb) cb.numberOfItems = cb.itemListElement.length;
+  }
+}
+
 // ItemList в разметке: убрать дом (с перенумерацией), вернуть — через сохранённую копию.
 function removeFromLd(ld, url) {
   let n = 0;
@@ -70,7 +134,7 @@ function cloneInLd(ld, srcUrl, newUrl, name) {
   }
 }
 
-module.exports = { findCards, removeCards, cloneCardAfter, removeFromLd, cloneInLd };
+module.exports = { findCards, removeCards, cloneCardAfter, removeFromLd, cloneInLd, reinsertCards, reinsertLd, cardOrder };
 
 // ---------- подборки по цене: дом сам переезжает между «до 2 млн», «2–3 млн», «от 3 млн» ----------
 const PRICE_COLLECTIONS = [
@@ -106,23 +170,39 @@ function reindent(html, spaces) {
   return html.split("\n").map((l, i) => (i === 0 || !l ? l : d > 0 ? " ".repeat(d) + l : l.slice(Math.min(-d, l.match(/^ */)[0].length)))).join("\n");
 }
 
-// Переносит карточку дома со страницы src на страницу dst: тексты карточки — новые поля dst.
+// Где взять образец карточки дома: страницы сайта, а также страницы, сохранённые при скрытии других домов.
+function* cardSources(data) {
+  const order = ["katalog.html", ...PRICE_COLLECTIONS.map((c) => c.file), ...Object.keys(data.skeletons)];
+  for (const f of order) if (data.skeletons[f]) yield { page: f, skeleton: data.skeletons[f] };
+  for (const [, p] of Object.entries(data.pages)) {
+    for (const [f, st] of Object.entries((p.hiddenStash && p.hiddenStash.pages) || {})) if (data.pages[f]) yield { page: f, skeleton: st.skeleton };
+  }
+}
+
+// Переносит карточку дома на страницу dst: тексты карточки — новые поля dst.
+// Нет карточки самого дома (копию ещё нигде не показывали) — берётся карточка исходного дома.
 function borrowCard(data, house, dstFile, indent) {
-  for (const src of ["katalog.html", ...PRICE_COLLECTIONS.map((c) => c.file), ...Object.keys(data.skeletons)]) {
-    if (src === dstFile || !data.skeletons[src]) continue;
-    const c = findCards(data.skeletons[src], house)[0];
-    if (!c) continue;
-    let html = data.skeletons[src].slice(c.from, c.to);
-    if (/href="[^"]*#/.test(html.slice(0, 200))) continue; // карточки со ссылкой на раздел (#plan) — другой вид
-    const fields = data.pages[dstFile].fields;
-    html = html.replace(/⟦t:(\d+)⟧/g, (m, i) => {
-      const f = data.pages[src].fields[+i];
-      const same = fields.findIndex((x) => x.text === f.text && x.kind === f.kind);
-      if (same >= 0) return "⟦t:" + same + "⟧";
-      fields.push({ text: f.text, label: f.label, kind: f.kind });
-      return "⟦t:" + (fields.length - 1) + "⟧";
-    });
-    return reindent(html, indent);
+  const chain = [house];
+  for (let h = house; data.pages[h] && data.pages[h].copyOf && chain.length < 10; h = data.pages[h].copyOf) chain.push(data.pages[h].copyOf);
+  for (const who of chain) {
+    for (const src of cardSources(data)) {
+      if (src.page === dstFile && src.skeleton === data.skeletons[dstFile]) continue;
+      const c = findCards(src.skeleton, who)[0];
+      if (!c) continue;
+      let html = src.skeleton.slice(c.from, c.to);
+      if (/href="[^"]*#/.test(html.slice(0, 200))) continue; // карточки со ссылкой на раздел (#plan) — другой вид
+      if (who !== house) html = html.split('href="' + who).join('href="' + house);
+      const fields = data.pages[dstFile].fields;
+      html = html.replace(/⟦t:(\d+)⟧/g, (m, i) => {
+        const f = data.pages[src.page].fields[+i];
+        if (!f) throw new Error("карточка " + who + ": нет поля " + i + " на " + src.page);
+        const same = fields.findIndex((x) => x.text === f.text && x.kind === f.kind);
+        if (same >= 0 && who === house) return "⟦t:" + same + "⟧";
+        fields.push({ text: f.text, label: f.label, kind: f.kind });
+        return "⟦t:" + (fields.length - 1) + "⟧";
+      });
+      return reindent(html, indent);
+    }
   }
   throw new Error("Не нашлась карточка дома " + house + " ни на одной странице");
 }

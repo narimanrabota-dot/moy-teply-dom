@@ -74,6 +74,12 @@ function setPath(obj, p, v) {
 
 const SITE_PATHS = /^(phone\.(text|digits)|messengers\.(telegram|max|whatsapp)|office\.(address|hours)|company\.(name|innKpp|ogrn|director|copyright)|baseUrl|leadUrl)$/;
 
+function ldUrls(ld) {
+  const out = [];
+  for (const b of ld || []) if (b["@type"] === "ItemList") for (const it of b.itemListElement || []) out.push(it.url);
+  return out;
+}
+
 // Снимок страниц и sitemap для точного отката.
 function snapshot(data, files) {
   const pages = {};
@@ -81,7 +87,7 @@ function snapshot(data, files) {
   return { op: "restoreState", pages, sitemap: clone(data.sitemap) };
 }
 // sitemap без дат изменений: даты меняет каждая публикация, это не повод останавливать откат
-function sitemapHash(sm) { return sha1(JSON.stringify((sm || []).map((e) => [e.path, e.priority, e.images]))); }
+function sitemapHash(sm) { return sha1(JSON.stringify((sm || []).map((e) => [e.path, e.priority, e.images, !!e.hidden]))); }
 function stateHash(data, f) { return sha1(JSON.stringify(data.pages[f] || null) + "\u0000" + (data.skeletons[f] || "")); }
 function finishSnapshot(data, snap) {
   snap.expect = {};
@@ -191,12 +197,16 @@ const OPS = {
       const n = ld ? L.removeFromLd(ld, url) : 0;
       if (!r.n && !n) continue;
       stash.pages[f] = { skeleton: sk, ld: data.pages[f].seo ? clone(data.pages[f].seo.ld) : null, expect: sha1(r.skeleton) };
+      if (!data.pages[f].cardOrder) data.pages[f].cardOrder = L.cardOrder(sk); // полный порядок карточек — для возврата на место
       data.skeletons[f] = r.skeleton;
-      if (n) data.pages[f].seo.ld = ld;
+      if (n) {
+        if (!data.pages[f].ldOrder) data.pages[f].ldOrder = ldUrls(data.pages[f].seo.ld);
+        data.pages[f].seo.ld = ld;
+      }
     }
     if (data.sitemap) {
-      const i = data.sitemap.findIndex((e) => e.path === SM.pathOf(op.file));
-      if (i >= 0) { stash.sitemap = { index: i, entry: data.sitemap[i] }; data.sitemap.splice(i, 1); }
+      const e = data.sitemap.find((x) => x.path === SM.pathOf(op.file));
+      if (e) e.hidden = true; // запись остаётся на своём месте, но в sitemap.xml не выводится
     }
     page.hidden = true;
     page.hiddenStash = stash;
@@ -209,16 +219,28 @@ const OPS = {
     if (!page.hidden) throw new Error("Дом не скрыт");
     const snap = snapshot(data, [op.file, ...Object.keys((page.hiddenStash || {}).pages || {}), "katalog.html", ...Object.keys(data.pages).filter((f) => /^seriya-/.test(f))]);
     const stash = page.hiddenStash || { pages: {} };
+    const notPlaced = [];
     for (const [f, st] of Object.entries(stash.pages)) {
       if (!data.skeletons[f]) continue;
-      if (sha1(data.skeletons[f]) !== st.expect) throw new Error("Страницу " + f + " меняли, пока дом был скрыт — верните дом через «Откатить» в журнале или попросите Claude");
-      data.skeletons[f] = st.skeleton;
-      if (st.ld && data.pages[f].seo) data.pages[f].seo.ld = clone(st.ld);
+      if (sha1(data.skeletons[f]) === st.expect) { // страницу не меняли — возвращаем точно
+        data.skeletons[f] = st.skeleton;
+        if (st.ld && data.pages[f].seo) data.pages[f].seo.ld = clone(st.ld);
+        continue;
+      }
+      // страницу меняли (например, скрыли другой дом) — ставим карточку к прежним соседям
+      const sk = L.reinsertCards(data.skeletons[f], st.skeleton, op.file, data.pages[f].cardOrder);
+      if (sk == null) { notPlaced.push(f); continue; }
+      data.skeletons[f] = sk;
+      if (st.ld && data.pages[f].seo) L.reinsertLd(data.pages[f].seo.ld, st.ld, "{{base}}v2/" + op.file, data.pages[f].ldOrder);
     }
+    if (notPlaced.length) page.showWarning = "Карточка не вернулась на: " + notPlaced.join(", ");
     if (data.sitemap) {
-      const entry = stash.sitemap ? stash.sitemap.entry : newSitemapEntry(data, op.file);
-      const at = stash.sitemap ? Math.min(stash.sitemap.index, data.sitemap.length) : data.sitemap.length;
-      if (!data.sitemap.some((e) => e.path === entry.path)) data.sitemap.splice(at, 0, entry);
+      const e = data.sitemap.find((x) => x.path === SM.pathOf(op.file));
+      if (e) delete e.hidden;
+      else { // копию показывают впервые — новая запись после исходного дома
+        const j = page.copyOf ? data.sitemap.findIndex((x) => x.path === SM.pathOf(page.copyOf)) : -1;
+        data.sitemap.splice(j >= 0 ? j + 1 : data.sitemap.length, 0, newSitemapEntry(data, op.file));
+      }
     }
     // копия, которую ещё не показывали: карточки в каталоге и на странице серии — рядом с исходным домом
     if (page.copyOf && !page.shownOnce) {
@@ -227,7 +249,13 @@ const OPS = {
       for (const f of ["katalog.html", series].filter(Boolean)) {
         if (!data.skeletons[f]) continue;
         const sk = L.cloneCardAfter(data.skeletons[f], data.pages[f].fields, src, op.file);
-        if (sk) data.skeletons[f] = sk;
+        if (sk) {
+          data.skeletons[f] = sk;
+          const mo = data.pages[f].cardOrder;
+          if (mo) { const i = mo.findIndex((x) => x.key === src + "|0"); mo.splice(i >= 0 ? i + 1 : mo.length, 0, { key: op.file + "|0", chain: false }); }
+          const lo = data.pages[f].ldOrder;
+          if (lo) { const i = lo.indexOf("{{base}}v2/" + src); lo.splice(i >= 0 ? i + 1 : lo.length, 0, "{{base}}v2/" + op.file); }
+        }
         if (data.pages[f].seo) L.cloneInLd(data.pages[f].seo.ld, "{{base}}v2/" + src, "{{base}}v2/" + op.file, houseName(data, op.file));
       }
       page.shownOnce = true;
@@ -268,7 +296,11 @@ const OPS = {
     data.skeletons[file] = rename(data.skeletons[op.from]).split('data-model="' + srcModel + '"').join('data-model="' + model + '"');
     const page = clone(src);
     delete page.hidden; delete page.hiddenStash; delete page.shownOnce;
-    page.head = Object.assign({}, page.head, { title: (op.title || page.head.title + " (копия)"), noindex: true });
+    // заголовок копии должен быть уникальным: «(копия)», «(копия 2)», …
+    const titles = new Set(Object.values(data.pages).map((p) => p.head && p.head.title));
+    let title = op.title || page.head.title + " (копия)";
+    for (let n = 2; titles.has(title); n++) title = (op.title || page.head.title) + " (копия " + n + ")";
+    page.head = Object.assign({}, page.head, { title, noindex: true });
     if (page.seo) page.seo = JSON.parse(rename(JSON.stringify(page.seo)));
     page.hidden = true;
     page.copyOf = op.from;

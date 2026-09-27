@@ -309,6 +309,8 @@ function queueBrief(q) {
 // Правки из экрана: поля в виде обычного текста → операции с HTML-кодировкой.
 function normalizeOps(app, ops) {
   if (!Array.isArray(ops)) throw new UserError("Нет изменений");
+  // служебные знаки сборщика страниц нельзя вводить ни в одном поле
+  if (/[⟦⟧]/.test(JSON.stringify(ops))) throw new UserError("Недопустимые символы ⟦ ⟧ в тексте");
   return ops.map((op) => {
     if (!op || typeof op !== "object") throw new UserError("Неверная правка");
     if (op.op === "field" && op.plain !== undefined) {
