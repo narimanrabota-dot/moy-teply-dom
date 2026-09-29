@@ -1,0 +1,41 @@
+/* Эскизы: 5 вариантов блока «Итого» в калькуляторе — цена цепляет и ведёт к заявке, но не обманывает.
+   Блок итога — классы калькулятора (kn-, см. kalk-dom.css), свои классы — kt-. */
+.kt-demo{max-width:520px;margin:0 auto}
+.kt-demo .kn-res{margin-top:0;background:var(--card)}
+.kt-demo button{cursor:default}
+
+/* 1 — вилка по комплектациям */
+.kt-fork{display:grid;gap:var(--sp-8);margin:var(--sp-12) 0 0}
+.kt-fork>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px var(--sp-12);padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-soft)}
+.kt-fork>div.is-on{background:var(--card);box-shadow:inset 0 0 0 2px var(--ink)}
+.kt-fork dt{font-size:var(--fs-xs);font-weight:600;line-height:1.35}
+.kt-fork dd{margin:0;font-size:var(--fs-xs);font-weight:600;line-height:1.35;white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+.kt-fork dd.kt-sub{grid-column:1/-1;font-weight:400;color:var(--dim);white-space:normal;text-align:left}
+
+/* 2 — цена за метр крупно */
+.kt-big small{font-size:var(--fs-sm);font-weight:500;letter-spacing:0;color:var(--dim)}
+.kt-total{margin:var(--sp-8) 0 0;font-size:var(--fs-sm);line-height:1.35}
+.kt-total b{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* 3 — подарки в кирпичной рамке с кнопкой Telegram */
+.kt-gift{margin-top:var(--sp-16);padding:var(--sp-16);border-radius:var(--r-inner);background:var(--card);box-shadow:inset 0 0 0 2px var(--clay)}
+.kt-gift__h{margin:0;font-size:var(--fs-sm);font-weight:600;line-height:1.3;text-wrap:balance}
+.kt-gift ul{display:grid;gap:var(--sp-8);margin:var(--sp-12) 0 0;padding:0;list-style:none}
+.kt-gift li{display:flex;justify-content:space-between;gap:var(--sp-12);font-size:var(--fs-xs);color:var(--dim)}
+.kt-gift li b{font-weight:600;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.kt-gift .kn-go{margin-top:var(--sp-16)}
+
+/* 4 — смета под замком: размытые строки без чисел */
+.kt-lock{position:relative;margin-top:var(--sp-16);overflow:hidden;border-radius:var(--r-inner);background:var(--card);box-shadow:inset 0 0 0 2px var(--kn-soft)}
+.kt-rows{display:grid;gap:var(--sp-16);padding:var(--sp-24) var(--sp-16);filter:blur(3px);opacity:.75}
+.kt-rows i{display:flex;justify-content:space-between;gap:var(--sp-12)}
+.kt-rows i::before{content:"";width:var(--w,60%);height:10px;border-radius:5px;background:var(--n-4)}
+.kt-rows i::after{content:"";width:72px;height:10px;border-radius:5px;background:var(--n-5)}
+.kt-lock__c{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:var(--sp-8);padding:var(--sp-16);background:rgb(255 255 255/.6);text-align:center}
+.kt-lock__c svg{width:28px;height:28px;color:var(--ink)}
+.kt-lock__c p{margin:0;max-width:30ch;font-size:var(--fs-sm);font-weight:600;line-height:1.3}
+.kt-lock__c .kn-go{width:auto;margin-top:var(--sp-4)}
+
+/* 5 — цена, если фундамент свой */
+.kt-alt{margin:var(--sp-8) 0 0;padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-soft);font-size:var(--fs-xs);line-height:1.35;color:var(--dim)}
+.kt-alt b{font-weight:600;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}

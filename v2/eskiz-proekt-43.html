@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Черновик 43 — 38 + 33: тёмная сцена</title>
+<meta name="description" content="Расчёт снеговых и ветровых нагрузок, чертежи узлов, сечения и шаг стоек на каждый дом.">
+<!-- seo:start · собрано tools/seo.py, руками не править -->
+<link rel="canonical" href="https://moy-teply-dom.onrender.com/v2/stroim-proekt.html">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F5F2">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Мой тёплый дом">
+<meta property="og:title" content="Конструктивный проект каркасного дома: расчёт нагрузок и узлы">
+<meta property="og:description" content="Расчёт снеговых и ветровых нагрузок, чертежи узлов, сечения и шаг стоек на каждый дом.">
+<meta property="og:url" content="https://moy-teply-dom.onrender.com/v2/stroim-proekt.html">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://moy-teply-dom.onrender.com/img/dom-render-terrasa-leto.webp">
+<meta property="og:image:width" content="2000">
+<meta property="og:image:height" content="1342">
+<meta name="twitter:card" content="summary_large_image">
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=51">
+<link rel="stylesheet" href="theme.css?v=41">
+<link rel="stylesheet" href="card.css?v=81">
+<link rel="stylesheet" href="foot.css?v=6">
+<style>
+.p24{--navy:#1E2A44;--clay:#C2461F;--clay-l:#E0603C;--dim:#5A6478;--line:#E6E8ED;--warm:#F6F4F0;color:var(--navy);overflow-x:clip}
+.p24 *{box-sizing:border-box}
+.p24 img{display:block;max-width:100%;height:auto}
+.p24 figure{margin:0}
+.p24-draft{display:inline-block;margin-top:16px;padding:4px 12px;border-radius:999px;background:#ECE9E3;color:#5A5650;font-size:12px;font-weight:500}
+.p24-eye{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--clay)}
+.p24-sheet{background:#fff;border-radius:4px;box-shadow:0 0 0 1px rgb(30 42 68/.07),0 24px 48px -32px rgb(30 42 68/.35)}
+.p24-dlw{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.p24-dl{display:inline-flex;align-items:center;gap:12px;padding:16px 24px 16px 20px;border-radius:999px;background:var(--navy);color:#fff;font:inherit;font-size:17px;font-weight:600;text-decoration:none;transition:background .2s ease,transform .2s ease}
+.p24-dl:hover{background:var(--clay);transform:translateY(-2px)}
+.p24-dl svg{width:20px;height:20px;flex:none}
+.p24-meta{font-size:14px;color:var(--dim)}
+.p24-phone{position:relative;width:100%;aspect-ratio:464/848;padding:8px;border-radius:36px;background:#141B2C;box-shadow:0 32px 64px -32px rgb(30 42 68/.55)}
+.p24-phone video{width:100%;height:100%;object-fit:cover;border-radius:28px;display:block;background:#222B40}
+.p24-snd{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid rgb(255 255 255/.55);border-radius:999px;background:rgb(20 27 44/.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font:inherit;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .2s ease}
+.p24-snd:hover,.p24-snd.is-on{background:rgb(194 70 31/.9)}
+.p24-snd svg{width:16px;height:16px}
+.p24-deal{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px 64px;padding-top:48px;border-top:1px solid var(--line)}
+.p24-deal h2{margin:0;font-size:clamp(29px,3.2vw,40px);font-weight:600;letter-spacing:-.03em;line-height:1.08;max-width:16ch}
+.p24-deal p{margin:0;font-size:17px;line-height:1.55;color:var(--dim);max-width:46ch}
+.p24-deal dl{margin:24px 0 0;display:grid}
+.p24-deal dl div{display:grid;grid-template-columns:80px 1fr;gap:16px;padding:12px 0;border-top:1px solid var(--line)}
+.p24-deal dt{color:var(--clay);font-weight:600;font-size:17px}
+.p24-deal dd{margin:0;font-size:17px}
+.p24-deal a{display:inline-block;margin-top:16px;color:var(--clay);font-weight:600;text-decoration:none;border-bottom:1px solid rgb(194 70 31/.35);transition:border-color .2s ease}
+.p24-deal a:hover{border-color:var(--clay)}
+.p24-end{display:grid;justify-items:center;gap:16px;text-align:center;padding:96px 0 32px}
+.p24-end b{font-size:clamp(24px,2.6vw,29px);font-weight:600;letter-spacing:-.02em}
+.rvjs .p24 .rv{opacity:0;transform:translateY(16px);transition:opacity .25s ease,transform .25s ease}
+.rvjs .p24 .rv.in{opacity:1;transform:none}
+@media(max-width:760px){
+  .p24-deal{grid-template-columns:1fr;padding-top:32px}
+  .p24-end{padding-top:64px}
+  .p24-dl{width:100%;justify-content:center}
+}
+
+.p24-top{display:grid;justify-items:center;text-align:center;gap:16px;padding:48px 0 0}
+.p24-h1{margin:0;font-size:clamp(40px,5.4vw,68px);font-weight:600;letter-spacing:-.045em;line-height:1}
+.p24-lead{margin:0;max-width:40ch;font-size:17px;line-height:1.5;color:var(--dim)}
+.p24-stage{display:grid;grid-template-columns:minmax(0,1fr) 280px minmax(0,1fr);gap:64px;align-items:center;margin-top:48px}
+.p24-col{display:grid;gap:96px}
+.p24-co{position:relative}
+.p24-co b{display:block;font-size:20px;font-weight:600;letter-spacing:-.015em}
+.p24-co span{display:block;margin-top:4px;font-size:14px;color:var(--dim)}
+.p24-co::after{content:"";position:absolute;top:14px;width:calc(var(--w,0px) + 56px);border-top:1px solid var(--clay-l)}
+.p24-co::before{content:"";position:absolute;top:11px;width:7px;height:7px;border-radius:50%;background:var(--clay)}
+.p24-col--l .p24-co{text-align:right;padding-right:0}
+.p24-col--l .p24-co::after{left:calc(100% + 8px)}
+.p24-col--l .p24-co::before{left:calc(100% + 60px)}
+.p24-col--r .p24-co::after{right:calc(100% + 8px)}
+.p24-col--r .p24-co::before{right:calc(100% + 60px)}
+.p24-row{display:grid;grid-template-columns:1.414fr 1.414fr 1.414fr .707fr;gap:24px;align-items:end;margin-top:96px}
+.p24-row figure img{border-radius:3px;box-shadow:0 0 0 1px rgb(30 42 68/.08)}
+.p24-row figcaption{margin-top:12px;font-size:14px;color:var(--dim)}
+.p24-dlc{display:grid;justify-items:center;margin:48px 0 96px}
+@media(max-width:980px){
+  .p24-stage{grid-template-columns:1fr 1fr;gap:32px}
+  .p24-ph{grid-column:1/-1;order:-1;width:min(280px,100%);margin:0 auto}
+  .p24-col{gap:24px}
+  .p24-col--l .p24-co{text-align:left}
+  .p24-co{padding-top:12px;border-top:1px solid var(--line)}
+  .p24-co::after,.p24-co::before{display:none}
+  .p24-row{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .p24-top{justify-items:start;text-align:left;padding-top:32px}
+  .p24-stage{gap:24px 16px}.p24-col{gap:16px}.p24-co b{font-size:17px}
+  .p24-row{gap:16px;margin-top:64px}
+  .p24-dlc{margin:32px 0 64px}
+}
+
+.q-shell{max-width:1120px}
+.q-vid{display:grid;justify-items:center;padding:48px 0 0}
+.q-vid .p24-phone{width:min(300px,78vw)}
+.q-cap{margin:16px 0 0;font-size:14px;color:var(--dim);text-align:center}
+.q-top{display:grid;justify-items:center;text-align:center;gap:16px;padding:64px 0 0}
+.q-h1{margin:0;font-size:clamp(36px,5vw,60px);font-weight:600;letter-spacing:-.045em;line-height:1.02;max-width:16ch}
+.q-h1 em{font-style:normal;color:var(--clay)}
+.q-lead{margin:0;max-width:44ch;font-size:17px;line-height:1.55;color:var(--dim)}
+.q-top .p24-dlw{justify-content:center;margin-top:8px}
+.q-sec{padding:96px 0 0}
+.q-h2{margin:0 0 32px;font-size:clamp(24px,2.8vw,29px);font-weight:600;letter-spacing:-.025em;line-height:1.15}
+/* выгоды — тонкие строки */
+.q-ben{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 64px;border-top:1px solid var(--line)}
+.q-ben div{padding:24px 0;border-bottom:1px solid var(--line)}
+.q-ben b{display:block;font-size:20px;font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.q-ben span{display:block;margin-top:8px;font-size:17px;line-height:1.5;color:var(--dim)}
+.q-ben i{font-style:normal;color:var(--clay);font-weight:600;font-size:14px;margin-left:4px;white-space:nowrap}
+/* путь 28 */
+.q-path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;position:relative}
+.q-path::before{content:"";position:absolute;left:0;right:0;top:12px;border-top:1px solid var(--clay-l);opacity:.5}
+.q-step{position:relative;padding-top:40px}
+.q-step::before{content:attr(data-n);position:absolute;top:0;left:0;width:25px;height:25px;border-radius:50%;background:#fff;border:1px solid var(--clay-l);color:var(--clay);font-size:12px;font-weight:600;display:grid;place-items:center}
+.q-step img{border-radius:3px;box-shadow:0 0 0 1px rgb(30 42 68/.08),0 16px 32px -24px rgb(30 42 68/.35);aspect-ratio:1.414;object-fit:cover;width:100%}
+.q-step b{display:block;margin-top:16px;font-size:17px;font-weight:600}
+.q-step span{display:block;margin-top:4px;font-size:14px;color:var(--dim)}
+.q-next{display:grid;gap:4px;margin:96px 0 0;padding:32px 0;border-top:1px solid var(--line);text-decoration:none;color:inherit}
+.q-next span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);font-weight:600}
+.q-next b{font-size:20px;font-weight:600;transition:color .2s ease}.q-next:hover b{color:var(--clay)}
+/* вариант 32 — выноски вокруг телефона */
+.q-stage{display:grid;grid-template-columns:minmax(0,1fr) 300px minmax(0,1fr);gap:64px;align-items:center;padding-top:48px}
+.q-stage .p24-phone{width:100%}
+.q-col{display:grid;gap:96px}
+.q-co b{display:block;font-size:20px;font-weight:600;letter-spacing:-.015em}
+.q-co span{display:block;margin-top:4px;font-size:14px;color:var(--dim);line-height:1.45}
+.q-col--l .q-co{text-align:right}
+.q-co{position:relative}
+.q-co::after{content:"";position:absolute;top:13px;width:48px;border-top:1px solid var(--clay-l)}
+.q-col--l .q-co::after{left:calc(100% + 8px)}.q-col--r .q-co::after{right:calc(100% + 8px)}
+/* вариант 33 — нумерованные выгоды с листом-доказательством */
+.q-list{display:grid;border-top:1px solid var(--line)}
+.q-it{display:grid;grid-template-columns:64px minmax(0,1fr) minmax(0,.9fr);gap:32px;align-items:center;padding:32px 0;border-bottom:1px solid var(--line)}
+.q-it>i{font-style:normal;font-size:14px;font-weight:600;color:var(--clay)}
+.q-it b{display:block;font-size:clamp(20px,2.2vw,24px);font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.q-it p{margin:8px 0 0;font-size:17px;line-height:1.5;color:var(--dim);max-width:40ch}
+.q-it img{border-radius:3px;box-shadow:0 0 0 1px rgb(30 42 68/.08);aspect-ratio:1.9;object-fit:cover;object-position:50% 20%;width:100%;background:#fff}
+.q-num{display:flex;justify-content:center;gap:64px;padding:48px 0 0;flex-wrap:wrap}
+.q-num div{text-align:center}.q-num b{display:block;font-size:clamp(36px,4vw,48px);font-weight:600;letter-spacing:-.04em;line-height:1}
+.q-num span{display:block;margin-top:8px;font-size:14px;color:var(--dim)}
+@media(max-width:980px){
+ .q-path{grid-template-columns:1fr 1fr;gap:32px 16px}.q-path::before{display:none}
+ .q-stage{grid-template-columns:1fr 1fr;gap:32px 16px}.q-stage>.p24-phone{grid-column:1/-1;order:-1;width:min(280px,78vw);margin:0 auto}
+ .q-col{gap:16px}.q-col--l .q-co{text-align:left}.q-co{padding-top:12px;border-top:1px solid var(--line)}.q-co::after{display:none}
+}
+@media(max-width:640px){
+ .q-vid{padding-top:24px}.q-top{padding-top:48px;justify-items:start;text-align:left}.q-top .p24-dlw{justify-content:flex-start}
+ .q-sec{padding-top:64px}.q-h2{margin-bottom:24px}
+ .q-ben{grid-template-columns:1fr}
+ .q-it{grid-template-columns:32px 1fr;gap:8px 16px;padding:24px 0}.q-it img{grid-column:1/-1}
+ .q-num{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.q-num b{font-size:29px}
+ .q-next{margin-top:64px}
+}
+
+.q-shell{max-width:1240px}
+.o-ci>div{min-width:190px}
+.o-stage{display:grid;grid-template-columns:minmax(0,1fr) 300px minmax(0,1fr);gap:56px;align-items:center;padding-top:48px}
+.o-stage .p24-phone{width:100%}
+.o-col{display:grid;gap:40px}
+.o-ci{position:relative;display:flex;align-items:center;gap:20px}
+.o-col--l .o-ci{flex-direction:row-reverse;text-align:right}
+.o-ci img{flex:none;width:var(--c,148px);height:var(--c,148px);border-radius:50%;object-fit:cover;background:#fff;box-shadow:0 0 0 1px rgb(30 42 68/.08),0 16px 32px -20px rgb(30 42 68/.4);transition:transform .25s ease}
+.o-ci:hover img{transform:scale(1.04)}
+.o-ci b{display:block;font-size:20px;font-weight:600;letter-spacing:-.015em;line-height:1.2}
+.o-ci span{display:block;margin-top:4px;font-size:14px;line-height:1.45;color:var(--dim)}
+.o-ci::after{content:"";position:absolute;top:50%;width:40px;border-top:1px solid var(--clay-l)}
+.o-col--l .o-ci::after{left:calc(100% + 8px)}.o-col--r .o-ci::after{right:calc(100% + 8px)}
+.o-ci i{position:absolute;top:0;width:28px;height:28px;border-radius:50%;background:var(--clay);color:#fff;font-style:normal;font-size:12px;font-weight:600;display:grid;place-items:center;box-shadow:0 0 0 3px var(--bg,#F6F4F0)}
+.o-col--l .o-ci i{right:0}.o-col--r .o-ci i{left:0}
+/* 35: подпись под кружком */
+.o-v35 .o-ci{flex-direction:column!important;text-align:center!important;gap:12px}
+.o-v35 .o-col{gap:48px}.o-v35 .o-ci::after{top:90px}
+/* 36: дуга */
+.o-v36 .o-col--l .o-ci:nth-child(2){margin-right:-56px}.o-v36 .o-col--r .o-ci:nth-child(2){margin-left:-56px}
+.o-v36 .o-ci::after{display:none}
+/* 37: кирпичное кольцо */
+.o-v37 .o-ci img{box-shadow:0 0 0 4px #fff,0 0 0 5px var(--clay-l),0 16px 32px -20px rgb(30 42 68/.4)}
+/* 38: тёмная сцена */
+.o-dark{margin-top:32px;padding:0 32px 64px;border-radius:20px;background:#1E2A44;color:#fff}
+.o-dark .o-ci span{color:#B9C1D0}.o-dark .o-ci img{box-shadow:0 0 0 1px rgb(255 255 255/.15),0 16px 32px -16px rgb(0 0 0/.6)}
+.o-dark .p24-phone{background:#0E1424}
+@media(max-width:980px){
+ .o-stage{grid-template-columns:1fr;gap:32px}.o-stage>.p24-phone{order:-1;width:min(280px,78vw);margin:0 auto}
+ .o-col{grid-template-columns:1fr;gap:16px}.o-ci>div{min-width:0}
+ .o-ci,.o-v35 .o-ci{flex-direction:row!important;text-align:left!important;--c:96px}
+ .o-ci img{width:96px!important;height:96px!important}.o-ci::after{display:none}.o-v36 .o-ci{margin:0!important}
+ .o-col--l .o-ci i,.o-col--r .o-ci i{left:0;right:auto}
+ .o-dark{padding:0 16px 32px}
+}
+</style>
+</head>
+<body>
+
+<span class="sentinel" aria-hidden="true"></span>
+
+<a class="skip" href="./#main">Перейти к содержимому</a>
+
+<div class="shell shell--hdr">
+  <header class="hdr hdr--inv">
+
+    <div class="up">
+      <a href="tel:+79782516469" class="tel">+7 978 251‑64‑69</a>
+      <span class="sp"></span>
+      <span class="gr">
+        <a href="https://t.me/" class="ic ic--tg" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.2 4.3 2.9 11.4c-.9.35-.87 1.65.05 1.95l4.55 1.45 1.75 5.3c.25.75 1.2.93 1.72.33l2.4-2.75 4.6 3.38c.63.46 1.53.12 1.7-.65l3.2-14.6c.2-.9-.7-1.66-1.67-1.28ZM9.1 14.2l8.5-5.3-6.9 6.3-.35 3.1-1.25-4.1Z"/></svg></a>
+        <a href="#max" class="ic ic--max" aria-label="Написать в MAX"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.2c0 4.05-3.8 7.35-8.5 7.35-.95 0-1.86-.14-2.7-.39L4.2 20.8l1.35-3.6A7.06 7.06 0 0 1 3.5 12.2c0-4.06 3.8-7.35 8.5-7.35s8.5 3.29 8.5 7.35Z"/><path d="M8.6 14.3V10l2.4 2.6 2.4-2.6v4.3" stroke-linecap="round"/></svg></a>
+        <a href="https://wa.me/79782516469" class="ic ic--wa" aria-label="Написать в WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6a9.3 9.3 0 0 0-8 14.05L2.7 21.4l4.9-1.27A9.3 9.3 0 1 0 12 2.6Zm0 1.9a7.4 7.4 0 1 1-3.9 13.7l-.3-.18-2.9.76.77-2.83-.2-.31A7.4 7.4 0 0 1 12 4.5Zm-3.2 3.6c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.2.87 2.35.99 2.51.12.16 1.7 2.7 4.2 3.68 2.08.82 2.5.66 2.95.62.45-.04 1.45-.59 1.66-1.17.2-.57.2-1.06.14-1.17-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12s-.63.8-.77.96c-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47Z"/></svg></a>
+      </span>
+    </div>
+
+    <div class="dn">
+    <a href="./" class="logo">
+      <svg viewBox="11 12 38 39.5" class="mk" aria-hidden="true"><path d="M14.5 29 L30 15.5 L45.5 29" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><rect class="bar" x="16" y="34" width="28" height="7" rx="3.5"/><rect class="bar" x="16" y="44.5" width="28" height="7" rx="3.5"/></svg>
+      <span class="wm">Мой тёплый <i>дом</i></span>
+    </a>
+    <nav class="nav" aria-label="Основное меню">
+      <span class="nav__item">
+        <a href="katalog.html" aria-haspopup="true">Проекты<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="katalog.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></span><span class="nav__tx"><b>Все проекты</b><small>24 проекта в 5 сериях</small></span></a>
+          <span class="nav__it nav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span><span class="nav__tx"><b>Серии</b><small><a href="seriya-stambul.html">Стамбул</a> · <a href="seriya-siena.html">Сиена</a> · <a href="seriya-vladivostok.html">Владивосток</a> · <a href="seriya-parma.html">Парма</a> · <a href="seriya-sochi.html">Сочи</a></small></span></span>
+          <a class="nav__it" href="planirovki.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h8M11 3v13M15 12h6"/></svg></span><span class="nav__tx"><b>Планировки</b><small>40 вариантов с чертежами</small></span></a>
+          <span class="nav__it nav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 8v6l-4-2v-4z"/></svg></span><span class="nav__tx"><b>Подборки</b><small><a href="doma-s-parnoy.html">С баней внутри</a> · <a href="doma-do-60-m2.html">До 60 кв. м</a> · <a href="doma-60-100-m2.html">До 100 кв. м</a> · <a href="doma-ot-100-m2.html">От 100 кв. м</a> · <a href="doma-do-2-mln.html">До 2 млн ₽</a> · <a href="doma-2-3-mln.html">От 2 до 3 млн ₽</a> · <a href="doma-ot-3-mln.html">От 3 млн ₽</a> · <a href="doma-s-2-spalnyami.html">С 2 спальнями</a> · <a href="doma-s-3-spalnyami.html">С 3 спальнями</a></small></span></span>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="komplektacii.html" aria-haspopup="true">Цены<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="komplektacii.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg></span><span class="nav__tx"><b>Что входит в цену</b><small>Холодный контур, Комфорт, Премиум</small></span></a>
+          <a class="nav__it" href="smeta-primer.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span><span class="nav__tx"><b>Пример сметы</b><small>каждая позиция отдельно</small></span></a>
+          <a class="nav__it" href="./?kalk"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></svg></span><span class="nav__tx"><b>Калькулятор</b><small>цена сразу, без телефона</small></span></a>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="stroim-proekt.html" aria-haspopup="true" aria-current="true">Как строим<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="stroim-proekt.html" aria-current="page"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4h11l5 5v11z"/><path d="M8 16l3-3 2 2 3-4"/></svg></span><span class="nav__tx"><b>Конструктивный проект</b><small>нагрузки, узлы, сечения стоек</small></span></a>
+          <a class="nav__it" href="stroim-materialy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="5" rx="1"/><rect x="3" y="13" width="18" height="5" rx="1"/></svg></span><span class="nav__tx"><b>Материалы</b><small>доска камерной сушки 12–16 %</small></span></a>
+          <a class="nav__it" href="stroim-obvyazka.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18M5 18V9h14v9M10 9v9M14 9v9"/></svg></span><span class="nav__tx"><b>Обвязка пола</b><small>пакет из трёх досок 145 × 45</small></span></a>
+          <a class="nav__it" href="stroim-krovlya.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13l10-8 10 8"/><path d="M5 11v8h14v-8"/></svg></span><span class="nav__tx"><b>Кровля и ветрозащита</b><small>металлочерепица, вентзазор, мембраны</small></span></a>
+          <span class="nav__it nav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg></span><span class="nav__tx"><b>Инженерия в доме</b><small><a href="stroim-elektrika.html">Электрика</a> · <a href="stroim-kommunikacii.html">Коммуникации</a> · <a href="stroim-ventilyaciya.html">Вентиляция</a></small></span></span>
+          <a class="nav__it" href="stroim-pokraska.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4l6 6-8 8H6v-6z"/><path d="M11 7l6 6"/></svg></span><span class="nav__tx"><b>Заводская покраска</b><small>шлифовка, грунт, два слоя краски</small></span></a>
+          <span class="nav__it nav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></span><span class="nav__tx"><b>Доставка и хранение</b><small><a href="stroim-dostavka.html">Доставка</a> · <a href="stroim-hranenie.html">Хранение на участке</a></small></span></span>
+          <a class="nav__it" href="stroim-bytovki.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19V7M3 15h18v4M21 15v-3a3 3 0 00-3-3h-7v6"/><circle cx="7" cy="11" r="1.6"/></svg></span><span class="nav__tx"><b>Где живёт бригада</b><small>условия на объекте как есть</small></span></a>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="otzyvy.html" aria-haspopup="true">Работы и отзывы<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="otzyvy.html#built"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span><span class="nav__tx"><b>Сданные дома</b><small>фото построенных домов</small></span></a>
+          <a class="nav__it" href="otzyvy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9v6l5-3z"/></svg></span><span class="nav__tx"><b>Отзывы</b><small>видео владельцев домов</small></span></a>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="kak-zakazat.html" aria-haspopup="true">Как заказать<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="kak-zakazat.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h5v-5h5V9h6"/></svg></span><span class="nav__tx"><b>Этапы стройки</b><small>от знакомства до сдачи дома</small></span></a>
+          <a class="nav__it" href="stroim-vyezd-inzhenera.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 0116 0z"/><path d="M3 16h18M12 8V5"/></svg></span><span class="nav__tx"><b>Выезд инженера</b><small>бурение и промерзание грунта</small></span></a>
+          <a class="nav__it" href="dogovor.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span><span class="nav__tx"><b>Договор и гарантии</b><small>твёрдая цена, гарантия 2 года</small></span></a>
+          <a class="nav__it" href="voprosy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-1 .7-1.5 1.2-1.5 2.5M12 17h.01"/></svg></span><span class="nav__tx"><b>Частые вопросы</b><small>цена, сроки, гарантия</small></span></a>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="komanda.html" aria-haspopup="true">О нас<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub nav__sub--ic">
+          <a class="nav__it" href="komanda.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0M16 4.5a3.5 3.5 0 010 7M21.5 20a6.5 6.5 0 00-4-6"/></svg></span><span class="nav__tx"><b>Команда</b><small>менеджеры, инженеры, прорабы</small></span></a>
+          <a class="nav__it" href="stati.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 5v16"/></svg></span><span class="nav__tx"><b>Статьи</b><small>16 статей о каркасных домах</small></span></a>
+          <a class="nav__it" href="./#contacts"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span><span class="nav__tx"><b>Контакты</b><small>офис в Москве, как доехать</small></span></a>
+        </span>
+      </span>
+    </nav>
+      <button type="button" class="btn btn--l" data-callback>Заказать звонок</button>
+      <a href="tel:+79782516469" class="icb" aria-label="Позвонить: +7 978 251‑64‑69"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 006.5 6.5l1.5-2 4 1.5v3a2 2 0 01-2.2 2A17 17 0 014.5 5.2 2 2 0 016.5 3z"/></svg></a>
+      <button class="burg" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mnav">
+      <i></i>
+    </button>
+    </div>  </header>
+</div>
+
+<nav class="mnav" id="mnav" aria-label="Мобильное меню">
+  <a href="katalog.html">Проекты</a>
+    <a class="mnav__sub mnav__it" href="katalog.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></span><span class="nav__tx"><b>Все проекты</b><small>24 проекта в 5 сериях</small></span></a>
+    <div class="mnav__sub mnav__it mnav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span><span class="nav__tx"><b>Серии</b><span class="mnav__chips"><a href="seriya-stambul.html">Стамбул</a><a href="seriya-siena.html">Сиена</a><a href="seriya-vladivostok.html">Владивосток</a><a href="seriya-parma.html">Парма</a><a href="seriya-sochi.html">Сочи</a></span></span></div>
+    <a class="mnav__sub mnav__it" href="planirovki.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h8M11 3v13M15 12h6"/></svg></span><span class="nav__tx"><b>Планировки</b><small>40 вариантов с чертежами</small></span></a>
+    <div class="mnav__sub mnav__it mnav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 8v6l-4-2v-4z"/></svg></span><span class="nav__tx"><b>Подборки</b><span class="mnav__chips"><a href="doma-s-parnoy.html">С баней внутри</a><a href="doma-do-60-m2.html">До 60 кв. м</a><a href="doma-60-100-m2.html">До 100 кв. м</a><a href="doma-ot-100-m2.html">От 100 кв. м</a><a href="doma-do-2-mln.html">До 2 млн ₽</a><a href="doma-2-3-mln.html">От 2 до 3 млн ₽</a><a href="doma-ot-3-mln.html">От 3 млн ₽</a><a href="doma-s-2-spalnyami.html">С 2 спальнями</a><a href="doma-s-3-spalnyami.html">С 3 спальнями</a></span></span></div>
+  <a href="komplektacii.html">Цены</a>
+    <a class="mnav__sub mnav__it" href="komplektacii.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg></span><span class="nav__tx"><b>Что входит в цену</b><small>Холодный контур, Комфорт, Премиум</small></span></a>
+    <a class="mnav__sub mnav__it" href="smeta-primer.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span><span class="nav__tx"><b>Пример сметы</b><small>каждая позиция отдельно</small></span></a>
+    <a class="mnav__sub mnav__it" href="./?kalk"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></svg></span><span class="nav__tx"><b>Калькулятор</b><small>цена сразу, без телефона</small></span></a>
+  <a href="stroim-proekt.html">Как строим</a>
+    <a class="mnav__sub mnav__it" href="stroim-proekt.html" aria-current="page"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4h11l5 5v11z"/><path d="M8 16l3-3 2 2 3-4"/></svg></span><span class="nav__tx"><b>Конструктивный проект</b><small>нагрузки, узлы, сечения стоек</small></span></a>
+    <a class="mnav__sub mnav__it" href="stroim-materialy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="5" rx="1"/><rect x="3" y="13" width="18" height="5" rx="1"/></svg></span><span class="nav__tx"><b>Материалы</b><small>доска камерной сушки 12–16 %</small></span></a>
+    <a class="mnav__sub mnav__it" href="stroim-obvyazka.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18M5 18V9h14v9M10 9v9M14 9v9"/></svg></span><span class="nav__tx"><b>Обвязка пола</b><small>пакет из трёх досок 145 × 45</small></span></a>
+    <a class="mnav__sub mnav__it" href="stroim-krovlya.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13l10-8 10 8"/><path d="M5 11v8h14v-8"/></svg></span><span class="nav__tx"><b>Кровля и ветрозащита</b><small>металлочерепица, вентзазор, мембраны</small></span></a>
+    <div class="mnav__sub mnav__it mnav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg></span><span class="nav__tx"><b>Инженерия в доме</b><span class="mnav__chips"><a href="stroim-elektrika.html">Электрика</a><a href="stroim-kommunikacii.html">Коммуникации</a><a href="stroim-ventilyaciya.html">Вентиляция</a></span></span></div>
+    <a class="mnav__sub mnav__it" href="stroim-pokraska.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4l6 6-8 8H6v-6z"/><path d="M11 7l6 6"/></svg></span><span class="nav__tx"><b>Заводская покраска</b><small>шлифовка, грунт, два слоя краски</small></span></a>
+    <div class="mnav__sub mnav__it mnav__it--grp"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></span><span class="nav__tx"><b>Доставка и хранение</b><span class="mnav__chips"><a href="stroim-dostavka.html">Доставка</a><a href="stroim-hranenie.html">Хранение на участке</a></span></span></div>
+    <a class="mnav__sub mnav__it" href="stroim-bytovki.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19V7M3 15h18v4M21 15v-3a3 3 0 00-3-3h-7v6"/><circle cx="7" cy="11" r="1.6"/></svg></span><span class="nav__tx"><b>Где живёт бригада</b><small>условия на объекте как есть</small></span></a>
+  <a href="otzyvy.html">Работы и отзывы</a>
+    <a class="mnav__sub mnav__it" href="otzyvy.html#built"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span><span class="nav__tx"><b>Сданные дома</b><small>фото построенных домов</small></span></a>
+    <a class="mnav__sub mnav__it" href="otzyvy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9v6l5-3z"/></svg></span><span class="nav__tx"><b>Отзывы</b><small>видео владельцев домов</small></span></a>
+  <a href="kak-zakazat.html">Как заказать</a>
+    <a class="mnav__sub mnav__it" href="kak-zakazat.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h5v-5h5V9h6"/></svg></span><span class="nav__tx"><b>Этапы стройки</b><small>от знакомства до сдачи дома</small></span></a>
+    <a class="mnav__sub mnav__it" href="stroim-vyezd-inzhenera.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 0116 0z"/><path d="M3 16h18M12 8V5"/></svg></span><span class="nav__tx"><b>Выезд инженера</b><small>бурение и промерзание грунта</small></span></a>
+    <a class="mnav__sub mnav__it" href="dogovor.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span><span class="nav__tx"><b>Договор и гарантии</b><small>твёрдая цена, гарантия 2 года</small></span></a>
+    <a class="mnav__sub mnav__it" href="voprosy.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-1 .7-1.5 1.2-1.5 2.5M12 17h.01"/></svg></span><span class="nav__tx"><b>Частые вопросы</b><small>цена, сроки, гарантия</small></span></a>
+  <a href="komanda.html">О нас</a>
+    <a class="mnav__sub mnav__it" href="komanda.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0M16 4.5a3.5 3.5 0 010 7M21.5 20a6.5 6.5 0 00-4-6"/></svg></span><span class="nav__tx"><b>Команда</b><small>менеджеры, инженеры, прорабы</small></span></a>
+    <a class="mnav__sub mnav__it" href="stati.html"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 5v16"/></svg></span><span class="nav__tx"><b>Статьи</b><small>16 статей о каркасных домах</small></span></a>
+    <a class="mnav__sub mnav__it" href="./#contacts"><span class="nav__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span><span class="nav__tx"><b>Контакты</b><small>офис в Москве, как доехать</small></span></a>
+  <span class="mnav__sep"></span>
+  <a href="https://t.me/" class="mnav__ic"><span class="ic ic--tg"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.2 4.3 2.9 11.4c-.9.35-.87 1.65.05 1.95l4.55 1.45 1.75 5.3c.25.75 1.2.93 1.72.33l2.4-2.75 4.6 3.38c.63.46 1.53.12 1.7-.65l3.2-14.6c.2-.9-.7-1.66-1.67-1.28ZM9.1 14.2l8.5-5.3-6.9 6.3-.35 3.1-1.25-4.1Z"/></svg></span>Написать в Telegram</a>
+  <a href="#max" class="mnav__ic"><span class="ic ic--max"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.2c0 4.05-3.8 7.35-8.5 7.35-.95 0-1.86-.14-2.7-.39L4.2 20.8l1.35-3.6A7.06 7.06 0 0 1 3.5 12.2c0-4.06 3.8-7.35 8.5-7.35s8.5 3.29 8.5 7.35Z"/><path d="M8.6 14.3V10l2.4 2.6 2.4-2.6v4.3" stroke-linecap="round"/></svg></span>Написать в MAX</a>
+  <a href="https://wa.me/79782516469" class="mnav__ic"><span class="ic ic--wa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6a9.3 9.3 0 0 0-8 14.05L2.7 21.4l4.9-1.27A9.3 9.3 0 1 0 12 2.6Zm0 1.9a7.4 7.4 0 1 1-3.9 13.7l-.3-.18-2.9.76.77-2.83-.2-.31A7.4 7.4 0 0 1 12 4.5Zm-3.2 3.6c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.2.87 2.35.99 2.51.12.16 1.7 2.7 4.2 3.68 2.08.82 2.5.66 2.95.62.45-.04 1.45-.59 1.66-1.17.2-.57.2-1.06.14-1.17-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12s-.63.8-.77.96c-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47Z"/></svg></span>Написать в WhatsApp</a>
+  <a href="tel:+79782516469" class="tel tel--2"><b>+7 978 251‑64‑69</b><span>позвонить</span></a>
+  <button type="button" class="btn btn--c" data-callback>Заказать звонок</button>
+</nav>
+
+<main id="main" class="p24">
+<div class="shell q-shell">
+<a class="back" href="./#main"><i>←</i>На главную</a><br>
+<span class="p24-draft">Черновик 43 — 38 + 33: тёмная сцена</span>
+<div class="o-dark rv"><div class="o-stage "><div class="o-col o-col--l"><div class="o-ci rv" style="--c:132px"><img src="../img/_pk2/c-dom.webp" alt="" width="480" height="480" loading="lazy"><div><b>Дом до&nbsp;стройки</b><span>Визуализация: видно, что получите</span></div></div><div class="o-ci rv" style="--c:132px"><img src="../img/_pk2/c-plan.webp" alt="" width="480" height="480" loading="lazy"><div><b>Планы с&nbsp;размерами</b><span>Каждая комната в&nbsp;метрах</span></div></div><div class="o-ci rv" style="--c:132px"><img src="../img/_pk2/c-razrez.webp" alt="" width="480" height="480" loading="lazy"><div><b>Разрезы и&nbsp;нагрузки</b><span>Снег и&nbsp;ветер вашего региона</span></div></div></div><div class="p24-phone"><video id="v43" src="../video/_proekt-kr.mp4" poster="../img/_pk/pk-face.webp" muted loop playsinline autoplay preload="metadata" data-auto aria-label="Видео: листы конструктивного проекта"></video><button type="button" class="p24-snd" data-snd="v43"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg><span>Со звуком</span></button></div><div class="o-col o-col--r"><div class="o-ci rv" style="--c:132px"><img src="../img/_pk2/c-karkas.webp" alt="" width="480" height="480" loading="lazy"><div><b>3D-каркас</b><span>Каждая стойка на&nbsp;своём месте</span></div></div><div class="o-ci rv" style="--c:132px"><img src="../img/_pk2/c-stena.webp" alt="" width="480" height="480" loading="lazy"><div><b>Каждая стена</b><span>Раскладка по&nbsp;доскам, 1:25</span></div></div><div class="o-ci rv" style="--c:132px"><img src="../img/_pk2/c-spec.webp" alt="" width="480" height="480" loading="lazy"><div><b>Спецификация</b><span>Материалы посчитаны заранее</span></div></div></div></div></div><div class="q-top rv"><span class="p24-eye">Конструктивный проект</span><h1 class="q-h1">Каждый дом строим <em>по&nbsp;чертежу</em></h1><p class="q-lead">Проект делает штатный инженер. Вот что он даёт вам.</p><div class="p24-dlw"><a class="p24-dl" href="proekt-obrazec.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Скачать пример проекта</a><span class="p24-meta">PDF, 42&nbsp;листа, 7,9&nbsp;МБ</span></div></div>
+<div class="q-num rv"><div><b>42</b><span>листа в&nbsp;примере</span></div><div><b>1:25</b><span>каждая стена</span></div><div><b>п.&nbsp;2.8</b><span>проект уже в&nbsp;цене</span></div></div>
+<section class="q-sec"><div class="q-list"><div class="q-it rv"><i>01</i><div><b>Вы видите дом до&nbsp;стройки</b><p>Визуализация, планы и&nbsp;фасады&nbsp;— заранее понятно, что получите.</p></div><img src="../img/_pk2/list-02.webp" alt="" loading="lazy" width="1800" height="1273"></div><div class="q-it rv"><i>02</i><div><b>Дом выдержит вашу зиму</b><p>Снеговая и&nbsp;ветровая нагрузка посчитаны для&nbsp;вашего региона. Сечение и&nbsp;шаг стоек&nbsp;— по&nbsp;расчёту.</p></div><img src="../img/_pk2/list-14.webp" alt="" loading="lazy" width="1800" height="1273"></div><div class="q-it rv"><i>03</i><div><b>Стройка идёт без остановок</b><p>Каждая стена разложена по&nbsp;доскам. Бригадир изучает проект до&nbsp;начала работ.</p></div><img src="../img/_pk2/list-25.webp" alt="" loading="lazy" width="1800" height="1273"></div><div class="q-it rv"><i>04</i><div><b>Цена не&nbsp;поплывёт</b><p>Все материалы посчитаны в&nbsp;спецификации. Проект уже в&nbsp;цене&nbsp;— п.&nbsp;2.8.</p></div><img src="../img/_pk2/list-37.webp" alt="" loading="lazy" width="1800" height="1273"></div></div></section>
+<section class="p24-end rv" style="padding-top:64px"><b>Посмотрите проект целиком</b><div class="p24-dlw"><a class="p24-dl" href="proekt-obrazec.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Скачать пример проекта</a><span class="p24-meta">PDF, 42&nbsp;листа, 7,9&nbsp;МБ</span></div></section>
+<div class="q-sec" style="padding-top:32px"><section class="p24-deal rv"><h2>Проект разбираем до&nbsp;стройки, чтобы не&nbsp;сорвать срок</h2><div><p>Бригадир изучает ваш проект до&nbsp;начала работ. На&nbsp;участке не&nbsp;останавливаются, чтобы додумать: всё уже в&nbsp;чертежах.</p><dl><div><dt>п.&nbsp;5.1</dt><dd>Срок записан в&nbsp;договоре</dd></div><div><dt>п.&nbsp;7.2</dt><dd>За&nbsp;срок отвечаем по&nbsp;договору</dd></div></dl><a href="dogovor.html">Прочитать договор до&nbsp;встречи →</a></div></section></div><a class="q-next rv" href="stroim-obvyazka.html"><span>Дальше</span><b>Как мы делаем обвязку пола</b></a>
+</div>
+<script>
+(function(){
+  document.documentElement.classList.add('rvjs');
+  var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'}):null;
+  document.querySelectorAll('.rv').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('video[data-auto]').forEach(function(v){
+    if(calm){v.removeAttribute('autoplay');v.pause();return}
+    if(!('IntersectionObserver' in window))return;
+    new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var p=v.play();p&&p.catch&&p.catch(function(){})}else if(v.muted){v.pause()}})},{threshold:.25}).observe(v);
+  });
+  document.querySelectorAll('[data-snd]').forEach(function(b){
+    var v=document.getElementById(b.getAttribute('data-snd')),t=b.querySelector('span');
+    b.addEventListener('click',function(){
+      if(v.muted){v.muted=false;v.currentTime=0;var p=v.play();p&&p.catch&&p.catch(function(){});b.classList.add('is-on');t.textContent='Выключить звук'}
+      else{v.muted=true;b.classList.remove('is-on');t.textContent='Со звуком'}
+    });
+  });
+})();
+</script>
+</main>
+
+<footer class="ft">
+  <div class="ft__in">
+    <span class="ft__lg"><svg viewBox="0 0 60 52" aria-hidden="true"><path d="M12 30 L30 14 L48 30" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><rect x="14" y="34" width="32" height="6.5" rx="3.2" fill="#E0603C"/><rect x="14" y="43.5" width="32" height="6.5" rx="3.2" fill="#E0603C"/></svg>Мой тёплый <i>дом</i></span>
+    <div class="ftc">
+      <div class="ftc__i">
+        <span class="ftc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/></svg></span>
+        <div class="ft__k">Телефон</div>
+        <a class="ft__tel" href="tel:+79782516469">+7 978 251‑64‑69</a>
+        <div class="ft__sm">WhatsApp, Telegram и Max на этом номере</div>
+      </div>
+      <div class="ftc__i">
+        <span class="ftc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+        <div class="ft__k">Офис и производство</div>
+        <div class="ft__sm" style="margin-top:var(--sp-12)">Москва, ул. Адмирала Корнилова, 66, строение 20<br>
+           ПН–ВС 11:00–18:00, приём по записи</div>
+        <a class="ft__ln" href="./#contacts">Как нас найти</a>
+      </div>
+      <div class="ftc__i">
+        <span class="ftc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+        <div class="ft__k">Документы</div>
+        <a class="ft__ln" href="dogovor.html">Договор и гарантии</a>
+        <a class="ft__ln" href="smeta-primer.html">Пример сметы</a>
+        <a class="ft__ln" href="politika.html">Политика конфиденциальности</a>
+        <a class="ft__ln" href="soglashenie.html">Пользовательское соглашение</a>
+      </div>
+    </div>
+
+    <div class="ft__rule"></div>
+    <div class="ft__k">Реквизиты</div>
+    <dl class="ft__req"><div><dt>Наименование</dt><dd>ООО «СОЗВЕЗДИЕ»</dd></div><div><dt>ИНН / КПП</dt><dd>4338010020 / 525401001</dd></div><div><dt>ОГРН</dt><dd>1214300002070</dd></div><div><dt>Директор</dt><dd>Баннов А. В.</dd></div></dl>
+    <div class="ft__rule"></div>
+    <div class="ft__bot">
+      <a href="./#catalog">Каталог</a>
+      <a href="otzyvy.html#built">Наши работы</a>
+      <a href="kak-zakazat.html">Как заказать</a>
+      <a href="stroim-vyezd-inzhenera.html">Как строим</a>
+      <span>Размеры и площади домов ориентировочные, точные — в рабочем проекте</span>
+      <span class="end">© 2026 ООО «СОЗВЕЗДИЕ»</span>
+    </div>
+  </div>
+</footer>
+
+
+<div class="ov" id="callback" hidden>
+  <div class="mdl" role="dialog" aria-modal="true" aria-labelledby="cb-title">
+    <button class="x" type="button" aria-label="Закрыть" data-cb-close>×</button>
+    <form class="cb" novalidate>
+      <div class="cb__h">
+        <b class="cb__t" id="cb-title">Заказать звонок</b>
+        <p class="cb__p">Оставьте номер — перезвоним и ответим на вопросы.</p>
+      </div>
+      <label class="fld">
+        <span class="fld__l">Телефон</span>
+        <input class="fld__i" id="cb-tel" type="tel" inputmode="tel"
+               placeholder="+7 (___) ___-__-__" autocomplete="tel"
+               aria-describedby="cb-err" required>
+        <span class="fld__e" id="cb-err" hidden>Введите номер полностью</span>
+      </label>
+      <label class="chk">
+        <input type="checkbox" id="cb-ok" checked required>
+        <span>Согласен на <a href="politika.html" target="_blank">обработку персональных данных</a> и принимаю <a href="soglashenie.html" target="_blank">условия сайта</a></span>
+      </label>
+      <button type="submit" class="btn btn--c cb__go">Жду звонка</button>
+    </form>
+  </div>
+</div>
+
+<div class="rvw" id="rvw" role="dialog" aria-modal="true" aria-label="Просмотр"><button type="button" class="rvw__x" id="rvwX" aria-label="Закрыть">&times;</button><div class="rvw__box"><video id="rvwV" controls playsinline></video><div class="rvw__err" id="rvwE">Видео не загружено.<br>Положите файл рядом с сайтом:<code id="rvwP"></code></div></div><button type="button" class="rvw__nav rvw__nav--p" id="rvwPrev" aria-label="Предыдущее" hidden>←</button><button type="button" class="rvw__nav rvw__nav--n" id="rvwNext" aria-label="Следующее" hidden>→</button><div class="rvw__t" id="rvwT"></div>
+
+<script src="form.js?v=42"></script>
+<script src="header.js?v=49"></script>
+<script src="kalk-knopka.js?v=15" defer></script>
+<script src="revs.js?v=3"></script>
+</body>
+</html>

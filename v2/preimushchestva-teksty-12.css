@@ -1,0 +1,102 @@
+/* ── Витрина: утверждённые тексты 10 выгод (15.09.2026) во всех 12 шаблонах — орбита, выноски, арка ──
+   Каркас витрины и общие классы pv- — в preimushchestva-20.css. Линии-выноски рисует preimushchestva-teksty-12.js. Приставка pt-. */
+
+/* ── общее ── */
+.pt{display:grid;justify-items:center;text-align:center}
+.pt > .pv-h{max-width:30ch}
+.pt > .pv-cta{margin-top:var(--sp-24)}
+.pt-acc{color:var(--clay-txt)}
+.pt-wrap{--D:300px;--R:176px;--AW:280px;--AH:420px;position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;column-gap:var(--sp-40);width:100%;margin-top:var(--sp-32);text-align:left}
+.pt-col{position:relative;z-index:2;display:grid;align-content:center;gap:var(--sp-20);margin:0;padding:0;list-style:none}
+.pt-it{display:flex;align-items:flex-start;gap:var(--sp-12)}
+.pt-ic{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:50%;background:var(--card);box-shadow:var(--edge);color:var(--clay);
+  font-size:var(--fs-xs);font-weight:700;font-variant-numeric:tabular-nums}
+.pt-ic .pv-i{width:20px;height:20px}
+.pt-ic--n{background:var(--clay-btn);box-shadow:none;color:#fff}
+.pt-tx{min-width:0}
+.pt-tx b{display:block;font-size:var(--fs-sm);font-weight:600;line-height:1.25;text-wrap:balance}
+.pt-ln{display:grid;gap:2px;margin:6px 0 0;padding:0;list-style:none}
+.pt-ln li{position:relative;padding-left:12px;font-size:14px;line-height:1.4;color:var(--dim)}
+.pt-ln li::before{content:"";position:absolute;left:0;top:.6em;width:5px;height:5px;border-radius:50%;background:var(--clay)}
+
+/* середина: фото, кольцо, значки */
+.pt-mid{position:relative;z-index:0;display:grid;place-items:center;width:calc(var(--D) + 24px);height:calc(var(--D) + 24px)}
+.pt-photo{width:var(--D);height:var(--D);border-radius:50%;background-color:var(--n-3);background-size:cover;background-repeat:no-repeat;
+  box-shadow:0 0 0 10px var(--card),0 0 0 11px var(--n-3),var(--sh-2)}
+.pt-arch{width:var(--AW);height:var(--AH);border-radius:calc(var(--AW) / 2) calc(var(--AW) / 2) var(--r-shell) var(--r-shell);background-color:var(--n-3);
+  background-size:cover;background-repeat:no-repeat;box-shadow:0 0 0 10px var(--card),0 0 0 11px var(--n-3),var(--sh-2)}
+.pt-wrap--ring,.pt-wrap--ringnum,.pt-wrap--chips{--D:250px;--R:172px}
+.pt-wrap--ring .pt-mid,.pt-wrap--ringnum .pt-mid{width:calc((var(--R) + 24px) * 2);height:calc((var(--R) + 24px) * 2)}
+.pt-wrap--chips .pt-mid{width:calc((var(--R) + 58px) * 2);height:calc((var(--R) + 24px) * 2)}
+.pt-wrap--arch .pt-mid,.pt-wrap--archdots .pt-mid{width:calc(var(--AW) + 24px);height:calc(var(--AH) + 24px)}
+.pt-ring{position:absolute;left:50%;top:50%;width:calc(var(--R) * 2);height:calc(var(--R) * 2);border:1.5px dashed var(--n-5);border-radius:50%;
+  transform:translate(-50%,-50%)}
+.pt-mk{position:absolute;left:calc(50% + var(--x) * var(--R));top:calc(50% + var(--y) * var(--R));z-index:1;display:grid;place-items:center;
+  min-width:40px;height:40px;border-radius:999px;background:var(--card);box-shadow:var(--edge),var(--sh-1);color:var(--clay);transform:translate(-50%,-50%);
+  font-size:var(--fs-xs);font-weight:700;font-variant-numeric:tabular-nums}
+.pt-mk .pv-i{width:20px;height:20px}
+.pt-mk--num{background:var(--clay-btn);box-shadow:0 0 0 5px var(--bg);color:#fff}
+.pt-mk--chip{height:32px;padding:0 12px;background:var(--clay-btn);box-shadow:0 0 0 5px var(--bg);color:#fff;font-size:13px;font-weight:600;white-space:nowrap}
+
+/* линии-выноски */
+.pt-lines{position:absolute;inset:0;z-index:1;width:100%;height:100%;overflow:visible;pointer-events:none}
+.pt-lines line,.pt-lines path{fill:none;stroke:var(--n-6);stroke-width:1}
+.pt-lines .pt-dot{fill:var(--clay);stroke:none}
+.pt-lines .pt-badge{fill:#F2A27D;stroke:none}
+.pt-lines .pt-badge-t{fill:#141C2E;font:700 12px/1 Onest,system-ui,sans-serif;text-anchor:middle;dominant-baseline:central}
+
+/* ── тёмные: 03, 07, 11 ── */
+.pt--dark{padding:clamp(28px,3.4vw,40px) clamp(16px,4vw,48px);border-radius:var(--r-shell);background:#141C2E;color:#fff}
+.pt--dark .pt-acc{color:#F2A27D}
+.pt--dark .pt-ln li{color:rgb(255 255 255/.82)}
+.pt--dark .pt-ln li::before{background:#F2A27D}
+.pt--dark .pt-ic,.pt--dark .pt-mk--icon{background:rgb(255 255 255/.1);box-shadow:none;color:#F2A27D}
+.pt--dark .pt-ic--n{background:#F2A27D;color:#141C2E}
+.pt--dark .pt-photo,.pt--dark .pt-arch{box-shadow:0 0 0 10px rgb(255 255 255/.06),0 0 0 11px rgb(255 255 255/.16),0 0 80px rgb(242 162 125/.28)}
+.pt--dark .pt-ring{border-color:rgb(255 255 255/.3)}
+.pt--dark .pt-lines line,.pt--dark .pt-lines path{stroke:rgb(255 255 255/.45)}
+.pt--dark .pt-lines .pt-dot{fill:#F2A27D}
+.pt--blue{background:linear-gradient(rgb(255 255 255/.05) 1px,transparent 1px) 0 0/24px 24px,
+  linear-gradient(90deg,rgb(255 255 255/.05) 1px,transparent 1px) 0 0/24px 24px,#1E2A44}
+.pt-btn-w{min-height:48px;background:#fff;color:#141C2E;box-shadow:none}
+.pt-btn-w:hover{background:var(--n-2)}
+
+/* ── 09 — арка слева, тексты в две колонки ── */
+.pt-v9{justify-items:stretch;text-align:left}
+.pt-a1{--AW:280px;--AH:460px;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:var(--sp-24) var(--sp-48);width:100%}
+.pt-a1__r{display:grid;justify-items:start;gap:var(--sp-8)}
+.pt-a1__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-20) var(--sp-32);width:100%;margin:var(--sp-16) 0 var(--sp-16);padding:0;list-style:none}
+
+/* ── 12 — фраза дугой над аркой ── */
+.pt-v12__h{display:none}
+.pt-arc{display:block;width:min(520px,100%);height:auto;margin:0 auto calc(-1 * var(--sp-16));overflow:visible}
+.pt-arc text{font-family:inherit;font-size:24px;font-weight:600;letter-spacing:-.01em;fill:var(--ink)}
+.pt-arc__acc{fill:var(--clay-txt)}
+
+/* ── небольшие ноутбуки и планшеты лёжа ── */
+@media(max-width:1120px){
+  .pt-wrap{--D:230px;--AW:220px;--AH:340px;column-gap:var(--sp-24)}
+  .pt-wrap--ring,.pt-wrap--ringnum,.pt-wrap--chips{--D:190px;--R:136px}
+  .pt-a1{--AW:220px;--AH:380px;column-gap:var(--sp-32)}
+  .pt-tx b{font-size:15px}
+}
+
+/* ── телефон и планшет стоя: фото сверху, тексты списком ── */
+@media(max-width:900px){
+  .pt > .pv-h{max-width:none}
+  .pt-wrap,.pt-a1{grid-template-columns:minmax(0,1fr);row-gap:var(--sp-20);margin-top:var(--sp-24)}
+  .pt-col{display:contents}
+  .pt-mid{order:-1;grid-column:1 / -1;justify-self:center;width:auto;height:auto;margin-bottom:var(--sp-8)}
+  .pt-wrap--ring .pt-mid,.pt-wrap--ringnum .pt-mid,.pt-wrap--chips .pt-mid,.pt-wrap--arch .pt-mid,.pt-wrap--archdots .pt-mid{width:auto;height:auto}
+  .pt-ring,.pt-mk,.pt-lines,.pt-arc{display:none}
+  .pt-v12__h{display:block}
+  .pt-photo{width:min(220px,60vw);height:auto;aspect-ratio:1}
+  .pt-arch,.pt-a1 > .pt-arch{justify-self:center;width:min(200px,56vw);height:auto;aspect-ratio:3 / 4;
+    border-radius:50% 50% var(--r-shell) var(--r-shell) / 38% 38% var(--r-shell) var(--r-shell)}
+  .pt-a1__list{grid-template-columns:minmax(0,1fr)}
+}
+@media(min-width:600px) and (max-width:900px){
+  .pt-wrap,.pt-a1__list{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--sp-24)}
+}
+@media(prefers-reduced-motion:reduce){.pt *{transition:none !important}}

@@ -1,0 +1,140 @@
+/* Черновые эскизы раздела «Наша команда». Витрина, не боевой файл. */
+
+.kw{max-width:1200px;margin-inline:auto;padding-inline:16px}
+@media(min-width:900px){.kw{padding-inline:48px}}
+
+.khed{background:var(--card);border-bottom:1px solid var(--line);padding:32px 0 24px;margin-bottom:32px}
+.khed h1{font-size:var(--fs-2xl);font-weight:600;margin:0 0 8px}
+.khed p{font-size:var(--fs-sm);color:var(--dim);margin:0;max-width:75ch}
+.knav{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.knav a{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:34px;padding-inline:10px;
+  border-radius:var(--r-tight);background:var(--n-2);color:var(--ink);text-decoration:none;font-size:var(--fs-xs);font-weight:500;
+  transition:background .2s}
+.knav a:hover{background:var(--n-3)}
+
+.kv{margin-bottom:96px;scroll-margin-top:24px}
+.kv__n{display:flex;align-items:baseline;gap:12px;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.kv__n b{font-size:var(--fs-lg);font-weight:600}
+.kv__n i{font-style:normal;font-size:var(--fs-xs);color:var(--dim)}
+.kv__n em{font-style:normal;font-size:var(--fs-xs);font-weight:600;color:var(--clay-txt);letter-spacing:.06em;text-transform:uppercase}
+
+.kh{font-size:var(--fs-xl);font-weight:600;margin:0 0 8px}
+.klead{font-size:var(--fs-sm);color:var(--dim);margin:0 0 32px;max-width:75ch}
+.kstage{background:var(--card);border-radius:var(--r-shell);box-shadow:var(--edge);padding:48px 24px}
+@media(min-width:900px){.kstage{padding:64px 48px}}
+/* атрибуты width/height у <img> иначе побеждают aspect-ratio */
+.kv img{height:auto}
+
+/* ── 01 · сетка карточек ─────────────────────────────── */
+.k1{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+@media(min-width:800px){.k1{grid-template-columns:repeat(4,1fr)}}
+.k1 figure{margin:0}
+.k1 img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r-inner);display:block;background:var(--ph)}
+.k1 b{display:block;font-size:var(--fs-md);font-weight:600;margin-top:16px}
+.k1 span{display:block;font-size:var(--fs-xs);color:var(--clay-txt);font-weight:500;margin-top:4px}
+.k1 p{font-size:var(--fs-xs);color:var(--dim);margin:8px 0 0;line-height:1.45}
+
+/* ── 02 · круги в ряд ────────────────────────────────── */
+.k2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px 16px;text-align:center}
+@media(min-width:800px){.k2{grid-template-columns:repeat(4,1fr);gap:24px}}
+.k2 img{width:100%;max-width:180px;aspect-ratio:1;object-fit:cover;border-radius:999px;display:block;margin-inline:auto;background:var(--ph)}
+.k2 b{display:block;font-size:var(--fs-sm);font-weight:600;margin-top:16px}
+.k2 span{display:block;font-size:var(--fs-xs);color:var(--dim);margin-top:4px}
+
+/* ── 03 · полоса встык ───────────────────────────────── */
+.k3{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-radius:var(--r-inner);overflow:hidden}
+@media(min-width:800px){.k3{grid-template-columns:repeat(4,1fr)}}
+.k3 figure{position:relative;margin:0}
+.k3 img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--ph)}
+.k3 figcaption{position:absolute;inset:auto 0 0;padding:32px 16px 16px;color:#fff;
+  background:linear-gradient(to top,rgb(20 26 40/.82),rgb(20 26 40/0))}
+.k3 b{display:block;font-size:var(--fs-sm);font-weight:600}
+.k3 span{display:block;font-size:var(--fs-xs);opacity:.82;margin-top:2px}
+
+/* ── 04 · один главный + трое ────────────────────────── */
+.k4{display:grid;gap:32px}
+@media(min-width:800px){.k4{grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:48px;align-items:center}}
+.k4__big img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r-inner);display:block;background:var(--ph)}
+.k4__big b{display:block;font-size:var(--fs-md);font-weight:600;margin-top:16px}
+.k4__big span{display:block;font-size:var(--fs-xs);color:var(--clay-txt);margin-top:4px}
+.k4__q{font-size:var(--fs-lg);line-height:1.4;margin:0 0 32px;max-width:32ch}
+.k4__l{display:grid;gap:16px}
+.k4__l div{display:flex;align-items:center;gap:16px}
+.k4__l img{width:64px;height:64px;object-fit:cover;border-radius:999px;flex:none;background:var(--ph)}
+.k4__l b{display:block;font-size:var(--fs-sm);font-weight:600}
+.k4__l span{display:block;font-size:var(--fs-xs);color:var(--dim);margin-top:2px}
+
+/* ── 05 · зигзаг ─────────────────────────────────────── */
+.k5{display:grid;gap:48px}
+.k5 article{display:grid;gap:24px;align-items:center}
+@media(min-width:800px){
+  .k5 article{grid-template-columns:260px minmax(0,1fr);gap:48px}
+  .k5 article:nth-child(even) img{order:2}
+  .k5 article:nth-child(even) div{order:1;text-align:right}
+}
+.k5 img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r-inner);display:block;background:var(--ph)}
+.k5 b{display:block;font-size:var(--fs-lg);font-weight:600}
+.k5 span{display:block;font-size:var(--fs-xs);color:var(--clay-txt);font-weight:500;margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
+.k5 p{font-size:var(--fs-sm);color:var(--dim);margin:16px 0 0;max-width:60ch;line-height:1.5}
+@media(min-width:800px){.k5 article:nth-child(even) p{margin-left:auto}}
+
+/* ── 06 · ч/б → цвет при наведении ───────────────────── */
+.k6{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(min-width:800px){.k6{grid-template-columns:repeat(4,1fr)}}
+.k6 figure{position:relative;margin:0;border-radius:var(--r-inner);overflow:hidden;cursor:pointer}
+.k6 img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--ph);
+  filter:grayscale(1) contrast(1.04);transition:filter .25s,transform .25s}
+.k6 figcaption{position:absolute;inset:auto 0 0;padding:16px;color:#fff;background:rgb(20 26 40/.78);
+  transform:translateY(100%);transition:transform .25s}
+.k6 figure:hover img{filter:none;transform:scale(1.03)}
+.k6 figure:hover figcaption{transform:none}
+.k6 b{display:block;font-size:var(--fs-sm);font-weight:600}
+.k6 span{display:block;font-size:var(--fs-xs);opacity:.8;margin-top:2px}
+
+/* ── 07 · лента с прокруткой ─────────────────────────── */
+.k7{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;
+  margin-inline:-24px;padding-inline:24px}
+@media(min-width:900px){.k7{margin-inline:-48px;padding-inline:48px}}
+.k7 figure{flex:none;width:240px;margin:0;scroll-snap-align:start}
+.k7 img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r-inner);display:block;background:var(--ph)}
+.k7 b{display:block;font-size:var(--fs-sm);font-weight:600;margin-top:12px}
+.k7 span{display:block;font-size:var(--fs-xs);color:var(--dim);margin-top:2px}
+.k7__more{flex:none;width:240px;display:flex;align-items:center;justify-content:center;text-align:center;
+  border:1px dashed var(--n-4);border-radius:var(--r-inner);color:var(--dim);font-size:var(--fs-xs);padding:16px;aspect-ratio:3/4}
+
+/* ── 08 · люди и цифры ───────────────────────────────── */
+.k8{display:grid;gap:32px}
+@media(min-width:800px){.k8{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}}
+.k8__num{display:grid;gap:24px;margin-bottom:24px}
+@media(min-width:520px){.k8__num{grid-template-columns:repeat(3,1fr)}}
+.k8__num div b{display:block;font-size:var(--fs-2xl);font-weight:600;color:var(--clay-txt);line-height:1}
+.k8__num div span{display:block;font-size:var(--fs-xs);color:var(--dim);margin-top:4px}
+.k8 p{font-size:var(--fs-sm);color:var(--dim);margin:0;max-width:50ch;line-height:1.5}
+.k8__ph{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.k8__ph img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--r-inner);display:block;background:var(--ph)}
+
+/* ── 09 · коллаж внахлёст ────────────────────────────── */
+.k9{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.k9 figure{margin:0;width:190px;background:#fff;padding:10px 10px 0;border-radius:6px;box-shadow:var(--sh-1);
+  transition:transform .25s}
+.k9 figure:nth-child(1){transform:rotate(-3deg)}
+.k9 figure:nth-child(2){transform:rotate(2deg) translateY(12px)}
+.k9 figure:nth-child(3){transform:rotate(-1.5deg)}
+.k9 figure:nth-child(4){transform:rotate(3deg) translateY(10px)}
+.k9 figure:hover{transform:rotate(0) scale(1.04);z-index:2;box-shadow:var(--sh-2)}
+.k9 img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--ph)}
+.k9 figcaption{padding:12px 4px;text-align:center}
+.k9 b{display:block;font-size:var(--fs-xs);font-weight:600}
+.k9 span{display:block;font-size:12px;color:var(--dim);margin-top:2px}
+
+/* ── 10 · тёмная полоса ──────────────────────────────── */
+.k10{background:#1B2233;border-radius:var(--r-shell);padding:48px 24px;color:#fff}
+@media(min-width:900px){.k10{padding:64px 48px}}
+.k10 h3{font-size:var(--fs-xl);font-weight:600;margin:0 0 8px}
+.k10 h3 i{font-style:normal;color:var(--clay)}
+.k10 > p{font-size:var(--fs-sm);color:rgb(255 255 255/.66);margin:0 0 32px;max-width:60ch}
+.k10__g{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 16px}
+@media(min-width:800px){.k10__g{grid-template-columns:repeat(4,1fr)}}
+.k10__g img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r-inner);display:block;background:#2A3145}
+.k10__g b{display:block;font-size:var(--fs-sm);font-weight:600;margin-top:16px}
+.k10__g span{display:block;font-size:var(--fs-xs);color:var(--clay);margin-top:4px}

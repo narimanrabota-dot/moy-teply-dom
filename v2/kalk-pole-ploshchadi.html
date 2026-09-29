@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Поле общей площади</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=45">
+<link rel="stylesheet" href="theme.css?v=41">
+<style>
+/* Эскизы для выбора: 5 вариантов одного поля «площадь дома вместе с террасой» в калькуляторе (вид окна — вариант 20).
+   Поля работают: можно вписать число, двигать ползунок, нажимать кнопки. Остальной калькулятор не считает. */
+:root{color-scheme:light}
+body{background:var(--bg);color:var(--ink)}
+.fv{max-width:1240px;margin:0 auto;padding:clamp(32px,6vw,64px) clamp(16px,3.4vw,44px) var(--sp-96)}
+.fv-h{margin:0;font-size:clamp(35px,5vw,56px);font-weight:600;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
+.fv-lead{max-width:66ch;margin:var(--sp-16) 0 0;font-size:var(--fs-sm);line-height:1.5;color:var(--dim);text-wrap:pretty}
+.fv-lead b{font-weight:600;color:var(--ink)}
+.fv-list{display:grid;gap:var(--sp-24);margin:var(--sp-48) 0 0;padding:0;list-style:none}
+.fv-it{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--sp-24);padding:var(--sp-24);border-radius:var(--r-shell);background:var(--card);box-shadow:var(--edge),var(--sh-1)}
+@media(min-width:1000px){.fv-it{grid-template-columns:minmax(0,1fr) minmax(0,600px);gap:var(--sp-48);padding:var(--sp-32)}}
+.fv-n{display:block;font-size:var(--fs-xl);font-weight:600;line-height:1;color:var(--clay-txt);font-variant-numeric:tabular-nums}
+.fv-t{margin:var(--sp-12) 0 0;font-size:var(--fs-lg);font-weight:600;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+.fv-d{max-width:46ch;margin:var(--sp-12) 0 0;font-size:var(--fs-sm);line-height:1.5;color:var(--dim);text-wrap:pretty}
+.fv-stage{padding:var(--sp-16);border-radius:var(--r-inner);background:var(--bg)}
+
+/* ── окно калькулятора, как на сайте (вариант 20) ── */
+.cc{max-width:560px;margin:0 auto;padding:var(--sp-24);border:2px solid var(--ink);border-radius:var(--r-shell);background:#fff;box-shadow:0 0 0 6px rgb(224 96 60/.4),var(--sh-3)}
+.cc-top{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-12);margin-bottom:var(--sp-16);padding:var(--sp-4) 0 var(--sp-12);border-bottom:2px solid var(--ink)}
+.cc-h{margin:0;font-size:var(--fs-md);font-weight:600;line-height:1.25}
+.cc-x{display:grid;place-items:center;width:var(--tap);height:var(--tap);border-radius:50%;background:var(--n-2);font-size:24px;line-height:1}
+.cc-lbl{display:block;margin:0 0 var(--sp-8);font-size:var(--fs-xs);font-weight:500}
+.cc-wrap{position:relative}
+.cc-in{width:100%;min-width:0;height:var(--tap);margin:0;padding:0 44px 0 var(--sp-12);border:0;border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--n-6);font:inherit;font-size:var(--fs-sm);font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;outline:0;transition:box-shadow .2s var(--e),background-color .2s var(--e)}
+.cc-in:focus{background:#fff;box-shadow:inset 0 0 0 2px var(--ink)}
+.cc-in.is-bad{box-shadow:inset 0 0 0 2px var(--clay-btn)}
+.cc-unit{position:absolute;right:var(--sp-12);top:50%;transform:translateY(-50%);font-size:var(--fs-xs);color:var(--dim);pointer-events:none}
+.cc-hint{margin:var(--sp-8) 0 0;font-size:var(--fs-xs);line-height:1.4;color:var(--dim)}
+.cc-err{margin:var(--sp-8) 0 0;padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-2);font-size:var(--fs-xs);color:var(--clay-txt)}
+.cc-err[hidden]{display:none}
+.cc-rest{opacity:.5}
+.cc-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-12);margin-top:var(--sp-16)}
+.cc-two span{display:block;margin-bottom:var(--sp-8);font-size:var(--fs-xs);font-weight:500}
+.cc-two i{display:flex;align-items:center;height:var(--tap);padding:0 var(--sp-12);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--n-6);font-style:normal;font-weight:500}
+.cc-cap{margin:var(--sp-24) 0 0;padding-bottom:var(--sp-8);border-bottom:2px solid var(--n-5);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+
+/* 2 · крупное поле */
+.cc-in--big{height:64px;padding-right:56px;font-size:var(--fs-xl);font-weight:600;letter-spacing:-.01em}
+.cc-wrap--big .cc-unit{font-size:var(--fs-md);font-weight:500}
+/* 3 · минус и плюс */
+.cc-step{display:grid;grid-template-columns:56px minmax(0,1fr) 56px;gap:var(--sp-8)}
+.cc-step button{display:grid;place-items:center;height:56px;margin:0;padding:0;border:0;border-radius:var(--r-inner);background:var(--n-2);box-shadow:inset 0 0 0 2px var(--n-5);font:inherit;font-size:var(--fs-lg);font-weight:500;color:var(--ink);cursor:pointer;transition:background-color .2s var(--e)}
+.cc-step button:hover{background:var(--n-3)}
+.cc-step .cc-in{height:56px;padding:0 var(--sp-12);font-size:var(--fs-lg);font-weight:600;text-align:center}
+/* 4 · поле и ползунок */
+.cc-row{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-12)}
+.cc-row .cc-lbl{margin:0}
+.cc-row .cc-wrap{flex:none;width:128px}
+.cc-range{display:block;width:100%;height:var(--tap);margin:var(--sp-8) 0 0;accent-color:var(--ink);cursor:pointer}
+.cc-scale{display:flex;justify-content:space-between;font-size:var(--fs-xs);color:var(--dim)}
+/* 5 · быстрый выбор */
+.cc-chips{display:flex;flex-wrap:wrap;gap:var(--sp-8);margin-top:var(--sp-12)}
+.cc-chips button{min-width:64px;min-height:40px;margin:0;padding:0 var(--sp-12);border:0;border-radius:999px;background:var(--n-2);box-shadow:inset 0 0 0 2px var(--n-5);font:inherit;font-size:var(--fs-xs);font-weight:500;color:var(--ink);cursor:pointer;transition:background-color .2s var(--e),color .2s var(--e),box-shadow .2s var(--e)}
+.cc-chips button:hover{background:var(--n-3)}
+.cc-chips button[aria-pressed="true"]{background:var(--ink);box-shadow:none;color:#fff}
+.cc-step button:focus-visible,.cc-chips button:focus-visible,.cc-range:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+@media(max-width:560px){.cc{padding:var(--sp-16)}.cc-two{grid-template-columns:minmax(0,1fr)}.cc-row{flex-wrap:wrap}.cc-row .cc-wrap{width:100%}}
+@media(prefers-reduced-motion:reduce){.fv *{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="fv">
+  <h1 class="fv-h">Поле общей площади</h1>
+  <p class="fv-lead">Пять вариантов одного поля: площадь дома вместе с террасой. В эскизах поля работают, но цену эскизы не считают. Остальные поля калькулятора не меняются, они показаны бледно. <b>Напишите номер варианта.</b></p>
+
+  <ol class="fv-list" id="fv-list"></ol>
+</main>
+
+<script>
+(function () {
+  var HEAD = '<div class="cc-top"><b class="cc-h">Калькулятор дома</b><span class="cc-x" aria-hidden="true">×</span></div>';
+  var REST = '<div class="cc-rest" aria-hidden="true"><div class="cc-two"><div><span>Перегородки, м</span><i>0</i></div><div><span>Доставка, км</span><i>100</i></div></div>' +
+             '<p class="cc-cap">Дополнительно</p></div>';
+  var ERR = '<p class="cc-err" role="alert" hidden>Больше 200 м² не строим — уменьшите площадь.</p>';
+
+  var V = [
+    ['01', 'Одно поле', 'Как сейчас, только одно поле вместо двух. Ничего лишнего.',
+      '<label class="cc-lbl" for="a1">Общая площадь дома с террасой, м²</label>' +
+      '<div class="cc-wrap"><input class="cc-in" id="a1" type="text" inputmode="decimal" autocomplete="off" value="100" data-area><span class="cc-unit">м²</span></div>'],
+    ['02', 'Крупное поле с примером', 'Площадь — главная цифра расчёта, поэтому поле крупнее. Под ним пример, как сложить дом и террасу.',
+      '<label class="cc-lbl" for="a2">Площадь дома вместе с террасой</label>' +
+      '<div class="cc-wrap cc-wrap--big"><input class="cc-in cc-in--big" id="a2" type="text" inputmode="decimal" autocomplete="off" value="100" data-area><span class="cc-unit">м²</span></div>' +
+      '<p class="cc-hint">Например, дом 80 м² и терраса 20 м² — пишите 100.</p>'],
+    ['03', 'Минус и плюс', 'Число можно вписать или менять кнопками по 5 м². Удобно на телефоне: не нужна клавиатура.',
+      '<span class="cc-lbl" id="l3">Общая площадь дома с террасой, м²</span>' +
+      '<div class="cc-step" role="group" aria-labelledby="l3"><button type="button" data-d="-5" aria-label="Меньше на 5 м²">−</button>' +
+      '<input class="cc-in" type="text" inputmode="decimal" autocomplete="off" value="100" data-area aria-labelledby="l3">' +
+      '<button type="button" data-d="5" aria-label="Больше на 5 м²">+</button></div>'],
+    ['04', 'Поле и ползунок', 'Площадь тянется ползунком от 20 до 200 м², точное число видно и правится в поле.',
+      '<div class="cc-row"><label class="cc-lbl" for="a4">Общая площадь дома с террасой</label>' +
+      '<div class="cc-wrap"><input class="cc-in" id="a4" type="text" inputmode="decimal" autocomplete="off" value="100" data-area><span class="cc-unit">м²</span></div></div>' +
+      '<input class="cc-range" type="range" min="20" max="200" step="1" value="100" data-range aria-label="Площадь дома с террасой, м²">' +
+      '<div class="cc-scale" aria-hidden="true"><span>20 м²</span><span>200 м²</span></div>'],
+    ['05', 'Поле и быстрый выбор', 'Под полем круглые размеры: 60, 80, 100, 120 и 150 м². Нажали — число встало в поле, его можно поправить.',
+      '<label class="cc-lbl" for="a5">Общая площадь дома с террасой, м²</label>' +
+      '<div class="cc-wrap"><input class="cc-in" id="a5" type="text" inputmode="decimal" autocomplete="off" value="100" data-area><span class="cc-unit">м²</span></div>' +
+      '<div class="cc-chips" role="group" aria-label="Быстрый выбор площади">' +
+      [60, 80, 100, 120, 150].map(function (n) { return '<button type="button" data-v="' + n + '" aria-pressed="' + (n === 100) + '">' + n + '</button>'; }).join('') +
+      '</div>']
+  ];
+
+  var list = document.getElementById('fv-list');
+  list.innerHTML = V.map(function (v) {
+    return '<li class="fv-it"><div><span class="fv-n">' + v[0] + '</span><h2 class="fv-t">' + v[1] + '</h2><p class="fv-d">' + v[2] + '</p></div>' +
+      '<div class="fv-stage"><div class="cc">' + HEAD + v[3] + ERR + REST + '</div></div></li>';
+  }).join('');
+
+  /* поля оживают: число ↔ ползунок ↔ кнопки, больше 200 м² — сообщение */
+  var num = function (s) { var n = parseFloat(String(s).replace(/\s/g, '').replace(',', '.')); return isFinite(n) ? n : NaN; };
+  [].forEach.call(list.querySelectorAll('.cc'), function (cc) {
+    var inp = cc.querySelector('[data-area]'), range = cc.querySelector('[data-range]'), err = cc.querySelector('.cc-err');
+    function show(from) {
+      var n = num(inp.value), bad = n > 200.01;
+      err.hidden = !bad;
+      inp.classList.toggle('is-bad', bad);
+      if (range && from !== range && isFinite(n)) range.value = String(Math.min(200, Math.max(20, Math.round(n))));
+      [].forEach.call(cc.querySelectorAll('[data-v]'), function (b) { b.setAttribute('aria-pressed', String(+b.getAttribute('data-v') === n)); });
+    }
+    inp.addEventListener('input', function () { show(inp); });
+    if (range) range.addEventListener('input', function () { inp.value = range.value; show(range); });
+    cc.addEventListener('click', function (e) {
+      var d = e.target.closest('[data-d]'), c = e.target.closest('[data-v]');
+      if (d) { var n = num(inp.value); inp.value = String(Math.max(0, (isFinite(n) ? Math.round(n / 5) * 5 : 100) + +d.getAttribute('data-d'))); show(d); }
+      if (c) { inp.value = c.getAttribute('data-v'); show(c); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

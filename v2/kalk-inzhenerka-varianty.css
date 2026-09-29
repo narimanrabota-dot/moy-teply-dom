@@ -1,0 +1,106 @@
+/* Эскизы раздела «Инженерные системы» калькулятора: как сейчас на сайте + 10 вариантов.
+   Оболочка страницы — kalk-otdelka-varianty.css (.okv, .vc), сам раздел собран из деталей
+   калькулятора — kalk-dom.css (.kn-grp, .kn-row, .kn-sw, .kn-mat, .kn-tls, .kn-tl, .kn-pills).
+   Здесь только то, чего в калькуляторе нет. Свои классы — с приставкой ki-. */
+
+/* ── карточка калькулятора внутри эскиза ── */
+.ki-demo{max-width:520px;margin:0 auto;padding:var(--sp-4) var(--sp-16) var(--sp-16);border:2px solid var(--ink);border-radius:var(--r-shell);background:var(--card);font-size:var(--fs-xs);line-height:1.45}
+.ki-demo .kn-tl__n{overflow-wrap:break-word}
+/* заголовок раздела показан раскрытым и не нажимается: раздел в эскизе всегда открыт */
+.ki-head{cursor:default}
+.ki-head .kn-chev{transform:translateY(2px) rotate(225deg)}
+
+/* ── значки: линии 1,7 px, цвет — из токенов ── */
+.ki-ic{flex:none;color:var(--ink)}
+.ki-ic.is-on{color:var(--clay)}
+.ki-ic.is-off{color:var(--dim)}
+
+/* ── строка-кнопка вместо label с checkbox ── */
+.ki-row{width:100%;min-height:var(--tap);border:0;border-radius:var(--r-tight);background:none;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.ki-row:focus-visible,.ki-sub:focus-visible,.ki-sub2:focus-visible,.ki-card:focus-visible{outline:2px solid var(--clay-btn);outline-offset:-2px}
+
+/* переключатель калькулятора без input */
+.ki-sw.is-on i{background:var(--ink)}
+.ki-sw.is-on i::after{transform:translateX(18px)}
+
+/* галочка */
+.ki-box{position:relative;flex:none;display:block;width:18px;height:18px;border-radius:4px;background:var(--card);box-shadow:inset 0 0 0 2px var(--n-6);transition:background-color .2s var(--e),box-shadow .2s var(--e)}
+.ki-box--lg{width:20px;height:20px;border-radius:6px}
+.ki-box.is-on{background:var(--ink);box-shadow:none}
+.ki-box.is-on::after{content:"";position:absolute;left:4px;top:5px;width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg)}
+.ki-box--lg.is-on::after{left:5px;top:6px}
+
+/* ── текст ── */
+.ki-l{display:grid;gap:var(--sp-4);min-width:0}
+.ki-n{font-size:var(--fs-sm);font-weight:500;line-height:1.3}
+.ki-p{font-size:var(--fs-sm);font-weight:600;line-height:1.3;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ki-u{font-size:var(--fs-xs);line-height:1.35;color:var(--dim);font-variant-numeric:tabular-nums}
+.ki-d{font-size:var(--fs-xs);line-height:1.35;color:var(--dim);text-wrap:pretty}
+.ki-pl{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--sp-4) var(--sp-8);min-width:0}
+
+/* ── «Внешняя разводка» ── */
+.ki-sub{padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left}
+.ki-sub2{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-12);width:calc(100% - var(--sp-24));min-height:var(--tap);margin:0 0 var(--sp-8) var(--sp-24);padding:var(--sp-8) var(--sp-12);border:0;border-radius:var(--r-inner);background:var(--n-1);font:inherit;color:inherit;text-align:left;cursor:pointer}
+
+/* ── 03 · карточки с галочкой ── */
+.ki-cards{display:grid;gap:var(--sp-8);padding:var(--sp-12) 0}
+.ki-card{display:flex;align-items:center;gap:var(--sp-12);width:100%;min-height:var(--tap);margin:0;padding:var(--sp-12);border:0;border-radius:var(--r-inner);background:var(--card);box-shadow:inset 0 0 0 2px var(--n-4);font:inherit;color:inherit;text-align:left;cursor:pointer;transition:background-color .2s var(--e),box-shadow .2s var(--e)}
+.ki-card:hover{box-shadow:inset 0 0 0 2px var(--n-6)}
+.ki-card[aria-pressed="true"]{background:var(--n-1);box-shadow:inset 0 0 0 2px var(--ink)}
+.ki-card__t{display:grid;gap:2px;flex:1;min-width:0}
+.ki-card--sub{width:calc(100% - var(--sp-24));margin-left:var(--sp-24)}
+
+/* ── 04, 06 · подпись раздела со значком и ставкой ── */
+.ki-cap{display:flex;align-items:center;gap:var(--sp-8);min-width:0}
+.ki-cap .kn-mat__c{min-width:0;overflow-wrap:break-word}
+.ki-rate{margin-left:auto;font-size:var(--fs-xs);color:var(--dim);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* ── 05 · пакет ── */
+.ki-pack{flex-direction:row;align-items:center;gap:var(--sp-12);padding:var(--sp-12)}
+.ki-pack__t{display:grid;gap:var(--sp-4);flex:1;min-width:0}
+.ki-pack .kn-tl__p{margin-top:0}
+.ki-pillrow{flex-wrap:wrap}
+
+/* ── 07 · значки квадратами ── */
+.ki-sq{align-items:center;gap:var(--sp-4);padding:var(--sp-12) var(--sp-8);text-align:center}
+.ki-sq .kn-tl__n{width:100%}
+.ki-sq .kn-tl__p{margin-top:0}
+
+/* ── 08 · сначала сумма ── */
+.ki-sum{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--sp-8) var(--sp-12);padding:var(--sp-12) 0}
+.ki-sum__v{font-size:var(--fs-sm);font-weight:600;line-height:1.2;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ki-sum__r{display:grid;gap:2px;justify-items:end;text-align:right}
+
+/* ── 09 · чипы ── */
+.ki-wrap{display:grid;gap:var(--sp-8);padding:var(--sp-12) 0}
+.ki-chips{display:flex;flex-wrap:wrap;gap:var(--sp-8)}
+.ki-chip{display:inline-flex;align-items:center;gap:var(--sp-8);min-height:var(--tap);max-width:100%;margin:0;padding:var(--sp-8) var(--sp-12);border:0;border-radius:999px;background:var(--card);box-shadow:inset 0 0 0 2px var(--n-4);font:inherit;font-size:var(--fs-xs);color:var(--ink);cursor:pointer;transition:background-color .2s var(--e),box-shadow .2s var(--e),color .2s var(--e)}
+.ki-chip:hover{box-shadow:inset 0 0 0 2px var(--n-6)}
+.ki-chip__n{font-weight:500}
+.ki-cp{color:var(--dim);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ki-chip[aria-pressed="true"]{background:var(--ink);box-shadow:none;color:#fff}
+.ki-chip[aria-pressed="true"] .ki-cp,.ki-chip[aria-pressed="true"] .ki-ic{color:#fff}
+
+/* ── 10 · что уже есть ── */
+.ki-have{display:block;padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-1);color:var(--dim)}
+.ki-in{font-size:var(--fs-xs);font-weight:500;line-height:1.35;color:var(--clay-txt)}
+.ki-in--no{font-weight:400;color:var(--dim)}
+.ki-tot{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--sp-8);padding-top:var(--sp-8);border-top:1px solid var(--n-4)}
+
+/* ── телефон: карточка эскиза уже, плитки в две колонки ── */
+@media(max-width:560px){
+  .ki-list .vc{padding:var(--sp-12)}
+  .ki-list .vc-stage{padding:var(--sp-8)}
+  .ki-demo{padding-inline:var(--sp-12)}
+  .ki-demo .kn-tls[data-n="3"]{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ki-sub2,.ki-card--sub{width:calc(100% - var(--sp-16));margin-left:var(--sp-16)}
+  .ki-sum__r{justify-items:start;text-align:left}
+}
+@media(prefers-reduced-motion:reduce){.okv *,.okv *::before,.okv *::after{transition:none!important}}
+
+/* Строка «Внешняя разводка» в карточке «Сейчас на сайте»: в калькуляторе этих правил больше нет —
+   16.09.2026 внешнюю разводку убрали совсем. Для эскизов правила оставлены здесь. */
+.kn-extra{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-8) var(--sp-12);padding:0 0 var(--sp-8)}
+.kn-sub{display:inline-flex;align-items:center;gap:var(--sp-8);min-height:36px;font-size:var(--fs-xs);cursor:pointer}
+.kn-sub input{width:18px;height:18px;margin:0;accent-color:var(--ink)}
+.kn-subp{color:var(--dim);font-variant-numeric:tabular-nums}

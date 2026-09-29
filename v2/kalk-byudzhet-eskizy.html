@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Варианты бюджетного калькулятора</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="theme.css">
+<style>
+body{background:var(--bg);color:var(--ink)}
+.sk{max-width:1200px;margin:0 auto;padding:clamp(32px,6vw,64px) clamp(16px,3.4vw,44px) var(--sp-96)}
+.sk-brand{display:inline-flex;align-items:center;gap:var(--sp-8);margin:0;font-size:var(--fs-xs);font-weight:500;color:var(--dim)}
+.sk-brand svg{width:22px;height:22px;color:var(--ink)}
+.sk-h{margin:var(--sp-16) 0 0;font-size:clamp(35px,5.4vw,60px);font-weight:600;letter-spacing:-.025em;line-height:1.05;text-wrap:balance}
+.sk-lead{max-width:68ch;margin:var(--sp-16) 0 0;font-size:var(--fs-sm);line-height:1.5;color:var(--dim);text-wrap:pretty}
+.sk-lead b{font-weight:600;color:var(--ink)}
+.sk-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--sp-24);margin:var(--sp-48) 0 0;padding:0;list-style:none}
+@media(min-width:900px){.sk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sk-card{display:grid;grid-template-rows:auto auto 1fr;gap:var(--sp-16);min-width:0;padding:var(--sp-24);border-radius:var(--r-shell);background:var(--card);box-shadow:var(--edge),var(--sh-1)}
+.sk-top{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--sp-16);align-items:start}
+.sk-num{grid-row:1/3;font-size:var(--fs-xl);font-weight:600;line-height:1;letter-spacing:-.02em;color:var(--clay-txt);font-variant-numeric:tabular-nums}
+.sk-name{margin:0;font-size:var(--fs-md);font-weight:600;line-height:1.2}
+.sk-idea{margin:var(--sp-4) 0 0;font-size:var(--fs-xs);line-height:1.45;color:var(--dim)}
+.sk-live{justify-self:start;display:inline-flex;align-items:center;min-height:var(--tap);font-size:var(--fs-xs);font-weight:600;color:var(--clay-txt)}
+.sk-live:hover{color:var(--clay-btn-h)}
+.sk-live:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px;border-radius:var(--r-tight)}
+.sk-foot{max-width:68ch;margin:var(--sp-48) 0 0;font-size:var(--fs-xs);line-height:1.5;color:var(--dim)}
+
+/* экран эскиза */
+.sk-scr{position:relative;height:360px;overflow:hidden;container-type:inline-size;border-radius:var(--r-inner);background:var(--n-2);box-shadow:inset 0 0 0 1px var(--line);font-size:12px;line-height:1.35;color:var(--ink)}
+.sk-scr::after{content:"";position:absolute;inset:auto 0 0;height:40px;background:linear-gradient(rgb(255 255 255/0),var(--n-2));pointer-events:none}
+.sk-scr.is-full::after{display:none}
+.sk-in{height:100%;padding:12px}
+@media(max-width:560px){.sk-scr{height:420px}}
+
+/* детали эскизов */
+.m-box{min-width:0;border-radius:8px;background:var(--card);box-shadow:var(--edge)}
+.m-p{padding:10px 12px}
+.m-st{display:grid;gap:8px;align-content:start}
+.m-k{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.m-d{color:var(--dim)}
+.m-n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.m-tot{font-size:20px;font-weight:600;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.m-btn{display:inline-grid;place-items:center;height:28px;padding:0 12px;border-radius:6px;background:var(--ink);font-size:11px;font-weight:600;color:#fff;white-space:nowrap}
+.m-f2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.m-fld{display:grid;gap:3px;min-width:0}
+.m-fld>span{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:11px;color:var(--dim)}
+.m-fld>b{display:flex;align-items:center;justify-content:space-between;height:30px;padding:0 10px;border-radius:6px;background:var(--n-1);box-shadow:inset 0 0 0 1px var(--line);font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
+.m-fld small{font-size:11px;font-weight:400;color:var(--dim)}
+.m-sum{display:flex;justify-content:space-between;gap:8px;padding:6px 10px;border-radius:6px;background:var(--n-1);color:var(--dim)}
+.m-sum b{font-weight:600;color:var(--ink);white-space:nowrap}
+.m-sw{flex:none;position:relative;display:inline-block;width:26px;height:15px;border-radius:999px;background:var(--n-4)}
+.m-sw::after{content:"";position:absolute;top:2px;left:2px;width:11px;height:11px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgb(var(--sh-cool)/.3)}
+.m-sw.on{background:var(--ink)}
+.m-sw.on::after{left:13px}
+.m-chk{flex:none;display:grid;place-items:center;width:14px;height:14px;border-radius:4px;box-shadow:inset 0 0 0 1.5px var(--n-5)}
+.m-chk.on{background:var(--ink);box-shadow:none}
+.m-chk.on::after{content:"";width:6px;height:3px;margin-top:-2px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg)}
+.m-ico{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.m-row{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0;padding:6px 0;border-top:1px solid var(--n-2)}
+.m-row:first-child{border-top:0}
+.m-row>span{display:grid;flex:1;min-width:0}
+.m-row em{overflow:hidden;font-style:normal;text-overflow:ellipsis;white-space:nowrap}
+.m-row small{overflow:hidden;font-size:11px;color:var(--dim);text-overflow:ellipsis;white-space:nowrap}
+.m-row.on small{color:var(--ink)}
+.m-gh{position:relative;display:grid;grid-template-columns:16px minmax(0,1fr) auto;align-items:center;gap:8px;padding:6px 0 6px 10px;border-top:1px solid var(--line)}
+.m-gh:first-child{border-top:0}
+.m-gh::before{content:"";position:absolute;left:0;top:7px;bottom:7px;width:3px;border-radius:3px;background:var(--n-3)}
+.m-gh.on::before{background:var(--clay)}
+.m-cnt{display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--n-2);font-size:10px;font-style:normal;font-weight:600;color:var(--dim)}
+.m-gh.on .m-cnt{background:var(--ink);color:#fff}
+.m-gh>span{display:grid;min-width:0;font-weight:600}
+.m-gh small{overflow:hidden;font-weight:400;color:var(--dim);text-overflow:ellipsis;white-space:nowrap}
+.m-gh>b{font-weight:600;color:var(--dim);white-space:nowrap}
+.m-gh.on>b{color:var(--ink)}
+.m-phone{position:relative;width:236px;height:336px;margin:0 auto;overflow:hidden;border-radius:18px;background:var(--n-1);box-shadow:var(--edge),var(--sh-2)}
+.m-dock{position:absolute;inset:auto 8px 8px;display:flex;align-items:center;gap:8px;padding:6px 6px 6px 10px;border-radius:12px;background:var(--card);box-shadow:var(--edge),var(--sh-2)}
+.m-dock .m-tot{font-size:15px}
+.m-dock .m-btn{margin-left:auto;height:26px;padding:0 8px;font-size:10px}
+
+/* 01 */
+.c01 .m-res{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px 12px;border-radius:6px;background:var(--n-1)}
+/* 02 */
+.c02{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:start}
+.c02 .m-rcpt{gap:5px}
+.c02 .m-li{display:flex;justify-content:space-between;gap:8px;min-width:0}
+.c02 .m-li>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.c02 .m-grp{display:flex;justify-content:space-between;gap:8px;margin-top:2px;padding-top:5px;border-top:1px dashed var(--line);font-weight:600}
+.c02 .m-in{padding-left:8px;color:var(--dim)}
+.c02 .m-line{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:2px;padding-top:6px;border-top:1px solid var(--ink)}
+.c02 .m-line .m-tot{font-size:16px}
+@container (max-width:440px){.c02{grid-template-columns:minmax(0,1fr)}.c02 .m-rcpt{order:-1}}
+/* 03 */
+.c03 .m-chips{display:flex;gap:6px;padding:10px 10px 6px;overflow:hidden;white-space:nowrap}
+.m-chip{flex:none;display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;background:var(--card);box-shadow:var(--edge);font-size:10px;font-weight:500}
+.m-chip.on{background:var(--ink);color:#fff;box-shadow:none}
+.c03 .m-k{padding:6px 14px 4px}
+.c03 .m-list{margin:0 10px;padding:0 10px;border-radius:12px;background:var(--card)}
+.m-sq{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:6px;background:var(--n-1);color:var(--clay-txt)}
+/* 04 */
+.c04{display:grid;grid-template-columns:minmax(0,34fr) minmax(0,40fr) minmax(0,26fr);gap:8px;align-items:start}
+.c04 .m-tabs{display:grid;gap:2px;padding:6px}
+.m-tab{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 6px;padding:5px 6px 5px 9px;border-radius:6px}
+.m-tab em{overflow:hidden;font-style:normal;font-weight:500;text-overflow:ellipsis;white-space:nowrap}
+.m-tab b{font-size:11px;font-weight:600;white-space:nowrap}
+.m-tab small{grid-column:1/-1;font-size:10px}
+.m-tab.on{background:var(--n-1)}
+.m-tab.on::before{content:"";position:absolute;left:0;top:5px;bottom:5px;width:3px;border-radius:3px;background:var(--ink)}
+.m-tab.sep{margin-top:4px;border-top:1px solid var(--line);border-radius:0}
+.c04 .m-tot{font-size:16px}
+.c04 .m-li{display:flex;justify-content:space-between;gap:6px;font-size:11px}
+@container (max-width:440px){.c04{grid-template-columns:minmax(0,1fr)}.c04 .m-tabs{display:flex;overflow:hidden;gap:4px}.c04 .m-tabs .m-fld{display:none}.c04 .m-tab{flex:none}.c04 .m-tab small{display:none}.c04 .m-sum4{display:none}}
+/* 05 */
+.c05 .m-bar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:8px 10px}
+.c05 .m-bar .m-tot{margin-left:auto;font-size:16px}
+.c05 .m-gt{display:flex;justify-content:space-between;gap:8px;margin:12px 2px 6px;font-size:13px;font-weight:600}
+.c05 .m-gt small{font-size:11px;font-weight:500;color:var(--dim);white-space:nowrap}
+.m-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.m-tile{position:relative;display:grid;gap:4px;align-content:start;min-height:84px;padding:8px;border-radius:8px;background:var(--card);box-shadow:var(--edge)}
+.m-tile .m-ico{width:20px;height:20px;color:var(--clay-txt)}
+.m-tile em{font-size:11px;font-style:normal;font-weight:500;line-height:1.25}
+.m-tile b{font-size:11px;font-weight:600;color:var(--dim)}
+.m-tile.on{box-shadow:inset 0 0 0 2px var(--ink)}
+.m-tile.on b{color:var(--ink)}
+.m-tile .m-chk{position:absolute;top:7px;right:7px;border-radius:50%}
+@container (max-width:440px){.m-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* 06 */
+.c06 .m-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:12px;padding:12px}
+.m-big{font-size:28px;font-weight:600;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.c06 .m-acc{margin-top:8px;padding:2px 12px}
+@container (max-width:440px){.c06 .m-hero{grid-template-columns:minmax(0,1fr)}}
+/* 07 */
+.c07 .m-top{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin-bottom:8px}
+.c07 .m-tab7{overflow:hidden}
+.c07 .m-r{display:grid;grid-template-columns:14px minmax(0,1fr) 84px 84px;align-items:center;column-gap:8px;padding:5px 10px;border-top:1px solid var(--n-2)}
+.c07 .m-r>:nth-child(3),.c07 .m-r>:nth-child(4){text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.c07 .m-r em{overflow:hidden;font-style:normal;text-overflow:ellipsis;white-space:nowrap}
+.c07 .m-r>:nth-child(3){color:var(--dim)}
+.c07 .m-h{border-top:0;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.c07 .m-g{background:var(--n-1);font-weight:600}
+.c07 .m-r.on{font-weight:600}
+.c07 .m-foot{position:absolute;inset:auto 12px 12px;display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:var(--card);box-shadow:var(--edge),var(--sh-2)}
+.c07 .m-foot .m-tot{margin-left:auto;font-size:16px}
+@container (max-width:440px){.c07 .m-r{grid-template-columns:14px minmax(0,1fr) auto}.c07 .m-r>:nth-child(3){display:none}}
+/* 08 */
+.c08 .m-bud{display:grid;gap:8px;padding:10px 12px}
+.m-bbar{display:flex;height:14px;overflow:hidden;border-radius:4px;background:var(--n-2)}
+.m-bbar i{display:block;height:100%}
+.m-cut{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--dim)}
+.m-cut i{display:block;width:32px;height:8px;border-radius:3px;background:repeating-linear-gradient(45deg,var(--n-5) 0 2px,transparent 2px 5px);box-shadow:inset 0 0 0 1px var(--n-5)}
+.m-leg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px}
+.m-leg span{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.m-leg i{display:block;width:8px;height:8px;border-radius:2px}
+.c08 .m-row2{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.c08 .m-row2 .m-btn{margin-left:auto}
+.c08 .m-gl{margin-top:8px;padding:2px 12px}
+.c08 .m-gh::before{top:50%;bottom:auto;width:8px;height:8px;margin-top:-4px;border-radius:2px;background:var(--mk,var(--n-3))}
+/* 09 */
+.c09{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:10px;align-items:start;height:100%}
+.c09 .m-desk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px;align-items:start}
+.c09 .m-gi{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 6px;padding:5px 8px;border-radius:6px}
+.c09 .m-gi em{overflow:hidden;font-style:normal;font-weight:600;text-overflow:ellipsis;white-space:nowrap}
+.c09 .m-gi b{font-size:11px;font-weight:600}
+.c09 .m-gi small{grid-column:1/-1;overflow:hidden;font-size:10px;color:var(--dim);text-overflow:ellipsis;white-space:nowrap}
+.c09 .m-gi.on{background:var(--n-1)}
+.c09 .m-phone{width:150px;height:300px;margin:0;border-radius:16px}
+.m-shade{position:absolute;inset:0;background:rgb(var(--sh-cool)/.35)}
+.m-sheet{position:absolute;inset:auto 0 0;height:70%;padding:10px;border-radius:14px 14px 0 0;background:var(--card)}
+.m-sheet .m-hd{display:flex;align-items:center;justify-content:space-between;gap:6px;font-weight:600}
+.m-sheet .m-hd .m-btn{height:22px;padding:0 8px;font-size:10px}
+.m-sheet .m-row{font-size:11px}
+@container (max-width:440px){.c09{grid-template-columns:minmax(0,1fr)}.c09 .m-desk{display:none}.c09 .m-phone{width:210px;height:330px;margin:0 auto}}
+/* 10 */
+.c10{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:8px;align-items:start}
+.m-rng{position:relative;height:6px;margin:4px 0 8px;border-radius:999px;background:var(--n-3)}
+.m-rng i{position:absolute;inset:0 auto 0 0;border-radius:999px;background:var(--ink)}
+.m-rng b{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#fff;box-shadow:var(--edge),var(--sh-1)}
+.m-mini{display:inline-grid;place-items:center;min-width:46px;height:24px;padding:0 6px;border-radius:6px;background:var(--n-1);box-shadow:inset 0 0 0 1px var(--line);font-weight:600;font-variant-numeric:tabular-nums}
+.c10 .m-plan{display:block;width:100%;height:auto}
+.c10 .m-price{grid-column:1/-1;display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;padding:10px 12px}
+.c10 .m-price .m-btn{margin-left:auto;align-self:center}
+.m-sp{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+@container (max-width:440px){.c10{grid-template-columns:minmax(0,1fr)}.c10 .m-planbox{display:none}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-paint" viewBox="0 0 24 24"><path d="M18 3a3 3 0 0 1 0 6l-9 9a2 2 0 0 1-2.83 0l-1.17-1.17a2 2 0 0 1 0-2.83l9-9A3 3 0 0 1 18 3z"/><path d="M15 6l3 3"/><circle cx="5" cy="20" r="2"/></symbol>
+  <symbol id="i-siding" viewBox="0 0 24 24"><path d="M3 6h18M3 10h18M3 14h18M3 18h18"/><rect x="3" y="6" width="18" height="12"/></symbol>
+  <symbol id="i-softroof" viewBox="0 0 24 24"><path d="M2 17 12 6l10 11"/><path d="M5 14v6h14v-6"/><path d="M5 17h14M5 20h14"/></symbol>
+  <symbol id="i-elec" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></symbol>
+  <symbol id="i-pipes" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 10a6 6 0 0 1-12 0c0-3.5 6-10 6-10z"/></symbol>
+  <symbol id="i-vent" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.6"/><path d="M12 10.4c1.8-2.9 1-5.7-.2-7 .9 2 .2 4.6-.8 5.7M13.6 12c2.9-1.8 5.7-1 7-.2-2-.9-4.6-.2-5.7.8M12 13.6c-1.8 2.9-1 5.7.2 7-.9-2-.2-4.6.8-5.7M10.4 12c-2.9 1.8-5.7 1-7 .2 2 .9 4.6.2 5.7-.8"/></symbol>
+</defs></svg>
+
+<main class="sk">
+  <p class="sk-brand"><svg viewBox="11 12 38 39.5" aria-hidden="true"><path d="M14.5 29 L30 15.5 L45.5 29" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><rect x="16" y="34" width="28" height="7" rx="3.5" fill="#E0603C"/><rect x="16" y="44.5" width="28" height="7" rx="3.5" fill="#E0603C"/></svg>Мой тёплый дом</p>
+  <h1 class="sk-h">Бюджетный калькулятор — 10 эскизов</h1>
+  <p class="sk-lead">Везде одна логика: человек пишет площадь дома, включает и выключает опции и сразу видит одну цену. Отличается только вид. Цифры в эскизах настоящие, из калькулятора: дом 100 м², терраса 12 м², включены покраска снаружи, электрика, разводка труб и отказ от входной двери.</p>
+  <p class="sk-lead"><b>Напишите в чат номера, которые нравятся.</b> Доделаю только их. Не нравится ни один — сделаю другие.</p>
+
+  <ol class="sk-grid">
+
+    <li class="sk-card">
+      <div class="sk-top"><span class="sk-num">01</span><h2 class="sk-name">Как в бюджетном</h2><p class="sk-idea">Одна карточка: площадь, терраса, группы опций раскрываются, у группы — сколько выбрано и сумма. Итог внизу.</p></div>
+      <div class="sk-scr" role="img" aria-label="Эскиз варианта 01"><div class="sk-in"><div class="m-box m-p m-st c01">
+        <div class="m-f2">
+          <div class="m-fld"><span>Площадь дома</span><b>100<small>м²</small></b></div>
+          <div class="m-fld"><span>Терраса <i class="m-sw on"></i></span><b>12<small>м²</small></b></div>
+        </div>
+        <div class="m-sum"><span>Дом 100 м² + терраса 12 м²</span><b>112 м²</b></div>
+        <div class="m-k">Дополнительно</div>
+        <div>
+          <div class="m-gh on"><i class="m-cnt">1</i><span>Отделка снаружи<small>Покраска дома снаружи (с террасой)</small></span><b>+360 800 ₽</b></div>
+          <div class="m-gh on"><i class="m-cnt">2</i><span>Инженерные системы<small>Электрика, Разводка труб</small></span><b>+952 000 ₽</b></div>
+          <div class="m-gh on"><i class="m-cnt">1</i><span>Как удешевить<small>Отказ от входной двери</small></span><b>−16 000 ₽</b></div>
+        </div>
+        <div class="m-res"><span><span class="m-k">Итого</span><br><span class="m-tot">6 000 800 ₽</span></span><span class="m-btn">Получить расчёт</span></div>
+      </div></div></div>
+      <a class="sk-live" href="kalk-byudzhet-01.html">Уже работает — открыть →</a>
+    </li>
+
+    <li class="sk-card">
+      <div class="sk-top"><span class="sk-num">02</span><h2 class="sk-name">Смета рядом</h2><p class="sk-idea">Слева опции, справа смета: дом, выбранные опции с суммами и итог. Смета не уезжает при прокрутке.</p></div>
+      <div class="sk-scr" role="img" aria-label="Эскиз варианта 02"><div class="sk-in c02">
+        <div class="m-box m-p m-st">
+          <div class="m-fld"><span>Площадь дома</span><b>100<small>м²</small></b></div>
+          <div class="m-fld"><span>Терраса <i class="m-sw on"></i></span><b>12<small>м²</small></b></div>
+          <div>
+            <div class="m-gh on"><i class="m-cnt">1</i><span>Отделка снаружи<small>Покраска дома снаружи</small></span><b>+360 800 ₽</b></div>
+            <div class="m-gh"><i class="m-cnt">0</i><span>Отделка внутри<small>не выбрано</small></span><b>0 ₽</b></div>
+            <div class="m-gh on"><i class="m-cnt">2</i><span>Инженерные системы<small>Электрика, Разводка труб</small></span><b>+952 000 ₽</b></div>
+            <div class="m-gh on"><i class="m-cnt">1</i><span>Как удешевить<small>Отказ от входной двери</small></span><b>−16 000 ₽</b></div>
+          </div>
+        </div>
+        <div class="m-box m-p m-st m-rcpt">
+          <div class="m-k">Смета</div>
+          <div class="m-li"><span>Дом 112 м²</span><span class="m-n">4 704 000 ₽</span></div>
+          <div class="m-grp"><span>Отделка снаружи</span><span class="m-n">+360 800 ₽</span></div>
+          <div class="m-li m-in"><span>Покраска дома снаружи</span><span class="m-n">+360 800 ₽</span></div>
+          <div class="m-grp"><span>Инженерные системы</span><span class="m-n">+952 000 ₽</span></div>
+          <div class="m-li m-in"><span>Электрика</span><span class="m-n">+504 000 ₽</span></div>
+          <div class="m-li m-in"><span>Разводка труб</span><span class="m-n">+448 000 ₽</span></div>
+          <div class="m-grp"><span>Как удешевить</span><span class="m-n">−16 000 ₽</span></div>
+          <div class="m-li m-in"><span>Отказ от входной двери</span><span class="m-n">−16 000 ₽</span></div>
+          <div class="m-line"><span class="m-k">Итого</span><span class="m-tot">6 000 800 ₽</span></div>
+          <span class="m-btn">Получить расчёт</span>
+        </div>
+      </div></div>
+    </li>
+
+    <li class="sk-card">
+      <div class="sk-top"><span class="sk-num">03</span><h2 class="sk-name">Переключатели</h2><p class="sk-idea">Все опции видны сразу — строками с переключателями, как настройки телефона. Итог — в полосе снизу.</p></div>
+      <div class="sk-scr is-full" role="img" aria-label="Эскиз варианта 03"><div class="sk-in"><div class="m-phone c03">
+        <div class="m-chips"><span class="m-chip on">Отделка снаружи · 1</span><span class="m-chip">Отделка внутри</span><span class="m-chip">Пол в жилой части</span></div>
+        <div class="m-k">Отделка снаружи</div>
+        <div class="m-list">
+          <div class="m-row on"><i class="m-sq"><svg class="m-ico"><use href="#i-paint"/></svg></i><span><em>Покраска дома снаружи (с террасой)</em><small>+360 800 ₽</small></span><i class="m-sw on"></i></div>
+          <div class="m-row"><i class="m-sq"><svg class="m-ico"><use href="#i-siding"/></svg></i><span><em>Снаружи — сайдинг</em><small>+587 000 ₽</small></span><i class="m-sw"></i></div>
+          <div class="m-row"><i class="m-sq"><svg class="m-ico"><use href="#i-softroof"/></svg></i><span><em>Снаружи — хауберг (мягкая кровля на стены)</em><small>+684 800 ₽</small></span><i class="m-sw"></i></div>
+        </div>
+        <div class="m-k">Инженерные системы</div>
+        <div class="m-list">
+          <div class="m-row on"><i class="m-sq"><svg class="m-ico"><use href="#i-elec"/></svg></i><span><em>Электрика</em><small>+504 000 ₽</small></span><i class="m-sw on"></i></div>
+          <div class="m-row on"><i class="m-sq"><svg class="m-ico"><use href="#i-pipes"/></svg></i><span><em>Разводка труб</em><small>+448 000 ₽</small></span><i class="m-sw on"></i></div>
+          <div class="m-row"><i class="m-sq"><svg class="m-ico"><use href="#i-vent"/></svg></i><span><em>Вентиляция в доме</em><small>+112 000 ₽</small></span><i class="m-sw"></i></div>
+        </div>
+        <div class="m-dock"><span><span class="m-k">Итого · 4 опции</span><br><span class="m-tot">6 000 800 ₽</span></span><span class="m-btn">Получить расчёт</span></div>
+      </div></div></div>
+    </li>
+
+    <li class="sk-card">
+      <div class="sk-top"><span class="sk-num">04</span><h2 class="sk-name">Вкладки групп</h2><p class="sk-idea">Группы опций — вкладками с числом выбранного. Открыта одна группа, итог всегда рядом.</p></div>
+      <div class="sk-scr" role="img" aria-label="Эскиз варианта 04"><div class="sk-in c04">
+        <div class="m-box m-tabs">
+          <div class="m-fld" style="padding:4px 4px 8px"><span>Площадь дома</span><b>100<small>м²</small></b></div>
+          <div class="m-tab on"><em>Отделка снаружи</em><b>1</b><small class="m-d m-n">+360 800 ₽</small></div>
+          <div class="m-tab"><em>Отделка внутри</em><b class="m-d">0</b></div>
+          <div class="m-tab"><em>Пол в жилой части</em><b class="m-d">0</b></div>
+          <div class="m-tab"><em>Окна и двери</em><b class="m-d">0</b></div>
+          <div class="m-tab"><em>Крыша и кровля</em><b class="m-d">0</b></div>
+          <div class="m-tab"><em>Инженерные системы</em><b>2</b><small class="m-d m-n">+952 000 ₽</small></div>
+          <div class="m-tab sep"><em>Как удешевить</em><b>1</b><small class="m-d m-n">−16 000 ₽</small></div>
+        </div>
+        <div class="m-box m-p m-st">
+          <div class="m-li" style="font-size:12px;font-weight:600"><span>Отделка снаружи</span><span class="m-n">+360 800 ₽</span></div>
+          <div>
+            <div class="m-row on"><span><em>Покраска дома снаружи</em><small>+360 800 ₽</small></span><i class="m-sw on"></i></div>
+            <div class="m-row"><span><em>Снаружи — сайдинг</em><small>+587 000 ₽</small></span><i class="m-sw"></i></div>
+            <div class="m-row"><span><em>Снаружи — хауберг</em><small>+684 800 ₽</small></span><i class="m-sw"></i></div>
+            <div class="m-row"><span><em>Снаружи — вагонка АБ</em><small>−49 000 ₽</small></span><i class="m-sw"></i></div>
+          </div>
+        </div>
+        <div class="m-box m-p m-st">
+          <div class="m-k">Итого</div>
+          <div class="m-tot">6 000 800 ₽</div>
+          <div class="m-d" style="font-size:11px">53 579 ₽ за м²</div>
+          <div class="m-sum4 m-st" style="gap:4px">
+            <div class="m-li"><span class="m-d">Дом</span><span class="m-n">4 704 000</span></div>
+            <div class="m-li"><span class="m-d">Опции</span><span class="m-n">+1 296 800</span></div>
+          </div>
+          <span class="m-btn">Получить расчёт</span>
+        </div>
+      </div></div>
+    </li>
+
+    <li class="sk-card">
+      <div class="sk-top"><span class="sk-num">05</span><h2 class="sk-name">Плитки с иконками</h2><p class="sk-idea">Опции — плитками с иконкой и ценой: нажал — отметилась. Итог — в шапке калькулятора.</p></div>
+      <div class="sk-scr" role="img" aria-label="Эскиз варианта 05"><div class="sk-in c05">
+        <div class="m-box m-bar"><span class="m-d">Дом <b style="color:var(--ink)">100 м²</b> · терраса <b style="color:var(--ink)">12 м²</b></span><span class="m-tot">6 000 800 ₽</span><span class="m-btn">Получить расчёт</span></div>
+        <div class="m-gt"><span>Инженерные системы</span><small>2 из 3 · +952 000 ₽</small></div>
+        <div class="m-tiles">
+          <div class="m-tile on"><i class="m-chk on"></i><svg class="m-ico"><use href="#i-elec"/></svg><em>Электрика</em><b>+504 000 ₽</b></div>
+          <div class="m-tile on"><i class="m-chk on"></i><svg class="m-ico"><use href="#i-pipes"/></svg><em>Разводка труб</em><b>+448 000 ₽</b></div>
+          <div class="m-tile"><i class="m-chk"></i><svg class="m-ico"><use href="#i-vent"/></svg><em>Вентиляция в доме</em><b>+112 000 ₽</b></div>
+        </div>
+        <div class="m-gt"><span>Отделка снаружи</span><small>1 из 4 · +360 800 ₽</small></div>
+        <div class="m-tiles">
+          <div class="m-tile on"><i class="m-chk on"></i><svg class="m-ico"><use href="#i-paint"/></svg><em>Покраска дома снаружи (с террасой)</em><b>+360 800 ₽</b></div>
+          <div class="m-tile"><i class="m-chk"></i><svg class="m-ico"><use href="#i-siding"/></svg><em>Снаружи — сайдинг</em><b>+587 000 ₽</b></div>
+          <div class="m-tile"><i class="m-chk"></i><svg class="m-ico"><use href="#i-softroof"/></svg><em>Снаружи — хауберг</em><b>+684 800 ₽</b></div>
+        </div>
+      </div></div>
+    </li>
+
+    <li class="sk-card">
+      <div class="sk-top"><span class="sk-num">06</span><h2 class="sk-name">Цена сверху</h2><p class="sk-idea">Крупная цена и площадь — вверху, при прокрутке прилипают. Ниже группы опций, у каждой своя сумма.</p></div>
+      <div class="sk-scr" role="img" aria-label="Эскиз варианта 06"><div class="sk-in c06">
+        <div class="m-box m-hero">
+          <div class="m-st">
+            <div class="m-fld"><span>Площадь дома</span><b>100<small>м²</small></b></div>
+            <div class="m-fld"><span>Терраса <i class="m-sw on"></i></span><b>12<small>м²</small></b></div>
+          </div>
+          <div class="m-st" style="gap:6px">
+            <div class="m-k">Итого</div>
+            <div class="m-big">6 000 800 ₽</div>
+            <div class="m-d" style="font-size:11px">53 579 ₽ за м² · 4 опции: +1 296 800 ₽</div>
+            <span class="m-btn" style="justify-self:start">Получить расчёт</span>
+          </div>
+        </div>
+        <div class="m-box m-acc">
+          <div class="m-gh on"><i class="m-cnt">1</i><span>Отделка снаружи<small>Покраска дома снаружи (с террасой)</small></span><b>+360 800 ₽</b></div>
+          <div class="m-gh"><i class="m-cnt">0</i><span>Отделка внутри<small>не выбрано</small></span><b>0 ₽</b></div>
+          <div class="m-gh"><i class="m-cnt">0</i><span>Пол в жилой части<small>не выбрано</small></span><b>0 ₽</b></div>
+          <div class="m-gh on"><i class="m-cnt">2</i><span>Инженерные системы<small>Электрика, Разводка труб</small></span><b>+952 000 ₽</b></div>
+        </div>
+      </div></div>
+    </li>
+
+    <li class="sk-card">
+      <div class="sk-top"><span class="sk-num">07</span><h2 class="sk-name">Таблица-смета</h2><p class="sk-idea">Плотная таблица, как смета: галочка, опция, ставка, сумма для этого дома. Итог прилипает к низу.</p></div>
+      <div class="sk-scr is-full" role="img" aria-label="Эскиз варианта 07"><div class="sk-in c07">
+        <div class="m-box m-p m-top"><span class="m-d">Площадь дома</span><span class="m-mini">100 м²</span><span class="m-d">Терраса</span><i class="m-sw on"></i><span class="m-mini">12 м²</span></div>
+        <div class="m-box m-tab7">
+          <div class="m-r m-h"><span></span><span>Опция</span><span>Ставка</span><span>Для дома</span></div>
+          <div class="m-r on"><span></span><em>Дом 112 м²</em><span>42 000 ₽/м²</span><span>4 704 000 ₽</span></div>
+          <div class="m-r m-g"><span></span><em>Отделка снаружи · 1</em><span></span><span>+360 800 ₽</span></div>
+          <div class="m-r on"><i class="m-chk on"></i><em>Покраска дома снаружи (с террасой)</em><span>1 600 ₽/м²</span><span>+360 800 ₽</span></div>
+          <div class="m-r"><i class="m-chk"></i><em>Снаружи — сайдинг</em><span>+3 000 ₽/м²</span><span>+587 000 ₽</span></div>
+          <div class="m-r m-g"><span></span><em>Инженерные системы · 2</em><span></span><span>+952 000 ₽</span></div>
+          <div class="m-r on"><i class="m-chk on"></i><em>Электрика</em><span>+4 500 ₽/м²</span><span>+504 000 ₽</span></div>
+          <div class="m-r on"><i class="m-chk on"></i><em>Разводка труб</em><span>+4 000 ₽/м²</span><span>+448 000 ₽</span></div>
+          <div class="m-r"><i class="m-chk"></i><em>Вентиляция в доме</em><span>+1 000 ₽/м²</span><span>+112 000 ₽</span></div>
+        </div>
+        <div class="m-foot"><span class="m-k">Итого</span><span class="m-tot">6 000 800 ₽</span><span class="m-btn">Получить расчёт</span></div>
+      </div></div>
+    </li>
+
+    <li class="sk-card">
+      <div class="sk-top"><span class="sk-num">08</span><h2 class="sk-name">Полоса бюджета</h2><p class="sk-idea">Полоса показывает, из чего складывается цена: дом и группы опций. Скидки — отдельной полоской.</p></div>
+      <div class="sk-scr" role="img" aria-label="Эскиз варианта 08"><div class="sk-in c08">
+        <div class="m-box m-bud">
+          <div class="m-f2">
+            <div class="m-fld"><span>Площадь дома</span><b>100<small>м²</small></b></div>
+            <div class="m-fld"><span>Терраса <i class="m-sw on"></i></span><b>12<small>м²</small></b></div>
+          </div>
+          <div class="m-bbar"><i style="width:78.2%;background:var(--ink)"></i><i style="width:15.8%;background:var(--clay)"></i><i style="width:6%;background:color-mix(in oklch,var(--clay) 45%,var(--card))"></i></div>
+          <div class="m-cut"><i></i>Как удешевить −16 000 ₽</div>
+          <div class="m-leg">
+            <span><i style="background:var(--ink)"></i>Дом 4 704 000 ₽</span>
+            <span><i style="background:var(--clay)"></i>Инженерные системы +952 000 ₽</span>
+            <span><i style="background:color-mix(in oklch,var(--clay) 45%,var(--card))"></i>Отделка снаружи +360 800 ₽</span>
+          </div>
+          <div class="m-row2"><span class="m-k">Итого</span><span class="m-tot">6 000 800 ₽</span><span class="m-btn">Получить расчёт</span></div>
+        </div>
+        <div class="m-box m-gl">
+          <div class="m-gh on" style="--mk:color-mix(in oklch,var(--clay) 45%,var(--card))"><i class="m-cnt">1</i><span>Отделка снаружи<small>Покраска дома снаружи (с террасой)</small></span><b>+360 800 ₽</b></div>
+          <div class="m-gh on" style="--mk:var(--clay)"><i class="m-cnt">2</i><span>Инженерные системы<small>Электрика, Разводка труб</small></span><b>+952 000 ₽</b></div>
+          <div class="m-gh"><i class="m-cnt">0</i><span>Крыша и кровля<small>не выбрано</small></span><b>0 ₽</b></div>
+        </div>
+      </div></div>
+    </li>
+
+    <li class="sk-card">
+      <div class="sk-top"><span class="sk-num">09</span><h2 class="sk-name">Список и панель</h2><p class="sk-idea">Слева группы с суммами, справа опции открытой группы. На телефоне группа открывается шторкой снизу.</p></div>
+      <div class="sk-scr is-full" role="img" aria-label="Эскиз варианта 09"><div class="sk-in c09">
+        <div class="m-desk">
+          <div class="m-box" style="padding:6px">
+            <div class="m-fld" style="padding:2px 2px 6px"><span>Площадь дома</span><b>100<small>м²</small></b></div>
+            <div class="m-gi"><em>Отделка снаружи</em><b class="m-n">+360 800 ₽</b><small>Покраска дома снаружи</small></div>
+            <div class="m-gi"><em>Отделка внутри</em><b class="m-n m-d">0 ₽</b><small>не выбрано</small></div>
+            <div class="m-gi on"><em>Инженерные системы</em><b class="m-n">+952 000 ₽</b><small>Электрика, Разводка труб</small></div>
+            <div class="m-gi"><em>Как удешевить</em><b class="m-n">−16 000 ₽</b><small>Отказ от входной двери</small></div>
+            <div style="margin-top:4px;padding:8px 8px 2px;border-top:1px solid var(--line)"><div class="m-k">Итого</div><div class="m-tot" style="font-size:16px">6 000 800 ₽</div></div>
+          </div>
+          <div class="m-box m-p m-st">
+            <div style="font-weight:600">Инженерные системы</div>
+            <div class="m-d m-n" style="margin-top:-6px">+952 000 ₽</div>
+            <div>
+              <div class="m-row on"><span><em>Электрика</em><small>+504 000 ₽</small></span><i class="m-sw on"></i></div>
+              <div class="m-row on"><span><em>Разводка труб</em><small>+448 000 ₽</small></span><i class="m-sw on"></i></div>
+              <div class="m-row"><span><em>Вентиляция в доме</em><small>+112 000 ₽</small></span><i class="m-sw"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="m-phone">
+          <div style="display:grid;gap:4px;padding:10px">
+            <div class="m-gi"><em>Отделка снаружи</em><b class="m-n">+360 800 ₽</b></div>
+            <div class="m-gi"><em>Отделка внутри</em><b class="m-n m-d">0 ₽</b></div>
+            <div class="m-gi"><em>Пол в жилой части</em><b class="m-n m-d">0 ₽</b></div>
+          </div>
+          <div class="m-shade"></div>
+          <div class="m-sheet">
+            <div class="m-hd"><span>Инженерные системы</span><span class="m-btn">Готово</span></div>
+            <div class="m-d m-n" style="margin:2px 0 4px">+952 000 ₽</div>
+            <div class="m-row on"><span><em>Электрика</em><small>+504 000 ₽</small></span><i class="m-sw on"></i></div>
+            <div class="m-row on"><span><em>Разводка труб</em><small>+448 000 ₽</small></span><i class="m-sw on"></i></div>
+            <div class="m-row"><span><em>Вентиляция в доме</em><small>+112 000 ₽</small></span><i class="m-sw"></i></div>
+          </div>
+        </div>
+      </div></div>
+    </li>
+
+    <li class="sk-card">
+      <div class="sk-top"><span class="sk-num">10</span><h2 class="sk-name">Ползунок площади</h2><p class="sk-idea">Площадь дома и террасы — ползунками, рядом схема дома в масштабе. Цена меняется, пока тянешь.</p></div>
+      <div class="sk-scr" role="img" aria-label="Эскиз варианта 10"><div class="sk-in c10">
+        <div class="m-box m-p m-st">
+          <div class="m-k">Площадь дома</div>
+          <div class="m-sp"><span class="m-big">100 м²</span><span class="m-mini">100</span></div>
+          <div class="m-rng"><i style="width:47.4%"></i><b style="left:47.4%"></b></div>
+          <div class="m-sp"><span style="font-weight:500">Терраса</span><i class="m-sw on"></i></div>
+          <div class="m-sp"><span class="m-tot" style="font-size:16px">12 м²</span><span class="m-mini">12</span></div>
+          <div class="m-rng"><i style="width:12%"></i><b style="left:12%"></b></div>
+        </div>
+        <div class="m-box m-p m-planbox">
+          <svg class="m-plan" viewBox="0 0 140 132" aria-hidden="true">
+            <rect x="25" y="6" width="90" height="90" rx="2" style="fill:var(--n-1);stroke:var(--ink);stroke-width:1.5"/>
+            <text x="70" y="48" text-anchor="middle" style="font-size:10px;font-weight:600;fill:var(--ink)">Дом</text>
+            <text x="70" y="61" text-anchor="middle" style="font-size:9px;fill:var(--dim)">100 м²</text>
+            <rect x="25" y="96" width="90" height="10.8" rx="1.5" style="fill:color-mix(in oklch,var(--clay) 30%,var(--card));stroke:var(--clay);stroke-width:1.2"/>
+            <text x="70" y="124" text-anchor="middle" style="font-size:9px;fill:var(--dim)">Терраса 12 м²</text>
+          </svg>
+        </div>
+        <div class="m-box m-price"><span class="m-k">Итого</span><span class="m-tot">6 000 800 ₽</span><span class="m-d" style="font-size:11px">53 579 ₽ за м²</span><span class="m-btn">Получить расчёт</span></div>
+      </div></div>
+    </li>
+
+  </ol>
+
+  <p class="sk-foot">Эскизы упрощены: на настоящей странице все 10 групп и 36 опций, подарки, то, что уже входит в цену, и кнопка заявки. Цены — из калькулятора на 15 сентября.</p>
+</main>
+</html>

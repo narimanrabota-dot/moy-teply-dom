@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>05 · Дом-конструктор — калькулятор дома · Мой тёплый дом</title>
+<meta name="description" content="Калькулятор стоимости каркасного дома: готовый проект или своя площадь, три комплектации и дополнительные опции. Цены — из калькулятора компании.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=45">
+<link rel="stylesheet" href="theme.css?v=41">
+<link rel="stylesheet" href="kalk-koncepty.css?v=1">
+<link rel="stylesheet" href="foot.css?v=3">
+<style>
+/* ── концепция 05 · Дом-конструктор ──
+   Рисунок дома меняется от выбора: растёт с площадью, появляется терраса, загораются окна, красится фасад.
+   Все классы — с приставкой k05-. */
+.k05{display:grid;gap:var(--sp-16);margin:var(--sp-24) 0 var(--sp-64)}
+.k05 [hidden]{display:none!important}
+.k05-build{display:grid;gap:var(--sp-16);min-width:0;container:k05b/inline-size}
+.k05-card{min-width:0;background:var(--card);border-radius:var(--r-shell);box-shadow:var(--edge),var(--sh-1)}
+.k05-h{margin:0;font-size:var(--fs-md);font-weight:600;letter-spacing:-.01em;line-height:1.2}
+
+/* выбор дома */
+.k05-pick{display:grid;gap:var(--sp-12);min-width:0}
+.k05-seg{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);padding:var(--sp-4);border-radius:var(--r-inner);background:var(--n-3)}
+.k05-seg button{min-height:48px;padding:0 var(--sp-12);border:0;border-radius:var(--r-tight);background:none;font:inherit;font-size:var(--fs-sm);font-weight:500;line-height:1.2;color:var(--dim);white-space:nowrap;cursor:pointer;transition:background-color .2s var(--e),color .2s var(--e),box-shadow .2s var(--e)}
+.k05-seg button:hover{color:var(--ink)}
+.k05-seg button[aria-checked="true"]{background:var(--card);color:var(--ink);box-shadow:var(--edge),var(--sh-1)}
+.k05-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--sp-12)}
+.k05-f{position:relative;display:block;min-width:0}
+.k05-f__l{position:absolute;top:var(--sp-8);left:var(--sp-16);right:var(--sp-16);font-size:var(--fs-xs);line-height:1.2;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.k05-in{display:block;width:100%;height:56px;margin:0;padding:var(--sp-24) var(--sp-16) var(--sp-8);border:0;border-radius:var(--r-inner);background:var(--card);box-shadow:var(--edge);font:inherit;font-size:var(--fs-sm);line-height:1.4;color:var(--ink);appearance:none;-webkit-appearance:none;transition:box-shadow .2s var(--e)}
+select.k05-in{padding-right:var(--sp-48);cursor:pointer;text-overflow:ellipsis;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23616D85' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;background-size:20px}
+.k05-in:hover{box-shadow:inset 0 0 0 1.5px var(--n-5)}
+.k05-in:focus{outline:0;box-shadow:inset 0 0 0 2px var(--ink)}
+.k05-in:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+@container k05b (min-width:680px){
+  .k05-pick{grid-template-columns:auto minmax(0,1fr);align-items:center}
+  .k05-seg button{padding:0 var(--sp-16)}
+}
+
+/* рисунок */
+.k05-art{position:relative;overflow:hidden;height:clamp(220px,58vw,260px);border-radius:var(--r-shell);background:linear-gradient(var(--card) 25%,var(--n-1) 88%);box-shadow:var(--edge),var(--sh-1)}
+.k05-cap{position:absolute;top:var(--sp-12);left:var(--sp-16);right:var(--sp-16);z-index:1;margin:0;font-size:var(--fs-xs);line-height:1.4;color:var(--dim)}
+.k05-cap.is-over{font-weight:500;color:var(--clay-txt)}
+.k05-svg{position:absolute;inset:0;width:100%;height:100%}
+.k05-svg *{vector-effect:non-scaling-stroke}
+.k05-soil{fill:var(--n-2)}
+.k05-ground{fill:none;stroke:var(--n-5);stroke-width:1.5}
+.k05-scene{transition:opacity .25s var(--e)}
+.is-idle .k05-scene{opacity:.35}
+.k05-ln{fill:none;stroke:var(--ink);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.k05-pile{fill:var(--n-7)}
+.k05-st-bg{fill:var(--n-4)}
+.k05-st-j{fill:none;stroke:var(--n-6);stroke-width:1}
+.k05-stone{fill:url(#k05-stone);stroke:var(--ink);stroke-width:1.5;opacity:0;transition:opacity .25s var(--e)}
+.is-plinth .k05-stone{opacity:1}
+.k05-wall{fill:var(--n-3);stroke:var(--ink);stroke-width:1.75;stroke-linejoin:round;transition:fill .25s var(--e)}
+.k05-grain{fill:none;stroke:var(--n-5);stroke-width:1;transition:stroke .25s var(--e)}
+.k05-wood{fill:var(--n-3);stroke:var(--ink);stroke-width:1.5;stroke-linejoin:round;transition:fill .25s var(--e)}
+.is-paintOut .k05-wall,.is-paintOut .k05-wood{fill:var(--n-6)}
+.is-paintOut .k05-grain{stroke:var(--n-7)}
+.k05-bal{fill:none;stroke:var(--ink);stroke-width:1;opacity:.55}
+.k05-roof{fill:var(--clay-btn);stroke:var(--ink);stroke-width:1.75;stroke-linejoin:round}
+.k05-door{fill:var(--n-7);stroke:var(--ink);stroke-width:1.75}
+.k05-knob{fill:var(--n-2)}
+.k05-step{fill:var(--n-4);stroke:var(--ink);stroke-width:1.5}
+.k05-win{transition:opacity .25s var(--e)}
+.k05-win.is-off{opacity:0}
+.k05-glow{fill:url(#k05-glow);opacity:0;transition:opacity .25s var(--e)}
+.k05-in0{fill:var(--n-7)}
+.k05-inl{fill:none;stroke:var(--n-8);stroke-width:1;opacity:.6}
+.k05-in1{fill:var(--n-2);opacity:0;transition:opacity .25s var(--e)}
+.k05-floor{fill:var(--n-6)}
+.k05-lit0{fill:var(--n-0);opacity:0;transition:opacity .25s var(--e)}
+.k05-lit1{fill:var(--clay);opacity:0;transition:opacity .25s var(--e)}
+.k05-lamp{opacity:0;transition:opacity .25s var(--e)}
+.k05-shade{fill:var(--ink)}
+.k05-frame{fill:none;stroke:var(--ink);stroke-width:1.75}
+.is-elec .k05-glow,.is-elec .k05-lamp{opacity:1}
+.is-elec .k05-lit0{opacity:.55}
+.is-elec .k05-lit1{opacity:.24}
+.is-paintIn .k05-in1{opacity:1}
+.k05-g0{stop-color:var(--clay);stop-opacity:.38}
+.k05-g1{stop-color:var(--clay);stop-opacity:0}
+.k05-fx{opacity:0;transform:translateY(4px);transition:opacity .25s var(--e),transform .25s var(--e)}
+.is-vent .k05-fx--vent,.is-pipes .k05-fx--pipe{opacity:1;transform:none}
+.k05-flow{fill:none;stroke:var(--n-6);stroke-width:1.5;stroke-linecap:round}
+.k05-grille{fill:var(--n-1);stroke:var(--ink);stroke-width:1.5}
+.k05-slat{fill:none;stroke:var(--ink);stroke-width:1.25;stroke-linecap:round}
+.k05-drop{fill:var(--n-0);stroke:var(--ink);stroke-width:1.5;stroke-linejoin:round}
+.k05-ter{opacity:0;transition:opacity .25s var(--e)}
+.has-ter .k05-ter{opacity:1}
+
+/* опции */
+.k05-optc{padding:var(--sp-16) var(--sp-16) var(--sp-4);container:k05o/inline-size}
+.k05-opts{display:block;width:100%;margin-top:var(--sp-8);border-collapse:collapse}
+.k05-opts tbody{display:grid;grid-template-columns:minmax(0,1fr);column-gap:var(--sp-32)}
+.k05-opt{display:block;border-top:1px solid var(--line)}
+.k05-opt:first-child{border-top:0}
+.k05-opt td{display:block;padding:0}
+.k05-ol{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:start;gap:var(--sp-16);padding:var(--sp-16) 0;cursor:pointer}
+.k05-oi{position:absolute;top:var(--sp-16);right:0;width:44px;height:26px;margin:0;opacity:0}
+.k05-oic{display:grid;place-items:center;width:40px;height:40px;border-radius:var(--r-inner);background:var(--n-2);color:var(--ink);transition:background-color .2s var(--e),color .2s var(--e)}
+.k05-oic svg{width:22px;height:22px}
+.inc-ot{display:grid;gap:var(--sp-4);min-width:0}
+.inc-ot>span{font-size:var(--fs-sm);font-weight:500;line-height:1.3;color:var(--ink)}
+.inc-ot small{font-size:var(--fs-xs);line-height:1.4;color:var(--dim)}
+.inc-ot .k05-op{font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.k05-op:empty{display:none}
+.k05-sw{position:relative;flex:none;width:44px;height:26px;margin-top:var(--sp-8);border-radius:999px;background:var(--n-4);transition:background-color .2s var(--e)}
+.k05-sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:var(--sh-1);transition:transform .2s var(--e)}
+.k05-ol:hover .k05-sw{background:var(--n-5)}
+.k05-oi:checked~.k05-sw{background:var(--ink)}
+.k05-oi:checked~.k05-sw::after{transform:translateX(18px)}
+.k05-oi:checked~.k05-oic{background:var(--ink);color:#fff}
+.k05-oi:focus-visible~.k05-sw{outline:2px solid var(--clay-btn);outline-offset:2px}
+.k05-ask{display:none;margin-top:var(--sp-8);font-size:var(--fs-xs);line-height:1.4;color:var(--dim);white-space:nowrap}
+.k05-opt.is-na .k05-ol{cursor:default}
+.k05-opt.is-na .k05-sw{display:none}
+.k05-opt.is-na .k05-ask{display:block}
+@container k05o (min-width:560px){
+  .k05-opts tbody{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .k05-opt:nth-child(2){border-top:0}
+}
+
+/* цены */
+.k05-side{min-width:0}
+.k05-res{padding:var(--sp-24)}
+.k05-name{margin:0;font-size:var(--fs-sm);font-weight:600;line-height:1.35}
+.k05-tiers{display:grid;margin:var(--sp-12) 0 0;padding:0;list-style:none}
+.k05-tier{padding:var(--sp-12) 0;border-top:1px solid var(--line)}
+.k05-tier__row{display:grid;gap:var(--sp-4)}
+.k05-tier__n{font-size:12px;font-weight:600;letter-spacing:.08em;line-height:1.3;text-transform:uppercase;color:var(--dim)}
+.k05-tier__p{font-size:var(--fs-xl);font-weight:600;letter-spacing:-.02em;line-height:1.15;white-space:nowrap;font-variant-numeric:tabular-nums}
+.k05-tier.is-us .k05-tier__n,.k05-tier.is-us .k05-tier__p{color:var(--clay-txt)}
+.k05-tier__s{display:block;margin-top:var(--sp-4);font-size:var(--fs-xs);line-height:1.4;color:var(--dim)}
+.k05-tier__s:empty{display:none}
+.k05-go{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-16);width:100%;min-height:52px;margin-top:var(--sp-12);padding:6px 6px 6px var(--sp-24);border:0;border-radius:var(--r-inner);background:var(--ink);color:#fff;font:inherit;font-size:var(--fs-btn);font-weight:500;line-height:1.2;white-space:nowrap;cursor:pointer;transition:background-color .2s var(--e),transform .12s var(--e)}
+.k05-go:hover{background:#2E3E60}
+.k05-go:active{transform:translateY(1px)}
+.k05-go:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+.k05-go i{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:var(--r-tight);background:#fff;color:var(--ink)}
+.k05-go i svg{width:20px;height:20px}
+.k05-note{margin:var(--sp-12) 0 0;font-size:var(--fs-xs);line-height:1.4;color:var(--dim)}
+
+/* подарки */
+.k05-gifts{padding:var(--sp-24);container:k05g/inline-size}
+.k05-gw{display:grid;gap:var(--sp-24);margin-top:var(--sp-16)}
+.k05-gc,.k05-gh{margin:0;font-size:var(--fs-sm);line-height:1.4}
+.k05-gc{color:var(--dim)}
+.k05-gh{font-weight:600}
+.k05-steps,.k05-gl{margin:var(--sp-8) 0 0;padding:0;list-style:none}
+.k05-steps li{position:relative;padding:var(--sp-8) 0 var(--sp-8) var(--sp-24);font-size:var(--fs-sm);line-height:1.4}
+.k05-steps li::before{content:"";position:absolute;top:17px;left:var(--sp-4);width:8px;height:8px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--n-6)}
+.k05-gl li{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-16);padding:var(--sp-12) 0;border-top:1px solid var(--line);font-size:var(--fs-sm);line-height:1.4}
+.k05-gl li:first-child{border-top:0}
+.k05-gl__v{display:grid;justify-items:end;text-align:right}
+.k05-gl b{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.k05-gl small{font-size:var(--fs-xs);line-height:1.4;color:var(--dim)}
+@container k05g (min-width:640px){
+  .k05-gw{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--sp-48)}
+}
+
+/* телефон: цены у нижнего края */
+.k05-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-8);width:100%;margin:0;padding:var(--sp-12) var(--sp-16) calc(var(--sp-12) + env(safe-area-inset-bottom));border:0;background:var(--card);color:var(--ink);font:inherit;text-align:left;cursor:pointer;box-shadow:var(--edge),var(--sh-2)}
+.k05-bar[hidden]{display:none}
+.k05-bar>span{display:flex;flex-direction:column;justify-content:flex-end;gap:2px;min-width:0}
+.k05-bar small{font-size:12px;font-weight:600;letter-spacing:.04em;line-height:1.2;text-transform:uppercase;color:var(--dim)}
+.k05-bar b{font-size:var(--fs-sm);font-weight:600;line-height:1.2;white-space:nowrap;font-variant-numeric:tabular-nums}
+.k05-bar .is-us small,.k05-bar .is-us b{color:var(--clay-txt)}
+.k05-bar:focus-visible{outline:2px solid var(--clay-btn);outline-offset:-4px}
+
+@media(max-width:899px){
+  body{padding-bottom:96px}
+}
+@media(max-width:899px) and (min-height:640px){
+  .k05-art{position:sticky;top:calc(var(--hdr-stick) + 8px);z-index:5}
+}
+@media(min-width:900px){
+  .k05{grid-template-columns:minmax(0,1fr) clamp(300px,28vw,360px);grid-template-areas:"build side" "gifts side";gap:var(--sp-24);align-items:start;margin-bottom:var(--sp-96)}
+  .k05-build{grid-area:build}
+  .k05-side{grid-area:side;position:sticky;top:calc(var(--hdr-stick) + 8px)}
+  .k05-gifts{grid-area:gifts}
+  .k05-art{height:clamp(240px,21vw,300px)}
+  .k05-optc{padding:var(--sp-16) var(--sp-24) var(--sp-4)}
+  .k05-bar,.k05-bar[hidden]{display:none}
+}
+@media(max-width:400px){
+  .k05-seg button{padding:0 var(--sp-8);font-size:var(--fs-xs)}
+  .k05-res,.k05-gifts{padding:var(--sp-16)}
+}
+@media(prefers-reduced-motion:reduce){
+  .k05 *,.k05 *::after,.k05-bar{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<span class="sentinel" aria-hidden="true"></span>
+
+<a class="skip" href="./#main">Перейти к содержимому</a>
+
+<div class="shell shell--hdr">
+  <header class="hdr hdr--inv">
+
+    <div class="up">
+      <a href="tel:+79782516469" class="tel">+7 978 251‑64‑69</a>
+      <span class="sp"></span>
+      <span class="gr">
+        <a href="https://t.me/" class="ic ic--tg" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.2 4.3 2.9 11.4c-.9.35-.87 1.65.05 1.95l4.55 1.45 1.75 5.3c.25.75 1.2.93 1.72.33l2.4-2.75 4.6 3.38c.63.46 1.53.12 1.7-.65l3.2-14.6c.2-.9-.7-1.66-1.67-1.28ZM9.1 14.2l8.5-5.3-6.9 6.3-.35 3.1-1.25-4.1Z"/></svg></a>
+        <a href="#max" class="ic ic--max" aria-label="Написать в MAX"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.2c0 4.05-3.8 7.35-8.5 7.35-.95 0-1.86-.14-2.7-.39L4.2 20.8l1.35-3.6A7.06 7.06 0 0 1 3.5 12.2c0-4.06 3.8-7.35 8.5-7.35s8.5 3.29 8.5 7.35Z"/><path d="M8.6 14.3V10l2.4 2.6 2.4-2.6v4.3" stroke-linecap="round"/></svg></a>
+        <a href="https://wa.me/79782516469" class="ic ic--wa" aria-label="Написать в WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6a9.3 9.3 0 0 0-8 14.05L2.7 21.4l4.9-1.27A9.3 9.3 0 1 0 12 2.6Zm0 1.9a7.4 7.4 0 1 1-3.9 13.7l-.3-.18-2.9.76.77-2.83-.2-.31A7.4 7.4 0 0 1 12 4.5Zm-3.2 3.6c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.2.87 2.35.99 2.51.12.16 1.7 2.7 4.2 3.68 2.08.82 2.5.66 2.95.62.45-.04 1.45-.59 1.66-1.17.2-.57.2-1.06.14-1.17-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12s-.63.8-.77.96c-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47Z"/></svg></a>
+      </span>
+      <span class="dv"></span>
+      <span class="gr">
+        <a href="#saved" class="ic ic--heart" aria-label="Избранное"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.3s-7.4-4.6-7.4-9.4a4.2 4.2 0 0 1 7.4-2.7 4.2 4.2 0 0 1 7.4 2.7c0 4.8-7.4 9.4-7.4 9.4Z"/></svg><span class="cnt" hidden>0</span></a>
+        <span class="mk2">избранное</span>
+      </span>
+    </div>
+
+    <div class="dn">
+    <a href="./" class="logo">
+      <svg viewBox="11 12 38 39.5" class="mk" aria-hidden="true"><path d="M14.5 29 L30 15.5 L45.5 29" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><rect class="bar" x="16" y="34" width="28" height="7" rx="3.5"/><rect class="bar" x="16" y="44.5" width="28" height="7" rx="3.5"/></svg>
+      <span class="wm">Мой тёплый <i>дом</i></span>
+    </a>
+    <nav class="nav" aria-label="Основное меню">
+      <a href="./#catalog">Каталог</a>
+      <a href="./#built">Наши работы</a>
+      <a href="./#reviews">Отзывы</a>
+      <span class="nav__item">
+        <a href="stroim-vyezd-inzhenera.html" aria-haspopup="true">Как строим<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub">
+          <a href="stroim-vyezd-inzhenera.html">Выезд инженера</a>
+          <a href="stroim-bytovki.html">Где живут наши рабочие</a>
+          <a href="stroim-materialy.html">Какие материалы мы используем</a>
+          <a href="stroim-proekt.html">Конструктивный проект</a>
+          <a href="stroim-obvyazka.html">Как мы делаем обвязку пола</a>
+          <a href="stroim-krovlya.html">Как мы строим кровлю</a>
+          <a href="stroim-krovlya.html#vvetr">Ветрозащита и гидроизоляция</a>
+          <a href="stroim-hranenie.html">Как храним материалы на участке</a>
+          <a href="stroim-dostavka.html">Как доставляем материалы</a>
+          <a href="./#vkark">Как мы строим каркас</a>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="kak-zakazat.html" aria-haspopup="true">Как заказать<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub">
+          <a href="kak-zakazat.html">Этапы стройки</a>
+          <a href="dogovor.html">Договор</a>
+          <a href="smeta-primer.html">Пример сметы</a>
+        </span>
+      </span>
+      <a href="./#contacts">Контакты</a>
+    </nav>
+      <button type="button" class="btn btn--l" data-callback>Заказать звонок</button>
+      <a href="tel:+79782516469" class="icb" aria-label="Позвонить: +7 978 251‑64‑69"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 006.5 6.5l1.5-2 4 1.5v3a2 2 0 01-2.2 2A17 17 0 014.5 5.2 2 2 0 016.5 3z"/></svg></a>
+      <button class="burg" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mnav">
+      <i></i>
+    </button>
+    </div>  </header>
+</div>
+
+<nav class="mnav" id="mnav" aria-label="Мобильное меню">
+      <a href="./#catalog">Каталог</a>
+      <a href="./#built">Наши работы</a>
+      <a href="./#reviews">Отзывы</a>
+      <a href="stroim-vyezd-inzhenera.html">Как строим</a>
+    <a class="mnav__sub" href="stroim-vyezd-inzhenera.html">Выезд инженера</a>
+    <a class="mnav__sub" href="stroim-bytovki.html">Где живут наши рабочие</a>
+    <a class="mnav__sub" href="stroim-materialy.html">Какие материалы мы используем</a>
+    <a class="mnav__sub" href="stroim-proekt.html">Конструктивный проект</a>
+    <a class="mnav__sub" href="stroim-obvyazka.html">Как мы делаем обвязку пола</a>
+    <a class="mnav__sub" href="stroim-krovlya.html">Как мы строим кровлю</a>
+    <a class="mnav__sub" href="stroim-krovlya.html#vvetr">Ветрозащита и гидроизоляция</a>
+    <a class="mnav__sub" href="stroim-hranenie.html">Как храним материалы на участке</a>
+    <a class="mnav__sub" href="stroim-dostavka.html">Как доставляем материалы</a>
+    <a class="mnav__sub" href="./#vkark">Как мы строим каркас</a>
+      <a href="kak-zakazat.html">Как заказать</a>
+  <a class="mnav__sub" href="dogovor.html">Договор</a>
+  <a class="mnav__sub" href="smeta-primer.html">Пример сметы</a>
+      <a href="./#contacts">Контакты</a>
+  <span class="mnav__sep"></span>
+  <a href="#saved" class="mnav__ic"><span class="ic ic--heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.3s-7.4-4.6-7.4-9.4a4.2 4.2 0 0 1 7.4-2.7 4.2 4.2 0 0 1 7.4 2.7c0 4.8-7.4 9.4-7.4 9.4Z"/></svg><span class="cnt" hidden>0</span></span>Избранное</a>
+  <a href="https://t.me/" class="mnav__ic"><span class="ic ic--tg"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.2 4.3 2.9 11.4c-.9.35-.87 1.65.05 1.95l4.55 1.45 1.75 5.3c.25.75 1.2.93 1.72.33l2.4-2.75 4.6 3.38c.63.46 1.53.12 1.7-.65l3.2-14.6c.2-.9-.7-1.66-1.67-1.28ZM9.1 14.2l8.5-5.3-6.9 6.3-.35 3.1-1.25-4.1Z"/></svg></span>Написать в Telegram</a>
+  <a href="#max" class="mnav__ic"><span class="ic ic--max"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.2c0 4.05-3.8 7.35-8.5 7.35-.95 0-1.86-.14-2.7-.39L4.2 20.8l1.35-3.6A7.06 7.06 0 0 1 3.5 12.2c0-4.06 3.8-7.35 8.5-7.35s8.5 3.29 8.5 7.35Z"/><path d="M8.6 14.3V10l2.4 2.6 2.4-2.6v4.3" stroke-linecap="round"/></svg></span>Написать в MAX</a>
+  <a href="https://wa.me/79782516469" class="mnav__ic"><span class="ic ic--wa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6a9.3 9.3 0 0 0-8 14.05L2.7 21.4l4.9-1.27A9.3 9.3 0 1 0 12 2.6Zm0 1.9a7.4 7.4 0 1 1-3.9 13.7l-.3-.18-2.9.76.77-2.83-.2-.31A7.4 7.4 0 0 1 12 4.5Zm-3.2 3.6c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.2.87 2.35.99 2.51.12.16 1.7 2.7 4.2 3.68 2.08.82 2.5.66 2.95.62.45-.04 1.45-.59 1.66-1.17.2-.57.2-1.06.14-1.17-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12s-.63.8-.77.96c-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47Z"/></svg></span>Написать в WhatsApp</a>
+  <a href="tel:+79782516469" class="tel tel--2"><b>+7 978 251‑64‑69</b><span>позвонить</span></a>
+  <button type="button" class="btn btn--c" data-callback>Заказать звонок</button>
+</nav>
+
+<main id="main">
+  <div class="shell">
+
+    <a class="back" href="./#main"><i>←</i>На главную</a>
+
+    <h1 class="kk-title">Калькулятор дома</h1>
+
+    <!-- koncept:start -->
+    <div class="k05" data-k05>
+      <div class="k05-build">
+        <div class="k05-pick">
+          <div class="k05-seg" role="radiogroup" aria-label="Что считаем">
+            <button type="button" role="radio" aria-checked="true" data-mode="project">Готовый проект</button>
+            <button type="button" role="radio" aria-checked="false" tabindex="-1" data-mode="area">Своя площадь</button>
+          </div>
+          <div class="k05-two" data-pane="project">
+            <label class="k05-f"><span class="k05-f__l">Серия</span><select class="k05-in" id="k05-series"></select></label>
+            <label class="k05-f"><span class="k05-f__l">Размер</span><select class="k05-in" id="k05-size"></select></label>
+          </div>
+          <div class="k05-two" data-pane="area" hidden>
+            <label class="k05-f"><span class="k05-f__l">Дом, м²</span><input class="k05-in" id="k05-l" type="text" inputmode="decimal" autocomplete="off"></label>
+            <label class="k05-f"><span class="k05-f__l">Терраса, м²</span><input class="k05-in" id="k05-t" type="text" inputmode="decimal" autocomplete="off" placeholder="0"></label>
+          </div>
+        </div>
+
+        <div class="k05-art">
+          <p class="k05-cap" id="k05-cap" aria-live="polite"></p>
+          <svg class="k05-svg" viewBox="0 0 760 300" aria-hidden="true" focusable="false">
+            <defs>
+              <pattern id="k05-stone" width="24" height="14" patternUnits="userSpaceOnUse">
+                <rect class="k05-st-bg" width="24" height="14"/>
+                <path class="k05-st-j" d="M0 7H24M9 0V7M20 0V7M4 7V14M15 7V14"/>
+              </pattern>
+              <radialGradient id="k05-glow"><stop offset="0" class="k05-g0"/><stop offset="1" class="k05-g1"/></radialGradient>
+              <clipPath id="k05-clip"><path data-d="clip"/></clipPath>
+            </defs>
+            <rect class="k05-soil" data-d="soil" x="0" y="272" width="760" height="28"/>
+            <path class="k05-ground" data-d="ground" d="M0 272H760"/>
+            <g class="k05-scene" data-d="scene" transform="translate(380 272)">
+              <g class="k05-ter" data-d="ter">
+                <path class="k05-pile" data-d="tpiles"/>
+                <path class="k05-stone" data-d="tstone"/>
+                <path class="k05-wood" data-d="tdeck"/>
+                <path class="k05-wood" data-d="tposts"/>
+                <path class="k05-bal" data-d="tbal"/>
+                <path class="k05-wood" data-d="trail"/>
+                <path class="k05-roof" data-d="tcanopy"/>
+              </g>
+              <g class="k05-fx k05-fx--pipe">
+                <path class="k05-ln" d="M-30 -6V15H22V-14"/>
+                <path class="k05-drop" transform="translate(-39 -34) scale(.75)" d="M12 3s6 6.5 6 10a6 6 0 0 1-12 0c0-3.5 6-10 6-10z"/>
+              </g>
+              <path class="k05-pile" data-d="piles"/>
+              <path class="k05-stone" data-d="stone"/>
+              <path class="k05-wall" data-d="wall"/>
+              <path class="k05-grain" data-d="grain"/>
+              <g data-d="wins" clip-path="url(#k05-clip)"></g>
+              <path class="k05-step" data-d="step"/>
+              <path class="k05-door" data-d="door"/>
+              <circle class="k05-knob" data-d="knob" r="2"/>
+              <path class="k05-roof" data-d="roof"/>
+              <g data-d="vent"><g class="k05-fx k05-fx--vent">
+                <circle class="k05-grille" data-d="grille" r="7"/>
+                <path class="k05-slat" data-d="slat"/>
+                <path class="k05-flow" data-d="flow"/>
+              </g></g>
+            </g>
+          </svg>
+        </div>
+
+        <section class="k05-card k05-optc" aria-labelledby="k05-h-opts">
+          <h2 class="k05-h" id="k05-h-opts">Дополнительные опции</h2>
+          <table class="k05-opts" role="presentation"><tbody id="k05-opts"></tbody></table>
+        </section>
+      </div>
+
+      <aside class="k05-side" aria-label="Стоимость">
+        <section class="k05-card k05-res prod" id="k05-res">
+          <p class="k05-name prod__t" id="k05-name"></p>
+          <ul class="k05-tiers" aria-live="polite">
+            <li class="k05-tier"><span class="k05-tier__row" data-base data-col="0"><span class="k05-tier__n"></span> <b class="k05-tier__p price__v">—</b></span><span class="k05-tier__s"></span><span class="k05-tier__s"></span></li>
+            <li class="k05-tier"><span class="k05-tier__row" data-base data-col="1"><span class="k05-tier__n"></span> <b class="k05-tier__p">—</b></span><span class="k05-tier__s"></span><span class="k05-tier__s"></span></li>
+            <li class="k05-tier"><span class="k05-tier__row" data-base data-col="2"><span class="k05-tier__n"></span> <b class="k05-tier__p">—</b></span><span class="k05-tier__s"></span><span class="k05-tier__s"></span></li>
+          </ul>
+          <button type="button" class="k05-go" data-callback data-cb-title="Получить расчёт">Получить расчёт<i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-5-5m5 5-5 5"/></svg></i></button>
+          <p class="k05-note" id="k05-note"></p>
+        </section>
+      </aside>
+
+      <section class="k05-card k05-gifts" aria-labelledby="k05-h-gifts">
+        <h2 class="k05-h" id="k05-h-gifts">Подарки</h2>
+        <div class="k05-gw">
+          <div>
+            <p class="k05-gc">Сделайте один из шагов:</p>
+            <ul class="k05-steps" id="k05-steps"></ul>
+          </div>
+          <div>
+            <p class="k05-gh" id="k05-glead"></p>
+            <ul class="k05-gl" id="k05-gl"></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+    <button type="button" class="k05-bar" id="k05-bar" hidden><span><small></small><b>—</b></span><span class="is-us"><small></small><b>—</b></span><span><small></small><b>—</b></span></button>
+    <!-- koncept:end -->
+
+  </div>
+</main>
+
+
+<footer class="ft">
+  <div class="ft__in">
+    <span class="ft__lg"><svg viewBox="0 0 60 52" aria-hidden="true"><path d="M12 30 L30 14 L48 30" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><rect x="14" y="34" width="32" height="6.5" rx="3.2" fill="#E0603C"/><rect x="14" y="43.5" width="32" height="6.5" rx="3.2" fill="#E0603C"/></svg>Мой тёплый <i>дом</i></span>
+    <div class="ftc">
+      <div class="ftc__i">
+        <span class="ftc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/></svg></span>
+        <div class="ft__k">Телефон</div>
+        <a class="ft__tel" href="tel:+79782516469">+7 978 251‑64‑69</a>
+        <div class="ft__sm">WhatsApp, Telegram и Max на этом номере</div>
+      </div>
+      <div class="ftc__i">
+        <span class="ftc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+        <div class="ft__k">Офис и производство</div>
+        <div class="ft__sm" style="margin-top:var(--sp-12)">Москва, ул. Адмирала Корнилова, 66, строение 20<br>
+           ПН–ВС 11:00–18:00, приём по записи</div>
+        <a class="ft__ln" href="./#contacts">Как нас найти</a>
+      </div>
+      <div class="ftc__i">
+        <span class="ftc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+        <div class="ft__k">Документы</div>
+        <a class="ft__ln" href="dogovor.html">Договор и гарантии</a>
+        <a class="ft__ln" href="smeta-primer.html">Пример сметы</a>
+        <a class="ft__ln" href="politika.html">Политика конфиденциальности</a>
+        <a class="ft__ln" href="soglashenie.html">Пользовательское соглашение</a>
+      </div>
+    </div>
+
+    <div class="ft__rule"></div>
+    <div class="ft__k">Реквизиты</div>
+    <dl class="ft__req"><div><dt>Наименование</dt><dd>ООО «СОЗВЕЗДИЕ»</dd></div><div><dt>ИНН / КПП</dt><dd>4338010020 / 525401001</dd></div><div><dt>ОГРН</dt><dd>1214300002070</dd></div><div><dt>Директор</dt><dd>Баннов А. В.</dd></div><div><dt>Юридический адрес</dt><dd>607920, Нижегородская обл., Починковский м. о., с. Дуброво, ул. Кооперативная, 101</dd></div></dl>
+    <div class="ft__rule"></div>
+    <div class="ft__bot">
+      <a href="./#catalog">Каталог</a>
+      <a href="./#built">Наши работы</a>
+      <a href="kak-zakazat.html">Как заказать</a>
+      <a href="stroim-vyezd-inzhenera.html">Как строим</a>
+      <span class="end">© 2026 ООО «СОЗВЕЗДИЕ»</span>
+    </div>
+  </div>
+</footer>
+
+
+
+<div class="ov" id="callback" hidden>
+  <div class="mdl" role="dialog" aria-modal="true" aria-labelledby="cb-title">
+    <button class="x" type="button" aria-label="Закрыть" data-cb-close>×</button>
+    <form class="cb" novalidate>
+      <div class="cb__h">
+        <b class="cb__t" id="cb-title">Заказать звонок</b>
+        <p class="cb__p">Оставьте номер — перезвоним и ответим на вопросы.</p>
+      </div>
+      <label class="fld">
+        <span class="fld__l">Телефон</span>
+        <input class="fld__i" id="cb-tel" type="tel" inputmode="tel"
+               placeholder="+7 (___) ___-__-__" autocomplete="tel"
+               aria-describedby="cb-err" required>
+        <span class="fld__e" id="cb-err" hidden>Введите номер полностью</span>
+      </label>
+      <label class="chk">
+        <input type="checkbox" id="cb-ok" checked required>
+        <span>Согласен на <a href="politika.html" target="_blank">обработку персональных данных</a> и принимаю <a href="soglashenie.html" target="_blank">условия сайта</a></span>
+      </label>
+      <button type="submit" class="btn btn--c cb__go">Жду звонка</button>
+    </form>
+  </div>
+</div>
+
+<script src="form.js?v=41"></script>
+<script src="header.js?v=44"></script>
+<script src="kalkulyator.js?v=1"></script>
+<script src="kalk-koncepty-data.js?v=1"></script>
+<script src="kalk-koncepty-core.js?v=1"></script>
+<script>
+/* концепция 05 · Дом-конструктор */
+(function () {
+  var KK = window.KK;
+  if (!KK) return;
+  var root = document.querySelector('[data-k05]');
+  if (!root) return;
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var byId = function (id) { return document.getElementById(id); };
+  var all = function (s, el) { return [].slice.call((el || root).querySelectorAll(s)); };
+  var motion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  function still() { return !!(motion && motion.matches); }
+  function put(el, t) { if (el && el.textContent !== t) el.textContent = t; }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
+  }
+
+  var sel = KK.defaults(), filledFrom = null;
+
+  /* ── выбор дома: серия и размер или своя площадь ── */
+  var segs = all('[data-mode]'), panes = all('[data-pane]');
+  var series = byId('k05-series'), size = byId('k05-size'), inL = byId('k05-l'), inT = byId('k05-t');
+
+  function seriesOf(slug) {
+    for (var i = 0; i < KK.series.length; i++) if (KK.series[i].slugs.indexOf(slug) >= 0) return i;
+    return 0;
+  }
+  KK.series.forEach(function (s, i) { series.appendChild(new Option(s.name, String(i))); });
+  function syncProject() {
+    var i = String(seriesOf(sel.slug));
+    series.value = i;
+    if (size.getAttribute('data-series') !== i) {
+      size.textContent = '';
+      KK.series[+i].slugs.forEach(function (s) { size.appendChild(new Option(KK.models[s].size, s)); });
+      size.setAttribute('data-series', i);
+    }
+    size.value = sel.slug;
+  }
+  series.addEventListener('change', function () {
+    var area = KK.models[sel.slug].geo.A;
+    sel.slug = KK.series[+series.value].slugs.slice().sort(function (a, b) {
+      return Math.abs(KK.models[a].geo.A - area) - Math.abs(KK.models[b].geo.A - area);
+    })[0];
+    render();
+  });
+  size.addEventListener('change', function () { sel.slug = size.value; render(); });
+
+  function setMode(m) {
+    if (m === sel.mode) return;
+    if (m === 'area' && (!inL.value || (filledFrom && filledFrom !== sel.slug))) {
+      var md = KK.models[sel.slug];
+      inL.value = KK.m2(md.l);
+      inT.value = md.t > 0.05 ? KK.m2(md.t) : '';
+      filledFrom = sel.slug;
+    }
+    sel.mode = m;
+    sel.l = inL.value;
+    sel.t = inT.value;
+    render();
+  }
+  segs.forEach(function (b, i) {
+    b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); });
+    b.addEventListener('keydown', function (e) {
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].indexOf(e.key) < 0) return;
+      e.preventDefault();
+      var next = segs[(i + 1) % segs.length];
+      setMode(next.getAttribute('data-mode'));
+      next.focus();
+    });
+  });
+  [inL, inT].forEach(function (el) {
+    el.addEventListener('input', function () { filledFrom = null; sel.l = inL.value; sel.t = inT.value; render(); });
+  });
+
+  /* ── опции ── */
+  var rows = {};
+  KK.options.forEach(function (o) {
+    var tr = document.createElement('tr');
+    tr.className = 'inc-opt k05-opt';
+    tr.setAttribute('data-opt', o.key);
+    tr.innerHTML = '<td><label class="k05-ol"><input class="k05-oi" type="checkbox" role="switch">' +
+      '<span class="k05-oic" aria-hidden="true">' + o.icon + '</span>' +
+      '<span class="inc-ot"><span>' + esc(o.name) + '</span><small>' + esc(o.desc) + '</small><small class="k05-op"></small></span>' +
+      '<span class="k05-sw" aria-hidden="true"></span><span class="k05-ask">' + esc(KK.texts.ask) + '</span></label></td>';
+    byId('k05-opts').appendChild(tr);
+    var input = tr.querySelector('input');
+    input.addEventListener('change', function () {
+      var k = sel.keys.indexOf(o.key);
+      if (input.checked && k < 0) sel.keys.push(o.key);
+      if (!input.checked && k >= 0) sel.keys.splice(k, 1);
+      render();
+    });
+    rows[o.key] = { tr: tr, input: input, price: tr.querySelector('.k05-op') };
+  });
+
+  /* ── цены, полоса на телефоне, условие ── */
+  var tiers = all('.k05-tier').map(function (li, i) {
+    var s = li.querySelectorAll('.k05-tier__s');
+    li.classList.toggle('is-us', i === KK.highlight);
+    put(li.querySelector('.k05-tier__n'), KK.tiers[i]);
+    return { p: li.querySelector('.k05-tier__p'), add: s[0], no: s[1] };
+  });
+  var bar = byId('k05-bar'), barCols = [].slice.call(bar.children);
+  barCols.forEach(function (c, i) {
+    c.classList.toggle('is-us', i === KK.highlight);
+    put(c.querySelector('small'), KK.tiers[i]);
+  });
+  put(byId('k05-note'), KK.note);
+
+  /* ── подарки ── */
+  KK.steps.forEach(function (s) {
+    var li = document.createElement('li');
+    li.textContent = s;
+    byId('k05-steps').appendChild(li);
+  });
+  var giftVals = KK.calc(sel).gifts.map(function (g) {
+    var li = document.createElement('li');
+    li.innerHTML = '<span>' + esc(g.name) + '</span><span class="k05-gl__v"><b></b>' + (g.note ? '<small>' + esc(g.note) + '</small>' : '') + '</span>';
+    byId('k05-gl').appendChild(li);
+    return li.querySelector('b');
+  });
+
+  /* ── рисунок дома ──
+     Схема, а не проект: ширина дома — от площади дома, ширина террасы — от площади террасы (обе ∝ √площади),
+     сцена уменьшается, если не помещается. Геометрию плавно пересчитывает скрипт, опции — классы и CSS. */
+  var art = root.querySelector('.k05-art'), svg = art.querySelector('svg'), D = {};
+  all('[data-d]', svg).forEach(function (el) { D[el.getAttribute('data-d')] = el; });
+  var MAXW = 6, wins = [];
+  for (var w = 0; w < MAXW; w++) {
+    var wg = document.createElementNS(NS, 'g');
+    wg.setAttribute('class', 'k05-win is-off');
+    wg.innerHTML = '<ellipse class="k05-glow" cx="17" cy="22" rx="38" ry="42"/>' +
+      '<rect class="k05-in0" width="34" height="46"/><path class="k05-inl" d="M8.5 0V46M17 0V46M25.5 0V46"/>' +
+      '<rect class="k05-in1" width="34" height="46"/><rect class="k05-floor" y="37" width="34" height="9"/>' +
+      '<rect class="k05-lit0" width="34" height="46"/><rect class="k05-lit1" width="34" height="46"/>' +
+      '<g class="k05-lamp"><path class="k05-ln" d="M17 0V9"/><path class="k05-shade" d="M11 15a6 6 0 0 1 12 0Z"/></g>' +
+      '<rect class="k05-frame" width="34" height="46"/><path class="k05-ln" d="M-3 46H37"/>';
+    D.wins.appendChild(wg);
+    wins.push(wg);
+  }
+
+  var H = 300, GY = 272, W = 760;
+  var FL = -14, WT = -98, WW = 34, WY = -78, DW = 30, DY = -72;
+  function f(n) { return Math.round(n * 10) / 10; }
+  function pt(x, y) { return f(x) + ' ' + f(y); }
+  function box(x, y, bw, bh) { return 'M' + pt(x, y) + 'h' + f(bw) + 'v' + f(bh) + 'h' + f(-bw) + 'Z'; }
+  function rise(hw) { return Math.max(48, Math.min(92, hw * 0.36)); }
+  function layout(hw) {
+    var n = Math.max(1, Math.min(MAXW, Math.floor((hw - 86) / 62)));
+    var gap = (hw - n * WW - DW) / (n + 2), xs = [];
+    for (var i = 0; i < n; i++) xs.push(gap + i * (WW + gap));
+    return { n: n, xs: xs, dx: gap + n * (WW + gap) };
+  }
+  function piles(bw) {
+    var n = Math.max(2, Math.ceil((bw - 10) / 56) + 1), d = '';
+    for (var i = 0; i < n; i++) d += box(5 + Math.max(0, bw - 15) * i / (n - 1), FL, 5, -FL);
+    return d;
+  }
+  function wave(x, y, len) { return 'M' + pt(x, y) + 'q' + f(len / 4) + ' -5 ' + f(len / 2) + ' 0t' + f(len / 2) + ' 0'; }
+
+  function draw(c) {
+    var hw = c.hw, tw = Math.max(c.tw, 0.1), r = rise(hw), th = 9, ex = 12, cx = hw / 2, ay = WT - r;
+    var L = Math.sqrt(cx * cx + r * r), ux = cx / L, uy = r / L;
+    var comp = hw + (c.tw > 0.5 ? c.tw + 8 : 0), top = -WT + r + th / ux + 30;
+    var s = Math.min(1.14, (W - 8) / (comp + 112), (GY - 8) / top);
+    D.scene.setAttribute('transform', 'translate(' + pt(W / 2 - comp * s / 2, GY) + ') scale(' + s.toFixed(4) + ')');
+
+    var wall = 'M0 ' + FL + 'V' + WT + 'L' + pt(cx, ay) + 'L' + pt(hw, WT) + 'V' + FL + 'Z', grain = '';
+    D.wall.setAttribute('d', wall);
+    D.clip.setAttribute('d', wall);
+    for (var x = 12; x < hw - 6; x += 12) grain += 'M' + pt(x, FL - 1) + 'V' + f(WT - r * Math.min(x, hw - x) / cx + 4);
+    D.grain.setAttribute('d', grain);
+    D.piles.setAttribute('d', piles(hw));
+    D.stone.setAttribute('d', box(-2, FL, hw + 4, -FL));
+
+    var eL = [-ux * ex, WT + uy * ex], eR = [hw + ux * ex, WT + uy * ex];
+    D.roof.setAttribute('d', 'M' + pt(eL[0], eL[1]) + 'L' + pt(cx, ay) + 'L' + pt(eR[0], eR[1]) +
+      'L' + pt(eR[0] + uy * th, eR[1] - ux * th) + 'L' + pt(cx, ay - th / ux) + 'L' + pt(eL[0] - uy * th, eL[1] - ux * th) + 'Z');
+
+    for (var i = 0; i < MAXW; i++) wins[i].setAttribute('transform', 'translate(' + pt(c.wx[i], WY) + ')');
+    D.door.setAttribute('d', box(c.dx, DY, DW, FL - DY));
+    D.knob.setAttribute('cx', f(c.dx + DW - 7));
+    D.knob.setAttribute('cy', f((DY + FL) / 2 + 2));
+    D.step.setAttribute('d', box(c.dx - 5, -7, DW + 10, 7));
+
+    D.vent.setAttribute('transform', 'translate(' + pt(cx, ay) + ')');
+    D.grille.setAttribute('cy', f(r * 0.45));
+    D.slat.setAttribute('d', 'M-3.5 ' + f(r * 0.45 - 2) + 'h7M-3.5 ' + f(r * 0.45 + 2) + 'h7');
+    var fy = -th / ux - 9;
+    D.flow.setAttribute('d', wave(-20, fy, 40) + wave(-28, fy - 9, 56) + wave(-14, fy - 18, 28));
+
+    var cw = tw + 8, posts = '', bal = '', k = Math.max(1, Math.ceil((tw - 7) / 90));
+    D.ter.setAttribute('transform', 'translate(' + pt(hw, 0) + ')');
+    D.tpiles.setAttribute('d', piles(tw));
+    D.tstone.setAttribute('d', box(0, FL, tw + 2, -FL));
+    D.tdeck.setAttribute('d', box(0, FL - 5, tw, 5));
+    for (var j = 1; j <= k; j++) {
+      var px = Math.max(0, tw - 7) * j / k;
+      posts += 'M' + pt(px, FL - 5) + 'V' + f(-83 + 16 * px / cw) + 'h5V' + (FL - 5) + 'Z';
+    }
+    D.tposts.setAttribute('d', posts);
+    for (var bx = 6; bx < tw - 3; bx += 9) bal += 'M' + pt(bx, -47) + 'V' + (FL - 5);
+    D.tbal.setAttribute('d', bal);
+    D.trail.setAttribute('d', box(0, -51, tw, 4));
+    D.tcanopy.setAttribute('d', 'M0 -90L' + pt(cw, -74) + 'V-67L0 -83Z');
+  }
+
+  /* плавность — та же кривая, что var(--e), 250 мс */
+  function ease(x) {
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    var lo = 0, hi = 1, t = x, bz = function (p1, p2, u) { return 3 * p1 * u * (1 - u) * (1 - u) + 3 * p2 * u * u * (1 - u) + u * u * u; };
+    for (var i = 0; i < 24; i++) {
+      if (bz(0.32, 0, t) < x) lo = t; else hi = t;
+      t = (lo + hi) / 2;
+    }
+    return bz(0.72, 1, t);
+  }
+  var cur = null, from = null, to = null, t0 = 0, raf = 0;
+  function target(res) {
+    var l = Math.max(20, Math.min(200, res.l)), t = res.t > 0.05 ? Math.min(200, res.t) : 0;
+    var hw = 29 * Math.sqrt(l), lay = layout(hw), wx = [];
+    for (var i = 0; i < MAXW; i++) wx.push(i < lay.n ? lay.xs[i] : lay.dx);
+    return { hw: hw, tw: t ? Math.max(44, 29 * Math.sqrt(t)) : 0, wx: wx, dx: lay.dx, n: lay.n };
+  }
+  function step(now) {
+    var p = Math.min(1, (now - t0) / 250), e = ease(p), m = function (k) { return from[k] + (to[k] - from[k]) * e; };
+    cur = { hw: m('hw'), tw: m('tw'), dx: m('dx'), n: to.n, wx: to.wx.map(function (v, i) { return from.wx[i] + (v - from.wx[i]) * e; }) };
+    draw(cur);
+    raf = p < 1 ? requestAnimationFrame(step) : 0;
+  }
+  function scene(res) {
+    var tg = target(res);
+    wins.forEach(function (g, i) { g.classList.toggle('is-off', i >= tg.n); });
+    if (!cur || still() || !window.requestAnimationFrame) {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      cur = tg;
+      draw(cur);
+      return;
+    }
+    if (!raf && Math.abs(cur.hw - tg.hw) < 0.01 && Math.abs(cur.tw - tg.tw) < 0.01) return;
+    from = cur;
+    to = tg;
+    t0 = performance.now();
+    if (!raf) raf = requestAnimationFrame(step);
+  }
+  function fit() {
+    var b = art.getBoundingClientRect();
+    if (!b.width || !b.height) return;
+    var nw = Math.round(H * b.width / b.height);
+    if (nw === W && svg.getAttribute('data-fit')) return;
+    W = nw;
+    svg.setAttribute('data-fit', '1');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    D.soil.setAttribute('width', W);
+    D.ground.setAttribute('d', 'M0 ' + GY + 'H' + W);
+    if (cur) draw(cur);
+  }
+
+  /* ── перерисовка ── */
+  var cap = byId('k05-cap'), nameEl = byId('k05-name'), lead = byId('k05-glead');
+  function render() {
+    var res = KK.calc(sel), ok = res.state === 'ok';
+    segs.forEach(function (b) {
+      var on = b.getAttribute('data-mode') === sel.mode;
+      b.setAttribute('aria-checked', String(on));
+      b.tabIndex = on ? 0 : -1;
+    });
+    panes.forEach(function (p) { p.hidden = p.getAttribute('data-pane') !== sel.mode; });
+    if (sel.mode === 'project') syncProject();
+
+    cap.classList.toggle('is-over', res.state === 'over');
+    put(cap, res.state === 'over' ? res.message : res.meta);
+    put(nameEl, ok ? res.name : 'Своя площадь');
+
+    res.tiers.forEach(function (t, i) {
+      put(tiers[i].p, KK.rub(t.total));
+      put(tiers[i].add, ok && t.add > 0 ? 'дом ' + KK.rub(t.base) + ' + опции ' + KK.rub(t.add) : '');
+      put(tiers[i].no, ok && t.noPaintIn ? KK.texts.noPaintIn : '');
+      put(barCols[i].querySelector('b'), KK.rub(t.total));
+    });
+
+    res.options.forEach(function (o) {
+      var r = rows[o.key], na = o.ask || (sel.mode === 'area' && o.key === 'paintIn');
+      r.tr.classList.toggle('is-na', na);
+      r.input.disabled = na;
+      r.input.checked = !na && sel.keys.indexOf(o.key) >= 0;
+      put(r.price, na || o.min == null ? '' : (o.same ? '+ ' : '+ от ') + KK.rub(o.min));
+      art.classList.toggle('is-' + o.key, r.input.checked);
+    });
+
+    put(lead, res.giftsLead);
+    res.gifts.forEach(function (g, i) { put(giftVals[i], KK.rub(g.value)); });
+
+    art.classList.toggle('is-idle', !ok);
+    if (ok) {
+      art.classList.toggle('has-ter', res.t > 0.05);
+      scene(res);
+    }
+  }
+
+  fit();
+  if ('ResizeObserver' in window) new ResizeObserver(fit).observe(art);
+  else window.addEventListener('resize', fit);
+  KK.onUpdate(render);
+  render();
+
+  /* на телефоне цены у нижнего края, пока блок цен не на экране */
+  var list = root.querySelector('.k05-tiers');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) { bar.hidden = en[0].isIntersecting; }, { rootMargin: '0px 0px -96px 0px' }).observe(list);
+  } else {
+    bar.hidden = false;
+  }
+  bar.addEventListener('click', function () {
+    byId('k05-res').scrollIntoView({ behavior: still() ? 'auto' : 'smooth', block: 'center' });
+  });
+})();
+</script>
+</body>
+</html>

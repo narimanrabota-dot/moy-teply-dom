@@ -1,0 +1,9 @@
+/* Витрина «Калькулятор дома — 10 концепций»: общее у всех концепций — ссылка «назад» и заголовок страницы.
+   Всё остальное каждая концепция держит у себя, с приставкой классов kNN-. */
+.back{position:relative;display:inline-flex;align-items:center;gap:var(--sp-8);margin-top:var(--sp-24);font-size:var(--fs-xs);font-weight:500;color:var(--clay-txt)}
+.back:hover{color:var(--clay-btn-h)}
+.back i{font-style:normal;transition:transform .2s var(--e)}
+.back:hover i{transform:translateX(-3px)}
+.back::before{content:"";position:absolute;inset:-12px -8px}
+.kk-title{margin:var(--sp-16) 0 0;font-size:clamp(35px,4.2vw,60px);font-weight:600;letter-spacing:-.025em;line-height:1.08}
+@media(prefers-reduced-motion:reduce){.back i{transition:none}}

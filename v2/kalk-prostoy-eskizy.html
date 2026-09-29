@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Простой калькулятор дома</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="theme.css">
+<style>
+body{background:var(--bg);color:var(--ink)}
+.pg{max-width:1240px;margin:0 auto;padding:clamp(32px,6vw,64px) clamp(16px,3.4vw,44px) var(--sp-96)}
+.pg-h{margin:0;font-size:clamp(35px,5vw,60px);font-weight:600;letter-spacing:-.025em;line-height:1.05;text-wrap:balance}
+.pg-lead{max-width:70ch;margin:var(--sp-16) 0 0;font-size:var(--fs-sm);line-height:1.5;color:var(--dim)}
+.pg-lead b{font-weight:600;color:var(--ink)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--sp-24);align-items:start;margin:var(--sp-48) 0 0;padding:0;list-style:none}
+@media(min-width:960px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.card{display:grid;gap:var(--sp-12);min-width:0;padding:var(--sp-16);border-radius:var(--r-shell);background:var(--card);box-shadow:var(--edge),var(--sh-1)}
+.card-h{display:flex;align-items:baseline;gap:var(--sp-12)}
+.card-n{font-size:var(--fs-xl);font-weight:600;line-height:1;color:var(--clay-txt);font-variant-numeric:tabular-nums}
+.card-t{margin:0;font-size:var(--fs-md);font-weight:600;line-height:1.2}
+.card-i{margin:0;font-size:var(--fs-xs);line-height:1.45;color:var(--dim)}
+.scr{min-width:0;overflow:hidden;container-type:inline-size;border-radius:var(--r-inner);background:var(--n-2);box-shadow:inset 0 0 0 1px var(--line)}
+
+/* ── эскиз: общая основа ── */
+.k{--acc:var(--ink);padding:12px;font-size:13px;line-height:1.35;color:var(--ink)}
+.k-wrap{display:grid;gap:14px;min-width:0;padding:14px;border-radius:12px;background:var(--card);box-shadow:var(--edge)}
+.k-st{display:grid;gap:8px;min-width:0}
+.k-sh{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.k-num{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--acc);font-size:12px;font-style:normal;font-weight:600;color:#fff}
+.k-fld{display:flex;align-items:center;justify-content:space-between;height:40px;padding:0 12px;border-radius:8px;background:var(--n-1);box-shadow:inset 0 0 0 1px var(--line);font-size:18px;font-weight:600}
+.k-fld small{font-size:12px;font-weight:400;color:var(--dim)}
+.k-sec{position:relative;border-top:1px solid var(--line)}
+.k-sech{display:grid;grid-template-columns:minmax(0,1fr) auto 10px;align-items:center;gap:4px 8px;padding:9px 0}
+.k-secn{font-weight:600}
+.k-secm{font-size:12px;color:var(--dim);white-space:nowrap}
+.k-sec.on .k-secm{font-weight:600;color:var(--ink)}
+.k-chev{width:7px;height:7px;border-right:1.5px solid var(--dim);border-bottom:1.5px solid var(--dim);transform:translateY(-2px) rotate(45deg)}
+.k-sec.open .k-chev{transform:translateY(2px) rotate(225deg)}
+.k-share{display:none}
+.k-body{padding:0 0 8px}
+.k-o{display:flex;align-items:flex-start;gap:8px;padding:6px 0}
+.k-box{flex:none;position:relative;width:16px;height:16px;margin-top:1px;border-radius:4px;background:var(--card);box-shadow:inset 0 0 0 1.5px var(--n-5)}
+.k-o.on .k-box{background:var(--acc);box-shadow:none}
+.k-o.on .k-box::after{content:"";position:absolute;left:4px;top:4px;width:7px;height:4px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg)}
+.k-on{display:grid;min-width:0}
+.k-d{font-size:11.5px;color:var(--dim)}
+.k-lead{flex:1 1 auto}
+.k-p{flex:none;margin-left:auto;font-size:12px;color:var(--dim);white-space:nowrap;font-variant-numeric:tabular-nums}
+.k-o.on .k-p{font-weight:600;color:var(--ink)}
+.k-rg{padding:6px 0}
+.k-rgt{margin-bottom:2px;font-weight:500}
+.k-r{display:flex;align-items:center;gap:8px;padding:4px 0}
+.k-dot{flex:none;width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--n-5)}
+.k-r.on .k-dot{box-shadow:inset 0 0 0 4px var(--acc)}
+.k-r .k-p{margin-left:auto}
+.k-res{display:grid;gap:8px;padding:12px;border-radius:10px;background:var(--n-1)}
+.k-k{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.k-tot{font-size:26px;font-weight:600;line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.k-pm{font-size:12px;color:var(--dim)}
+.k-rows{display:grid}
+.k-row{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px solid var(--line);font-size:12px}
+.k-row b{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.k-inc,.k-gift{font-size:11.5px;line-height:1.4;color:var(--dim)}
+.k-gift b{font-weight:600;color:var(--ink)}
+.k-act{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.k-btn{display:inline-grid;place-items:center;height:36px;padding:0 16px;border-radius:8px;background:var(--acc);font-weight:600;color:#fff;white-space:nowrap}
+.k-again{font-size:12px;font-weight:600;color:var(--clay-txt)}
+.k-prog,.k-sumline,.k-nav,.k-dock{display:none}
+
+/* ── раскладки ── */
+.k-two{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:10px;align-items:start}
+.k-side{display:grid;grid-template-columns:112px minmax(0,1fr);gap:10px;align-items:start}
+.k-side .k-nav{display:grid;gap:4px}
+.k-nav span{display:flex;align-items:center;gap:6px;padding:8px;border-radius:8px;font-size:12px;font-weight:600;color:var(--dim)}
+.k-nav span.on{background:var(--card);box-shadow:var(--edge);color:var(--ink)}
+.k-nav i{display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--n-3);font-size:10px;font-style:normal;color:var(--ink)}
+.k-nav span.on i{background:var(--ink);color:#fff}
+.k-phone{max-width:300px;margin:0 auto}
+.k-phone .k-dock{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;padding:8px 8px 8px 12px;border-radius:12px;background:var(--card);box-shadow:var(--edge),var(--sh-2)}
+.k-dock b{font-size:15px;font-weight:600;white-space:nowrap}
+@container (max-width:520px){.k-two,.k-side{grid-template-columns:minmax(0,1fr)}.k-side .k-nav{grid-auto-flow:column}}
+
+/* ── 20 видов ── */
+.v-rail .k-sec{padding-left:10px}
+.v-rail .k-sec::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:3px;background:var(--n-3)}
+.v-rail .k-sec.on::before{background:var(--clay)}
+
+.v-line .k-st{position:relative;padding-left:32px}
+.v-line .k-num{position:absolute;left:0;top:0}
+.v-line .k-st::before{content:"";position:absolute;left:10px;top:26px;bottom:-12px;width:2px;background:var(--n-3)}
+.v-line .k-st:last-child::before{display:none}
+
+.v-big .k-num{width:auto;height:auto;background:none;font-size:34px;line-height:1;color:var(--clay-txt)}
+.v-big .k-sh{align-items:baseline;gap:12px;font-size:17px}
+.v-big .k-sec{margin-top:6px;padding:0 10px;border:0;border-radius:8px;background:var(--n-1)}
+
+.v-top .k-prog{display:flex;align-items:center;gap:6px;margin-bottom:10px;font-size:12px;font-weight:600}
+.v-top .k-prog span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.v-top .k-prog b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--ink);font-size:11px;color:#fff}
+.v-top .k-prog i{flex:1;height:2px;background:var(--n-4)}
+.v-top .k-sh .k-num{display:none}
+
+.v-dark .k-res{background:var(--ink);color:#fff}
+.v-dark .k-res .k-k,.v-dark .k-res .k-pm,.v-dark .k-res .k-inc,.v-dark .k-res .k-gift,.v-dark .k-res .k-row span{color:rgb(255 255 255/.72)}
+.v-dark .k-res .k-gift b{color:#fff}
+.v-dark .k-res .k-row{border-color:rgb(255 255 255/.16)}
+.v-dark .k-res .k-btn{background:#fff;color:var(--ink)}
+.v-dark .k-res .k-again{color:#fff}
+
+.v-panels .k-wrap{padding:0;background:none;box-shadow:none}
+.v-panels .k-st{padding:12px;border-radius:12px;background:var(--card);box-shadow:var(--edge)}
+.v-panels .k-sec{margin-top:6px;padding:0 10px;border:0;border-radius:8px;background:var(--n-1)}
+
+.v-chips .k-body{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:10px}
+.v-chips .k-o{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--n-1);box-shadow:inset 0 0 0 1px var(--line)}
+.v-chips .k-o .k-box,.v-chips .k-o .k-d,.v-chips .k-lead{display:none}
+.v-chips .k-o.on{background:var(--ink);box-shadow:none;color:#fff}
+.v-chips .k-o.on .k-p{color:#fff}
+.v-chips .k-rg{flex-basis:100%}
+.v-chips .k-rgc{display:flex;padding:3px;border-radius:8px;background:var(--n-1)}
+.v-chips .k-r{flex:1;justify-content:center;padding:5px 4px;border-radius:6px;font-size:12px}
+.v-chips .k-r .k-dot,.v-chips .k-r .k-p{display:none}
+.v-chips .k-r.on{background:var(--card);box-shadow:var(--edge);font-weight:600}
+
+.v-tiles .k-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding-bottom:10px}
+.v-tiles .k-o{position:relative;display:grid;gap:4px;padding:10px 26px 10px 10px;border-radius:8px;background:var(--card);box-shadow:var(--edge)}
+.v-tiles .k-o .k-box{position:absolute;top:8px;right:8px;border-radius:50%}
+.v-tiles .k-o.on{box-shadow:inset 0 0 0 2px var(--ink)}
+.v-tiles .k-lead{display:none}
+.v-tiles .k-o .k-p{margin-left:0}
+.v-tiles .k-rg{grid-column:1/-1}
+
+.v-dots .k-lead{align-self:flex-end;min-width:12px;margin-bottom:5px;border-bottom:1.5px dotted var(--n-5)}
+.v-dots .k-d{display:none}
+.v-dots .k-p{margin-left:0}
+
+.v-receipt .k-res{border-radius:4px;background:var(--card);box-shadow:var(--edge);border-top:3px dashed var(--n-4);border-bottom:3px dashed var(--n-4)}
+.v-receipt .k-k{text-align:center;letter-spacing:.24em}
+.v-receipt .k-row{border-bottom-style:dashed}
+.v-receipt .k-tot{text-align:right}
+
+.v-clay{--acc:var(--clay-btn)}
+.v-clay .k-secn{color:var(--clay-txt)}
+.v-clay .k-btn{background:var(--ink)}
+
+.v-min .k-wrap{padding:6px;background:none;box-shadow:none}
+.v-min .k-num{background:none;box-shadow:inset 0 0 0 1.5px var(--n-6);color:var(--ink)}
+.v-min .k-res{padding:10px 0 0;border-top:2px solid var(--ink);border-radius:0;background:none}
+.v-min .k-tot{font-size:34px}
+
+.v-cards .k-wrap{padding:0;background:none;box-shadow:none}
+.v-cards .k-st{padding:14px;border-radius:20px;background:var(--card);box-shadow:var(--edge),var(--sh-1)}
+.v-cards .k-sec{margin-top:6px;padding:0 10px;border:0;border-radius:12px;background:var(--n-1)}
+
+.v-share .k-share{display:block;position:relative;grid-column:1/-1;height:4px;border-radius:2px;background:var(--n-2)}
+.v-share .k-share::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);border-radius:2px;background:var(--clay)}
+
+.v-large{font-size:15px}
+.v-large .k-box{width:22px;height:22px}
+.v-large .k-o.on .k-box::after{left:6px;top:6px;width:9px;height:5px;border-width:2px}
+.v-large .k-dot{width:20px;height:20px}
+.v-large .k-r.on .k-dot{box-shadow:inset 0 0 0 6px var(--acc)}
+.v-large .k-o,.v-large .k-r{padding:8px 0}
+.v-large .k-fld{height:52px;font-size:24px}
+
+.v-badges .k-p{padding:2px 8px;border-radius:999px;background:var(--n-1);box-shadow:inset 0 0 0 1px var(--line)}
+.v-badges .k-o.on .k-p{background:var(--ink);box-shadow:none;color:#fff}
+
+.v-summary .k-sumline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:10px;overflow:hidden;border-radius:12px;background:var(--card);box-shadow:var(--edge)}
+.v-summary .k-sumline span{display:grid;gap:2px;padding:8px 10px;font-size:11px;color:var(--dim)}
+.v-summary .k-sumline span+span{box-shadow:inset 1px 0 var(--line)}
+.v-summary .k-sumline b{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap}
+</style>
+
+<main class="pg">
+  <h1 class="pg-h">Простой калькулятор — 20 эскизов</h1>
+  <p class="pg-lead">Везде одна и та же структура, по вашим ответам: <b>1 Площадь → 2 Опции (Снаружи · Внутри · Инженерка) → 3 Итог</b>. Эскизы не работают, это только вид. Пример: дом 100 м², выбраны покраска фасада, электрика, водопровод и канализация, уже нажато «Рассчитать».</p>
+  <p class="pg-lead"><b>Напишите номера, которые нравятся.</b></p>
+  <ol class="grid" id="grid"></ol>
+</main>
+
+<script>
+(function () {
+  var C = [
+    ['01', 'Карточка, как в бюджетном', 'Одна белая карточка, шаги с номерами, у раздела рейка слева.', 'col', 'v-rail'],
+    ['02', 'Линия шагов', 'Номера шагов соединены линией — видно, что за чем.', 'col', 'v-line'],
+    ['03', 'Крупные цифры', 'Большие цифры 1, 2, 3, разделы серыми плашками.', 'col', 'v-big'],
+    ['04', 'Шаги полосой сверху', 'Сверху «1 Площадь — 2 Опции — 3 Итог», ниже всё по порядку.', 'col', 'v-top v-rail'],
+    ['05', 'Итог справа', 'Слева площадь и опции, справа итог.', 'two', 'v-rail'],
+    ['06', 'Тёмный итог', 'Итог — тёмный блок с белыми цифрами.', 'col', 'v-dark v-rail'],
+    ['07', 'Шаги отдельными блоками', 'Каждый шаг — свой белый блок.', 'col', 'v-panels'],
+    ['08', 'Кнопки-чипы', 'Опции — кнопками, выбор одного — переключателем из сегментов.', 'col', 'v-chips'],
+    ['09', 'Плитки', 'Опции — плитками с кружком-галочкой в углу.', 'col', 'v-tiles'],
+    ['10', 'Строки с точками', 'Название и цена на одной строке через точки, как в меню.', 'col', 'v-dots'],
+    ['11', 'Итог — чек', 'Итог оформлен как чек: пунктир, строчки, сумма.', 'col', 'v-receipt v-rail'],
+    ['12', 'Кирпичный акцент', 'Номера, галочки и названия разделов — кирпичного цвета.', 'col', 'v-clay'],
+    ['13', 'Минимализм', 'Без карточек и рамок: линии и воздух, крупный итог.', 'col', 'v-min'],
+    ['14', 'Мягкие карточки', 'Шаги — карточками с тенью, разделы серыми плашками.', 'col', 'v-cards'],
+    ['15', 'Шаги слева', 'Слева список шагов, справа содержимое.', 'side', 'v-rail'],
+    ['16', 'Как в телефоне', 'Узкая колонка, итог и кнопка в полосе внизу.', 'phone', 'v-rail'],
+    ['17', 'Доля в цене', 'Под разделом полоска: какую часть цены он добавляет.', 'col', 'v-share'],
+    ['18', 'Крупно', 'Большие галочки, крупный текст и поле.', 'col', 'v-large v-rail'],
+    ['19', 'Цены-метки', 'Цены опций — метками, выбранные тёмные.', 'col', 'v-badges'],
+    ['20', 'Сводка сверху', 'Над шагами строка: площадь, сколько опций, итог.', 'col', 'v-summary v-rail']
+  ];
+
+  var SEC = [
+    { title: 'Снаружи', meta: '1 опция · +307 000 ₽', w: '6%', on: true, open: false, items: [
+      { r: 'Отделка фасада', c: [['Имитация бруса', 'в цене', 1], ['Сайдинг', '+575 500 ₽'], ['Хауберг', '+671 400 ₽']] },
+      { n: 'Покраска фасада', d: 'стены, фронтоны и свесы', p: '+307 000 ₽', on: 1 },
+      { r: 'Крыша', c: [['Обычная', 'в цене', 1], ['Сложная', '+250 000 ₽']] },
+      { n: 'Водостоки', d: 'по двум длинным сторонам', p: '+50 000 ₽' }
+    ] },
+    { title: 'Внутри', meta: 'не выбрано', w: '0%', on: false, open: true, items: [
+      { r: 'Пол', c: [['ЦСП', 'в цене', 1], ['Ламинат', '+30 000 ₽'], ['Доска', '+160 000 ₽']] },
+      { n: 'Стены выше — 270 см', p: '+100 000 ₽' }
+    ] },
+    { title: 'Инженерка', meta: '2 опции · +850 000 ₽', w: '16%', on: true, open: true, items: [
+      { n: 'Электрика', d: 'розетки, свет, щиток', p: '+450 000 ₽', on: 1 },
+      { n: 'Водопровод и канализация', d: 'кухня и санузел', p: '+400 000 ₽', on: 1 },
+      { n: 'Вентиляция', d: 'приточные клапаны', p: '+100 000 ₽' }
+    ] }
+  ];
+
+  function item(o) {
+    if (o.r) {
+      return '<div class="k-rg"><div class="k-rgt">' + o.r + '</div><div class="k-rgc">' + o.c.map(function (c) {
+        return '<div class="k-r' + (c[2] ? ' on' : '') + '"><i class="k-dot"></i><span>' + c[0] + '</span><span class="k-p">' + c[1] + '</span></div>';
+      }).join('') + '</div></div>';
+    }
+    return '<div class="k-o' + (o.on ? ' on' : '') + '"><i class="k-box"></i><span class="k-on">' + o.n +
+      (o.d ? '<small class="k-d">' + o.d + '</small>' : '') + '</span><i class="k-lead"></i><span class="k-p">' + o.p + '</span></div>';
+  }
+  function sec(s) {
+    return '<div class="k-sec' + (s.on ? ' on' : '') + (s.open ? ' open' : '') + '"><div class="k-sech"><span class="k-secn">' + s.title +
+      '</span><span class="k-secm">' + s.meta + '</span><i class="k-chev"></i><i class="k-share" style="--w:' + s.w + '"></i></div>' +
+      (s.open ? '<div class="k-body">' + s.items.map(item).join('') + '</div>' : '') + '</div>';
+  }
+  function step(n, t, body) {
+    return '<section class="k-st"><div class="k-sh"><i class="k-num">' + n + '</i><span>' + t + '</span></div>' + body + '</section>';
+  }
+  var S1 = step(1, 'Площадь дома', '<div class="k-fld"><span>100</span><small>м²</small></div>');
+  var S2 = step(2, 'Опции', SEC.map(sec).join(''));
+  var S3 = step(3, 'Итог', '<div class="k-res"><span class="k-k">Итого</span><span class="k-tot">5 357 000 ₽</span><span class="k-pm">53 570 ₽ за м²</span>' +
+    '<div class="k-rows"><div class="k-row"><span>Дом 100 м²</span><b>4 200 000 ₽</b></div><div class="k-row"><span>Покраска фасада</span><b>+307 000 ₽</b></div>' +
+    '<div class="k-row"><span>Электрика</span><b>+450 000 ₽</b></div><div class="k-row"><span>Водопровод и канализация</span><b>+400 000 ₽</b></div></div>' +
+    '<span class="k-inc">В цене: винтовые сваи, каркас 145 мм, утепление 150 мм, окна и входная дверь, пол ЦСП, вагонка внутри, кровля, фасад.</span>' +
+    '<span class="k-gift"><b>И 4 подарка на 206 000 ₽:</b> ЖБ сваи, бытовка, проект, выезд инженера.</span>' +
+    '<div class="k-act"><span class="k-btn">Получить расчёт</span><span class="k-again">Начать заново</span></div></div>');
+  var PROG = '<div class="k-prog"><span><b>1</b>Площадь</span><i></i><span><b>2</b>Опции</span><i></i><span><b>3</b>Итог</span></div>';
+  var SUM = '<div class="k-sumline"><span>Площадь<b>100 м²</b></span><span>Опций<b>3</b></span><span>Итого<b>5 357 000 ₽</b></span></div>';
+  var NAV = '<nav class="k-nav"><span><i>1</i>Площадь</span><span class="on"><i>2</i>Опции</span><span><i>3</i>Итог</span></nav>';
+  var DOCK = '<div class="k-dock"><b>5 357 000 ₽</b><span class="k-btn">Рассчитать</span></div>';
+
+  function mock(layout) {
+    if (layout === 'two') return '<div class="k-two"><div class="k-wrap">' + S1 + S2 + '</div><div class="k-wrap">' + S3 + '</div></div>';
+    if (layout === 'side') return '<div class="k-side">' + NAV + '<div class="k-wrap">' + S1 + S2 + S3 + '</div></div>';
+    if (layout === 'phone') return '<div class="k-phone"><div class="k-wrap">' + S1 + S2 + S3 + '</div>' + DOCK + '</div>';
+    return SUM + PROG + '<div class="k-wrap">' + S1 + S2 + S3 + '</div>';
+  }
+
+  document.getElementById('grid').innerHTML = C.map(function (c) {
+    return '<li class="card"><div class="card-h"><span class="card-n">' + c[0] + '</span><h2 class="card-t">' + c[1] + '</h2></div>' +
+      '<p class="card-i">' + c[2] + '</p><div class="scr"><div class="k ' + c[4] + '">' + mock(c[3]) + '</div></div></li>';
+  }).join('');
+})();
+</script>
+</html>

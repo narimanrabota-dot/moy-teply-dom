@@ -1,0 +1,226 @@
+/* ── Витрина: 10 концепций, похожих на вариант 19 «Вокруг вашего дома» (preimushchestva-20.html#v19) ──
+   Каркас витрины и общие классы pv- — в preimushchestva-20.css. Здесь — раскладки «дом в центре», приставка pk-.
+   Шкалы сайта: шрифт 35/29/24/20/17/14/12, отступы 4–96, скругления 8/12/20, тени --edge, --sh-1, --sh-2. */
+
+/* ── общее ── */
+.pk{display:grid;justify-items:center;text-align:center}
+.pk > .pv-h{max-width:30ch}
+.pk-lead{margin-inline:auto;text-align:center}
+.pk > .pv-cta{margin-top:var(--sp-24)}
+.pk-photo{border-radius:50%;background-color:var(--n-3);background-size:cover;background-repeat:no-repeat;
+  box-shadow:0 0 0 10px var(--card),0 0 0 11px var(--n-3),var(--sh-2)}
+.pk-bub{display:grid;place-items:center;flex:none;width:var(--bub,48px);height:var(--bub,48px);border-radius:50%;
+  background:var(--card);box-shadow:var(--edge),var(--sh-1);color:var(--clay)}
+.pk-bub .pv-i{width:calc(var(--bub,48px) * .5);height:calc(var(--bub,48px) * .5)}
+.pk-lab{min-width:0}
+.pk-lab b{display:block;font-size:var(--fs-sm);font-weight:600;line-height:1.25}
+.pk-lab .pv-ref{display:block;margin-top:2px}
+.pk-s{display:block;margin-top:2px;font-size:var(--fs-xs);line-height:1.4;color:var(--dim)}
+
+/* ── орбита: 01, 04, 10 — пункты по кругу вокруг фото, подписи снаружи ── */
+.pk-orbit{--R:220px;--D:290px;--H:480px;--bub:48px;--lab:200px;position:relative;width:100%;height:var(--H);margin-top:var(--sp-24)}
+.pk-orbit__ring{position:absolute;left:50%;top:50%;width:calc(var(--R) * 2);height:calc(var(--R) * 2);
+  border:1.5px dashed var(--n-5);border-radius:50%;transform:translate(-50%,-50%)}
+.pk-orbit__photo{position:absolute;left:50%;top:50%;width:var(--D);height:var(--D);transform:translate(-50%,-50%)}
+.pk-orbit > ul,.pk-orbit > ol{margin:0;padding:0;list-style:none}
+.pk-o{position:absolute;left:calc(50% + var(--x) * var(--R) * var(--rk,1));top:calc(50% + var(--y) * var(--R) * var(--rk,1));
+  display:flex;align-items:center;gap:var(--sp-12);width:max-content;max-width:calc(var(--lab) + var(--bub) + 12px);text-align:left}
+.pk-o--r{transform:translate(calc(var(--bub) / -2),-50%)}
+.pk-o--l{flex-direction:row-reverse;text-align:right;transform:translate(calc(-100% + var(--bub) / 2),-50%)}
+
+/* 04 — маршрут: номера по порядку, пунктир кирпичного цвета, стрелка направления */
+.pk4__ring{border:2px dashed rgb(224 96 60/.5)}
+.pk4__arrow{position:absolute;left:50%;top:calc(50% - var(--R));width:12px;height:12px;
+  border-top:2px solid var(--clay);border-right:2px solid var(--clay);transform:translate(-50%,-50%) rotate(45deg)}
+.pk4__num{background:var(--clay-btn);color:#fff;font-size:var(--fs-sm);font-weight:600;font-variant-numeric:tabular-nums;box-shadow:0 0 0 6px var(--bg)}
+
+/* 10 — главное ближе и крупнее */
+.pk10__stage{--D:268px;--H:510px}
+.pk10--L{--bub:64px}
+.pk10--M{--bub:50px}
+.pk10--S{--bub:40px}
+.pk10--L .pk-bub{background:var(--clay-btn);color:#fff}
+.pk10--L .pk-lab b{font-size:var(--fs-md)}
+.pk10--S .pk-lab b{font-size:var(--fs-xs)}
+
+/* ── 02 — выноски: линия от подписи до края круга ── */
+.pk2__wrap{--D:360px;--G:56px;display:grid;grid-template-columns:minmax(0,1fr) var(--D) minmax(0,1fr);align-items:center;
+  column-gap:var(--G);width:100%;margin-top:var(--sp-32)}
+.pk2__photo{width:var(--D);height:var(--D)}
+.pk2__col{display:grid;grid-template-rows:repeat(5,minmax(0,1fr));height:var(--D);margin:0;padding:0;list-style:none}
+.pk2__col li{position:relative;display:flex;align-items:center;gap:var(--sp-12);align-self:center}
+.pk2__col li > .pv-i{width:22px;height:22px;color:var(--clay)}
+.pk2__col--l li{flex-direction:row-reverse;justify-self:end;text-align:right}
+.pk2__col--r li{justify-self:start;text-align:left}
+.pk2__col li::after{content:"";position:absolute;top:50%;width:calc(var(--G) + var(--D) * var(--k) - 16px);height:1px;background:var(--n-6)}
+.pk2__col--l li::after{left:calc(100% + 12px)}
+.pk2__col--r li::after{right:calc(100% + 12px)}
+.pk2__col li::before{content:"";position:absolute;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--clay)}
+.pk2__col--l li::before{left:calc(100% + var(--G) + var(--D) * var(--k) - 4px)}
+.pk2__col--r li::before{right:calc(100% + var(--G) + var(--D) * var(--k) - 4px)}
+
+/* ── 03 — сверху и снизу ── */
+.pk3__stage{display:grid;justify-items:center;row-gap:var(--sp-16);width:100%;margin-top:var(--sp-24)}
+.pk3__row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--sp-16);width:100%;margin:0;padding:0;list-style:none}
+.pk3__row li{display:flex;flex-direction:column;align-items:center;gap:var(--sp-8);min-width:0;text-align:center;transform:translateY(var(--dy,0px))}
+.pk3__row--t li{flex-direction:column-reverse}
+.pk3__photo{width:260px;height:260px}
+
+/* ── 05 — три дуги по темам ── */
+.pk5__wrap{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);grid-template-areas:"l p r" "b b b";align-items:center;
+  gap:var(--sp-24) var(--sp-48);width:100%;margin-top:var(--sp-24)}
+.pk5__photo{grid-area:p;width:280px;height:280px}
+.pk5__g{display:grid;gap:var(--sp-12)}
+.pk5__g--l{grid-area:l;justify-items:end;text-align:right}
+.pk5__g--r{grid-area:r;justify-items:start;text-align:left}
+.pk5__g--b{grid-area:b;justify-items:center}
+.pk5__lbl{margin:0;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--clay-txt)}
+.pk5__g ul{display:grid;gap:var(--sp-16);margin:0;padding:0;list-style:none}
+.pk5__g--b ul{grid-template-columns:repeat(3,minmax(0,240px));column-gap:var(--sp-32)}
+.pk5__g li{display:flex;align-items:center;gap:var(--sp-12)}
+.pk5__g--l li{flex-direction:row-reverse;padding-right:var(--o,0px)}
+.pk5__g--r li{padding-left:var(--o,0px)}
+.pk5__g--b li{flex-direction:column;text-align:center;transform:translateY(var(--o,0px))}
+
+/* ── 06 — плашки на рамке фото ── */
+.pk6__stage{position:relative;width:calc(100% - 220px);margin:var(--sp-48) auto var(--sp-16)}
+.pk6__photo{height:clamp(340px,48svh,440px);border-radius:var(--r-shell);background-color:var(--n-3);background-size:cover;box-shadow:var(--edge),var(--sh-1)}
+.pk6__chips{margin:0;padding:0;list-style:none}
+.pk6__chip{position:absolute;left:var(--l);top:var(--t);display:flex;align-items:center;gap:var(--sp-8);width:212px;
+  padding:var(--sp-8) var(--sp-12) var(--sp-8) var(--sp-8);border-radius:var(--r-inner);background:var(--card);box-shadow:var(--edge),var(--sh-2);
+  text-align:left;transform:translate(-50%,-50%)}
+.pk6__chip > .pv-i{width:36px;height:36px;padding:8px;border-radius:50%;background:oklch(94.5% .03 45);color:var(--clay-btn)}
+.pk6__chip .pk-lab b{font-size:var(--fs-xs)}
+
+/* ── 07 — тёмная, как первый экран ── */
+.pk7{padding:clamp(28px,3.4vw,40px) clamp(16px,4vw,48px);border-radius:var(--r-shell);background:#141C2E;color:#fff}
+.pk7 .pv-h span{color:#F2A27D}
+.pk7__wrap{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:var(--sp-40);width:100%;margin-top:var(--sp-24)}
+.pk7__photo{width:clamp(240px,24vw,300px);height:auto;aspect-ratio:1;
+  box-shadow:0 0 0 10px rgb(255 255 255/.06),0 0 0 11px rgb(255 255 255/.16),0 0 80px rgb(242 162 125/.3)}
+.pk7__side{display:grid;gap:var(--sp-16);margin:0;padding:0;list-style:none}
+.pk7__side li{display:flex;align-items:flex-start;gap:var(--sp-12)}
+.pk7__side--l li{flex-direction:row-reverse;text-align:right}
+.pk7__side--r li{text-align:left}
+.pk7__side li > .pv-i{width:40px;height:40px;padding:9px;border-radius:50%;background:rgb(255 255 255/.08);color:#F2A27D}
+.pk7 .pk-s{color:rgb(255 255 255/.8)}
+.pk7 .pv-ref{color:#F2A27D}
+.pk7__btn{min-height:48px;background:#fff;color:#141C2E;box-shadow:none}
+.pk7__btn:hover{background:var(--n-2)}
+
+/* ── 08 — круг с подсказками ── */
+.pk8__wrap{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:var(--sp-48);width:100%;margin-top:var(--sp-24);text-align:left}
+.pk8__stage{--R:170px;--D:220px;position:relative;width:calc((var(--R) + 26px) * 2);height:calc((var(--R) + 26px) * 2)}
+.pk8__photo{position:absolute;left:50%;top:50%;width:var(--D);height:var(--D);transform:translate(-50%,-50%)}
+.pk8__stage ul{margin:0;padding:0;list-style:none}
+.pk8__dl{position:absolute;left:calc(50% + var(--x) * var(--R));top:calc(50% + var(--y) * var(--R));transform:translate(-50%,-50%)}
+.pk8__dot{display:grid;place-items:center;width:52px;height:52px;padding:0;border:0;border-radius:50%;background:var(--card);
+  box-shadow:var(--edge),var(--sh-1);color:var(--clay);cursor:pointer;transition:background .2s var(--e),color .2s var(--e),transform .2s var(--e)}
+.pk8__dot:hover{transform:scale(1.06)}
+.pk8__dot.is-on{background:var(--clay-btn);color:#fff}
+.pk8__list{display:grid;grid-auto-flow:column;grid-template-rows:repeat(5,auto);grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;
+  gap:2px var(--sp-16);margin:0;padding:0;list-style:none}
+.pk8__row{border-radius:var(--r-inner);transition:background .2s var(--e)}
+.pk8__rb{display:grid;grid-template-columns:24px minmax(0,1fr) auto;align-items:center;gap:var(--sp-12);width:100%;min-height:44px;
+  padding:var(--sp-8) var(--sp-12);border:0;border-radius:var(--r-inner);background:none;font:inherit;color:var(--ink);text-align:left;cursor:pointer}
+.pk8__rb .pv-i{color:var(--clay)}
+.pk8__rb b{font-size:var(--fs-sm);font-weight:600;line-height:1.25}
+.pk8__row p{display:none;margin:0;padding:0 var(--sp-12) var(--sp-12) 48px;font-size:var(--fs-xs);line-height:1.45;color:var(--dim)}
+.pk8__row.is-on{background:var(--card);box-shadow:var(--edge)}
+.pk8__row.is-on p{display:block}
+.pv-sec .pk button:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+
+/* ── 09 — дом в арке ── */
+.pk9__wrap{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;column-gap:var(--sp-48);width:100%;margin-top:var(--sp-32)}
+.pk9__arch{width:300px;height:400px;border-radius:150px 150px var(--r-shell) var(--r-shell);background-color:var(--n-3);background-size:cover;
+  box-shadow:0 0 0 10px var(--card),0 0 0 11px var(--n-3),var(--sh-2)}
+.pk9__side{display:grid;grid-template-rows:repeat(5,minmax(0,1fr));height:400px;margin:0;padding:0;list-style:none}
+.pk9__side li{display:flex;align-items:center;gap:var(--sp-12);align-self:center;transform:translateX(var(--dx,0px))}
+.pk9__side--l li{flex-direction:row-reverse;justify-self:end;text-align:right}
+.pk9__side--r li{justify-self:start;text-align:left}
+
+/* дуги 07 — только на широком экране: средние строки дальше от круга */
+@media(min-width:1121px){
+  .pk7__side--l li:nth-child(2),.pk7__side--l li:nth-child(4){padding-right:16px}
+  .pk7__side--l li:nth-child(3){padding-right:32px}
+  .pk7__side--r li:nth-child(2),.pk7__side--r li:nth-child(4){padding-left:16px}
+  .pk7__side--r li:nth-child(3){padding-left:32px}
+}
+
+/* ── ноутбуки 1121–1300 px: круг и отступы меньше, чтобы блок был не выше шапки ── */
+@media(min-width:1121px) and (max-width:1300px){
+  .pk-orbit{--R:200px;--D:262px;--H:450px}
+  .pk10__stage{--R:204px;--D:244px;--H:470px}
+  .pk3__photo{width:220px;height:220px}
+  .pk7__photo{width:250px}
+  .pk7__side{gap:var(--sp-12)}
+}
+
+/* ── небольшие ноутбуки и планшеты лёжа ── */
+@media(max-width:1120px){
+  .pk-orbit{--R:188px;--D:240px;--H:440px;--bub:44px;--lab:160px}
+  .pk-orbit .pk-lab b{font-size:15px}
+  .pk10__stage{--R:198px;--D:214px;--H:470px}
+  .pk10--L{--bub:56px}
+  .pk10--M{--bub:46px}
+  .pk10--S{--bub:38px}
+  .pk2__wrap{--D:300px;--G:40px}
+  .pk3__photo{width:230px;height:230px}
+  .pk5__photo{width:240px;height:240px}
+  .pk5__g li{padding:0}
+  .pk6__stage{width:calc(100% - 200px)}
+  .pk6__chip{width:196px}
+  .pk9__arch{width:260px;height:360px;border-radius:130px 130px var(--r-shell) var(--r-shell)}
+  .pk9__side{height:360px}
+  .pk8__wrap{gap:var(--sp-32)}
+  .pk8__stage{--R:148px;--D:186px}
+}
+@media(max-width:1000px){
+  .pk6__stage{width:100%;margin-top:var(--sp-24)}
+  .pk6__photo{height:260px}
+  .pk6__chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-8);margin-top:var(--sp-16)}
+  .pk6__chip{position:static;width:auto;box-shadow:var(--edge);transform:none}
+}
+
+/* ── телефон и планшет стоя: фото сверху, пункты в две колонки ── */
+@media(max-width:900px){
+  .pk > .pv-h{max-width:none}
+  .pk-orbit,.pk2__wrap,.pk3__stage,.pk5__wrap,.pk7__wrap,.pk9__wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:none;
+    align-items:start;gap:var(--sp-16);height:auto;text-align:left}
+  .pk-orbit__ring,.pk4__arrow{display:none}
+  .pk-orbit__photo,.pk2__photo,.pk3__photo,.pk5__photo,.pk7__photo{position:static;grid-area:auto;grid-column:1 / -1;order:-1;justify-self:center;
+    width:min(240px,64vw);height:auto;aspect-ratio:1;margin:var(--sp-8) 0 var(--sp-16);transform:none}
+  .pk9__arch{grid-column:1 / -1;order:-1;justify-self:center;width:min(210px,58vw);height:auto;aspect-ratio:3 / 4;margin:var(--sp-8) 0 var(--sp-16);
+    border-radius:50% 50% var(--r-shell) var(--r-shell) / 38% 38% var(--r-shell) var(--r-shell)}
+  .pk-orbit > ul,.pk-orbit > ol,.pk2__col,.pk3__row,.pk5__g,.pk5__g ul,.pk7__side,.pk9__side{display:contents}
+  .pk5__lbl{display:none}
+  .pk-o,.pk-o--l,.pk-o--r,.pk2__col li,.pk3__row li,.pk5__g li,.pk7__side li,.pk9__side li{position:static;flex-direction:row;align-items:center;justify-self:stretch;
+    width:auto;max-width:none;padding:0;text-align:left;transform:none}
+  .pk2__col li::before,.pk2__col li::after{display:none}
+  .pk-orbit,.pk3__stage,.pk5__wrap,.pk9__wrap{--bub:40px}
+  .pk10--L,.pk10--M,.pk10--S{--bub:40px}
+  .pk10--L .pk-lab b,.pk10--S .pk-lab b{font-size:var(--fs-sm)}
+  .pk-orbit .pk-lab b{font-size:var(--fs-sm)}
+  .pk7__side li{align-items:flex-start}
+  .pk8__wrap{grid-template-columns:minmax(0,1fr);justify-items:center}
+  .pk8__stage{--R:124px;--D:150px}
+  .pk8__dot{width:44px;height:44px}
+  .pk8__list{width:100%}
+  .pk8__rb{grid-template-columns:20px minmax(0,1fr);gap:var(--sp-8);padding:var(--sp-8)}
+  .pk8__rb .pv-ref{display:none}
+  .pk8__row p{padding:0 var(--sp-8) var(--sp-8) 36px}
+}
+@media(max-width:560px){
+  .pk7 .pk-s{display:none}
+}
+@media(max-width:480px){
+  .pk-orbit,.pk3__stage,.pk5__wrap,.pk9__wrap,.pk10--L,.pk10--M,.pk10--S{--bub:32px}
+  .pk-o,.pk-o--l,.pk-o--r,.pk2__col li,.pk3__row li,.pk5__g li,.pk7__side li,.pk9__side li{gap:var(--sp-8)}
+  .pk-lab b,.pk-orbit .pk-lab b,.pk10--L .pk-lab b,.pk10--S .pk-lab b{font-size:var(--fs-xs)}
+  .pk7__side li > .pv-i{width:32px;height:32px;padding:7px}
+  .pk6__chip{padding:var(--sp-8) var(--sp-12)}
+  .pk6__chip > .pv-i{display:none}
+  .pk8__stage{--R:108px;--D:128px}
+  .pk8__rb b{font-size:var(--fs-xs)}
+}
+@media(prefers-reduced-motion:reduce){.pk *{transition:none !important}}

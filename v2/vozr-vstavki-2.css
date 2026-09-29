@@ -1,0 +1,138 @@
+/* ── Вставки по сайту: возражения 4–6 ──
+   Дополнения к sroki-mesta.css (ms-) и sroki-mesta-20.css (m2-). Свои классы — только с приставкой vj-.
+   Кнопки в макетах синие, ссылки и значки кирпичные. Отступы — шкала 4·8·12·16·24·32·48·64·96. */
+
+/* ── группа возражения ── */
+.vj-gh{display:grid;gap:var(--sp-12);margin-top:var(--sp-96);padding-top:var(--sp-32);border-top:1px solid var(--line);scroll-margin-top:var(--sp-24)}
+.vj-gh .ms-k{margin:0}
+.vj-gt{margin:0;font-size:var(--fs-xl);font-weight:600;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+.vj-gl{margin:0;max-width:75ch;font-size:var(--fs-sm);line-height:1.5;color:var(--dim)}
+.vj-facts{margin-top:0}
+.vj-facts ul{margin:var(--sp-12) 0 0;padding:var(--sp-16) var(--sp-24);list-style:none;display:grid;gap:var(--sp-8);max-width:75ch;
+  border-radius:var(--r-inner);background:var(--card);box-shadow:var(--edge)}
+.vj-facts li{position:relative;padding-left:var(--sp-16);font-size:var(--fs-xs);line-height:1.5}
+.vj-facts li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:999px;background:var(--clay-btn)}
+.vj-toc{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:var(--sp-8)}
+.vj-toc a{display:inline-flex;align-items:center;gap:var(--sp-8);min-height:40px;padding:0 var(--sp-12);border-radius:999px;
+  background:var(--card);box-shadow:var(--edge);color:var(--ink);font-size:var(--fs-xs);text-decoration:none;transition:box-shadow .2s var(--e)}
+.vj-toc a:hover{box-shadow:var(--edge),var(--sh-1)}
+.vj-toc a:focus-visible,.vj-top:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+.vj-toc b{font-weight:600;color:var(--clay-txt);font-variant-numeric:tabular-nums}
+.vj-top{display:inline-block;margin-top:var(--sp-48);font-size:var(--fs-xs);font-weight:500;color:var(--clay-txt)}
+.vj-gh .ms-k{scroll-margin-top:var(--sp-32)}
+.vj-nav li:not(:last-child)::after{content:none}
+
+/* ── мелкие части макетов ── */
+.vj-sub{display:block;margin-top:var(--sp-4);font-size:var(--fs-xs);font-weight:400;line-height:1.45;color:var(--dim)}
+.vj-mt{margin-top:var(--sp-16)}
+.vj-btn-alt{background:var(--card);color:var(--ink);box-shadow:var(--edge)}
+
+/* отзывы и ролики */
+.vj-revh{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--sp-4) var(--sp-12);margin-top:var(--sp-24)}
+.vj-revh b{font-size:var(--fs-sm);font-weight:600}
+.vj-revh span{font-size:var(--fs-xs);color:var(--dim)}
+.vj-fig{position:relative}
+.vj-fig figcaption .ms-new{margin:var(--sp-24) 0 var(--sp-4);font-weight:400}
+.vj-fig figcaption .m2-link{font-weight:500}
+.vj-pop .ms-line{margin-top:var(--sp-4)}
+.vj-tag{position:absolute;left:var(--sp-12);right:var(--sp-12);top:var(--sp-16);margin:0;color:var(--ink);font-size:var(--fs-xs);line-height:1.4}
+
+/* таблица карточки */
+.vj-pill{display:inline-flex;align-items:center;min-height:28px;padding:0 var(--sp-8);border-radius:999px;font-size:var(--fs-xs);line-height:1.2}
+.vj-pill--val{background:#E1F1E7;color:#1D6A3E}
+.vj-pill--no{background:var(--n-2);color:var(--dim)}
+.vj-pill--size{background:var(--ink);color:#fff}
+.vj-sec{display:inline-flex;align-items:center;gap:var(--sp-8);font-weight:600}
+.vj-dot{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:999px;border:1.5px solid var(--clay-btn);
+  color:var(--clay-txt);font-size:12px;font-weight:600;font-style:normal;line-height:1}
+.vj-pop{position:relative;max-width:420px;margin:var(--sp-24) 0 var(--sp-8) var(--sp-16);box-shadow:var(--sh-2)}
+.vj-pop::after{content:"";position:absolute;top:-8px;left:var(--sp-48);width:14px;height:14px;background:var(--card);transform:rotate(45deg);
+  box-shadow:-1px -1px 0 rgb(0 0 0/.04)}
+.vj .ms-tbl__r--h .m2-mark{display:inline-block;justify-self:start;margin-top:var(--sp-4);color:var(--ink);font-size:12px;font-weight:600;line-height:1.5}
+
+/* окно */
+.vj-q{margin:var(--sp-8) 0 0;padding:0 0 0 var(--sp-24);display:grid;gap:var(--sp-8);font-size:var(--fs-xs);line-height:1.45}
+.vj-q li::marker{color:var(--clay-txt);font-weight:600}
+
+/* «Как заказать» */
+.vj-phb{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--sp-8);padding-bottom:var(--sp-12);
+  border-bottom:1px solid var(--line)}
+.vj-phb b{font-size:var(--fs-sm);font-weight:600}
+.vj-phb span{font-size:var(--fs-xs);color:var(--dim)}
+.vj-strip{margin:var(--sp-12) 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-8);counter-reset:s}
+.vj-strip li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:var(--sp-8);align-items:center;padding:var(--sp-8) var(--sp-12);
+  border-radius:var(--r-tight);background:var(--n-1);font-size:var(--fs-xs);font-weight:500;line-height:1.3;counter-increment:s}
+.vj-strip li::before{content:counter(s);display:grid;place-items:center;width:24px;height:24px;border-radius:999px;background:var(--ink);
+  color:#fff;font-size:12px;font-weight:600}
+.vj-strip + .ms-line{margin-top:var(--sp-12)}
+.vj-chip{display:inline-flex;align-items:center;min-height:28px;margin-top:var(--sp-8);padding:0 var(--sp-12);border-radius:999px;
+  background:#FBEDE6;color:var(--clay-txt);font-size:var(--fs-xs);font-weight:600}
+.ms-new > .vj-chip:first-child{margin-top:0}
+.vj-steps .m2-mark{color:var(--ink)}
+.vj-tip{position:relative;max-width:360px;margin-top:var(--sp-16);padding:var(--sp-12) var(--sp-16);border-radius:var(--r-inner);background:var(--card);
+  box-shadow:var(--sh-2);font-size:var(--fs-xs);line-height:1.5}
+.vj-tip::after{content:"";position:absolute;top:-7px;left:var(--sp-24);width:12px;height:12px;background:var(--card);transform:rotate(45deg)}
+.vj-nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-8);margin-top:var(--sp-12)}
+.vj-num{display:grid;align-content:start;gap:var(--sp-4);min-width:0;padding:var(--sp-12);border-radius:var(--r-inner);background:var(--n-1)}
+.vj-num b{font-size:var(--fs-lg);font-weight:600;letter-spacing:-.015em;line-height:1.1;font-variant-numeric:tabular-nums}
+.vj-num small{font-size:var(--fs-xs);font-weight:500}
+.vj-num span{font-size:12px;line-height:1.4;color:var(--dim)}
+
+/* вопрос-ответ */
+.vj-faq{display:grid;gap:var(--sp-8)}
+.vj-faq > b{font-size:var(--fs-sm);font-weight:600;line-height:1.3}
+.vj-faq p{margin:0;font-size:var(--fs-xs);line-height:1.5}
+.vj-faq + .ms-tail{margin-top:var(--sp-24)}
+.vj-faq .ms-5{margin-top:var(--sp-4)}
+
+/* «Как строим» — шаги выезда */
+.vj-steps{margin:var(--sp-16) 0 0;padding:0;list-style:none;display:grid;gap:var(--sp-12)}
+.vj-steps li{display:grid;gap:var(--sp-4);padding:var(--sp-12) var(--sp-16);border-radius:var(--r-inner);background:var(--n-1)}
+.vj-steps li > span:first-child{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--clay-txt)}
+.vj-steps b{font-size:var(--fs-sm);font-weight:600;line-height:1.3}
+.vj-steps p{margin:0;font-size:var(--fs-xs);line-height:1.5;color:var(--dim)}
+.vj-steps .ms-new{margin-top:var(--sp-16)}
+.vj-cover-empty{background:var(--n-3)}
+.m2-cover.vj-fig{position:relative;align-items:flex-end}
+.vj-cover-tag{position:absolute;left:var(--sp-12);top:var(--sp-24);max-width:calc(100% - var(--sp-24));margin:0}
+
+/* пример сметы */
+.vj-smeta{width:100%;min-width:560px;border-collapse:collapse;border-radius:var(--r-inner);overflow:hidden;background:var(--card);box-shadow:var(--edge);
+  font-size:var(--fs-xs);line-height:1.4}
+.vj-smeta th{padding:var(--sp-12);background:var(--ink);color:#fff;font-weight:600;text-align:left}
+.vj-smeta td{padding:var(--sp-12);border-top:1px solid var(--line)}
+.vj-smeta .vj-hl td{background:#FBEDE6;border-top:2px dashed var(--clay-btn);border-bottom:2px dashed var(--clay-btn)}
+
+/* первый экран */
+.vj-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-12)}
+.vj-stats--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.vj-mt8{margin-top:var(--sp-8)}
+.ms-obj .vj-plan{background-color:var(--card);background-size:contain;background-repeat:no-repeat}
+.vj-stat{display:grid;align-content:start;gap:var(--sp-4);min-width:0}
+.vj-stat b{font-size:var(--fs-md);font-weight:600;line-height:1.1;text-shadow:none;font-variant-numeric:tabular-nums}
+.vj-stat small{font-size:var(--fs-xs);font-weight:500}
+.vj-stat span{font-size:12px;line-height:1.4;color:var(--dim)}
+
+/* меню */
+.vj .m2-nav .m2-mark{color:var(--ink)}
+.vj-menu{display:grid;justify-items:start;gap:var(--sp-8)}
+.vj-menu .ms-new{display:grid;justify-items:start;gap:var(--sp-8);margin-top:var(--sp-16)}
+.m2-box > .vj-revh:first-child{margin-top:0}
+.ms-new > .vj-nums:first-child{margin-top:0}
+.m2-cover.vj-fig{min-height:180px}
+
+/* подвал */
+.vj-req{margin:var(--sp-4) 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-8) var(--sp-24);width:100%}
+.vj-req div{display:grid;gap:var(--sp-4);min-width:0}
+.vj-req dt{font-size:12px;opacity:.7}
+.vj-req dd{margin:0;font-size:var(--fs-xs)}
+
+@media(max-width:560px){
+  .vj-gh{margin-top:var(--sp-64);padding-top:var(--sp-24)}
+  .vj-gt{font-size:var(--fs-lg)}
+  .vj-facts ul{padding:var(--sp-12) var(--sp-16)}
+  .vj .m2-conds,.vj-strip,.vj-nums,.vj-stats,.vj-req{grid-template-columns:1fr}
+  .vj-pop{margin-left:0}
+  /* пропорция 16:7 при высоте 180 px раздвигала обложку шире экрана */
+  .m2-cover.vj-fig{aspect-ratio:auto}
+}

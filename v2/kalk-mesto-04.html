@@ -1,0 +1,1536 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Место 4 · Парма 10 × 8 — каркасный дом, 101,6 м² · Мой тёплый дом</title>
+<meta name="description" content="Каркасный дом «Парма» 10 × 8 м, 101,6 м² с террасой. Фото снаружи и внутри, планировки, комплектация и цены.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=45">
+<link rel="stylesheet" href="theme.css?v=41">
+<link rel="stylesheet" href="card.css?v=65">
+<link rel="stylesheet" href="foot.css?v=3">
+<meta name="robots" content="noindex,nofollow">
+<style>
+/* Калькулятор дома. Размер и место — как у бюджетного калькулятора: колонка 560 px по центру страницы,
+   заголовок внутри карточки, плотные строки. Оформление — шкалы сайта. Классы с приставкой kn-. */
+.kn{--kn-edge:var(--n-4);--kn-soft:var(--n-3);max-width:560px;margin:0 auto var(--sp-64)}   /* контуры и разделители — толще и темнее, чтобы карточка не сливалась со страницей */
+.kn [hidden]{display:none!important}
+.kn-card{min-width:0;margin-top:var(--sp-16);padding:var(--sp-24);border:2px solid var(--kn-edge);border-radius:var(--r-shell);background:var(--card);box-shadow:var(--sh-2)}
+.kn-top{margin-bottom:var(--sp-16);padding-bottom:var(--sp-12);border-bottom:2px solid var(--kn-edge)}
+.kn-h{margin:0;font-size:var(--fs-md);font-weight:600;line-height:1.25;letter-spacing:-.01em;text-wrap:balance}
+
+/* поля */
+.kn-fld{display:grid;gap:var(--sp-8);min-width:0;margin-bottom:var(--sp-12)}
+.kn-lbl{font-size:var(--fs-xs);font-weight:500}
+.kn-in,.kn-sel{width:100%;min-width:0;height:var(--tap);padding:0 var(--sp-12);border:0;border-radius:var(--r-inner);background-color:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-edge);font:inherit;font-size:var(--fs-sm);font-weight:500;color:var(--ink);outline:0;transition:box-shadow .2s var(--e),background-color .2s var(--e)}
+.kn-in{font-variant-numeric:tabular-nums}
+.kn-in:focus,.kn-sel:focus{background-color:var(--card);box-shadow:inset 0 0 0 2px var(--ink)}
+.kn-sel{appearance:none;-webkit-appearance:none;padding-right:var(--sp-32);text-overflow:ellipsis;cursor:pointer;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23616D85' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat:no-repeat;background-position:right var(--sp-12) center}
+.kn-hint{margin:0;font-size:var(--fs-xs);line-height:1.4;color:var(--dim);text-wrap:pretty}
+.kn-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--sp-12)}
+.kn-line{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-12);min-height:var(--tap);margin-bottom:var(--sp-8);font-size:var(--fs-xs);font-weight:500;cursor:pointer}
+.kn-err{margin:0 0 var(--sp-12);padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-2);font-size:var(--fs-xs);color:var(--clay-txt)}
+.kn-sum{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-12);margin-bottom:var(--sp-12);padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-2);font-size:var(--fs-xs);color:var(--dim)}
+.kn-sum b{font-size:var(--fs-sm);font-weight:600;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.kn-rules{margin:0}
+.kn-cap{margin:var(--sp-24) 0 0;padding-bottom:var(--sp-8);border-bottom:2px solid var(--kn-edge);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+
+/* переключатель */
+.kn-sw{position:relative;flex:none;width:44px;height:26px}
+.kn-sw input{position:absolute;inset:0;z-index:1;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.kn-sw i{position:absolute;inset:0;border-radius:999px;background:var(--n-5);transition:background-color .2s var(--e)}
+.kn-sw i::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgb(var(--sh-cool)/.3);transition:transform .2s var(--e)}
+.kn-sw input:checked+i{background:var(--ink)}
+.kn-sw input:checked+i::after{transform:translateX(18px)}
+.kn-sw input:focus-visible+i{outline:2px solid var(--clay-btn);outline-offset:2px}
+.kn-sw input:disabled{cursor:default}
+.kn-sw input:disabled+i{opacity:.4}
+
+/* разделы — как в бюджетном: рейка, число изменённого, что выбрано, сумма */
+.kn-grp{position:relative;border-bottom:2px solid var(--kn-edge)}
+.kn-grp::before{content:"";position:absolute;left:0;top:var(--sp-12);bottom:var(--sp-12);width:4px;border-radius:4px;background:var(--n-4);transition:background-color .2s var(--e)}
+.kn-grp.is-on::before{background:var(--clay)}
+.kn-gh-w{margin:0;font:inherit}
+.kn-gh{display:grid;grid-template-columns:24px auto minmax(0,1fr) auto 12px;align-items:center;gap:var(--sp-8);width:100%;min-height:var(--sp-48);padding:var(--sp-8) 0 var(--sp-8) var(--sp-12);border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.kn-gh:focus-visible{outline:2px solid var(--clay-btn);outline-offset:-2px;border-radius:var(--r-tight)}
+.kn-cnt{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--n-2);font-size:12px;font-weight:600;color:var(--dim);font-variant-numeric:tabular-nums;transition:background-color .2s var(--e),color .2s var(--e)}
+.kn-grp.is-on .kn-cnt{background:var(--ink);color:#fff}
+.kn-gn{font-size:var(--fs-xs);font-weight:600;line-height:1.3;white-space:nowrap}
+.kn-ell{min-width:0;overflow:hidden;font-size:var(--fs-xs);color:var(--dim);text-align:right;text-overflow:ellipsis;white-space:nowrap}
+.kn-gs{font-size:var(--fs-xs);font-weight:600;color:var(--dim);white-space:nowrap;font-variant-numeric:tabular-nums}
+.kn-grp.is-on .kn-gs{color:var(--ink)}
+.kn-chev{width:8px;height:8px;border-right:2px solid var(--dim);border-bottom:2px solid var(--dim);transform:translateY(-2px) rotate(45deg);transition:transform .2s var(--e)}
+.kn-gh[aria-expanded="true"] .kn-chev{transform:translateY(2px) rotate(225deg)}
+.kn-gb{padding:0 0 var(--sp-12) var(--sp-12)}
+
+/* строки */
+.kn-row{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-12);padding:var(--sp-8) 0}
+.kn-gb>*+*{border-top:1px solid var(--kn-soft)}
+.kn-row--sel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,60%);align-items:center;gap:var(--sp-4) var(--sp-12)}
+.kn-row--sel>.kn-rp{grid-column:1/-1}
+.kn-row--sel .kn-sel{font-size:var(--fs-xs)}
+.kn-row--sel .kn-pills{justify-self:end}
+label.kn-row{cursor:pointer}
+.kn-rt{display:grid;gap:var(--sp-4);min-width:0}
+.kn-rn{font-size:var(--fs-xs);line-height:1.35}
+.kn-rp{font-size:var(--fs-xs);line-height:1.35;color:var(--dim);font-variant-numeric:tabular-nums}
+.kn-rp:empty{display:none}
+.kn-row.is-on .kn-rp,.kn-it.is-on .kn-rp{color:var(--ink);font-weight:500}
+.kn-note{font-size:var(--fs-xs);line-height:1.35;color:var(--dim)}
+.kn-it.is-off .kn-rn{color:var(--dim)}
+.kn-ask{flex:none;padding:var(--sp-4) var(--sp-12);border-radius:999px;background:var(--n-2);font-size:var(--fs-xs);color:var(--dim);white-space:nowrap}
+.kn-piles{font-size:var(--fs-xs);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.kn-q{position:relative;display:inline-grid;place-items:center;width:20px;height:20px;margin-left:var(--sp-8);padding:0;border:0;border-radius:50%;background:var(--n-2);font:inherit;font-size:12px;font-weight:600;color:var(--dim);vertical-align:1px;cursor:pointer}
+.kn-q::before{content:"";position:absolute;inset:-12px}
+.kn-q[aria-expanded="true"]{background:var(--ink);color:#fff}
+.kn-help{margin:0 0 var(--sp-8);padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 1px var(--kn-soft);font-size:var(--fs-xs);line-height:1.5;color:var(--dim)}
+
+/* выбор из двух */
+.kn-pills{display:inline-flex;flex-wrap:wrap;gap:var(--sp-4);padding:var(--sp-4);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-edge)}
+.kn-pills button{min-height:36px;padding:0 var(--sp-12);border:0;border-radius:var(--r-tight);background:none;font:inherit;font-size:var(--fs-xs);font-weight:500;color:var(--dim);cursor:pointer;transition:background-color .2s var(--e),color .2s var(--e),box-shadow .2s var(--e)}
+.kn-pills button[aria-pressed="true"]{background:var(--card);color:var(--ink);font-weight:600;box-shadow:var(--edge),var(--sh-1)}
+.kn-pills button:disabled{cursor:default;opacity:.5}
+.kn-pills button:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+
+/* количество и метры */
+.kn-step{flex:none;display:inline-flex;align-items:center;gap:var(--sp-4)}
+.kn-step button{position:relative;display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:var(--r-tight);background:var(--n-3);font:inherit;font-size:var(--fs-sm);color:var(--ink);cursor:pointer;transition:background-color .2s var(--e)}
+.kn-step button::before{content:"";position:absolute;inset:-4px}
+.kn-step button:hover:not(:disabled){background:var(--n-4)}
+.kn-step button:disabled{color:var(--n-5);cursor:default}
+.kn-step output{min-width:24px;font-size:var(--fs-xs);font-weight:600;text-align:center;font-variant-numeric:tabular-nums}
+.kn-extra{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-8) var(--sp-12);padding:0 0 var(--sp-8)}
+.kn-dist{display:inline-flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-xs);color:var(--dim)}
+.kn-dist input{width:88px;height:36px;padding:0 var(--sp-12);border:0;border-radius:var(--r-tight);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-edge);font:inherit;font-size:var(--fs-xs);color:var(--ink);text-align:right;outline:0}
+.kn-dist input:focus{background:var(--card);box-shadow:inset 0 0 0 2px var(--ink)}
+.kn-sub{display:inline-flex;align-items:center;gap:var(--sp-8);min-height:36px;font-size:var(--fs-xs);cursor:pointer}
+.kn-sub input{width:18px;height:18px;margin:0;accent-color:var(--ink)}
+.kn-subp{color:var(--dim);font-variant-numeric:tabular-nums}
+
+/* итог */
+.kn-optsum{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-12);padding-top:var(--sp-12);font-size:var(--fs-xs);color:var(--dim)}
+.kn-optsum b{font-size:var(--fs-sm);font-weight:600;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.kn-go{display:flex;align-items:center;justify-content:center;width:100%;min-height:var(--sp-48);margin-top:var(--sp-16);padding:0 var(--sp-24);border:0;border-radius:var(--r-inner);background:var(--ink);box-shadow:var(--sh-1);font:inherit;font-size:var(--fs-sm);font-weight:600;color:#fff;cursor:pointer;transition:background-color .2s var(--e)}
+.kn-go:hover{background:#2E3E60}
+.kn-reset{display:block;min-height:var(--tap);margin:var(--sp-4) auto 0;padding:0 var(--sp-12);border:0;background:none;font:inherit;font-size:var(--fs-xs);font-weight:500;color:var(--clay-txt);cursor:pointer}
+.kn-reset:hover{color:var(--clay-btn-h)}
+.kn-go:focus-visible,.kn-reset:focus-visible,.kn-q:focus-visible,.kn-step button:focus-visible,.kn-sub input:focus-visible,.kn-dist input:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+.kn-res{margin-top:var(--sp-12);padding:var(--sp-16);border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--kn-edge)}
+.kn-res__k{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.kn-res__v{display:block;margin-top:var(--sp-4);font-size:var(--fs-xl);font-weight:600;line-height:1.15;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kn-rows{margin-top:var(--sp-12);border-top:1px solid var(--kn-edge)}
+.kn-rr{display:flex;justify-content:space-between;gap:var(--sp-12);padding:var(--sp-8) 0;border-bottom:1px solid var(--kn-edge);font-size:var(--fs-xs);line-height:1.35}
+.kn-rr span:first-child{min-width:0;color:var(--dim)}
+.kn-rr span:last-child{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.kn-res__n{margin:var(--sp-12) 0 0;font-size:var(--fs-xs);line-height:1.45;color:var(--dim);text-wrap:pretty}
+.kn-gifts{margin-top:var(--sp-12);padding-top:var(--sp-12);border-top:1px solid var(--kn-edge)}
+.kn-gifts__h{margin:0;font-size:var(--fs-xs);font-weight:600}
+.kn-gifts ul{display:grid;gap:var(--sp-8);margin:var(--sp-8) 0 0;padding:0;list-style:none}
+.kn-gifts li{display:flex;justify-content:space-between;gap:var(--sp-12);font-size:var(--fs-xs);color:var(--dim)}
+.kn-gifts li b{font-weight:600;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* на телефоне, как в бюджетном, текст крупнее, колонки — в одну */
+@media(max-width:620px){
+  .kn-card{padding:var(--sp-16)}
+  .kn-two{grid-template-columns:minmax(0,1fr)}
+  .kn-line{font-size:var(--fs-sm)}
+  .kn-gh{grid-template-columns:24px minmax(0,1fr) auto 12px}
+  .kn-gn{font-size:var(--fs-sm);white-space:normal}
+  .kn-ell{display:none}
+  .kn-gb{padding-left:var(--sp-8)}
+  .kn-rn{font-size:var(--fs-sm)}
+  .kn-row--sel{grid-template-columns:minmax(0,1fr)}
+  .kn-row--sel .kn-pills{justify-self:start}
+  .kn-row--sel .kn-sel{font-size:var(--fs-sm)}
+}
+@media(prefers-reduced-motion:reduce){.kn *,.kn *::before,.kn *::after{transition:none!important}}
+</style>
+</head>
+<body>
+
+<span class="sentinel" aria-hidden="true"></span>
+
+<a class="skip" href="./#main">Перейти к содержимому</a>
+
+<div class="shell shell--hdr">
+  <header class="hdr hdr--inv">
+
+    <div class="up">
+      <a href="tel:+79782516469" class="tel">+7 978 251‑64‑69</a>
+      <span class="sp"></span>
+      <span class="gr">
+        <a href="https://t.me/" class="ic ic--tg" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.2 4.3 2.9 11.4c-.9.35-.87 1.65.05 1.95l4.55 1.45 1.75 5.3c.25.75 1.2.93 1.72.33l2.4-2.75 4.6 3.38c.63.46 1.53.12 1.7-.65l3.2-14.6c.2-.9-.7-1.66-1.67-1.28ZM9.1 14.2l8.5-5.3-6.9 6.3-.35 3.1-1.25-4.1Z"/></svg></a>
+        <a href="#max" class="ic ic--max" aria-label="Написать в MAX"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.2c0 4.05-3.8 7.35-8.5 7.35-.95 0-1.86-.14-2.7-.39L4.2 20.8l1.35-3.6A7.06 7.06 0 0 1 3.5 12.2c0-4.06 3.8-7.35 8.5-7.35s8.5 3.29 8.5 7.35Z"/><path d="M8.6 14.3V10l2.4 2.6 2.4-2.6v4.3" stroke-linecap="round"/></svg></a>
+        <a href="https://wa.me/79782516469" class="ic ic--wa" aria-label="Написать в WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6a9.3 9.3 0 0 0-8 14.05L2.7 21.4l4.9-1.27A9.3 9.3 0 1 0 12 2.6Zm0 1.9a7.4 7.4 0 1 1-3.9 13.7l-.3-.18-2.9.76.77-2.83-.2-.31A7.4 7.4 0 0 1 12 4.5Zm-3.2 3.6c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.2.87 2.35.99 2.51.12.16 1.7 2.7 4.2 3.68 2.08.82 2.5.66 2.95.62.45-.04 1.45-.59 1.66-1.17.2-.57.2-1.06.14-1.17-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12s-.63.8-.77.96c-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47Z"/></svg></a>
+      </span>
+      <span class="dv"></span>
+      <span class="gr">
+        <a href="#saved" class="ic ic--heart" aria-label="Избранное"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.3s-7.4-4.6-7.4-9.4a4.2 4.2 0 0 1 7.4-2.7 4.2 4.2 0 0 1 7.4 2.7c0 4.8-7.4 9.4-7.4 9.4Z"/></svg><span class="cnt" hidden>0</span></a>
+        <span class="mk2">избранное</span>
+      </span>
+    </div>
+
+    <div class="dn">
+    <a href="./" class="logo">
+      <svg viewBox="11 12 38 39.5" class="mk" aria-hidden="true"><path d="M14.5 29 L30 15.5 L45.5 29" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><rect class="bar" x="16" y="34" width="28" height="7" rx="3.5"/><rect class="bar" x="16" y="44.5" width="28" height="7" rx="3.5"/></svg>
+      <span class="wm">Мой тёплый <i>дом</i></span>
+    </a>
+    <nav class="nav" aria-label="Основное меню">
+      <a href="./#catalog">Каталог</a>
+      <a href="./#built">Наши работы</a>
+      <a href="./#reviews">Отзывы</a>
+      <span class="nav__item">
+        <a href="stroim-vyezd-inzhenera.html" aria-haspopup="true">Как строим<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub">
+          <a href="stroim-vyezd-inzhenera.html">Выезд инженера</a>
+          <a href="stroim-bytovki.html">Где живут наши рабочие</a>
+          <a href="stroim-materialy.html">Какие материалы мы используем</a>
+          <a href="stroim-proekt.html">Конструктивный проект</a>
+          <a href="stroim-obvyazka.html">Как мы делаем обвязку пола</a>
+          <a href="stroim-krovlya.html">Как мы строим кровлю</a>
+          <a href="stroim-krovlya.html#vvetr">Ветрозащита и гидроизоляция</a>
+          <a href="stroim-hranenie.html">Как храним материалы на участке</a>
+          <a href="stroim-dostavka.html">Как доставляем материалы</a>
+          <a href="./#vkark">Как мы строим каркас</a>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="kak-zakazat.html" aria-haspopup="true">Как заказать<i class="chev" aria-hidden="true"></i></a>
+        <span class="nav__sub">
+          <a href="kak-zakazat.html">Этапы стройки</a>
+          <a href="dogovor.html">Договор</a>
+          <a href="smeta-primer.html">Пример сметы</a>
+        </span>
+      </span>
+      <a href="./#contacts">Контакты</a>
+    </nav>
+      <button type="button" class="btn btn--l" data-callback>Заказать звонок</button>
+      <a href="tel:+79782516469" class="icb" aria-label="Позвонить: +7 978 251‑64‑69"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 006.5 6.5l1.5-2 4 1.5v3a2 2 0 01-2.2 2A17 17 0 014.5 5.2 2 2 0 016.5 3z"/></svg></a>
+      <button class="burg" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mnav">
+      <i></i>
+    </button>
+    </div>  </header>
+</div>
+
+<nav class="mnav" id="mnav" aria-label="Мобильное меню">
+      <a href="./#catalog">Каталог</a>
+      <a href="./#built">Наши работы</a>
+      <a href="./#reviews">Отзывы</a>
+      <a href="stroim-vyezd-inzhenera.html">Как строим</a>
+    <a class="mnav__sub" href="stroim-vyezd-inzhenera.html">Выезд инженера</a>
+    <a class="mnav__sub" href="stroim-bytovki.html">Где живут наши рабочие</a>
+    <a class="mnav__sub" href="stroim-materialy.html">Какие материалы мы используем</a>
+    <a class="mnav__sub" href="stroim-proekt.html">Конструктивный проект</a>
+    <a class="mnav__sub" href="stroim-obvyazka.html">Как мы делаем обвязку пола</a>
+    <a class="mnav__sub" href="stroim-krovlya.html">Как мы строим кровлю</a>
+    <a class="mnav__sub" href="stroim-krovlya.html#vvetr">Ветрозащита и гидроизоляция</a>
+    <a class="mnav__sub" href="stroim-hranenie.html">Как храним материалы на участке</a>
+    <a class="mnav__sub" href="stroim-dostavka.html">Как доставляем материалы</a>
+    <a class="mnav__sub" href="./#vkark">Как мы строим каркас</a>
+      <a href="kak-zakazat.html">Как заказать</a>
+  <a class="mnav__sub" href="dogovor.html">Договор</a>
+  <a class="mnav__sub" href="smeta-primer.html">Пример сметы</a>
+      <a href="./#contacts">Контакты</a>
+  <span class="mnav__sep"></span>
+  <a href="#saved" class="mnav__ic"><span class="ic ic--heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.3s-7.4-4.6-7.4-9.4a4.2 4.2 0 0 1 7.4-2.7 4.2 4.2 0 0 1 7.4 2.7c0 4.8-7.4 9.4-7.4 9.4Z"/></svg><span class="cnt" hidden>0</span></span>Избранное</a>
+  <a href="https://t.me/" class="mnav__ic"><span class="ic ic--tg"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.2 4.3 2.9 11.4c-.9.35-.87 1.65.05 1.95l4.55 1.45 1.75 5.3c.25.75 1.2.93 1.72.33l2.4-2.75 4.6 3.38c.63.46 1.53.12 1.7-.65l3.2-14.6c.2-.9-.7-1.66-1.67-1.28ZM9.1 14.2l8.5-5.3-6.9 6.3-.35 3.1-1.25-4.1Z"/></svg></span>Написать в Telegram</a>
+  <a href="#max" class="mnav__ic"><span class="ic ic--max"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.2c0 4.05-3.8 7.35-8.5 7.35-.95 0-1.86-.14-2.7-.39L4.2 20.8l1.35-3.6A7.06 7.06 0 0 1 3.5 12.2c0-4.06 3.8-7.35 8.5-7.35s8.5 3.29 8.5 7.35Z"/><path d="M8.6 14.3V10l2.4 2.6 2.4-2.6v4.3" stroke-linecap="round"/></svg></span>Написать в MAX</a>
+  <a href="https://wa.me/79782516469" class="mnav__ic"><span class="ic ic--wa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6a9.3 9.3 0 0 0-8 14.05L2.7 21.4l4.9-1.27A9.3 9.3 0 1 0 12 2.6Zm0 1.9a7.4 7.4 0 1 1-3.9 13.7l-.3-.18-2.9.76.77-2.83-.2-.31A7.4 7.4 0 0 1 12 4.5Zm-3.2 3.6c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.2.87 2.35.99 2.51.12.16 1.7 2.7 4.2 3.68 2.08.82 2.5.66 2.95.62.45-.04 1.45-.59 1.66-1.17.2-.57.2-1.06.14-1.17-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12s-.63.8-.77.96c-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47Z"/></svg></span>Написать в WhatsApp</a>
+  <a href="tel:+79782516469" class="tel tel--2"><b>+7 978 251‑64‑69</b><span>позвонить</span></a>
+  <button type="button" class="btn btn--c" data-callback>Заказать звонок</button>
+</nav>
+
+<main id="main">
+  <div class="shell">
+
+    <a class="back" href="./#catalog"><i>←</i>Вернуться в каталог</a>
+
+    <section class="prod">
+      <div class="prod__head">
+        <div class="prod__ttl">
+          <h1 class="prod__t">Парма 10 × 8</h1>
+          <p class="prod__s">Готовый проект серии «Парма» · один этаж, терраса под общей кровлей</p>
+        </div>
+        <div class="prod__buy">
+          <p class="price"><span class="price__l">Стоимость дома</span><b class="price__v">от 3 759 200 ₽</b></p>
+          <button type="button" class="cta__go" data-callback>Получить презентацию<i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12m0 0 5-5m-5 5-5-5M5 20h14"/></svg></i></button>
+        </div>
+      </div>
+      <ul class="specs">
+        <li class="spec"><span class="spec__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h13V9"/><path d="M9.5 19.5V14h5v5.5"/><path d="M2 21.5h20"/></svg></span><b class="spec__v">101,6<small class="spec__u">&nbsp;м²</small></b><span class="spec__l">С террасой 21,6&nbsp;м²</span></li>
+        <li class="spec"><span class="spec__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h7v8M14 4v8h6"/></svg></span><b class="spec__v">80<small class="spec__u">&nbsp;м²</small></b><span class="spec__l">Без террасы</span></li>
+        <li class="spec"><span class="spec__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16"/><path d="m6.5 4-2.5 2.5L6.5 9M17.5 4 20 6.5 17.5 9"/><rect x="4" y="12" width="16" height="8.5" rx="1.5"/></svg></span><b class="spec__v">10 × 8<small class="spec__u"> м</small></b><span class="spec__l">Габариты дома</span></li>
+      </ul>
+    </section>
+
+
+    <section class="sec" id="look">
+      <div class="sld" data-sld id="gal-look" tabindex="0" role="group" aria-label="Фотографии дома снаружи и внутри">
+        <div class="sld__main">
+          <img class="is-on" src="../img/parma-10x8-fasad-1.webp?v=2" width="1600" height="1073" alt="Фасад с террасой" decoding="async" fetchpriority="high">
+          <img src="../img/parma-10x8-fasad-2.webp?v=2" width="1600" height="1073" alt="Фасад целиком" decoding="async" loading="lazy">
+          <img src="../img/parma-10x8-fasad-3.webp?v=2" width="1600" height="1073" alt="Вид сбоку с террасой" decoding="async" loading="lazy">
+          <img src="../img/parma-10x8-fasad-4.webp?v=2" width="1600" height="1073" alt="Торцевой фасад" decoding="async" loading="lazy">
+          <img src="../img/parma-10x8-fasad-5.webp?v=2" width="1600" height="1073" alt="Вид сзади" decoding="async" loading="lazy">
+          <img src="../img/parma-10x8-fasad-6.webp" width="1600" height="1073" alt="Терраса под крышей" decoding="async" loading="lazy">
+          <img src="../img/parma-10x8-interer-1.webp?v=2" width="1600" height="1067" alt="Гостиная-столовая под коньком" decoding="async" loading="lazy">
+          <img src="../img/parma-10x8-interer-2.webp?v=2" width="1600" height="1067" alt="Второй свет, окна под крышей" decoding="async" loading="lazy">
+          <button type="button" class="sld__a sld__a--p" aria-label="Предыдущий кадр"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="sld__a sld__a--n" aria-label="Следующий кадр"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          <span class="sld__c"></span>
+        </div>
+        <div class="sld__th">
+        <button type="button" class="is-on" aria-label="Кадр 1: Фасад с террасой"><img src="../img/parma-10x8-fasad-1-th.webp?v=2" alt="" decoding="async" loading="lazy"></button>
+        <button type="button" aria-label="Кадр 2: Фасад целиком"><img src="../img/parma-10x8-fasad-2-th.webp?v=2" alt="" decoding="async" loading="lazy"></button>
+        <button type="button" aria-label="Кадр 3: Вид сбоку с террасой"><img src="../img/parma-10x8-fasad-3-th.webp?v=2" alt="" decoding="async" loading="lazy"></button>
+        <button type="button" aria-label="Кадр 4: Торцевой фасад"><img src="../img/parma-10x8-fasad-4-th.webp?v=2" alt="" decoding="async" loading="lazy"></button>
+        <button type="button" aria-label="Кадр 5: Вид сзади"><img src="../img/parma-10x8-fasad-5-th.webp?v=2" alt="" decoding="async" loading="lazy"></button>
+        <button type="button" aria-label="Кадр 6: Терраса под крышей"><img src="../img/parma-10x8-fasad-6-th.webp" alt="" decoding="async" loading="lazy"></button>
+        <button type="button" aria-label="Кадр 7: Гостиная-столовая под коньком"><img src="../img/parma-10x8-interer-1-th.webp?v=2" alt="" decoding="async" loading="lazy"></button>
+        <button type="button" aria-label="Кадр 8: Второй свет, окна под крышей"><img src="../img/parma-10x8-interer-2-th.webp?v=2" alt="" decoding="async" loading="lazy"></button>
+        </div>
+      </div>
+    </section>
+    <section class="sec" id="plan">
+      <h2 class="sech">Три планировки на выбор</h2>
+      <p class="pln__lead">Дом один и тот же — 10 × 8 м, те же фундамент и крыша. Разные только стены внутри.</p><div class="pln pln--three pln--desc" data-pln style="--ar:1.056"><div class="pln__c" data-n="1"><div class="pln__hd"><h3 class="pln__h">Планировка 1</h3><p class="pln__nm">2 спальни · 73,4 м² в тепле</p></div><button type="button" class="pln__db" data-pld="1" aria-haspopup="dialog" aria-controls="pld"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg><span>Описание плана</span></button><div class="pln__w"><div class="pln__in"><button type="button" class="pln__m" aria-label="Открыть «Планировка 1 · 2 спальни» на весь экран"><img class="is-on" src="../img/parma-10x8-plan-1.webp?v=2" width="1600" height="1515" alt="Планировка 1 · 2 спальни · Чертёж" decoding="async" loading="lazy"><img src="../img/parma-10x8-plan-1-3d.webp" width="896" height="815" alt="Планировка 1 · 2 спальни · 3D-вид" decoding="async" loading="lazy"><span class="pln__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span></button><div class="pln__s"><button type="button" class="pln__t is-on" aria-pressed="true"><img src="../img/parma-10x8-plan-1-th.webp?v=2" alt=""><span>Чертёж</span></button><button type="button" class="pln__t" aria-pressed="false"><img src="../img/parma-10x8-plan-1-3d-th.webp" alt=""><span>3D-вид</span></button></div></div></div></div><div class="pln__c" data-n="2"><div class="pln__hd"><h3 class="pln__h">Планировка 2</h3><p class="pln__nm">3 спальни · 72,6 м² в тепле</p></div><button type="button" class="pln__db" data-pld="2" aria-haspopup="dialog" aria-controls="pld"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg><span>Описание плана</span></button><div class="pln__w"><div class="pln__in"><button type="button" class="pln__m" aria-label="Открыть «Планировка 2 · 3 спальни» на весь экран"><img class="is-on" src="../img/parma-10x8-plan-2.webp?v=3" width="1600" height="1514" alt="Планировка 2 · 3 спальни · Чертёж" decoding="async" loading="lazy"><img src="../img/parma-10x8-plan-2-3d.webp" width="953" height="809" alt="Планировка 2 · 3 спальни · 3D-вид" decoding="async" loading="lazy"><span class="pln__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span></button><div class="pln__s"><button type="button" class="pln__t is-on" aria-pressed="true"><img src="../img/parma-10x8-plan-2-th.webp?v=3" alt=""><span>Чертёж</span></button><button type="button" class="pln__t" aria-pressed="false"><img src="../img/parma-10x8-plan-2-3d-th.webp" alt=""><span>3D-вид</span></button></div></div></div></div><div class="pln__c" data-n="3"><div class="pln__hd"><h3 class="pln__h">Планировка 3</h3><p class="pln__nm">2 спальни · 72,2 м² в тепле</p></div><button type="button" class="pln__db" data-pld="3" aria-haspopup="dialog" aria-controls="pld"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg><span>Описание плана</span></button><div class="pln__w"><div class="pln__in"><button type="button" class="pln__m" aria-label="Открыть «Планировка 3 · 2 спальни» на весь экран"><img class="is-on" src="../img/parma-10x8-plan-3.webp?v=2" width="1600" height="1493" alt="Планировка 3 · 2 спальни · Чертёж" decoding="async" loading="lazy"><span class="pln__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span></button></div></div></div></div><dialog class="pld" id="pld" aria-label="Описание плана"><div class="pld__bar"><div class="pld__seg" role="group" aria-label="Планировка"><button type="button" data-n="1" aria-pressed="false">Планировка 1</button><button type="button" data-n="2" aria-pressed="false">Планировка 2</button><button type="button" data-n="3" aria-pressed="false">Планировка 3</button></div><button type="button" class="pld__x" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Закрыть</button></div><div class="pld__b"><div class="pld__p" data-pane="1" hidden><figure class="pld__fig" data-n="1"><button type="button" class="pld__m" aria-label="Открыть «Планировка 1 · 2 спальни» на весь экран"><img class="is-on" src="../img/parma-10x8-plan-1.webp?v=2" width="1600" height="1515" alt="Планировка 1 · 2 спальни · Чертёж" decoding="async" loading="lazy"><img src="../img/parma-10x8-plan-1-3d.webp" width="896" height="815" alt="Планировка 1 · 2 спальни · 3D-вид" decoding="async" loading="lazy"></button><div class="pld__v" role="group" aria-label="Вид плана"><button type="button" aria-pressed="true">Чертёж</button><button type="button" aria-pressed="false">3D-вид</button></div></figure><div class="pld__txt"><p class="pld__k">Вариант 1 · 73,4 м² в тепле</p><h3 class="pld__t">Большой общий стол</h3><p class="pld__s">Кухня-гостиная 33,4 м² — половина дома. Две спальни, один санузел.</p><p class="pld__h">Кому подходит</p><ul class="pln__who pld__who"><li>Часто зовёте гостей, хотите посадить всех за один стол</li><li>Вас двое или трое</li><li>Живёте в общей комнате, в спальню уходите спать</li></ul><p class="pln__not"><b>Не ваш,</b> если утренняя очередь в единственный душ — это про вас.</p><p class="pld__h">Почему сделано именно так</p><ul class="pld__l"><li><b>Тамбур 3,70 м² перед холлом</b>Мороз и мокрая обувь остаются у входа, а не в жилой комнате.</li><li><b>Обе спальни выходят в холл</b>Ни одна комната не проходная — через чужую спальню ходить не надо.</li><li><b>Кухня-гостиная одной комнатой, 33,4 м²</b>Семья и гости в одном пространстве, а не по маленьким комнатам.</li><li><b>Топочная с отдельным входом с террасы</b>Гул котла и запах в дом не попадают вообще — двери в жильё у неё нет.</li><li><b>Дверь на террасу прямо из общей комнаты</b>Летом терраса 18,8 м² работает как вторая гостиная.</li></ul><p class="pld__h">Честно о минусах</p><ul class="pld__l pld__l--minus"><li><b>Один санузел 5,10 м² на весь дом</b>При четырёх жильцах утром очередь. Лечится: отдельный туалет ~1,5 м² из холла 6,00 м².</li><li><b>К котлу — только через улицу</b>Зимой это выход на террасу. Обратная сторона: шума и запаха в доме нет совсем.</li><li><b>Проём 1,6 м между кухней и холлом без двери</b>Запах готовки идёт к дверям спален. Лечится: сильная вытяжка или раздвижная дверь в проём.</li><li><b>Ни кладовой, ни гардероба</b>Лыжи, инструмент, сезонные вещи складывать некуда.</li></ul></div></div><div class="pld__p" data-pane="2" hidden><figure class="pld__fig" data-n="2"><button type="button" class="pld__m" aria-label="Открыть «Планировка 2 · 3 спальни» на весь экран"><img class="is-on" src="../img/parma-10x8-plan-2.webp?v=3" width="1600" height="1514" alt="Планировка 2 · 3 спальни · Чертёж" decoding="async" loading="lazy"><img src="../img/parma-10x8-plan-2-3d.webp" width="953" height="809" alt="Планировка 2 · 3 спальни · 3D-вид" decoding="async" loading="lazy"></button><div class="pld__v" role="group" aria-label="Вид плана"><button type="button" aria-pressed="true">Чертёж</button><button type="button" aria-pressed="false">3D-вид</button></div></figure><div class="pld__txt"><p class="pld__k">Вариант 2 · 72,6 м² в тепле</p><h3 class="pld__t">Три спальни</h3><p class="pld__s">Хозяйская спальня 11,4 м² со своим санузлом. Ещё две спальни. Общая комната 24,0 м².</p><p class="pld__h">Кому подходит</p><ul class="pln__who pld__who"><li>Двое детей, каждому нужна своя комната</li><li>Важно собственное утро без ожидания</li><li>Приезжают родители или гости с ночёвкой</li></ul><p class="pln__not"><b>Не ваш,</b> если общая комната — главное место в доме.</p><p class="pld__h">Почему сделано именно так</p><ul class="pld__l"><li><b>Два санузла вместо одного</b>Утром никто никого не ждёт: у взрослых свой, у детей общий.</li><li><b>Хозяйская спальня со своим санузлом и выходом на террасу</b>У родителей отдельная половина, куда не заходят дети и гости.</li><li><b>Три спальни в том же габарите</b>Каждому ребёнку своя комната — без расширения фундамента и крыши.</li><li><b>Котёл внутри дома, вход из тамбура</b>Зимой не надо выходить на улицу, чтобы проверить котёл.</li><li><b>Детские спальни рядом и обе у общего санузла</b>Ночной маршрут ребёнка короткий и по прямой.</li></ul><p class="pld__h">Честно о минусах</p><ul class="pld__l pld__l--minus"><li><b>Спальня 7,56 м² — меньше нормы</b>По СП 55 жилая комната должна быть не меньше 8 м². Лечится: +170 мм глубины — станет 8,02 м². Либо считать её кабинетом.</li><li><b>Вход в хозяйскую спальню — прямо из общей комнаты</b>Гость за столом сидит напротив вашей двери.</li><li><b>Окно хозяйской спальни выходит на террасу</b>Когда вечером на террасе сидят гости — их слышно, и в окно видно. Лечится шторой или матовой нижней частью стекла.</li><li><b>Кухня-гостиная на 9,4 м² меньше первого варианта</b>Это плата за третью спальню.</li><li><b>Ни кладовой, ни гардероба</b>Как и в первом варианте.</li></ul></div></div><div class="pld__p" data-pane="3" hidden><figure class="pld__fig" data-n="3"><button type="button" class="pld__m" aria-label="Открыть «Планировка 3 · 2 спальни» на весь экран"><img class="is-on" src="../img/parma-10x8-plan-3.webp?v=2" width="1600" height="1493" alt="Планировка 3 · 2 спальни · Чертёж" decoding="async" loading="lazy"></button></figure><div class="pld__txt"><p class="pld__k">Вариант 3 · наш · 72,2 м² в тепле</p><h3 class="pld__t">Порядок у входа <span class="pln__our">Наш вариант</span></h3><p class="pld__s">Вход с террасы, гардероб и кладовая сразу у двери. Две просторные спальни, два санузла.</p><p class="pld__h">Кому подходит</p><ul class="pln__who pld__who"><li>Живёте в доме круглый год, много сезонных вещей</li><li>Цените, когда обувь и куртки не расползаются по комнатам</li><li>Хотите две нормальные спальни, а не три тесные</li></ul><p class="pln__not"><b>Не ваш,</b> если нужна третья спальня.</p><p class="pld__h">Почему сделано именно так</p><ul class="pld__l"><li><b>Вход — с террасы</b>Вы попадаете в дом через крытую террасу, а не с открытого крыльца. Зонт складываете под навесом.</li><li><b>Гардероб 3,58 и кладовая 3,27 м² — сразу за входной дверью</b>Куртки, обувь, коляска, лыжи, инструмент. В первых двух вариантах этого нет совсем, и вещи расходятся по комнатам.</li><li><b>Две спальни по 12,43 и 9,97 м² вместо трёх по восемь</b>В такой дом три спальни влезают только впритык к минимуму. Две нормальные лучше трёх тесных.</li><li><b>Котельная с отдельной дверью с улицы</b>Внутрь дома она не выходит ни одной дверью — ни шума, ни запаха, ни требований по вентиляции внутрь жилья.</li><li><b>Коридоры — 9,6 % дома</b>Норма — не больше 12 %. Это лучший показатель из трёх: меньше метров вы оплачиваете «за проход».</li><li><b>Окно в гардеробе — на террасу</b>Гардероб не остаётся глухим пятном на главном фасаде: со стороны террасы окна выстраиваются в один ряд с входной группой.</li></ul><p class="pld__h">Честно о минусах</p><ul class="pld__l pld__l--minus"><li><b>Спален две, а не три</b>Это осознанный выбор в пользу размера комнат. Нужны три — берите вариант 2, но там одна из них 7,56 м².</li><li><b>Путь от входа к спальням — через кухню-гостиную</b>Гость, идущий в санузел, проходит через общую комнату. Лечится: дверь из прихожей прямо в коридор, но тогда основной санузел уменьшится примерно на 1,5 м².</li><li><b>Кухня-гостиная 23,5 м²</b>На полметра меньше нормы «24 м² на 5–6 человек». Для семьи из 3–4 это нормально, для больших застолий тесновато. Лечится: перенос стены коридора на 300 мм.</li><li><b>Два санузла разнесены по дому</b>Это два стояка вместо одного, инженерия дороже. Плата за то, что второй санузел стоит рядом со спальнями, а не в общей зоне.</li><li><b>Хранение — 9,5 % дома при обычной норме 3–5 %</b>Это метры, отнятые у комнат — но в доме нет ни подвала, ни чердака, складывать больше негде.</li></ul></div></div></div></dialog>
+      <p class="plan__t">Состав комнат подбираем под вас — перегородки внутри каркаса переносятся без изменения коробки.</p>
+    </section>
+
+    <section class="sec" id="inc">
+      <h2 class="sech">Цены и комплектации</h2>
+      <div class="inc" data-inc data-model="parma-10x8"><div class="inc-t" tabindex="0" role="region" aria-label="Что входит в комплектации"><table><thead><tr><th scope="col" class="inc-c0"><span class="inc-cap">Что входит</span></th><th scope="col" class="inc-h"><span class="inc-n">Холодный контур</span><b class="inc-p">3 759 200 ₽</b></th><th scope="col" class="inc-h is-us"><span class="inc-n">Комфорт</span><b class="inc-p">4 267 200 ₽</b></th><th scope="col" class="inc-h"><span class="inc-n">Премиум</span><b class="inc-p">5 181 600 ₽</b></th></tr></thead><tbody><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-0-0 inc-0-1 inc-0-2 inc-0-3 inc-0-4 inc-0-5 inc-0-6 inc-0-7"><span>Фундамент</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-val">Винтовые сваи</span></td><td class="inc-cell is-us"><span class="inc-pill is-val">Винтовые сваи</span></td><td class="inc-cell"><span class="inc-pill is-val">ЖБУ</span></td></tr><tr class="inc-d" id="inc-0-0" hidden><th scope="row" class="inc-c0">Тип</th><td>Металлический свайно-винтовой</td><td class="is-us">Металлический свайно-винтовой</td><td>ЖБУ</td></tr><tr class="inc-d" id="inc-0-1" hidden><th scope="row" class="inc-c0">Сваи</th><td>Диаметр 89&nbsp;мм, длина 2,5&nbsp;м, винт 15&nbsp;см</td><td class="is-us">Диаметр 89&nbsp;мм, длина 2,5&nbsp;м, винт 15&nbsp;см</td><td>Диаметр 150&nbsp;мм, длина 3&nbsp;м, без винта</td></tr><tr class="inc-d" id="inc-0-2" hidden><th scope="row" class="inc-c0">Заполнение свай</th><td>Пескобетон М200</td><td class="is-us">Пескобетон М200</td><td>Цельный бетон</td></tr><tr class="inc-d" id="inc-0-3" hidden><th scope="row" class="inc-c0">Толщина лопасти</th><td>4&nbsp;мм</td><td class="is-us">4&nbsp;мм</td><td>—</td></tr><tr class="inc-d" id="inc-0-4" hidden><th scope="row" class="inc-c0">Защита</th><td>Антикоррозийное покрытие, рубероид на оголовке</td><td class="is-us">Антикоррозийное покрытие, рубероид на оголовке</td><td>Антикоррозийное покрытие и рубероид на оголовке</td></tr><tr class="inc-d" id="inc-0-5" hidden><th scope="row" class="inc-c0">Геотекстиль вокруг свай</th><td>—</td><td class="is-us">—</td><td>Есть</td></tr><tr class="inc-d" id="inc-0-6" hidden><th scope="row" class="inc-c0">Оголовок сваи</th><td>15&nbsp;см</td><td class="is-us">15&nbsp;см</td><td>15&nbsp;см</td></tr><tr class="inc-d" id="inc-0-7" hidden><th scope="row" class="inc-c0">Количество свай</th><td>По размеру дома, шаг 2&nbsp;м</td><td class="is-us">По размеру дома, шаг 2&nbsp;м</td><td>По размеру дома, шаг 2&nbsp;м</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-1-0 inc-1-1 inc-1-2 inc-1-3 inc-1-4 inc-1-5 inc-1-6 inc-1-7"><span>Каркас</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-val">145×45&nbsp;мм</span></td><td class="inc-cell is-us"><span class="inc-pill is-val">145×45&nbsp;мм</span></td><td class="inc-cell"><span class="inc-pill is-val">200×45&nbsp;мм</span></td></tr><tr class="inc-d" id="inc-1-0" hidden><th scope="row" class="inc-c0">Доска</th><td>Сухая, камерной сушки</td><td class="is-us">Сухая, камерной сушки</td><td>Сухая, камерной сушки</td></tr><tr class="inc-d" id="inc-1-1" hidden><th scope="row" class="inc-c0">Стены</th><td>145×45&nbsp;мм</td><td class="is-us">145×45&nbsp;мм</td><td>200×45&nbsp;мм</td></tr><tr class="inc-d" id="inc-1-2" hidden><th scope="row" class="inc-c0">Кровля и пол</th><td>145×45&nbsp;мм</td><td class="is-us">145×45&nbsp;мм</td><td>195×45&nbsp;мм</td></tr><tr class="inc-d" id="inc-1-3" hidden><th scope="row" class="inc-c0">Обвязка</th><td>Пакет из трёх досок 145×45&nbsp;мм (145×135&nbsp;мм)</td><td class="is-us">Пакет из трёх досок 145×45&nbsp;мм (145×135&nbsp;мм)</td><td>Пакет из трёх досок 145×45&nbsp;мм (145×135&nbsp;мм)</td></tr><tr class="inc-d" id="inc-1-4" hidden><th scope="row" class="inc-c0">Шаг стоек</th><td>59&nbsp;см</td><td class="is-us">59&nbsp;см</td><td>59&nbsp;см</td></tr><tr class="inc-d" id="inc-1-5" hidden><th scope="row" class="inc-c0">Крепёж</th><td>Оцинкованные гвозди 60/90/120&nbsp;мм, усиливающие металлические уголки</td><td class="is-us">Оцинкованные гвозди 60/90/120&nbsp;мм, усиливающие металлические уголки</td><td>Оцинкованные гвозди 60/90/120&nbsp;мм, усиливающие металлические уголки</td></tr><tr class="inc-d" id="inc-1-6" hidden><th scope="row" class="inc-c0">Антисептик</th><td>Основание и подшивка пола</td><td class="is-us">Основание и подшивка пола</td><td>Основание и подшивка пола</td></tr><tr class="inc-d" id="inc-1-7" hidden><th scope="row" class="inc-c0">Высота стен</th><td>По краям 250&nbsp;см, в центре 400&nbsp;см</td><td class="is-us">По краям 250&nbsp;см, в центре 400&nbsp;см</td><td>По краям 270&nbsp;см, в центре 420&nbsp;см</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-2-0 inc-2-1 inc-2-2 inc-2-3 inc-2-4 inc-2-5 inc-2-6 inc-2-7"><span>Кровля</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell is-us"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell"><span class="inc-pill is-val">С водостоком</span></td></tr><tr class="inc-d" id="inc-2-0" hidden><th scope="row" class="inc-c0">Форма</th><td>Два ската, потолок под конёк</td><td class="is-us">Два ската, потолок под конёк</td><td>Два ската, потолок под конёк</td></tr><tr class="inc-d" id="inc-2-1" hidden><th scope="row" class="inc-c0">Покрытие</th><td>Металлочерепица 0,5&nbsp;мм с антикоррозийным покрытием</td><td class="is-us">Металлочерепица 0,5&nbsp;мм с антикоррозийным покрытием</td><td>Металлочерепица 0,5&nbsp;мм с антикоррозийным покрытием</td></tr><tr class="inc-d" id="inc-2-2" hidden><th scope="row" class="inc-c0">Цвет</th><td>RAL&nbsp;7024 или RAL&nbsp;8017, другой — под заказ, 14 дней после полной оплаты</td><td class="is-us">RAL&nbsp;7024 или RAL&nbsp;8017, другой — под заказ, 14 дней после полной оплаты</td><td>RAL&nbsp;7024 или RAL&nbsp;8017, другой — под заказ, 14 дней после полной оплаты</td></tr><tr class="inc-d" id="inc-2-3" hidden><th scope="row" class="inc-c0">Ветрозащита и гидроизоляция</th><td>Технониколь АМ Альфа, плотность 150</td><td class="is-us">Технониколь АМ Альфа, плотность 150</td><td>Технониколь АМ Альфа, плотность 150</td></tr><tr class="inc-d" id="inc-2-4" hidden><th scope="row" class="inc-c0">Вентиляционный зазор</th><td>Контробрешётка 40×40&nbsp;мм</td><td class="is-us">Контробрешётка 40×40&nbsp;мм</td><td>Контробрешётка 40×40&nbsp;мм</td></tr><tr class="inc-d" id="inc-2-5" hidden><th scope="row" class="inc-c0">Детали</th><td>Конёк и ветровые уголки из металла в цвет кровли, аэролента, прорезиненные саморезы</td><td class="is-us">Конёк и ветровые уголки из металла в цвет кровли, аэролента, прорезиненные саморезы</td><td>Конёк и ветровые уголки из металла в цвет кровли, аэролента, прорезиненные саморезы</td></tr><tr class="inc-d" id="inc-2-6" hidden><th scope="row" class="inc-c0">Размеры</th><td>Высота 150&nbsp;см, вынос 50&nbsp;см, вынос подшит имитацией бруса АБ</td><td class="is-us">Высота 150&nbsp;см, вынос 50&nbsp;см, вынос подшит имитацией бруса АБ</td><td>Высота 150&nbsp;см, вынос 50&nbsp;см, вынос подшит имитацией бруса АБ</td></tr><tr class="inc-d" id="inc-2-7" hidden><th scope="row" class="inc-c0">Снегозадержатели и водосток</th><td>—</td><td class="is-us">—</td><td>Есть</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-3-0 inc-3-1 inc-3-2 inc-3-3 inc-3-4"><span>Фасад</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell is-us"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td></tr><tr class="inc-d" id="inc-3-0" hidden><th scope="row" class="inc-c0">Отделка</th><td>Имитация бруса АБ класса</td><td class="is-us">Имитация бруса АБ класса</td><td>Имитация бруса АБ класса</td></tr><tr class="inc-d" id="inc-3-1" hidden><th scope="row" class="inc-c0">Ветрозащита стен и пола</th><td>Izobox премиум, Технониколь</td><td class="is-us">Izobox премиум, Технониколь</td><td>Izobox премиум, Технониколь</td></tr><tr class="inc-d" id="inc-3-2" hidden><th scope="row" class="inc-c0">Вентиляционный зазор</th><td>Контробрешётка 40×40&nbsp;мм</td><td class="is-us">Контробрешётка 40×40&nbsp;мм</td><td>Контробрешётка 40×40&nbsp;мм</td></tr><tr class="inc-d" id="inc-3-3" hidden><th scope="row" class="inc-c0">Стыки и углы</th><td>Шлифованная рейка 40×10&nbsp;мм и уголок 40×40&nbsp;мм</td><td class="is-us">Шлифованная рейка 40×10&nbsp;мм и уголок 40×40&nbsp;мм</td><td>Шлифованная рейка 40×10&nbsp;мм и уголок 40×40&nbsp;мм</td></tr><tr class="inc-d" id="inc-3-4" hidden><th scope="row" class="inc-c0">Монтаж отделки</th><td>На оцинкованные гвозди</td><td class="is-us">На оцинкованные гвозди</td><td>На оцинкованные гвозди</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-4-0 inc-4-1 inc-4-2 inc-4-3 inc-4-4"><span>Утепление</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-no">Нет</span></td><td class="inc-cell is-us"><span class="inc-pill is-val">150&nbsp;мм</span></td><td class="inc-cell"><span class="inc-pill is-val">200&nbsp;мм</span></td></tr><tr class="inc-d" id="inc-4-0" hidden><th scope="row" class="inc-c0">Утеплитель</th><td>—</td><td class="is-us">Базальтовые плиты высшего класса, Технониколь</td><td>Базальтовые плиты высшего класса, Технониколь</td></tr><tr class="inc-d" id="inc-4-1" hidden><th scope="row" class="inc-c0">Стены, пол и потолок</th><td>—</td><td class="is-us">150&nbsp;мм</td><td>200&nbsp;мм</td></tr><tr class="inc-d" id="inc-4-2" hidden><th scope="row" class="inc-c0">Плотность</th><td>—</td><td class="is-us">25&nbsp;кг/м³</td><td>35&nbsp;кг/м³</td></tr><tr class="inc-d" id="inc-4-3" hidden><th scope="row" class="inc-c0">Пароизоляция</th><td>—</td><td class="is-us">Плёнка 200&nbsp;микрон</td><td>Плёнка 200&nbsp;микрон</td></tr><tr class="inc-d" id="inc-4-4" hidden><th scope="row" class="inc-c0">Проклейка плёнок</th><td>Монтажный скотч Технониколь Альфа или аналог</td><td class="is-us">Монтажный скотч Технониколь Альфа или аналог</td><td>Монтажный скотч Технониколь Альфа или аналог</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-5-0 inc-5-1 inc-5-2 inc-5-3 inc-5-4 inc-5-5 inc-5-6"><span>Окна и входная дверь</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell is-us"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td></tr><tr class="inc-d" id="inc-5-0" hidden><th scope="row" class="inc-c0">Окна</th><td>ПВХ, профиль 70&nbsp;мм, три стекла — зимнее остекление</td><td class="is-us">ПВХ, профиль 70&nbsp;мм, три стекла — зимнее остекление</td><td>ПВХ, профиль 70&nbsp;мм, три стекла — зимнее остекление</td></tr><tr class="inc-d" id="inc-5-1" hidden><th scope="row" class="inc-c0">Монтаж окон</th><td>Демисезонная монтажная пена</td><td class="is-us">Демисезонная монтажная пена</td><td>Демисезонная монтажная пена</td></tr><tr class="inc-d" id="inc-5-2" hidden><th scope="row" class="inc-c0">Наличники окон</th><td>Снаружи рейка 60×10&nbsp;мм</td><td class="is-us">Снаружи рейка 60×10&nbsp;мм, внутри уголок 40×40&nbsp;мм</td><td>Снаружи рейка 60×10&nbsp;мм, внутри уголок 40×40&nbsp;мм</td></tr><tr class="inc-d" id="inc-5-3" hidden><th scope="row" class="inc-c0">Входная дверь</th><td>Металлическая, «Триумф» класса «Премиум РФ» или аналог, 205×90&nbsp;см</td><td class="is-us">Металлическая, «Триумф» класса «Премиум РФ» или аналог, 205×90&nbsp;см</td><td>Металлическая, «Триумф» класса «Премиум РФ» или аналог, 205×90&nbsp;см</td></tr><tr class="inc-d" id="inc-5-4" hidden><th scope="row" class="inc-c0">Полотно двери</th><td>Металл 1,2&nbsp;мм, толщина 70&nbsp;мм, утеплено пенополистиролом, 2 замка</td><td class="is-us">Металл 1,2&nbsp;мм, толщина 70&nbsp;мм, утеплено пенополистиролом, 2 замка</td><td>Металл 1,2&nbsp;мм, толщина 70&nbsp;мм, утеплено пенополистиролом, 2 замка</td></tr><tr class="inc-d" id="inc-5-5" hidden><th scope="row" class="inc-c0">Отделка двери</th><td>Внутри МДФ 6&nbsp;мм «сандал», снаружи «антик тёмное серебро»</td><td class="is-us">Внутри МДФ 6&nbsp;мм «сандал», снаружи «антик тёмное серебро»</td><td>Внутри МДФ 6&nbsp;мм «сандал», снаружи «антик тёмное серебро»</td></tr><tr class="inc-d" id="inc-5-6" hidden><th scope="row" class="inc-c0">Наличники двери</th><td>Снаружи заводские металлические, внутри уголок 40×40&nbsp;мм</td><td class="is-us">Снаружи заводские металлические, внутри уголок 40×40&nbsp;мм</td><td>Снаружи заводские металлические, внутри уголок 40×40&nbsp;мм</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-6-0 inc-6-1 inc-6-2 inc-6-3 inc-6-4 inc-6-5"><span>Полы</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-no">Нет</span></td><td class="inc-cell is-us"><span class="inc-pill is-val">ЦСП 15&nbsp;мм</span></td><td class="inc-cell"><span class="inc-pill is-val">Доска 140×35&nbsp;мм</span></td></tr><tr class="inc-d" id="inc-6-0" hidden><th scope="row" class="inc-c0">Чистовой пол</th><td>—</td><td class="is-us">ЦСП-плита 15&nbsp;мм</td><td>Шпунтованная доска 140×35&nbsp;мм</td></tr><tr class="inc-d" id="inc-6-1" hidden><th scope="row" class="inc-c0">Черновой пол</th><td>—</td><td class="is-us">Доска 90×20&nbsp;мм, шаг 10&nbsp;см</td><td>Доска 90×20&nbsp;мм, шаг 10&nbsp;см</td></tr><tr class="inc-d" id="inc-6-2" hidden><th scope="row" class="inc-c0">Пол в санузле</th><td>—</td><td class="is-us">ЦСП-плита 15&nbsp;мм</td><td>ЦСП-плита 15&nbsp;мм</td></tr><tr class="inc-d" id="inc-6-3" hidden><th scope="row" class="inc-c0">Плинтусы</th><td>—</td><td class="is-us">Деревянные</td><td>Деревянные</td></tr><tr class="inc-d" id="inc-6-4" hidden><th scope="row" class="inc-c0">Подшивка снизу</th><td>Доска 90×20&nbsp;мм, шаг 10&nbsp;см</td><td class="is-us">Доска 90×20&nbsp;мм, шаг 10&nbsp;см</td><td>Доска 90×20&nbsp;мм, шаг 10&nbsp;см</td></tr><tr class="inc-d" id="inc-6-5" hidden><th scope="row" class="inc-c0">Усиление и защита</th><td>Поперечное усиление пола, сетка от грызунов</td><td class="is-us">Поперечное усиление пола, сетка от грызунов</td><td>Поперечное усиление пола, сетка от грызунов</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-7-0 inc-7-1 inc-7-2 inc-7-3"><span>Отделка внутри</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-no">Нет</span></td><td class="inc-cell is-us"><span class="inc-pill is-val">Вагонка</span></td><td class="inc-cell"><span class="inc-pill is-val">Вагонка</span></td></tr><tr class="inc-d" id="inc-7-0" hidden><th scope="row" class="inc-c0">Стены и потолок</th><td>—</td><td class="is-us">Вагонка премиум, АБ класс</td><td>Вагонка премиум, АБ класс</td></tr><tr class="inc-d" id="inc-7-1" hidden><th scope="row" class="inc-c0">Перегородки</th><td>Каркас 95×45&nbsp;мм</td><td class="is-us">Каркас 95×45&nbsp;мм, вагонка премиум АБ</td><td>Каркас 95×45&nbsp;мм, вагонка премиум АБ</td></tr><tr class="inc-d" id="inc-7-2" hidden><th scope="row" class="inc-c0">Санузел</th><td>—</td><td class="is-us">Вагонка БС класса</td><td>Влагостойкий гипсокартон</td></tr><tr class="inc-d" id="inc-7-3" hidden><th scope="row" class="inc-c0">Межкомнатные двери</th><td>—</td><td class="is-us">Филенчатые 190×80&nbsp;см, наличники из рейки и уголка</td><td>Филенчатые 190×80&nbsp;см, наличники из рейки и уголка</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-8-0 inc-8-1 inc-8-2 inc-8-3"><span>Терраса</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell is-us"><span class="inc-pill is-yes">Входит</span></td><td class="inc-cell"><span class="inc-pill is-yes">Входит</span></td></tr><tr class="inc-d" id="inc-8-0" hidden><th scope="row" class="inc-c0">Пол</th><td>Террасная доска из лиственницы 140×35&nbsp;мм</td><td class="is-us">Террасная доска из лиственницы 140×35&nbsp;мм</td><td>Террасная доска из лиственницы 140×35&nbsp;мм</td></tr><tr class="inc-d" id="inc-8-1" hidden><th scope="row" class="inc-c0">Перила и стойки</th><td>Шлифованная доска</td><td class="is-us">Шлифованная доска</td><td>Шлифованная доска</td></tr><tr class="inc-d" id="inc-8-2" hidden><th scope="row" class="inc-c0">Потолок</th><td>Зашит имитацией бруса АБ</td><td class="is-us">Зашит имитацией бруса АБ</td><td>Зашит имитацией бруса АБ</td></tr><tr class="inc-d" id="inc-8-3" hidden><th scope="row" class="inc-c0">Ступени</th><td>Есть, 2&nbsp;м</td><td class="is-us">Есть, 2&nbsp;м</td><td>Есть, 3&nbsp;м</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-9-0 inc-9-1 inc-9-2"><span>Инженерные системы</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-no">Нет</span></td><td class="inc-cell is-us"><span class="inc-pill is-no">Нет</span></td><td class="inc-cell"><span class="inc-pill is-val">Вытяжка в санузле</span></td></tr><tr class="inc-d" id="inc-9-0" hidden><th scope="row" class="inc-c0">Закладные отверстия под трубы</th><td>Есть</td><td class="is-us">Есть</td><td>Есть</td></tr><tr class="inc-d" id="inc-9-1" hidden><th scope="row" class="inc-c0">Вытяжка в санузле</th><td>—</td><td class="is-us">—</td><td>Настенная</td></tr><tr class="inc-d" id="inc-9-2" hidden><th scope="row" class="inc-c0">Отопление и тёплый пол</th><td>—</td><td class="is-us">—</td><td>—</td></tr><tr class="inc-r"><th scope="row" class="inc-c0"><button type="button" class="inc-tg" aria-expanded="false" aria-controls="inc-o-0 inc-o-1 inc-o-2 inc-o-3 inc-o-4 inc-o-5 inc-o-dl inc-o-sum"><span>Дополнительные опции</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></th><td class="inc-cell"><span class="inc-pill is-add">+ Можно добавить</span></td><td class="inc-cell is-us"><span class="inc-pill is-add">+ Можно добавить</span></td><td class="inc-cell"><span class="inc-pill is-add">+ Можно добавить</span></td></tr><tr class="inc-d inc-opt" id="inc-o-0" data-opt="elec" hidden><th scope="row" class="inc-c0"><label class="inc-ol"><input type="checkbox"><span class="inc-ob" aria-hidden="true"></span><span class="inc-ot"><span>Электрика</span><small>Внутренняя разводка, розетки, выключатели и точки света по проекту, УЗО и щиток</small></span></label></th><td data-col="0" data-v="457200"><span class="inc-pill is-add">+457 200 ₽</span></td><td class="is-us" data-col="1" data-v="457200"><span class="inc-pill is-add">+457 200 ₽</span></td><td data-col="2" data-v="457200"><span class="inc-pill is-add">+457 200 ₽</span></td></tr><tr class="inc-d inc-opt" id="inc-o-1" data-opt="pipes" hidden><th scope="row" class="inc-c0"><label class="inc-ol"><input type="checkbox"><span class="inc-ob" aria-hidden="true"></span><span class="inc-ot"><span>Разводка труб</span><small>Тёплая и холодная вода и канализация — на кухню и в санузел</small></span></label></th><td data-col="0" data-v="406400"><span class="inc-pill is-add">+406 400 ₽</span></td><td class="is-us" data-col="1" data-v="406400"><span class="inc-pill is-add">+406 400 ₽</span></td><td data-col="2" data-v="406400"><span class="inc-pill is-add">+406 400 ₽</span></td></tr><tr class="inc-d inc-opt" id="inc-o-2" data-opt="vent" hidden><th scope="row" class="inc-c0"><label class="inc-ol"><input type="checkbox"><span class="inc-ob" aria-hidden="true"></span><span class="inc-ot"><span>Вентиляция</span><small>Приточные клапаны по всему дому</small></span></label></th><td data-col="0" data-v="101600"><span class="inc-pill is-add">+101 600 ₽</span></td><td class="is-us" data-col="1" data-v="101600"><span class="inc-pill is-add">+101 600 ₽</span></td><td data-col="2" data-v="101600"><span class="inc-pill is-add">+101 600 ₽</span></td></tr><tr class="inc-d inc-opt" id="inc-o-3" data-opt="paintIn" hidden><th scope="row" class="inc-c0"><label class="inc-ol"><input type="checkbox"><span class="inc-ob" aria-hidden="true"></span><span class="inc-ot"><span>Покраска внутри</span><small>Стены и потолок</small></span></label></th><td>—</td><td class="is-us" data-col="1" data-v="789100"><span class="inc-pill is-add">+789 100 ₽</span></td><td data-col="2" data-v="871900"><span class="inc-pill is-add">+871 900 ₽</span></td></tr><tr class="inc-d inc-opt" id="inc-o-4" data-opt="paintOut" hidden><th scope="row" class="inc-c0"><label class="inc-ol"><input type="checkbox"><span class="inc-ob" aria-hidden="true"></span><span class="inc-ot"><span>Покраска снаружи</span><small>Стены дома, потолок и перила террасы</small></span></label></th><td data-col="0" data-v="369400"><span class="inc-pill is-add">+369 400 ₽</span></td><td class="is-us" data-col="1" data-v="369400"><span class="inc-pill is-add">+369 400 ₽</span></td><td data-col="2" data-v="414400"><span class="inc-pill is-add">+414 400 ₽</span></td></tr><tr class="inc-d inc-opt" id="inc-o-5" data-opt="plinth" hidden><th scope="row" class="inc-c0"><label class="inc-ol"><input type="checkbox"><span class="inc-ob" aria-hidden="true"></span><span class="inc-ot"><span>Обшивка цоколя</span><small>Декоративный камень по периметру дома и террасы</small></span></label></th><td data-col="0" data-v="74600"><span class="inc-pill is-add">+74 600 ₽</span></td><td class="is-us" data-col="1" data-v="74600"><span class="inc-pill is-add">+74 600 ₽</span></td><td data-col="2" data-v="74600"><span class="inc-pill is-add">+74 600 ₽</span></td></tr><tr class="inc-d inc-opt" id="inc-o-dl" hidden><th scope="row" class="inc-c0"><span class="inc-ol"><span class="inc-ob is-na" aria-hidden="true"></span><span class="inc-ot"><span>Доставка дальше 100&nbsp;км</span><small>До 100&nbsp;км — бесплатно</small></span></span></th><td><span class="inc-pill is-add" data-km>800 ₽ за&nbsp;км</span></td><td class="is-us"><span class="inc-pill is-add" data-km>800 ₽ за&nbsp;км</span></td><td><span class="inc-pill is-add" data-km>800 ₽ за&nbsp;км</span></td></tr><tr class="inc-d inc-sum" id="inc-o-sum" hidden aria-live="polite"><th scope="row" class="inc-c0"><span class="inc-ot"><span>Итого с выбранными</span><small>без доставки</small></span></th><td><b data-base="3759200" data-col="0">3 759 200 ₽</b></td><td class="is-us"><b data-base="4267200" data-col="1">4 267 200 ₽</b></td><td><b data-base="5181600" data-col="2">5 181 600 ₽</b></td></tr></tbody></table></div><div class="inc-f"><p class="inc-note">Цена фиксируется в договоре до начала работ. В цену входят все работы по сборке дома, погрузка, разгрузка и доставка до 100&nbsp;км.</p><button type="button" class="inc-all" aria-expanded="false">Раскрыть всё</button></div></div>
+    </section>
+
+
+    <section class="sec" id="kn-place"><div class="kn"><section class="kn-card" aria-labelledby="kn-h">
+        <div class="kn-top"><h1 class="kn-h" id="kn-h">Калькулятор дома</h1></div>
+        <div class="kn-fld">
+          <label class="kn-lbl" for="kn-l">Площадь дома, м²</label>
+          <input class="kn-in" id="kn-l" type="text" inputmode="decimal" autocomplete="off" placeholder="100">
+        </div>
+        <label class="kn-line" for="kn-terr"><span>Терраса</span><span class="kn-sw"><input type="checkbox" id="kn-terr"><i aria-hidden="true"></i></span></label>
+        <div class="kn-fld" id="kn-t-box" hidden>
+          <label class="kn-lbl" for="kn-t">Площадь террасы, м²</label>
+          <input class="kn-in" id="kn-t" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+          <p class="kn-hint">пол, крыша, перила</p>
+        </div>
+        <p class="kn-err" id="kn-err" role="alert" hidden></p>
+        <div class="kn-sum"><span id="kn-sum-t">Укажите площадь дома</span><b id="kn-sum-v">—</b></div>
+        <div class="kn-two">
+          <div class="kn-fld">
+            <label class="kn-lbl" for="kn-p">Перегородки, м</label>
+            <input class="kn-in" id="kn-p" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+            <p class="kn-hint">каркас и отделка ×2</p>
+          </div>
+          <div class="kn-fld">
+            <label class="kn-lbl" for="kn-km">Доставка, км</label>
+            <input class="kn-in" id="kn-km" type="text" inputmode="numeric" autocomplete="off" placeholder="100">
+          </div>
+        </div>
+        <p class="kn-hint kn-rules" id="kn-km-h"></p>
+
+        <h2 class="kn-cap">Дополнительно</h2>
+        <div id="kn-groups"></div>
+        <div class="kn-optsum"><span>Доп-опции</span><b id="kn-optsum">—</b></div>
+
+        <button type="button" class="kn-go" id="kn-calc">Рассчитать</button>
+        <button type="button" class="kn-reset" id="kn-reset">сбросить к базовой комплектации</button>
+
+        <div class="kn-res" id="kn-res" hidden>
+          <span class="kn-res__k">Итого</span>
+          <b class="kn-res__v" id="kn-total">—</b>
+          <div class="kn-rows" id="kn-rows"></div>
+          <p class="kn-res__n" id="kn-note"></p>
+          <div class="kn-gifts"><p class="kn-gifts__h" id="kn-gifts-h"></p><ul id="kn-gifts"></ul></div>
+          <button type="button" class="kn-go" data-callback data-cb-title="Получить расчёт">Получить расчёт</button>
+        </div>
+      </section></div></section>
+
+
+    <section class="tail tail--dl">
+      <b class="tail-dl__q">Нравится проект?</b>
+      <p class="tail-dl__sub">Как мы гарантируем соблюдение сроков</p>
+      <ul class="tail-dl__list">
+        <li><b>Строители живут на&nbsp;участке или рядом</b>&nbsp;— время уходит на&nbsp;ваш дом, а&nbsp;не&nbsp;на&nbsp;дорогу.</li>
+        <li><b>Срок записан в&nbsp;договоре</b>: до&nbsp;60&nbsp;дней с&nbsp;поставки материалов (п.&nbsp;5.1).</li>
+        <li><b>Просрочим по&nbsp;своей вине&nbsp;— платим</b> 0,3&nbsp;% цены договора в&nbsp;день, всего до&nbsp;10&nbsp;% (п.&nbsp;7.2).</li>
+        <li><b>Бригада назначена заранее</b> и&nbsp;встречает машины с&nbsp;материалами.</li>
+        <li><b>Приезжайте на&nbsp;стройку</b> и&nbsp;спросите хозяев, всё&nbsp;ли идёт в&nbsp;срок.</li>
+      </ul>
+      <p class="tail-dl__offer">Перезвоним и&nbsp;ответим на&nbsp;вопросы по&nbsp;этому дому.</p>
+      <div class="tail-dl__btns">
+        <button type="button" class="btn btn--l" data-callback>Заказать звонок</button>
+        <button type="button" class="btn btn--l tail-dl__alt" data-callback data-cb-title="Приехать на стройку" data-cb-text="Оставьте номер — перезвоним и договоримся, когда приехать.">Приехать на стройку</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="ft">
+  <div class="ft__in">
+    <span class="ft__lg"><svg viewBox="0 0 60 52" aria-hidden="true"><path d="M12 30 L30 14 L48 30" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><rect x="14" y="34" width="32" height="6.5" rx="3.2" fill="#E0603C"/><rect x="14" y="43.5" width="32" height="6.5" rx="3.2" fill="#E0603C"/></svg>Мой тёплый <i>дом</i></span>
+    <div class="ftc">
+      <div class="ftc__i">
+        <span class="ftc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/></svg></span>
+        <div class="ft__k">Телефон</div>
+        <a class="ft__tel" href="tel:+79782516469">+7 978 251‑64‑69</a>
+        <div class="ft__sm">WhatsApp, Telegram и Max на этом номере</div>
+      </div>
+      <div class="ftc__i">
+        <span class="ftc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+        <div class="ft__k">Офис и производство</div>
+        <div class="ft__sm" style="margin-top:var(--sp-12)">Москва, ул. Адмирала Корнилова, 66, строение 20<br>
+           ПН–ВС 11:00–18:00, приём по записи</div>
+        <a class="ft__ln" href="./#contacts">Как нас найти</a>
+      </div>
+      <div class="ftc__i">
+        <span class="ftc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+        <div class="ft__k">Документы</div>
+        <a class="ft__ln" href="dogovor.html">Договор и гарантии</a>
+        <a class="ft__ln" href="smeta-primer.html">Пример сметы</a>
+        <a class="ft__ln" href="politika.html">Политика конфиденциальности</a>
+        <a class="ft__ln" href="soglashenie.html">Пользовательское соглашение</a>
+      </div>
+    </div>
+
+    <div class="ft__rule"></div>
+    <div class="ft__k">Реквизиты</div>
+    <dl class="ft__req"><div><dt>Наименование</dt><dd>ООО «СОЗВЕЗДИЕ»</dd></div><div><dt>ИНН / КПП</dt><dd>4338010020 / 525401001</dd></div><div><dt>ОГРН</dt><dd>1214300002070</dd></div><div><dt>Директор</dt><dd>Баннов А. В.</dd></div><div><dt>Юридический адрес</dt><dd>607920, Нижегородская обл., Починковский м. о., с. Дуброво, ул. Кооперативная, 101</dd></div></dl>
+    <div class="ft__rule"></div>
+    <div class="ft__bot">
+      <a href="./#catalog">Каталог</a>
+      <a href="./#built">Наши работы</a>
+      <a href="kak-zakazat.html">Как заказать</a>
+      <a href="stroim-vyezd-inzhenera.html">Как строим</a>
+      <span class="end">© 2026 ООО «СОЗВЕЗДИЕ»</span>
+    </div>
+  </div>
+</footer>
+
+
+<div class="ov" id="callback" hidden>
+  <div class="mdl" role="dialog" aria-modal="true" aria-labelledby="cb-title">
+    <button class="x" type="button" aria-label="Закрыть" data-cb-close>×</button>
+    <form class="cb" novalidate>
+      <div class="cb__h">
+        <b class="cb__t" id="cb-title">Заказать звонок</b>
+        <p class="cb__p">Оставьте номер — перезвоним и ответим на вопросы.</p>
+      </div>
+      <label class="fld">
+        <span class="fld__l">Телефон</span>
+        <input class="fld__i" id="cb-tel" type="tel" inputmode="tel"
+               placeholder="+7 (___) ___-__-__" autocomplete="tel"
+               aria-describedby="cb-err" required>
+        <span class="fld__e" id="cb-err" hidden>Введите номер полностью</span>
+      </label>
+      <label class="chk">
+        <input type="checkbox" id="cb-ok" checked required>
+        <span>Согласен на <a href="politika.html" target="_blank">обработку персональных данных</a> и принимаю <a href="soglashenie.html" target="_blank">условия сайта</a></span>
+      </label>
+      <button type="submit" class="btn btn--c cb__go">Жду звонка</button>
+    </form>
+  </div>
+</div>
+
+<script src="form.js?v=41"></script>
+<script src="header.js?v=44"></script>
+<script src="card.js?v=11"></script>
+<script src="calc-live.js?v=1"></script>
+<script>try{if(!localStorage.getItem('mtd_kn_state_mesto4'))localStorage.setItem('mtd_kn_state_mesto4',JSON.stringify({l:'80',terrace:true,t:'21,6',part:'',km:'100',on:{},qty:{},dist:{},elecExt:false,paintIn:false,paintOut:false}))}catch(e){}</script>
+<script>
+/* Движок большого калькулятора (Kalkulyator/index.html, коммит 10b60f4), вырезан 15.09.2026 17:47. Руками не править: собирает gen_page.py. */
+var MTD_ENGINE = (function () {
+let outline, partitions = [], windows, doors, terraces, saunas, wcs = [], ridge = null; const CELL_M = 0.5; const shoelace = () => 0;
+const TIERS = [
+    { key:"cold",    tier:"Холодный контур", name:"Холодный контур", rate:34500, cls:"" },
+    { key:"comfort", tier:"Комфорт",         name:"Комфорт",         rate:39500, cls:"" },
+    { key:"premium", tier:"Премиум",         name:"Премиум",         rate:48500, cls:"premium" }
+  ];
+  const ADDONS = {
+    roof:    { icon:"roof",   label:"Сложная крыша (стандарт)",     perm:2500, group:"roofkind", on:false },
+    roofT:   { icon:"roofEND",  label:"Крыша с ендовой (Г-образная)",   perm:3500, group:"roofkind", on:false,
+               help:"Два двускатных блока под углом 90° — в месте соединения внутренняя ендова (ложбина стока воды). Сложнее и дороже обычной кровли." },
+    roof2:   { icon:"roof2lv", label:"Двухуровневая крыша (2 ската)", perm:2500, group:"roofkind", on:false,
+               help:"Основной двускатный конёк + нижний скат пристройки/террасы — два уровня, единое направление стока." },
+    elec:    { icon:"elec",   label:"Электрика",                    perm:4000, permExt:5000, ext:false, sub:"Внешняя разводка", on:false,
+               // весь пакет электрики — иначе клиент, купивший опцию за 4–5 тыс./м², видел в спецификации «УЗО — Нет», «Щиток — Нет»
+               spec:{ "Тип разводки":"Внутренняя разводка", "Сечение провода под освещение":"Есть", "Сечение провода под розетки":"Есть", "Сечение основгоно кабеля заводимого в дом":"Есть",
+                      "Узо":"Есть", "Щиток с автоматом":"Есть", "Количество точек света":"По проекту", "Количество двойных розеток":"По проекту", "Количество вкл/выкл света в каждой комнате":"По проекту" } },
+    win:     { icon:"win",    label:"Сложные окна",                 perm:1500, group:"win", on:false },
+    pipes:   { icon:"pipes",  label:"Разводка труб",                perm:3500, on:false,
+               spec:{ "Разводка труб с теплой и холодной водой на кухне и в С/У":"Есть", "Разводка канализационных труб в С/У и на кухню":"Есть" } },
+    vent:    { icon:"vent",   label:"Вентиляция в доме",            perFloor:1000, note:"по всей площади: дом, санузлы, бани, терраса — всё вместе", on:false,
+               spec:{ "Вентиляция в доме":"Есть", "Приточные вентиляционные клапаны":"Есть" } },
+    frame:   { icon:"frame",  label:"Каркас всего дома 150 → 200 мм", perm:4500, exclude:["premium"], group:"frame", on:false,
+               spec:{ "Сечение каркаса кровли":"200х45 мм.", "Сечение каркаса стен":"200х45 мм.", "Сечение каркаса пола":"200х45 мм." } },
+    frameFR: { icon:"layers", label:"Каркас пола и кровли → 200 мм",  perm:2500, exclude:["premium"], group:"frame", note:"без стоек стен", on:false,
+               spec:{ "Сечение каркаса кровли":"200х45 мм.", "Сечение каркаса пола":"200х45 мм." } },
+    // Ламинат — по жилой без санузлов (как шпунт), не по террасе; Премиуму не продаём (там уже шпунтованная доска); со шпунтом — взаимоисключающие
+    laminate:{ icon:"floor",  label:"Ламинат на пол",               perLiving:2500, exclude:["premium"], group:"floorfin", note:"по жилой без санузлов · Премиуму не нужен — там уже шпунтованная доска", help:"Стоимость самого ламината — до 900 ₽/м². Клиент может выбрать любой на сайте «Лемана про».", on:false,
+               spec:{ "Чистовой пол в жилой части":"Ламинат" } },
+    // Quick Deck — влагостойкая шпунтованная плита с ламинацией под дерево, чистовой пол вместо ламината/шпунта
+    quickDeck:{ icon:"floor",  label:"Пол Quick Deck с ламинацией под дерево", perLiving:3000, group:"floorfin", note:"по жилой без санузлов · вместо ламината и шпунтованной доски", on:false,
+               spec:{ "Чистовой пол в жилой части":"Quick Deck с ламинацией под дерево" } },
+    generator:{ icon:"gen",   label:"Аренда генератора",            perm:750, note:"при отсутствии эл-ва на участке · включая бензин", on:false },
+    toilet:  { icon:"toilet", label:"Уличный туалет",               flat:13000, note:"деревянный, на участок", on:false,
+               spec:{ "Уличный туалет":"Есть (деревянный)" } },
+    carry:   { icon:"carry",  label:"Пронос материала",             base:25000, perMeter:500, distField:true, note:"разгрузка 25 000 ₽ + 500 ₽ за метр проноса · укажите дистанцию", on:false,
+               spec:{ "Пронос материала":"Есть" } },
+    plinth:  { icon:"stone",  label:"Обшивка цоколя декоративным камнем", perM:1500, note:"по периметру дома", on:false,
+               spec:{ "Зашивка цоколя дома":"Есть (декоративный камень)" } },
+    snow:    { icon:"snow",   label:"Снегодержатели",                perMLong:1500, note:"по 2 длинным сторонам дома", exclude:["premium"], on:false,
+               spec:{ "Снегозадержатель":"Есть" } },
+    gutter:  { icon:"gutter", label:"Дождевые сливы",                perMLong:2500, note:"по 2 длинным сторонам дома", exclude:["premium"], on:false,
+               spec:{ "Дождевые сливы":"Есть" } },
+    walls270:{ icon:"wall",   label:"Высота стен по краям 270 см", perFloor:1000, exclude:["premium"], inclTiers:["premium"], note:"по всей площади пола (дом + терраса)", on:false,
+               spec:{ "Высота стен внутри по краям дома":"270 см." } },
+    ridge150:{ icon:"roof2",  label:"Конёк 150 см вместо 120",     perFloor:1000, exclude:["premium"], inclTiers:["premium"], note:"по всей площади пола (дом + терраса)", on:false,
+               spec:{ "Высота крыши (конька)":"150 см." } },
+    pilesZB: { icon:"pile",   label:"Фундамент: ЖБ сваи 3000/150 мм",        perCount:1000, group:"piles", exclude:["premium"], inclTiers:["premium"], note:"+1000 ₽ за сваю к базовым винтовым 2500/89", on:false,
+               spec:{ "Тип фундамента":"ЖБ сваи 3000/150 мм", "Длина сваи":"3 метра", "Диаметр сваи":"150 мм.", "Толщина металла лопасти":"Не требуется — ЖБ свая без лопасти", "Размер винта сваи":"Не требуется — ЖБ свая без винта", "Засыпка свай пескобетоном":"Цельный бетон" } },
+    pilesV108:{ icon:"pile",  label:"Фундамент: Винтовые сваи 3000/108 мм",  perCount:1000, group:"piles", exclude:["premium"], note:"+1000 ₽ за сваю к базовым винтовым 2500/89 · не для Премиума — там уже ЖБ сваи 3000/150", on:false,
+               spec:{ "Тип фундамента":"Винтовые сваи 3000/108 мм", "Диаметр сваи":"108 мм.", "Длина сваи":"3 метра" } },
+    bytovkaE:{ icon:"bytovka", label:"Бытовка 4×2 м (бесплатно)",     flat:0, on:false,
+               help:"Каркас 45×45 мм естественной влажности (не строганная, не калиброванная доска). Снаружи вагонка БС класса (с сучками, в том числе выпавшими). Окна деревянные 80×80 см. Двери из вагонки каркасные набранные, без замка. Установка на 6 бетонных блоков. Крыша — профнастил 0,35 мм оцинкованный. Основание — полозья 100×100 мм. Утепление минвата 50 мм. Пол ОСБ 12 мм, стены ДВП (оргалит). Если нет проезда для доставки — рабочие собирают на месте. Скидки на бытовку нет: если поставить её негде, эта сумма идёт на аренду жилья для рабочих.",
+               spec:{ "Бытовка на участке":"Есть, 4×2 м (входит бесплатно)" } },
+    winLam:  { icon:"winlam", label:"Заводская ламинация окон",       perQty:6000, qty:true, note:"6000 ₽ за окно · укажите количество", on:false,
+               spec:{ "Тип окон":"ПВХ с заводской ламинацией" } },
+    extSoft: { icon:"softroof", label:"Снаружи — хауберг (мягкая кровля на стены)", perExt:3500, group:"extfin", on:false,
+               spec:{ "Отделка стен снаружи":"Хауберг (мягкая кровля), ОСБ 9 мм основа" } },
+    extSide: { icon:"siding",   label:"Снаружи — сайдинг",            perExt:3000, group:"extfin", on:false,
+               spec:{ "Отделка стен снаружи":"Сайдинг" } },
+    cladOutV: { icon:"clad",  label:"Снаружи — вагонка АБ",   perExt:-250, group:"extfin", note:"понижение класса вместо имитации АБ", on:false,
+               spec:{ "Отделка стен снаружи":"Вагонка АБ класс" } },
+    shpFloor:{ icon:"shpfloor", label:"Шпунтованная доска 140×32 мм на пол", perLiving:1600, group:"floorfin", exclude:["cold","premium"], inclTiers:["premium"], note:"по жилой без санузлов · только Комфорт (у Премиума уже есть)", on:false,
+               spec:{ "Чистовой пол в жилой части":"Шпунтованная доска 140×32 мм" } },
+    cladInI:  { icon:"clad",  label:"Внутри — имитация АБ",   perInner:350,  innerTiers:["comfort"], inclTiers:["premium"], group:"cladin", note:"вместо вагонки АБ · только Комфорт", on:false,
+               spec:{ "Отделка стен и потолка внутри":"Имитация АБ класс" } },
+    cladInV:  { icon:"clad",  label:"Внутри — вагонка АБ",    perInner:-250, innerTiers:["premium"], inclTiers:["comfort"], group:"cladin", note:"понижение класса вместо имитации · только Премиум", on:false,
+               spec:{ "Отделка стен и потолка внутри":"Вагонка АБ класс" } },
+
+    /* ── Шаг 4 «Как удешевить?»: понижения класса и отказы (cheap:true) ──
+       Ставки хранятся со знаком минус, во вкладке «Цены» вводятся как обычная
+       положительная скидка. 0 = цена не задана: строка видна, но в расчёт не идёт. */
+    cheapExtImBS:  { icon:"clad", label:"Снаружи: имитация БС вместо имитации АБ", perExt:-800, group:"extfin", cheap:true,
+               note:"понижение класса имитации бруса", on:false,
+               spec:{ "Отделка стен снаружи":"Имитация бруса БС класс" } },
+    cheapExtVagBS: { icon:"clad", label:"Снаружи: вагонка БС вместо имитации АБ", perExt:-1100, group:"extfin", cheap:true,
+               note:"вместо имитации бруса — вагонка класса БС", on:false,
+               spec:{ "Отделка стен снаружи":"Вагонка БС класс" } },
+    cheapInVagBS:  { icon:"clad", label:"Внутри: вагонка БС", perFloor:-800, exclude:["cold"], innerTiers:["comfort","premium"], group:"cladin", cheap:true,
+               note:"вместо вагонки АБ (Комфорт) и имитации АБ (Премиум)", on:false,
+               spec:{ "Отделка стен и потолка внутри":"Вагонка БС класс", "Отделка перегородок":"Вагонка БС класс" } },
+    cheapNoWin:    { icon:"win", label:"Отказ от окон", perFloor:-1000, group:"win", cheap:true,
+               note:"окна ставит заказчик · гарантия на окна не действует", on:false,
+               spec:{ "Тип окон":"Нет — окна не входят в цену", "Количество стекол":"Нет" } },
+    cheapNoDoor:   { icon:"door", label:"Отказ от входной двери", flat:-16000, cheap:true,
+               note:"дверь ставит заказчик · гарантия на двери не действует", on:false,
+               spec:{ "Тип дверей":"Нет — входная дверь не входит в цену", "Класс дверей":"Нет" } },
+    cheapNoFound:  { icon:"pile", label:"Отказ от фундамента", perFloor:-2000, perFloorTier:{premium:-2500}, group:"piles", cheap:true,
+               note:"фундамент делает заказчик · гарантия на фундамент не действует", on:false,
+               spec:{ "Тип фундамента":"Нет — фундамент не входит в цену" } },
+    cheapOsbWc: { icon:"floor", label:"Замена ЦСП на ОСБ 18 мм по всему дому", perFloor:-400, perFloorTier:{premium:-700}, cheap:true, note:"по всей площади пола: дом и терраса", on:false, spec:{ "Чистовой пол в С/У":"ОСБ-плита, 18 мм." }, specTier:{ premium:{ "Чистовой пол в жилой части":"ОСБ-плита, 18 мм." } } },
+    cheapNatWood:  { icon:"layers", label:"Доска естественной влажности вместо камерной сушки", perFloor:-2000, cheap:true,
+               note:"дерево сохнет уже на объекте — возможны усадка и трещины", on:false,
+               spec:{ "Тип влажности доски":"Естественная влажность" } },
+    cheapFlatCeil: { icon:"roof2", label:"Ровный потолок вместо потолка под конёк", perFloor:-500, cheap:true,
+               note:"тот же тумблер, что в строке «Покраска стен и потолка внутри» · покраска и отделка сразу пересчитываются по меньшей площади", on:false,
+               ceil:true,   // строка управляет типом потолка: включена = ровный
+               spec:{ "Тип потолка":"Ровный" } }
+  };
+  // Ключи шага 4 — они не попадают в список опций шага 3.
+  
+let dimA=10,dimB=10,deliveryKm=100,sizeMode="area",customPerimeter=0;
+  let areaOverflow=false;   // в поле введено >200 м²: считаем по 200, но НЕ молчим — показываем предупреждение и не даём КП/смету
+  let addonQty={};   // введённые количества для опций-с-количеством (ламинация окон): key → число
+  let selTier="comfort";  // выбранный тариф — его разбирает живая смета; все три карточки видны всегда
+  let giftOn={svai:true,bytovka:true,project:true,engineer:true};  // какие подарки показывать в КП (выбор менеджера)
+  // Подарки: список + плоские иконки. В КП показываются только отмеченные (giftOn).
+  
+let DEFAULT_STATE = null;   // снимок чистого расчёта — для новых рабочих столов (снимается на старте)
+  // Габариты начерченного контура (bounding box), м. Чертёж хранит площадь и периметр,
+  // но форму терял — из-за этого длинный дом считался как квадрат. 0 = чертежа нет.
+  let drawnL=0, drawnW=0;
+  // Площадь начерченного контура, м² (для L-образных ≠ drawnL×drawnW). 0 = чертежа нет.
+  let drawnArea=0;
+  // Единственная внешняя прямоугольная терраса с чертежа {w,h} — чтобы показывать её в полях А×Б.
+  let drawnTerRect=null;
+  // Состав начерченных террас текстом («7×1 + 7×2») — подпись под полями А×Б, когда их несколько.
+  let drawnTerDesc="";
+  // Периметр жилой зоны изнутри с чертежа, м (при врезанной террасе больше периметра контура). 0 = нет чертежа.
+  let drawnInnerPerim=0;
+  // Внешний край террас с чертежа, м — для свесов крыши над террасами при уличной покраске.
+  let drawnTerOutline=0;
+  // Граница жилая|терраса, м — стены, видимые с террасы: красятся и уличной покраской (полной высотой).
+  let drawnExtTer=0;
+  // Габариты контура ПО ОСЯМ (X и Y), м — чтобы фронтоны считались по нарисованному направлению конька.
+  let drawnBW=0, drawnBH=0;
+  // Площадь начерченных террас ВНУТРИ контура, м². Входит в цену дома, но это не жилая
+  // площадь — покраску и отделку внутри там не считаем.
+  let drawnTerIn=0;
+
+  
+/* ── Утилиты ── */
+  const fmt  = n => Math.round(n).toLocaleString("ru-RU");
+  const pNum = v => parseFloat(String(v).replace(",", ".")) || 0;
+  const dayWord = n => { const d=n%10, h=n%100; return d===1&&h!==11 ? "день" : (d>=2&&d<=4&&(h<12||h>14) ? "дня" : "дней"); };
+  const f1   = x => (Math.round(x * 10) / 10).toFixed(1);
+  // Округление цены ВВЕРХ до 100 ₽ (утв.). Сначала до целого рубля — иначе float-пыль
+  // от sqrt(area)² раздувается в лишние +100 ₽ на ровных суммах (10 м² → 345 100 вместо 345 000).
+  const ceil100 = v => Math.ceil(Math.round(v) / 100) * 100;
+  // Экранирование пользовательского текста (имена слотов/пресетов) перед вставкой в innerHTML — против XSS.
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+  let terA = 0, terB = 0, terS = 0, terSeparate = false, terraceMixed = false;
+  const houseArea = () => dimA * dimB;
+  // perM-опции (цоколь): периметр дома + внешний край террас — юбка террасы тоже обшивается (утв.).
+  // Стоимость надбавки БЕЗ учёта включённости — для «применённой цены» опции (показываем даже у выключенных).
+  function addonAmount(key,tk){
+    const a=ADDONS[key]; if(!a) return 0;
+    if(a.exclude&&a.exclude.includes(tk)) return 0;
+    if(key==="pilesZB" && giftOn.svai && !ADDONS.pilesV108.on) return 0;                              // ЖБ сваи отмечены подарком — бесплатно, иначе в одном КП «дарим и продаём»
+    if(a.flat!=null) return a.flat;                                           // фикс-цена независимо от размера (уличный туалет; 0 — бытовка)
+    if(a.base!=null) return a.base + (a.perMeter||0)*(addonQty[key]||0);      // разгрузка + тариф за метр (пронос материала)
+    if(a.perFloorTier && a.perFloorTier[tk]!=null) return a.perFloorTier[tk]*area();   // своя ставка для комплектации (в Премиуме заменяем больше)
+    if(a.perFloor)  return a.perFloor*area();                                 // ₽/м² по всей площади пола (дом+терраса) — 270/конёк-150
+    if(a.perLiving) return a.perLiving*Math.max(0,livingArea()-wcArea());     // ₽/м² по жилой без санузлов — шпунт-пол
+    if(a.perCount)  return a.perCount*pilesTotal();                           // ₽ за сваю × количество
+    if(a.perQty)    return a.perQty*(addonQty[key]||0);                       // ₽ × введённое количество (ламинация окон)
+    if(a.perExt){ const k=1+(FINISH.paintSurcharge+FINISH.openingSurcharge)/100; return extFinArea(tk)*a.perExt*k; }  // наружная отделка: площадь как покраска снаружи + надбавки
+    if(a.perInner){ if(a.innerTiers&&!a.innerTiers.includes(tk)) return 0; return innerArea(tk).total*a.perInner; }    // внутренняя отделка по комплектациям, без надбавок
+    const eff=a.ext?a.permExt:(a.perm||0);
+    if(!a.perM&&!a.perMLong) return eff*area();
+    if(a.perM) return a.perM*(perimeter()+terOuterEdge());
+    if(a.perMLong) return a.perMLong*longSides();
+    return 0;
+  }
+  function addonCost(key,tk){ const a=ADDONS[key]; if(!a||!a.on) return 0; return addonAmount(key,tk); }
+  // Сумма всех надбавок для комплектации — единый источник и для карточки, и для сметы (card = смета).
+  const addonsSum = tk => Object.keys(ADDONS).reduce((s,k)=> s + addonCost(k,tk), 0);
+
+  /* ── «Применённая цена» опции для текущего дома по каждой комплектации (Хол/Комф/Прем) ── */
+  const amtCell = amt => { const r = amt < 0 ? -ceil100(-amt) : ceil100(amt);
+    return { txt: (r < 0 ? "−" : "") + fmt(Math.abs(r)) + " ₽", neg: r < 0 }; };
+  // Покраски считаем БЕЗ учёта включённости (превью), чтобы видеть цену даже у выключенной опции.
+  function paintAmount(tk){ if (tk === "cold") return 0; const A = innerArea(tk).total; if (A <= 0) return 0;
+    const k = 1 + (FINISH.paintSurcharge + FINISH.openingSurcharge) / 100; return Math.max(A * FINISH.paintRate * k, FINISH.minSum); }
+  function extPaintAmount(tk){
+    if (ADDONS.extSide.on || ADDONS.extSoft.on) return 0;
+    const o = outerArea(tk), hp = heightParams(tk), k = 1 + (FINISH.paintSurcharge + FINISH.openingSurcharge) / 100;
+    const walls = o.total > 0 ? Math.max((o.total + terOuterEdge() * hp.overhang / 100 + drawnExtTer * hp.extWallH / 100) * FINISH.extRate * k, FINISH.minSum) : 0;
+    const Tt = terraceArea();
+    const terr = Tt > 0 ? terraceCeilArea(tk) * FINISH.terCeilRate * (1 + FINISH.paintSurcharge / 100) + Tt * FINISH.railRate : 0;
+    return walls + terr;
+  }
+  function appliedCell(id, tk){
+    if (id === "cardPaint")    { if (tk === "cold") return { txt:"недоступно", na:true }; const v=paintAmount(tk); return v>0 ? amtCell(v) : { txt:"—", na:true }; }
+    if (id === "cardExtPaint") { const v=extPaintAmount(tk); return v>0 ? amtCell(v) : { txt:"—", na:true }; }
+    const a = ADDONS[id]; if (!a) return { txt:"—", na:true };
+    if (a.cheap && !(a.perExt || a.perInner || a.perFloor || a.perCount || a.perQty || a.flat || a.perm)) return { txt:"нет цены", na:true };   // шаг 4: ставка ещё не задана
+    if (a.flat === 0) return { txt:"бесплатно", na:true };                                   // бытовка
+    if (id === "pilesZB" && giftOn.svai && !ADDONS.pilesV108.on && !(a.exclude && a.exclude.includes(tk))) return { txt:"в подарок", na:true };   // ЖБ сваи идут подарком
+    if ((a.exclude && a.exclude.includes(tk)) || (a.innerTiers && !a.innerTiers.includes(tk))) {
+      // «включена» неактуальна, если выбран другой вариант той же радио-группы (он переопределяет тариф)
+      const siblingOn = a.group && Object.keys(ADDONS).some(k => k !== id && ADDONS[k].group === a.group && ADDONS[k].on);
+      return { txt:(a.inclTiers && a.inclTiers.includes(tk) && !siblingOn) ? "включена" : "—", na:true };  // не для этой комплектации
+    }
+    const amt = addonAmount(id, tk);
+    if (amt === 0) return { txt: a.perQty ? "0 ₽" : "—", na:true };
+    return amtCell(amt);
+  }
+  function updateApplied(){
+    document.querySelectorAll("[data-costs]").forEach(el => {
+      const id = el.dataset.costs;
+      el.innerHTML = ["cold","comfort","premium"].map(tk => { const c = appliedCell(id, tk);
+        return `<span class="oc${c.neg ? " neg" : ""}${c.na ? " na" : ""}">${c.txt}</span>`; }).join("");
+    });
+  }
+  // Наценка/спец-условия/комиссия убраны (утв. 2026-07-21): цена карточки = tierPrice напрямую.
+  const terraceArea = () => terS;
+  // Внешний край террас, м: с чертежа — точно; без чертежа — три открытые стороны квадрата той же площади.
+  const terOuterEdge = () => drawnTerOutline > 0 ? drawnTerOutline : (terS > 0 ? 3 * Math.sqrt(terS) : 0);
+  const area = () => houseArea() + (terSeparate ? terraceArea() : 0);
+  // Реальные габариты дома: из чертежа, иначе из введённых размеров.
+  // По умолчанию конёк вдоль длинной стороны. Если на чертеже НАРИСОВАН конёк — его направление
+  // главнее: фронтоны считаются по нарисованному (утв.: «привязать расчёт к направлению — да»).
+  const houseL = () => {
+    if (drawnBW > 0 && ridge) return ridge.dir === "h" ? drawnBW : drawnBH;   // длина вдоль конька
+    return drawnL > 0 ? drawnL : Math.max(dimA, dimB);
+  };
+  const houseW = () => {
+    if (drawnBW > 0 && ridge) return ridge.dir === "h" ? drawnBH : drawnBW;   // ширина фронтона
+    return drawnW > 0 ? drawnW : Math.min(dimA, dimB);
+  };
+  // Жилая часть: если терраса «в составе», её площадь входит в контур — вычитаем, внутри её не отделывают.
+  // Жилая площадь. Поле дома УЖЕ жилая (applyDrawing кладёт туда контур минус внутреннюю террасу);
+  // при ручном вводе терраса «в составе» (галочка снята) вычитается из дома.
+  const livingArea = () => Math.max(0, houseArea() - (terSeparate ? 0 : terraceArea()));
+
+
+  
+/* ── Расчёт ── */
+  const permSum = tier => Object.values(ADDONS).reduce((s, a) =>
+    s + (a.on && a.perm && !(a.exclude && a.exclude.includes(tier)) ? (a.ext ? a.permExt : a.perm) : 0), 0);
+  const perimeter = () => customPerimeter > 0 ? customPerimeter : 2 * (dimA + dimB);
+  const longSides = () => 2 * houseL();
+  // Санузлы (для шпунт-пола: жилая − СУ). Без чертежа санузлов нет → 0.
+  const wcArea = () => wcs.reduce((s,z)=> s + (z && z.closed && z.pts && z.pts.length>=3 ? shoelace(z.pts) : 0), 0);
+  // Сваи: по габаритам, свай на сторону = ⌊длина/2⌋+1 (шаг ~2 м). Терраса — свои сваи. Бытовка — без свай.
+  const pileSide = n => n>0 ? Math.floor(n/2 + 1e-9) + 1 : 0;
+  function pilesInfo(){
+    const hL = drawnBW>0?drawnBW:Math.sqrt(Math.max(0,houseArea()));
+    const hW = drawnBH>0?drawnBH:Math.sqrt(Math.max(0,houseArea()));
+    const house = houseArea()>0.05 ? pileSide(hL)*pileSide(hW) : 0;
+    const tw = drawnTerRect?drawnTerRect.w:Math.sqrt(Math.max(0,terS));
+    const th = drawnTerRect?drawnTerRect.h:Math.sqrt(Math.max(0,terS));
+    const terrace = terS>0.05 ? pileSide(tw)*pileSide(th) : 0;
+    return { house, terrace, total: house+terrace };
+  }
+  const pilesTotal = () => pilesInfo().total;
+  // Площадь наружной отделки (сайдинг/хауберг/вагонка) — 1-в-1 как у покраски снаружи.
+  function extFinArea(tk){
+    const o = outerArea(tk), hp = heightParams(tk);
+    return o.total + terOuterEdge()*hp.overhang/100 + drawnExtTer*hp.extWallH/100;
+  }
+  const flatSum = tier => Object.values(ADDONS).reduce((s, a) => {
+    if (!a.on || (a.exclude && a.exclude.includes(tier))) return s;
+    if (a.perM) return s + a.perM * (perimeter() + terOuterEdge());   // юбка террас тоже обшивается (утв.)
+    if (a.perMLong) return s + a.perMLong * longSides();
+    return s;
+  }, 0);
+  const DELIV = { freeKm:100, base:800, areaBase:80, inc:400, areaStep:30 };
+  const deliveryRate = a => a <= DELIV.areaBase ? DELIV.base : DELIV.base + DELIV.inc * Math.max(0, Math.floor((a - DELIV.areaBase) / DELIV.areaStep));
+  // Строка «Доставка» в спецификации и КП — из тех же чисел, что и расчёт (раньше в КП стояло «600 ₽/км», а движок считал 800–1600)
+  function deliveryText(){ return `Бесплатно до ${DELIV.freeKm} км. Далее ${fmt(DELIV.base)} ₽/км при площади (дом + терраса) до ${DELIV.areaBase} м²; за каждые полные ${DELIV.areaStep} м² сверх ${DELIV.areaBase} м² — +${fmt(DELIV.inc)} ₽/км. Дальше 500 км не возим.`; }
+  function syncDeliveryRow(){ const s=KOMPL.sections.find(x=>x.name==="Работы"); const r=s&&s.rows.find(x=>x.param==="Доставка"); if(r) r.cold=deliveryText(); }
+  const deliveryCost = () => {
+    const km = Math.max(0, Math.round(deliveryKm) - DELIV.freeKm);
+    return km <= 0 ? 0 : deliveryRate(area()) * km;
+  };
+  const tierPrice = t => Math.max(
+    ceil100(area() * t.rate + addonsSum(t.key) + deliveryCost() + finishCost(t.key)),
+    FINISH.houseMin || 0);   // минимальная цена дома целиком («пусть будет»), 0 = выключено
+
+  
+/* ── Параметры высот дома ── */
+  let ceilType = 0, lastDays = 0;
+
+  function heightParams(tierKey) {
+    const a = ADDONS;
+    const wallH = (a.walls270 && a.walls270.on && tierKey !== "premium") ? 270
+      : (tierKey === "premium" ? 270 : 250);
+    const ridgeH = (a.ridge150 && a.ridge150.on && tierKey !== "premium") ? 150
+      : (tierKey === "premium" ? 150 : 120);
+    const frameW = (a.frame && a.frame.on && tierKey !== "premium") || tierKey === "premium" ? 200 : 150;
+    // Доски на ребре (лаги пола, балки потолка, стропила): 200 мм у Премиума либо при надбавках «каркас → 200».
+    const joistH = (tierKey === "premium" || (a.frame && a.frame.on) || (a.frameFR && a.frameFR.on)) ? 20 : 15; // см
+    const floorFin = tierKey === "premium" ? 3.5 : 1.8; // чистовой пол: шпунт. доска 35 мм / ОСБ 18 мм
+    const ventH = 4;   // вент зазор 40 мм
+    const cladH = 2;   // отделка вагонка/имитация 20 мм
+    const battenH = 2; // обрешётка 90×20 мм
+    const overhang = tierKey === "premium" ? 40 : 30; // вынос кровли (выступ), см
+
+    // Свая — это фундамент, в пирог дома не входит: у неё своя обшивка (плиты под камень, по пог. м).
+    const pileH = 50;
+
+    // Пирог пола: от низа обвязки до чистового пола (чистовая высота стен считается от него).
+    const floorLayers = [
+      { name:"Обвязка 150×50 мм (строенный брус, на ребро)", h:15 },
+      { name:`Лаги пола ${joistH * 10} мм`,                   h:joistH },
+      { name:"Черновой пол 90×20 мм",                          h:2 },
+      { name:tierKey === "premium" ? "Чистовой пол — шпунт. доска 140×35 мм" : "Чистовой пол — ОСБ/ЦСП 18 мм", h:floorFin },
+    ];
+    // Пирог ровного потолка — добавляется только если выбран ровный потолок.
+    const ceilLayers = ceilType === 1 ? [
+      { name:"Отделка потолка (вагонка/имитация) 20 мм", h:cladH },
+      { name:"Вент зазор 40 мм",                          h:ventH },
+      { name:`Балки потолка ${joistH * 10} мм (на ребро)`, h:joistH },
+    ] : [];
+    // Пирог кровли — идёт сверху чистовой высоты конька.
+    const roofLayers = [
+      { name:`Стропила ${joistH * 10} мм`, h:joistH },
+      { name:"Вент зазор 40 мм",            h:ventH },
+      { name:"Обрешётка 90×20 мм",          h:battenH },
+    ];
+    const layers = [
+      ...floorLayers,
+      { name:"Стены — чистовая высота внутри", h:wallH },
+      ...ceilLayers,
+      { name:"Конёк — чистовая высота внутри", h:ridgeH },
+      ...roofLayers,
+    ];
+    const floorPkg = floorLayers.reduce((s,l)=>s+l.h, 0);
+    const ceilPkg  = ceilLayers.reduce((s,l)=>s+l.h, 0);
+    const roofPkg  = roofLayers.reduce((s,l)=>s+l.h, 0);
+    const extTotal = layers.reduce((s,l)=>s+l.h, 0);   // от низа обвязки до конька (без сваи)
+    const extWallH = floorPkg + wallH + ceilPkg;       // высота наружной стены до верха (без фронтона)
+    const intEdge   = wallH;
+    const intCenter = ceilType === 0 ? wallH + ridgeH : wallH;
+    return { wallH, ridgeH, frameW, joistH, ventH, cladH, floorFin, pileH, overhang, layers,
+             floorLayers, ceilLayers, roofLayers, floorPkg, ceilPkg, roofPkg,
+             extTotal, extWallH, floorH: floorPkg, intEdge, intCenter };
+  }
+
+  // Тип потолка: единственный переключатель — мини-тумблер в строке «Покраска стен и потолка внутри».
+  function setCeilType(v) {
+    ceilType = v;
+    ADDONS.cheapFlatCeil.on = (v === 1);   // строка «Ровный потолок» в шаге 4 — тот же переключатель
+    buildAddons();
+    refreshSpecs();
+    render();
+  }
+
+  /* ── Площадь всех стен и потолка внутри дома (стены + потолок + перегородки) ── */
+  let innerPartLen = null;   // ручной ввод длины перегородок (м) — главнее всего; null → берём из чертежа
+  let appliedPartLen = 0;    // длина перегородок, снятая с чертежа кнопкой «Применить к расчёту»
+
+  // Длина перегородок на самом чертеже (живая). В расчёт попадает только через «Применить к расчёту».
+  function drawnPartLen() {
+    return partitions.reduce((s, g) => s + Math.hypot(g.b.c - g.a.c, g.b.r - g.a.r) * CELL_M, 0);
+  }
+  // Приоритет: то, что вписано руками → иначе применённое из чертежа.
+  function partLenEff() { return innerPartLen !== null ? innerPartLen : appliedPartLen; }
+
+  // Коэффициент наклона ската: во сколько раз поверхность по скату длиннее её проекции на пол.
+  // Работает для любой формы дома, а не только для прямоугольника.
+  function slopeFactor(tierKey) {
+    const W = houseW(); if (W <= 0) return 1;
+    const run = W / 2, rise = heightParams(tierKey).ridgeH / 100;
+    return Math.hypot(run, rise) / run;
+  }
+
+  // Площадь внутренней отделки для комплектации tierKey (в м²). Высоты — из блока «Параметры высот».
+  function innerArea(tierKey) {
+    const hp = heightParams(tierKey);
+    const Hst = hp.wallH / 100;        // высота стен, м
+    const Hkon = hp.ridgeH / 100;      // подъём конька над стенами, м
+    const A = livingArea();            // жилая часть (терраса «в составе» вычтена)
+    const W = houseW();                // ширина (фронтоны по торцам)
+    if (A <= 0 || W <= 0) return { total:0, walls:0, ceil:0, part:0 };
+    // Наружные стены изнутри ×1: с чертежа — фактическая граница жилой зоны
+    // (при врезанной террасе она длиннее периметра контура), иначе — обычный периметр.
+    const wallsRect = (drawnInnerPerim > 0 ? drawnInnerPerim : perimeter()) * Hst;
+    let gable = 0, ceil;
+    if (ceilType === 0) {              // потолок под конёк
+      gable = 2 * W * Hkon;            // 2 фронтона, целиком прямоугольниками — запас на обрезки
+      ceil = A * slopeFactor(tierKey); // потолок по скатам = площадь пола × коэф. наклона
+    } else {                           // ровный потолок
+      ceil = A;
+    }
+    const walls = wallsRect + gable;
+    // Под конёк перегородка идёт до самого конька: свой фронтон, тоже целиком (запас на обрезки).
+    const partH = Hst + (ceilType === 0 ? Hkon : 0);
+    const part = 2 * partLenEff() * partH; // перегородки, обе стороны
+    return { total: walls + ceil + part, walls, ceil, part };
+  }
+
+  /* ── Площадь всех стен снаружи (стены + фронтоны + подшивка выносов) ── */
+  // Фронтоны считаем целиком прямоугольниками (не треугольниками) — запас на обрезки и остатки.
+  function outerArea(tierKey) {
+    const hp = heightParams(tierKey);
+    const W = houseW();                // ширина (фронтоны по торцам) — из чертежа либо из размеров
+    if (houseArea() <= 0 || W <= 0) return { total:0, walls:0, gables:0, soffit:0 };
+    const P = perimeter();
+    const ov = hp.overhang / 100;                 // вынос кровли, м
+    const walls  = P * (hp.extWallH / 100);       // периметр × высота наружной стены
+    const gW     = W + 2 * ov;                    // ширина фронтона с выносом
+    const gH     = (hp.ridgeH + hp.roofPkg) / 100;// высота фронтона: конёк + пирог кровли
+    const gables = 2 * gW * gH;                   // 2 фронтона целиком
+    // Подшивка выносов: длинные стороны по горизонтали + фронтонные — по скату (длиннее, запас — утв.)
+    const sf = slopeFactor(tierKey);
+    const soffit = 2 * houseL() * ov + 2 * gW * ov * sf;
+    // Площадь кровли (для заказа материала, в цену не входит): проекция (дом + террасы + свесы) × скат
+    const roof = (area() + (P + terOuterEdge()) * ov + 4 * ov * ov) * sf;   // + 4 угла свесов
+    return { total: walls + gables + soffit, walls, gables, soffit, roof };
+  }
+
+  // Карточка отделки в стиле надбавок: иконка + название + цена + круглый переключатель.
+  function finishCard(id, iconKey, name, rateId) {
+    return `<div class="addon" id="${id}">` +
+      `<span class="corner"><span class="mark">${CHECK}</span></span>` +
+      `<span class="ico">${ICON[iconKey] || ""}</span>` +
+      `<span class="name">${name}</span>` +
+      `<span class="price"><span id="${rateId}"></span></span>` +
+    `</div>`;
+  }
+
+  /* ── Терраса: крыша и покраска ── */
+  function renderTerrace() {
+    const rt = $("rate_ter");
+    if (rt) rt.textContent = fmt(FINISH.terCeilRate) + " ₽/м²";
+  }
+
+  /* ── Отделка внутри: покраска и замена (считаются от площади стен и потолка) ── */
+  const FINISH = { paintRate: 1700, paintSurcharge: 20, openingSurcharge: 3, swapRate: 1700, minSum: 50000,
+                   terCeilRate: 1700, railRate: 2000, extRate: 1700,
+                   houseMin: 0 };   // минимальная цена дома целиком, ₽; 0 = выключено (ставится в «Ценах»)
+  let paintOn = false, swapOn = false;
+  let extPaintOn = false;   // покраска дома снаружи
+  let terPaintOn = false;   // покраска террасы
+  let terRoofFlat = false;  // крыша террасы: false = под конёк (продолжение крыши дома), true = ровная
+
+  // Крыша террасы: ровная — просто площадь пола; под конёк — продолжение ската дома,
+  // значит площадь = площадь пола × тот же коэффициент наклона, что и у дома.
+  function terraceCeilArea(tierKey) {
+    const T = terraceArea(); if (T <= 0) return 0;
+    return terRoofFlat ? T : T * slopeFactor(tierKey);
+  }
+  // Покраска террасы: потолок по площади крыши + перила/стойки по площади пола. Пол и ступеньки не красим.
+  // Покраска террасы отдельной опцией НЕТ (утв.): красится вместе с домом снаружи, входит в extPaintCost.
+  function terracePaintCost(tierKey) {
+    if (!extPaintOn) return 0;                              // есть наружная покраска → терраса красится автоматом
+    if (ADDONS.extSide.on || ADDONS.extSoft.on) return 0;   // сайдинг/хауберг не красят
+    const T = terraceArea(); if (T <= 0) return 0;
+    const ceil  = terraceCeilArea(tierKey) * FINISH.terCeilRate * (1 + FINISH.paintSurcharge / 100); // пазы есть, откосов нет
+    const rails = T * FINISH.railRate;
+    return ceil + rails;
+  }
+  // Покраска под ключ (2 слоя, материал + работа) + надбавки на пазы и на откосы. Только Комфорт/Премиум.
+  function paintCost(tierKey) {
+    if (tierKey === "cold" || !paintOn) return 0;
+    const A = innerArea(tierKey).total; if (A <= 0) return 0;
+    const k = 1 + (FINISH.paintSurcharge + FINISH.openingSurcharge) / 100;
+    return Math.max(A * FINISH.paintRate * k, FINISH.minSum);
+  }
+  // Замена внутренней отделки (вагонка ↔ имитация). Только Комфорт/Премиум.
+  function swapCost(tierKey) {
+    if (tierKey === "cold" || !swapOn) return 0;
+    const A = innerArea(tierKey).total; if (A <= 0) return 0;
+    return Math.max(A * FINISH.swapRate, FINISH.minSum);
+  }
+  // Покраска дома снаружи: стены + фронтоны + подшивка выносов (outerArea) + свесы над террасами.
+  // Имитация бруса снаружи есть во всех комплектациях — доступна везде, включая Холодный контур.
+  function extPaintCost(tierKey) {
+    if (!extPaintOn) return 0;
+    if (ADDONS.extSide.on || ADDONS.extSoft.on) return 0;   // сайдинг/хауберг не красят
+    const o = outerArea(tierKey); if (o.total <= 0) return 0;
+    const hp = heightParams(tierKey);
+    // край террас: с чертежа — точно; без чертежа — три открытые стороны квадрата той же площади
+    const terSoffit = terOuterEdge() * hp.overhang / 100;
+    // Стены, видимые с террасы (граница жилая|терраса), — тоже уличная покраска, полной наружной высотой.
+    const terWalls = drawnExtTer * hp.extWallH / 100;
+    const k = 1 + (FINISH.paintSurcharge + FINISH.openingSurcharge) / 100;
+    const walls = Math.max((o.total + terSoffit + terWalls) * FINISH.extRate * k, FINISH.minSum);
+    return walls + terracePaintCost(tierKey);   // терраса входит в покраску дома снаружи (одна опция)
+  }
+  function finishCost(tierKey) { return paintCost(tierKey) + swapCost(tierKey) + extPaintCost(tierKey); }
+
+  
+function priceSchema() {
+    const groups = [];
+    groups.push({
+      title: "Базовая ставка комплектаций", unit: "₽/м²",
+      fields: TIERS.map(t => ({ id:"tier:"+t.key, label:t.name, step:500, get:()=>t.rate, set:v=>{t.rate=v;} }))
+        .concat([{ id:"tier:houseMin", label:"Минимальная цена дома (0 — выключено)", unit:"₽", step:10000, get:()=>FINISH.houseMin, set:v=>{FINISH.houseMin=v;} }])
+    });
+    const addFields = [];
+    const discFields = [];   // шаг 4 «Как удешевить?»: вводится положительная скидка, внутри хранится минус
+    for (const key in ADDONS) {
+      const a = ADDONS[key];
+      if (a.cheap) {
+        const D = (mode, unit, step) => { if (!(mode in a)) return;
+          discFields.push({ id:"addon:"+key+":"+mode, label:a.label, unit:unit, step:step,
+            get:()=>Math.abs(a[mode]||0), set:v=>{ a[mode] = -Math.abs(v); } }); };
+        D("perExt","₽/м² скидки",50); D("perInner","₽/м² скидки",50); D("perFloor","₽/м² скидки",50);
+        D("perCount","₽/свая скидки",100); D("perQty","₽/шт скидки",500); D("flat","₽ скидки",1000);
+          // отдельная ставка для Премиума (там материал дороже — и скидка больше)
+          if (a.perFloorTier) for (const tk in a.perFloorTier) {
+            const nm = (TIERS.find(t=>t.key===tk)||{}).name || tk;
+            discFields.push({ id:"addon:"+key+":perFloorTier:"+tk, label:a.label+" — "+nm, unit:"₽/м² скидки", step:50,
+              get:()=>Math.abs(a.perFloorTier[tk]||0), set:v=>{ a.perFloorTier[tk] = -Math.abs(v); } });
+          }
+        continue;   // обычные поля этим строкам не нужны — иначе цена задавалась бы дважды
+      }
+      if ("perm" in a)     addFields.push({ id:"addon:"+key+":perm",     label:a.label,               unit:"₽/м²",    step:100, get:()=>a.perm,     set:v=>{a.perm=v;} });
+      if ("permExt" in a)  addFields.push({ id:"addon:"+key+":permExt",  label:a.label+" — внешняя",  unit:"₽/м²",    step:100, get:()=>a.permExt,  set:v=>{a.permExt=v;} });
+      if ("perM" in a)     addFields.push({ id:"addon:"+key+":perM",     label:a.label,               unit:"₽/пог.м", step:100, get:()=>a.perM,     set:v=>{a.perM=v;} });
+      if ("perMLong" in a) addFields.push({ id:"addon:"+key+":perMLong", label:a.label,               unit:"₽/пог.м", step:100, get:()=>a.perMLong, set:v=>{a.perMLong=v;} });
+      // остальные режимы ставок — иначе админ не мог править цену ламината/шпунта/высот/свай/ламинации/туалета/проноса
+      if ("perLiving" in a) addFields.push({ id:"addon:"+key+":perLiving", label:a.label+" — по жилой", unit:"₽/м²", step:100, get:()=>a.perLiving, set:v=>{a.perLiving=v;} });
+      if ("perFloor" in a)  addFields.push({ id:"addon:"+key+":perFloor",  label:a.label+" — по полу",  unit:"₽/м²", step:100, get:()=>a.perFloor,  set:v=>{a.perFloor=v;} });
+      if ("perExt" in a)    addFields.push({ id:"addon:"+key+":perExt",    label:a.label+" — по стенам снаружи", unit:"₽/м²", step:50, get:()=>a.perExt, set:v=>{a.perExt=v;} });
+      if ("perInner" in a)  addFields.push({ id:"addon:"+key+":perInner",  label:a.label+" — по стенам внутри",  unit:"₽/м²", step:50, get:()=>a.perInner, set:v=>{a.perInner=v;} });
+      if ("perCount" in a)  addFields.push({ id:"addon:"+key+":perCount",  label:a.label,               unit:"₽/свая", step:100, get:()=>a.perCount, set:v=>{a.perCount=v;} });
+      if ("perQty" in a)    addFields.push({ id:"addon:"+key+":perQty",    label:a.label,               unit:"₽/шт",   step:500, get:()=>a.perQty,   set:v=>{a.perQty=v;} });
+      if ("flat" in a && a.flat) addFields.push({ id:"addon:"+key+":flat", label:a.label,             unit:"₽",      step:1000, get:()=>a.flat,    set:v=>{a.flat=v;} });
+      if ("base" in a)      addFields.push({ id:"addon:"+key+":base",      label:a.label+" — разгрузка", unit:"₽",   step:1000, get:()=>a.base,    set:v=>{a.base=v;} });
+      if ("perMeter" in a)  addFields.push({ id:"addon:"+key+":perMeter",  label:a.label+" — за метр",  unit:"₽/м",  step:50, get:()=>a.perMeter, set:v=>{a.perMeter=v;} });
+    }
+    groups.push({ title:"Надбавки и доп-опции", fields:addFields });
+    groups.push({ title:"Как удешевить: понижение класса и отказы", unit:"скидка, вводится положительным числом", fields:discFields });
+    groups.push({
+      title: "Доставка",
+      fields: [
+        { id:"deliv:freeKm",   label:"Бесплатно до, км",                        unit:"км",    step:10, get:()=>DELIV.freeKm,   set:v=>{DELIV.freeKm=v;} },
+        { id:"deliv:base",     label:"Базовая ставка за км",                     unit:"₽/км",  step:50, get:()=>DELIV.base,     set:v=>{DELIV.base=v;} },
+        { id:"deliv:inc",      label:"Надбавка к ставке за каждый шаг площади",  unit:"₽/км",  step:50, get:()=>DELIV.inc,      set:v=>{DELIV.inc=v;} },
+        { id:"deliv:areaBase", label:"Площадь без надбавки к доставке",          unit:"м²",    step:5,  get:()=>DELIV.areaBase, set:v=>{DELIV.areaBase=v;} },
+        { id:"deliv:areaStep", label:"Шаг площади для надбавки",                 unit:"м²",    step:5,  get:()=>DELIV.areaStep, set:v=>{DELIV.areaStep=v;} }
+      ]
+    });
+    groups.push({
+      title: "Отделка внутри дома",
+      fields: [
+        { id:"finish:paint",     label:"Покраска стен и потолка (под ключ, 2 слоя)", unit:"₽/м²", step:50,   get:()=>FINISH.paintRate,      set:v=>{FINISH.paintRate=v;} },
+        { id:"finish:surcharge", label:"Надбавка на пазы (к покраске)",              unit:"%",    step:1,    get:()=>FINISH.paintSurcharge,   set:v=>{FINISH.paintSurcharge=v;} },
+        { id:"finish:openings",  label:"Надбавка на откосы окон/дверей (к покраске)", unit:"%",  step:1,    get:()=>FINISH.openingSurcharge, set:v=>{FINISH.openingSurcharge=v;} },
+        { id:"finish:swap",      label:"Замена отделки (вагонка ↔ имитация)",        unit:"₽/м²", step:50,   get:()=>FINISH.swapRate,       set:v=>{FINISH.swapRate=v;} },
+        { id:"finish:min",       label:"Минимальная сумма отделки",                  unit:"₽",    step:1000, get:()=>FINISH.minSum,         set:v=>{FINISH.minSum=v;} }
+      ]
+    });
+    groups.push({
+      title: "Покраска дома снаружи",
+      fields: [
+        { id:"finish:ext", label:"Покраска дома снаружи (стены + фронтоны + свесы)", unit:"₽/м²", step:50, get:()=>FINISH.extRate, set:v=>{FINISH.extRate=v;} }
+      ]
+    });
+    groups.push({
+      title: "Покраска террасы",
+      fields: [
+        { id:"finish:terCeil", label:"Потолок террасы (по площади крыши)",       unit:"₽/м²", step:50, get:()=>FINISH.terCeilRate, set:v=>{FINISH.terCeilRate=v;} },
+        { id:"finish:rail",    label:"Перила и стойки (по площади пола террасы)", unit:"₽/м²", step:50, get:()=>FINISH.railRate,    set:v=>{FINISH.railRate=v;} }
+      ]
+    });
+    return groups;
+  }
+
+  
+const OPT_GROUPS = [
+    { title:"Отделка снаружи", finishExt:true, keys:["extSide","extSoft","cladOutV"] },
+    { title:"Отделка внутри", finishIn:true, keys:["cladInI","cladInV"] },
+    { title:"Пол в жилой части", keys:["laminate","shpFloor","quickDeck"] },
+    { title:"Окна и двери", keys:["win","winLam"] },
+    { title:"Крыша и кровля", keys:["roof","roofT","roof2","ridge150","snow","gutter"] },
+    { title:"Каркас и высоты", keys:["frame","frameFR","walls270"] },
+    { title:"Фундамент и цоколь", keys:["pilesZB","pilesV108","plinth"] },
+    { title:"Инженерные системы", keys:["elec","pipes","vent"] },
+    { title:"На участке", keys:["generator","toilet","carry","bytovkaE"] }
+  ];
+  
+const stroke = 'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"';
+  const ICON = {
+    roof: `<svg viewBox="0 0 24 24" ${stroke}><path d="M3 12 12 4l9 8"/><path d="M5 11v8h14v-8"/><path d="M9 19v-5h6v5"/></svg>`,
+    elec: `<svg viewBox="0 0 24 24" ${stroke}><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>`,
+    win:  `<svg viewBox="0 0 24 24" ${stroke}><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M12 4v16M4 12h16"/></svg>`,
+    pipes:`<svg viewBox="0 0 24 24" ${stroke}><path d="M12 3s6 6.5 6 10a6 6 0 0 1-12 0c0-3.5 6-10 6-10z"/></svg>`,
+    vent:`<svg viewBox="0 0 24 24" ${stroke}><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.6"/><path d="M12 10.4c1.8-2.9 1-5.7-.2-7 .9 2 .2 4.6-.8 5.7M13.6 12c2.9-1.8 5.7-1 7-.2-2-.9-4.6-.2-5.7.8M12 13.6c-1.8 2.9-1 5.7.2 7-.9-2-.2-4.6.8-5.7M10.4 12c-2.9 1.8-5.7 1-7 .2 2 .9 4.6.2 5.7-.8"/></svg>`,
+    frame:`<svg viewBox="0 0 24 24" ${stroke}><path d="M5 4v16M11 4v16M17 4v16M3 5h16M3 10h16"/></svg>`,
+    layers:`<svg viewBox="0 0 24 24" ${stroke}><path d="M4 7h16M4 12h16M4 17h16"/></svg>`,
+    floor:`<svg viewBox="0 0 24 24" ${stroke}><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 10h18M3 14.5h18M9 5v5M15 10v4.5M11 14.5v4.5"/></svg>`,
+    gen:`<svg viewBox="0 0 24 24" ${stroke}><path d="M9 3v5M15 3v5M6 8h12v2a6 6 0 0 1-12 0z M12 16v5"/></svg>`,
+    stone:`<svg viewBox="0 0 24 24" ${stroke}><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 12h18M9 6v6M15 12v6"/></svg>`,
+    snow:`<svg viewBox="0 0 24 24" ${stroke}><path d="M12 2v20M4 6l16 12M20 6L4 18M12 2l-3 3M12 2l3 3M12 22l-3-3M12 22l3-3"/></svg>`,
+    gutter:`<svg viewBox="0 0 24 24" ${stroke}><path d="M3 6h18M4 6v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6M8 11v7a2 2 0 0 0 2 2h1"/></svg>`,
+    wall:`<svg viewBox="0 0 24 24" ${stroke}><path d="M5 4v16M19 4v16M12 5v14M9 8l3-3 3 3M9 16l3 3 3-3"/></svg>`,
+    roof2:`<svg viewBox="0 0 24 24" ${stroke}><path d="M2 19 12 7l10 12"/><path d="M12 7V4"/></svg>`,
+    roof2lv:`<svg viewBox="0 0 24 24" ${stroke}><path d="M1 17 8 7l7 10"/><path d="M8 7V4.5"/><path d="M8 12h5l5 6"/></svg>`,
+    roofEND:`<svg viewBox="0 0 24 24" ${stroke}><path d="M2 19 L9 5 L12 13 L15 5 L22 19" stroke-linejoin="round"/><line x1="12" y1="13" x2="12" y2="19" stroke-dasharray="3 2"/><text x="12" y="23" font-size="4" text-anchor="middle" fill="currentColor" stroke="none">ендова</text></svg>`,
+    pile:`<svg viewBox="0 0 24 24" ${stroke}><rect x="9" y="3" width="6" height="16" rx="1"/><path d="M9 7h6M9 11h6M9 15h6M6 19h12"/></svg>`,
+    bytovka:`<svg viewBox="0 0 24 24" ${stroke}><rect x="2" y="8" width="20" height="12" rx="1"/><path d="M2 11h20"/><path d="M7 11v9M5 8l2-4h10l2 4"/><rect x="14" y="14" width="5" height="6"/><rect x="5" y="13" width="4" height="4"/></svg>`,
+    toilet:`<svg viewBox="0 0 24 24" ${stroke}><path d="M6 21V6l6-3 6 3v15"/><path d="M6 6h12"/><path d="M9.5 12.5h.01"/><path d="M11 3.5V2"/></svg>`,
+    carry:`<svg viewBox="0 0 24 24" ${stroke}><rect x="3" y="7" width="9" height="8" rx="1"/><path d="M12 10h4l3 3v2h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="16" cy="18" r="1.6"/></svg>`,
+    winlam:`<svg viewBox="0 0 24 24" ${stroke}><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 12h18M8 6v12"/><path d="M14 8l2 2-2 2" stroke-width="1.4"/></svg>`,
+    softroof:`<svg viewBox="0 0 24 24" ${stroke}><path d="M2 17 12 6l10 11"/><path d="M5 14v6h14v-6"/><path d="M5 17h14M5 20h14"/></svg>`,
+    siding:`<svg viewBox="0 0 24 24" ${stroke}><path d="M3 6h18M3 10h18M3 14h18M3 18h18"/><rect x="3" y="6" width="18" height="12"/></svg>`,
+    shpfloor:`<svg viewBox="0 0 24 24" ${stroke}><rect x="2" y="7" width="20" height="4" rx="1"/><rect x="2" y="13" width="20" height="4" rx="1"/><path d="M7 7V5M17 13v-2"/></svg>`,
+    clad:`<svg viewBox="0 0 24 24" ${stroke}><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>`,
+    door:`<svg viewBox="0 0 24 24" ${stroke}><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 3v18"/><circle cx="15" cy="12" r="1"/></svg>`,
+    paint:`<svg viewBox="0 0 24 24" ${stroke}><path d="M18 3a3 3 0 0 1 0 6l-9 9a2 2 0 0 1-2.83 0l-1.17-1.17a2 2 0 0 1 0-2.83l9-9A3 3 0 0 1 18 3z"/><path d="M15 6l3 3"/><circle cx="5" cy="20" r="2"/></svg>`
+  };
+  
+const KP_GIFT_LIST = [
+    ["svai","ЖБ сваи вместо винтовых", () => pilesTotal() * 1000],   // разница с винтовыми: +1 000 ₽ за сваю
+    ["bytovka","Бытовка на время строительства", 60000],
+    ["project","Конструктивный и архитектурный проект", 75000],
+    ["engineer","Бесплатный выезд инженера", 35000],
+  ];
+  
+  function applyRates(map) {
+    if (!map) return 0;
+    const idx = {}; priceSchema().forEach(g => g.fields.forEach(f => { idx[f.id] = f; }));
+    if (map["addon:laminate:perm"] != null && map["addon:laminate:perLiving"] == null) map["addon:laminate:perLiving"] = map["addon:laminate:perm"];
+    let n = 0;
+    for (const id in map) { const f = idx[id]; if (f && typeof map[id] === "number" && isFinite(map[id])) { f.set(map[id]); n++; } }
+    return n;
+  }
+  function rates() { const r = {}; priceSchema().forEach(g => g.fields.forEach(f => { r[f.id] = f.get(); })); return r; }
+  /* s: { l, t (м², числа), part (м), km, on:{ключ:true}, qty:{winLam}, dist:{carry}, elecExt, paintIn, paintOut } */
+  function setState(s) {
+    const clamp = v => Math.min(200, Math.max(0, v || 0));
+    dimA = dimB = Math.sqrt(clamp(s.l)) || 0;
+    terS = clamp(s.t); terSeparate = terS > 0.05; terraceMixed = false; customPerimeter = 0;
+    innerPartLen = s.part > 0 ? s.part : null; appliedPartLen = 0;
+    deliveryKm = Math.min(500, Math.max(100, s.km || 100));
+    for (const k in ADDONS) ADDONS[k].on = !!(s.on && s.on[k]);
+    addonQty = {};
+    if (s.qty && s.qty.winLam) addonQty.winLam = s.qty.winLam;
+    if (s.dist && s.dist.carry) addonQty.carry = s.dist.carry;
+    ADDONS.elec.ext = !!s.elecExt;
+    paintOn = !!s.paintIn; extPaintOn = !!s.paintOut; swapOn = false;
+    ceilType = ADDONS.cheapFlatCeil.on ? 1 : 0;
+    giftOn = { svai: true, bytovka: true, project: true, engineer: true };
+  }
+  const tier = () => TIERS.find(t => t.key === "comfort");
+  const giftsActive = () => KP_GIFT_LIST.filter(g => !(g[0] === "svai" && (ADDONS.pilesV108.on || ADDONS.cheapNoFound.on)))
+    .map(g => ({ key: g[0], name: g[1], value: typeof g[2] === "function" ? Math.round(g[2]()) : g[2] }));
+  return {
+    ADDONS, TIERS, FINISH, DELIV, ICON, OPT_GROUPS, applyRates, rates, setState, tier, giftsActive,
+    total: () => tierPrice(tier()),
+    addon: k => addonAmount(k, "comfort"),
+    paintIn: () => paintAmount("comfort"),
+    paintOut: () => extPaintAmount("comfort"),
+    delivery: () => deliveryCost(), deliveryRate: a => deliveryRate(a), deliveryText: () => deliveryText(),
+    piles: () => pilesInfo(), area: () => area(), ceil100: v => ceil100(v)
+  };
+
+})();
+MTD_ENGINE.applyRates({"tier:cold": 37000, "finish:ext": 1600, "finish:swap": 1600, "finish:paint": 1600, "tier:comfort": 42000, "tier:premium": 51000, "addon:win:perm": 1500, "finish:terCeil": 1600, "addon:elec:perm": 4500, "addon:pipes:perm": 4000, "addon:roof2:perm": 1000, "addon:roofT:perm": 5000, "addon:plinth:perM": 1500, "addon:elec:permExt": 5500, "addon:laminate:perm": 300, "addon:generator:perm": 0});   /* ставки облака на 15.09.2026 17:47 */
+window.KN_UI = {"cloud":{"url":"https://lrykfhnohecxdiipweqi.supabase.co","key":"sb_publishable_037PqHLp_UOoM1nfAaU2BQ_6RfwybIy"},"groups":[{"title":"Отделка снаружи","rows":[{"type":"select","label":"Отделка стен снаружи","base":"Имитация бруса АБ класс","opts":[{"key":"cladOutV","name":"Вагонка АБ класс"},{"key":"cheapExtImBS","name":"Имитация бруса БС класс"},{"key":"cheapExtVagBS","name":"Вагонка БС класс"},{"key":"extSide","name":"Сайдинг"},{"key":"extSoft","name":"Хауберг (мягкая кровля), ОСБ 9 мм основа"}]},{"type":"paint","key":"paintOut","name":"Покраска дома снаружи (с террасой)"}]},{"title":"Отделка внутри","rows":[{"type":"select","label":"Отделка стен и потолка внутри","base":"Вагонка АБ класс","opts":[{"key":"cladInI","name":"Имитация АБ класс"},{"key":"cheapInVagBS","name":"Вагонка БС класс"}]},{"type":"paint","key":"paintIn","name":"Покраска стен и потолка внутри"}]},{"title":"Пол в жилой части","rows":[{"type":"select","label":"Чистовой пол в жилой части","base":"ОСБ-плита, 18 мм","opts":[{"key":"laminate","name":"Ламинат"},{"key":"shpFloor","name":"Шпунтованная доска 140×32 мм"},{"key":"quickDeck","name":"Quick Deck с ламинацией под дерево"}]},{"type":"toggle","key":"cheapOsbWc","name":"Замена ЦСП на ОСБ 18 мм по всему дому"}]},{"title":"Окна и двери","rows":[{"type":"select","label":"Тип окон","base":"ПВХ","opts":[{"key":"win","name":"Сложные окна"},{"key":"cheapNoWin","name":"Отказ от окон"}]},{"type":"qty","key":"winLam","name":"Заводская ламинация окон"},{"type":"toggle","key":"cheapNoDoor","name":"Отказ от входной двери"}]},{"title":"Крыша и кровля","rows":[{"type":"select","label":"Тип крыши","base":"Два ската","opts":[{"key":"roof","name":"Сложная крыша (стандарт)"},{"key":"roofT","name":"Крыша с ендовой (Г-образная)"},{"key":"roof2","name":"Двухуровневая крыша (2 ската)"}]},{"type":"pills","key":"ridge150","label":"Высота крыши (конька)","base":"120 см","name":"150 см"},{"type":"toggle","key":"snow","name":"Снегодержатели"},{"type":"toggle","key":"gutter","name":"Дождевые сливы"}]},{"title":"Каркас и высоты","rows":[{"type":"select","label":"Сечение каркаса","base":"150х45 мм","opts":[{"key":"frameFR","name":"Каркас пола и кровли → 200 мм"},{"key":"frame","name":"Каркас всего дома 150 → 200 мм"}]},{"type":"pills","key":"walls270","label":"Высота стен внутри по краям дома","base":"250 см","name":"270 см"},{"type":"pills","key":"cheapFlatCeil","label":"Тип потолка","base":"Под конёк","name":"Ровный"},{"type":"select","label":"Тип влажности доски","base":"Камерная сушка, влажность 12–16%","opts":[{"key":"cheapNatWood","name":"Естественная влажность"}]}]},{"title":"Фундамент и цоколь","rows":[{"type":"select","label":"Тип фундамента","base":"Металлический свайно-винтовой фундамент","opts":[{"key":"pilesZB","name":"ЖБ сваи 3000/150 мм"},{"key":"pilesV108","name":"Винтовые сваи 3000/108 мм"},{"key":"cheapNoFound","name":"Нет — фундамент не входит в цену"}]},{"type":"piles","label":"Количество свай"},{"type":"toggle","key":"plinth","name":"Обшивка цоколя декоративным камнем"}]},{"title":"Инженерные системы","rows":[{"type":"toggle","key":"elec","name":"Электрика"},{"type":"toggle","key":"pipes","name":"Разводка труб"},{"type":"toggle","key":"vent","name":"Вентиляция в доме"}]},{"title":"На участке","rows":[{"type":"toggle","key":"generator","name":"Аренда генератора"},{"type":"toggle","key":"toilet","name":"Уличный туалет"},{"type":"dist","key":"carry","name":"Пронос материала"},{"type":"toggle","key":"bytovkaE","name":"Бытовка 4×2 м (бесплатно)"}]}],"keys":{"bytovkaE":1,"carry":1,"cheapExtImBS":1,"cheapExtVagBS":1,"cheapFlatCeil":1,"cheapInVagBS":1,"cheapNatWood":1,"cheapNoDoor":1,"cheapNoFound":1,"cheapNoWin":1,"cheapOsbWc":1,"cladInI":1,"cladOutV":1,"elec":1,"extSide":1,"extSoft":1,"frame":1,"frameFR":1,"generator":1,"gutter":1,"laminate":1,"pilesV108":1,"pilesZB":1,"pipes":1,"plinth":1,"quickDeck":1,"ridge150":1,"roof":1,"roof2":1,"roofT":1,"shpFloor":1,"snow":1,"toilet":1,"vent":1,"walls270":1,"win":1,"winLam":1},"texts":{"over":"Больше 200 м² не строим — уменьшите дом или террасу.","empty":"Укажите площадь дома","ask":"уточняется","naPaintOut":"сайдинг и хауберг не красят","naWinLam":"окон нет — ламинировать нечего","note":"Цена фиксируется в договоре до начала работ."}};
+</script>
+<script>
+/* Калькулятор дома: порядок — как у бюджетного калькулятора, пункты и цены — большого калькулятора.
+   Считает сам движок большого калькулятора (MTD_ENGINE): цена дома по «Комфорту», опции, покраска, доставка.
+   Здесь только ввод и отрисовка. Разделы и подписи — KN_UI (собирает gen_page.py из калькулятора). */
+(function () {
+  var E = window.MTD_ENGINE, UI = window.KN_UI;
+  if (!E || !UI) return;
+  var A = E.ADDONS, TK = 'comfort', NB = ' ';
+
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var put = function (el, t) { if (el && el.textContent !== t) el.textContent = t; };
+  var num = function (n) { return String(Math.round(Math.abs(n))).replace(/\B(?=(\d{3})+(?!\d))/g, NB); };
+  var rub = function (n) { return (n < 0 ? '−' : '') + num(n) + NB + '₽'; };
+  var signed = function (n) { return (n < 0 ? '−' : '+') + num(n) + NB + '₽'; };
+  var m2 = function (v) { return String(Math.round(v * 10) / 10).replace('.', ','); };
+  var pNum = function (v) { return parseFloat(String(v == null ? '' : v).replace(/\s/g, '').replace(',', '.')) || 0; };
+  var ceil100 = function (v) { return Math.ceil(Math.round(v) / 100) * 100; };
+  var cell = function (v) { return v < 0 ? -ceil100(-v) : ceil100(v); };   // «применённая цена», как в калькуляторе
+  function plural(n, one, few, many) {
+    var a = n % 10, b = n % 100;
+    return a === 1 && b !== 11 ? one : a >= 2 && a <= 4 && (b < 12 || b > 14) ? few : many;
+  }
+
+  /* из пояснений калькулятора убираем куски для менеджера: про комплектации, подарки, цены (цена стоит рядом) и кнопки */
+  var DROP_NOTE = /₽|преми|комфорт|холодн|подар|укажите|тумблер|пересчитыва/i, DROP_HELP = /клиент|преми|комфорт|холодн/i;
+  function noteOf(k) {
+    return String(A[k].note || '').split('·').map(function (p) { return p.trim(); })
+      .filter(function (p) { return p && !DROP_NOTE.test(p); }).join(' · ');
+  }
+  function helpOf(k) {
+    return (String(A[k].help || '').match(/[^.]+(?:\.|$)/g) || []).map(function (x) { return x.trim(); })
+      .filter(function (x) { return x && !DROP_HELP.test(x); }).join(' ');
+  }
+
+  /* ставка строки — как подпись цены в калькуляторе; null — цены нет («уточняется») */
+  function unitOf(k) {
+    if (k === 'paintIn') return '+' + num(E.FINISH.paintRate) + NB + '₽/м²';
+    if (k === 'paintOut') return '+' + num(E.FINISH.extRate) + NB + '₽/м²';
+    var a = A[k], eff = a.ext ? a.permExt : a.perm;
+    var sg = function (v, suf) { return (v < 0 ? '−' : '+') + num(v) + NB + suf; };
+    if (k === 'pilesZB') return 'в подарок';
+    if (a.cheap && !(a.perExt || a.perInner || a.perFloor || a.perCount || a.perQty || a.flat || a.perm)) return null;
+    if (a.flat != null) return a.flat === 0 ? 'бесплатно' : sg(a.flat, '₽');
+    if (a.base != null) return '+' + num(a.base) + NB + '₽ · ' + num(a.perMeter) + NB + '₽/м';
+    if (a.perM || a.perMLong) return '+' + num(a.perM || a.perMLong) + NB + '₽/пог.' + NB + 'м';
+    if (a.perCount) return sg(a.perCount, '₽/свая');
+    if (a.perQty) return num(a.perQty) + NB + '₽/шт';
+    var r = a.perFloorTier && a.perFloorTier[TK] != null ? a.perFloorTier[TK]
+      : a.perFloor != null ? a.perFloor : a.perLiving != null ? a.perLiving : a.perExt != null ? a.perExt : a.perInner;
+    if (r != null) return r ? sg(r, '₽/м²') : null;
+    return eff ? '+' + num(eff) + NB + '₽/м²' : null;
+  }
+  function amountOf(k) {
+    if (k === 'paintIn') return cell(E.paintIn());
+    if (k === 'paintOut') return cell(E.paintOut());
+    return cell(E.addon(k));
+  }
+
+  /* ── состояние: { l, terrace, t, part, km — строками из полей; on: {ключ: true}; qty: {winLam}; dist: {carry}; elecExt, paintIn, paintOut } ── */
+  var KEY = 'mtd_kn_state_mesto4';
+  function defaults() {
+    return { l: '100', terrace: false, t: '', part: '', km: '100', on: {}, qty: {}, dist: {}, elecExt: false, paintIn: false, paintOut: false };
+  }
+  function norm(s) {
+    var d = defaults();
+    s = s && typeof s === 'object' ? s : {};
+    var out = { l: s.l == null ? d.l : String(s.l), terrace: !!s.terrace, t: s.t == null ? '' : String(s.t),
+                part: s.part == null ? '' : String(s.part), km: s.km == null ? d.km : String(s.km),
+                on: {}, qty: {}, dist: {}, elecExt: !!s.elecExt, paintIn: !!s.paintIn, paintOut: !!s.paintOut };
+    var seen = {};
+    Object.keys(s.on || {}).forEach(function (k) {
+      if (!s.on[k] || !A[k] || !UI.keys[k] || k === 'winLam') return;
+      var g = A[k].group;
+      if (g) { if (seen[g]) return; seen[g] = 1; }       // в радио-группе калькулятора включена только одна
+      out.on[k] = true;
+    });
+    var q = Math.max(0, Math.floor(+((s.qty || {}).winLam) || 0));
+    if (q) out.qty.winLam = q;
+    var m = Math.max(0, Math.floor(+((s.dist || {}).carry) || 0));
+    if (m) out.dist.carry = m;
+    return out;
+  }
+  function load() { try { return norm(JSON.parse(localStorage.getItem(KEY) || 'null')); } catch (e) { return defaults(); } }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
+  var st = load();
+
+  /* то же, что поля и тумблеры калькулятора: площадь, терраса, перегородки, доставка, ADDONS.on, количества */
+  function engineState(s) {
+    var on = {};
+    Object.keys(s.on).forEach(function (k) { if (unitOf(k) !== null) on[k] = true; });
+    if (s.qty.winLam && !on.cheapNoWin) on.winLam = true;             // окон нет — ламинировать нечего
+    return { l: pNum(s.l), t: s.terrace ? pNum(s.t) : 0,
+             part: String(s.part).trim() === '' ? 0 : Math.min(200, Math.max(0, pNum(s.part))),
+             km: pNum(s.km) || 100, on: on, qty: { winLam: on.winLam ? s.qty.winLam : 0 }, dist: { carry: s.dist.carry || 0 },
+             elecExt: s.elecExt, paintIn: s.paintIn, paintOut: s.paintOut };
+  }
+
+  /* ── разметка разделов: собирается один раз, дальше меняются только значения ── */
+  var box = $('kn-groups'), ROWS = {};
+  function switchHtml(label) {
+    return '<span class="kn-sw"><input type="checkbox" data-t aria-label="' + esc(label) + '"><i aria-hidden="true"></i></span>';
+  }
+  function rowHtml(r, id) {
+    if (r.type === 'select') {
+      return '<div class="kn-row kn-row--sel" data-row="' + id + '">' +
+        '<label class="kn-rn" for="kn-s-' + id + '">' + esc(r.label) + '</label>' +
+        '<select class="kn-sel" id="kn-s-' + id + '" data-sel><option value="">' + esc(r.base) + '</option>' +
+          r.opts.map(function (o) { return '<option value="' + o.key + '">' + esc(o.name) + '</option>'; }).join('') +
+        '</select><span class="kn-rp"></span></div>';
+    }
+    if (r.type === 'pills') {
+      return '<div class="kn-row kn-row--sel" data-row="' + id + '">' +
+        '<span class="kn-rn" id="kn-pl-' + id + '">' + esc(r.label) + '</span>' +
+        '<span class="kn-pills" role="group" aria-labelledby="kn-pl-' + id + '">' +
+          '<button type="button" data-pill="0" aria-pressed="true">' + esc(r.base) + '</button>' +
+          '<button type="button" data-pill="1" aria-pressed="false">' + esc(r.name) + '</button>' +
+        '</span><span class="kn-rp"></span></div>';
+    }
+    if (r.type === 'piles') {
+      return '<div class="kn-row" data-row="' + id + '"><span class="kn-rn">' + esc(r.label) + '</span><b class="kn-piles"></b></div>';
+    }
+    var k = r.key, paint = r.type === 'paint', noteT = paint ? '' : noteOf(k), helpT = paint ? '' : helpOf(k);
+    var ctrl = r.type === 'qty'
+      ? '<span class="kn-step"><button type="button" data-q="-1" aria-label="Меньше">−</button><output>0</output><button type="button" data-q="1" aria-label="Больше">+</button></span>'
+      : '<span class="kn-ask" hidden>' + esc(UI.texts.ask) + '</span>' + switchHtml(r.name);
+    var tag = r.type === 'qty' ? 'div' : 'label';
+    return '<div class="kn-it" data-row="' + id + '">' +
+      '<' + tag + ' class="kn-row">' +
+        '<span class="kn-rt"><span class="kn-rn">' + esc(r.name) +
+          (helpT ? '<button type="button" class="kn-q" aria-expanded="false" aria-label="Подробнее">?</button>' : '') + '</span>' +
+          '<span class="kn-rp"></span>' + (noteT ? '<span class="kn-note">' + esc(noteT) + '</span>' : '') + '</span>' +
+        ctrl +
+      '</' + tag + '>' +
+      (helpT ? '<p class="kn-help" hidden>' + esc(helpT) + '</p>' : '') +
+      (r.type === 'dist' ? '<div class="kn-extra" hidden><label class="kn-dist">Дистанция проноса<input type="text" inputmode="numeric" data-d autocomplete="off" placeholder="0"><span>м</span></label></div>' : '') +
+      (k === 'elec' ? '<div class="kn-extra" hidden><label class="kn-sub"><input type="checkbox" data-x>' + esc(A.elec.sub) + '<span class="kn-subp"></span></label></div>' : '') +
+    '</div>';
+  }
+  function groupHtml(g, gi) {
+    return '<section class="kn-grp" data-g="' + gi + '">' +
+      '<h3 class="kn-gh-w"><button type="button" class="kn-gh" aria-expanded="false" aria-controls="kn-gb-' + gi + '">' +
+        '<span class="kn-cnt">0</span><span class="kn-gn">' + esc(g.title) + '</span><span class="kn-ell"></span>' +
+        '<span class="kn-gs"></span><span class="kn-chev" aria-hidden="true"></span>' +
+      '</button></h3>' +
+      '<div class="kn-gb" id="kn-gb-' + gi + '" hidden>' +
+        g.rows.map(function (r, ri) { ROWS[gi + '-' + ri] = r; return rowHtml(r, gi + '-' + ri); }).join('') +
+      '</div></section>';
+  }
+  box.innerHTML = UI.groups.map(groupHtml).join('');
+
+  /* ── отрисовка ── */
+  var wantErr = false;
+  function render() {
+    var s = engineState(st);
+    var over = pNum(st.l) > 200.01 || (st.terrace && pNum(st.t) > 200.01);
+    var state = over ? 'over' : s.l > 0 ? 'ok' : 'empty', ok = state === 'ok';
+    E.setState(s);
+
+    $('kn-t-box').hidden = !st.terrace;
+    var msg = state === 'over' ? UI.texts.over : wantErr && state === 'empty' ? UI.texts.empty : '';
+    var err = $('kn-err');
+    err.hidden = !msg;
+    put(err, msg);
+    var area = E.area();
+    put($('kn-sum-t'), !ok ? UI.texts.empty : s.t > 0.05 ? 'Дом ' + m2(s.l) + ' м² + терраса ' + m2(s.t) + ' м²' : 'Площадь дома');
+    put($('kn-sum-v'), ok ? m2(area) + ' м²' : '—');
+
+    var parts = [];
+    UI.groups.forEach(function (g, gi) {
+      var el = box.querySelector('[data-g="' + gi + '"]'), cnt = 0, sum = 0, texts = [];
+      g.rows.forEach(function (r, ri) {
+        var row = el.querySelector('[data-row="' + gi + '-' + ri + '"]');
+
+        if (r.type === 'select') {
+          var cur = null;
+          r.opts.forEach(function (o) { if (s.on[o.key]) cur = o; });
+          var sel = row.querySelector('select');
+          [].forEach.call(sel.options, function (op, i) {
+            if (!i) { put(op, r.base + ' — в цене'); return; }
+            var u = unitOf(op.value);
+            put(op, r.opts[i - 1].name + ' — ' + (u || UI.texts.ask));
+            op.disabled = u === null;
+          });
+          var val = cur ? cur.key : '';
+          if (sel.value !== val) sel.value = val;
+          var hint = 'в цене дома';
+          if (cur) {
+            var amt = amountOf(cur.key), gift = cur.key === 'pilesZB';
+            hint = gift ? 'в подарок' : ok ? unitOf(cur.key) + ' · ' + signed(amt) : unitOf(cur.key);
+            cnt++;
+            texts.push(cur.name);
+            if (ok) { sum += gift ? 0 : amt; parts.push([r.label + ': ' + cur.name, gift ? 0 : amt, gift ? 'в подарок' : '']); }
+          } else texts.push(r.base);
+          put(row.querySelector('.kn-rp'), hint);
+          row.classList.toggle('is-on', !!cur);
+          return;
+        }
+
+        if (r.type === 'pills') {
+          var on = !!s.on[r.key], u2 = unitOf(r.key), a2 = u2 === null ? 0 : amountOf(r.key);
+          var btn = row.querySelectorAll('[data-pill]');
+          btn[0].setAttribute('aria-pressed', String(!on));
+          btn[1].setAttribute('aria-pressed', String(on));
+          btn[1].disabled = u2 === null;
+          put(row.querySelector('.kn-rp'), u2 === null ? r.name + ' — ' + UI.texts.ask
+            : on ? (ok ? u2 + ' · ' + signed(a2) : u2) : r.name + ' — ' + u2);
+          if (on) { cnt++; texts.push(r.name); if (ok) { sum += a2; parts.push([r.label + ': ' + r.name, a2, '']); } }
+          else texts.push(r.base);
+          row.classList.toggle('is-on', on);
+          return;
+        }
+
+        if (r.type === 'piles') {
+          var p = E.piles();
+          put(row.querySelector('.kn-piles'), !ok || s.on.cheapNoFound ? '—'
+            : (p.terrace ? p.house + ' + ' + p.terrace + ' = ' : '') + p.total + ' ' + plural(p.total, 'свая', 'сваи', 'свай'));
+          return;
+        }
+
+        var k = r.key, paint = r.type === 'paint', u3 = unitOf(k), ask = u3 === null;
+        var na = k === 'paintOut' && (s.on.extSide || s.on.extSoft) ? UI.texts.naPaintOut
+          : k === 'winLam' && s.on.cheapNoWin ? UI.texts.naWinLam : '';
+        var on3 = !ask && !na && (paint ? !!st[k] : r.type === 'qty' ? !!s.on.winLam : !!s.on[k]);
+        var a3 = ask || na ? 0 : amountOf(k);
+        var rp = ask ? '' : na ? na : u3 === 'бесплатно' ? u3
+          : ok && (r.type !== 'qty' || on3) ? u3 + ' · ' + signed(a3) : u3;
+        put(row.querySelector('.kn-rp'), rp);
+        var t = row.querySelector('[data-t]');
+        if (t) { t.checked = on3; t.disabled = !!na; t.parentNode.hidden = ask; }
+        var askEl = row.querySelector('.kn-ask');
+        if (askEl) askEl.hidden = !ask;
+        var out = row.querySelector('output');
+        if (out) {
+          put(out, String(on3 ? st.qty.winLam : 0));
+          row.querySelector('[data-q="-1"]').disabled = !on3;
+          row.querySelector('[data-q="1"]').disabled = !!na;
+        }
+        [].forEach.call(row.querySelectorAll('.kn-extra'), function (x) { x.hidden = !on3; });
+        var d = row.querySelector('[data-d]');
+        if (d && document.activeElement !== d) d.value = st.dist.carry ? String(st.dist.carry) : '';
+        var x = row.querySelector('[data-x]');
+        if (x) {
+          x.checked = !!st.elecExt;
+          var diff = A.elec.permExt - (A.elec.perm || 0);
+          put(row.querySelector('.kn-subp'), ' ' + (diff < 0 ? '−' : '+') + num(diff) + NB + '₽/м²');
+        }
+        row.classList.toggle('is-on', on3);
+        row.classList.toggle('is-off', ask || !!na);
+        if (on3) {
+          cnt++;
+          texts.push(r.name);
+          if (ok) {
+            sum += a3;
+            var name = r.type === 'qty' ? r.name + ' × ' + st.qty.winLam : r.type === 'dist' && st.dist.carry ? r.name + ' · ' + st.dist.carry + ' м' : r.name;
+            parts.push([name, a3, u3 === 'бесплатно' ? u3 : '']);
+          }
+        }
+      });
+      el.classList.toggle('is-on', cnt > 0);
+      put(el.querySelector('.kn-cnt'), String(cnt));
+      put(el.querySelector('.kn-ell'), texts.join(', ') || 'не выбрано');
+      put(el.querySelector('.kn-gs'), !ok ? '—' : cnt && sum ? signed(sum) : '0' + NB + '₽');
+    });
+
+    var optSum = parts.reduce(function (x, p) { return x + p[1]; }, 0);
+    put($('kn-optsum'), ok ? (optSum ? signed(optSum) : '0' + NB + '₽') : '—');
+
+    var res = $('kn-res');
+    res.hidden = !ok;
+    if (!ok) return;
+    var total = E.total(), dc = E.delivery(), dcell = dc > 0 ? cell(dc) : 0, house = total - optSum - dcell;  // округление остаётся в строке дома
+    put($('kn-total'), rub(total));
+    var rows = [['Дом ' + m2(area) + ' м²', rub(house)]]
+      .concat(parts.map(function (p) { return [p[0], p[2] || signed(p[1])]; }));
+    if (dcell) rows.push(['Доставка · ' + Math.round(Math.min(500, Math.max(100, s.km))) + ' км', signed(dcell)]);
+    $('kn-rows').innerHTML = rows.map(function (x) {
+      return '<div class="kn-rr"><span>' + esc(x[0]) + '</span><span>' + esc(x[1]) + '</span></div>';
+    }).join('');
+    put($('kn-note'), 'Цена дома — по комплектации «' + E.tier().name + '», ' + num(E.tier().rate) + NB + '₽ за м². ' + UI.texts.note);
+    var gifts = E.giftsActive(), gsum = gifts.reduce(function (x, g) { return x + (g.value || 0); }, 0);
+    put($('kn-gifts-h'), 'Подарки — на ' + rub(gsum));
+    $('kn-gifts').innerHTML = gifts.map(function (g) {
+      return '<li><span>' + esc(g.name) + '</span><b>' + esc(rub(g.value || 0)) + '</b></li>';
+    }).join('');
+  }
+
+  /* ── ввод ── */
+  function change() { save(); render(); }
+  var inL = $('kn-l'), inT = $('kn-t'), inP = $('kn-p'), inK = $('kn-km'), sw = $('kn-terr');
+  function syncInputs() { inL.value = st.l; inT.value = st.t; inP.value = st.part; inK.value = st.km; sw.checked = st.terrace; }
+  syncInputs();
+  put($('kn-km-h'), E.deliveryText());
+
+  inL.addEventListener('input', function () { st.l = inL.value; wantErr = false; change(); });
+  inT.addEventListener('input', function () { st.t = inT.value; change(); });
+  inP.addEventListener('input', function () { st.part = inP.value; change(); });
+  inK.addEventListener('input', function () { st.km = inK.value; change(); });
+  inK.addEventListener('blur', function () {                       // как в калькуляторе: от 100 до 500 км
+    inK.value = String(Math.min(500, Math.max(100, pNum(inK.value) || 100)));
+    st.km = inK.value;
+    change();
+  });
+  sw.addEventListener('change', function () {
+    st.terrace = sw.checked;
+    change();
+    if (sw.checked && !pNum(inT.value)) inT.focus();
+  });
+
+  box.addEventListener('click', function (e) {
+    var q = e.target.closest('.kn-q');
+    if (q) {
+      e.preventDefault();
+      var open = q.getAttribute('aria-expanded') !== 'true';
+      q.setAttribute('aria-expanded', String(open));
+      q.closest('.kn-it').querySelector('.kn-help').hidden = !open;
+      return;
+    }
+    var gh = e.target.closest('.kn-gh');
+    if (gh) {                                                       // как в бюджетном: открыт один раздел
+      var willOpen = gh.getAttribute('aria-expanded') !== 'true';
+      [].forEach.call(box.querySelectorAll('.kn-gh'), function (b) {
+        b.setAttribute('aria-expanded', 'false');
+        $(b.getAttribute('aria-controls')).hidden = true;
+      });
+      if (willOpen) { gh.setAttribute('aria-expanded', 'true'); $(gh.getAttribute('aria-controls')).hidden = false; }
+      return;
+    }
+    var pill = e.target.closest('[data-pill]');
+    if (pill) {
+      var pr = ROWS[pill.closest('[data-row]').getAttribute('data-row')];
+      if (pill.getAttribute('data-pill') === '1') st.on[pr.key] = true; else delete st.on[pr.key];
+      change();
+      return;
+    }
+    var step = e.target.closest('[data-q]');
+    if (step) {
+      var n = Math.max(0, (st.qty.winLam || 0) + Number(step.getAttribute('data-q')));
+      if (n) st.qty.winLam = n; else delete st.qty.winLam;
+      change();
+    }
+  });
+  box.addEventListener('change', function (e) {
+    var rowEl = e.target.closest('[data-row]');
+    if (!rowEl) return;
+    var r = ROWS[rowEl.getAttribute('data-row')];
+    if (e.target.hasAttribute('data-sel')) {
+      r.opts.forEach(function (o) { delete st.on[o.key]; });
+      if (e.target.value) st.on[e.target.value] = true;
+    } else if (e.target.hasAttribute('data-t')) {
+      if (r.type === 'paint') st[r.key] = e.target.checked;
+      else if (e.target.checked) st.on[r.key] = true;
+      else delete st.on[r.key];
+    } else if (e.target.hasAttribute('data-x')) {
+      st.elecExt = e.target.checked;
+    } else return;
+    change();
+  });
+  box.addEventListener('input', function (e) {
+    if (!e.target.hasAttribute('data-d')) return;
+    var m = Math.max(0, Math.floor(pNum(e.target.value)));
+    if (m) st.dist.carry = m; else delete st.dist.carry;
+    change();
+  });
+
+  $('kn-calc').addEventListener('click', function () {
+    wantErr = true;
+    render();
+    if (!(pNum(st.l) > 0)) { inL.focus(); return; }
+    if ($('kn-res').hidden) return;
+    var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    $('kn-res').scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' });
+  });
+  $('kn-reset').addEventListener('click', function () {
+    st.on = {}; st.qty = {}; st.dist = {}; st.elecExt = false; st.paintIn = false; st.paintOut = false;
+    change();
+  });
+
+  render();
+
+  /* проверка отрисовки (?kntest): поставить состояние и прочитать, что показано */
+  if (/[?&]kntest\b/.test(location.search)) {
+    window.KN_TEST = {
+      engineState: function (s) { return engineState(norm(s)); },
+      apply: function (s) {
+        st = norm(s); syncInputs(); render();
+        return { state: st, total: $('kn-res').hidden ? null : $('kn-total').textContent,
+                 rows: [].map.call($('kn-rows').querySelectorAll('.kn-rr'), function (x) { return [x.firstChild.textContent, x.lastChild.textContent]; }),
+                 groups: [].map.call(box.querySelectorAll('.kn-grp'), function (x) { return x.querySelector('.kn-gs').textContent; }),
+                 optsum: $('kn-optsum').textContent };
+      }
+    };
+  }
+
+  /* ── свежие ставки из облака калькулятора: тот же запрос и кэш, что у calc-live.js ── */
+  var CACHE = 'mtd_calc_rates_v1', TTL = 10 * 60 * 1000, JUMP = 0.3, rate0 = E.tier().rate;
+  function fresh() {
+    try {
+      var c = JSON.parse(localStorage.getItem(CACHE) || 'null');
+      if (c && Date.now() - c.t < TTL && c.map && typeof c.map === 'object') return Promise.resolve(c.map);
+    } catch (e) {}
+    if (!window.fetch || !UI.cloud) return Promise.resolve(null);
+    var ctl = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 4000);
+    return fetch(UI.cloud.url + '/rest/v1/rpc/app_get_prices', {
+      method: 'POST', body: '{}', signal: ctl ? ctl.signal : undefined,
+      headers: { apikey: UI.cloud.key, Authorization: 'Bearer ' + UI.cloud.key, 'Content-Type': 'application/json' }
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      clearTimeout(timer);
+      if (!d || typeof d !== 'object' || Array.isArray(d)) return null;
+      var map = {};
+      Object.keys(d).forEach(function (k) { if (k.indexOf('_link_') !== 0 && typeof d[k] === 'number' && isFinite(d[k])) map[k] = d[k]; });
+      try { localStorage.setItem(CACHE, JSON.stringify({ t: Date.now(), map: map })); } catch (e) {}
+      return map;
+    }).catch(function () { clearTimeout(timer); return null; });
+  }
+  fresh().then(function (map) {
+    if (!map || typeof map['tier:comfort'] !== 'number') return;
+    if (Math.abs(map['tier:comfort'] - rate0) / rate0 > JUMP) return;   // цена ушла больше чем на 30 % — остаются ставки выгрузки
+    var before = JSON.stringify(E.rates());
+    E.applyRates(JSON.parse(JSON.stringify(map)));
+    if (JSON.stringify(E.rates()) !== before) render();
+  });
+})();
+</script>
+<script>
+/* снимок для витрины мест: ?shot — калькулятор к верху экрана, ?open — открыть панель, ?menu — открыть меню */
+(function () {
+  var q = location.search;
+  addEventListener('load', function () {
+    document.documentElement.style.scrollBehavior = 'auto';
+    if (/[?&]menu\b/.test(q)) { var b = document.querySelector('.burg'); if (b) b.click(); }
+    if (/[?&]open\b/.test(q) && window.KNP) window.KNP.open();
+    var t = /[?&]shot\b/.test(q) && document.getElementById('kn-place');
+    if (t) scrollTo(0, t.getBoundingClientRect().top + scrollY - (innerWidth < 700 ? 96 : 150));
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+/* Эскизы «Покраска снаружи»: 20 вариантов включения и выключения покраски в разделе «Отделка снаружи».
+   Оболочка страницы (.okv, .vc) — kalk-otdelka-varianty.css, вид калькулятора — kalk-dom.css.
+   Свои классы только с приставкой kp-, шкалы и цвета — токены сайта. Цены: дом 100 м², «Комфорт». */
+
+/* ── кусок калькулятора внутри карточки варианта ── */
+.kp-demo{max-width:520px;margin:0 auto;padding:var(--sp-4) var(--sp-16) var(--sp-16);border:2px solid var(--ink);border-radius:var(--r-shell);background:var(--card)}
+.kp-demo p{margin:0}
+.kp-demo .kn-gh{cursor:default}                                   /* заголовок раздела показан раскрытым, нажимать нечего */
+.kp-demo .kp-gh .kn-chev{transform:translateY(2px) rotate(225deg)}
+.kp-demo .kn-gb{display:grid;gap:var(--sp-12);padding-bottom:var(--sp-12)}
+.kp-demo .kn-gb>*+*{border-top:0}                                 /* линии между блоками ставим сами — только там, где нужно */
+.kp-demo .kp-sep{border-top:1px solid var(--kn-soft);padding-top:var(--sp-8)}
+/* плитки видны сразу, без кнопки: панель перестаёт быть всплывающей */
+.kp-demo .kn-tls{padding:0;background:none;box-shadow:none}
+.kp-demo .kn-mat__c{font-size:12px;font-weight:600;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+/* покраска на образце — только намёк: образец темнеет, узор виден */
+.kp-demo .kn-swt.is-paint{box-shadow:inset 0 0 0 1px rgb(0 0 0/.08),inset 0 0 0 999px rgb(var(--sh-cool)/.42)}
+
+/* ── общие детали вариантов ── */
+.kp-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-4) var(--sp-12);width:100%;min-height:52px;margin:0;padding:var(--sp-8) var(--sp-12);border:0;border-radius:var(--r-inner);background:var(--n-1);font:inherit;font-size:var(--fs-xs);line-height:1.4;color:inherit;text-align:left;cursor:pointer;transition:background-color .2s var(--e)}
+.kp-row:hover:not(:disabled){background:var(--n-2)}
+.kp-row:disabled{cursor:default;opacity:.75}
+.kp-static,.kp-static:hover{background:var(--n-1);cursor:default}     /* строка-итог, а не кнопка: нажимается только переключатель */
+.kp-g{flex:1 1 180px;min-width:0}
+.kp-n{display:block;font-size:var(--fs-xs);font-weight:500;line-height:1.35}
+.kp-s{display:block;font-size:var(--fs-xs);line-height:1.35;color:var(--dim)}
+.kp-v{font-size:var(--fs-xs);font-weight:600;line-height:1.35;white-space:nowrap;font-variant-numeric:tabular-nums}
+.kp-pair{display:flex;flex:none;align-items:center;gap:var(--sp-12);margin-left:auto}   /* сумма и переключатель переносятся вместе */
+
+.kp-sw{position:relative;display:block;flex:none;width:44px;height:26px;border-radius:999px;background:var(--n-5);transition:background-color .2s var(--e)}
+.kp-sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--card);box-shadow:0 1px 3px rgb(var(--sh-cool)/.3);transition:transform .2s var(--e)}
+.kp-sw.is-on{background:var(--ink)}
+.kp-sw.is-on::after{transform:translateX(18px)}
+.kp-sw.is-na{opacity:.4}
+.kp-ck{position:relative;display:block;flex:none;width:20px;height:20px;border-radius:6px;background:var(--card);box-shadow:inset 0 0 0 2px var(--n-6);transition:background-color .2s var(--e),box-shadow .2s var(--e)}
+.kp-ck.is-on{background:var(--ink);box-shadow:none}
+.kp-ck.is-on::after{content:"";position:absolute;left:5px;top:6px;width:9px;height:5px;border-left:2px solid var(--card);border-bottom:2px solid var(--card);transform:rotate(-45deg)}
+.kp-swb{display:inline-flex;align-items:center;gap:var(--sp-8);min-height:var(--tap);margin:0;padding:0 0 0 var(--sp-4);border:0;background:none;font:inherit;font-size:var(--fs-xs);color:var(--dim);cursor:pointer}
+.kp-swb:disabled{cursor:default;opacity:.6}
+
+/* 01 · 13 · 17 — строки */
+.kp-left{gap:var(--sp-12)}
+.kp-ic{display:grid;flex:none;place-items:center;width:32px;height:32px;border-radius:var(--r-tight);background:var(--n-2);color:var(--dim);transition:background-color .2s var(--e),color .2s var(--e)}
+.kp-ic svg{width:20px;height:20px}
+.kp-roll[aria-pressed="true"]{background:var(--n-2)}
+.kp-roll[aria-pressed="true"] .kp-ic{background:var(--card);box-shadow:var(--edge);color:var(--clay-txt)}
+
+/* 02 · 08 · 16 — второй ряд плиток */
+.kp-flat{justify-content:center;min-height:64px}
+
+/* 03 — сегменты во всю ширину */
+.kp-seg{display:flex}
+.kp-seg button{flex:1 1 auto;text-align:center}
+
+/* 04 · 19 — управление внутри плитки: плитка не кнопка, выбор — прозрачная кнопка на всю плитку */
+.kp-cell{cursor:default}
+.kp-cell[data-on="1"]{background:var(--n-1);box-shadow:inset 0 0 0 2px var(--ink)}
+.kp-cell[data-on="1"]::after{content:"";position:absolute;top:var(--sp-12);right:var(--sp-12);z-index:2;width:20px;height:20px;border-radius:50%;box-shadow:0 0 0 2px var(--card);
+  background:var(--ink) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='8'><path d='M1 4l3 3 5-6' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/10px 8px no-repeat}
+.kp-pick{position:absolute;inset:0;z-index:0;width:100%;margin:0;padding:0;border:0;border-radius:var(--r-inner);background:none;cursor:pointer}
+.kp-cell>:not(.kp-pick){position:relative;z-index:1;pointer-events:none}
+.kp-cell>.kp-mini,.kp-cell>.kp-in{pointer-events:auto}
+.kp-mini{display:flex;align-items:center;gap:var(--sp-8);width:100%;min-height:32px;margin:var(--sp-4) 0 0;padding:var(--sp-4) var(--sp-8);border:0;border-radius:var(--r-tight);background:var(--n-2);font:inherit;font-size:var(--fs-xs);line-height:1.3;color:var(--dim);text-align:left;cursor:pointer;transition:background-color .2s var(--e),color .2s var(--e)}
+.kp-mini[aria-pressed="true"]{background:var(--ink);color:var(--card)}
+.kp-mini[aria-pressed="true"] .kp-ck{background:var(--card)}
+.kp-mini[aria-pressed="true"] .kp-ck.is-on::after{border-left-color:var(--ink);border-bottom-color:var(--ink)}
+.kp-mini:disabled{cursor:default;opacity:.6}
+.kp-in{display:grid;gap:var(--sp-4);width:100%;margin-top:var(--sp-4)}
+.kp-inb{display:grid;gap:2px;min-height:32px;margin:0;padding:var(--sp-4) var(--sp-8);border:0;border-radius:var(--r-tight);background:var(--n-2);font:inherit;font-size:var(--fs-xs);line-height:1.25;color:var(--dim);text-align:left;cursor:pointer;transition:background-color .2s var(--e),color .2s var(--e)}
+.kp-inb[aria-pressed="true"]{background:var(--ink);color:var(--card)}
+
+/* 05 · 14 · 15 — карточка и широкая плитка покраски */
+.kp-card,.kp-wide{flex-direction:row;align-items:center;gap:var(--sp-12);min-height:56px;padding-right:var(--sp-48)}
+.kp-card .kn-tl__p,.kp-wide .kn-tl__p{margin-top:0}
+.kp-strip{flex:none;width:64px;height:40px}
+.kp-under{padding:var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-1)}
+
+/* 06 — чип */
+.kp-chips{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-8) var(--sp-12)}
+.kp-chip{display:inline-flex;align-items:center;gap:var(--sp-8);min-height:var(--tap);margin:0;padding:var(--sp-8) var(--sp-16);border:0;border-radius:999px;background:var(--card);box-shadow:inset 0 0 0 2px var(--n-4);font:inherit;font-size:var(--fs-xs);font-weight:500;color:inherit;cursor:pointer;transition:background-color .2s var(--e),box-shadow .2s var(--e),color .2s var(--e)}
+.kp-chip[aria-pressed="true"]{background:var(--ink);box-shadow:none;color:var(--card)}
+.kp-chip:disabled{cursor:default;opacity:.6}
+
+/* 07 — до и после одной картинкой */
+.kp-ba{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;overflow:hidden;border-radius:var(--r-tight)}
+.kp-ba figure{display:grid;gap:var(--sp-4);min-width:0;margin:0}
+.kp-ba .kn-swt{height:56px;border-radius:0}
+.kp-ba figcaption{font-size:var(--fs-xs);line-height:1.35;color:var(--dim);text-align:center}
+.kp-ba--one{grid-template-columns:minmax(0,1fr)}
+
+/* 09 — переключатель в строке подписи */
+.kp-capline{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-8)}
+.kp-mini--line{width:auto;margin:0;background:var(--n-1)}
+
+/* 11 — радиокнопки */
+.kp-radios{display:grid;gap:var(--sp-4)}
+.kp-radio{display:flex;align-items:center;gap:var(--sp-12);width:100%;min-height:48px;margin:0;padding:var(--sp-8) var(--sp-12);border:0;border-radius:var(--r-inner);background:none;font:inherit;font-size:var(--fs-xs);line-height:1.4;color:inherit;text-align:left;cursor:pointer;transition:background-color .2s var(--e),box-shadow .2s var(--e)}
+.kp-radio:hover:not(:disabled){background:var(--n-1)}
+.kp-radio[aria-checked="true"]{background:var(--n-1);box-shadow:inset 0 0 0 2px var(--ink)}
+.kp-radio:disabled{cursor:default;opacity:.7}
+.kp-dot{display:block;flex:none;width:20px;height:20px;border-radius:50%;box-shadow:inset 0 0 0 2px var(--n-6);transition:box-shadow .2s var(--e)}
+.kp-radio[aria-checked="true"] .kp-dot{box-shadow:inset 0 0 0 6px var(--ink)}
+
+/* 12 — большой переключатель с бегунком */
+.kp-big{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-4);padding:var(--sp-4);border-radius:999px;background:var(--n-1);box-shadow:inset 0 0 0 2px var(--n-5)}
+.kp-big button{position:relative;z-index:1;display:grid;gap:2px;place-content:center;min-height:40px;margin:0;padding:var(--sp-8) var(--sp-12);border:0;border-radius:999px;background:none;font:inherit;font-size:var(--fs-xs);font-weight:500;line-height:1.25;color:var(--dim);text-align:center;cursor:pointer;transition:color .2s var(--e)}
+.kp-big button[aria-pressed="true"]{color:var(--ink);font-weight:600}
+.kp-thumb{position:absolute;top:var(--sp-4);left:var(--sp-4);width:calc(50% - var(--sp-4) - 1px);height:calc(100% - var(--sp-8));border-radius:999px;background:var(--card);box-shadow:var(--edge),var(--sh-1);transition:transform .2s var(--e)}
+.kp-big.is-on .kp-thumb{transform:translateX(calc(100% + var(--sp-4)))}
+.kp-big.is-na{opacity:.6}
+.kp-big.is-na .kp-thumb{display:none}
+
+/* 16 — шаги */
+.kp-step{display:flex;align-items:center;gap:var(--sp-8)}
+.kp-step i{display:grid;flex:none;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);font-size:var(--fs-xs);font-style:normal;font-weight:600;color:var(--card)}
+.kp-off{display:grid;gap:var(--sp-8);opacity:.6}
+.kp-off .kp-step i{background:var(--n-5)}
+
+/* 18 — домик со стенами из выбранного материала */
+.kp-house{display:grid;justify-items:center;gap:0;padding:var(--sp-8) 0}
+.kp-roof{display:block;width:180px;height:44px;background:var(--n-7);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.kp-walls{position:relative;display:block;overflow:hidden;width:148px;height:68px;border-radius:0 0 var(--r-tight) var(--r-tight)}
+.kp-walls .kn-swt{position:absolute;inset:0;height:auto;border-radius:0}
+.kp-door{position:absolute;left:50%;bottom:0;z-index:1;width:22px;height:30px;margin-left:-11px;border-radius:4px 4px 0 0;background:var(--n-2)}
+.kp-btn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap);margin:0;padding:0 var(--sp-16);border:0;border-radius:var(--r-tight);background:var(--ink);font:inherit;font-size:var(--fs-xs);font-weight:600;color:var(--card);cursor:pointer;transition:background-color .2s var(--e)}
+.kp-btn[aria-pressed="true"]{background:var(--card);box-shadow:inset 0 0 0 2px var(--ink);color:var(--ink)}
+.kp-btn:disabled{cursor:default;opacity:.5}
+.kp-mid{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:var(--sp-8) var(--sp-12)}
+
+/* 20 — сумма раздела крупно */
+.kp-res{display:grid;gap:var(--sp-8);padding:var(--sp-12);border-radius:var(--r-inner);background:var(--n-1)}
+.kp-res-l{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--sp-8)}
+.kp-res-v{font-size:var(--fs-sm);font-weight:600;line-height:1.2;white-space:nowrap;font-variant-numeric:tabular-nums}
+.kp-res .kp-row{background:var(--card)}
+
+/* ── телефон: ничего не обрезается, названия крупнее, как в калькуляторе ── */
+@media(max-width:620px){
+  .kp-demo .kp-n{font-size:var(--fs-sm)}
+  .kp-demo{padding-inline:var(--sp-12)}
+  .kp-row{padding-inline:var(--sp-8)}
+  .kp-house .kp-roof{width:150px}
+  .kp-house .kp-walls{width:122px}
+}
+@media(max-width:560px){.okv-grid .vc{padding:var(--sp-12)}.okv-grid .vc-stage{padding:var(--sp-8)}}
+@media(prefers-reduced-motion:reduce){.kp-demo *,.kp-demo *::before,.kp-demo *::after{transition:none!important}}

@@ -1,0 +1,144 @@
+/* Эскизы «Отделка снаружи», часть 2: детали отдельных вариантов (vNN-). */
+.tl .tg,.tl .df{justify-self:start}
+.rw:disabled{cursor:default;opacity:.6}
+.okv-ic{width:22px;height:22px}
+
+/* сейчас на сайте */
+.v00{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,60%);gap:var(--sp-4) var(--sp-12);align-items:center}
+.v00-s{width:100%;min-width:0;height:44px;padding:0 var(--sp-32) 0 var(--sp-12);border:0;border-radius:var(--r-inner);background:var(--n-1) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23616D85' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>") no-repeat right 12px center;box-shadow:inset 0 0 0 2px var(--n-6);font:inherit;font-size:var(--fs-xs);color:var(--ink);text-overflow:ellipsis;appearance:none;-webkit-appearance:none}
+.v00-h{grid-column:1/-1}
+
+/* 4 */
+.v04-t .swt{height:40px}
+.v04-p{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-8)}
+
+/* 6 · шкала */
+.v06{display:grid;gap:var(--sp-4)}
+.v06-track{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));padding-top:20px}
+.v06-track::before{content:"";position:absolute;left:8.33%;right:8.33%;top:32px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--n-4),var(--n-6))}
+.v06-stop{position:relative;display:grid;justify-items:center;align-content:start;gap:var(--sp-8);min-height:68px;padding:0 2px;border:0;background:none;cursor:pointer}
+.v06-stop i{position:relative;z-index:1;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px var(--n-6);transition:background-color .2s var(--e),box-shadow .2s var(--e)}
+.v06-stop.is-base i{box-shadow:inset 0 0 0 3px var(--ink)}
+.v06-stop.is-base::before{content:"в цене";position:absolute;top:-20px;font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap}
+.v06-stop.is-on i{background:var(--ink);box-shadow:0 0 0 5px rgb(34 48 76/.14)}
+.v06-stop span{font-size:12.5px;line-height:1.2;text-align:center;color:var(--dim)}
+.v06-stop.is-on span{color:var(--ink);font-weight:600}
+.v06-ends{display:flex;justify-content:space-between;font-size:12.5px;color:var(--dim)}
+
+/* 7 · в цене → заменить */
+.v07{display:flex;align-items:center;gap:var(--sp-12);padding:var(--sp-8) var(--sp-8) var(--sp-8) var(--sp-12);border-radius:var(--r-inner);background:var(--n-1)}
+.v07 .swt{flex:none;width:56px;height:40px}
+.v07 .grow{flex:1;min-width:0;display:grid}
+
+/* 8 · таблица материал × покраска */
+.v08{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);gap:var(--sp-4) var(--sp-8);align-items:center}
+.v08 .sx-sub{text-align:center;line-height:1.3}
+.v08-n{display:grid;min-width:0}
+.v08-c{min-height:44px;padding:var(--sp-4) var(--sp-8);border:0;border-radius:var(--r-tight);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--n-4);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:center;cursor:pointer;transition:background-color .2s var(--e),color .2s var(--e)}
+.v08-c:hover{box-shadow:inset 0 0 0 2px var(--n-6)}
+.v08-c.is-on{background:var(--ink);box-shadow:none;color:#fff}
+.v08-c.is-na{display:grid;place-items:center;background:none;box-shadow:none;font-weight:400;color:var(--dim);cursor:default}
+@media(max-width:560px){.v08-c{padding:var(--sp-4);font-size:12.5px}}
+
+/* 9 */
+.v09-r{display:grid;justify-items:end}
+
+/* 10 · иконки */
+.v10-i{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:var(--r-tight);background:var(--n-2)}
+.rw.v10.is-on .v10-i{background:var(--ink);color:#fff}
+
+/* 11 · два вопроса */
+.v11-q{font-size:var(--fs-sm);font-weight:600}
+
+/* 12 · листать */
+.v12{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:var(--sp-8)}
+.v12-a{width:44px;height:44px;padding:0;border:0;border-radius:50%;background:var(--n-2);font-size:26px;line-height:1;cursor:pointer}
+.v12-a:disabled{opacity:.35;cursor:default}
+.v12-c{display:grid;justify-items:center;gap:var(--sp-4);text-align:center}
+.v12-s{width:100%;height:96px}
+.v12-d{display:flex;justify-content:center;gap:var(--sp-12)}
+.v12-d button{position:relative;width:10px;height:10px;padding:0;border:0;border-radius:50%;background:var(--n-4);cursor:pointer}
+.v12-d button::before{content:"";position:absolute;inset:-8px}
+.v12-d button.is-on{background:var(--ink)}
+
+/* 13 · свой список */
+.v13{display:flex;align-items:center;gap:var(--sp-12);width:100%;min-height:56px;padding:var(--sp-8) var(--sp-12);border:0;border-radius:var(--r-inner);background:#fff;box-shadow:inset 0 0 0 2px var(--n-6);text-align:left;cursor:pointer}
+.v13[aria-expanded="true"]{box-shadow:inset 0 0 0 2px var(--ink)}
+.v13 .grow{flex:1;min-width:0;display:grid}
+.v13-s{flex:none;width:44px;height:32px}
+.v13-c{flex:none;width:8px;height:8px;border-right:2px solid var(--dim);border-bottom:2px solid var(--dim);transform:translateY(-2px) rotate(45deg);transition:transform .2s var(--e)}
+.v13[aria-expanded="true"] .v13-c{transform:translateY(2px) rotate(225deg)}
+.v13-p{display:grid;gap:var(--sp-4);padding:var(--sp-8);border-radius:var(--r-inner);background:#fff;box-shadow:var(--edge),var(--sh-2)}
+
+/* 14 · сетка материал × класс */
+.v14{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-8);align-items:center}
+.v14 .sx-sub{text-align:center;line-height:1.3}
+.v14-c{min-height:52px;border:0;border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 2px var(--n-4);font-weight:600;font-variant-numeric:tabular-nums;cursor:pointer}
+.v14-c:hover{box-shadow:inset 0 0 0 2px var(--n-6)}
+.v14-c.is-on{background:var(--ink);box-shadow:none;color:#fff}
+.tls.v14-o{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+/* 16 · полоски */
+.rw.v16{display:grid;grid-template-columns:20px minmax(0,8.5em) minmax(0,1fr) minmax(0,6.5em);gap:var(--sp-8)}
+.v16-b{position:relative;height:12px}
+.v16-b::before{content:"";position:absolute;left:50%;top:-6px;bottom:-6px;width:2px;margin-left:-1px;background:var(--n-5)}
+.v16-b i{position:absolute;top:0;bottom:0;border-radius:3px;background:var(--n-6)}
+.rw.v16.is-on .v16-b i{background:var(--ink)}
+.v16-v{text-align:right}
+.v16-na{grid-column:3/-1}
+@media(max-width:560px){.rw.v16{grid-template-columns:20px minmax(0,1fr) 56px minmax(0,6.5em)}}
+
+/* 17 · домик */
+.v17{position:relative;width:min(260px,100%);height:172px;margin:0 auto}
+.v17-roof{position:absolute;left:-4%;right:-4%;top:0;height:76px;background:var(--ink);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.v17-w{position:absolute;left:5%;right:5%;top:70px;bottom:0;overflow:hidden;border-radius:0 0 4px 4px}
+.v17-f{position:absolute;inset:0;height:auto;border-radius:0}
+.v17-win{position:absolute;left:12%;top:20%;width:22%;height:36%;border:3px solid #fff;background:#9DB3C6}
+.v17-win--2{left:auto;right:12%}
+.v17-door{position:absolute;left:42%;bottom:0;width:16%;height:64%;border:3px solid #fff;border-bottom:0;background:var(--ink)}
+
+/* 18 · метки */
+.v18-t{display:flex;flex-wrap:wrap;gap:var(--sp-4);margin-top:var(--sp-4)}
+
+/* 19 · покраска внутри плитки */
+.v19 .tl{padding:0;overflow:hidden;cursor:default}
+.v19-m{display:grid;gap:var(--sp-4);width:100%;padding:var(--sp-12);border:0;background:none;text-align:left;cursor:pointer}
+.v19-m .swt{height:36px}
+.v19-m .tg,.v19-m .df{justify-self:start}
+.v19-p{display:flex;align-items:center;gap:var(--sp-8);width:100%;min-height:44px;padding:var(--sp-8) var(--sp-12);border:0;border-top:1px solid var(--n-4);background:#fff;font-size:12.5px;font-weight:600;text-align:left;cursor:pointer}
+.v19-na{padding:var(--sp-8) var(--sp-12);border-top:1px solid var(--n-4)}
+
+/* 21 · список и карточка */
+.v21{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:var(--sp-12);align-items:start}
+.v21-l{display:grid;gap:var(--sp-4)}
+.v21-l button{min-height:40px;padding:0 var(--sp-12);border:0;border-radius:var(--r-tight);background:none;color:var(--dim);font-weight:500;text-align:left;cursor:pointer}
+.v21-l button.is-on{background:var(--ink);color:#fff}
+.v21-c{display:grid;gap:var(--sp-8);min-width:0;padding:var(--sp-12);border-radius:var(--r-inner);background:var(--n-1)}
+.v21-c .tg,.v21-c .df{justify-self:start}
+.v21-s{height:72px}
+.v21-c .pn{background:#fff}
+@media(max-width:560px){.v21{grid-template-columns:minmax(0,1fr)}}
+
+/* 22 · строки сметы */
+.v22{display:grid;overflow:hidden;border-radius:var(--r-inner);box-shadow:inset 0 0 0 2px var(--n-4)}
+.v22-h,.v22-r{display:grid;grid-template-columns:24px minmax(0,1fr) minmax(0,5.5em) minmax(0,7em);gap:var(--sp-8);align-items:center;padding:var(--sp-8) var(--sp-12)}
+.v22-h{background:var(--n-2);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.v22-r{width:100%;border:0;border-top:1px solid var(--n-4);background:#fff;text-align:left;cursor:pointer}
+.v22-r.is-on{background:var(--n-1)}
+.v22-r.is-na{cursor:default}
+.v22-r.is-na .nt{grid-column:3/-1}
+.v22-n{text-align:right}
+.v22-f{display:flex;justify-content:space-between;gap:var(--sp-12);padding:var(--sp-8) var(--sp-12);border-top:2px solid var(--ink);font-weight:600}
+@media(max-width:560px){.v22-h,.v22-r{grid-template-columns:24px minmax(0,1fr) minmax(0,6.5em)}.v22-h span:nth-child(3),.v22-r>.nt.v22-n{display:none}}
+
+/* 23 · дешевле и дороже */
+.v23{display:grid;justify-items:center;gap:var(--sp-4);padding:var(--sp-12);border-radius:var(--r-inner);background:var(--n-1);text-align:center}
+.v23-n{font-size:var(--fs-lg);font-weight:600;line-height:1.2}
+.v23-b{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-8)}
+.v23-b .tl:disabled{opacity:.5;cursor:default}
+.v23 + .v23-b + .btn-l{justify-self:start}
+
+/* 25 · покраска как добавка */
+.v25-a{display:flex;align-items:center;gap:var(--sp-12);padding:var(--sp-12);border:2px dashed var(--n-5);border-radius:var(--r-inner)}
+.v25-a.is-on{border-style:solid;border-color:var(--ink);background:var(--n-1)}
+.v25-a .grow{flex:1;min-width:0;display:grid}

@@ -1,0 +1,118 @@
+/* ── калькулятор дома ─────────────────────────────────
+   Выбор пользователя: всё на одном экране. Слева дом и опции, справа цена трёх
+   комплектаций — как шапка таблицы в карточке: тёмная, «Комфорт» кирпичный.
+   На телефоне цены прилипают к низу экрана. Шкалы — как в карточках (CLAUDE.md). */
+
+.back{position:relative;display:inline-flex;align-items:center;gap:var(--sp-8);margin-top:var(--sp-24);font-size:var(--fs-xs);font-weight:500;color:var(--clay-txt)}
+.back:hover{color:var(--clay-btn-h)}
+.back i{font-style:normal;transition:transform .2s var(--e)}
+.back:hover i{transform:translateX(-3px)}
+.back::before{content:"";position:absolute;inset:-12px -8px}
+
+.kc-title{margin:var(--sp-16) 0 0;font-size:clamp(35px,4.2vw,60px);font-weight:600;letter-spacing:-.025em;line-height:1.08}
+
+.kc{display:grid;gap:var(--sp-16);margin:var(--sp-32) 0 var(--sp-64)}
+@media(min-width:900px){
+  .kc{grid-template-columns:minmax(0,1fr) 400px;grid-template-areas:"house side" "opts side" "gifts side";gap:var(--sp-24);align-items:start;margin-bottom:var(--sp-96)}
+  .kc-house{grid-area:house}
+  .kc-optc{grid-area:opts}
+  .kc-gifts{grid-area:gifts}
+  .kc__side{grid-area:side;position:sticky;top:calc(var(--hdr-stick) + 8px)}
+}
+
+.kc-card{min-width:0;padding:var(--sp-24);background:var(--card);border-radius:var(--r-shell);box-shadow:var(--edge),var(--sh-1)}
+.kc-h{margin:0 0 var(--sp-16);font-size:var(--fs-md);font-weight:600;letter-spacing:-.01em;line-height:1.2}
+
+/* проект или своя площадь */
+.kc-seg{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);padding:var(--sp-4);border-radius:var(--r-inner);background:var(--n-2)}
+.kc-seg button{min-height:var(--tap);padding:0 var(--sp-12);border:0;border-radius:var(--r-tight);background:none;font:inherit;font-size:var(--fs-sm);font-weight:500;color:var(--dim);cursor:pointer;transition:background-color .2s var(--e),color .2s var(--e)}
+.kc-seg button:hover{color:var(--ink)}
+.kc-seg button[aria-checked="true"]{background:var(--card);color:var(--ink);box-shadow:var(--edge),var(--sh-1)}
+.kc-seg button:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+
+.kc-pane{margin-top:var(--sp-16)}
+.kc-f{display:grid;gap:var(--sp-8);min-width:0}
+.kc-f__l{font-size:var(--fs-xs);color:var(--dim)}
+.kc-sel,.kc-in{width:100%;min-height:52px;padding:0 var(--sp-16);border:0;border-radius:var(--r-inner);background:var(--n-1);box-shadow:inset 0 0 0 1.5px var(--n-4);font:inherit;font-size:var(--fs-sm);color:var(--ink);transition:box-shadow .2s var(--e)}
+.kc-sel{appearance:none;-webkit-appearance:none;padding-right:var(--sp-48);cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23616D85' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;background-size:20px}
+.kc-sel:hover,.kc-in:hover{box-shadow:inset 0 0 0 1.5px var(--n-6)}
+.kc-sel:focus-visible,.kc-in:focus{outline:0;box-shadow:inset 0 0 0 2px var(--ink)}
+.kc-two{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-12)}
+.kc-meta{margin:var(--sp-12) 0 0;font-size:var(--fs-xs);color:var(--dim)}
+.kc-err{margin:var(--sp-12) 0 0;font-size:var(--fs-xs);font-weight:500;color:var(--clay-txt)}
+
+/* опции — галочки, как в карточке */
+.kc-opts{width:100%;border-collapse:collapse}
+.kc-opts td{padding:var(--sp-8) 0;border-top:1px solid var(--line);vertical-align:middle}
+.kc-opts tr:first-child td{padding-top:0;border-top:0}
+.kc-opts tr:last-child td{padding-bottom:0}
+.kc-ol{position:relative;display:flex;align-items:center;gap:var(--sp-16);min-height:var(--tap);cursor:pointer}
+.kc-ol input{position:absolute;width:1px;height:1px;margin:0;opacity:0}
+.kc-ob{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:var(--r-tight);background:var(--card);box-shadow:inset 0 0 0 1.5px var(--n-5);transition:background-color .2s var(--e),box-shadow .2s var(--e)}
+.kc-ob::after{content:"";width:11px;height:6px;border-left:2px solid #fff;border-bottom:2px solid #fff;rotate:-45deg;translate:0 -2px;opacity:0}
+.kc-ol:hover .kc-ob{box-shadow:inset 0 0 0 1.5px var(--n-7)}
+.kc-ol input:checked+.kc-ob{background:var(--ink);box-shadow:none}
+.kc-ol input:checked+.kc-ob::after{opacity:1}
+.kc-ol input:focus-visible+.kc-ob{outline:2px solid var(--clay-btn);outline-offset:2px}
+.inc-ot{display:grid;gap:var(--sp-4)}
+.inc-ot>span{font-size:var(--fs-sm);font-weight:500;line-height:1.3;color:var(--ink)}
+.inc-ot small{font-size:var(--fs-xs);line-height:1.4;color:var(--dim)}
+.kc-na{display:none;padding-left:var(--sp-12)!important;text-align:right;font-size:var(--fs-xs);color:var(--dim);white-space:nowrap}
+tr.is-na .kc-na{display:table-cell}
+tr.is-na .kc-ol{cursor:default}
+tr.is-na .kc-ob{visibility:hidden}
+
+/* цена */
+.kc-res{padding:var(--sp-12);background:var(--card);border-radius:var(--r-shell);box-shadow:var(--edge),var(--sh-1)}
+.kc-res__h{margin:0;padding:var(--sp-4) var(--sp-12) var(--sp-12);font-size:var(--fs-sm);font-weight:600;line-height:1.3;color:var(--ink)}
+.kc-tiers{display:grid;gap:var(--sp-4);margin:0;padding:var(--sp-4);list-style:none;background:var(--ink);border-radius:var(--r-inner)}
+.kc-tier{display:grid;gap:var(--sp-4);padding:var(--sp-12) var(--sp-16);border-radius:var(--r-tight);color:#fff}
+.kc-tier.is-us{background:var(--clay-btn)}
+.kc-tier__row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--sp-4) var(--sp-16)}
+.kc-tier__n{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgb(255 255 255/.72)}
+.kc-tier.is-us .kc-tier__n{color:#fff}
+.kc-tier__p{font-size:var(--fs-lg);font-weight:600;letter-spacing:-.02em;line-height:1.15;white-space:nowrap;font-variant-numeric:tabular-nums}
+.kc-tier__s{font-size:var(--fs-xs);line-height:1.35;color:rgb(255 255 255/.78)}
+.kc-tier.is-us .kc-tier__s{color:#fff}
+.kc-tier__s:empty{display:none}
+.kc-go{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-16);width:100%;min-height:52px;margin-top:var(--sp-12);padding:6px 6px 6px var(--sp-24);border:0;border-radius:var(--r-inner);background:var(--ink);color:#fff;font:inherit;font-size:var(--fs-btn);font-weight:500;line-height:1.2;cursor:pointer;transition:background-color .2s var(--e),transform .12s var(--e)}
+.kc-go:hover{background:#2E3E60}
+.kc-go:active{transform:translateY(1px)}
+.kc-go:focus-visible{outline:2px solid var(--clay-btn);outline-offset:2px}
+.kc-go i{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:var(--r-tight);background:#fff;color:var(--ink)}
+.kc-go i svg{width:20px;height:20px}
+.kc-note{margin:var(--sp-12) var(--sp-12) var(--sp-4);font-size:var(--fs-xs);line-height:1.4;color:var(--dim)}
+
+/* подарки */
+.kc-gc{margin:0;font-size:var(--fs-xs);color:var(--dim)}
+.kc-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-8);margin:var(--sp-8) 0 0;padding:0;list-style:none}
+.kc-steps li{padding:var(--sp-12) var(--sp-16);border-radius:var(--r-inner);background:var(--n-1);font-size:var(--fs-xs);font-weight:500;line-height:1.35}
+.kc-gh{margin:var(--sp-24) 0 var(--sp-8);font-size:var(--fs-sm);font-weight:600;line-height:1.35}
+.kc-gl{margin:0;padding:0;list-style:none}
+.kc-gl li{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-16);padding:var(--sp-12) 0;border-top:1px solid var(--line);font-size:var(--fs-sm);line-height:1.35}
+.kc-gl li:first-child{border-top:0}
+.kc-gl__v{display:grid;justify-items:end;text-align:right}
+.kc-gl b{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.kc-gl small{font-size:var(--fs-xs);color:var(--dim)}
+
+/* телефон: цены у нижнего края */
+.kc-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-8);width:100%;padding:var(--sp-12) var(--sp-16) calc(var(--sp-12) + env(safe-area-inset-bottom));border:0;background:var(--ink);color:#fff;font:inherit;text-align:left;cursor:pointer;box-shadow:var(--sh-2)}
+.kc-bar[hidden]{display:none}
+.kc-bar>span{display:grid;gap:2px;min-width:0}
+.kc-bar small{overflow:hidden;font-size:12px;line-height:1.2;color:rgb(255 255 255/.72);white-space:nowrap;text-overflow:ellipsis}
+.kc-bar .is-us small{color:#fff}
+.kc-bar b{font-size:var(--fs-sm);font-weight:600;line-height:1.2;white-space:nowrap;font-variant-numeric:tabular-nums}
+@media(max-width:899px){body{padding-bottom:72px}}
+@media(min-width:900px){.kc-bar,.kc-bar[hidden]{display:none}}
+@media(max-width:560px){
+  .kc-card{padding:var(--sp-16)}
+  .kc-steps{grid-template-columns:1fr}
+}
+@media(max-width:400px){
+  .kc-seg button{padding:0 var(--sp-8);font-size:var(--fs-xs)}
+  .kc-tier__p{font-size:var(--fs-md)}          /* все три строки цены одной высоты */
+}
+@media(max-width:380px){.kc-bar b{font-size:var(--fs-xs)}}
+@media(prefers-reduced-motion:reduce){.back i,.kc-seg button,.kc-sel,.kc-in,.kc-ob,.kc-go{transition:none}}
