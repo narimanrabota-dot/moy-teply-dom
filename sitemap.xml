@@ -3,13 +3,14 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <priority>1.0</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/serii-stambul.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/serii-siena.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/serii-vladivostok.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/serii-parma.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/serii-sochi.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/serii-milan.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h8-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-7h75-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-75h6-fasad-1-th.webp</image:loc></image:image>
@@ -34,11 +35,26 @@
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-3-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-2-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/parma-10x8-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/otzyv-klienta-8-cover-v2.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://moy-teply-dom.onrender.com/v2/proekt-milan-10x6.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-fasad-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-fasad-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-fasad-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-fasad-4.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-interer-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-interer-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-interer-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-interer-4.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h7-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-9x75-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-7h75-fasad-1-th.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-parma-10x8.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/parma-10x8-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/parma-10x8-fasad-2.webp</image:loc></image:image>
@@ -60,7 +76,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-siena-125x82.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-125x82-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-125x82-fasad-2.webp</image:loc></image:image>
@@ -74,7 +90,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-siena-12x82.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-12x82-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-12x82-fasad-2.webp</image:loc></image:image>
@@ -90,7 +106,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-siena-13x85.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-13x85-2-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-13x85-2-fasad-2.webp</image:loc></image:image>
@@ -105,7 +121,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-siena-144x7-2.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-144x7-2-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-144x7-2-fasad-2.webp</image:loc></image:image>
@@ -121,7 +137,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-siena-144x7.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-144x7-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-144x7-fasad-2.webp</image:loc></image:image>
@@ -136,7 +152,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-siena-155x85.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-155x85-2-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-155x85-2-fasad-2.webp</image:loc></image:image>
@@ -150,7 +166,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-sochi-105x9.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-105x9-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-105x9-fasad-2.webp</image:loc></image:image>
@@ -167,7 +183,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-sochi-9x75.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-9x75-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-9x75-fasad-2.webp</image:loc></image:image>
@@ -185,7 +201,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-stambul-115x7.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-115h7-fasad-0.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-115h7-fasad-1.webp</image:loc></image:image>
@@ -201,7 +217,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-stambul-11x7.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-11h7-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-11h7-fasad-2.webp</image:loc></image:image>
@@ -218,7 +234,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-stambul-11x8.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-11h8-fasad-5.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-11h8-fasad-6.webp</image:loc></image:image>
@@ -236,7 +252,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-stambul-121x81.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-12h8-fasad-4.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-12h8-fasad-1.webp</image:loc></image:image>
@@ -250,7 +266,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-stambul-75x6-2.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-75h6-2-fasad-0.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-75h6-2-fasad-1.webp</image:loc></image:image>
@@ -268,7 +284,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-stambul-75x6.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-75h6-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-75h6-fasad-2.webp</image:loc></image:image>
@@ -282,7 +298,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-stambul-75x7.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-7h75-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-7h75-fasad-2.webp</image:loc></image:image>
@@ -299,7 +315,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-stambul-96x81-2.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-95h8-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-95h8-fasad-2.webp</image:loc></image:image>
@@ -313,7 +329,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-stambul-96x81.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-96h81-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-96h81-fasad-2.webp</image:loc></image:image>
@@ -329,7 +345,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-stambul-9x7.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h7-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h7-fasad-2.webp</image:loc></image:image>
@@ -350,7 +366,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-stambul-9x8.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h8-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h8-fasad-2.webp</image:loc></image:image>
@@ -366,7 +382,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-vladivostok-122x8.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-2-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-2-fasad-2.webp</image:loc></image:image>
@@ -381,7 +397,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-vladivostok-12x8.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-10x8-fasad-2.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-10x8-fasad-3.webp</image:loc></image:image>
@@ -396,7 +412,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-vladivostok-135x8.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-3-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-3-fasad-2.webp</image:loc></image:image>
@@ -412,7 +428,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/proekt-vladivostok-14x69.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-12x7-fasad-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-12x7-fasad-2.webp</image:loc></image:image>
@@ -425,14 +441,20 @@
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-3-fasad-1-th.webp</image:loc></image:image>
   </url>
   <url>
+    <loc>https://moy-teply-dom.onrender.com/v2/seriya-milan.html</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-fasad-1-th.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://moy-teply-dom.onrender.com/v2/seriya-parma.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.8</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/parma-10x8-fasad-1-th.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/seriya-siena.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.8</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-155x85-2-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/siena-144x7-fasad-1-th.webp</image:loc></image:image>
@@ -443,14 +465,14 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/seriya-sochi.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.8</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-9x75-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-105x9-fasad-1-th.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/seriya-stambul.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.8</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h8-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-7h75-fasad-1-th.webp</image:loc></image:image>
@@ -466,7 +488,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/seriya-vladivostok.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.8</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-12x7-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-10x8-fasad-2-th.webp</image:loc></image:image>
@@ -475,7 +497,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/dogovor.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/dogovor-str-1.webp</image:loc></image:image>
   </url>
@@ -483,6 +505,7 @@
     <loc>https://moy-teply-dom.onrender.com/v2/doma-2-3-mln.html</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h7-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-9x75-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h8-fasad-1-th.webp</image:loc></image:image>
@@ -494,6 +517,7 @@
     <loc>https://moy-teply-dom.onrender.com/v2/doma-60-100-m2.html</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h7-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/sochi-9x75-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/stambul-9h8-fasad-1-th.webp</image:loc></image:image>
@@ -634,10 +658,11 @@
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-3-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vladik-115x8-2-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/parma-10x8-fasad-1-th.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.onrender.com/img/milan-10x6-fasad-1-th.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/komanda.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/komanda-1.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/komanda-2.webp</image:loc></image:image>
@@ -710,17 +735,17 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/politika.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/smeta-primer.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/soglashenie.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -835,7 +860,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stroim-bytovki.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/rolik-1-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/rolik-2-cover.webp</image:loc></image:image>
@@ -855,7 +880,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stroim-elektrika.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/elektrika-kabel-komnata.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/elektrika-uzo.webp</image:loc></image:image>
@@ -868,13 +893,13 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stroim-hranenie.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/hranenie-materialov-cover.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stroim-kommunikacii.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/kommunikacii-zakladnye.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/kommunikacii-razvodka.webp</image:loc></image:image>
@@ -885,7 +910,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stroim-krovlya.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vetrozaschita-i-gidroizolyaciya-cover.webp</image:loc></image:image>
   </url>
@@ -936,7 +961,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stroim-ventilyaciya.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/ventilyaciya-pritok.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/ventilyaciya-ottok.webp</image:loc></image:image>
@@ -944,7 +969,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.onrender.com/v2/stroim-vyezd-inzhenera.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.onrender.com/img/vyezd-inzhenera-cover.webp</image:loc></image:image>
   </url>
