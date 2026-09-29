@@ -1,0 +1,33 @@
+{
+ "current": [
+  {
+   "anchor": "<a href=\"stroim-proekt.html\" aria-haspopup=\"true\"",
+   "n": 0,
+   "value": "true"
+  },
+  {
+   "anchor": "<a href=\"stroim-dostavka.html\"",
+   "n": 0,
+   "value": "page"
+  },
+  {
+   "anchor": "<a href=\"stroim-dostavka.html\"",
+   "n": 1,
+   "value": "page"
+  }
+ ],
+ "head": {
+  "title": "Доставка материалов для каркасного дома манипулятором",
+  "description": "Материал приезжает манипулятором и снимается сразу на подготовленное место, а не сваливается на землю."
+ },
+ "seo": {
+  "type": "article",
+  "image": {
+   "src": "img/dostavka-kran.webp",
+   "w": 618,
+   "h": 464
+  },
+  "ld": []
+ },
+ "fields": []
+}

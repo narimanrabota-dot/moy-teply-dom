@@ -1,0 +1,85 @@
+{
+ "current": [],
+ "head": {
+  "title": "Каркасный дом «Милан» с террасой — проект и цена",
+  "description": "Серия «Милан»: один проект одноэтажного каркасного дома, площадь с террасой 60 м², цена от 2 220 000 ₽. Фото, планировка и цены. Строим в Москве и Московской области."
+ },
+ "seo": {
+  "type": "website",
+  "image": {
+   "src": "img/milan-10x6-fasad-1.webp",
+   "w": 1600,
+   "h": 1073
+  },
+  "ld": [
+   {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+     {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "{{base}}v2/"
+     },
+     {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Милан",
+      "item": "{{base}}v2/seriya-milan.html"
+     }
+    ]
+   },
+   {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "numberOfItems": 1,
+    "itemListElement": [
+     {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "{{base}}v2/proekt-milan-10x6.html",
+      "name": "Милан 10 × 6"
+     }
+    ]
+   }
+  ]
+ },
+ "fields": [
+  {
+   "text": "←",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "Все серии",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "Милан",
+   "label": "Заголовок",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Милан 10 × 6»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "60&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Милан 10 × 6",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · терраса 12&nbsp;м² под общей кровлей",
+   "label": "Карточка: описание",
+   "kind": "text"
+  }
+ ]
+}

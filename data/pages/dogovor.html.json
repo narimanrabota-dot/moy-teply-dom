@@ -1,0 +1,33 @@
+{
+ "current": [
+  {
+   "anchor": "<a href=\"kak-zakazat.html\" aria-haspopup=\"true\"",
+   "n": 0,
+   "value": "true"
+  },
+  {
+   "anchor": "<a class=\"nav__it\" href=\"dogovor.html\"",
+   "n": 0,
+   "value": "page"
+  },
+  {
+   "anchor": "<a class=\"mnav__sub mnav__it\" href=\"dogovor.html\"",
+   "n": 0,
+   "value": "page"
+  }
+ ],
+ "head": {
+  "title": "Договор на строительство каркасного дома — образец с пунктами",
+  "description": "Договор подряда с ООО «СОЗВЕЗДИЕ»: твёрдая цена, оплата по мере готовности, гарантия два года, неустойка за просрочку. Скачайте образец до встречи."
+ },
+ "seo": {
+  "type": "article",
+  "image": {
+   "src": "img/dom-render-terrasa-leto.webp",
+   "w": 2000,
+   "h": 1342
+  },
+  "ld": []
+ },
+ "fields": []
+}

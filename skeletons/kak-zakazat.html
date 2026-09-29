@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+⟦head⟧⟦seo⟧
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=51">
+<link rel="stylesheet" href="theme.css?v=41">
+<link rel="stylesheet" href="card.css?v=82">
+<link rel="stylesheet" href="foot.css?v=6">
+<link rel="stylesheet" href="sheet.css?v=4">
+<link rel="stylesheet" href="smeta.css?v=4">
+<link rel="stylesheet" href="cbtn.css?v=3">
+<style>
+
+.zk{--navy:#1E2A44;--clay:#C2461F;--blue:#2F6FE0;--dim:#5A6478;--line:#E4E1DB;--stone:#EDE9E2;color:var(--navy)}
+.zk *{box-sizing:border-box}
+.zk h1,.zk h2,.zk h3,.zk p{margin:0}
+.zk img{display:block;max-width:100%}
+.zk-draft{margin-top:8px!important;font-size:12px;color:var(--dim)}
+.zk a:focus-visible,.zk button:focus-visible,.zk summary:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+/* карточка-ссылка */
+.zk .zk-c{display:flex;align-items:center;gap:16px;width:100%;margin:0;padding:12px 16px 12px 12px;border:0;border-radius:12px;background:#fff;box-shadow:var(--edge),var(--sh-1);color:var(--navy);text-decoration:none;text-align:left;font:inherit;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+.zk .zk-c:hover{transform:translateY(-2px);border:0;box-shadow:var(--edge),var(--sh-2)}
+.zk-c__ph{position:relative;flex:none;width:80px;height:56px;border-radius:8px;overflow:hidden;background:var(--stone)}
+.zk-c__ph--v{width:48px;height:64px}
+.zk-c__ph img{width:100%;height:100%;object-fit:cover}
+.zk-c__ph i{position:absolute;inset:0;display:grid;place-items:center;color:#fff}
+.zk-c__ph i svg{width:24px;height:24px;padding:2px;border-radius:50%;background:rgb(30 42 68/.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.zk-c__b{display:grid;gap:4px;min-width:0;flex:1}
+.zk-c__b b{font-size:17px;font-weight:600;line-height:1.3}
+.zk-c__b span{font-size:14px;line-height:1.4;color:var(--dim)}
+.zk-c__m{flex:none;display:grid;gap:4px;justify-items:end;text-align:right}
+.zk-c__m b{font-size:14px;font-weight:600;color:var(--clay);white-space:nowrap}
+.zk-c__m span{font-size:12px;color:var(--dim);white-space:nowrap}
+/* кнопки и финал */
+.zk-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:0 32px;border-radius:999px;border:0;background:var(--blue);color:#fff;font:inherit;font-size:17px;font-weight:600;cursor:pointer;box-shadow:var(--sh-1);transition:background-color .2s ease,transform .2s ease}
+.zk-btn:hover{background:#255FC7;transform:translateY(-1px)}
+.zk-btn svg{width:20px;height:20px}
+.zk-cta{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px 64px;margin-top:96px;padding:64px;border-radius:20px;background:var(--stone)}
+.zk-cta h2{font-size:29px;font-weight:600;letter-spacing:-.025em;line-height:1.15}
+.zk-cta p{margin-top:12px;font-size:17px;line-height:1.5;color:var(--dim);max-width:56ch}
+.zk-next{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:64px;padding:32px 0 0;border-top:1px solid var(--line);text-decoration:none;color:inherit}
+.zk-next span{display:block;font-size:14px;color:var(--dim)}
+.zk-next b{display:block;margin-top:4px;font-size:20px;font-weight:600;transition:color .2s ease}
+.zk-next p{margin-top:4px;font-size:14px;color:var(--dim);max-width:60ch}
+.zk-next svg{flex:none;width:24px;height:24px;color:var(--clay);transition:transform .2s ease}
+.zk-next:hover b{color:var(--clay)}.zk-next:hover svg{transform:translateX(4px)}
+@media(max-width:760px){
+ .zk .zk-c{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;align-items:start;gap:4px 12px;padding:12px}
+ .zk-c__ph{grid-row:1/3;align-self:center}
+ .zk-c__b b{font-size:14px}.zk-c__b span{font-size:12px}
+ .zk-c__m{display:flex;gap:8px;align-items:baseline;justify-items:start;text-align:left}
+ .zk-cta{grid-template-columns:1fr;margin-top:64px;padding:32px 16px;border-radius:12px}
+ .zk-cta h2{font-size:24px}.zk-cta p{font-size:14px}
+ .zk-btn{width:100%;padding:0 24px}
+ .zk-next{margin-top:48px}
+}
+@media (prefers-reduced-motion:reduce){.zk *{transition:none!important}}
+
+.z1-hero{margin-top:48px}
+.z1-h1{font-size:60px;font-weight:600;letter-spacing:-.04em;line-height:1.04}
+.z1-lead{margin-top:24px!important;font-size:20px;line-height:1.5;color:var(--dim);max-width:40ch}
+.z1-pay{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:64px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.z1-p{position:relative;padding:32px 24px 32px 0}
+.z1-p+.z1-p{padding-left:24px;border-left:1px solid var(--line)}
+.z1-p b{display:block;font-size:60px;font-weight:500;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.z1-p:first-child b{color:var(--clay)}
+.z1-p span{display:block;margin-top:12px;font-size:14px;line-height:1.4;color:var(--dim)}
+.z1-p small{display:block;margin-bottom:12px;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.z1-note{margin-top:16px!important;font-size:14px;line-height:1.5;color:var(--dim);max-width:75ch}
+.z1-vs{position:relative;margin-top:96px}
+.z1-rail{position:absolute;left:19px;width:2px;background:#DDD8D0;border-radius:2px}
+.z1-rail i{display:block;width:100%;height:0;background:var(--clay);border-radius:2px}
+.z1-g{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 32px;padding:0 0 48px}
+.z1-g+.z1-s{}
+.z1-g h2{grid-column:2;font-size:29px;font-weight:600;letter-spacing:-.025em;line-height:1.15}
+.z1-g span{grid-column:2;margin-top:8px;font-size:14px;color:var(--dim)}
+.z1-s{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr) 380px;gap:0 32px;align-items:start;padding-bottom:48px}
+.z1-s.z1-last{padding-bottom:96px}
+.z1-vs>.z1-s:last-child{padding-bottom:0}
+.z1-dot{position:relative;z-index:1;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#F6F4F0;box-shadow:inset 0 0 0 2px #DDD8D0;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--dim);transition:background-color .25s ease,color .25s ease,box-shadow .25s ease}
+.z1-s.is-on .z1-dot{background:var(--clay);box-shadow:inset 0 0 0 2px var(--clay);color:#fff}
+.z1-t{display:grid;gap:8px;padding-top:6px;max-width:62ch}
+.z1-t h3{font-size:20px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
+.z1-t p{font-size:17px;line-height:1.5;color:var(--dim)}
+.z1-b{justify-self:start;display:inline-flex;align-items:center;gap:8px;margin-top:4px;font-size:14px;font-weight:600;color:var(--clay)}
+.z1-b::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.z1-b--note{color:var(--dim);font-weight:500}
+.z1-cw{padding-top:0}
+@media(max-width:1100px){.z1-s{grid-template-columns:40px minmax(0,1fr) 320px;gap:0 24px}.z1-pay{grid-template-columns:repeat(3,minmax(0,1fr))}.z1-p:nth-child(4){padding-left:0;border-left:0}.z1-p:nth-child(n+4){border-top:1px solid var(--line)}.z1-h1{font-size:48px}}
+@media(max-width:760px){
+ .z1-hero{margin-top:32px}
+ .z1-h1{font-size:clamp(36px,10.4vw,44px)}
+ .z1-lead{margin-top:16px!important;font-size:17px}
+ .z1-pay{grid-template-columns:1fr;margin-top:32px}
+ .z1-p,.z1-p+.z1-p,.z1-p:nth-child(4){display:grid;grid-template-columns:88px minmax(0,1fr);align-items:baseline;padding:16px 0;border-left:0}
+ .z1-p+.z1-p{border-top:1px solid var(--line)}
+ .z1-p b{font-size:29px}.z1-p span{margin-top:0}
+ .z1-p small{grid-column:1/-1;margin-bottom:4px}
+ .z1-vs{margin-top:64px}
+ .z1-rail{left:13px}
+ .z1-g{grid-template-columns:28px minmax(0,1fr);gap:0 16px;padding-bottom:32px}
+ .z1-g h2{font-size:24px}
+ .z1-s{grid-template-columns:28px minmax(0,1fr);gap:16px;padding-bottom:32px}
+ .z1-s.z1-last{padding-bottom:64px}
+ .z1-dot{width:28px;height:28px;font-size:12px}
+ .z1-t{padding-top:2px}
+ .z1-t h3{font-size:17px}.z1-t p{font-size:14px}
+ .z1-cw{grid-column:2}
+}
+
+</style>
+</head>
+<body>
+
+<span class="sentinel" aria-hidden="true"></span>
+
+<a class="skip" href="./#main">Перейти к содержимому</a>
+
+⟦header⟧
+
+<main id="main" class="zk">
+<div class="shell">
+<a class="back" href="./#main"><i>←</i>На главную</a>
+<section class="z1-hero"><h1 class="z1-h1">Как заказать</h1>
+<p class="z1-lead">Восемнадцать шагов — от выбора модели до передачи ключей, с графиком оплат.</p></section>
+<section class="z1-pay" aria-label="График оплат">
+<div class="z1-p"><small>Аванс</small><b>6%</b><span>при подписании договора</span></div>
+<div class="z1-p"><small>Шаг 9</small><b>50%</b><span>по привозу материалов</span></div>
+<div class="z1-p"><small>Шаг 14</small><b>25%</b><span>после кровли и внешней отделки</span></div>
+<div class="z1-p"><small>Шаг 16</small><b>20%</b><span>после утепления и внутренней отделки</span></div>
+<div class="z1-p"><small>Шаг 18</small><b>5%</b><span>при приёмке дома</span></div>
+</section>
+<p class="z1-note">Дальше — от остатка. Каждый платёж — только за то, что вы приняли по акту. Окна, покраска, сваи и разводка оплачиваются по договору отдельными счетами.</p>
+<div class="z1-vs" data-z1><div class="z1-rail" aria-hidden="true"><i></i></div>
+<div class="z1-g"><h2>Знакомство и решение</h2><span>Шаги 1–4</span></div>
+<div class="z1-s"><span class="z1-dot">01</span><div class="z1-t"><h3>Выбор дома</h3><p>Вместе с технологом выбираем модель, планировку, комплектацию и материалы и считаем стоимость. Считаем не общей цифрой, а построчной сметой: каждый материал с маркой, количеством и ценой.</p></div><div class="z1-cw"><a class="c zk-c" href="smeta-primer.html"><span class="zk-c__ph"><img src="../img/smeta-primer-cover.webp" alt="" decoding="async"></span><span class="zk-c__b"><b>Посмотреть пример сметы</b><span>Материал, марка, количество, цена — построчно</span></span><span class="zk-c__m"><b>120 позиций</b><span>фрагмент</span></span></a></div></div>
+<div class="z1-s"><span class="z1-dot">02</span><div class="z1-t"><h3>Выезд инженера на участок</h3><p>Профильный инженер бурит пробную скважину: определяет тип грунта и уровень грунтовых вод, показывает, где на участке ставить дом, и выдаёт акт обследования.</p></div><div class="z1-cw"><button class="c zk-c" type="button" data-t="Бурение, замеры и акт осмотра участка" data-items='[{"t": "v", "s": "../video/rt/3e6f3553d01c1e501e97b66893f32141.mp4", "c": "Выезд инженера · часть 1"}, {"t": "v", "s": "../video/rt/550e89cb6d3ecb6640c3b3b8befee536.mp4", "c": "Выезд инженера · часть 2"}, {"t": "v", "s": "../video/rt/cf1cdd79fe9b7ad02690d2dfedda7c3b.mp4", "c": "Выезд инженера · часть 3"}, {"t": "v", "s": "../video/rt/0f95807287220f5ee11cc69bae522e86.mp4", "c": "Выезд инженера · часть 4"}, {"t": "v", "s": "../video/rt/298a103d2ecd70318b1b4952e4426671.mp4", "c": "Выезд инженера · часть 5"}, {"t": "v", "s": "../video/rt/c3d60a3eadd94456b8953aa06249d714.mp4", "c": "Выезд инженера · часть 6"}, {"t": "i", "s": "../img/vyezd-inzhenera-01-akt-osmotra-uchastka-stranica-1.webp", "c": "Акт осмотра участка, страница 1"}, {"t": "i", "s": "../img/vyezd-inzhenera-02-akt-osmotra-uchastka-stranica-2.webp", "c": "Акт осмотра участка, страница 2 — план участка"}]'><span class="zk-c__ph zk-c__ph--v"><img src="../img/vyezd-inzhenera-cover.webp" alt="" decoding="async"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7.5-4.5z" fill="currentColor"/></svg></i></span><span class="zk-c__b"><b>Смотреть, как проходит выезд</b><span>Бурение, замеры и акт осмотра участка</span></span><span class="zk-c__m"><b>6 видео</b><span>+2 фото</span></span></button></div></div>
+<div class="z1-s"><span class="z1-dot">03</span><div class="z1-t"><h3>Приезд в офис или на наш объект</h3><p>В офисе или на строящемся объекте вы вживую видите материалы, из которых мы строим, и задаёте вопросы — по срокам, оплате, технологии. На объекте можно поговорить с хозяевами и бригадой.</p></div></div>
+<div class="z1-s z1-last"><span class="z1-dot">04</span><div class="z1-t"><h3>Заключение договора</h3><p>Подписываем договор — в офисе или удалённо, как вам удобно. Аванс 6% фиксирует цену: она не меняется, даже если материалы подорожают. В договоре — характеристики дома, работы и материалы по смете, даты начала и окончания.</p><span class="z1-b">Оплата: Аванс 6%</span></div><div class="z1-cw"><a class="c zk-c" href="dogovor.html"><span class="zk-c__ph"><img src="../img/dogovor-cover.webp" alt="" decoding="async"></span><span class="zk-c__b"><b>Посмотреть договор</b><span>Твёрдая цена, гарантия, приёмка по акту</span></span><span class="zk-c__m"><b>14 страниц</b><span>образец</span></span></a></div></div>
+<div class="z1-g"><h2>Проект и подготовка</h2><span>Шаги 5–10</span></div>
+<div class="z1-s"><span class="z1-dot">05</span><div class="z1-t"><h3>Подготовка к строительству</h3><p>Создаём общий чат с командой: инженер-проектировщик, коммерческий директор, руководитель отдела технологов, ответственный за проект. Готовим два проекта: архитектурный — как дом будет выглядеть, конструктивный — как собирается каркас под вашу планировку. Здесь же согласуем цвет покраски, если он в заказе.</p></div><div class="z1-cw"><button class="c zk-c" type="button" data-t="Чертежи, узлы, расчёт нагрузок" data-items='[{"t": "v", "s": "../video/rt/ba696701e16815766cf75c86c0314d97.mp4", "c": "Чертежи, узлы, расчёт нагрузок"}]'><span class="zk-c__ph zk-c__ph--v"><img src="../img/konstruktivnyy-proekt-cover.webp" alt="" decoding="async"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7.5-4.5z" fill="currentColor"/></svg></i></span><span class="zk-c__b"><b>Смотреть конструктивный проект</b><span>Чертежи, узлы, расчёт нагрузок</span></span><span class="zk-c__m"><b>1 видео</b><span>смотреть</span></span></button></div></div>
+<div class="z1-s"><span class="z1-dot">06</span><div class="z1-t"><h3>Назначение бригады</h3><p>Назначаем бригаду. Заранее разбираем с бригадиром ваш проект и проводим инструктаж.</p></div></div>
+<div class="z1-s"><span class="z1-dot">07</span><div class="z1-t"><h3>Оплата окон и покраски</h3><p>Окна и заводскую покраску оплачивают заранее: их изготавливают отдельно и запускают в производство только после полной оплаты.</p><span class="z1-b z1-b--note">Отдельный счёт: окна и покраска</span></div></div>
+<div class="z1-s"><span class="z1-dot">08</span><div class="z1-t"><h3>Монтаж свай</h3><p>Бригада свайных инженеров приезжает на участок и ставит сваи по схеме свайного поля — её считают по конструктивному проекту и акту обследования. Работу принимаете по акту, сваи оплачиваете по договору.</p><span class="z1-b z1-b--note">Отдельный счёт: сваи по договору</span></div></div>
+<div class="z1-s"><span class="z1-dot">09</span><div class="z1-t"><h3>Доставка материала</h3><p>По проекту и смете закупаем материал. Он приезжает на участок в 2⁠–⁠4 фурах. Бригада уже на месте: выгружает, укладывает на поддоны и укрывает от осадков. Вы принимаете материал по акту и платите 50% от остатка.</p><span class="z1-b">Оплата: 50% от остатка</span></div><div class="z1-cw"><button class="c zk-c" type="button" data-t="Подача через участок, разгрузка, поддоны" data-items='[{"t": "v", "s": "../video/rt/f398e1429b157ef5f10aa5cf0a4e0aef.mp4", "c": "Машина с материалом на участке"}, {"t": "v", "s": "../video/rt/4d78a9cb45c7e018fb1128f65fa909f8.mp4", "c": "Подача материала через участок"}, {"t": "v", "s": "../video/rt/cba3ade25f23e9b018f3d7063bf836b5.mp4", "c": "Разгрузка на подготовленный участок"}]'><span class="zk-c__ph zk-c__ph--v"><img src="../img/dostavka-rolik-1-cover.webp" alt="" decoding="async"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7.5-4.5z" fill="currentColor"/></svg></i></span><span class="zk-c__b"><b>Смотреть, как приезжает материал</b><span>Подача через участок, разгрузка, поддоны</span></span><span class="zk-c__m"><b>3 видео</b><span>смотреть</span></span></button></div></div>
+<div class="z1-s z1-last"><span class="z1-dot">10</span><div class="z1-t"><h3>Бытовка и туалет для строителей</h3><p>Привозим строительную бытовку 6 × 2,4 м, если в заказе нет бытовки из дерева. Биотуалет — если его нет на участке.</p></div><div class="z1-cw"><button class="c zk-c" type="button" data-t="Привоз, установка, территория рядом" data-items='[{"t": "v", "s": "../video/rt/c0dcf789c095eca4c6d4e744c246fd3b.mp4", "c": "Привоз бытовки на участок"}, {"t": "v", "s": "../video/rt/3aee412550caa60dd959347adfbf715a.mp4", "c": "Территория рядом с бытовкой"}]'><span class="zk-c__ph zk-c__ph--v"><img src="../img/rolik-1-cover.webp" alt="" decoding="async"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7.5-4.5z" fill="currentColor"/></svg></i></span><span class="zk-c__b"><b>Смотреть бытовку на участке</b><span>Привоз, установка, территория рядом</span></span><span class="zk-c__m"><b>2 видео</b><span>смотреть</span></span></button></div></div>
+<div class="z1-g"><h2>Стройка и приёмка этапов</h2><span>Шаги 11–17</span></div>
+<div class="z1-s"><span class="z1-dot">11</span><div class="z1-t"><h3>Строители возводят каркас</h3><p>Строители приступают к работе: на руках конструктивный и архитектурный проекты и технологические карты. Этап идёт до полного возведения каркаса.</p></div><div class="z1-cw"><button class="c zk-c" type="button" data-t="Пакет из трёх досок 145×45" data-items='[{"t": "v", "s": "../video/rt/485b09b304d6d9b50bf3ccf042cfeffa.mp4", "c": "Пакет из трёх досок 145×45"}]'><span class="zk-c__ph zk-c__ph--v"><img src="../img/obvyazka-pola-cover.webp" alt="" decoding="async"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7.5-4.5z" fill="currentColor"/></svg></i></span><span class="zk-c__b"><b>Смотреть, как делаем обвязку пола</b><span>Пакет из трёх досок 145×45</span></span><span class="zk-c__m"><b>1 видео</b><span>смотреть</span></span></button></div></div>
+<div class="z1-s"><span class="z1-dot">12</span><div class="z1-t"><h3>Технадзор — первый этап, каркас</h3><p>Технадзор проверяет каркас по чек‑листу и нормам. Есть замечания — бригада переделывает. Пока этап не принят, дальше не идём.</p></div></div>
+<div class="z1-s"><span class="z1-dot">13</span><div class="z1-t"><h3>Электрика и разводка труб</h3><p>Если разводка есть в заказе, на этом шаге вы оплачиваете материалы для труб и электрики. Команда начинает подготовку к монтажу.</p><span class="z1-b z1-b--note">Отдельный счёт: электрика и трубы</span></div></div>
+<div class="z1-s"><span class="z1-dot">14</span><div class="z1-t"><h3>Внешняя отделка и кровля</h3><p>После каркаса строители делают кровлю и внешнюю отделку. Принимаете этап по акту и платите 25% от остатка.</p><span class="z1-b">Оплата: 25% от остатка</span></div><div class="z1-cw"><button class="c zk-c" type="button" data-t="Металлочерепица, вентзазор, мембраны" data-items='[{"t": "v", "s": "../video/rt/debf63019794cc0c51ceddc04e0deef9.mp4", "c": "Металлочерепица, вентзазор, конёк"}, {"t": "v", "s": "../video/rt/fe0cbeddbbd617d24ca80d9b534094d2.mp4", "c": "Мембраны, нахлёсты, проклейка"}]'><span class="zk-c__ph zk-c__ph--v"><img src="../img/vetrozaschita-i-gidroizolyaciya-cover.webp" alt="" decoding="async"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7.5-4.5z" fill="currentColor"/></svg></i></span><span class="zk-c__b"><b>Смотреть кровлю и ветрозащиту</b><span>Металлочерепица, вентзазор, мембраны</span></span><span class="zk-c__m"><b>2 видео</b><span>смотреть</span></span></button></div></div>
+<div class="z1-s"><span class="z1-dot">15</span><div class="z1-t"><h3>Технадзор — второй этап, кровля и внешняя отделка</h3><p>Тот же чек‑лист по кровле и фасаду. Замечания устраняем до приёмки этапа.</p></div></div>
+<div class="z1-s"><span class="z1-dot">16</span><div class="z1-t"><h3>Утепление и внутренняя отделка</h3><p>Утепляем дом и отделываем внутри. Параллельно электрики и сантехники разводят трубы и электрику, если они в заказе. Принимаете этап по акту и платите 20% от остатка.</p><span class="z1-b">Оплата: 20% от остатка</span></div></div>
+<div class="z1-s z1-last"><span class="z1-dot">17</span><div class="z1-t"><h3>Технадзор — третий этап, утепление и внутренняя отделка</h3><p>Последняя проверка до вас: утепление и внутренняя отделка по чек‑листу. Только после неё зовём вас принимать дом.</p></div></div>
+<div class="z1-g"><h2>Сдача</h2><span>Шаг 18</span></div>
+<div class="z1-s"><span class="z1-dot">18</span><div class="z1-t"><h3>Сдача объекта</h3><p>Вы принимаете дом и платите оставшиеся 5%. Выдаём гарантийный лист с рекомендациями по эксплуатации и передаём вам готовый дом.</p><span class="z1-b">Оплата: 5% от остатка</span></div></div>
+</div>
+<section class="zk-cta"><div><h2>С чего начнём?</h2><p>Перезвоним и договоримся о встрече в любом из четырёх форматов. Или сразу назначим видео-встречу и покажем проект со сметой на экране.</p></div><button type="button" class="zk-btn" data-callback>Заказать звонок</button></section><a class="zk-next" href="stroim-vyezd-inzhenera.html"><div><span>Дальше</span><b>Как строим</b><p>Выезд инженера, доставка материалов, обвязка пола, кровля — восемь разделов с видео прямо с площадок.</p></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div>
+</main>
+
+⟦footer⟧
+
+
+
+⟦callback⟧
+
+<div class="rvw" id="rvw" role="dialog" aria-modal="true" aria-label="Просмотр"><button type="button" class="rvw__x" id="rvwX" aria-label="Закрыть">&times;</button><div class="rvw__box"><video id="rvwV" controls playsinline></video><div class="rvw__err" id="rvwE">Видео не загружено.<br>Положите файл рядом с сайтом:<code id="rvwP"></code></div></div><button type="button" class="rvw__nav rvw__nav--p" id="rvwPrev" aria-label="Предыдущее" hidden>←</button><button type="button" class="rvw__nav rvw__nav--n" id="rvwNext" aria-label="Следующее" hidden>→</button><div class="rvw__t" id="rvwT"></div>
+
+<script src="form.js?v=42"></script>
+<script src="header.js?v=49"></script>
+<script src="kalk-knopka.js?v=15" defer></script>
+<script src="revs.js?v=3"></script>
+<script>
+(function(){var vs=document.querySelector('[data-z1]');if(!vs)return;var rail=vs.querySelector('.z1-rail'),fill=rail.firstChild,st=vs.querySelectorAll('.z1-s'),dots=vs.querySelectorAll('.z1-dot'),raf=0;
+function lay(){var a=dots[0],z=dots[dots.length-1],t=a.offsetTop+a.parentNode.offsetTop+a.offsetHeight/2,b=z.offsetTop+z.parentNode.offsetTop+z.offsetHeight/2;rail.style.top=t+'px';rail.style.height=(b-t)+'px';rail.style.left=(a.offsetLeft+a.offsetWidth/2-1)+'px'}
+function upd(){raf=0;var r=rail.getBoundingClientRect(),y=innerHeight*.5-r.top;fill.style.height=Math.max(0,Math.min(r.height,y))+'px';st.forEach(function(s,k){var d=dots[k].getBoundingClientRect();s.classList.toggle('is-on',d.top+d.height/2<=innerHeight*.5+1||k===0)})}
+function q(){if(!raf)raf=requestAnimationFrame(upd)}lay();upd();addEventListener('scroll',q,{passive:true});addEventListener('resize',function(){lay();q()});addEventListener('load',function(){lay();q()})})();
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+ "current": [
+  {
+   "anchor": "<a href=\"stroim-proekt.html\" aria-haspopup=\"true\"",
+   "n": 0,
+   "value": "true"
+  },
+  {
+   "anchor": "<a class=\"nav__it\" href=\"stroim-pokraska.html\"",
+   "n": 0,
+   "value": "page"
+  },
+  {
+   "anchor": "<a class=\"mnav__sub mnav__it\" href=\"stroim-pokraska.html\"",
+   "n": 0,
+   "value": "page"
+  }
+ ],
+ "head": {
+  "title": "Заводская покраска дерева для каркасного дома — этапы",
+  "description": "Как красим дерево на производстве: шлифовка, грунт, сушка и два слоя краски."
+ },
+ "seo": {
+  "type": "article",
+  "image": {
+   "src": "img/pokraska-okrashivanie.webp",
+   "w": 1280,
+   "h": 960,
+   "alt": "Окрашенная доска на производстве"
+  },
+  "ld": []
+ },
+ "fields": []
+}

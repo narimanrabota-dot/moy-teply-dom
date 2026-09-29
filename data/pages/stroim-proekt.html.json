@@ -1,0 +1,34 @@
+{
+ "current": [
+  {
+   "anchor": "<a href=\"stroim-proekt.html\" aria-haspopup=\"true\"",
+   "n": 0,
+   "value": "true"
+  },
+  {
+   "anchor": "<a class=\"nav__it\" href=\"stroim-proekt.html\"",
+   "n": 0,
+   "value": "page"
+  },
+  {
+   "anchor": "<a class=\"mnav__sub mnav__it\" href=\"stroim-proekt.html\"",
+   "n": 0,
+   "value": "page"
+  }
+ ],
+ "head": {
+  "title": "Конструктивный проект каркасного дома: расчёт нагрузок и узлы",
+  "description": "Расчёт снеговых и ветровых нагрузок, чертежи узлов, сечения и шаг стоек на каждый дом."
+ },
+ "seo": {
+  "type": "article",
+  "image": {
+   "src": "img/proekt-list-02.webp",
+   "w": 1800,
+   "h": 1273,
+   "alt": "Визуализация дома из примера проекта"
+  },
+  "ld": []
+ },
+ "fields": []
+}

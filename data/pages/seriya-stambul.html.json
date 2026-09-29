@@ -1,0 +1,421 @@
+{
+ "current": [
+  {
+   "anchor": "<a href=\"katalog.html\" aria-haspopup=\"true\"",
+   "n": 0,
+   "value": "true"
+  },
+  {
+   "anchor": "<a href=\"seriya-stambul.html\"",
+   "n": 0,
+   "value": "page"
+  },
+  {
+   "anchor": "<a href=\"seriya-stambul.html\"",
+   "n": 1,
+   "value": "page"
+  }
+ ],
+ "head": {
+  "title": "Каркасные дома «Стамбул» — 11 проектов с террасой и цены",
+  "description": "Серия «Стамбул»: 11 проектов одноэтажных каркасных домов, площадь с террасой 40,5–100 м², цена от 1 498 500 ₽. Фото, планировки и цены. Строим в Москве и Московской области."
+ },
+ "seo": {
+  "type": "website",
+  "image": {
+   "src": "img/stambul-9h8-fasad-1.webp",
+   "w": 1600,
+   "h": 1073
+  },
+  "ld": [
+   {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+     {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "{{base}}v2/"
+     },
+     {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Стамбул",
+      "item": "{{base}}v2/seriya-stambul.html"
+     }
+    ]
+   },
+   {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "numberOfItems": 11,
+    "itemListElement": [
+     {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "{{base}}v2/proekt-stambul-9x8.html",
+      "name": "Стамбул 9 × 8"
+     },
+     {
+      "@type": "ListItem",
+      "position": 2,
+      "url": "{{base}}v2/proekt-stambul-75x7.html",
+      "name": "Стамбул 7,5 × 7"
+     },
+     {
+      "@type": "ListItem",
+      "position": 3,
+      "url": "{{base}}v2/proekt-stambul-75x6.html",
+      "name": "Стамбул 7,5 × 6 с террасой 9 м²"
+     },
+     {
+      "@type": "ListItem",
+      "position": 4,
+      "url": "{{base}}v2/proekt-stambul-75x6-2.html",
+      "name": "Стамбул 7,5 × 6 с террасой 4,5 м²"
+     },
+     {
+      "@type": "ListItem",
+      "position": 5,
+      "url": "{{base}}v2/proekt-stambul-9x7.html",
+      "name": "Стамбул 9 × 7"
+     },
+     {
+      "@type": "ListItem",
+      "position": 6,
+      "url": "{{base}}v2/proekt-stambul-96x81-2.html",
+      "name": "Стамбул 9,6 × 8,1 с террасой 20,2 м²"
+     },
+     {
+      "@type": "ListItem",
+      "position": 7,
+      "url": "{{base}}v2/proekt-stambul-115x7.html",
+      "name": "Стамбул 11,5 × 7"
+     },
+     {
+      "@type": "ListItem",
+      "position": 8,
+      "url": "{{base}}v2/proekt-stambul-11x7.html",
+      "name": "Стамбул 11 × 7"
+     },
+     {
+      "@type": "ListItem",
+      "position": 9,
+      "url": "{{base}}v2/proekt-stambul-96x81.html",
+      "name": "Стамбул 9,6 × 8,1 с террасой 12 м²"
+     },
+     {
+      "@type": "ListItem",
+      "position": 10,
+      "url": "{{base}}v2/proekt-stambul-121x81.html",
+      "name": "Стамбул 12,1 × 8,1"
+     },
+     {
+      "@type": "ListItem",
+      "position": 11,
+      "url": "{{base}}v2/proekt-stambul-11x8.html",
+      "name": "Стамбул 11 × 8"
+     }
+    ]
+   }
+  ]
+ },
+ "fields": [
+  {
+   "text": "←",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "Все серии",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул",
+   "label": "Заголовок",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Стамбул 9 × 8»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "72&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул 9 × 8",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 2–3 спальни · терраса 16&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Стамбул 7,5 × 7»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "48,2&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул 7,5 × 7",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 1–2 спальни · терраса 8,2&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Стамбул 7,5 × 6»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "45&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул 7,5 × 6 с террасой 9 м²",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 1 спальня · терраса 9&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "40,5&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул 7,5 × 6 с террасой 4,5 м²",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 1 спальня · терраса 4,5&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Стамбул 9 × 7»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "63&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул 9 × 7",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 1–2 спальни · терраса 14&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Стамбул 9,6 × 8,1»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "77,4&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул 9,6 × 8,1 с террасой 20,2 м²",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 2 комнаты · терраса 20,2&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Стамбул 11,5 × 7»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "83,7&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул 11,5 × 7",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 2 спальни · терраса 20,7&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Стамбул 11 × 7»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "77&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул 11 × 7",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 2 спальни · терраса 21&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "77,8&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул 9,6 × 8,1 с террасой 12 м²",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 2–3 спальни · терраса 12&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Стамбул 12,1 × 8,1»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "100&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул 12,1 × 8,1",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 3 комнаты · терраса 26,6&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Стамбул 11 × 8»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "89,8&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Стамбул 11 × 8",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · 2 спальни · терраса 25,8&nbsp;м²",
+   "label": "Карточка: описание",
+   "kind": "text"
+  },
+  {
+   "text": "весь каталог",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "с баней внутри",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "до 60 кв. м",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "до 100 кв. м",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "от 100 кв. м",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "до 2 млн ₽",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "от 2 до 3 млн ₽",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "от 3 млн ₽",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "с 2 спальнями",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "с 3 спальнями",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "все планировки",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "что входит в цену",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "частые вопросы",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "статьи",
+   "label": "Кнопка или ссылка",
+   "kind": "text"
+  }
+ ]
+}
