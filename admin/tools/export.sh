@@ -1,7 +1,7 @@
 #!/bin/sh
 # Раскладывает админку в закрытый репозиторий moy-teply-dom-admin:
 #   ветка main — код (build, server, ui, test, tools, package.json, документы);
-#   ветка data — данные сайта (data, skeletons, templates) + первая запись журнала (tools/seed.js).
+#   ветка data — данные сайта (data, skeletons, templates) + первая запись журнала (server/seed.js).
 # Запуск из корня репозитория сайта: sh admin/tools/export.sh <адрес закрытого репозитория> <рабочая папка>
 set -eu
 REMOTE="$1"
@@ -27,7 +27,7 @@ git remote add origin "$REMOTE"
 git push -q -u origin main
 
 # данные
-node "$SITE/admin/tools/seed.js" "$WORK/data" "$SITE/v2"
+node "$SITE/admin/server/seed.js" "$WORK/data" "$SITE/v2"
 cd "$WORK/data"
 git init -q -b data
 git add -A

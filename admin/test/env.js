@@ -35,7 +35,7 @@ function makeOrigins(base) {
   git(base, "clone", "-q", "--bare", siteWork, "site.git");
   git(path.join(base, "site.git"), "config", "uploadpack.allowFilter", "true"); // частичная выгрузка, как у GitHub
   const dataWork = path.join(base, "data-init");
-  execFileSync("node", [path.join(ROOT, "tools", "seed.js"), dataWork, path.join(siteWork, "v2")], { stdio: "pipe" });
+  execFileSync("node", [path.join(ROOT, "server", "seed.js"), dataWork, path.join(siteWork, "v2")], { stdio: "pipe" });
   git(dataWork, "init", "-q", "-b", "data");
   git(dataWork, "-c", "user.name=t", "-c", "user.email=t@t", "add", "-A");
   git(dataWork, "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "данные");

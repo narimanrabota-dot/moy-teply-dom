@@ -1,11 +1,11 @@
 // Готовит содержимое ветки данных (для закрытого репозитория админки):
 // data/, skeletons/, templates/ и первую запись журнала — отпечатки текущих файлов сайта.
-// Запуск: node admin/tools/seed.js <папка-назначение> [папка сайта v2]
+// Запуск: node admin/server/seed.js <папка-назначение> [папка сайта v2]
 "use strict";
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const D = require("../server/data");
+const D = require("./data");
 const P = require("../build/prices");
 
 const ROOT = path.join(__dirname, "..");

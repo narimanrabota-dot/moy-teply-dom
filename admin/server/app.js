@@ -59,13 +59,13 @@ class App {
   }
 
   // Первый запуск: данные сайта берутся из папок админки (data, skeletons, templates) и сверяются с сайтом
-  // байт в байт (tools/seed.js). Если сайт не совпадает — ничего не создаётся, сервер не стартует.
+  // байт в байт (server/seed.js). Если сайт не совпадает — ничего не создаётся, сервер не стартует.
   async seedDataBranch() {
     const { run } = require("./git");
     const dir = this.dataRepo.dir;
     fs.rmSync(dir, { recursive: true, force: true });
     await new Promise((resolve, reject) => require("child_process").execFile(process.execPath,
-      [path.join(__dirname, "..", "tools", "seed.js"), dir, this.siteRepo.file("v2")], (err, out, errText) => (err ? reject(new Error("Первый запуск: " + (errText || err.message).trim())) : resolve())));
+      [path.join(__dirname, "seed.js"), dir, this.siteRepo.file("v2")], (err, out, errText) => (err ? reject(new Error("Первый запуск: " + (errText || err.message).trim())) : resolve())));
     await run(dir, ["init", "-q", "-b", this.dataRepo.branch]);
     await run(dir, ["config", "user.name", this.dataRepo.name]);
     await run(dir, ["config", "user.email", this.dataRepo.email]);
