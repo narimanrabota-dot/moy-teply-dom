@@ -19,12 +19,12 @@
  "footerHome": "",
  "head": {
   "title": "Каркасные дома 2–3 млн рублей — проекты",
-  "description": "Каркасные дома от 2 до 3 млн ₽: 6 проектов. Общая площадь с террасой от 63 до 77,8 м². Цена от 2 331 000 ₽. Фото, планировки и три комплектации."
+  "description": "Каркасные дома от 2 до 3 млн ₽: 7 проектов. Общая площадь с террасой от 60 до 77,8 м². Цена от 2 220 000 ₽. Фото, планировки и три комплектации."
  },
  "seo": {
   "type": "article",
   "image": {
-   "src": "img/stambul-9h7-fasad-1.webp",
+   "src": "img/milan-10x6-fasad-1.webp",
    "w": 1600,
    "h": 1073
   },
@@ -32,41 +32,47 @@
    {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "numberOfItems": 6,
+    "numberOfItems": 7,
     "itemListElement": [
      {
       "@type": "ListItem",
       "position": 1,
+      "url": "{{base}}v2/proekt-milan-10x6.html",
+      "name": "Милан 10 × 6"
+     },
+     {
+      "@type": "ListItem",
+      "position": 2,
       "url": "{{base}}v2/proekt-stambul-9x7.html",
       "name": "Стамбул 9 × 7"
      },
      {
       "@type": "ListItem",
-      "position": 2,
+      "position": 3,
       "url": "{{base}}v2/proekt-sochi-9x75.html",
       "name": "Сочи 9 × 7,5"
      },
      {
       "@type": "ListItem",
-      "position": 3,
+      "position": 4,
       "url": "{{base}}v2/proekt-stambul-9x8.html",
       "name": "Стамбул 9 × 8"
      },
      {
       "@type": "ListItem",
-      "position": 4,
+      "position": 5,
       "url": "{{base}}v2/proekt-stambul-11x7.html",
       "name": "Стамбул 11 × 7"
      },
      {
       "@type": "ListItem",
-      "position": 5,
+      "position": 6,
       "url": "{{base}}v2/proekt-stambul-96x81-2.html",
       "name": "Стамбул 9,6 × 8,1 с террасой 20,2 м²"
      },
      {
       "@type": "ListItem",
-      "position": 6,
+      "position": 7,
       "url": "{{base}}v2/proekt-stambul-96x81.html",
       "name": "Стамбул 9,6 × 8,1 с террасой 12 м²"
      }
@@ -115,7 +121,7 @@
    "kind": "text"
   },
   {
-   "text": "6 проектов · от 63 до 77,8 м² с террасой · от 2 331 000 ₽",
+   "text": "7 проектов · от 60 до 77,8 м² с террасой · от 2 220 000 ₽",
    "label": "Абзац",
    "kind": "text"
   },
@@ -147,6 +153,26 @@
   {
    "text": "весь каталог",
    "label": "Кнопка или ссылка",
+   "kind": "text"
+  },
+  {
+   "text": "Каркасный дом «Милан 10 × 6»",
+   "label": "Подпись к фото",
+   "kind": "alt"
+  },
+  {
+   "text": "60&nbsp;м²",
+   "label": "Карточка: площадь",
+   "kind": "text"
+  },
+  {
+   "text": "Милан 10 × 6",
+   "label": "Карточка: название",
+   "kind": "text"
+  },
+  {
+   "text": "1 этаж · терраса 12&nbsp;м² под общей кровлей",
+   "label": "Карточка: описание",
    "kind": "text"
   },
   {
@@ -270,7 +296,7 @@
    "kind": "text"
   },
   {
-   "text": "В подборке 6 проектов. Общая площадь с террасой — от 63 до 77,8 м², терраса — от 6 до 21 м². Цена — от 2 331 000 до 2 878 600 ₽.",
+   "text": "В подборке 7 проектов. Общая площадь с террасой — от 60 до 77,8 м², терраса — от 6 до 21 м². Цена — от 2 220 000 до 2 878 600 ₽.",
    "label": "Абзац",
    "kind": "text"
   },

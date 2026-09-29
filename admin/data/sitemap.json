@@ -1,7 +1,7 @@
 [
  {
   "path": "v2/",
-  "lastmod": "2026-09-26",
+  "lastmod": "2026-09-30",
   "priority": "1.0",
   "images": [
    "img/serii-stambul.webp",
@@ -9,6 +9,7 @@
    "img/serii-vladivostok.webp",
    "img/serii-parma.webp",
    "img/serii-sochi.webp",
+   "img/serii-milan.webp",
    "img/stambul-9h8-fasad-1-th.webp",
    "img/stambul-7h75-fasad-1-th.webp",
    "img/stambul-75h6-fasad-1-th.webp",
@@ -32,13 +33,30 @@
    "img/vladik-10x8-fasad-2-th.webp",
    "img/vladik-115x8-3-fasad-1-th.webp",
    "img/vladik-115x8-2-fasad-1-th.webp",
-   "img/parma-10x8-fasad-1-th.webp",
-   "img/otzyv-klienta-8-cover-v2.webp"
+   "img/parma-10x8-fasad-1-th.webp"
+  ]
+ },
+ {
+  "path": "v2/proekt-milan-10x6.html",
+  "lastmod": "2026-09-19",
+  "priority": "0.9",
+  "images": [
+   "img/milan-10x6-fasad-1.webp",
+   "img/milan-10x6-fasad-2.webp",
+   "img/milan-10x6-fasad-3.webp",
+   "img/milan-10x6-fasad-4.webp",
+   "img/milan-10x6-interer-1.webp",
+   "img/milan-10x6-interer-2.webp",
+   "img/milan-10x6-interer-3.webp",
+   "img/milan-10x6-interer-4.webp",
+   "img/stambul-9h7-fasad-1-th.webp",
+   "img/sochi-9x75-fasad-1-th.webp",
+   "img/stambul-7h75-fasad-1-th.webp"
   ]
  },
  {
   "path": "v2/proekt-parma-10x8.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/parma-10x8-fasad-1.webp",
@@ -62,7 +80,7 @@
  },
  {
   "path": "v2/proekt-siena-125x82.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/siena-125x82-fasad-1.webp",
@@ -78,7 +96,7 @@
  },
  {
   "path": "v2/proekt-siena-12x82.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/siena-12x82-fasad-1.webp",
@@ -96,7 +114,7 @@
  },
  {
   "path": "v2/proekt-siena-13x85.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/siena-13x85-2-fasad-1.webp",
@@ -113,7 +131,7 @@
  },
  {
   "path": "v2/proekt-siena-144x7-2.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/siena-144x7-2-fasad-1.webp",
@@ -131,7 +149,7 @@
  },
  {
   "path": "v2/proekt-siena-144x7.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/siena-144x7-fasad-1.webp",
@@ -148,7 +166,7 @@
  },
  {
   "path": "v2/proekt-siena-155x85.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/siena-155x85-2-fasad-1.webp",
@@ -164,7 +182,7 @@
  },
  {
   "path": "v2/proekt-sochi-105x9.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/sochi-105x9-fasad-1.webp",
@@ -183,7 +201,7 @@
  },
  {
   "path": "v2/proekt-sochi-9x75.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/sochi-9x75-fasad-1.webp",
@@ -203,7 +221,7 @@
  },
  {
   "path": "v2/proekt-stambul-115x7.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/stambul-115h7-fasad-0.webp",
@@ -221,7 +239,7 @@
  },
  {
   "path": "v2/proekt-stambul-11x7.html",
-  "lastmod": "2026-09-25",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/stambul-11h7-fasad-1.webp",
@@ -240,7 +258,7 @@
  },
  {
   "path": "v2/proekt-stambul-11x8.html",
-  "lastmod": "2026-09-25",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/stambul-11h8-fasad-5.webp",
@@ -260,7 +278,7 @@
  },
  {
   "path": "v2/proekt-stambul-121x81.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/stambul-12h8-fasad-4.webp",
@@ -276,7 +294,7 @@
  },
  {
   "path": "v2/proekt-stambul-75x6-2.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/stambul-75h6-2-fasad-0.webp",
@@ -296,7 +314,7 @@
  },
  {
   "path": "v2/proekt-stambul-75x6.html",
-  "lastmod": "2026-09-25",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/stambul-75h6-fasad-1.webp",
@@ -312,7 +330,7 @@
  },
  {
   "path": "v2/proekt-stambul-75x7.html",
-  "lastmod": "2026-09-25",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/stambul-7h75-fasad-1.webp",
@@ -331,7 +349,7 @@
  },
  {
   "path": "v2/proekt-stambul-96x81-2.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/stambul-95h8-fasad-1.webp",
@@ -347,7 +365,7 @@
  },
  {
   "path": "v2/proekt-stambul-96x81.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/stambul-96h81-fasad-1.webp",
@@ -365,7 +383,7 @@
  },
  {
   "path": "v2/proekt-stambul-9x7.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/stambul-9h7-fasad-1.webp",
@@ -388,7 +406,7 @@
  },
  {
   "path": "v2/proekt-stambul-9x8.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/stambul-9h8-fasad-1.webp",
@@ -406,7 +424,7 @@
  },
  {
   "path": "v2/proekt-vladivostok-122x8.html",
-  "lastmod": "2026-09-25",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/vladik-115x8-2-fasad-1.webp",
@@ -423,7 +441,7 @@
  },
  {
   "path": "v2/proekt-vladivostok-12x8.html",
-  "lastmod": "2026-09-25",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/vladik-10x8-fasad-2.webp",
@@ -440,7 +458,7 @@
  },
  {
   "path": "v2/proekt-vladivostok-135x8.html",
-  "lastmod": "2026-09-25",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/vladik-115x8-3-fasad-1.webp",
@@ -458,7 +476,7 @@
  },
  {
   "path": "v2/proekt-vladivostok-14x69.html",
-  "lastmod": "2026-09-25",
+  "lastmod": "2026-09-26",
   "priority": "0.9",
   "images": [
    "img/vladik-12x7-fasad-1.webp",
@@ -473,8 +491,16 @@
   ]
  },
  {
+  "path": "v2/seriya-milan.html",
+  "lastmod": "2026-09-30",
+  "priority": "0.8",
+  "images": [
+   "img/milan-10x6-fasad-1-th.webp"
+  ]
+ },
+ {
   "path": "v2/seriya-parma.html",
-  "lastmod": "2026-09-26",
+  "lastmod": "2026-09-30",
   "priority": "0.8",
   "images": [
    "img/parma-10x8-fasad-1-th.webp"
@@ -482,7 +508,7 @@
  },
  {
   "path": "v2/seriya-siena.html",
-  "lastmod": "2026-09-26",
+  "lastmod": "2026-09-30",
   "priority": "0.8",
   "images": [
    "img/siena-155x85-2-fasad-1-th.webp",
@@ -495,7 +521,7 @@
  },
  {
   "path": "v2/seriya-sochi.html",
-  "lastmod": "2026-09-26",
+  "lastmod": "2026-09-30",
   "priority": "0.8",
   "images": [
    "img/sochi-9x75-fasad-1-th.webp",
@@ -504,7 +530,7 @@
  },
  {
   "path": "v2/seriya-stambul.html",
-  "lastmod": "2026-09-26",
+  "lastmod": "2026-09-30",
   "priority": "0.8",
   "images": [
    "img/stambul-9h8-fasad-1-th.webp",
@@ -522,7 +548,7 @@
  },
  {
   "path": "v2/seriya-vladivostok.html",
-  "lastmod": "2026-09-26",
+  "lastmod": "2026-09-30",
   "priority": "0.8",
   "images": [
    "img/vladik-12x7-fasad-1-th.webp",
@@ -533,7 +559,7 @@
  },
  {
   "path": "v2/dogovor.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": [
    "img/dogovor-str-1.webp"
@@ -544,6 +570,7 @@
   "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": [
+   "img/milan-10x6-fasad-1-th.webp",
    "img/stambul-9h7-fasad-1-th.webp",
    "img/sochi-9x75-fasad-1-th.webp",
    "img/stambul-9h8-fasad-1-th.webp",
@@ -557,6 +584,7 @@
   "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": [
+   "img/milan-10x6-fasad-1-th.webp",
    "img/stambul-9h7-fasad-1-th.webp",
    "img/sochi-9x75-fasad-1-th.webp",
    "img/stambul-9h8-fasad-1-th.webp",
@@ -713,12 +741,13 @@
    "img/vladik-10x8-fasad-2-th.webp",
    "img/vladik-115x8-3-fasad-1-th.webp",
    "img/vladik-115x8-2-fasad-1-th.webp",
-   "img/parma-10x8-fasad-1-th.webp"
+   "img/parma-10x8-fasad-1-th.webp",
+   "img/milan-10x6-fasad-1-th.webp"
   ]
  },
  {
   "path": "v2/komanda.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": [
    "img/komanda-1.webp",
@@ -798,19 +827,19 @@
  },
  {
   "path": "v2/politika.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": []
  },
  {
   "path": "v2/smeta-primer.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": []
  },
  {
   "path": "v2/soglashenie.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": []
  },
@@ -948,7 +977,7 @@
  },
  {
   "path": "v2/stroim-bytovki.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": [
    "img/rolik-1-cover.webp",
@@ -972,7 +1001,7 @@
  },
  {
   "path": "v2/stroim-elektrika.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": [
    "img/elektrika-kabel-komnata.webp",
@@ -987,7 +1016,7 @@
  },
  {
   "path": "v2/stroim-hranenie.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": [
    "img/hranenie-materialov-cover.webp"
@@ -995,7 +1024,7 @@
  },
  {
   "path": "v2/stroim-kommunikacii.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": [
    "img/kommunikacii-zakladnye.webp",
@@ -1008,7 +1037,7 @@
  },
  {
   "path": "v2/stroim-krovlya.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": [
    "img/vetrozaschita-i-gidroizolyaciya-cover.webp"
@@ -1069,7 +1098,7 @@
  },
  {
   "path": "v2/stroim-ventilyaciya.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": [
    "img/ventilyaciya-pritok.webp",
@@ -1079,7 +1108,7 @@
  },
  {
   "path": "v2/stroim-vyezd-inzhenera.html",
-  "lastmod": "2026-09-24",
+  "lastmod": "2026-09-26",
   "priority": "0.6",
   "images": [
    "img/vyezd-inzhenera-cover.webp"
