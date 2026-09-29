@@ -21,7 +21,11 @@ const { CalcCloud, FakeCloud } = require("./calc");
 function env(name, dflt) {
   const v = process.env[name];
   if (v === undefined || v === "") {
-    if (dflt === undefined) throw new Error("Не задана настройка " + name);
+    if (dflt === undefined) {
+      const seen = ["ADMIN_SECRET", "BOOTSTRAP_CODE", "SITE_REPO_URL", "DATA_REPO_URL", "DATA_BRANCH", "CALC_URL", "CALC_KEY", "CALC_PIN"]
+        .map((k) => k + (process.env[k] ? "=есть" : "=нет")).join(", ");
+      throw new Error("Не задана настройка " + name + " (сервер видит: " + seen + ")");
+    }
     return dflt;
   }
   return v;
