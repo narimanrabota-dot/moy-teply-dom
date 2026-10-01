@@ -13,4 +13,4 @@ Disallow: /CLAUDE.md
 Disallow: /SPRAVKA.md
 Disallow: /README.md
 
-Sitemap: https://moy-teply-dom.onrender.com/sitemap.xml
+Sitemap: https://moy-teply-dom.ru/sitemap.xml
