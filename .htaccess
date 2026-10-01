@@ -14,6 +14,7 @@ RewriteRule ^v2/proekt-6h9\.html$  /v2/index.html [R=301,L]
 RewriteRule ^v2/proekt-6h75\.html$ /v2/index.html [R=301,L]
 
 # служебное не отдаём
+RedirectMatch 404 /\.git
 <FilesMatch "\.(md|py|yml|yaml|sh)$|^(Dockerfile|nginx\.conf)$">
   Require all denied
 </FilesMatch>
