@@ -1,11 +1,11 @@
 /* Кнопки связи — стеклянная колонка над «Калькулятором» (вариант G, выбор владельца 02.10.2026).
    WhatsApp, MAX, Telegram, звонок. В карточке дома через 8 с — пузырь с фото и названием дома;
    закрыли — до конца визита не показываем (sessionStorage mtd_svz_off).
-   Ссылки MAX и Telegram пустые — кнопка не показывается, пока владелец не пришлёт адрес. */
+   Ссылки MAX и Telegram — временные (владелец пришлёт свои): Telegram по номеру телефона, MAX — сайт мессенджера. */
 (function () {
   var PHONE = '79782516469';
-  var MAX = '';          // ссылка на MAX, например https://max.ru/u/…
-  var TG = '';           // ссылка на Telegram, например https://t.me/…
+  var MAX = 'https://max.ru/';            // временно — заменить на ссылку профиля MAX
+  var TG = 'https://t.me/+' + PHONE;     // временно — по номеру; заменить на https://t.me/<ник>
   var KEY = 'mtd_svz_off';
 
   function off() { try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
