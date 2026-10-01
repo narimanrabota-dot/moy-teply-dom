@@ -4,10 +4,9 @@ DirectoryIndex index.html
 Options -Indexes
 
 RewriteEngine On
-# всегда https и без www
-RewriteCond %{HTTPS} off [OR]
+# без www (переход на https включим, когда выпустится сертификат)
 RewriteCond %{HTTP_HOST} ^www\. [NC]
-RewriteRule ^ https://moy-teply-dom.ru%{REQUEST_URI} [R=301,L]
+RewriteRule ^ http://moy-teply-dom.ru%{REQUEST_URI} [R=301,L]
 
 # старые адреса удалённых карточек
 RewriteRule ^v2/proekt-6h9\.html$  /v2/index.html [R=301,L]
