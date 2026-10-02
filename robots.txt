@@ -12,5 +12,6 @@ Disallow: /znanie/
 Disallow: /CLAUDE.md
 Disallow: /SPRAVKA.md
 Disallow: /README.md
+Disallow: /admin/
 
 Sitemap: https://moy-teply-dom.ru/sitemap.xml

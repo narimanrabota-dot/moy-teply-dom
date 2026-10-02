@@ -80,13 +80,16 @@
     var box = document.querySelector('[data-inc][data-model]');
     var g = box && cfg.models[box.getAttribute('data-model')];
     if (!g) return;
+    // ручная цена владельца (админка): цены комплектаций не трогаем, опции считаем как обычно
+    var hand = (cfg.manual || []).indexOf(box.getAttribute('data-model')) >= 0;
     var res = compute(g, r), heads = box.querySelectorAll('.inc-p');
+    if (hand) heads = [];
     for (var i = 0; i < heads.length; i++) {
       if (!sane(num(heads[i].textContent), res.packages[i])) { console.warn('calc-live: цена ушла больше чем на 30 % — оставлены цены страницы'); return; }
     }
     [].forEach.call(heads, function (h, i) { put(h, rub(res.packages[i])); });
     var top = document.querySelector('.price__v');
-    if (top && /^от/.test(top.textContent.trim())) put(top, 'от ' + rub(res.packages[0]));
+    if (top && !hand && /^от/.test(top.textContent.trim())) put(top, 'от ' + rub(res.packages[0]));
     [].forEach.call(box.querySelectorAll('tr[data-opt]'), function (tr) {
       var vals = res.options[tr.getAttribute('data-opt')];
       if (!vals) return;
@@ -98,14 +101,16 @@
       });
     });
     [].forEach.call(box.querySelectorAll('[data-km]'), function (el) { put(el, rub(res.deliveryKm).slice(0, -2) + ' ₽ за\u00a0км'); });
-    [].forEach.call(box.querySelectorAll('[data-base]'), function (b) { b.setAttribute('data-base', res.packages[+b.getAttribute('data-col')]); });
+    if (!hand) [].forEach.call(box.querySelectorAll('[data-base]'), function (b) { b.setAttribute('data-base', res.packages[+b.getAttribute('data-col')]); });
     box.dispatchEvent(new CustomEvent('inc:prices'));   // card.js пересчитает «Итого с выбранными»
   }
 
   function tiles(cfg, r) {
     [].forEach.call(document.querySelectorAll('a.pcard[href^="proekt-"]'), function (a) {
-      var g = cfg.models[a.getAttribute('href').replace(/^proekt-/, '').replace(/\.html.*$/, '')];
+      var key = a.getAttribute('href').replace(/^proekt-/, '').replace(/\.html.*$/, '');
+      var g = cfg.models[key];
       var p = a.querySelector('.pcard__p');
+      if ((cfg.manual || []).indexOf(key) >= 0) return;
       if (!g || !p || !/^от/.test(p.textContent.trim())) return;
       var v = compute(g, r).packages[0];
       if (sane(num(p.textContent), v)) put(p, 'от ' + rub(v));

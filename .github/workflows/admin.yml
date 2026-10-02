@@ -1,0 +1,73 @@
+# Админка сайта: правки владельца (admin/pravki.json) → собранные страницы в main.
+# Страница moy-teply-dom.ru/admin/ пишет pravki.json; здесь его применяет tools/admin_apply.py
+# и цепочка сборки сайта. Скрипты tools/ лежат только в закрытой копии moy-teply-dom-rabota —
+# их забираем ключом из секрета RABOTA_TOKEN. Хостинг REG.RU забирает main раз в 10 минут.
+name: Админка — применить правки
+
+on:
+  push:
+    branches: [main]
+    paths: ['admin/pravki.json', 'admin/foto/**']
+  workflow_dispatch:
+
+concurrency:
+  group: admin
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # карта сайта берёт даты страниц из истории git
+          filter: blob:none
+
+      - name: Скрипты сборки из закрытой копии
+        env:
+          RABOTA_TOKEN: ${{ secrets.RABOTA_TOKEN }}
+        run: |
+          if [ -z "$RABOTA_TOKEN" ]; then
+            echo "::error::Нет секрета RABOTA_TOKEN (Settings → Secrets and variables → Actions). Правки не применены."
+            exit 1
+          fi
+          git clone --depth 1 --filter=blob:none --sparse \
+            "https://x-access-token:${RABOTA_TOKEN}@github.com/narimanrabota-dot/moy-teply-dom-rabota.git" /tmp/rabota
+          git -C /tmp/rabota sparse-checkout set tools
+          rm -rf tools && cp -r /tmp/rabota/tools ./tools
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - run: pip install --quiet Pillow
+
+      - name: Применить правки и собрать сайт
+        run: |
+          set -e
+          python3 tools/admin_apply.py --write
+          for s in svyaz serii podborki pohozhie kroshki srcset komplektacii_page planirovki_page \
+                   otzyvy_page faq_page stati menu seo sitemap; do
+            echo "── $s"
+            python3 tools/$s.py --write | tail -3
+          done
+          python3 tools/check_cards.py
+
+      - name: Записать на сайт
+        run: |
+          rm -rf tools
+          git config user.name "Админка сайта"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A v2 img admin sitemap.xml
+          if git diff --cached --quiet; then echo "Нечего записывать"; exit 0; fi
+          git commit -q -m "Админка: правки владельца применены"
+          for i in 1 2 3 4 5; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0
+            sleep 10
+          done
+          echo "::error::Не получилось записать в main — кто-то пишет одновременно. Запустите снова."
+          exit 1

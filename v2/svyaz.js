@@ -3,9 +3,11 @@
    закрыли — до конца визита не показываем (sessionStorage mtd_svz_off).
    Ссылки MAX и Telegram — временные (владелец пришлёт свои): Telegram по номеру телефона, MAX — сайт мессенджера. */
 (function () {
+  // контакты меняет админка (tools/admin_apply.py) — строки ниже держать в этом виде
   var PHONE = '79782516469';
+  var WA = '79782516469';
   var MAX = 'https://max.ru/';            // временно — заменить на ссылку профиля MAX
-  var TG = 'https://t.me/+' + PHONE;     // временно — по номеру; заменить на https://t.me/<ник>
+  var TG = 'https://t.me/+79782516469';  // временно — по номеру; заменить на https://t.me/<ник>
   var KEY = 'mtd_svz_off';
 
   function off() { try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
@@ -96,7 +98,7 @@
     box.className = 'svz';
     var col = document.createElement('div');
     col.className = 'svz__col';
-    col.appendChild(btn('wa', 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text), 'Написать в WhatsApp'));
+    col.appendChild(btn('wa', 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text), 'Написать в WhatsApp'));
     if (MAX) col.appendChild(btn('mx', MAX, 'Написать в MAX'));
     if (TG) col.appendChild(btn('tg', TG, 'Написать в Telegram'));
     col.appendChild(btn('ph', 'tel:+' + PHONE, 'Позвонить'));
@@ -179,7 +181,7 @@
       go.disabled = false;
       go.textContent = 'Жду сообщения';
       msg.innerHTML = 'Не получилось отправить. Напишите нам сами: <a href="' + TG + '" target="_blank" rel="noopener">Telegram</a> · ' +
-        '<a href="https://wa.me/' + PHONE + '" target="_blank" rel="noopener">WhatsApp</a>';
+        '<a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">WhatsApp</a>';
     }
   }
 
