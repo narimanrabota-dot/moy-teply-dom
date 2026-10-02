@@ -100,19 +100,44 @@
     if (p.length > 8)  out += '-' + p.slice(8, 10);
     return out;
   }
-  function filled() { return digits(tel.value).length === 11; }
+  /* одно поле: телефон или ник Telegram — что ввели, то и понимаем */
+  function nick(v) {
+    v = v.trim().replace(/^(https?:\/\/)?(t\.me|telegram\.me)\//i, '').replace(/^@/, '');
+    return /^[A-Za-z][A-Za-z0-9_]{4,31}$/.test(v) ? '@' + v : '';
+  }
+  function isNick(v) { return /[A-Za-z@]/.test(v); }
+  function filled() { return isNick(tel.value) ? !!nick(tel.value) : digits(tel.value).length === 11; }
   function bad() {
     err.hidden = false;
     tel.classList.add('is-bad');
     tel.focus();
   }
 
-  tel.addEventListener('focus', function () { if (!tel.value) tel.value = '+7 '; });
   tel.addEventListener('input', function () {
-    tel.value = format(tel.value);
+    if (!isNick(tel.value) && digits(tel.value)) tel.value = format(tel.value);
+    calm.hidden = isNick(tel.value);
     if (filled()) { err.hidden = true; tel.classList.remove('is-bad'); }
   });
-  tel.addEventListener('blur', function () { if (digits(tel.value) === '7') tel.value = ''; });
+  tel.addEventListener('blur', function () { if (!isNick(tel.value) && digits(tel.value) === '7') tel.value = ''; });
+
+  /* поле принимает и номер, и ник: клавиатура обычная, подписи — под оба варианта */
+  tel.type = 'text';
+  tel.setAttribute('inputmode', 'text');
+  tel.setAttribute('autocapitalize', 'off');
+  tel.setAttribute('spellcheck', 'false');
+  tel.placeholder = '+7 (___) ___-__-__ или @ник';
+  var lbl = ov.querySelector('.fld__l');
+  if (lbl) lbl.textContent = 'Телефон или @ник в Telegram';
+  err.textContent = 'Введите номер полностью или ник Telegram латиницей';
+  if (sub && /Оставьте номер/.test(sub0)) { sub0 = 'Оставьте телефон или ник в Telegram — ответим, как вам удобно.'; sub.textContent = sub0; }
+  if (/звонка/i.test(goT)) { goT = 'Жду ответа'; go.textContent = goT; }
+  /* без звонков: галочка видна, когда ввели номер (на ник и так только пишем) */
+  var calm = document.createElement('label');
+  calm.className = 'chk';
+  calm.innerHTML = '<input type="checkbox" id="cb-nocall"><span>Не звонить — только написать в мессенджер</span>';
+  var okLbl = ok.closest('label');
+  form.insertBefore(calm, okLbl || go);
+  var nocall = calm.querySelector('input');
 
   /* скрытое поле: человек его не видит и не заполняет, бот заполняет всё подряд */
   var hp = document.createElement('input');
@@ -191,14 +216,17 @@
   }
 
   function build() {
-    var phone = '+' + digits(tel.value);
+    var tg = isNick(tel.value) ? nick(tel.value) : '';
+    var phone = tg ? undefined : '+' + digits(tel.value);
     /* та же заявка уже ждёт в очереди — отправляем её, чтобы в amoCRM не было двух сделок */
-    var same = outbox().filter(function (l) { return l.phone === phone && l.kind === kind; })[0];
+    var same = outbox().filter(function (l) { return (phone ? l.phone === phone : l.tg === tg) && l.kind === kind; })[0];
     var c = context();
     return {
       id: same ? same.id : uid(),
       at: same ? same.at : Date.now(),
       phone: phone,
+      tg: tg || undefined,
+      nocall: tg || nocall.checked ? true : undefined,
       kind: kind,
       page: location.href.split('#')[0],
       house: c.house || undefined,
@@ -261,7 +289,7 @@
       unqueue(lead);
       done(tel.value);
     }, function (e) {
-      if (e && e.code === 'bad_phone') { state(''); bad(); return; }
+      if (e && (e.code === 'bad_phone' || e.code === 'bad_tg')) { state(''); bad(); return; }
       queue(lead);
       fail();
     });
@@ -287,7 +315,11 @@
     okBox.className = 'cb__ok';
     okBox.setAttribute('role', 'status');
     okBox.innerHTML = '<b>Заявка принята</b><p></p><button type="button" class="btn btn--l">Закрыть</button>';
-    okBox.querySelector('p').textContent = 'Перезвоним на ' + phone + ' в рабочее время: ПН–ВС 11:00–18:00.';
+    okBox.querySelector('p').textContent = isNick(phone)
+      ? 'Напишем вам в Telegram: ' + nick(phone) + '. Звонить не будем.'
+      : nocall.checked
+        ? 'Напишем в мессенджер на ' + phone + ' в рабочее время: ПН–ВС 11:00–18:00. Звонить не будем.'
+        : 'Перезвоним на ' + phone + ' в рабочее время: ПН–ВС 11:00–18:00.';
     okBox.querySelector('button').addEventListener('click', close);
     form.appendChild(okBox);
     okBox.querySelector('button').focus();
