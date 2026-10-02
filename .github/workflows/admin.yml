@@ -7,7 +7,7 @@ name: Админка — применить правки
 on:
   push:
     branches: [main]
-    paths: ['admin/pravki.json', 'admin/foto/**']
+    paths: ['admin/pravki.json', 'admin/foto/**', 'admin/video/**']
   workflow_dispatch:
 
 concurrency:
@@ -44,13 +44,13 @@ jobs:
         with:
           python-version: '3.14'
 
-      - run: pip install --quiet Pillow
+      - run: pip install --quiet Pillow imageio-ffmpeg
 
       - name: Применить правки и собрать сайт
         run: |
           set -e
           python3 tools/admin_apply.py --write
-          for s in svyaz serii podborki pohozhie kroshki srcset komplektacii_page planirovki_page \
+          for s in svyaz video_block serii podborki pohozhie kroshki srcset komplektacii_page planirovki_page \
                    otzyvy_page faq_page stati menu seo sitemap; do
             echo "── $s"
             python3 tools/$s.py --write | tail -3
@@ -62,7 +62,7 @@ jobs:
           rm -rf tools
           git config user.name "Админка сайта"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A v2 img admin sitemap.xml
+          git add -A v2 img video admin sitemap.xml
           if git diff --cached --quiet; then echo "Нечего записывать"; exit 0; fi
           git commit -q -m "Админка: правки владельца применены"
           for i in 1 2 3 4 5; do

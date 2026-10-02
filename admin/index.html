@@ -108,6 +108,17 @@ input:focus,textarea:focus{outline:2px solid var(--ink);outline-offset:1px;borde
 .login ol{margin:0 0 16px;padding-left:20px;color:var(--dim);font-size:15px}
 .login ol li{margin-bottom:4px}
 [hidden]{display:none!important}
+.rv{display:grid;grid-template-columns:56px 1fr auto;gap:8px 16px;align-items:start;padding:12px 0;border-top:1px solid var(--line)}
+.rv:first-child{border-top:0}
+.rv__ph{width:56px;aspect-ratio:9/16;border-radius:8px;overflow:hidden;background:var(--n-2);position:relative}
+.rv__ph img,.rv__ph video{width:100%;height:100%;object-fit:cover;display:block}
+.rv__f{display:grid;gap:8px}
+.rv__f select{min-height:40px;padding:0 8px;border:1px solid var(--n-4);border-radius:8px;background:var(--n-0);font:inherit;font-size:15px}
+.rv__a{display:flex;flex-direction:column;gap:4px}
+.rv__a button{min-width:44px}
+.rv.is-del .rv__ph,.rv.is-del .rv__f{opacity:.4}
+.rv__new{position:absolute;left:0;right:0;bottom:0;background:var(--ok);color:#fff;font-size:11px;font-weight:600;text-align:center;line-height:18px}
+.add--row{aspect-ratio:auto;min-height:56px;margin-top:12px;position:relative}
 @media(max-width:640px){
   .wrap{padding-top:16px}.box{padding:16px;border-radius:12px}
   .fields{grid-template-columns:1fr}
@@ -163,6 +174,14 @@ input:focus,textarea:focus{outline:2px solid var(--ink);outline-offset:1px;borde
     </section>
 
     <section class="box">
+      <h2>Отзывы</h2>
+      <p class="lead">Блок «Что говорят те, кто уже построился» на главной и страница отзывов. Новый ролик можно показать ещё и в карточках домов выбранной серии.</p>
+      <div id="otzyvy"></div>
+      <label class="add add--row">+ Добавить видеоотзыв (видео до 90 МБ)<input type="file" accept="video/*" id="rv-add"></label>
+      <div class="hint hint--bad" id="rv-msg"></div>
+    </section>
+
+    <section class="box">
       <h2>Дома</h2>
       <p class="lead">Скрытый дом уходит из каталога, серий, подборок и карты сайта; по прямой ссылке карточка открывается. Ручная цена не меняется вместе со ставками калькулятора.</p>
       <div id="doma"></div>
@@ -188,13 +207,15 @@ input:focus,textarea:focus{outline:2px solid var(--ink);outline-offset:1px;borde
   var BASE = '/repos/' + OWNER + '/' + REPO;
   var PACKS = ['Холодный контур', 'Комфорт', 'Премиум'];
   var SECTIONS = ['kontakty', 'skryty', 'ceny', 'teksty', 'galereya'];
+  var MAX_VIDEO = 90 * 1024 * 1024;
   var MAX_SIDE = 2400, MIN_SIDE = 1000;
   var $ = function (id) { return document.getElementById(id); };
 
   var token = '', sha = null, saved = {}, draft = {}, doma = null;
   var open = {};       // открытая панель у дома: {card: 'price' | 'edit'}
   var ed = {};         // черновик редактора текстов и фото: {card: {title, sub, frames: [...]}}
-  var uploads = {};    // новые фото до публикации: {'admin/foto/….jpg': {blob, url}}
+  var uploads = {};    // новые фото и видео до публикации: {'admin/foto/….jpg': {blob, url}}
+  var revs = [];       // отзывы в редакторе: [{key|id|upload, title, sub, series, cover, del, orig}]
 
   function store(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
   function read(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -303,6 +324,7 @@ input:focus,textarea:focus{outline:2px solid var(--ink);outline-offset:1px;borde
       saved = res[0] ? JSON.parse(res[0].text || '{}') : {};
       doma = JSON.parse(res[1].text);
       draft = fresh(saved); open = {}; ed = {};
+      initRevs(); renderRevs();
       fillContacts(); render(); updateBar();
       $('app').hidden = false; $('bar').hidden = false;
     } catch (e) { showErr('Не получилось загрузить данные сайта: ' + e.message); }
@@ -490,6 +512,98 @@ input:focus,textarea:focus{outline:2px solid var(--ink);outline-offset:1px;borde
     render(); updateBar();
   }
 
+  // ── Отзывы ──
+  function initRevs() {
+    var mine = {};
+    ((saved.otzyvy || {}).spisok || []).forEach(function (r) { if (r.id) mine[r.id] = r; });
+    var src = draft.otzyvy && draft.otzyvy.spisok ? draft.otzyvy.spisok : null;
+    if (src) {
+      var site = {};
+      doma.otzyvy.forEach(function (r) { site[r.key] = r; if (r.id) site[r.id] = r; });
+      revs = src.map(function (r) {
+        var s = site[r.key || r.id] || {};
+        return { key: r.key, id: r.id, upload: r.upload, title: r.title || s.title || '', sub: r.sub != null ? r.sub : (s.sub || ''),
+          series: r.series || '', cover: r.upload ? (uploads[r.upload] || {}).url || '' : (s.cover ? '../' + s.cover : ''),
+          video: !!r.upload, orig: r.id ? mine[r.id] || r : null, del: false };
+      });
+      doma.otzyvy.forEach(function (s) {   // убранные с главной — показываем, чтобы можно было вернуть
+        if (!src.some(function (r) { return (r.key || ('../video/rt/' + r.id + '.mp4')) === s.key; }))
+          revs.push({ key: s.id ? null : s.key, id: s.id, title: s.title, sub: s.sub, series: s.series, cover: '../' + s.cover, orig: s.id ? mine[s.id] : null, del: true });
+      });
+    } else {
+      revs = doma.otzyvy.map(function (s) {
+        return { key: s.id ? null : s.key, id: s.id, title: s.title, sub: s.sub, series: s.series || '', cover: '../' + s.cover, orig: s.id ? mine[s.id] || null : null, del: false };
+      });
+    }
+  }
+  function revItem(r) {
+    if (r.upload) return { upload: r.upload, title: squash(r.title), sub: squash(r.sub), series: r.series };
+    if (r.id) return Object.assign({}, r.orig || { id: r.id }, { id: r.id, title: squash(r.title), sub: squash(r.sub), series: r.series });
+    return { key: r.key, title: squash(r.title), sub: squash(r.sub) };
+  }
+  function syncRevs() {
+    var list = revs.filter(function (r) { return !r.del; }).map(revItem);
+    var site = doma.otzyvy.map(function (s) { return [s.id ? s.id : s.key, s.title, s.sub, s.series || '']; });
+    var now = list.map(function (r) { return [r.upload || r.id || r.key, r.title, r.sub, r.series || '']; });
+    if (JSON.stringify(site) === JSON.stringify(now)) {
+      if (saved.otzyvy) draft.otzyvy = clone(saved.otzyvy); else delete draft.otzyvy;
+    } else draft.otzyvy = { spisok: list };
+    updateBar();
+  }
+  function renderRevs() {
+    var opts = '<option value="">Только главная</option>' + doma.serii.map(function (s) { return '<option value="' + esc(s.key) + '">Главная и дома «' + esc(s.name) + '»</option>'; }).join('');
+    var live = revs.filter(function (r) { return !r.del; });
+    $('otzyvy').innerHTML = revs.map(function (r, i) {
+      var pos = live.indexOf(r);
+      return '<div class="rv' + (r.del ? ' is-del' : '') + '" data-i="' + i + '">' +
+        '<div class="rv__ph">' + (r.video ? '<video src="' + esc(r.cover) + '#t=1" muted playsinline preload="metadata"></video>' : r.cover ? '<img src="' + esc(r.cover) + '" alt="" loading="lazy">' : '') +
+        (r.upload ? '<span class="rv__new">новый</span>' : '') + '</div>' +
+        '<div class="rv__f"><input type="text" data-rv="title" placeholder="Название, например «Отзыв клиента 9»" maxlength="60" value="' + esc(r.title) + '"' + (r.del ? ' disabled' : '') + (!r.del && !squash(r.title) ? ' class="err"' : '') + '>' +
+        '<input type="text" data-rv="sub" placeholder="Подпись, например «Дом сдан, живёт круглый год»" maxlength="80" value="' + esc(r.sub) + '"' + (r.del ? ' disabled' : '') + '>' +
+        (r.id || r.upload ? '<select data-rv="series"' + (r.del ? ' disabled' : '') + '>' + opts.replace('value="' + esc(r.series) + '"', 'value="' + esc(r.series) + '" selected') + '</select>' : '') +
+        '</div><div class="rv__a">' +
+        '<button class="btn btn--ghost btn--sm" data-rmv="-1" aria-label="Выше"' + (r.del || pos <= 0 ? ' disabled' : '') + '>↑</button>' +
+        '<button class="btn btn--ghost btn--sm" data-rmv="1" aria-label="Ниже"' + (r.del || pos === live.length - 1 ? ' disabled' : '') + '>↓</button>' +
+        '<button class="btn btn--ghost btn--sm" data-rdel>' + (r.del ? 'Вернуть' : 'Убрать') + '</button></div></div>';
+    }).join('');
+  }
+  $('otzyvy').addEventListener('input', function (e) {
+    var row = e.target.closest('.rv'), f = e.target.getAttribute('data-rv');
+    if (!row || !f) return;
+    revs[+row.getAttribute('data-i')][f] = e.target.value;
+    if (f === 'title') e.target.classList.toggle('err', !squash(e.target.value));
+    syncRevs();
+  });
+  $('otzyvy').addEventListener('change', function (e) {
+    var row = e.target.closest('.rv');
+    if (row && e.target.getAttribute('data-rv') === 'series') { revs[+row.getAttribute('data-i')].series = e.target.value; syncRevs(); }
+  });
+  $('otzyvy').addEventListener('click', function (e) {
+    var row = e.target.closest('.rv'); if (!row) return;
+    var i = +row.getAttribute('data-i'), b;
+    if ((b = e.target.closest('[data-rmv]'))) {
+      var live = revs.map(function (r, k) { return k; }).filter(function (k) { return !revs[k].del; });
+      var to = live[live.indexOf(i) + +b.getAttribute('data-rmv')];
+      if (to == null) return;
+      var t = revs[i]; revs[i] = revs[to]; revs[to] = t;
+    } else if (e.target.closest('[data-rdel]')) {
+      if (revs[i].upload && !revs[i].del) { revs.splice(i, 1); } else revs[i].del = !revs[i].del;
+    } else return;
+    renderRevs(); syncRevs();
+  });
+  $('rv-add').addEventListener('change', function (e) {
+    var f = e.target.files[0]; e.target.value = '';
+    $('rv-msg').textContent = '';
+    if (!f) return;
+    if (f.size > MAX_VIDEO) { $('rv-msg').textContent = 'Видео ' + Math.round(f.size / 1048576) + ' МБ — больше 90 МБ. Обрежьте его или отправьте себе в WhatsApp и сохраните оттуда — он сожмёт.'; return; }
+    var path = 'admin/video/' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + (/\.(mov|mp4|m4v|webm|3gp)$/i.exec(f.name) || ['.mp4'])[0].toLowerCase();
+    var url = URL.createObjectURL(f);
+    uploads[path] = { blob: f, url: url };
+    revs.unshift({ upload: path, title: '', sub: '', series: '', cover: url, video: true, del: false });
+    renderRevs(); syncRevs();
+    $('otzyvy').querySelector('[data-rv="title"]').focus();
+  });
+
   // ── События списка домов ──
   $('doma').addEventListener('change', function (e) {
     var row = e.target.closest('.h'); if (!row) return;
@@ -551,6 +665,7 @@ input:focus,textarea:focus{outline:2px solid var(--ink);outline-offset:1px;borde
     Object.keys(CHECK).forEach(function (f) { if ((ka[f] || '') !== (kb[f] || '')) n++; });
     var sa = a.skryty || [], sb = b.skryty || [];
     sa.concat(sb).filter(function (c, i, all) { return all.indexOf(c) === i; }).forEach(function (c) { if ((sa.indexOf(c) >= 0) !== (sb.indexOf(c) >= 0)) n++; });
+    if (JSON.stringify(a.otzyvy || null) !== JSON.stringify(b.otzyvy || null)) n++;
     ['ceny', 'teksty', 'galereya'].forEach(function (k) {
       var x = a[k] || {}, y = b[k] || {};
       Object.keys(Object.assign({}, x, y)).forEach(function (s) { if (JSON.stringify(x[s] || null) !== JSON.stringify(y[s] || null)) n++; });
@@ -569,6 +684,7 @@ input:focus,textarea:focus{outline:2px solid var(--ink);outline-offset:1px;borde
   document.addEventListener('click', function () { setTimeout(updateBar, 0); });
   $('undo').addEventListener('click', function () {
     draft = fresh(saved); open = {}; ed = {};
+    initRevs(); renderRevs();
     fillContacts(); render(); updateBar();
   });
 
@@ -586,13 +702,13 @@ input:focus,textarea:focus{outline:2px solid var(--ink);outline-offset:1px;borde
       var now = await gh(BASE + '/contents/' + PRAVKI + '?ref=' + BRANCH, { allow404: true });
       if ((now ? now.sha : null) !== sha) { var e = new Error('Правки поменялись с другого устройства — обновите страницу.'); e.status = 409; throw e; }
       var files = [{ path: PRAVKI, b64: bytesB64(bytes) }];
-      var used = JSON.stringify(body.galereya || {});
+      var used = JSON.stringify(body.galereya || {}) + JSON.stringify(body.otzyvy || {});
       var paths = Object.keys(uploads).filter(function (p) { return used.indexOf('"' + p + '"') >= 0; });
       for (var i = 0; i < paths.length; i++) {
-        step('s1', 'on', 'Загружаю фото ' + (i + 1) + ' из ' + paths.length);
+        step('s1', 'on', 'Загружаю файл ' + (i + 1) + ' из ' + paths.length + (/^admin\/video\//.test(paths[i]) ? ' — видео, это может занять пару минут' : ''));
         files.push({ path: paths[i], b64: bytesB64(new Uint8Array(await uploads[paths[i]].blob.arrayBuffer())) });
       }
-      var commitSha = await commit(files, 'Админка: правки владельца' + (paths.length ? ' и ' + paths.length + ' ' + plural(paths.length, 'фото', 'фото', 'фото') : ''));
+      var commitSha = await commit(files, 'Админка: правки владельца' + (paths.length ? ' и ' + paths.length + ' ' + plural(paths.length, 'файл', 'файла', 'файлов') : ''));
       saved = clone(body);
       var after = await gh(BASE + '/contents/' + PRAVKI + '?ref=' + BRANCH, { allow404: true });
       sha = after ? after.sha : null;

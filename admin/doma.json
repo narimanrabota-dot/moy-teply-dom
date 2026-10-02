@@ -1378,5 +1378,91 @@
     }
    ]
   }
+ ],
+ "serii": [
+  {
+   "key": "stambul",
+   "name": "Стамбул"
+  },
+  {
+   "key": "sochi",
+   "name": "Сочи"
+  },
+  {
+   "key": "siena",
+   "name": "Сиена"
+  },
+  {
+   "key": "vladik",
+   "name": "Владивосток"
+  },
+  {
+   "key": "parma",
+   "name": "Парма"
+  },
+  {
+   "key": "milan",
+   "name": "Милан"
+  },
+  {
+   "key": "nicca",
+   "name": "Ницца"
+  }
+ ],
+ "otzyvy": [
+  {
+   "key": "../video/rt/4c337a36235fc256e2f337a14d3776ab.mp4",
+   "title": "Отзыв клиента 8",
+   "sub": "Снято осенью у готового дома",
+   "cover": "img/otzyv-klienta-8-cover-v2.webp",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "../video/rt/11d9b0273d6bbbdda262a9eb967411b4.mp4",
+   "title": "Отзыв клиента 1",
+   "sub": "Дом сдан, живёт круглый год",
+   "cover": "img/otzyv-klienta-1-cover.webp",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "https://rutube.ru/play/embed/1e2300351dd8330f03887e5be71845f3/?p=FLBQnxzJ8Ip2JJzMM7UKpw",
+   "title": "Отзыв клиента 2",
+   "sub": "Видеоотзыв с участка",
+   "cover": "img/otzyv-klienta-2-cover-v2.webp",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "../video/rt/b443922adabc70abcca4ac7fc620f91e.mp4",
+   "title": "Отзыв клиента 6",
+   "sub": "Разговор у построенного дома",
+   "cover": "img/otzyv-klienta-6-cover.webp",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "../video/rt/2e27f1d633332e9ac795710a07a0cbcd.mp4",
+   "title": "Отзыв клиента 7",
+   "sub": "Готовая парная в доме",
+   "cover": "img/otzyv-klienta-7-cover.webp",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "../video/rt/ed905ace6800670608f5181981cfcc3b.mp4",
+   "title": "Отзыв клиента 5",
+   "sub": "Дом с террасой, снято летом",
+   "cover": "img/otzyv-klienta-5-cover.webp",
+   "id": null,
+   "series": "",
+   "dur": null
+  }
  ]
 }
