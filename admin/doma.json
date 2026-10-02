@@ -31,7 +31,33 @@
     "Комфорт": 3024000,
     "Премиум": 3672000
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/stambul-9h8-fasad-1.webp",
+     "th": "img/stambul-9h8-fasad-1-th.webp",
+     "alt": "Фасад с террасой и ступенями",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-9h8-fasad-2.webp",
+     "th": "img/stambul-9h8-fasad-2-th.webp",
+     "alt": "Дом с угла: длинная стена",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-9h8-fasad-3.webp",
+     "th": "img/stambul-9h8-fasad-3-th.webp",
+     "alt": "Вид сбоку с террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-9h8-fasad-4.webp",
+     "th": "img/stambul-9h8-fasad-4-th.webp",
+     "alt": "Терраса под общей крышей",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-stambul-75x7.html",
@@ -52,7 +78,39 @@
     "Комфорт": 2024400,
     "Премиум": 2458200
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/stambul-7h75-fasad-1.webp",
+     "th": "img/stambul-7h75-fasad-1-th.webp",
+     "alt": "Дом с угла: терраса и вход",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-7h75-fasad-2.webp",
+     "th": "img/stambul-7h75-fasad-2-th.webp",
+     "alt": "Вид сбоку: длинная стена",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-7h75-fasad-3.webp",
+     "th": "img/stambul-7h75-fasad-3-th.webp",
+     "alt": "Задний фасад с площадкой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-7h75-fasad-4.webp",
+     "th": "img/stambul-7h75-fasad-4-th.webp",
+     "alt": "Фасад с террасой под крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-7h75-fasad-0.webp",
+     "th": "img/stambul-7h75-fasad-0-th.webp",
+     "alt": "Зимнее утро: дети в сугробе, папа чистит дорожку",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-stambul-75x6.html",
@@ -73,7 +131,33 @@
     "Комфорт": 1890000,
     "Премиум": 2295000
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/stambul-75h6-fasad-1.webp",
+     "th": "img/stambul-75h6-fasad-1-th.webp",
+     "alt": "Фасад с террасой во всю ширину",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-75h6-fasad-2.webp",
+     "th": "img/stambul-75h6-fasad-2-th.webp",
+     "alt": "Дом с угла: терраса под общей крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-75h6-fasad-3.webp",
+     "th": "img/stambul-75h6-fasad-3-th.webp",
+     "alt": "Вид сбоку: терраса и вход",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-75h6-fasad-0.webp",
+     "th": "img/stambul-75h6-fasad-0-th.webp",
+     "alt": "Летний вечер: шашлыки у террасы",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-stambul-75x6-2.html",
@@ -94,7 +178,45 @@
     "Комфорт": 1701000,
     "Премиум": 2065500
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/stambul-75h6-2-fasad-0.webp",
+     "th": "img/stambul-75h6-2-fasad-0-th.webp",
+     "alt": "Осень у дома: семья с собакой у террасы",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-75h6-2-fasad-1.webp",
+     "th": "img/stambul-75h6-2-fasad-1-th.webp",
+     "alt": "Дом с угла: вход и терраса под общей крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-75h6-2-fasad-2.webp",
+     "th": "img/stambul-75h6-2-fasad-2-th.webp",
+     "alt": "Фасад с террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-75h6-2-fasad-3.webp",
+     "th": "img/stambul-75h6-2-fasad-3-th.webp",
+     "alt": "Вид сбоку: длинная стена",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-75h6-2-fasad-4.webp",
+     "th": "img/stambul-75h6-2-fasad-4-th.webp",
+     "alt": "Торцевой фасад",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-75h6-2-fasad-5.webp",
+     "th": "img/stambul-75h6-2-fasad-5-th.webp",
+     "alt": "Дом от леса: терраса справа",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-stambul-9x7.html",
@@ -115,7 +237,45 @@
     "Комфорт": 2646000,
     "Премиум": 3213000
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/stambul-9h7-fasad-1.webp",
+     "th": "img/stambul-9h7-fasad-1-th.webp",
+     "alt": "Фасад и терраса, вид с угла",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-9h7-fasad-2.webp",
+     "th": "img/stambul-9h7-fasad-2-th.webp",
+     "alt": "Фасад и терраса, вид спереди",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-9h7-fasad-3.webp",
+     "th": "img/stambul-9h7-fasad-3-th.webp",
+     "alt": "Терраса с крыльцом, вид с угла",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-9h7-fasad-4.webp",
+     "th": "img/stambul-9h7-fasad-4-th.webp",
+     "alt": "Задний фасад, вид с угла",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-9h7-fasad-5.webp",
+     "th": "img/stambul-9h7-fasad-5-th.webp",
+     "alt": "Дом с угла: глухая стена и терраса за домом",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-9h7-fasad-0.webp",
+     "th": "img/stambul-9h7-fasad-0-th.webp",
+     "alt": "Лето у дома: первые шаги малыша",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-stambul-96x81-2.html",
@@ -136,7 +296,33 @@
     "Комфорт": 3250800,
     "Премиум": 3947400
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/stambul-95h8-fasad-1.webp",
+     "th": "img/stambul-95h8-fasad-1-th.webp",
+     "alt": "Дом с угла: терраса под общей крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-95h8-fasad-2.webp",
+     "th": "img/stambul-95h8-fasad-2-th.webp",
+     "alt": "Фасад с террасой во всю ширину",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-95h8-fasad-3.webp",
+     "th": "img/stambul-95h8-fasad-3-th.webp",
+     "alt": "Длинная стена и вход с террасы",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-95h8-fasad-4.webp",
+     "th": "img/stambul-95h8-fasad-4-th.webp",
+     "alt": "Вечером: свет в окнах и терраса под крышей",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-stambul-115x7.html",
@@ -157,7 +343,33 @@
     "Комфорт": 3515400,
     "Премиум": 4268700
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/stambul-115h7-fasad-0.webp",
+     "th": "img/stambul-115h7-fasad-0-th.webp",
+     "alt": "Осенний дождь: семья пьёт чай на террасе",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-115h7-fasad-1.webp",
+     "th": "img/stambul-115h7-fasad-1-th.webp",
+     "alt": "Фасад с террасой, вид с угла",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-115h7-fasad-2.webp",
+     "th": "img/stambul-115h7-fasad-2-th.webp",
+     "alt": "Вид сбоку, терраса в торце",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-115h7-fasad-3.webp",
+     "th": "img/stambul-115h7-fasad-3-th.webp",
+     "alt": "Вид сзади с угла",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-stambul-11x7.html",
@@ -178,7 +390,39 @@
     "Комфорт": 3234000,
     "Премиум": 3927000
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/stambul-11h7-fasad-1.webp",
+     "th": "img/stambul-11h7-fasad-1-th.webp",
+     "alt": "Дом с угла: терраса под общей крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-11h7-fasad-2.webp",
+     "th": "img/stambul-11h7-fasad-2-th.webp",
+     "alt": "Фасад с террасой и входом",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-11h7-fasad-3.webp",
+     "th": "img/stambul-11h7-fasad-3-th.webp",
+     "alt": "Вид сбоку: длинная стена",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-11h7-fasad-4.webp",
+     "th": "img/stambul-11h7-fasad-4-th.webp",
+     "alt": "Дом от леса: терраса слева",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-11h7-fasad-0.webp",
+     "th": "img/stambul-11h7-fasad-0-th.webp",
+     "alt": "Лето у дома: сын учится кататься на велосипеде",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-stambul-96x81.html",
@@ -199,7 +443,39 @@
     "Комфорт": 3267600,
     "Премиум": 3967800
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/stambul-96h81-fasad-1.webp",
+     "th": "img/stambul-96h81-fasad-1-th.webp",
+     "alt": "Дом с угла: терраса под общей крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-96h81-fasad-2.webp",
+     "th": "img/stambul-96h81-fasad-2-th.webp",
+     "alt": "Вид сбоку: терраса и вход",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-96h81-fasad-3.webp",
+     "th": "img/stambul-96h81-fasad-3-th.webp",
+     "alt": "Фасад с террасой и ступенями",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-96h81-fasad-4.webp",
+     "th": "img/stambul-96h81-fasad-4-th.webp",
+     "alt": "Задний фасад",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-96h81-fasad-0.webp",
+     "th": "img/stambul-96h81-fasad-0-th.webp",
+     "alt": "Зима у дома: семья наряжает ёлку",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-stambul-121x81.html",
@@ -220,7 +496,33 @@
     "Комфорт": 4200000,
     "Премиум": 5100000
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/stambul-12h8-fasad-4.webp",
+     "th": "img/stambul-12h8-fasad-4-th.webp",
+     "alt": "Семья на террасе дома",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-12h8-fasad-1.webp",
+     "th": "img/stambul-12h8-fasad-1-th.webp",
+     "alt": "Дом с угла: терраса и ступени",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-12h8-fasad-2.webp",
+     "th": "img/stambul-12h8-fasad-2-th.webp",
+     "alt": "Вход с крыльца, вид с угла",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-12h8-fasad-3.webp",
+     "th": "img/stambul-12h8-fasad-3-th.webp",
+     "alt": "Терраса во всю ширину дома",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-stambul-11x8.html",
@@ -241,7 +543,45 @@
     "Комфорт": 3771600,
     "Премиум": 4579800
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/stambul-11h8-fasad-5.webp",
+     "th": "img/stambul-11h8-fasad-5-th.webp",
+     "alt": "Фасад и терраса под общей кровлей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-11h8-fasad-6.webp",
+     "th": "img/stambul-11h8-fasad-6-th.webp",
+     "alt": "Терраса вдоль фасада, вид с угла",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-11h8-fasad-7.webp",
+     "th": "img/stambul-11h8-fasad-7-th.webp",
+     "alt": "Торец дома: дверь и крыльцо",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-11h8-fasad-8.webp",
+     "th": "img/stambul-11h8-fasad-8-th.webp",
+     "alt": "Боковой фасад и вход с крыльцом",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-11h8-fasad-9.webp",
+     "th": "img/stambul-11h8-fasad-9-th.webp",
+     "alt": "Терраса под крышей, вид вблизи",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/stambul-11h8-fasad-0.webp",
+     "th": "img/stambul-11h8-fasad-0-th.webp",
+     "alt": "Утро на террасе: кофе, книга и собака у ног",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-sochi-9x75.html",
@@ -262,7 +602,45 @@
     "Комфорт": 2835000,
     "Премиум": 3442500
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/sochi-9x75-fasad-1.webp",
+     "th": "img/sochi-9x75-fasad-1-th.webp",
+     "alt": "Дом с крыльцом и террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/sochi-9x75-fasad-2.webp",
+     "th": "img/sochi-9x75-fasad-2-th.webp",
+     "alt": "Фасад с крыльцом",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/sochi-9x75-fasad-3.webp",
+     "th": "img/sochi-9x75-fasad-3-th.webp",
+     "alt": "Вид со стороны озера",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/sochi-9x75-fasad-4.webp",
+     "th": "img/sochi-9x75-fasad-4-th.webp",
+     "alt": "Вид сбоку",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/sochi-9x75-interer-1.webp",
+     "th": "img/sochi-9x75-interer-1-th.webp",
+     "alt": "Гостиная, вход в кухню",
+     "kind": "interer"
+    },
+    {
+     "src": "img/sochi-9x75-interer-2.webp",
+     "th": "img/sochi-9x75-interer-2-th.webp",
+     "alt": "Гостиная под коньком",
+     "kind": "interer"
+    }
+   ]
   },
   {
    "card": "proekt-sochi-105x9.html",
@@ -283,7 +661,39 @@
     "Комфорт": 3969000,
     "Премиум": 4819500
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/sochi-105x9-fasad-1.webp",
+     "th": "img/sochi-105x9-fasad-1-th.webp",
+     "alt": "Дом с террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/sochi-105x9-fasad-2.webp",
+     "th": "img/sochi-105x9-fasad-2-th.webp",
+     "alt": "Фасад с террасой и окнами гостиной",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/sochi-105x9-fasad-3.webp",
+     "th": "img/sochi-105x9-fasad-3-th.webp",
+     "alt": "Вид сбоку",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/sochi-105x9-fasad-4.webp",
+     "th": "img/sochi-105x9-fasad-4-th.webp",
+     "alt": "Вид сзади",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/sochi-105x9-interer-1.webp",
+     "th": "img/sochi-105x9-interer-1-th.webp",
+     "alt": "Гостиная под коньком",
+     "kind": "interer"
+    }
+   ]
   },
   {
    "card": "proekt-siena-155x85.html",
@@ -304,7 +714,33 @@
     "Комфорт": 5749800,
     "Премиум": 6981900
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/siena-155x85-2-fasad-1.webp",
+     "th": "img/siena-155x85-2-fasad-1-th.webp",
+     "alt": "Дом с угла: терраса под общей крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-155x85-2-fasad-2.webp",
+     "th": "img/siena-155x85-2-fasad-2-th.webp",
+     "alt": "Фасад с террасой и крыльцом",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-155x85-2-fasad-3.webp",
+     "th": "img/siena-155x85-2-fasad-3-th.webp",
+     "alt": "Терраса с деревянными перилами",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-155x85-2-fasad-4.webp",
+     "th": "img/siena-155x85-2-fasad-4-th.webp",
+     "alt": "Длинная стена и вход",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-siena-144x7.html",
@@ -325,7 +761,39 @@
     "Комфорт": 4317600,
     "Премиум": 5242800
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/siena-144x7-fasad-1.webp",
+     "th": "img/siena-144x7-fasad-1-th.webp",
+     "alt": "Дом с угла: терраса под общей крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-144x7-fasad-2.webp",
+     "th": "img/siena-144x7-fasad-2-th.webp",
+     "alt": "Вход с крыльца и терраса",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-144x7-fasad-3.webp",
+     "th": "img/siena-144x7-fasad-3-th.webp",
+     "alt": "Фасад с террасой во всю ширину",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-144x7-fasad-4.webp",
+     "th": "img/siena-144x7-fasad-4-th.webp",
+     "alt": "Длинная стена дома",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-144x7-interer-1.webp",
+     "th": "img/siena-144x7-interer-1-th.webp",
+     "alt": "Кухня-гостиная с панорамными окнами",
+     "kind": "interer"
+    }
+   ]
   },
   {
    "card": "proekt-siena-144x7-2.html",
@@ -346,7 +814,33 @@
     "Комфорт": 4338600,
     "Премиум": 5268300
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/siena-144x7-2-fasad-1.webp",
+     "th": "img/siena-144x7-2-fasad-1-th.webp",
+     "alt": "Фасад с террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-144x7-2-fasad-2.webp",
+     "th": "img/siena-144x7-2-fasad-2-th.webp",
+     "alt": "Терраса и панорамные окна",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-144x7-2-fasad-3.webp",
+     "th": "img/siena-144x7-2-fasad-3-th.webp",
+     "alt": "Вход с крыльцом",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-144x7-2-fasad-4.webp",
+     "th": "img/siena-144x7-2-fasad-4-th.webp",
+     "alt": "Вид сбоку",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-siena-13x85.html",
@@ -367,7 +861,39 @@
     "Комфорт": 4775400,
     "Премиум": 5798700
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/siena-13x85-2-fasad-1.webp",
+     "th": "img/siena-13x85-2-fasad-1-th.webp",
+     "alt": "Дом с угла: терраса и ступени",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-13x85-2-fasad-2.webp",
+     "th": "img/siena-13x85-2-fasad-2-th.webp",
+     "alt": "Вход с крыльца, вид сбоку",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-13x85-2-fasad-3.webp",
+     "th": "img/siena-13x85-2-fasad-3-th.webp",
+     "alt": "Терраса под общей крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-13x85-2-interer-1.webp",
+     "th": "img/siena-13x85-2-interer-1-th.webp",
+     "alt": "Кухня-гостиная 36,5 м²",
+     "kind": "interer"
+    },
+    {
+     "src": "img/siena-13x85-2-interer-2.webp",
+     "th": "img/siena-13x85-2-interer-2-th.webp",
+     "alt": "Холл и двери в спальни",
+     "kind": "interer"
+    }
+   ]
   },
   {
    "card": "proekt-siena-125x82.html",
@@ -388,7 +914,33 @@
     "Комфорт": 4418400,
     "Премиум": 5365200
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/siena-125x82-fasad-1.webp",
+     "th": "img/siena-125x82-fasad-1-th.webp",
+     "alt": "Фасад с террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-125x82-fasad-2.webp",
+     "th": "img/siena-125x82-fasad-2-th.webp",
+     "alt": "Вход с крыльцом",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-125x82-fasad-3.webp",
+     "th": "img/siena-125x82-fasad-3-th.webp",
+     "alt": "Вид сбоку с террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-125x82-fasad-4.webp",
+     "th": "img/siena-125x82-fasad-4-th.webp",
+     "alt": "Терраса и панорамные окна",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-siena-12x82.html",
@@ -409,7 +961,45 @@
     "Комфорт": 4246200,
     "Премиум": 5156100
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/siena-12x82-fasad-1.webp",
+     "th": "img/siena-12x82-fasad-1-th.webp",
+     "alt": "Фасад с террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-12x82-fasad-2.webp",
+     "th": "img/siena-12x82-fasad-2-th.webp",
+     "alt": "Вид сверху",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-12x82-fasad-3.webp",
+     "th": "img/siena-12x82-fasad-3-th.webp",
+     "alt": "Вид сбоку",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-12x82-fasad-4.webp",
+     "th": "img/siena-12x82-fasad-4-th.webp",
+     "alt": "Вход с крыльцом",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/siena-12x82-interer-1.webp",
+     "th": "img/siena-12x82-interer-1-th.webp",
+     "alt": "Гостиная с печью",
+     "kind": "interer"
+    },
+    {
+     "src": "img/siena-12x82-interer-2.webp",
+     "th": "img/siena-12x82-interer-2-th.webp",
+     "alt": "Гостиная-столовая под коньком",
+     "kind": "interer"
+    }
+   ]
   },
   {
    "card": "proekt-vladivostok-14x69.html",
@@ -430,7 +1020,33 @@
     "Комфорт": 4204200,
     "Премиум": 5105100
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/vladik-12x7-fasad-1.webp",
+     "th": "img/vladik-12x7-fasad-1-th.webp",
+     "alt": "Дом с угла: терраса и панорамные окна",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-12x7-fasad-2.webp",
+     "th": "img/vladik-12x7-fasad-2-th.webp",
+     "alt": "Фасад с террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-12x7-fasad-3.webp",
+     "th": "img/vladik-12x7-fasad-3-th.webp",
+     "alt": "Длинная стена и решётка террасы",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-12x7-fasad-4.webp",
+     "th": "img/vladik-12x7-fasad-4-th.webp",
+     "alt": "Торцевой фасад с крыльцом",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-vladivostok-12x8.html",
@@ -451,7 +1067,39 @@
     "Комфорт": 4145400,
     "Премиум": 5033700
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/vladik-10x8-fasad-2.webp",
+     "th": "img/vladik-10x8-fasad-2-th.webp",
+     "alt": "Фасад с террасой во всю ширину",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-10x8-fasad-3.webp",
+     "th": "img/vladik-10x8-fasad-3-th.webp",
+     "alt": "Терраса под общей крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-10x8-fasad-4.webp",
+     "th": "img/vladik-10x8-fasad-4-th.webp",
+     "alt": "Вид сбоку с крыльцом",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-10x8-fasad-5.webp",
+     "th": "img/vladik-10x8-fasad-5-th.webp",
+     "alt": "Фасад с крыльцом и террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-10x8-interer-1.webp",
+     "th": "img/vladik-10x8-interer-1-th.webp",
+     "alt": "Гостиная-столовая под коньком",
+     "kind": "interer"
+    }
+   ]
   },
   {
    "card": "proekt-vladivostok-135x8.html",
@@ -472,7 +1120,39 @@
     "Комфорт": 4632600,
     "Премиум": 5625300
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/vladik-115x8-3-fasad-1.webp",
+     "th": "img/vladik-115x8-3-fasad-1-th.webp",
+     "alt": "Дом с угла: терраса под общей крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-115x8-3-fasad-2.webp",
+     "th": "img/vladik-115x8-3-fasad-2-th.webp",
+     "alt": "Фасад с панорамными окнами",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-115x8-3-fasad-3.webp",
+     "th": "img/vladik-115x8-3-fasad-3-th.webp",
+     "alt": "Вход и терраса со ступенями",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-115x8-3-fasad-4.webp",
+     "th": "img/vladik-115x8-3-fasad-4-th.webp",
+     "alt": "Вид сбоку: окна и терраса",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-115x8-3-fasad-5.webp",
+     "th": "img/vladik-115x8-3-fasad-5-th.webp",
+     "alt": "Боковой фасад среди берёз",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-vladivostok-122x8.html",
@@ -493,7 +1173,39 @@
     "Комфорт": 4195800,
     "Премиум": 5094900
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/vladik-115x8-2-fasad-1.webp",
+     "th": "img/vladik-115x8-2-fasad-1-th.webp",
+     "alt": "Дом с угла: терраса и ступени",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-115x8-2-fasad-2.webp",
+     "th": "img/vladik-115x8-2-fasad-2-th.webp",
+     "alt": "Дом от входа: терраса во всю ширину",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-115x8-2-fasad-3.webp",
+     "th": "img/vladik-115x8-2-fasad-3-th.webp",
+     "alt": "Терраса под общей крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-115x8-2-fasad-4.webp",
+     "th": "img/vladik-115x8-2-fasad-4-th.webp",
+     "alt": "Вид сбоку: длинная стена",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/vladik-115x8-2-fasad-5.webp",
+     "th": "img/vladik-115x8-2-fasad-5-th.webp",
+     "alt": "Торцевой фасад",
+     "kind": "fasad"
+    }
+   ]
   },
   {
    "card": "proekt-parma-10x8.html",
@@ -514,7 +1226,57 @@
     "Комфорт": 4338600,
     "Премиум": 5268300
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/parma-10x8-fasad-1.webp",
+     "th": "img/parma-10x8-fasad-1-th.webp",
+     "alt": "Фасад с террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/parma-10x8-fasad-2.webp",
+     "th": "img/parma-10x8-fasad-2-th.webp",
+     "alt": "Фасад целиком",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/parma-10x8-fasad-3.webp",
+     "th": "img/parma-10x8-fasad-3-th.webp",
+     "alt": "Вид сбоку с террасой",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/parma-10x8-fasad-4.webp",
+     "th": "img/parma-10x8-fasad-4-th.webp",
+     "alt": "Торцевой фасад",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/parma-10x8-fasad-5.webp",
+     "th": "img/parma-10x8-fasad-5-th.webp",
+     "alt": "Вид сзади",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/parma-10x8-fasad-6.webp",
+     "th": "img/parma-10x8-fasad-6-th.webp",
+     "alt": "Терраса под крышей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/parma-10x8-interer-1.webp",
+     "th": "img/parma-10x8-interer-1-th.webp",
+     "alt": "Гостиная-столовая под коньком",
+     "kind": "interer"
+    },
+    {
+     "src": "img/parma-10x8-interer-2.webp",
+     "th": "img/parma-10x8-interer-2-th.webp",
+     "alt": "Второй свет, окна под крышей",
+     "kind": "interer"
+    }
+   ]
   },
   {
    "card": "proekt-milan-10x6.html",
@@ -535,7 +1297,57 @@
     "Комфорт": 2520000,
     "Премиум": 3060000
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/milan-10x6-fasad-1.webp",
+     "th": "img/milan-10x6-fasad-1-th.webp",
+     "alt": "Фасад с террасой под общей кровлей",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/milan-10x6-fasad-2.webp",
+     "th": "img/milan-10x6-fasad-2-th.webp",
+     "alt": "Терраса и панорамные окна",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/milan-10x6-fasad-3.webp",
+     "th": "img/milan-10x6-fasad-3-th.webp",
+     "alt": "Вид сбоку",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/milan-10x6-fasad-4.webp",
+     "th": "img/milan-10x6-fasad-4-th.webp",
+     "alt": "Вариант с тёмными рамами",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/milan-10x6-interer-1.webp",
+     "th": "img/milan-10x6-interer-1-th.webp",
+     "alt": "Гостиная, двери в комнаты",
+     "kind": "interer"
+    },
+    {
+     "src": "img/milan-10x6-interer-2.webp",
+     "th": "img/milan-10x6-interer-2-th.webp",
+     "alt": "Зона отдыха и обеденный стол",
+     "kind": "interer"
+    },
+    {
+     "src": "img/milan-10x6-interer-3.webp",
+     "th": "img/milan-10x6-interer-3-th.webp",
+     "alt": "Гостиная с панорамными окнами",
+     "kind": "interer"
+    },
+    {
+     "src": "img/milan-10x6-interer-4.webp",
+     "th": "img/milan-10x6-interer-4-th.webp",
+     "alt": "Спальня",
+     "kind": "interer"
+    }
+   ]
   },
   {
    "card": "proekt-milan-10x6-2.html",
@@ -556,7 +1368,15 @@
     "Комфорт": 2520000,
     "Премиум": 3060000
    },
-   "hand": false
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/milan-10x6-2-fasad-1.webp",
+     "th": "img/milan-10x6-2-fasad-1-th.webp",
+     "alt": "Дом с открытой террасой",
+     "kind": "fasad"
+    }
+   ]
   }
  ]
 }

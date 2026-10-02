@@ -10,10 +10,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
 <!--
-  Лёгкая админка (promt-adminka-legkaya.md). Сервера нет: страница пишет admin/pravki.json
-  в GitHub ключом владельца, GitHub Actions (.github/workflows/admin.yml) применяет правки
-  скриптом tools/admin_apply.py и собирает сайт, хостинг забирает main раз в 10 минут.
-  Ключ хранится только в этом браузере (localStorage), в код и в репозиторий не попадает.
+  Лёгкая админка (promt-adminka-legkaya.md). Сервера нет: страница одним коммитом пишет в GitHub
+  admin/pravki.json и новые фото (admin/foto/) ключом владельца, GitHub Actions
+  (.github/workflows/admin.yml) применяет правки скриптом tools/admin_apply.py и собирает сайт,
+  хостинг забирает main раз в 10 минут. Ключ хранится только в этом браузере (localStorage).
+  Проверка без GitHub — tools/admin_mock.py (на localhost страница ходит в /_gh).
 -->
 <style>
 :root{
@@ -26,14 +27,14 @@
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--n-1);color:var(--ink);font:400 17px/1.45 Onest,system-ui,-apple-system,sans-serif}
-button,input{font:inherit;color:inherit}
+button,input,textarea{font:inherit;color:inherit}
 a{color:var(--clay-txt)}
 .wrap{max-width:880px;margin:0 auto;padding:24px 16px 120px}
 .top{display:flex;align-items:center;gap:12px;margin-bottom:24px}
 .top h1{margin:0;font-size:24px;font-weight:600;flex:1}
 .top small{display:block;font-size:14px;color:var(--dim);font-weight:400}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border:0;border-radius:12px;
-  background:var(--ink);color:#fff;font-weight:500;cursor:pointer;transition:background .2s}
+  background:var(--ink);color:#fff;font-weight:500;cursor:pointer;transition:background .2s;white-space:nowrap}
 .btn:hover{background:var(--ink-h)}.btn:disabled{opacity:.45;cursor:default}
 .btn--ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--n-4)}.btn--ghost:hover{background:var(--n-2)}
 .btn--sm{min-height:36px;padding:0 12px;font-size:14px;border-radius:8px}
@@ -42,47 +43,67 @@ a{color:var(--clay-txt)}
 .lead{margin:0 0 16px;color:var(--dim);font-size:14px}
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 label.f{display:block}
-label.f span{display:block;font-size:14px;color:var(--dim);margin-bottom:4px}
-input[type=text],input[type=tel],input[type=url],input[type=password],input[inputmode]{width:100%;min-height:44px;padding:8px 12px;border:1px solid var(--n-4);border-radius:8px;background:var(--n-0)}
-input:focus{outline:2px solid var(--ink);outline-offset:1px;border-color:transparent}
-input.err{border-color:var(--bad);background:var(--bad-bg)}
+label.f>span{display:block;font-size:14px;color:var(--dim);margin-bottom:4px}
+input[type=text],input[type=tel],input[type=url],input[type=password],input[inputmode],textarea{width:100%;min-height:44px;padding:8px 12px;border:1px solid var(--n-4);border-radius:8px;background:var(--n-0)}
+textarea{resize:vertical;min-height:72px}
+input:focus,textarea:focus{outline:2px solid var(--ink);outline-offset:1px;border-color:transparent}
+.err{border-color:var(--bad)!important;background:var(--bad-bg)!important}
 .hint{font-size:14px;color:var(--dim);margin-top:4px}
+.hint--bad{color:var(--bad)}
 .ser{margin:24px 0 8px;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--dim)}
 .ser:first-child{margin-top:0}
 .h{display:grid;grid-template-columns:72px 1fr auto;gap:12px 16px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
-.h:first-of-type{border-top:0}
-.h img{width:72px;height:54px;object-fit:cover;border-radius:8px;background:var(--n-2)}
+.ser+.h{border-top:0}
+.h>img{width:72px;height:54px;object-fit:cover;border-radius:8px;background:var(--n-2)}
 .h__t{font-weight:500}
 .h__p{font-size:14px;color:var(--dim)}
 .h__p b{font-weight:500;color:var(--ink)}
 .tag{display:inline-block;margin-left:8px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:600;line-height:20px;text-transform:uppercase;letter-spacing:.03em;vertical-align:1px}
 .tag--hand{background:#FCEFE9;color:var(--clay-txt)}.tag--off{background:var(--n-2);color:var(--dim)}.tag--chg{background:#E8EEFB;color:#2A4A9A}
-.h.is-off img{filter:grayscale(1);opacity:.55}.h.is-off .h__t{color:var(--dim)}
-.h__a{display:flex;gap:8px;align-items:center}
-.sw{position:relative;display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--dim);cursor:pointer;user-select:none}
+.h.is-off>img{filter:grayscale(1);opacity:.55}.h.is-off .h__t{color:var(--dim)}
+.h__a{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.sw{position:relative;display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--dim);cursor:pointer;user-select:none;margin-right:4px}
 .sw input{position:absolute;opacity:0;width:1px;height:1px}
 .sw i{width:44px;height:26px;border-radius:999px;background:var(--n-4);position:relative;transition:background .2s;flex:none}
 .sw i::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:var(--sh-1);transition:transform .2s}
 .sw input:checked+i{background:var(--ok)}.sw input:checked+i::after{transform:translateX(18px)}
 .sw input:focus-visible+i{outline:2px solid var(--ink);outline-offset:2px}
-.pr{grid-column:1/-1;background:var(--n-1);border-radius:12px;padding:16px}
+.pn{grid-column:1/-1;background:var(--n-1);border-radius:12px;padding:16px}
 .pr__g{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
-.pr__a{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.pr__c{font-size:14px;color:var(--dim);flex:1;min-width:200px}
+.pn__a{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px}
+.pn__a .sp{flex:1;min-width:120px;font-size:14px;color:var(--dim)}
+.pn h3{margin:24px 0 8px;font-size:17px;font-weight:600}
+.pn h3 small{font-weight:400;color:var(--dim);font-size:14px;margin-left:8px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.fr{background:var(--card);border-radius:12px;box-shadow:var(--edge);overflow:hidden;display:flex;flex-direction:column}
+.fr__ph{position:relative;aspect-ratio:4/3;background:var(--n-2)}
+.fr__ph img{width:100%;height:100%;object-fit:cover;display:block}
+.fr__n{position:absolute;left:8px;top:8px;min-width:24px;height:24px;padding:0 8px;border-radius:999px;background:rgb(34 48 76/.8);color:#fff;font-size:12px;font-weight:600;display:grid;place-items:center}
+.fr__new{position:absolute;right:8px;top:8px;padding:0 8px;border-radius:999px;background:var(--ok);color:#fff;font-size:12px;font-weight:600;line-height:24px}
+.fr textarea{border:0;border-top:1px solid var(--line);border-radius:0;min-height:60px;font-size:14px;background:var(--card)}
+.fr__a{display:flex;border-top:1px solid var(--line)}
+.fr__a button{flex:1;min-height:40px;border:0;background:none;cursor:pointer;font-size:14px;color:var(--dim)}
+.fr__a button+button{border-left:1px solid var(--line)}
+.fr__a button:hover{background:var(--n-2);color:var(--ink)}
+.fr__a button:disabled{opacity:.35;cursor:default;background:none}
+.fr.is-del .fr__ph img{opacity:.3;filter:grayscale(1)}.fr.is-del textarea{opacity:.4}
+.add{display:grid;place-items:center;aspect-ratio:4/3;border:2px dashed var(--n-4);border-radius:12px;color:var(--dim);font-size:14px;cursor:pointer;text-align:center;padding:8px}
+.add:hover{border-color:var(--ink);color:var(--ink)}
+.add input{position:absolute;opacity:0;width:1px;height:1px}
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:5;background:rgb(255 255 255/.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 -1px 0 var(--line)}
 .bar__in{max-width:880px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:16px}
 .bar__t{flex:1;font-size:14px;color:var(--dim)}
 .bar__t b{color:var(--ink);font-weight:500}
 .st{display:grid;gap:8px;margin:0;padding:0;list-style:none}
-.st li{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.st li{display:flex;gap:12px;align-items:flex-start;font-size:15px;flex-wrap:wrap}
 .st li::before{content:"";flex:none;width:20px;height:20px;margin-top:2px;border-radius:50%;box-shadow:inset 0 0 0 2px var(--n-4)}
-.st li.on::before{box-shadow:inset 0 0 0 2px var(--ink);border-top-color:transparent;animation:spin 1s linear infinite;background:conic-gradient(var(--ink) 0 25%,transparent 0)}
+.st li.on::before{animation:spin 1s linear infinite;background:conic-gradient(var(--ink) 0 25%,transparent 0);box-shadow:inset 0 0 0 2px var(--n-4)}
 .st li.ok::before{background:var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");box-shadow:none}
 .st li.bad::before{background:var(--bad);box-shadow:none}
-.st small{display:block;color:var(--dim);font-size:14px}
+.st small{flex-basis:100%;padding-left:32px;margin-top:-6px;color:var(--dim);font-size:14px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .msg{padding:12px 16px;border-radius:12px;font-size:15px;margin-bottom:16px}
-.msg--bad{background:var(--bad-bg);color:var(--bad)}.msg--ok{background:var(--ok-bg);color:var(--ok)}
+.msg--bad{background:var(--bad-bg);color:var(--bad)}
 .login p{margin:0 0 12px}
 .login ol{margin:0 0 16px;padding-left:20px;color:var(--dim);font-size:15px}
 .login ol li{margin-bottom:4px}
@@ -90,9 +111,10 @@ input.err{border-color:var(--bad);background:var(--bad-bg)}
 @media(max-width:640px){
   .wrap{padding-top:16px}.box{padding:16px;border-radius:12px}
   .fields{grid-template-columns:1fr}
-  .h{grid-template-columns:56px 1fr}.h img{width:56px;height:42px}
-  .h__a{grid-column:1/-1;justify-content:space-between}
+  .h{grid-template-columns:56px 1fr}.h>img{width:56px;height:42px}
+  .h__a{grid-column:1/-1;justify-content:flex-start}.h__a .sw{margin-right:auto}
   .pr__g{grid-template-columns:1fr}
+  .gal{grid-template-columns:1fr 1fr;gap:8px}
   .bar__in{flex-wrap:wrap;gap:8px 12px}.bar__t{flex-basis:100%}.bar__in .btn{flex:1}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -158,15 +180,21 @@ input.err{border-color:var(--bad);background:var(--bad-bg)}
 
 <script>
 (function () {
+  'use strict';
   var OWNER = 'narimanrabota-dot', REPO = 'moy-teply-dom', BRANCH = 'main';
-  var PRAVKI = 'admin/pravki.json', DOMA = 'admin/doma.json', WORKFLOW = 'admin.yml';
+  var PRAVKI = 'admin/pravki.json', DOMA = 'admin/doma.json';
   var KEY = 'mtd_admin_token';
-  // на своём компьютере (localhost) — поддельный GitHub для проверки: tools/admin_mock.py
   var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? '/_gh' : 'https://api.github.com';
+  var BASE = '/repos/' + OWNER + '/' + REPO;
   var PACKS = ['Холодный контур', 'Комфорт', 'Премиум'];
+  var SECTIONS = ['kontakty', 'skryty', 'ceny', 'teksty', 'galereya'];
+  var MAX_SIDE = 2400, MIN_SIDE = 1000;
   var $ = function (id) { return document.getElementById(id); };
 
-  var token = '', sha = null, saved = {}, draft = {}, doma = null, openPrice = {};
+  var token = '', sha = null, saved = {}, draft = {}, doma = null;
+  var open = {};       // открытая панель у дома: {card: 'price' | 'edit'}
+  var ed = {};         // черновик редактора текстов и фото: {card: {title, sub, frames: [...]}}
+  var uploads = {};    // новые фото до публикации: {'admin/foto/….jpg': {blob, url}}
 
   function store(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
   function read(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -174,41 +202,65 @@ input.err{border-color:var(--bad);background:var(--bad-bg)}
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function rub(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽'; }
   function num(s) { var d = String(s || '').replace(/\D/g, ''); return d ? +d : 0; }
+  function squash(s) { return String(s || '').replace(/\s+/g, ' ').trim(); }
   function showErr(t) { var e = $('err'); e.textContent = t || ''; e.hidden = !t; if (t) window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function house(card) { return doma.doma.filter(function (h) { return h.card === card; })[0]; }
+  function plural(n, a, b, c) { var m = n % 10, h = n % 100; return m === 1 && h !== 11 ? a : m >= 2 && m <= 4 && (h < 12 || h > 14) ? b : c; }
 
   // ── GitHub ──
-  function gh(path, opt) {
+  async function gh(path, opt) {
     opt = opt || {};
     var h = { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
     if (opt.body) h['Content-Type'] = 'application/json';
-    return fetch(API + path, { method: opt.method || 'GET', headers: h, body: opt.body, cache: 'no-store' })
-      .then(function (r) {
-        if (r.status === 404 && opt.allow404) return null;
-        if (!r.ok) return r.json().catch(function () { return {}; }).then(function (j) {
-          var e = new Error(j.message || ('GitHub ответил ' + r.status)); e.status = r.status; throw e;
-        });
-        return r.status === 204 ? null : r.json();
-      });
+    var r = await fetch(API + path, { method: opt.method || 'GET', headers: h, body: opt.body ? JSON.stringify(opt.body) : undefined, cache: 'no-store' });
+    if (r.status === 404 && opt.allow404) return null;
+    if (!r.ok) {
+      var j = await r.json().catch(function () { return {}; });
+      var e = new Error(j.message || ('GitHub ответил ' + r.status)); e.status = r.status; throw e;
+    }
+    return r.status === 204 ? null : r.json();
   }
   function b64decode(s) {
     var bin = atob(s.replace(/\s/g, '')), a = new Uint8Array(bin.length);
     for (var i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i);
     return new TextDecoder().decode(a);
   }
-  function b64encode(str) {
-    var a = new TextEncoder().encode(str), s = '';
+  function bytesB64(a) {
+    var s = '';
     for (var i = 0; i < a.length; i += 0x8000) s += String.fromCharCode.apply(null, a.subarray(i, i + 0x8000));
     return btoa(s);
   }
-  function getFile(path) {
-    return gh('/repos/' + OWNER + '/' + REPO + '/contents/' + path + '?ref=' + BRANCH, { allow404: true }).then(function (f) {
-      return f ? { sha: f.sha, text: b64decode(f.content) } : null;
-    });
+  async function getFile(path) {
+    var f = await gh(BASE + '/contents/' + path + '?ref=' + BRANCH, { allow404: true });
+    if (!f) return null;
+    // большие файлы GitHub отдаёт без content — тогда через blob
+    var text = f.content ? b64decode(f.content) : b64decode((await gh(BASE + '/git/blobs/' + f.sha)).content);
+    return { sha: f.sha, text: text };
   }
-  function sha1hex(text) {
-    return crypto.subtle.digest('SHA-1', new TextEncoder().encode(text)).then(function (b) {
-      return Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
-    });
+  // Один коммит из нескольких файлов: правки и новые фото уходят вместе (Git Data API)
+  async function commit(files, message) {
+    for (var attempt = 0; attempt < 3; attempt++) {
+      var ref = await gh(BASE + '/git/ref/heads/' + BRANCH);
+      var head = ref.object.sha;
+      var base = await gh(BASE + '/git/commits/' + head);
+      var tree = [];
+      for (var i = 0; i < files.length; i++) {
+        var b = await gh(BASE + '/git/blobs', { method: 'POST', body: { content: files[i].b64, encoding: 'base64' } });
+        tree.push({ path: files[i].path, mode: '100644', type: 'blob', sha: b.sha });
+      }
+      var t = await gh(BASE + '/git/trees', { method: 'POST', body: { base_tree: base.tree.sha, tree: tree } });
+      var c = await gh(BASE + '/git/commits', { method: 'POST', body: { message: message, tree: t.sha, parents: [head] } });
+      try {
+        await gh(BASE + '/git/refs/heads/' + BRANCH, { method: 'PATCH', body: { sha: c.sha } });
+        return c.sha;
+      } catch (e) {
+        if (e.status !== 422 || attempt === 2) throw e;   // кто-то записал в ту же секунду — пробуем ещё раз
+      }
+    }
+  }
+  async function sha1hex(bytes) {
+    var b = await crypto.subtle.digest('SHA-1', bytes);
+    return Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
   }
 
   // ── Проверки, как в tools/admin_apply.py ──
@@ -216,35 +268,44 @@ input.err{border-color:var(--bad);background:var(--bad-bg)}
   function tgOk(s) { return /^(?:https?:\/\/)?(?:t\.me|telegram\.me)\/[A-Za-z0-9_+]{3,64}\/?$/.test(s) || /^@?[A-Za-z0-9_]{5,32}$/.test(s); }
   function maxOk(s) { return /^https:\/\/(?:web\.)?max\.ru\/[^\s"'<>]+$/.test(s); }
   var CHECK = { phone: phoneOk, whatsapp: phoneOk, telegram: tgOk, max: maxOk };
+  function normTitle(t) { return squash(t).replace(/(\d)\s*[xх×*]\s*(\d)/g, '$1 × $2'); }
+  function titleErr(card, t) {
+    if (!/^\S+ \d[\d,]* × \d[\d,]*( .+)?$/.test(t) || t.length > 80) return 'Название — серия и размер в начале: «Стамбул 9 × 8 …», до 80 знаков.';
+    if (doma.doma.some(function (h) { return h.card !== card && (titleOf(h) === t); })) return 'Такое название уже есть у другого дома.';
+    return '';
+  }
 
-  // ── Вход ──
-  function login(t) {
-    token = t;
-    showErr('');
-    return gh('/repos/' + OWNER + '/' + REPO).then(function (r) {
+  // ── Вход и загрузка ──
+  async function login(t) {
+    token = t; showErr('');
+    try {
+      var r = await gh(BASE);
       if (!r.permissions || !r.permissions.push) throw new Error('У ключа нет права записи в репозиторий ' + REPO + '.');
       store(KEY, t);
       $('login').hidden = true; $('out').hidden = false;
-      return load();
-    }).catch(function (e) {
+      await load();
+    } catch (e) {
       token = ''; store(KEY, null);
       $('login').hidden = false; $('app').hidden = true; $('bar').hidden = true; $('out').hidden = true;
       showErr(e.status === 401 ? 'Ключ не подошёл: GitHub его не принял. Проверьте, что он скопирован целиком и не просрочен.' : 'Не получилось войти: ' + e.message);
-    });
+    }
   }
-
-  function load() {
-    return Promise.all([getFile(PRAVKI), getFile(DOMA)]).then(function (res) {
-      var p = res[0], d = res[1];
-      if (!d) throw new Error('в репозитории нет ' + DOMA + ' — его создаёт tools/admin_apply.py');
-      sha = p ? p.sha : null;
-      saved = p ? JSON.parse(p.text || '{}') : {};
-      doma = JSON.parse(d.text);
-      draft = clone(saved);
-      ['kontakty', 'skryty', 'ceny'].forEach(function (k) { if (!draft[k]) draft[k] = k === 'skryty' ? [] : {}; });
+  function fresh(o) {
+    var d = clone(o || {});
+    SECTIONS.forEach(function (k) { if (!d[k]) d[k] = k === 'skryty' ? [] : {}; });
+    return d;
+  }
+  async function load() {
+    try {
+      var res = await Promise.all([getFile(PRAVKI), getFile(DOMA)]);
+      if (!res[1]) throw new Error('в репозитории нет ' + DOMA + ' — его создаёт tools/admin_apply.py');
+      sha = res[0] ? res[0].sha : null;
+      saved = res[0] ? JSON.parse(res[0].text || '{}') : {};
+      doma = JSON.parse(res[1].text);
+      draft = fresh(saved); open = {}; ed = {};
       fillContacts(); render(); updateBar();
       $('app').hidden = false; $('bar').hidden = false;
-    }).catch(function (e) { showErr('Не получилось загрузить данные сайта: ' + e.message); });
+    } catch (e) { showErr('Не получилось загрузить данные сайта: ' + e.message); }
   }
 
   // ── Контакты ──
@@ -261,6 +322,7 @@ input.err{border-color:var(--bad);background:var(--bad-bg)}
       var el = $('k-' + f);
       el.value = draft.kontakty[f] || shown(f, doma.kontakty[f]);
       el.dataset.site = shown(f, doma.kontakty[f]);
+      el.classList.remove('err');
     });
   }
   Object.keys(CHECK).forEach(function (f) {
@@ -272,71 +334,214 @@ input.err{border-color:var(--bad);background:var(--bad-bg)}
     });
   });
 
-  // ── Дома ──
+  // ── Дома: список ──
   function isHidden(card) { return draft.skryty.indexOf(card) >= 0; }
-  function handOf(h) { return draft.ceny[h.slug]; }
+  function titleOf(h) { return (draft.teksty[h.card] && draft.teksty[h.card].title) || h.title; }
+  function framesOf(h) {
+    var g = draft.galereya[h.card];
+    if (!g) return h.gallery.map(function (f) { return { src: f.src, th: f.th, alt: f.alt, kind: f.kind }; });
+    return g.map(function (f) {
+      if (f.upload) return { upload: f.upload, kind: f.kind, alt: f.alt, th: uploads[f.upload] ? uploads[f.upload].url : '' };
+      var site = h.gallery.filter(function (x) { return x.src === f.src; })[0];
+      return { src: f.src, th: site ? site.th : f.src.replace(/\.webp$/, '-th.webp'), alt: f.alt, kind: /-interer-/.test(f.src) ? 'interer' : 'fasad' };
+    });
+  }
+  function changedHouse(h) {
+    function same(k) { return JSON.stringify(normal(saved)[k] && normal(saved)[k][h.card] || null) === JSON.stringify(normal(draft)[k] && normal(draft)[k][h.card] || null); }
+    return isHidden(h.card) !== ((saved.skryty || []).indexOf(h.card) >= 0) ||
+      JSON.stringify((saved.ceny || {})[h.slug] || null) !== JSON.stringify(draft.ceny[h.slug] || null) ||
+      !same('teksty') || !same('galereya');
+  }
   function render() {
-    var box = $('doma'), html = '', ser = null;
+    var html = '', ser = null;
     doma.doma.forEach(function (h) {
       if (h.series !== ser) { ser = h.series; html += '<div class="ser">' + esc(ser || 'Без серии') + '</div>'; }
-      var hand = handOf(h), off = isHidden(h.card);
+      var hand = draft.ceny[h.slug], off = isHidden(h.card);
       var price = hand ? hand[PACKS[0]] : (h.prices[PACKS[0]] || 0);
-      var chg = off !== h.hidden || JSON.stringify(hand || null) !== JSON.stringify((saved.ceny || {})[h.slug] || null);
+      var fr = framesOf(h)[0];
       html += '<div class="h' + (off ? ' is-off' : '') + '" data-card="' + esc(h.card) + '">' +
-        '<img src="../' + esc(h.photo) + '" alt="" loading="lazy">' +
-        '<div><div class="h__t">' + esc(h.title) +
+        '<img src="' + esc(fr ? (fr.upload ? fr.th : '../' + fr.th) : '../' + h.photo) + '" alt="" loading="lazy">' +
+        '<div><div class="h__t">' + esc(titleOf(h)) +
         (hand ? '<span class="tag tag--hand">ручная цена</span>' : '') +
         (off ? '<span class="tag tag--off">скрыт</span>' : '') +
-        (chg ? '<span class="tag tag--chg">изменено</span>' : '') + '</div>' +
+        (changedHouse(h) ? '<span class="tag tag--chg">изменено</span>' : '') + '</div>' +
         '<div class="h__p">' + (price ? 'от <b>' + rub(price) + '</b>' : 'цены нет') + '</div></div>' +
         '<div class="h__a"><label class="sw"><input type="checkbox" data-act="show"' + (off ? '' : ' checked') + '><i></i>На сайте</label>' +
-        '<button class="btn btn--ghost btn--sm" data-act="price" aria-expanded="' + (!!openPrice[h.slug]) + '">Цена</button></div>' +
-        (openPrice[h.slug] ? priceForm(h) : '') + '</div>';
+        '<button class="btn btn--ghost btn--sm" data-act="price" aria-expanded="' + (open[h.card] === 'price') + '">Цена</button>' +
+        '<button class="btn btn--ghost btn--sm" data-act="edit" aria-expanded="' + (open[h.card] === 'edit') + '">Тексты и фото</button></div>' +
+        (open[h.card] === 'price' ? priceForm(h) : open[h.card] === 'edit' ? editForm(h) : '') + '</div>';
     });
-    box.innerHTML = html;
+    $('doma').innerHTML = html;
   }
+
+  // ── Цена ──
   function priceForm(h) {
-    var hand = handOf(h), cur = hand || h.prices;
+    var hand = draft.ceny[h.slug], cur = hand || h.prices;
     var calc = h.calc ? PACKS.map(function (p) { return rub(h.calc[p]); }).join(' · ') : 'нет';
-    return '<div class="pr"><div class="pr__g">' + PACKS.map(function (p, i) {
+    return '<div class="pn"><div class="pr__g">' + PACKS.map(function (p, i) {
       return '<label class="f"><span>' + p + '</span><input inputmode="numeric" data-pack="' + i + '" value="' + (cur[p] ? rub(cur[p]).replace(/ ₽$/, '') : '') + '"></label>';
-    }).join('') + '</div><div class="pr__a">' +
-      '<span class="pr__c">Калькулятор: ' + calc + '</span>' +
+    }).join('') + '</div><div class="pn__a">' +
+      '<span class="sp">Калькулятор: ' + calc + '</span>' +
       (hand ? '<button class="btn btn--ghost btn--sm" data-act="calc">Вернуть цену калькулятора</button>' : '') +
       '<button class="btn btn--sm" data-act="set">Поставить эту цену</button></div>' +
-      '<div class="hint" data-pr-err></div></div>';
+      '<div class="hint hint--bad" data-msg></div></div>';
   }
-  $('doma').addEventListener('change', function (e) {
-    if (e.target.getAttribute('data-act') !== 'show') return;
-    var card = e.target.closest('.h').getAttribute('data-card');
-    draft.skryty = draft.skryty.filter(function (c) { return c !== card; });
-    if (!e.target.checked) draft.skryty.push(card);
+
+  // ── Тексты и фото ──
+  function editState(h) {
+    if (!ed[h.card]) {
+      var tk = draft.teksty[h.card] || {};
+      ed[h.card] = { title: tk.title || h.title, sub: tk.sub || h.sub, frames: framesOf(h).map(function (f) { f.del = false; return f; }) };
+    }
+    return ed[h.card];
+  }
+  function editForm(h) {
+    var st = editState(h);
+    function group(kind, label) {
+      var list = st.frames.map(function (f, i) { return { f: f, i: i }; }).filter(function (x) { return x.f.kind === kind; });
+      var live = list.filter(function (x) { return !x.f.del; });
+      var out = '<h3>' + label + '<small>' + live.length + ' ' + plural(live.length, 'фото', 'фото', 'фото') + '</small></h3><div class="gal">';
+      list.forEach(function (x, j) {
+        var f = x.f, n = live.indexOf(x) + 1;
+        out += '<div class="fr' + (f.del ? ' is-del' : '') + '" data-i="' + x.i + '">' +
+          '<div class="fr__ph"><img src="' + esc(f.upload ? f.th : '../' + f.th) + '" alt="" loading="lazy">' +
+          (f.del ? '' : '<span class="fr__n">' + n + '</span>') + (f.upload ? '<span class="fr__new">новое</span>' : '') + '</div>' +
+          '<textarea data-alt placeholder="Подпись к фото" maxlength="150"' + (f.del ? ' disabled' : '') + '>' + esc(f.alt) + '</textarea>' +
+          '<div class="fr__a">' +
+          '<button type="button" data-mv="-1" aria-label="Раньше"' + (f.del || j === 0 ? ' disabled' : '') + '>←</button>' +
+          '<button type="button" data-mv="1" aria-label="Позже"' + (f.del || j === list.length - 1 ? ' disabled' : '') + '>→</button>' +
+          '<button type="button" data-del>' + (f.del ? 'Вернуть' : 'Убрать') + '</button></div></div>';
+      });
+      out += '<label class="add">+ Добавить фото<input type="file" accept="image/*" multiple data-add="' + kind + '"></label></div>';
+      return out;
+    }
+    return '<div class="pn">' +
+      '<div class="fields">' +
+      '<label class="f"><span>Название</span><input type="text" data-title value="' + esc(st.title) + '"></label>' +
+      '<label class="f"><span>Подпись под названием</span><textarea data-sub maxlength="300">' + esc(st.sub) + '</textarea></label>' +
+      '</div><div class="hint hint--bad" data-msg></div>' +
+      group('fasad', 'Фото снаружи') + group('interer', 'Фото внутри') +
+      '<div class="pn__a"><span class="sp">Сначала идут фото снаружи, за ними — внутри. Первое фото — на плитке в каталоге.</span>' +
+      '<button class="btn btn--ghost btn--sm" data-act="ed-cancel">Отменить</button>' +
+      '<button class="btn btn--sm" data-act="ed-save">Готово</button></div></div>';
+  }
+  function moveFrame(st, i, dir) {
+    var kind = st.frames[i].kind;
+    var idx = st.frames.map(function (f, k) { return k; }).filter(function (k) { return st.frames[k].kind === kind; });
+    var pos = idx.indexOf(i), to = idx[pos + dir];
+    if (to == null) return;
+    var t = st.frames[i]; st.frames[i] = st.frames[to]; st.frames[to] = t;
+  }
+  function toJpeg(file) {
+    return new Promise(function (res, rej) {
+      var url = URL.createObjectURL(file), img = new Image();
+      img.onload = function () {
+        var w = img.naturalWidth, h = img.naturalHeight;
+        if (Math.max(w, h) < MIN_SIDE) { URL.revokeObjectURL(url); rej(new Error('«' + file.name + '» слишком маленькое (' + w + ' × ' + h + '). Нужно от ' + MIN_SIDE + ' px по длинной стороне.')); return; }
+        var k = Math.min(1, MAX_SIDE / Math.max(w, h)), c = document.createElement('canvas');
+        c.width = Math.round(w * k); c.height = Math.round(h * k);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        c.toBlob(function (b) { b ? res(b) : rej(new Error('Не получилось подготовить «' + file.name + '».')); }, 'image/jpeg', 0.9);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); rej(new Error('«' + file.name + '» не открывается в этом браузере. Сохраните фото как JPG и добавьте снова.')); };
+      img.src = url;
+    });
+  }
+  async function addPhotos(card, kind, files, row) {
+    var st = ed[card], msg = row.querySelector('[data-msg]');
+    msg.textContent = '';
+    for (var i = 0; i < files.length; i++) {
+      try {
+        var blob = await toJpeg(files[i]);
+        var path = 'admin/foto/' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '.jpg';
+        var url = URL.createObjectURL(blob);
+        uploads[path] = { blob: blob, url: url };
+        var last = -1;
+        st.frames.forEach(function (f, k) { if (f.kind === kind) last = k; });
+        var fr = { upload: path, kind: kind, alt: '', th: url, del: false };
+        if (last < 0 && kind === 'fasad') st.frames.unshift(fr); else st.frames.splice(last < 0 ? st.frames.length : last + 1, 0, fr);
+      } catch (e) { msg.textContent = e.message; }
+    }
+    var keep = msg.textContent;
+    render();
+    if (keep) document.querySelector('.h[data-card="' + card + '"] [data-msg]').textContent = keep;
+  }
+  function saveEdit(h, row) {
+    var st = ed[h.card], msg = row.querySelector('[data-msg]');
+    var t = normTitle(st.title), sub = squash(st.sub);
+    if (t !== h.title) {
+      var err = titleErr(h.card, t);
+      if (err) { msg.textContent = err; row.querySelector('[data-title]').classList.add('err'); return; }
+    }
+    var tk = {};
+    if (t !== h.title) tk.title = t;
+    if (sub && sub !== h.sub) tk.sub = sub;
+    if (Object.keys(tk).length) draft.teksty[h.card] = tk; else delete draft.teksty[h.card];
+    var live = st.frames.filter(function (f) { return !f.del; });
+    if (!live.length) { msg.textContent = 'В галерее должно остаться хотя бы одно фото.'; return; }
+    live.sort(function (a, b) { return (a.kind === 'interer') - (b.kind === 'interer'); });
+    var list = live.map(function (f) {
+      return f.upload ? { upload: f.upload, kind: f.kind, alt: squash(f.alt) } : { src: f.src, alt: squash(f.alt) };
+    });
+    var site = h.gallery.map(function (f) { return { src: f.src, alt: f.alt }; });
+    if (JSON.stringify(list) === JSON.stringify(site)) delete draft.galereya[h.card]; else draft.galereya[h.card] = list;
+    delete ed[h.card]; open[h.card] = false;
     render(); updateBar();
+  }
+
+  // ── События списка домов ──
+  $('doma').addEventListener('change', function (e) {
+    var row = e.target.closest('.h'); if (!row) return;
+    var card = row.getAttribute('data-card');
+    if (e.target.getAttribute('data-act') === 'show') {
+      draft.skryty = draft.skryty.filter(function (c) { return c !== card; });
+      if (!e.target.checked) draft.skryty.push(card);
+      render(); updateBar();
+    } else if (e.target.hasAttribute('data-add')) {
+      addPhotos(card, e.target.getAttribute('data-add'), [].slice.call(e.target.files), row);
+    }
+  });
+  $('doma').addEventListener('input', function (e) {
+    var row = e.target.closest('.h'); if (!row) return;
+    var st = ed[row.getAttribute('data-card')]; if (!st) return;
+    if (e.target.hasAttribute('data-title')) { st.title = e.target.value; e.target.classList.remove('err'); }
+    else if (e.target.hasAttribute('data-sub')) st.sub = e.target.value;
+    else if (e.target.hasAttribute('data-alt')) st.frames[+e.target.closest('.fr').getAttribute('data-i')].alt = e.target.value;
   });
   $('doma').addEventListener('click', function (e) {
+    var row = e.target.closest('.h'); if (!row) return;
+    var h = house(row.getAttribute('data-card')), st = ed[h.card];
+    var fr = e.target.closest('.fr');
+    if (fr && st) {
+      var i = +fr.getAttribute('data-i');
+      if (e.target.closest('[data-mv]')) { moveFrame(st, i, +e.target.closest('[data-mv]').getAttribute('data-mv')); render(); }
+      else if (e.target.closest('[data-del]')) { st.frames[i].del = !st.frames[i].del; render(); }
+      return;
+    }
     var b = e.target.closest('[data-act]');
-    if (!b || b.getAttribute('data-act') === 'show') return;
-    var row = b.closest('.h'), h = doma.doma.filter(function (x) { return x.card === row.getAttribute('data-card'); })[0];
+    if (!b) return;
     var act = b.getAttribute('data-act');
-    if (act === 'price') { openPrice[h.slug] = !openPrice[h.slug]; render(); return; }
-    if (act === 'calc') { delete draft.ceny[h.slug]; openPrice[h.slug] = false; render(); updateBar(); return; }
+    if (act === 'price' || act === 'edit') { open[h.card] = open[h.card] === act ? false : act; if (act === 'edit' && !open[h.card]) delete ed[h.card]; render(); return; }
+    if (act === 'ed-cancel') { delete ed[h.card]; open[h.card] = false; render(); return; }
+    if (act === 'ed-save') { saveEdit(h, row); return; }
+    if (act === 'calc') { delete draft.ceny[h.slug]; open[h.card] = false; render(); updateBar(); return; }
     if (act === 'set') {
-      var vals = [].map.call(row.querySelectorAll('[data-pack]'), function (i) { return num(i.value); });
+      var vals = [].map.call(row.querySelectorAll('[data-pack]'), function (inp) { return num(inp.value); });
       var err = '';
       if (vals.some(function (v) { return v < 100000 || v > 100000000; })) err = 'Цена — от 100 000 до 100 000 000 ₽ в каждой комплектации.';
       else if (vals[0] > vals[1] || vals[1] > vals[2]) err = 'Цены должны расти: Холодный контур ≤ Комфорт ≤ Премиум.';
-      if (err) { row.querySelector('[data-pr-err]').textContent = err; return; }
-      var same = h.calc && PACKS.every(function (p, i) { return h.calc[p] === vals[i]; });
-      if (same) delete draft.ceny[h.slug];
+      if (err) { row.querySelector('[data-msg]').textContent = err; return; }
+      if (h.calc && PACKS.every(function (p, i) { return h.calc[p] === vals[i]; })) delete draft.ceny[h.slug];
       else { draft.ceny[h.slug] = {}; PACKS.forEach(function (p, i) { draft.ceny[h.slug][p] = vals[i]; }); }
-      openPrice[h.slug] = false; render(); updateBar();
+      open[h.card] = false; render(); updateBar();
     }
   });
 
   // ── Изменения и публикация ──
   function normal(o) {
     var c = clone(o || {});
-    ['kontakty', 'ceny'].forEach(function (k) { if (c[k] && !Object.keys(c[k]).length) delete c[k]; });
+    ['kontakty', 'ceny', 'teksty', 'galereya'].forEach(function (k) { if (c[k] && !Object.keys(c[k]).length) delete c[k]; });
     if (c.skryty) { c.skryty = c.skryty.slice().sort(); if (!c.skryty.length) delete c.skryty; }
     return c;
   }
@@ -346,24 +551,25 @@ input.err{border-color:var(--bad);background:var(--bad-bg)}
     Object.keys(CHECK).forEach(function (f) { if ((ka[f] || '') !== (kb[f] || '')) n++; });
     var sa = a.skryty || [], sb = b.skryty || [];
     sa.concat(sb).filter(function (c, i, all) { return all.indexOf(c) === i; }).forEach(function (c) { if ((sa.indexOf(c) >= 0) !== (sb.indexOf(c) >= 0)) n++; });
-    var ca = a.ceny || {}, cb = b.ceny || {};
-    Object.keys(Object.assign({}, ca, cb)).forEach(function (s) { if (JSON.stringify(ca[s] || null) !== JSON.stringify(cb[s] || null)) n++; });
+    ['ceny', 'teksty', 'galereya'].forEach(function (k) {
+      var x = a[k] || {}, y = b[k] || {};
+      Object.keys(Object.assign({}, x, y)).forEach(function (s) { if (JSON.stringify(x[s] || null) !== JSON.stringify(y[s] || null)) n++; });
+    });
     return n;
   }
-  function invalid() { return document.querySelectorAll('input.err').length > 0; }
-  function plural(n, a, b, c) { var m = n % 10, h = n % 100; return m === 1 && h !== 11 ? a : m >= 2 && m <= 4 && (h < 12 || h > 14) ? b : c; }
+  function invalid() { return document.querySelectorAll('#app input.err').length > 0; }
   function updateBar() {
-    var n = changes();
+    var n = changes(), editing = Object.keys(ed).length;
     $('bar-t').innerHTML = invalid() ? '<b>Исправьте поля, отмеченные красным</b>' :
+      editing ? '<b>Нажмите «Готово» в открытом доме</b> — потом публикуйте' :
       n ? '<b>' + n + ' ' + plural(n, 'изменение', 'изменения', 'изменений') + '</b> — ещё не на сайте' : 'Изменений нет';
-    $('pub').disabled = !n || invalid();
-    $('undo').disabled = !n;
+    $('pub').disabled = !n || invalid() || !!editing;
+    $('undo').disabled = !n && !editing;
   }
+  document.addEventListener('click', function () { setTimeout(updateBar, 0); });
   $('undo').addEventListener('click', function () {
-    draft = clone(saved);
-    ['kontakty', 'skryty', 'ceny'].forEach(function (k) { if (!draft[k]) draft[k] = k === 'skryty' ? [] : {}; });
-    document.querySelectorAll('input.err').forEach(function (i) { i.classList.remove('err'); });
-    openPrice = {}; fillContacts(); render(); updateBar();
+    draft = fresh(saved); open = {}; ed = {};
+    fillContacts(); render(); updateBar();
   });
 
   function step(id, cls, note) {
@@ -371,45 +577,58 @@ input.err{border-color:var(--bad);background:var(--bad-bg)}
     if (note != null) { var s = li.querySelector('small'); if (!s) { s = document.createElement('small'); li.appendChild(s); } s.innerHTML = note; }
   }
   var poll = null;
-  $('pub').addEventListener('click', function () {
-    var body = normal(draft), text = JSON.stringify(body, null, 1) + '\n';
+  $('pub').addEventListener('click', async function () {
+    var body = normal(draft), text = JSON.stringify(body, null, 1) + '\n', bytes = new TextEncoder().encode(text);
     $('pub').disabled = true; showErr('');
-    $('status').hidden = false; step('s1', 'on'); step('s2', ''); step('s3', '');
+    $('status').hidden = false; step('s1', 'on', ''); step('s2', '', '1–3 минуты'); step('s3', '', 'хостинг забирает изменения раз в 10 минут');
     $('status').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    gh('/repos/' + OWNER + '/' + REPO + '/contents/' + PRAVKI, {
-      method: 'PUT',
-      body: JSON.stringify({ message: 'Админка: правки владельца', content: b64encode(text), sha: sha || undefined, branch: BRANCH })
-    }).then(function (r) {
-      sha = r.content.sha; saved = clone(body); draft = clone(body);
-      ['kontakty', 'skryty', 'ceny'].forEach(function (k) { if (!draft[k]) draft[k] = k === 'skryty' ? [] : {}; });
+    try {
+      var now = await gh(BASE + '/contents/' + PRAVKI + '?ref=' + BRANCH, { allow404: true });
+      if ((now ? now.sha : null) !== sha) { var e = new Error('Правки поменялись с другого устройства — обновите страницу.'); e.status = 409; throw e; }
+      var files = [{ path: PRAVKI, b64: bytesB64(bytes) }];
+      var used = JSON.stringify(body.galereya || {});
+      var paths = Object.keys(uploads).filter(function (p) { return used.indexOf('"' + p + '"') >= 0; });
+      for (var i = 0; i < paths.length; i++) {
+        step('s1', 'on', 'Загружаю фото ' + (i + 1) + ' из ' + paths.length);
+        files.push({ path: paths[i], b64: bytesB64(new Uint8Array(await uploads[paths[i]].blob.arrayBuffer())) });
+      }
+      var commitSha = await commit(files, 'Админка: правки владельца' + (paths.length ? ' и ' + paths.length + ' ' + plural(paths.length, 'фото', 'фото', 'фото') : ''));
+      saved = clone(body);
+      var after = await gh(BASE + '/contents/' + PRAVKI + '?ref=' + BRANCH, { allow404: true });
+      sha = after ? after.sha : null;
+      step('s1', 'ok', ''); step('s2', 'on');
       render(); updateBar();
-      step('s1', 'ok'); step('s2', 'on');
-      return sha1hex(text).then(function (stamp) { watch(r.commit.sha, stamp.slice(0, 12)); });
-    }).catch(function (e) {
-      step('s1', 'bad', e.status === 409 ? 'Правки поменялись с другого устройства — обновите страницу.' : esc(e.message));
+      watch(commitSha, (await sha1hex(bytes)).slice(0, 12));
+    } catch (e) {
+      step('s1', 'bad', esc(e.message));
       updateBar();
-    });
+    }
   });
 
-  function watch(commit, stamp) {
+  function watch(commitSha, stamp) {
     clearInterval(poll);
     var started = Date.now(), built = false;
-    function tick() {
+    async function tick() {
       if (Date.now() - started > 30 * 60 * 1000) { clearInterval(poll); step(built ? 's3' : 's2', 'bad', 'Слишком долго — откройте страницу позже.'); return; }
-      if (!built) {
-        gh('/repos/' + OWNER + '/' + REPO + '/actions/runs?branch=' + BRANCH + '&per_page=10').then(function (r) {
-          var run = (r.workflow_runs || []).filter(function (x) { return x.head_sha === commit; })[0];
-          if (!run) return;
-          if (run.status !== 'completed') { step('s2', 'on'); return; }
-          if (run.conclusion === 'success') { built = true; step('s2', 'ok'); step('s3', 'on'); }
+      try {
+        if (!built) {
+          var r = await gh(BASE + '/actions/runs?branch=' + BRANCH + '&per_page=10');
+          var run = (r.workflow_runs || []).filter(function (x) { return x.head_sha === commitSha; })[0];
+          if (!run || run.status !== 'completed') return;
+          if (run.conclusion === 'success') { built = true; step('s2', 'ok', ''); step('s3', 'on'); }
           else { clearInterval(poll); step('s2', 'bad', 'Сборка остановилась, на сайт ничего не ушло. <a href="' + esc(run.html_url) + '" target="_blank" rel="noopener">Что случилось</a> — пришлите ссылку Claude.'); }
-        }).catch(function () {});
-        return;
-      }
-      // правка на сайте, когда хостинг отдаёт doma.json с отпечатком этой правки
-      fetch('doma.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
-        if (d && d.stamp === stamp) { clearInterval(poll); step('s3', 'ok', '<a href="/" target="_blank" rel="noopener">Открыть сайт</a>'); getFile(DOMA).then(function (f) { if (f) { doma = JSON.parse(f.text); fillContacts(); render(); } }); }
-      }).catch(function () {});
+          return;
+        }
+        // правка на сайте, когда хостинг отдаёт doma.json с отпечатком этой правки
+        var d = await fetch('doma.json?t=' + Date.now(), { cache: 'no-store' }).then(function (x) { return x.ok ? x.json() : null; }).catch(function () { return null; });
+        if (d && d.stamp === stamp) {
+          clearInterval(poll);
+          step('s3', 'ok', '<a href="/" target="_blank" rel="noopener">Открыть сайт</a>');
+          Object.keys(uploads).forEach(function (p) { URL.revokeObjectURL(uploads[p].url); });
+          uploads = {};
+          await load();
+        }
+      } catch (e) { /* сеть моргнула — следующая попытка через 15 с */ }
     }
     poll = setInterval(tick, 15000); tick();
   }
@@ -417,7 +636,7 @@ input.err{border-color:var(--bad);background:var(--bad-bg)}
   $('in').addEventListener('click', function () { var t = $('tok').value.trim(); if (t) login(t); });
   $('tok').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('in').click(); });
   $('out').addEventListener('click', function () { store(KEY, null); location.reload(); });
-  window.addEventListener('beforeunload', function (e) { if (changes()) { e.preventDefault(); e.returnValue = ''; } });
+  window.addEventListener('beforeunload', function (e) { if (changes() || Object.keys(ed).length) { e.preventDefault(); e.returnValue = ''; } });
 
   var t = read(KEY);
   if (t) login(t); else $('login').hidden = false;
