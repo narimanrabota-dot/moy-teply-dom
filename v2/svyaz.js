@@ -66,7 +66,16 @@
     '.up5 svg{width:18px;height:18px}.up5:focus-visible{outline:2px solid var(--clay-btn,#C24A28);outline-offset:3px}' +
     'body:has(.knp:not([hidden])) .up5,body:has(#callback:not([hidden])) .up5,body:has(.plx.is-open) .up5,body:has(.rvw.on) .up5,body:has(.nzv__p:not([hidden])) .up5{display:none}' +
     '@media(max-width:620px){.up5{left:12px;bottom:16px;height:38px;padding:0 12px 0 8px;font-size:13px}}' +
-    '@media(prefers-reduced-motion:reduce){.up5{transition:none}}@media print{.up5{display:none}}';
+    '@media(prefers-reduced-motion:reduce){.up5{transition:none}}@media print{.up5{display:none}}' +
+    /* пузырь «С возвращением» — те же .svz__q; кнопки внутри */
+    '.svz__acts{display:flex;gap:8px;margin-top:10px}.svz__acts a,.svz__acts button{flex:1;display:grid;place-items:center;height:36px;padding:0 8px;border-radius:8px;font:inherit;font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer;text-decoration:none}' +
+    '.svz__acts .a1{border:0;background:var(--ink,#22304C);color:#fff}.svz__acts .a2{border:1px solid var(--n-4,#d9d4ce);background:#fff;color:var(--ink,#22304C)}' +
+    /* окно при уходе с сайта (компьютер) */
+    '.xit{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:16px;background:rgb(34 48 76/.45)}' +
+    '.xit[hidden]{display:none}' +
+    '.xit__b{position:relative;width:420px;max-width:100%;padding:32px;background:#fff;color:var(--ink,#22304C);border-radius:20px;box-shadow:var(--sh-2,0 12px 28px -10px rgb(34 48 76/.28))}' +
+    '.xit__t{margin:0 0 8px;font-size:29px;font-weight:600;line-height:1.15}.xit__s{margin:0 0 16px;color:var(--dim,#616D85);font-size:17px}' +
+    '.xit__m{margin:8px 0 0;font-size:14px;color:var(--dim,#616D85)}';
 
   var IC = {
     wa: '<path fill="currentColor" d="M12 2.6a9.3 9.3 0 0 0-8 14.05L2.7 21.4l4.9-1.27A9.3 9.3 0 1 0 12 2.6Zm0 1.9a7.4 7.4 0 1 1-3.9 13.7l-.3-.18-2.9.76.77-2.83-.2-.31A7.4 7.4 0 0 1 12 4.5Zm-3.2 3.6c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.2.87 2.35.99 2.51.12.16 1.7 2.7 4.2 3.68 2.08.82 2.5.66 2.95.62.45-.04 1.45-.59 1.66-1.17.2-.57.2-1.06.14-1.17-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12s-.63.8-.77.96c-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47Z"/>',
@@ -107,10 +116,13 @@
 
     noCall();
     upBtn();
+    exitOffer();
 
-    if (!house || off()) return;
     var img = document.querySelector('.sld__main img');
     var src = img ? (img.getAttribute('src') || '').replace(/\.webp(\?|$)/, '-th.webp$1') : '';
+    var back = welcomeBack(box, col, house);
+    if (house) remember(house, src);
+    if (back || !house || off()) return;
     var q = document.createElement('div');
     q.className = 'svz__q';
     q.setAttribute('role', 'status');
@@ -182,6 +194,86 @@
       go.textContent = 'Жду сообщения';
       msg.innerHTML = 'Не получилось отправить. Напишите нам сами: <a href="' + TG + '" target="_blank" rel="noopener">Telegram</a> · ' +
         '<a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">WhatsApp</a>';
+    }
+  }
+
+  /* «С возвращением»: человек уже смотрел дом в прошлый визит — напоминаем и предлагаем расчёт */
+  var LAST = 'mtd_last_house';
+  function remember(house, src) {
+    try { localStorage.setItem(LAST, JSON.stringify({ h: house, u: location.pathname, i: src, t: Date.now() })); } catch (e) {}
+  }
+  function welcomeBack(box, col, house) {
+    var l = null, seen = false;
+    try { l = JSON.parse(localStorage.getItem(LAST)); seen = sessionStorage.getItem('mtd_back_seen') === '1'; } catch (e) { return false; }
+    try { sessionStorage.setItem('mtd_back_seen', '1'); } catch (e) {}
+    if (seen || !l || !l.h || l.h === house || Date.now() - l.t < 30 * 60e3 || Date.now() - l.t > 30 * 864e5) return false;
+    var u = String(l.u || '').split('/').pop() || './';
+    var q = document.createElement('div');
+    q.className = 'svz__q';
+    q.setAttribute('role', 'status');
+    q.innerHTML = '<button class="svz__x" type="button" aria-label="Закрыть">×</button>' +
+      '<div class="svz__h">' + (l.i ? '<img src="" alt="" width="56" height="40">' : '') + '<span></span></div>' +
+      'С возвращением! Прислать расчёт этого дома?' +
+      '<div class="svz__acts"><button class="a1" type="button" data-callback>Прислать расчёт</button><a class="a2" href="">Открыть дом</a></div>';
+    if (l.i) q.querySelector('img').src = l.i;
+    q.querySelector('.svz__h span').textContent = 'Вы смотрели: ' + l.h;
+    q.querySelector('.a1').setAttribute('data-cb-title', 'Прислать расчёт: ' + l.h);
+    q.querySelector('.a2').href = u;
+    q.querySelector('.svz__x').addEventListener('click', function () { setOff(); q.remove(); });
+    q.querySelector('.a1').addEventListener('click', function () { q.remove(); });
+    setTimeout(function () {
+      box.insertBefore(q, col);
+      requestAnimationFrame(function () { q.classList.add('on'); });
+    }, 4000);
+    return true;
+  }
+
+  /* окно при уходе: только компьютер, не раньше 15 с на странице, один раз за визит */
+  function exitOffer() {
+    if (!window.matchMedia || !matchMedia('(hover:hover) and (pointer:fine) and (min-width:900px)').matches) return;
+    try { if (sessionStorage.getItem('mtd_exit') === '1') return; } catch (e) { return; }
+    var t0 = Date.now();
+    function busy() { return document.querySelector('.knp:not([hidden]),#callback:not([hidden]),.plx.is-open,.rvw.on,.nzv__p:not([hidden])'); }
+    function onOut(e) {
+      if (e.relatedTarget || e.clientY > 0 || Date.now() - t0 < 15000 || busy()) return;
+      document.removeEventListener('mouseout', onOut);
+      try { sessionStorage.setItem('mtd_exit', '1'); } catch (er) {}
+      show();
+    }
+    document.addEventListener('mouseout', onOut);
+    function show() {
+      var w = document.createElement('div');
+      w.className = 'xit';
+      w.innerHTML = '<form class="xit__b" role="dialog" aria-modal="true" aria-labelledby="xit-t" novalidate>' +
+        '<button class="nzv__x" type="button" aria-label="Закрыть">×</button>' +
+        '<p class="xit__t" id="xit-t">Уже уходите?</p>' +
+        '<p class="xit__s">Пришлём 3 похожих дома с ценами в мессенджер</p>' +
+        '<input class="nzv__in" type="text" autocomplete="tel" placeholder="Телефон или @ник в Telegram" aria-label="Телефон или ник в Telegram">' +
+        '<button class="nzv__go" type="submit">Прислать подборку</button>' +
+        '<p class="xit__m" role="status">Звонить не будем, если не попросите</p></form>';
+      document.body.appendChild(w);
+      var f = w.querySelector('form'), inp = w.querySelector('input'), go = w.querySelector('.nzv__go'), m = w.querySelector('.xit__m');
+      function close() { w.remove(); document.removeEventListener('keydown', esc); }
+      function esc(e) { if (e.key === 'Escape') close(); }
+      document.addEventListener('keydown', esc);
+      w.addEventListener('click', function (e) { if (e.target === w) close(); });
+      w.querySelector('.nzv__x').addEventListener('click', close);
+      inp.focus();
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var v = inp.value.trim(), lead = { kind: 'Подборка похожих домов' };
+        if (/[A-Za-z@]/.test(v)) lead.tg = v; else lead.phone = v;
+        if (!window.mtdLeadSend || v.replace(/\D/g, '').length < 10 && !lead.tg) { inp.classList.add('is-bad'); inp.focus(); return; }
+        go.disabled = true;
+        window.mtdLeadSend(lead).then(function () {
+          f.innerHTML = '<button class="nzv__x" type="button" aria-label="Закрыть">×</button><p class="xit__t">Готово</p><p class="xit__s">Пришлём подборку в ближайшее рабочее время.</p>';
+          f.querySelector('.nzv__x').addEventListener('click', close);
+        }, function (er) {
+          go.disabled = false;
+          if (er && (er.code === 'bad_phone' || er.code === 'bad_tg')) { inp.classList.add('is-bad'); m.textContent = 'Проверьте номер или ник — латиницей, от 5 знаков'; return; }
+          m.innerHTML = 'Не получилось отправить. Напишите нам сами: <a href="' + TG + '" target="_blank" rel="noopener">Telegram</a> · <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">WhatsApp</a>';
+        });
+      });
     }
   }
 
