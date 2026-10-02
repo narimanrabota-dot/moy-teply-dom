@@ -31,7 +31,30 @@
     'body:has(.knp:not([hidden])) .svz,body:has(#callback:not([hidden])) .svz,body:has(.plx.is-open) .svz,body:has(.rvw.on) .svz{display:none}' +
     '@media(max-width:620px){.svz{right:16px;bottom:80px;gap:8px}.svz__col{gap:6px;padding:6px}.svz__b{width:42px;height:42px}.svz__b svg{width:22px;height:22px}.svz__q{width:240px;font-size:13px}}' +
     '@media(prefers-reduced-motion:reduce){.svz__q,.svz__b{transition:none}}' +
-    '@media print{.svz{display:none}}';
+    '@media print{.svz{display:none}}' +
+    /* ярлык слева «Ответим без звонка» (вариант 2: тёмный с кирпичной кромкой, текст снизу вверх) */
+    '.nzv{position:fixed;left:0;top:0;bottom:0;z-index:54;display:flex;align-items:center;pointer-events:none}.nzv>*{pointer-events:auto}' +
+    '.nzv__tab{display:block;writing-mode:vertical-rl;rotate:180deg;margin:0;padding:24px 12px;border:0;border-left:4px solid var(--clay-btn,#C24A28);' +
+      'border-radius:12px 0 0 12px;background:var(--ink,#22304C);color:#fff;font:inherit;font-size:17px;font-weight:600;line-height:1.2;white-space:nowrap;cursor:pointer;' +
+      'box-shadow:var(--sh-2,0 12px 28px -10px rgb(34 48 76/.28));transition:padding .2s}' +
+    '.nzv__tab:hover{padding-bottom:28px}.nzv__tab:focus-visible{outline:2px solid var(--clay-btn,#C24A28);outline-offset:3px}' +
+    '.nzv__p{position:absolute;left:0;top:50%;transform:translateY(-50%);width:340px;padding:24px;background:#fff;color:var(--ink,#22304C);' +
+      'border-radius:0 20px 20px 0;box-shadow:var(--sh-2,0 12px 28px -10px rgb(34 48 76/.28))}' +
+    '.nzv__p[hidden],.nzv__tab[hidden]{display:none}' +
+    '.nzv__t{margin:0 0 4px;font-size:24px;font-weight:600;line-height:1.2}' +
+    '.nzv__s{margin:0 0 16px;color:var(--dim,#616D85);font-size:15px}' +
+    '.nzv__in{display:block;width:100%;height:48px;margin:0 0 8px;padding:0 12px;border:1px solid var(--n-4,#d9d4ce);border-radius:8px;font:inherit;font-size:17px;color:inherit;background:#fff}' +
+    '.nzv__in.is-bad{border-color:var(--clay-btn,#C24A28)}' +
+    '.nzv__go{display:block;width:100%;height:48px;border:0;border-radius:8px;background:var(--ink,#22304C);color:#fff;font:inherit;font-size:17px;font-weight:600;cursor:pointer}' +
+    '.nzv__go:hover{background:#2E3E60}.nzv__go:disabled{opacity:.6;cursor:progress}' +
+    '.nzv__m{margin:8px 0 0;font-size:14px;color:var(--dim,#616D85)}.nzv__m a{color:var(--clay-txt,#B84625)}' +
+    '.nzv__x{position:absolute;right:8px;top:8px;width:32px;height:32px;border:0;border-radius:50%;background:none;color:var(--dim,#616D85);font-size:22px;line-height:1;cursor:pointer}' +
+    '.nzv__x:hover{background:var(--n-2,#f3f1ee)}' +
+    'body:has(.knp:not([hidden])) .nzv,body:has(#callback:not([hidden])) .nzv,body:has(.plx.is-open) .nzv,body:has(.rvw.on) .nzv{display:none}' +
+    '@media(max-width:620px){.nzv__tab{padding:16px 8px;font-size:14px;border-left-width:3px}' +
+      '.nzv__p{position:fixed;left:8px;right:8px;top:auto;bottom:8px;width:auto;transform:none;border-radius:20px}}' +
+    'body:has(.nzv__p:not([hidden])) .knb,body:has(.nzv__p:not([hidden])) .svz{display:none}' +
+    '@media print{.nzv{display:none}}';
 
   var IC = {
     wa: '<path fill="currentColor" d="M12 2.6a9.3 9.3 0 0 0-8 14.05L2.7 21.4l4.9-1.27A9.3 9.3 0 1 0 12 2.6Zm0 1.9a7.4 7.4 0 1 1-3.9 13.7l-.3-.18-2.9.76.77-2.83-.2-.31A7.4 7.4 0 0 1 12 4.5Zm-3.2 3.6c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.2.87 2.35.99 2.51.12.16 1.7 2.7 4.2 3.68 2.08.82 2.5.66 2.95.62.45-.04 1.45-.59 1.66-1.17.2-.57.2-1.06.14-1.17-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12s-.63.8-.77.96c-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47Z"/>',
@@ -70,6 +93,8 @@
     box.appendChild(col);
     document.body.appendChild(box);
 
+    noCall();
+
     if (!house || off()) return;
     var img = document.querySelector('.sld__main img');
     var src = img ? (img.getAttribute('src') || '').replace(/\.webp(\?|$)/, '-th.webp$1') : '';
@@ -86,6 +111,65 @@
       box.insertBefore(q, col);
       requestAnimationFrame(function () { q.classList.add('on'); });
     }, 8000);
+  }
+
+  /* ярлык «Ответим без звонка»: только ник Telegram, заявка уходит через form.js (window.mtdLeadSend) */
+  function noCall() {
+    var w = document.createElement('div');
+    w.className = 'nzv';
+    w.innerHTML =
+      '<button class="nzv__tab" type="button" aria-expanded="false" aria-controls="nzv-p">Ответим без звонка</button>' +
+      '<form class="nzv__p" id="nzv-p" hidden novalidate>' +
+        '<button class="nzv__x" type="button" aria-label="Закрыть">×</button>' +
+        '<p class="nzv__t">Не любите звонки?</p>' +
+        '<p class="nzv__s">Ответим только в мессенджер</p>' +
+        '<input class="nzv__in" name="tg" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" ' +
+          'placeholder="@ник в Telegram" aria-label="Ваш ник в Telegram">' +
+        '<button class="nzv__go" type="submit">Жду сообщения</button>' +
+        '<p class="nzv__m" role="status">Напишем в Telegram, звонить не будем</p>' +
+      '</form>';
+    document.body.appendChild(w);
+    var tab = w.querySelector('.nzv__tab'), p = w.querySelector('.nzv__p'), inp = w.querySelector('.nzv__in'),
+        go = w.querySelector('.nzv__go'), msg = w.querySelector('.nzv__m');
+    function open(on) {
+      p.hidden = !on;
+      tab.hidden = on;
+      tab.setAttribute('aria-expanded', on ? 'true' : 'false');
+      if (on) inp.focus(); else tab.focus();
+    }
+    tab.addEventListener('click', function () { open(true); });
+    w.querySelector('.nzv__x').addEventListener('click', function () { open(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !p.hidden) open(false); });
+    function nick(v) {
+      v = v.trim().replace(/^(https?:\/\/)?(t\.me|telegram\.me)\//i, '').replace(/^@/, '');
+      return /^[A-Za-z][A-Za-z0-9_]{4,31}$/.test(v) ? '@' + v : '';
+    }
+    inp.addEventListener('input', function () { inp.classList.remove('is-bad'); });
+    p.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var tg = nick(inp.value);
+      if (!tg) {
+        inp.classList.add('is-bad');
+        msg.textContent = 'Ник — латиницей, от 5 знаков, например @ivan_petrov';
+        inp.focus();
+        return;
+      }
+      if (!window.mtdLeadSend) { fail(); return; }
+      go.disabled = true;
+      go.textContent = 'Отправляем…';
+      window.mtdLeadSend({ kind: 'Ответим без звонка', tg: tg }).then(function () {
+        p.innerHTML = '<button class="nzv__x" type="button" aria-label="Закрыть">×</button>' +
+          '<p class="nzv__t">Готово</p><p class="nzv__s"></p>';
+        p.querySelector('.nzv__s').textContent = 'Напишем вам в Telegram: ' + tg + '. Звонить не будем.';
+        p.querySelector('.nzv__x').addEventListener('click', function () { open(false); });
+      }, function () { fail(); });
+    });
+    function fail() {
+      go.disabled = false;
+      go.textContent = 'Жду сообщения';
+      msg.innerHTML = 'Не получилось отправить. Напишите нам сами: <a href="' + TG + '" target="_blank" rel="noopener">Telegram</a> · ' +
+        '<a href="https://wa.me/' + PHONE + '" target="_blank" rel="noopener">WhatsApp</a>';
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

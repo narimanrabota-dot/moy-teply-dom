@@ -171,7 +171,7 @@
   function outbox() {
     var list = lget(OUT);
     return (Array.isArray(list) ? list : []).filter(function (l) {
-      return l && l.id && l.phone && Date.now() - (l.at || 0) < WEEK;
+      return l && l.id && (l.phone || l.tg) && Date.now() - (l.at || 0) < WEEK;
     });
   }
   function save(list) {
@@ -313,11 +313,26 @@
       var lead = list[i++];
       if (!lead) return;
       post(lead).then(function () { unqueue(lead); next(); }, function (e) {
-        if (e && e.code === 'bad_phone') { unqueue(lead); next(); }   /* сеть не вернулась — попробуем в другой раз */
+        if (e && (e.code === 'bad_phone' || e.code === 'bad_tg')) { unqueue(lead); next(); }   /* сеть не вернулась — попробуем в другой раз */
       });
     })();
   }
   setTimeout(flush, 2500);
+
+  /* ── заявка из других блоков сайта (svyaz.js: ярлык «Ответим без звонка» — только ник Telegram).
+     extra: { kind, tg } или { kind, phone }. Не ушла — ждёт в очереди браузера, как обычная. */
+  window.mtdLeadSend = function (extra) {
+    var c = { house: text(document.querySelector('.prod__t')), price: text(document.querySelector('.prod .price__v')) };
+    var lead = {
+      id: uid(), at: Date.now(), kind: extra.kind, phone: extra.phone, tg: extra.tg,
+      page: location.href.split('#')[0], house: c.house || undefined, price: c.price || undefined,
+      utm: sget('mtd:utm') || undefined, ref: sget('mtd:ref') || undefined, t: Date.now() - T0, hp: ''
+    };
+    return post(lead).then(function (j) { unqueue(lead); return j; }, function (e) {
+      if (!(e && (e.code === 'bad_phone' || e.code === 'bad_tg'))) queue(lead);
+      throw e;
+    });
+  };
   window.addEventListener('online', flush);
 
   /* ── счётчик избранного ────────────────────────────── */
