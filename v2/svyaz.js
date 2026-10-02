@@ -54,7 +54,17 @@
     '@media(max-width:620px){.nzv__tab{padding:16px 8px;font-size:14px;border-left-width:3px}' +
       '.nzv__p{position:fixed;left:8px;right:8px;top:auto;bottom:8px;width:auto;transform:none;border-radius:20px}}' +
     'body:has(.nzv__p:not([hidden])) .knb,body:has(.nzv__p:not([hidden])) .svz{display:none}' +
-    '@media print{.nzv{display:none}}';
+    '@media print{.nzv{display:none}}' +
+    /* «Наверх» слева снизу (вариант 5 витрины v2/strelka-naverh-5.html): видна, когда пролистали больше экрана */
+    '.up5{position:fixed;left:24px;bottom:24px;z-index:53;display:flex;align-items:center;gap:6px;height:44px;margin:0;padding:0 16px 0 12px;border:0;border-radius:999px;' +
+      'background:#fff;color:var(--ink,#22304C);font:inherit;font-size:15px;font-weight:600;cursor:pointer;' +
+      'box-shadow:var(--sh-2,0 12px 28px -10px rgb(34 48 76/.28)),inset 0 0 0 1px var(--n-3,#e7e3de);' +
+      'opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s}' +
+    '.up5.on{opacity:1;visibility:visible;transform:none}.up5:hover{transform:translateY(-2px)}' +
+    '.up5 svg{width:18px;height:18px}.up5:focus-visible{outline:2px solid var(--clay-btn,#C24A28);outline-offset:3px}' +
+    'body:has(.knp:not([hidden])) .up5,body:has(#callback:not([hidden])) .up5,body:has(.plx.is-open) .up5,body:has(.rvw.on) .up5,body:has(.nzv__p:not([hidden])) .up5{display:none}' +
+    '@media(max-width:620px){.up5{left:12px;bottom:16px;height:38px;padding:0 12px 0 8px;font-size:13px}}' +
+    '@media(prefers-reduced-motion:reduce){.up5{transition:none}}@media print{.up5{display:none}}';
 
   var IC = {
     wa: '<path fill="currentColor" d="M12 2.6a9.3 9.3 0 0 0-8 14.05L2.7 21.4l4.9-1.27A9.3 9.3 0 1 0 12 2.6Zm0 1.9a7.4 7.4 0 1 1-3.9 13.7l-.3-.18-2.9.76.77-2.83-.2-.31A7.4 7.4 0 0 1 12 4.5Zm-3.2 3.6c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.2.87 2.35.99 2.51.12.16 1.7 2.7 4.2 3.68 2.08.82 2.5.66 2.95.62.45-.04 1.45-.59 1.66-1.17.2-.57.2-1.06.14-1.17-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12s-.63.8-.77.96c-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47Z"/>',
@@ -94,6 +104,7 @@
     document.body.appendChild(box);
 
     noCall();
+    upBtn();
 
     if (!house || off()) return;
     var img = document.querySelector('.sld__main img');
@@ -170,6 +181,27 @@
       msg.innerHTML = 'Не получилось отправить. Напишите нам сами: <a href="' + TG + '" target="_blank" rel="noopener">Telegram</a> · ' +
         '<a href="https://wa.me/' + PHONE + '" target="_blank" rel="noopener">WhatsApp</a>';
     }
+  }
+
+  /* «Наверх»: появляется после прокрутки больше чем на экран, ведёт в начало страницы */
+  function upBtn() {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'up5';
+    b.setAttribute('aria-label', 'Наверх');
+    b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>Наверх';
+    document.body.appendChild(b);
+    var ticking = false;
+    function check() {
+      ticking = false;
+      b.classList.toggle('on', window.scrollY > window.innerHeight);
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(check); } }, { passive: true });
+    check();
+    b.addEventListener('click', function () {
+      var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: calm ? 'auto' : 'smooth' });
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
