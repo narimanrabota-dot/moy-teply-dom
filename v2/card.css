@@ -415,13 +415,7 @@ main > .sec:first-child > .shell > .back:first-child{margin-top:0}
   display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sp-24);
   margin-top:var(--sp-24);
 }
-/* 9 или 3 карточки в ряду по 4 давали одинокую карточку в последнем ряду — таким рядам 3 колонки */
-@media(min-width:901px){
-  .revs__row:has(> :last-child:nth-child(3n)):not(:has(> :last-child:nth-child(4n))){grid-template-columns:repeat(3,minmax(0,1fr))}
-  /* Сданные объекты — по 4 в ряд, того же размера, что отзывы (владелец 24.09.2026),
-     даже если последний ряд неполный. ID перебивает правило «3 колонки» выше. */
-  #built .revs__row,#otzyvy .revs__row{grid-template-columns:repeat(4,minmax(0,1fr))}
-}
+/* Отзывы и сданные объекты — всегда по 4 в ряд, даже если последний ряд неполный (владелец 05.10.2026: «карточки очень большие, нужно 4 в ряд») */
 
 .rev{
   display:grid;grid-template-rows:auto 1fr;gap:0;
