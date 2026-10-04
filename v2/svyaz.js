@@ -75,7 +75,13 @@
     '.xit[hidden]{display:none}' +
     '.xit__b{position:relative;width:420px;max-width:100%;padding:32px;background:#fff;color:var(--ink,#22304C);border-radius:20px;box-shadow:var(--sh-2,0 12px 28px -10px rgb(34 48 76/.28))}' +
     '.xit__t{margin:0 0 8px;font-size:29px;font-weight:600;line-height:1.15}.xit__s{margin:0 0 16px;color:var(--dim,#616D85);font-size:17px}' +
-    '.xit__m{margin:8px 0 0;font-size:14px;color:var(--dim,#616D85)}';
+    '.xit__m{margin:8px 0 0;font-size:14px;color:var(--dim,#616D85)}' +
+    /* «Показать ещё» в отзывах на главной (вариант 2 витрины v2/pokazat-eshe-5.html): по 8, в конце «Свернуть» */
+    '.rev[data-more-hide]{display:none}' +
+    '.more8{display:flex;justify-content:center;margin-top:32px}' +
+    '.more8 button{display:inline-flex;align-items:center;gap:8px;height:52px;padding:0 32px;border:0;border-radius:12px;background:var(--ink,#22304C);color:#fff;font:inherit;font-size:17px;font-weight:600;cursor:pointer;transition:background .2s}' +
+    '.more8 button:hover{background:#2E3E60}.more8 button:focus-visible{outline:2px solid var(--clay-btn,#C24A28);outline-offset:3px}' +
+    '.more8 span{color:#c9d0de;font-weight:500}';
 
   var IC = {
     wa: '<path fill="currentColor" d="M12 2.6a9.3 9.3 0 0 0-8 14.05L2.7 21.4l4.9-1.27A9.3 9.3 0 1 0 12 2.6Zm0 1.9a7.4 7.4 0 1 1-3.9 13.7l-.3-.18-2.9.76.77-2.83-.2-.31A7.4 7.4 0 0 1 12 4.5Zm-3.2 3.6c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.2.87 2.35.99 2.51.12.16 1.7 2.7 4.2 3.68 2.08.82 2.5.66 2.95.62.45-.04 1.45-.59 1.66-1.17.2-.57.2-1.06.14-1.17-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12s-.63.8-.77.96c-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47Z"/>',
@@ -117,6 +123,7 @@
     noCall();
     upBtn();
     exitOffer();
+    moreReviews();
 
     var img = document.querySelector('.sld__main img');
     var src = img ? (img.getAttribute('src') || '').replace(/\.webp(\?|$)/, '-th.webp$1') : '';
@@ -275,6 +282,42 @@
         });
       });
     }
+  }
+
+  /* «Показать ещё»: только главная (там есть каталог), в каждом ряду отзывов больше 8 — по 8 за нажатие */
+  function moreReviews() {
+    if (!document.getElementById('catalog')) return;
+    var STEP = 8;
+    [].forEach.call(document.querySelectorAll('#reviews .revs__row'), function (row) {
+      var items = [].slice.call(row.children);
+      if (items.length <= STEP) return;
+      var shown = STEP;
+      var box = document.createElement('div');
+      box.className = 'more8';
+      box.innerHTML = '<button type="button"></button>';
+      var b = box.firstChild;
+      row.parentNode.insertBefore(box, row.nextSibling);
+      function paint() {
+        items.forEach(function (el, i) { if (i < shown) el.removeAttribute('data-more-hide'); else el.setAttribute('data-more-hide', ''); });
+        var all = shown >= items.length;
+        b.innerHTML = all ? 'Свернуть' : 'Показать ещё <span>' + shown + ' из ' + items.length + '</span>';
+        b.setAttribute('aria-expanded', all ? 'true' : 'false');
+      }
+      b.addEventListener('click', function () {
+        if (shown >= items.length) {
+          shown = STEP;
+          paint();
+          var top = row.closest('.revs') || row;
+          top.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+          return;
+        }
+        var first = items[shown];
+        shown = Math.min(shown + STEP, items.length);
+        paint();
+        if (first) { var f = first.querySelector('button, a, [tabindex]') || first; if (first.focus) first.focus({ preventScroll: true }); }
+      });
+      paint();
+    });
   }
 
   /* «Наверх»: появляется после прокрутки больше чем на экран, ведёт в начало страницы */
