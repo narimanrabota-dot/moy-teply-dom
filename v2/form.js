@@ -17,7 +17,7 @@
      а не в коде страницы. Пока адреса нет, заявка не уходит: человек видит телефон,
      заявка ждёт в очереди браузера. На localhost — локальный приёмник:
      python3 tools/leads/server.py --mock */
-  var ENDPOINT = '';
+  var ENDPOINT = 'https://functions.yandexcloud.net/d4eajbj268aq0agbipmm';
   var LOCAL    = 'http://127.0.0.1:8138/lead';
   var PHONE    = '+7 978 251‑64‑69';
   var T0       = Date.now();
