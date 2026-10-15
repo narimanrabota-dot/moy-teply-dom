@@ -8,10 +8,12 @@ header('X-Robots-Tag: noindex, nofollow');
 $c = cfg();
 $err = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pw'])) {
+// Поле называется kod и это не type=password: иначе Chrome подставляет сохранённый пароль от сайта.
+$pw = (string)($_POST['kod'] ?? $_POST['pw'] ?? '');
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $pw !== '') {
   if (too_many_tries()) {
     $err = 'Слишком много попыток. Подождите 15 минут.';
-  } elseif ($c['pw_hash'] && password_verify((string)$_POST['pw'], $c['pw_hash'])) {
+  } elseif ($c['pw_hash'] && password_verify($pw, $c['pw_hash'])) {
     set_login_cookie();
     header('Location: /dogovory/', true, 303);
     exit;
@@ -60,6 +62,7 @@ if (($_GET['f'] ?? '') === 'assets.js') { http_response_code(401); exit; }
           border-radius: 10px; text-align: center; margin-bottom: 12px; }
   button { width: 100%; font-size: 16px; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
            background: #E0603C; color: #fff; cursor: pointer; }
+  .secret { -webkit-text-security: disc; text-security: disc; }
   .err { color: #b3261e; font-size: 14px; margin: -4px 0 12px; }
 </style>
 </head>
@@ -67,9 +70,15 @@ if (($_GET['f'] ?? '') === 'assets.js') { http_response_code(401); exit; }
 <form method="post" action="/dogovory/">
   <h1>Мой тёплый <span>дом</span></h1>
   <p>Пароль сотрудников компании</p>
-  <input type="password" name="pw" autocomplete="current-password" autofocus required>
+  <input type="text" name="kod" id="kod" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="numeric" class="secret" autofocus required>
   <?php if ($err) echo '<div class="err">' . htmlspecialchars($err) . '</div>'; ?>
   <button type="submit">Войти</button>
 </form>
+<script>
+  // на случай, если браузер всё же что-то подставил
+  var k = document.getElementById('kod'), typed = false;
+  k.addEventListener('input', function () { typed = true; });
+  k.value = ''; setTimeout(function () { if (!typed) k.value = ''; }, 300);
+</script>
 </body>
 </html>
