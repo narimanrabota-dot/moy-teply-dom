@@ -42,7 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['root'])) $c['root'] = trim((string)$_POST['root']);
     if (!empty($_POST['start'])) $c['start'] = (int)$_POST['start'];
     if (save_cfg($c)) {
-      list($yc) = ya('GET', 'https://cloud-api.yandex.net/v1/disk', null, true, 20);
+      // cfg() уже закэшировал старые настройки — проверяем ключ напрямую.
+      $ch = curl_init('https://cloud-api.yandex.net/v1/disk');
+      curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 20, CURLOPT_HTTPHEADER => ['Authorization: OAuth ' . $c['token']]]);
+      curl_exec($ch);
+      $yc = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+      curl_close($ch);
       $msg = 'Сохранено. Яндекс.Диск: ' . ($yc === 200 ? 'ключ работает' : 'ключ НЕ работает (' . $yc . ')') . '.';
       if (!empty($_SERVER['HTTP_X_SETUP_CODE'])) out_json(['ok' => true, 'disk' => $yc, 'password_set' => (bool)$c['pw_hash']]);
     } else {

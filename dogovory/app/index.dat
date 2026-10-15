@@ -6359,11 +6359,32 @@ async function htmlToDocxBlob(html) {
     if (!r.ok) throw new Error(j.error || ("не удалось получить номер (" + r.status + ")"));
     return j.next;
   }
+  // Файл идёт из браузера прямо в Яндекс.Диск по одноразовой ссылке загрузки (ключ Диска
+  // остаётся на сервере): так быстрее, чем через хостинг. «Данные заказа» и случаи, когда
+  // прямая загрузка не прошла, — через сервер (POST: хостинг REG.RU не пропускает PUT).
   async function yaUploadFile(folder, name, blob) {
     const body = (blob instanceof Blob) ? blob : new Blob([blob]);
+    if (name !== "_данные заказа.json") {
+      let lr = null, lj = {};
+      try {
+        lr = await fetch("api/yadisk/upload-link", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ folder, name }) });
+        lj = await lr.json().catch(() => ({}));
+      } catch (e) { lr = null; }
+      if (lr && (lr.status === 401 || lr.status === 507)) throw new Error(lj.error || ("сервер вернул " + lr.status));
+      if (lr && lr.ok && lj.href) {
+        try {
+          const put = await fetch(lj.href, { method: "PUT", body });
+          if (put.ok) {
+            const vr = await fetch("api/yadisk/verify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ path: lj.path, size: body.size }) });
+            const vj = await vr.json().catch(() => ({}));
+            if (vr.ok) return { ok: true, path: lj.path, verified: vj.verified, size: vj.size };
+          }
+        } catch (e) { /* прямая загрузка не прошла — пробуем через сервер */ }
+      }
+    }
     const res = await fetch("api/yadisk/file", {
-      method: "PUT",
-      headers: { "X-Folder": encodeURIComponent(folder), "X-Name": encodeURIComponent(name) },
+      method: "POST",
+      headers: { "X-Folder": encodeURIComponent(folder), "X-Name": encodeURIComponent(name), "Content-Type": "application/octet-stream" },
       body,
     });
     const j = await res.json().catch(() => ({}));

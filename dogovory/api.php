@@ -125,6 +125,38 @@ if ($r === 'file' && ($method === 'PUT' || $method === 'POST')) {
   out_json(['ok' => true, 'path' => $dst, 'verified' => $got === $size, 'size' => $got]);
 }
 
+// Одноразовая ссылка загрузки: браузер кладёт файл прямо в Диск (быстрее, чем через хостинг).
+if ($r === 'upload-link' && $method === 'POST') {
+  $b = $body();
+  $folder = clean_path($b['folder'] ?? '');
+  $name = clean_seg($b['name'] ?? '') ?: 'файл';
+  if (!$folder) out_json(['error' => 'Не указана папка.'], 400);
+  $dir = $c['root'] . '/' . $folder;
+  mkdirp($dir);
+  $dst = $dir . '/' . $name;
+  list($code, $j) = ya_json('GET', YA . '/upload?overwrite=true&path=' . p($dst));
+  if ($code === 401) out_json(['error' => 'Ключ Яндекс.Диска недействителен — обновите его в setup.php.'], 401);
+  if ($code === 507) out_json(['error' => 'На Яндекс.Диске закончилось место.'], 507);
+  if ($code !== 200 || empty($j['href'])) out_json(['error' => 'Не удалось получить ссылку загрузки (' . $code . ').'], 502);
+  out_json(['href' => $j['href'], 'path' => $dst]);
+}
+
+// Проверка после прямой загрузки: файл есть и размер совпал (Диск может дописывать пару секунд).
+if ($r === 'verify' && $method === 'POST') {
+  $b = $body();
+  $path = (string)($b['path'] ?? '');
+  $want = (int)($b['size'] ?? -1);
+  if (strpos($path, $c['root'] . '/') !== 0) out_json(['error' => 'Чужой путь.'], 400);
+  $got = null;
+  for ($i = 0; $i < 4; $i++) {
+    list($cc, $cj) = ya_json('GET', YA . '?path=' . p($path) . '&fields=size');
+    $got = $cc === 200 && isset($cj['size']) ? (int)$cj['size'] : null;
+    if ($got === $want) break;
+    sleep(1);
+  }
+  out_json(['verified' => $got === $want, 'size' => $got]);
+}
+
 if ($r === 'publish' && $method === 'POST') {
   $folder = clean_path($body()['folder'] ?? '');
   if (!$folder) out_json(['error' => 'Не указана папка.'], 400);
