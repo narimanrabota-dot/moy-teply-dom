@@ -1,0 +1,11 @@
+# Генератор договоров (исходник — закрытый репозиторий dogovory, кладёт tools/deploy_regru.sh).
+# Всё идёт через gate.php (вход по паролю сотрудников) и api.php; файлы программы напрямую не отдаются.
+DirectoryIndex gate.php
+Options -Indexes
+RewriteEngine On
+RewriteRule ^api/(.*)$ api.php?r=$1 [L,QSA]
+RewriteRule ^(index\.html|assets\.js)?$ gate.php?f=$1 [L,QSA]
+RewriteRule ^(lib\.php|app/|_data/) - [F,L]
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
