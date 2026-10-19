@@ -1,0 +1,31 @@
+/* Страница «Монтаж окон»: видео в формате планшета во всю ширину, чертежи стопкой */
+.st-hero--w{display:block;margin-top:24px}
+.st-hero--w .st-h1{max-width:16ch}
+.st-hero--w .st-lead{max-width:52ch}
+.st-hero--w .st-act{margin-top:32px}
+.st-tab{margin-top:48px;padding:12px;border-radius:32px;background:#fff;box-shadow:0 0 0 1px rgb(30 42 68/.1),0 40px 80px -32px rgb(30 42 68/.45)}
+.st-tab video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:20px;background:#E4E1DB}
+.st-v .st-desk.st-desk--m{display:grid;gap:16px;height:auto;place-items:stretch}
+.st-v .st-desk--m img{width:100%;height:auto}
+@media(max-width:760px){
+ .st-hero--w{display:block;min-height:0}
+ .st-hero--w .st-act{margin-top:24px}
+ .st-hero--w .st-act .st-btn--g{display:none}
+ .st-tab{margin:32px -16px 0;padding:6px;border-radius:20px}
+ .st-tab video{border-radius:14px}
+ .st-v .st-desk.st-desk--m{aspect-ratio:auto;gap:12px}
+}
+/* большая кнопка «смотреть» по центру кадра */
+.st-tab{position:relative}
+.st-play{position:absolute;inset:12px;display:grid;place-content:center;justify-items:center;gap:16px;border:0;border-radius:20px;background:none;color:#fff;font:inherit;cursor:pointer;transition:opacity .25s ease,background-color .2s ease}
+.st-play i{position:relative;display:grid;place-items:center;width:120px;height:120px;border-radius:50%;background:#fff;color:var(--clay);box-shadow:0 24px 48px -12px rgb(30 42 68/.55);transition:transform .2s ease}
+.st-play i::before,.st-play i::after{content:"";position:absolute;inset:0;border-radius:50%;background:rgb(255 255 255/.55);animation:stRing 2s ease-out infinite;pointer-events:none}
+.st-play i::after{animation-delay:1s}
+.st-play svg{position:relative;width:48px;height:48px;margin-left:6px}
+.st-play span{padding:8px 16px;border-radius:999px;background:rgb(30 42 68/.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:17px;font-weight:600}
+.st-play:hover i{transform:scale(1.06)}
+.st-play:focus-visible{outline:3px solid #fff;outline-offset:-6px}
+.st-tab.is-playing .st-play{opacity:0;pointer-events:none}
+@keyframes stRing{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){.st-play i::before,.st-play i::after{animation:none;opacity:0}}
+@media(max-width:760px){.st-play{inset:6px;border-radius:14px;gap:12px}.st-play i{width:80px;height:80px;box-shadow:0 16px 32px -8px rgb(30 42 68/.55)}.st-play svg{width:32px;height:32px;margin-left:4px}.st-play span{font-size:14px}}
