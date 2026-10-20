@@ -28,7 +28,7 @@
 @media(max-width:760px){.hv-grid{grid-template-columns:1fr;gap:var(--sp-24,24px)}.hv-grid .hv-tab{padding:6px;border-radius:20px}.hv-grid .hv-tab video{border-radius:14px}.hv-grid .hv-play{inset:6px;border-radius:14px}.hv-grid .hv-play i{width:80px;height:80px}.hv-it figcaption{font-size:14px}}
 
 /* вторая плитка: обложка 16:9, вертикальное видео открывается в окне на весь экран */
-.hv-tab--m img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:20px;background:#E4E1DB}
+.hv-tab--m .hv-wide{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:20px;background:#E4E1DB}
 .hv-grid .hv-tab--m img{border-radius:16px}
 @media(max-width:760px){.hv-grid .hv-tab--m img{border-radius:14px}}
 .hvm{position:fixed;inset:0;z-index:130;display:none;place-items:center;padding:16px;background:rgb(14 21 38/.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -41,11 +41,17 @@
 .hv-mob{display:none}
 @media(max-width:760px){
   .hv-grid .hv-tab:has(.hv-mob) video{display:none}
-  .hv-mob{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#E4E1DB}
+  .hv-tab .hv-mob{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#E4E1DB}
 }
 .hvm__v--h{width:min(92vw,calc(92svh*16/9));aspect-ratio:16/9}
 
 /* компьютер: кнопка первого видео сдвинута на свободную траву между людьми и не закрывает лица */
 @media(min-width:761px){
   .hv-grid .hv-it:first-child .hv-play{padding:22% 0 0 18%}
+}
+
+/* телефон: у второго видео тоже вертикальная обложка; кнопка поднята над головами */
+@media(max-width:760px){
+  .hv-tab--m .hv-wide{display:none}
+  .hv-tab--m .hv-play{padding-bottom:26%}
 }
