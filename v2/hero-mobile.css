@@ -1,0 +1,30 @@
+/* Шапка главной на телефоне, вариант «М» (выбор владельца 21.10.2026):
+   фото крупно сверху и почти без затемнения, текст — в стеклянной карточке внизу:
+   заголовок и кнопка, без таблиц и списков. Только вертикальный телефон. */
+@media(max-width:900px) and (orientation:portrait){
+  .ob__f[data-hero]:has(.hsl--args){height:clamp(600px,88svh,720px)}
+  .hsl--args > .ob__img{bottom:auto;height:72%}
+  /* градиент — только внизу фото, чтобы оно плавно переходило в фон; дом остаётся чистым */
+  .hsl--args > .ob__img::after,.hsl--warm > .ob__img::after{background:linear-gradient(180deg,rgb(14 20 34/0) 0%,rgb(14 20 34/0) 58%,rgb(14 20 34/.45) 82%,rgb(14 20 34/.9) 100%)}
+  .hsl--args > .ob__img::before{display:none}
+  /* положение кадра: показываем дом, а не пустой луг */
+  .ob__f[data-hero] .hsl:nth-of-type(1) .ob__img{background-position:90% 28%}
+  .ob__f[data-hero] .hsl:nth-of-type(2) .ob__img{background-position:78% 30%}
+  .ob__f[data-hero] .hsl:nth-of-type(3) .ob__img{background-position:82% 30%}
+  .ob__f[data-hero] .hsl:nth-of-type(4) .ob__img{background-position:84% 30%}
+  .ob__f[data-hero] .hsl:nth-of-type(5) .ob__img{background-position:50% 30%}
+  .ob__f[data-hero] .hsl:nth-of-type(6) .ob__img{background-position:45% 30%}
+  .ob__f[data-hero] .hsl:nth-of-type(7) .ob__img{background-position:50% 30%}
+  .hsl--args .ob__c,.ob__f[data-hero]:has(.hsl--args) .hsl:nth-of-type(6) .ob__c{align-content:end;padding:0 16px 16px}
+  /* стеклянная карточка */
+  .hsl--args .v2a,.hsl--args.hsl--g18 .ob__c > .v2a{width:100%;max-width:none;padding:20px;border-radius:20px;
+    background:rgb(24 32 54/.46);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+    border:1px solid rgb(255 255 255/.18);box-shadow:0 12px 32px -12px rgb(14 20 34/.5)}
+  .hsl--args .v2a::before{display:none}
+  /* только заголовок и кнопка */
+  .hsl--args .v2a__ticks,.hsl--args .v2a__frame,.hsl--args .v2a__nums,.hsl--args .v2a__path,
+  .hsl--args .v2a__law,.hsl--args .v2a__rows,.hsl--args .v2a__bar,.hsl--args .v2a__link{display:none}
+  .hsl--args .v2a__h{font-size:clamp(24px,7vw,28px);line-height:1.1}
+  .hsl--args .v2a__eye,.hsl--args .v2a__badge{margin-bottom:8px}
+  .hsl--args .v2a__cta{margin-top:16px}
+}
