@@ -2,8 +2,8 @@
    фото крупно сверху и почти без затемнения, текст — в стеклянной карточке внизу:
    заголовок и кнопка, без таблиц и списков. Только вертикальный телефон. */
 @media(max-width:900px) and (orientation:portrait){
-  .ob__f[data-hero]:has(.hsl--args){height:clamp(600px,88svh,720px)}
-  .hsl--args > .ob__img{bottom:auto;height:72%}
+  .ob__f[data-hero]:has(.hsl--args){height:clamp(640px,92svh,760px)}
+  .hsl--args > .ob__img{bottom:auto;height:66%}
   /* градиент — только внизу фото, чтобы оно плавно переходило в фон; дом остаётся чистым */
   .hsl--args > .ob__img::after,.hsl--warm > .ob__img::after{background:linear-gradient(180deg,rgb(14 20 34/0) 0%,rgb(14 20 34/0) 58%,rgb(14 20 34/.45) 82%,rgb(14 20 34/.9) 100%)}
   .hsl--args > .ob__img::before{display:none}
@@ -21,10 +21,23 @@
     background:rgb(24 32 54/.46);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
     border:1px solid rgb(255 255 255/.18);box-shadow:0 12px 32px -12px rgb(14 20 34/.5)}
   .hsl--args .v2a::before{display:none}
-  /* только заголовок и кнопка */
-  .hsl--args .v2a__ticks,.hsl--args .v2a__frame,.hsl--args .v2a__nums,.hsl--args .v2a__path,
-  .hsl--args .v2a__law,.hsl--args .v2a__rows,.hsl--args .v2a__bar,.hsl--args .v2a__link{display:none}
-  .hsl--args .v2a__h{font-size:clamp(24px,7vw,28px);line-height:1.1}
-  .hsl--args .v2a__eye,.hsl--args .v2a__badge{margin-bottom:8px}
-  .hsl--args .v2a__cta{margin-top:16px}
+  /* текст слайда остаётся, но компактно: суть и первые пункты, чтобы карточка не закрывала дом;
+     полный текст слайда — на компьютере и на странице «Договор» */
+  .hsl--args .v2a__law,.hsl--args .v2a__bar{display:none}
+  .hsl--args .v2a__eye{font-size:11px;letter-spacing:.1em;margin-bottom:8px;white-space:nowrap}
+  .hsl--args .v2a__badge{margin-bottom:8px;font-size:12px}
+  .hsl--args .v2a__h{font-size:clamp(21px,6vw,25px);line-height:1.1;margin:0}
+  .hsl--args .v2a__ticks{margin-top:10px;gap:6px}.hsl--args .v2a__ticks li{font-size:13.5px;line-height:1.3}
+  .hsl--args .v2a__ticks li:nth-child(n+3){display:none}
+  .hsl--args .v2a__frame{margin-top:10px}.hsl--args .v2a__rows li{font-size:13px;padding:5px 0}
+  .hsl--args .v2a__rows li:nth-child(n+3){display:none}
+  .hsl--args .v2a__nums{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}
+  .hsl--args .v2a__nums > div:nth-child(n+5){display:none}
+  .hsl--args .v2a__nums b{font-size:19px}.hsl--args .v2a__nums span{font-size:11px;line-height:1.25}
+  .hsl--args .v2a__path{margin-top:10px;gap:6px}.hsl--args .v2a__path li{font-size:12.5px;line-height:1.3}
+  .hsl--args .v2a__path li:nth-child(n+3){display:none}
+  .hsl--args .v2a__path b{font-size:14px}.hsl--args .v2a__path span{font-size:12px}
+  .hsl--args .v2a__cta{margin-top:12px;display:flex;align-items:center;gap:16px;flex-wrap:nowrap}
+  .hsl--args .obtn{min-height:44px;padding:0 20px;font-size:15px;white-space:nowrap}
+  .hsl--args .v2a__link{font-size:13px;white-space:nowrap;display:inline-block}
 }

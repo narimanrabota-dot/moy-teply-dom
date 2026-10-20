@@ -33,10 +33,10 @@
 <link rel="stylesheet" href="card.css?v=83">
 <link rel="stylesheet" href="ob.css?v=9">
 <link rel="stylesheet" href="serii.css?v=1">
-<link rel="stylesheet" href="home-video.css?v=2">
+<link rel="stylesheet" href="home-video.css?v=4">
 <link rel="stylesheet" href="foot.css?v=6">
 <link rel="stylesheet" href="vtoroy.css?v=28">
-<link rel="stylesheet" href="hero-mobile.css?v=1">
+<link rel="stylesheet" href="hero-mobile.css?v=2">
 <link rel="stylesheet" href="vygody.css?v=3">
 </head>
 <body>
@@ -184,10 +184,19 @@
     </div>
   </section>
 
-  <!-- hv:start · видео-отзыв под шапкой (v2/home-video.css, home-video.js) -->
-  <section class="sec hv" aria-label="Видеоотзыв владельцев дома">
+  <!-- hv:start · два видео под шапкой (v2/home-video.css, home-video.js) -->
+  <section class="sec hv" aria-label="Видео: отзыв и обзор дома">
     <div class="shell">
-      <div class="hv-tab" data-hv><video id="hv-v" src="../video/big/glavnaya-obzor-original.mp4" poster="../img/glavnaya-obzor-4.webp" playsinline preload="none" aria-label="Видео: реальный отзыв о строительстве каркасного дома"></video><button type="button" class="hv-play" aria-label="Смотреть видео, 7 минут"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" fill="currentColor"/></svg></i><span>Смотреть · 7 мин</span></button></div>
+      <div class="hv-grid">
+        <figure class="hv-it">
+          <div class="hv-tab" data-hv><video id="hv-v" src="../video/big/glavnaya-obzor-original.mp4" poster="../img/glavnaya-obzor-4.webp" playsinline preload="none" aria-label="Видео: реальный отзыв о строительстве каркасного дома"></video><button type="button" class="hv-play" aria-label="Смотреть видео, 7 минут"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" fill="currentColor"/></svg></i><span>Смотреть · 7 мин</span></button></div>
+          <figcaption>Отзыв владельцев дома</figcaption>
+        </figure>
+        <figure class="hv-it">
+          <div class="hv-tab" data-hv><video id="hv-v2" src="../video/montazh-stroyka.mp4" poster="../img/glavnaya-stroyka-2.webp" playsinline preload="none" aria-label="Видео: сдали дом клиенту Валерию, обзор и процесс строительства"></video><button type="button" class="hv-play" aria-label="Смотреть видео, 17 минут"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" fill="currentColor"/></svg></i><span>Смотреть · 17 мин</span></button></div>
+          <figcaption>Обзор дома и процесс строительства</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
   <!-- hv:end -->
@@ -712,7 +721,7 @@
 <script src="header.js?v=49"></script>
 <script src="kalk-knopka.js?v=15" defer></script>
 <script src="svyaz.js?v=049c6adb" defer></script>
-<script src="home-video.js?v=1" defer></script>
+<script src="home-video.js?v=2" defer></script>
 <script src="revs.js?v=3"></script>
 <script src="map.js?v=1"></script>
 <script src="catalog.js?v=49"></script>
