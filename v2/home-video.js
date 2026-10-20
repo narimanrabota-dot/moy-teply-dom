@@ -4,6 +4,7 @@
     var v=box.querySelector('video'),b=box.querySelector('.hv-play');
     if(!v||!b)return;
     b.addEventListener('click',function(){
+      if(box.querySelector('.hv-mob')&&window.matchMedia('(max-width:760px)').matches&&window.hvOpen){window.hvOpen(v.getAttribute('src'),b,true);return}
       box.classList.add('is-playing');v.controls=true;
       document.querySelectorAll('[data-hv] video').forEach(function(o){if(o!==v&&!o.paused)o.pause()});
       var p=v.play();p&&p.catch&&p.catch(function(){});
@@ -20,8 +21,8 @@
   m.innerHTML='<button type="button" class="hvm__x" aria-label="Закрыть">&times;</button><video class="hvm__v" controls playsinline></video>';
   document.body.appendChild(m);
   var v=m.querySelector('video'),x=m.querySelector('.hvm__x'),last=null;
-  function open(src,btn){
-    last=btn;
+  function open(src,btn,horiz){
+    last=btn;v.classList.toggle('hvm__v--h',!!horiz);
     document.querySelectorAll('[data-hv] video').forEach(function(o){if(!o.paused)o.pause()});
     v.src=src;m.classList.add('on');document.documentElement.style.overflow='hidden';
     var p=v.play();p&&p.catch&&p.catch(function(){});x.focus();
@@ -30,6 +31,7 @@
     v.pause();v.removeAttribute('src');v.load();m.classList.remove('on');document.documentElement.style.overflow='';
     last&&last.focus&&last.focus();
   }
+  window.hvOpen=open;
   tiles.forEach(function(t){var b=t.querySelector('.hv-play');(b||t).addEventListener('click',function(){open(t.getAttribute('data-src'),b)})});
   x.addEventListener('click',close);
   m.addEventListener('click',function(e){if(e.target===m)close()});
