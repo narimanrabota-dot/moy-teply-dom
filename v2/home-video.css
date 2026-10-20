@@ -44,3 +44,8 @@
   .hv-mob{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#E4E1DB}
 }
 .hvm__v--h{width:min(92vw,calc(92svh*16/9));aspect-ratio:16/9}
+
+/* компьютер: кнопка первого видео сдвинута на свободную траву между людьми и не закрывает лица */
+@media(min-width:761px){
+  .hv-grid .hv-it:first-child .hv-play{padding:22% 0 0 18%}
+}
