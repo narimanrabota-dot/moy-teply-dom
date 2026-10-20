@@ -4,7 +4,7 @@
     var v=box.querySelector('video'),b=box.querySelector('.hv-play');
     if(!v||!b)return;
     b.addEventListener('click',function(){
-      if(box.querySelector('.hv-mob')&&window.matchMedia('(max-width:760px)').matches&&window.hvOpen){window.hvOpen(v.getAttribute('src'),b,true);return}
+      if(window.hvOpen){window.hvOpen(v.getAttribute('src'),b,true);return}
       box.classList.add('is-playing');v.controls=true;
       document.querySelectorAll('[data-hv] video').forEach(function(o){if(o!==v&&!o.paused)o.pause()});
       var p=v.play();p&&p.catch&&p.catch(function(){});
