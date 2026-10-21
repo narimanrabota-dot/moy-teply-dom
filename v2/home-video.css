@@ -56,6 +56,10 @@
   .hv-tab--m .hv-play{padding-bottom:26%}
 }
 
-/* третья плитка (Елена): кнопка в свободной зоне, чтобы не закрывать лица */
-.hv-tab--el .hv-play{padding:34% 0 0 38%}
-@media(max-width:760px){.hv-tab--el .hv-play{padding:100% 0 0 0}}
+/* плитка Елены: кнопка строго по центру, место под неё освобождено на обложках; на телефоне кнопка чуть меньше, чтобы не касаться лиц */
+@media(max-width:760px){.hv-tab--el .hv-play i{width:64px;height:64px}.hv-tab--el .hv-play svg{width:26px;height:26px;margin-left:3px}.hv-tab--el .hv-play{gap:8px}}
+
+/* значок строго в центре кадра (подпись «Смотреть» — под ним, не сдвигая значок) */
+.hv-tab--el .hv-play span{position:absolute;left:50%;top:calc(50% + 58px);transform:translateX(-50%);white-space:nowrap}
+@media(max-width:760px){.hv-tab--el .hv-play span{top:calc(50% + 44px)}}
+.hv-tab--el .hv-play{padding:0!important}
