@@ -55,3 +55,7 @@
   .hv-tab--m .hv-wide{display:none}
   .hv-tab--m .hv-play{padding-bottom:26%}
 }
+
+/* третья плитка (Елена): кнопка в свободной зоне, чтобы не закрывать лица */
+.hv-tab--el .hv-play{padding:34% 0 0 38%}
+@media(max-width:760px){.hv-tab--el .hv-play{padding:100% 0 0 0}}

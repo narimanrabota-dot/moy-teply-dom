@@ -32,7 +32,7 @@
     last&&last.focus&&last.focus();
   }
   window.hvOpen=open;
-  tiles.forEach(function(t){var b=t.querySelector('.hv-play');(b||t).addEventListener('click',function(){open(t.getAttribute('data-src'),b)})});
+  tiles.forEach(function(t){var b=t.querySelector('.hv-play');(b||t).addEventListener('click',function(){open(t.getAttribute('data-src'),b,t.hasAttribute('data-horiz'))})});
   x.addEventListener('click',close);
   m.addEventListener('click',function(e){if(e.target===m)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('on'))close()});
