@@ -5,7 +5,7 @@
   var box = document.getElementById('kmap');
   if (!box) return;
 
-  var LAT = 55.628, LNG = 37.439;   /* ул. Адмирала Корнилова, 66, строение 20 — координаты по улице, уточнить точку */
+  var LAT = 55.62095, LNG = 37.44542;   /* ул. Адмирала Корнилова, 66 (Коммунарка), координаты дома по OpenStreetMap */
   var SRC = 'https://yandex.ru/map-widget/v1/?ll=' + LNG + '%2C' + LAT +
             '&z=16&pt=' + LNG + ',' + LAT + ',pm2rdm';
 
@@ -42,7 +42,7 @@
     box.classList.add('is-on');
     var f = document.createElement('iframe');
     f.src = SRC;
-    f.title = 'Карта проезда: Москва, улица Адмирала Корнилова, 61Б';
+    f.title = 'Карта проезда: Москва, улица Адмирала Корнилова, 66, строение 20';
     f.loading = 'lazy';
     f.setAttribute('allowfullscreen', '');
     box.appendChild(f);
