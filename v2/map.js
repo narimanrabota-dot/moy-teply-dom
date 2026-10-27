@@ -1,6 +1,5 @@
-/* Карта проезда. Пока не нажали «Показать карту», Яндекс не получает
-   ни одного запроса от посетителя: вместо фрейма нарисованная схема.
-   Клик подставляет виджет — дальше это обычная Яндекс.Карта. */
+/* Карта проезда. Вместо фрейма сначала рисуется схема; когда блок подходит
+   к экрану, подставляется виджет — дальше это обычная Яндекс.Карта. */
 (function () {
   var box = document.getElementById('kmap');
   if (!box) return;
@@ -49,10 +48,13 @@
   }
 
   stub();
-  var b = document.createElement('button');
-  b.type = 'button';
-  b.className = 'kmap__go';
-  b.textContent = 'Показать карту';
-  b.addEventListener('click', load);
-  box.appendChild(b);
+  /* Карта подгружается сама, когда блок подходит к экрану (владелец 27.10.2026: кнопку нажимать не нужно) */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }
+    }, { rootMargin: '400px 0px' });
+    io.observe(box);
+  } else {
+    load();
+  }
 }());
