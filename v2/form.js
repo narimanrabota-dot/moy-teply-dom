@@ -166,6 +166,7 @@
     var ref = '';
     try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
     if (ref && ref !== location.hostname && !sget('mtd:ref')) sset('mtd:ref', ref);
+    if (!sget('mtd:land')) sset('mtd:land', location.href.split('#')[0].slice(0, 400));   /* первая страница захода */
   })();
 
   /* ── что человек смотрел: дом, цена, отмеченные доп. опции (карточка проекта) ── */
@@ -234,6 +235,7 @@
       options: c.options,
       totals: c.totals,
       utm: sget('mtd:utm') || undefined,
+      land: sget('mtd:land') || undefined,
       ref: sget('mtd:ref') || undefined,
       t: Date.now() - T0,
       hp: hp.value
@@ -358,7 +360,7 @@
     var lead = {
       id: uid(), at: Date.now(), kind: extra.kind, phone: extra.phone, tg: extra.tg,
       page: location.href.split('#')[0], house: c.house || undefined, price: c.price || undefined,
-      utm: sget('mtd:utm') || undefined, ref: sget('mtd:ref') || undefined, t: Date.now() - T0, hp: ''
+      utm: sget('mtd:utm') || undefined, land: sget('mtd:land') || undefined, ref: sget('mtd:ref') || undefined, t: Date.now() - T0, hp: ''
     };
     return post(lead).then(function (j) { unqueue(lead); return j; }, function (e) {
       if (!(e && (e.code === 'bad_phone' || e.code === 'bad_tg'))) queue(lead);
