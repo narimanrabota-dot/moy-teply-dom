@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://moy-teply-dom.ru/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <priority>1.0</priority>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-obzor-mob.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-elena.webp</image:loc></image:image>
@@ -693,17 +693,17 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.ru/otzyvy.html</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-obzor-mob.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-klienta-9-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-elena-mob.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-stroyka-mob.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-klienta-2-cover-v2.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-vyacheslava-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-klienta-1-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-klienta-7-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-klienta-5-cover.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-vyacheslava-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/videootzyv-2-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/videootzyv-3-cover.webp</image:loc></image:image>
   </url>
