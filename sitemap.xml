@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://moy-teply-dom.ru/</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <priority>1.0</priority>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-obzor-mob.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-elena.webp</image:loc></image:image>
@@ -693,7 +693,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.ru/otzyvy.html</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-obzor-mob.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-klienta-9-cover.webp</image:loc></image:image>
@@ -786,7 +786,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.ru/stati-dop-rashody.html</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -831,7 +831,7 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.ru/stati-priemka.html</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -883,14 +883,8 @@
     <image:image><image:loc>https://moy-teply-dom.ru/img/csp-03.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/csp-04.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/csp-05.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/csp-06.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/csp-07.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/csp-08.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/csp-09.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/csp-10.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/csp-11.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/csp-12.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/csp-13.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/csp-14.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/csp-15.webp</image:loc></image:image>
   </url>
@@ -928,13 +922,10 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.ru/stroim-kommunikacii.html</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.ru/img/kommunikacii-zakladnye.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/kommunikacii-razvodka.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/kommunikacii-boyler.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/kommunikacii-rakovina.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/kommunikacii-poddon.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/kommunikacii-sanuzel.webp</image:loc></image:image>
   </url>
   <url>
