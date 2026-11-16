@@ -1411,17 +1411,71 @@
  ],
  "otzyvy": [
   {
-   "key": "../video/rt/4c337a36235fc256e2f337a14d3776ab.mp4",
-   "title": "Отзыв клиента 8",
-   "sub": "Снято осенью у готового дома",
-   "cover": "img/otzyv-klienta-8-cover-v2.webp",
+   "key": "../video/big/glavnaya-obzor-original.mp4",
+   "title": "Отзыв Владислава",
+   "sub": "Честный отзыв после первых холодов",
+   "cover": "",
    "id": null,
    "series": "",
    "dur": null
   },
   {
-   "key": "../video/rt/11d9b0273d6bbbdda262a9eb967411b4.mp4",
-   "title": "Отзыв клиента 1",
+   "key": "../video/rt/b6df13853d9bdc8d625cdc3a054b675f.mp4",
+   "title": "Отзыв Эдуарда",
+   "sub": "Честный отзыв о доме «Стамбул» 9 × 8,65 м · «Холодный контур»",
+   "cover": "img/otzyv-klienta-9-cover.webp",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "../video/big/%D0%9E%D1%82%D0%B7%D1%8B%D0%B2%20%D0%95%D0%BB%D0%B5%D0%BD%D1%8B%20%E2%80%94%20%D0%B4%D0%BE%D0%BC%20%D0%A1%D1%82%D0%B0%D0%BC%D0%B1%D1%83%D0%BB.mp4",
+   "title": "Отзыв Елены",
+   "sub": "Спустя время после сдачи дома",
+   "cover": "",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "../video/rt/1fefee6e7a4b0a2571358e0b912a4631.mp4",
+   "title": "Отзыв Николая",
+   "sub": "Дом 10 × 8 в Щёлковском районе: сроки и обзор",
+   "cover": "",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "../video/big/%D0%94%D0%BE%D0%BC%20%D0%A1%D1%82%D0%B0%D0%BC%D0%B1%D1%83%D0%BB%20%D0%B2%20%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B5%20%D0%92%D0%B8%D0%B4%D0%BD%D0%BE%D0%B5.mp4",
+   "title": "Отзыв Валерия",
+   "sub": "Дом «Стамбул» в городе Видное: обзор и стройка",
+   "cover": "",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "../video/rt/1e2300351dd8330f03887e5be71845f3.mp4",
+   "title": "Отзыв Александра",
+   "sub": "Спустя недели после сдачи дома",
+   "cover": "img/otzyv-klienta-2-cover-v2.webp",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "../video/rt/31b4d3c5479262b86503a33d53750235.mp4",
+   "title": "Отзыв Вячеслава",
+   "sub": "Дом 9 × 7 · сроки, цена и обзор",
+   "cover": "img/otzyv-vyacheslava-cover-2.webp",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "../video/rt/a183e330f511dd5df1b2e92a8862aa4d.mp4",
+   "title": "Отзыв Азгама",
    "sub": "Дом сдан, живёт круглый год",
    "cover": "img/otzyv-klienta-1-cover.webp",
    "id": null,
@@ -1429,26 +1483,8 @@
    "dur": null
   },
   {
-   "key": "https://rutube.ru/play/embed/1e2300351dd8330f03887e5be71845f3/?p=FLBQnxzJ8Ip2JJzMM7UKpw",
-   "title": "Отзыв клиента 2",
-   "sub": "Видеоотзыв с участка",
-   "cover": "img/otzyv-klienta-2-cover-v2.webp",
-   "id": null,
-   "series": "",
-   "dur": null
-  },
-  {
-   "key": "../video/rt/b443922adabc70abcca4ac7fc620f91e.mp4",
-   "title": "Отзыв клиента 6",
-   "sub": "Разговор у построенного дома",
-   "cover": "img/otzyv-klienta-6-cover.webp",
-   "id": null,
-   "series": "",
-   "dur": null
-  },
-  {
    "key": "../video/rt/2e27f1d633332e9ac795710a07a0cbcd.mp4",
-   "title": "Отзыв клиента 7",
+   "title": "Отзыв Александры",
    "sub": "Готовая парная в доме",
    "cover": "img/otzyv-klienta-7-cover.webp",
    "id": null,
@@ -1457,8 +1493,8 @@
   },
   {
    "key": "../video/rt/ed905ace6800670608f5181981cfcc3b.mp4",
-   "title": "Отзыв клиента 5",
-   "sub": "Дом с террасой, снято летом",
+   "title": "Отзыв Оксаны",
+   "sub": "Дом с террасой",
    "cover": "img/otzyv-klienta-5-cover.webp",
    "id": null,
    "series": "",
