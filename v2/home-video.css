@@ -74,4 +74,4 @@
 @media(max-width:760px){.hv-tab--nk .hv-play i{left:calc(75% - 40px);top:calc(87% - 40px);width:80px;height:80px}.hv-tab--nk .hv-play svg{width:32px;height:32px;margin-left:4px}}
 
 /* плитка Валерия, компьютер: значок внизу слева на стене — не закрывает надпись «Сдали дом клиенту Валерию» и людей */
-@media(min-width:761px){.hv-tab--vl .hv-play{display:block;padding:0!important}.hv-tab--vl .hv-play span{display:none}.hv-tab--vl .hv-play i{position:absolute;left:calc(24% - 32px);top:calc(82% - 32px);width:64px;height:64px}.hv-tab--vl .hv-play svg{width:28px;height:28px;margin-left:4px}}
+@media(min-width:761px){.hv-tab--vl .hv-play{display:block;padding:0!important}.hv-tab--vl .hv-play span{display:none}.hv-tab--vl .hv-play i{position:absolute;left:calc(24% - 44px);top:calc(80% - 44px);width:88px;height:88px}.hv-tab--vl .hv-play svg{width:36px;height:36px;margin-left:5px}}
