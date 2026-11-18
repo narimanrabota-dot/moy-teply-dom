@@ -65,13 +65,13 @@
 .hv-tab--el .hv-play{padding:0!important}
 
 /* плитка Николая: на компьютере обложка 16:9, на телефоне 9:16; кнопка на свободной траве справа — не закрывает дом и лица */
-/* обложка с синей плашкой (18.11): дом во всю ширину, значок обычного размера на траве рядом с парнем в белом, ниже террасы */
+/* обложка с синей плашкой (18.11): дом во всю ширину, значок обычного размера с подписью «Смотреть · 7 мин» на траве рядом с парнем в белом, ниже террасы */
 .hv-tab--nk .hv-play{display:block;padding:0!important}
-.hv-tab--nk .hv-play span{display:none}
-.hv-tab--nk .hv-play i{position:absolute;left:calc(71.5% - 44px);top:calc(81% - 44px);width:88px;height:88px}
+.hv-tab--nk .hv-play span{position:absolute;left:71.5%;bottom:8px;transform:translateX(-50%);white-space:nowrap}
+.hv-tab--nk .hv-play i{position:absolute;left:calc(71.5% - 44px);top:calc(100% - 113px);width:88px;height:88px}
 .hv-tab--nk .hv-play svg{width:36px;height:36px;margin-left:5px}
 /* телефон: вертикальная обложка 9:16 — значок на траве справа внизу, под ногами людей и правее плашки */
-@media(max-width:760px){.hv-tab--nk .hv-play i{left:calc(75% - 40px);top:calc(87% - 40px);width:80px;height:80px}.hv-tab--nk .hv-play svg{width:32px;height:32px;margin-left:4px}}
+@media(max-width:760px){.hv-tab--nk .hv-play span{left:72%}.hv-tab--nk .hv-play i{left:calc(72% - 40px);top:calc(100% - 129px);width:80px;height:80px}.hv-tab--nk .hv-play svg{width:32px;height:32px;margin-left:4px}}
 
 /* плитка Валерия, компьютер: значок внизу слева на стене — не закрывает надпись «Сдали дом клиенту Валерию» и людей */
-@media(min-width:761px){.hv-tab--vl .hv-play{display:block;padding:0!important}.hv-tab--vl .hv-play span{display:none}.hv-tab--vl .hv-play i{position:absolute;left:calc(24% - 44px);top:calc(80% - 44px);width:88px;height:88px}.hv-tab--vl .hv-play svg{width:36px;height:36px;margin-left:5px}}
+@media(min-width:761px){.hv-tab--vl .hv-play{display:block;padding:0!important}.hv-tab--vl .hv-play span{position:absolute;left:24%;bottom:8px;transform:translateX(-50%);white-space:nowrap}.hv-tab--vl .hv-play i{position:absolute;left:calc(24% - 44px);top:calc(100% - 113px);width:88px;height:88px}.hv-tab--vl .hv-play svg{width:36px;height:36px;margin-left:5px}}
