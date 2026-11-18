@@ -63,3 +63,8 @@
 .hv-tab--el .hv-play span{position:absolute;left:50%;top:calc(50% + 58px);transform:translateX(-50%);white-space:nowrap}
 @media(max-width:760px){.hv-tab--el .hv-play span{top:calc(50% + 44px)}}
 .hv-tab--el .hv-play{padding:0!important}
+
+/* плитка Николая: обложка 16:9 и на телефоне; кнопка на свободной траве справа — не закрывает дом и лица */
+@media(max-width:760px){.hv-tab--nk .hv-wide{display:block}}
+.hv-tab--nk .hv-play{padding:20% 0 0 67%!important}
+@media(max-width:760px){.hv-tab--nk .hv-play{padding:16% 0 0 67%!important}.hv-tab--nk .hv-play i{width:56px;height:56px}.hv-tab--nk .hv-play svg{width:24px;height:24px;margin-left:3px}.hv-tab--nk .hv-play span{display:none}}
