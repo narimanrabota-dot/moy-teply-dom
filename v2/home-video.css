@@ -66,5 +66,9 @@
 
 /* плитка Николая: обложка 16:9 и на телефоне; кнопка на свободной траве справа — не закрывает дом и лица */
 @media(max-width:760px){.hv-tab--nk .hv-wide{display:block}}
-.hv-tab--nk .hv-play{padding:20% 0 0 67%!important}
-@media(max-width:760px){.hv-tab--nk .hv-play{padding:16% 0 0 67%!important}.hv-tab--nk .hv-play i{width:56px;height:56px}.hv-tab--nk .hv-play svg{width:24px;height:24px;margin-left:3px}.hv-tab--nk .hv-play span{display:none}}
+/* обложка с синей плашкой (18.11): дом во всю ширину, свободна только трава справа внизу — туда значок без подписи */
+.hv-tab--nk .hv-play{display:block;padding:0!important}
+.hv-tab--nk .hv-play span{display:none}
+.hv-tab--nk .hv-play i{position:absolute;left:calc(82% - 32px);top:calc(86% - 32px);width:64px;height:64px}
+.hv-tab--nk .hv-play svg{width:28px;height:28px;margin-left:4px}
+@media(max-width:760px){.hv-tab--nk .hv-play i{left:calc(82% - 22px);top:calc(86% - 22px);width:44px;height:44px}.hv-tab--nk .hv-play svg{width:20px;height:20px;margin-left:3px}}
