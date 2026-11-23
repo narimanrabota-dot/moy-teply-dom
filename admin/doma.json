@@ -1377,6 +1377,39 @@
      "kind": "fasad"
     }
    ]
+  },
+  {
+   "card": "proekt-banya-5x5.html",
+   "slug": "banya-5x5",
+   "title": "Баня 5 × 5",
+   "sub": "Каркасная баня · крыльцо под общей кровлей",
+   "series": "",
+   "photo": "img/banya-5x5-fasad-1-th.webp",
+   "hidden": false,
+   "in_catalog": false,
+   "prices": {},
+   "calc": null,
+   "hand": false,
+   "gallery": [
+    {
+     "src": "img/banya-5x5-fasad-1.webp",
+     "th": "img/banya-5x5-fasad-1-th.webp",
+     "alt": "Баня с крыльцом",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/banya-5x5-fasad-2.webp",
+     "th": "img/banya-5x5-fasad-2-th.webp",
+     "alt": "Вид сбоку с крыльцом",
+     "kind": "fasad"
+    },
+    {
+     "src": "img/banya-5x5-fasad-3.webp",
+     "th": "img/banya-5x5-fasad-3-th.webp",
+     "alt": "Вид сзади",
+     "kind": "fasad"
+    }
+   ]
   }
  ],
  "serii": [
@@ -1414,25 +1447,7 @@
    "key": "../video/big/glavnaya-obzor-original.mp4",
    "title": "Отзыв Владислава",
    "sub": "Честный отзыв после первых холодов",
-   "cover": "",
-   "id": null,
-   "series": "",
-   "dur": null
-  },
-  {
-   "key": "../video/rt/b6df13853d9bdc8d625cdc3a054b675f.mp4",
-   "title": "Отзыв Эдуарда",
-   "sub": "Честный отзыв о доме «Стамбул» 9 × 8,65 м · «Холодный контур»",
-   "cover": "img/otzyv-klienta-9-cover.webp",
-   "id": null,
-   "series": "",
-   "dur": null
-  },
-  {
-   "key": "../video/big/%D0%9E%D1%82%D0%B7%D1%8B%D0%B2%20%D0%95%D0%BB%D0%B5%D0%BD%D1%8B%20%E2%80%94%20%D0%B4%D0%BE%D0%BC%20%D0%A1%D1%82%D0%B0%D0%BC%D0%B1%D1%83%D0%BB.mp4",
-   "title": "Отзыв Елены",
-   "sub": "Спустя время после сдачи дома",
-   "cover": "",
+   "cover": "img/otzyv-vladislava-cover-2.webp",
    "id": null,
    "series": "",
    "dur": null
@@ -1447,19 +1462,28 @@
    "dur": null
   },
   {
-   "key": "../video/big/%D0%94%D0%BE%D0%BC%20%D0%A1%D1%82%D0%B0%D0%BC%D0%B1%D1%83%D0%BB%20%D0%B2%20%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B5%20%D0%92%D0%B8%D0%B4%D0%BD%D0%BE%D0%B5.mp4",
-   "title": "Отзыв Валерия",
-   "sub": "Дом «Стамбул» в городе Видное: обзор и стройка",
-   "cover": "",
+   "key": "../video/big/%D0%9E%D1%82%D0%B7%D1%8B%D0%B2%20%D0%95%D0%BB%D0%B5%D0%BD%D1%8B%20%E2%80%94%20%D0%B4%D0%BE%D0%BC%20%D0%A1%D1%82%D0%B0%D0%BC%D0%B1%D1%83%D0%BB.mp4",
+   "title": "Отзыв Елены",
+   "sub": "Спустя время после сдачи дома",
+   "cover": "img/otzyv-eleny-cover.webp",
    "id": null,
    "series": "",
    "dur": null
   },
   {
-   "key": "../video/rt/1e2300351dd8330f03887e5be71845f3.mp4",
-   "title": "Отзыв Александра",
-   "sub": "Спустя недели после сдачи дома",
-   "cover": "img/otzyv-klienta-2-cover-v2.webp",
+   "key": "../video/rt/3406908d39a58f9dea8d4fb36ad543b6.mp4",
+   "title": "Отзыв Сергея",
+   "sub": "Дом 12 × 8 в Воскресенске: сроки и обзор",
+   "cover": "img/otzyv-sergeya-cover.webp",
+   "id": null,
+   "series": "",
+   "dur": null
+  },
+  {
+   "key": "../video/big/%D0%94%D0%BE%D0%BC%20%D0%A1%D1%82%D0%B0%D0%BC%D0%B1%D1%83%D0%BB%20%D0%B2%20%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B5%20%D0%92%D0%B8%D0%B4%D0%BD%D0%BE%D0%B5.mp4",
+   "title": "Отзыв Валерия",
+   "sub": "Дом «Стамбул» в городе Видное: обзор и стройка",
+   "cover": "img/otzyv-valeriya-cover.webp",
    "id": null,
    "series": "",
    "dur": null
@@ -1469,33 +1493,6 @@
    "title": "Отзыв Вячеслава",
    "sub": "Дом 9 × 7 · сроки, цена и обзор",
    "cover": "img/otzyv-vyacheslava-cover-2.webp",
-   "id": null,
-   "series": "",
-   "dur": null
-  },
-  {
-   "key": "../video/rt/a183e330f511dd5df1b2e92a8862aa4d.mp4",
-   "title": "Отзыв Азгама",
-   "sub": "Дом сдан, живёт круглый год",
-   "cover": "img/otzyv-klienta-1-cover.webp",
-   "id": null,
-   "series": "",
-   "dur": null
-  },
-  {
-   "key": "../video/rt/2e27f1d633332e9ac795710a07a0cbcd.mp4",
-   "title": "Отзыв Александры",
-   "sub": "Готовая парная в доме",
-   "cover": "img/otzyv-klienta-7-cover.webp",
-   "id": null,
-   "series": "",
-   "dur": null
-  },
-  {
-   "key": "../video/rt/ed905ace6800670608f5181981cfcc3b.mp4",
-   "title": "Отзыв Оксаны",
-   "sub": "Дом с террасой",
-   "cover": "img/otzyv-klienta-5-cover.webp",
    "id": null,
    "series": "",
    "dur": null
