@@ -288,7 +288,7 @@
   function moreReviews() {
     if (!document.getElementById('catalog')) return;
     var STEP = 8;
-    [].forEach.call(document.querySelectorAll('#reviews .revs__row'), function (row) {
+    [].forEach.call(document.querySelectorAll('#reviews-top .revs__row, #reviews .revs__row'), function (row) {
       var items = [].slice.call(row.children);
       if (items.length <= STEP) return;
       var shown = STEP;
