@@ -3,9 +3,11 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://moy-teply-dom.ru/</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <priority>1.0</priority>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-obzor-mob.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-nikolay-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-nikolay-mob.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-elena.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-elena-mob-2.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-stroyka-2.webp</image:loc></image:image>
@@ -33,8 +35,6 @@
     <image:image><image:loc>https://moy-teply-dom.ru/img/siena-155x85-2-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/siena-144x7-fasad-1-th.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/siena-144x7-2-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/siena-13x85-2-fasad-1-th.webp</image:loc></image:image>
-    <image:image><image:loc>https://moy-teply-dom.ru/img/siena-125x82-fasad-1-th.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://moy-teply-dom.ru/proekt-milan-10x6-2.html</loc>
@@ -693,11 +693,12 @@
   </url>
   <url>
     <loc>https://moy-teply-dom.ru/otzyvy.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <priority>0.6</priority>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-obzor-mob.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-klienta-9-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-elena-mob-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-sergeya-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-nikolaya-cover.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/glavnaya-stroyka-mob.webp</image:loc></image:image>
     <image:image><image:loc>https://moy-teply-dom.ru/img/otzyv-klienta-2-cover-v2.webp</image:loc></image:image>
